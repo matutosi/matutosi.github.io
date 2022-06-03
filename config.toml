@@ -1,0 +1,20 @@
+baseURL = 'http://example.org/'
+languageCode = 'jp-jp'
+title = 'matutosi'
+publishDir = "docs"
+theme = "mainroad"
+
+[[Menus.main]]
+  Name = "Home"
+  URL = "/"
+  weight = 1
+
+[[Menus.main]]
+  Name = "Categories"
+  URL = "/categories/"
+  weight = 2
+
+[[Menus.main]]
+  Name = "Tags"
+  URL = "/tags/"
+  weight = 3
