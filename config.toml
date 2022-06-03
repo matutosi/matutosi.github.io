@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://matutosi.github.io/'
 languageCode = 'jp-jp'
 title = 'matutosi'
 publishDir = "docs"
