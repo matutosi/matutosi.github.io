@@ -88,8 +88,24 @@
 
 
 			</div>
-			<aside class="sidebar sidebar--left">
-	<p class="sidebar__warning"><strong>WARNING:</strong><br>Please activate at least one sidebar widget.</p>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://matutosi.github.io/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20220606/">20220606</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/test/">Test</a></li>
+		</ul>
+	</div>
+</div>
 </aside>
 		</div>
 		<footer class="footer">
