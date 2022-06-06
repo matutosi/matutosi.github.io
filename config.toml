@@ -4,6 +4,15 @@ title = 'matutosi'
 publishDir = "docs"
 theme = "mainroad"
 
+[Params]
+  highlightColor = "#008000" # Override highlight color
+
+[Params.sidebar]
+  home   = "right"
+  list   = "right"
+  single = "right"
+  widgets = ["search", "recent", "categories", "taglist", "social"]
+
 [[Menus.main]]
   Name = "Home"
   URL = "/"
