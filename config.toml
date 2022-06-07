@@ -4,8 +4,8 @@ title = 'matutosi'
 publishDir = "docs"
   # theme = "github-style"
   # theme = "mainroad"
-  # theme = "techdoc"
-theme = "learn"
+theme = "techdoc"
+  # theme = "learn"
 
 [Params]
   highlightColor = "#008000" # Override highlight color
