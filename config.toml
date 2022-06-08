@@ -2,13 +2,17 @@ baseURL = 'https://matutosi.github.io/'
 languageCode = 'jp-jp'
 title = 'matutosi'
 publishDir = "docs"
+  theme = "mainroad"
+  # theme = "techdoc"
   # theme = "github-style"
-  # theme = "mainroad"
-theme = "techdoc"
   # theme = "learn"
 
+  # [outputs]
+  #   home = [ "HTML"]
+
 [Params]
-  highlightColor = "#008000" # Override highlight color
+  #   themeVariant = "gold"
+ highlightColor = "#008000" # Override highlight color
 
 [Params.sidebar]
   home   = "right"
