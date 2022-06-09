@@ -6,13 +6,22 @@
     <description>Recent content on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScriptの勉強</title>
+      <link>https://matutosi.github.io/post/20220609/</link>
+      <pubDate>Thu, 09 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220609/</guid>
+      <description>植生調査アプリを作成するのに，JavaScriptを勉強中． そういえば，学生のときにホームページを作ってJavaScriptを作っていた． 嬉しがって，ページを移動するたびに「本当に良いですか」のようなポップアップを出すスクリプトを書いていた． 知人から「鬱陶しいからやめて」と言われたのを思い出す．</description>
+    </item>
+    
     <item>
       <title>ひっそりと</title>
-      <link>https://matutosi.github.io/post/20220606/</link>
+      <link>https://matutosi.github.io/post/20220608/</link>
       <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://matutosi.github.io/post/20220606/</guid>
+      <guid>https://matutosi.github.io/post/20220608/</guid>
       <description>ひっそりとブログを再開，というか適当にメモを書く予定．
 とりあえず，HugoでthemeはMainraodで開始した． themeは変更の可能性あり．</description>
     </item>
