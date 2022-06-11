@@ -1,0 +1,276 @@
+<html>
+<head>
+<script type="text/javascript">
+// http://scrap.php.xdomain.jp/javascript_table_control/
+
+// add row
+function addRow(id, n = 5) {
+    var table = document.getElementById(id);    // get table
+    const n_col = table.rows[0].cells.length;   // number of cols
+    // html for cells
+    var editable_cell = '<span contenteditable="true"></span>';
+    var delete_button = '<input type="button" value="DELETE" onclick="deleteRow(this)">';
+    for(var Nj = 0; Nj < n; Nj++){
+        var tr = document.createElement('tr');
+        for(var Cj = 0; Cj < n_col - 2; Cj++){  // 2: delete_button and date
+            var td = document.createElement('td');
+            td.innerHTML = editable_cell;
+            tr.appendChild(td);
+        }
+        // delete_button
+        var td = document.createElement('td');
+        td.innerHTML = delete_button;
+        tr.appendChild(td);
+        // date
+        var td = document.createElement('td');
+        td.innerHTML = getNow()+'_'+Nj;
+        tr.appendChild(td);
+        // add a row to table
+        table.appendChild(tr);
+    }
+}
+
+
+//  行追加 
+function insertRow(id) {
+    var table = document.getElementById(id);    // get table
+    // add row
+    var row = table.insertRow(-1); // insertRow() is another function, not self call
+    // add cell
+    var cell1 = row.insertCell(-1);
+    var cell2 = row.insertCell(-1);
+    var cell3 = row.insertCell(-1);
+    // button HTML
+    var button = '<input type="button" value="行削除" onclick="deleteRow(this)" />';
+    // number of rows
+    var row_len = table.rows.length;
+    // add data into cell
+    cell1.innerHTML = button;
+    cell2.innerHTML = row_len + "-" + 1;
+    cell3.innerHTML = row_len + "-" + 2;
+}
+ 
+// delete a row
+function deleteRow(obj) {
+    // clicked row
+    tr = obj.parentNode.parentNode;
+    // delete clicked row
+    tr.parentNode.deleteRow(tr.sectionRowIndex);
+}
+
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+// 
+// No need (do not use)
+// 
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+// add column
+function insertColumn(id) {
+    // get table
+    var table = document.getElementById(id);
+    // number of rows
+    var rows = table.rows.length;
+    // add cell
+    for ( var i = 0; i < rows; i++) {
+        var cell = table.rows[i].insertCell(-1);
+        var cols = table.rows[i].cells.length;
+        if (cols > 10) {
+            continue;
+        }
+        cell.innerHTML = (i + 1) + '-' + (cols - 1);
+    }
+}
+
+// delete a row
+function deleteColumn(id) {
+    // get table
+    var table = document.getElementById(id);
+    // number of rows
+    var rows = table.rows.length;
+    // delete last cell in each row
+    for ( var i = 0; i < rows; i++) {
+        var cols = table.rows[i].cells.length;
+        if (cols < 2) {
+            continue;
+        }
+        table.rows[i].deleteCell(-1);
+    }
+}
+</script>
+<script type="text/javascript">
+// https://blog.ver001.com/javascript-table-sort/
+let column_no = 0;       // now clicked
+let column_no_prev = 0;  // previous clicked
+window.addEventListener('load', function () {
+  document.querySelectorAll('#sort_table th').forEach(elm => {
+    elm.onclick = function () {
+      column_no = this.cellIndex;  // now clicked
+      let table = this.parentNode.parentNode.parentNode;
+      let sortType = 0;              // 0:numeric 1:string
+      let sortArray = new Array;     // array in clicked column
+      for (let r = 1; r < table.rows.length; r++) {
+        // col number and value
+        let column = new Object;
+        column.row = table.rows[r];
+        column.value = table.rows[r].cells[column_no].textContent;
+        sortArray.push(column);
+        // is numeric ?
+        if (isNaN(Number(column.value))) {
+          sortType = 1; // string sort when can not convert to numeric
+        }
+      }
+      if (sortType == 0) { // numeric sort
+        if (column_no_prev == column_no) { // clicked: sort reverse
+          sortArray.sort(compareNumberDesc);
+        } else {
+          sortArray.sort(compareNumber);
+        }
+      } else { // string sort
+        if (column_no_prev == column_no) { // clicked: sort reverse
+          sortArray.sort(compareStringDesc);
+        } else {
+          sortArray.sort(compareString);
+        }
+      }
+      // add tbody to sorted tr object 
+      let tbody = this.parentNode.parentNode;
+      for (let i = 0; i < sortArray.length; i++) {
+        tbody.appendChild(sortArray[i].row);
+      }
+      // save column numbers for ascending/descending sort switching
+      if (column_no_prev == column_no) {
+        column_no_prev = -1; // descending sort
+      } else {
+        column_no_prev = column_no;
+      }
+    };
+  });
+});
+
+function compareNumber    (a, b) { return a.value - b.value; }   // numeric sort (asc)
+function compareNumberDesc(a, b) { return b.value - a.value; }  // numeric sort (desc)
+function compareString(a, b) {  // string sort (asc)
+  if (a.value < b.value) { return -1; } else { return 1; }
+  return 0;
+}
+function compareStringDesc(a, b) { // string sort (desc)
+  if (a.value > b.value) { return -1; } else { return 1; }
+  return 0;
+}
+</script>
+<script type="text/javascript">
+function getNow(){
+   var now = new Date();
+   const yr  = now.getFullYear();
+   const mo  = String(now.getMonth()).padStart(2, `0`);
+   const dd  = String(now.getDate()).padStart(2, `0`);
+   const hh  = String(now.getHours()).padStart(2, `0`);
+   const mi  = String(now.getMinutes()).padStart(2, `0`);
+   const ss  = String(now.getSeconds()).padStart(2, `0`);
+  //    const ms  = String(now.getMilliseconds()).padStart(3, `0`);
+  //    return(`${yr}_${mo}_${dd}_${hh}_${mi}_${ss}_${ms}`)
+   return(`${yr}_${mo}_${dd}_${hh}_${mi}_${ss}`)
+}
+</script>
+<script type="text/javascript">
+// https://phper.pro/352
+
+function download(id){
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
+  var table = document.getElementById(id);
+  var data_tsv = "";                             // data_tsv is data holder
+
+  for(var i = 0;  i < table.rows.length; i++) {
+    for(var j = 0; j < table.rows[i].cells.length; j++) {
+      data_tsv += table.rows[i].cells[j].innerText;           // save data in cellls
+      if(j == table.rows[i].cells.length-1) data_tsv += "\n";  // add line break
+      else data_tsv += "\t";                                   // add "\t" as separater
+    }
+  }
+
+  var blob = new Blob([ bom, data_tsv], { "type" : "text/tsv" });  // download tsv data from data_tsv
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = getNow() + ".tsv";
+  a.href = url;
+  a.click();
+  a.remove();
+
+  URL.revokeObjectURL(url);
+  delete data_tsv;
+}
+</script>
+
+<body>
+<!--
+https://allabout.co.jp/gm/gc/23969/
+-->
+
+<!--  <input type="button" value="add row" onclick="insertRow('sort_table')" />  -->
+<table id="sort_table">
+<col span="4">                              <!-- except date col -->
+<col span="1">                              <!-- date col -->
+<!--
+<col span="1" style="visibility: collapse">
+-->
+
+  <tr>
+    <th>Layer</th>
+    <th>Species</th>
+    <th>cover</th>
+    <th>del</th>
+    <th>date</th>
+  </tr>
+
+  <tr>
+    <td><span contenteditable="true">B</span></td>
+    <td><span contenteditable="true">aaa</span></td>
+    <td><span contenteditable="true">20</span></td>
+    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
+    <td><script>document.write(getNow())</script></td>
+  </tr>
+
+  <tr>
+    <td><span contenteditable="true">S</span></td>
+    <td><span contenteditable="true">bbb</span></td>
+    <td><span contenteditable="true">10</span></td>
+    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
+    <td><script>document.write(getNow())</script></td>
+  </tr>
+
+  <tr>
+    <td><span contenteditable="true">K</span></td>
+    <td><span contenteditable="true">ccc</span></td>
+    <td><span contenteditable="true">50</span></td>
+    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
+    <td><script>document.write(getNow())</script></td>
+  </tr>
+
+</table>
+
+<p>
+  <input type="button" value="Add rows" onclick="addRow('sort_table'), 5" />
+</p>
+
+<p>
+  <input type="button" value="Download data" onclick="download('sort_table')" />
+</p>
+
+
+<style>
+#sort_table {
+  border-collapse:collapse;
+}
+#sort_table td {
+  border:1px solid lightgray;
+}
+#sort_table th {
+  cursor:pointer;
+  background-color:lightgray;
+}
+</style>
+
+</body>
+</html>
