@@ -6,7 +6,17 @@
     <description>Recent content on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Thu, 09 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>植生調査アプリ</title>
+      <link>https://matutosi.github.io/post/20220611/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220611/</guid>
+      <description>しばらく前にSwiftでiOS用の植生調査アプリを作っていた． そこそこのところまではできてきたが，ちょっと行き詰まっていた．
+JavaScriptで位置から作り直しているが，こっちのほうが簡単にできそう． iOSだけでなくAndroidやWindowsでも使えるはず． HTML, JavaScript, cssだけで作っている． これらのファイルをローカル環境にダウンロードすれば簡単に使えるようになるはずだ． AppStoreとかGooglePlayに登録せずとも，GitHubからダウンローできるようにすれば良いので管理も簡単だ． HTML, JavaScript, cssをちょっと勉強すれば，カスタマイズもできるだろう．</description>
+    </item>
+    
     <item>
       <title>JavaScriptの勉強</title>
       <link>https://matutosi.github.io/post/20220609/</link>
