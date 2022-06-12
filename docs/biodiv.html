@@ -1,16 +1,39 @@
 <html>
 <head>
-<script src="table.js"   ></script>
-<script src="sort.js"    ></script>
-<script src="date.js"    ></script>
-<script src="download.js"></script>
+<script src="table.js"></script>
+<script src="sort.js"   ></script>
+<script src="date.js"></script>
+<script src="download.js"   ></script>
 </head>
-
 
 <body>
 <!--
-https://allabout.co.jp/gm/gc/23969/
+  https://allabout.co.jp/gm/gc/23969/
 -->
+<!--
+<input type="text" size="20" list="mylist1" />
+  <datalist id="mylist1">
+    <option>りんご</option>
+    <option>バナナ</option>
+    <option>ぶどう</option>
+  </datalist>
+-->
+
+<p>
+  <form>
+    <label>Item (separete by ","): 
+      <input id="col_item" type="text" size="50" value="Stand,Layer,Species,Cover" inputmode="text">
+    </label>
+    <input type="button" value="create table"  onclick="createTable('occurrence', 'col_item')" />
+  </form>
+
+  <table id="occurrence">
+  </table>
+
+<input id="test" type="number" min="0" max="100" inputmode="numeric">
+
+</p>
+<hr>
 
 <table id="sort_table">
 <!--
@@ -59,7 +82,6 @@ https://allabout.co.jp/gm/gc/23969/
     <td><input type="text"size="10" /></td>
     <td><input type="text"size="10" /></td>
   </tr>
-
 </table>
 
 <p>
@@ -72,25 +94,25 @@ https://allabout.co.jp/gm/gc/23969/
 
 <p>
   <form>
-    <label>col name: <input type="text" id="col_name" size="10" /></label>
-    <input type="button" value="add col"  onclick="addCol_2('sort_table')" />
+    <label>col name: <input type="text" id="add_col_name" size="10" /></label>
+    <input type="button" value="add col"  onclick="addCol('sort_table', 'add_col_name')" />
   </form>
 </p>
 
 
 <style>
-#sort_table {
+table{
   border-collapse:collapse;
 }
-#sort_table td {
-  border-width: 1px 0px; /* 上下だけ引く */
-  border-color: green;   /* 線色：緑 */
+table td{
+  border-width: 1.5px 0px; /* 上下だけ引く */
+  border-color: #00552e;   /* 線色：緑 */
   border-style: solid;   /* 線種：実線 */
   padding: 0.3em 1em;        /* セル内側の余白 */
 }
-#sort_table th {
+table th{
   cursor:pointer;
-  background-color:black;
+  background-color:#00552e;
   color:white;
   border-color: white;
   border-style: solid;
