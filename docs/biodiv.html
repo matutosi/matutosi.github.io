@@ -1,0 +1,101 @@
+<html>
+<head>
+<script src="table.js"></script>
+<script src="sort.js"   ></script>
+<script src="date.js"></script>
+<script src="download.js"   ></script>
+</head>
+
+<body>
+<!--
+https://allabout.co.jp/gm/gc/23969/
+-->
+
+<table id="sort_table">
+<!--
+<col span="1" style="visibility: collapse">
+-->
+<col span="1">                              <!-- date col -->
+<col span="1">                              <!-- delelte col -->
+<col span="6">                              <!-- normal cols -->
+
+  <tr>
+    <th>date</th>
+    <th>del</th>
+    <th>Identified</th>
+    <th>Sampled</th>
+    <th>Layer</th>
+    <th>Species</th>
+    <th>cover</th>
+  </tr>
+
+  <tr>
+    <td><script>document.write(getNow())</script></td>
+    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
+    <td><span contenteditable="true"><input type="checkbox"></span></td>
+    <td><span contenteditable="true"><input type="checkbox"></span></td>
+    <td><span contenteditable="true">B</span></td>
+    <td><span contenteditable="true">aaa</span></td>
+    <td><span contenteditable="true">20</span></td>
+  </tr>
+
+  <tr>
+    <td><script>document.write(getNow())</script></td>
+    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
+    <td><span contenteditable="true"><input type="checkbox"></span></td>
+    <td><span contenteditable="true"><input type="checkbox"></span></td>
+    <td><input type="text"size="10" /></td>
+    <td><input type="text"size="10" /></td>
+    <td><input type="text"size="10" /></td>
+  </tr>
+
+  <tr>
+    <td><script>document.write(getNow())</script></td>
+    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
+    <td><span contenteditable="true"><input type="checkbox"></span></td>
+    <td><span contenteditable="true"><input type="checkbox"></span></td>
+    <td><input type="text"size="10" /></td>
+    <td><input type="text"size="10" /></td>
+    <td><input type="text"size="10" /></td>
+  </tr>
+
+</table>
+
+<p>
+  <input type="button" value="Add rows" onclick="addRow('sort_table'), 5" />
+</p>
+
+<p>
+  <input type="button" value="Download data" onclick="download('sort_table')" />
+</p>
+
+<p>
+  <form>
+    <label>col name: <input type="text" id="col_name" size="10" /></label>
+    <input type="button" value="add col"  onclick="addCol_2('sort_table')" />
+  </form>
+</p>
+
+
+<style>
+#sort_table {
+  border-collapse:collapse;
+}
+#sort_table td {
+  border-width: 1px 0px; /* 上下だけ引く */
+  border-color: green;   /* 線色：緑 */
+  border-style: solid;   /* 線種：実線 */
+  padding: 0.3em 1em;        /* セル内側の余白 */
+}
+#sort_table th {
+  cursor:pointer;
+  background-color:black;
+  color:white;
+  border-color: white;
+  border-style: solid;
+  padding: 0.3em 1em;
+}
+</style>
+
+</body>
+</html>
