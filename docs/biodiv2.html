@@ -8,7 +8,7 @@ function addRow(id, n = 5) {
     var table = document.getElementById(id);    // get table
     const n_col = table.rows[0].cells.length;   // number of cols
     // html for cells
-    var editable_cell = '<span contenteditable="true"></span>';
+    var editable_cell = '<span contenteditable="true">　</span>';
     var delete_button = '<input type="button" value="DELETE" onclick="deleteRow(this)">';
     for(var Nj = 0; Nj < n; Nj++){
         var tr = document.createElement('tr');
