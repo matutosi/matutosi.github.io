@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="robots" content="noindex,nofollow">
+
+		<!-- ビューポートの設定 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- スタイルシートの読み込み -->
+		<link href="gps.css" rel="stylesheet">
+
+		<title>[watchPosition()]のサンプルデモ (Geolocation API)</title><!-- 
+
+/********************************************************************************
+
+	SYNCER 〜 知識、感動をみんなと同期(Sync)するブログ
+
+	* 配布場所
+	https://syncer.jp/how-to-use-geolocation-api
+
+	* 動作確認
+	https://syncer.jp/how-to-use-geolocation-api/demo/watch-position.html
+
+	* 最終更新日時
+	2015/08/16 01:08
+
+	* 作者
+	あらゆ
+
+	** 連絡先
+	Twitter: https://twitter.com/arayutw
+	Facebook: https://www.facebook.com/arayutw
+	Google+: https://plus.google.com/114918692417332410369/
+	E-mail: info@syncer.jp
+
+	※ バグ、不具合の報告、提案、ご要望など、お待ちしております。
+	※ 申し訳ありませんが、ご利用者様、個々の環境における問題はサポートしていません。
+
+********************************************************************************/
+
+		-->
+	</head>
+<body>
+
+
+
+<h1 style="text-align:center;color:#d36015;">[watchPosition()]のサンプルデモ (Geolocation API)</h1>
+<p>Geolocation APIの[watchPosition()]を利用して、ユーザーの現在位置を追跡するサンプルデモです。スマホでアクセスして、移動しながら確認してみて下さい。</p>
+
+<HR style="margin: 3em 0 ;">
+
+<h2>取得したデータ</h2>
+
+	<p>下記の位置情報を取得することができました。</p>
+
+	<dl id="result"></dl>
+
+<h2>地図</h2>
+
+	<p>Google Mapsに、位置情報を反映させたものです。</p>
+
+	<div class="map-wrapper">
+		<div id="map-canvas"></div>
+	</div>
+
+
+<HR style="margin: 3em 0 ;">
+
+
+
+<p style="text-align:center"><a href="https://syncer.jp/how-to-use-geolocation-api">配布元: Syncer</a></p>
+
+
+
+
+<!-- JavaScriptの読み込み -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7Pxqp7Asgi6D4eOtkCxnir5xPiIwY3EE"></script>
+<script src="gps.js"></script>
+
+
+
+
+</body>
+</html>
