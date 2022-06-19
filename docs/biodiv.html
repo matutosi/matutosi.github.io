@@ -1,124 +1,127 @@
 <html>
 <head>
-<script src="table.js"></script>
-<script src="sort.js"   ></script>
-<script src="date.js"></script>
-<script src="download.js"   ></script>
+    <script src="js/utils.js"></script>
+    <script src="js/settingTable.js"></script>
+    <script src="js/occurrenceTable.js"></script>
+    <script src="js/sortable.js"></script>
+    <!--  Not use in progress
+      <script src="js/inhibitClose.js"></script>
+    -->
+    <script src="download.js"></script>
+    <link rel="stylesheet" href="table.css">
 </head>
 
 <body>
-<!--
-  https://allabout.co.jp/gm/gc/23969/
--->
-<!--
-<input type="text" size="20" list="mylist1" />
-  <datalist id="mylist1">
-    <option>りんご</option>
-    <option>バナナ</option>
-    <option>ぶどう</option>
-  </datalist>
--->
 
-<p>
-  <form>
-    <label>Item (separete by ","): 
-      <input id="col_item" type="text" size="50" value="Stand,Layer,Species,Cover" inputmode="text">
-    </label>
-    <input type="button" value="create table"  onclick="createTable('occurrence', 'col_item')" />
-  </form>
 
-  <table id="occurrence">
-  </table>
+<script>
+// // // // // // // // // // // // // // // // // // // 
+// 
+//      get data for download
+// 
+// // // // // // // // // // // // // // // // // // // 
+// local data
+// https://developer.mozilla.org/ja/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage
+// https://qiita.com/masuda-sankosc/items/cff6131efd6e1b5138e6
+// https://qiita.com/w-tdon/items/81034bd3006806f7d7c3
+// 
+//    if(row.children[i].firstChild.value === void 0){  // void 0 means undifined
+//      row.children[i].innerHTML
+//    } else {
+//      row.children[i].firstChild.value
+//    }
+</script>
 
-<input id="test" type="number" min="0" max="100" inputmode="numeric">
+<script>
+// // // // // // // // // // // // // // // // // // // 
+// 
+//       Launch mailer (OK)
+// 
+// // // // // // // // // // // // // // // // // // // 
+//    https://rukiadia.hatenablog.jp/entry/2014/02/19/132445
+function launchMailer(){
+  location.href = 'mailto: matutosi@gmail.com' + '?subject="text"' + '&body="testmail"';
+}
+</script>
+<input type='button' value="launch mailer" onclick="launchMailer()" />
 
-</p>
+
+<script>
+// // // // // // // // // // // // // // // // // // // 
+// 
+// Get GPS information (maybe OK)
+//        only get data, but not shown in map yet
+// 
+// // // // // // // // // // // // // // // // // // // 
+// 
+// https://syncer.jp/how-to-use-geolocation-api
+// https://syncer.jp/how-to-use-geolocation-api/demo/watch-position.html
+</script>
+
+<script>
+// // // // // // // // // // // // // // // // // // // 
+// 
+//       tab (OK)
+// 
+// // // // // // // // // // // // // // // // // // // 
+// https://allabout.co.jp/gm/gc/23969/
+// tab.html
+// tab.js
+// tab.css
+</script>
+
+
 <hr>
 
-<table id="sort_table">
-<!--
-<col span="1" style="visibility: collapse">
--->
-<col span="1">                              <!-- date col -->
-<col span="1">                              <!-- delelte col -->
-<col span="6">                              <!-- normal cols -->
-
-  <tr>
-    <th>date</th>
-    <th>del</th>
-    <th>Identified</th>
-    <th>Sampled</th>
-    <th>Layer</th>
-    <th>Species</th>
-    <th>cover</th>
-  </tr>
-
-  <tr>
-    <td><script>document.write(getNow())</script></td>
-    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
-    <td><span contenteditable="true"><input type="checkbox"></span></td>
-    <td><span contenteditable="true"><input type="checkbox"></span></td>
-    <td><span contenteditable="true">B</span></td>
-    <td><span contenteditable="true">aaa</span></td>
-    <td><span contenteditable="true">20</span></td>
-  </tr>
-
-  <tr>
-    <td><script>document.write(getNow())</script></td>
-    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
-    <td><span contenteditable="true"><input type="checkbox"></span></td>
-    <td><span contenteditable="true"><input type="checkbox"></span></td>
-    <td><input type="text"size="10" /></td>
-    <td><input type="text"size="10" /></td>
-    <td><input type="text"size="10" /></td>
-  </tr>
-
-  <tr>
-    <td><script>document.write(getNow())</script></td>
-    <td><input type="button" value="DELETE" onclick="deleteRow(this)"></td>
-    <td><span contenteditable="true"><input type="checkbox"></span></td>
-    <td><span contenteditable="true"><input type="checkbox"></span></td>
-    <td><input type="text"size="10" /></td>
-    <td><input type="text"size="10" /></td>
-    <td><input type="text"size="10" /></td>
-  </tr>
-</table>
-
 <p>
-  <input type="button" value="Add rows" onclick="addRow('sort_table'), 5" />
+  <table id="table_setting"></table>
+  <script>
+    createSettingTable('table_setting')
+  </script>
 </p>
 
-<p>
-  <input type="button" value="Download data" onclick="download('sort_table')" />
-</p>
+<hr>
 
 <p>
-  <form>
-    <label>col name: <input type="text" id="add_col_name" size="10" /></label>
-    <input type="button" value="add col"  onclick="addCol('sort_table', 'add_col_name')" />
-  </form>
+  <table id='occurrence'></table>
+  <input type="button" value="create occurrence table"  onclick="createOccurrenceTable(occ_tbl)" />
+  <input type="button" value="add row"  onclick="cloneRows(occ_tbl)" />
+  <input id="clone_n_row" type="number" value="5" step="1", min="1" max="20">
+
+  <script>
+    // variables for sotable table
+    let occ_tbl = 'occurrence';
+    var column_no = 0;       // now clicked
+    var column_no_prev = 0;  // previous clicked
+    var dir = "asc";
+  </script>
 </p>
 
 
-<style>
-table{
-  border-collapse:collapse;
+<p>
+  <!--  TODO: generate ENTIRELY NEW table for each plot                                                   -->
+  <!--  get table name from input tag as text and use it                                                  -->
+  <!--    <input id="new_table_name" type="text"  placeholder="table name: stand_01" />                   -->
+  <!--    <input type="button" value="create occurrence table"  onclick="createNewOccurrenceTable()" />   -->
+  <!--  TODO: generate add row button and clone_n_row input like below                                    -->
+  <!--  <input type="button" value="add row"  onclick="cloneRows()" />                                    -->
+  <!--  <input id="clone_n_row" type="number" value="5" step="1", min="1" max="20">                       -->
+
+</p>
+
+
+<!--  Test code for generate ENTIRELY NEW table  -->
+<p id="table">
+</p>
+<script>
+function generateTable(id_table){
+  table = document.createElement('table');
+  table.setAttribute('id', id_table);
+  document.getElementById('table').appendChild(table);
 }
-table td{
-  border-width: 1.5px 0px; /* 上下だけ引く */
-  border-color: #00552e;   /* 線色：緑 */
-  border-style: solid;   /* 線種：実線 */
-  padding: 0.3em 1em;        /* セル内側の余白 */
-}
-table th{
-  cursor:pointer;
-  background-color:#00552e;
-  color:white;
-  border-color: white;
-  border-style: solid;
-  padding: 0.3em 1em;
-}
-</style>
+generateTable("a");
+generateTable("b");
+</script>
 
 </body>
 </html>

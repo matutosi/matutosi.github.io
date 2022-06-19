@@ -12,7 +12,8 @@ publishDir = "docs"
 
 [Params]
   #   themeVariant = "gold"
- highlightColor = "#008000" # Override highlight color
+  highlightColor = "#008000" # Override highlight color
+  post_meta = ["date", "categories"] # Order of post meta information
 
 [Params.sidebar]
   home   = "right"
