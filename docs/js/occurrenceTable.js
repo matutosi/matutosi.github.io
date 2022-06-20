@@ -31,8 +31,12 @@ function createOccurrenceTable(id_table){
       var td = document.createElement('td');
       switch(dat_types[i].value){
           case "auto": // date or no
-            if(col_names[i].value === "date") td.innerHTML = getNow();
-            if(col_names[i].value === "no")   td.innerHTML = 1;
+            if(col_names[i].value === "date")   td.innerHTML = getNow();
+console.log(getLat());
+            if(col_names[i].value === "locLat") td.innerHTML = getLat();
+            if(col_names[i].value === "locLon") td.innerHTML = getLon();
+            if(col_names[i].value === "locAcc") td.innerHTML = getAcc();
+            if(col_names[i].value === "no")     td.innerHTML = 1;
             break;
           case "button": // delButton
     //      createInput(ty, va, pl, on, im);
@@ -122,6 +126,15 @@ function cloneRow(id_table){
     switch(col_names[Ci]){
       case "date":  // update "date"
         next_row.children[Ci].innerHTML = getNow();
+        break;
+      case "locLat":  // update GPS data
+        next_row.children[Ci].innerHTML = getLat();
+        break;
+      case "locLon":
+        next_row.children[Ci].innerHTML = getLon();
+        break;
+      case "locAcc":
+        next_row.children[Ci].innerHTML = getAcc();
         break;
       case "delButton": // do nothing
         break;

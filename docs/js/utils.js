@@ -1,3 +1,80 @@
+// Get data from occurrence table.
+//    returns [array], [array], [array], 
+//    Each array means a row in the table. 
+//    
+
+function getTableData(id_table){
+  const table = document.getElementById(id_table);
+  const col_names = getColNames(table);
+  const n_col = col_names.length;
+  const n_row = table.rows.length;
+  const data_types = getDataType(id_table);
+  var table_data = [];
+  for(let Rj=0; Rj<n_row; Rj++){
+    var row_rj = table.rows[Rj].cells;
+    var row_data = [];
+    for(let Ci=0; Ci<n_col; Ci++){
+      switch(data_types[Ci]){
+        case "delButton":  //  skip
+          break;
+        case "date":
+        case "no":
+        case "fixed":
+          row_data[Ci] = row_rj[Ci].innerHTML;
+          break;
+        case "text":
+        case "number":
+          row_data[Ci] = row_rj[Ci].firstChild.value;
+          break;
+        case "checkbox": 
+          row_data[Ci] = row_rj[Ci].firstChild.checked;
+          break;
+        case "select_option":
+          row_data[Ci] = row_rj[Ci].firstChild.selectedIndex;
+          break;
+      }
+    }
+    table_data[Rj] = row_data;
+  }
+  return table_data;
+}
+
+// Get data types from occurrence table.
+//    Columns "date", "delButton", and "no" are special, 
+//    these columns can not be set by users. 
+//    Other columns can be devided into 5 data types: 
+//    "fixed", "checkbox", "text", "number", "select_option".
+//    
+function getDataType(id_table){
+  const table = document.getElementById(id_table);
+  const col_names = getColNames(table);
+  const n_col = col_names.length;
+  const first_data_row = table.rows[1].cells;
+  var data_type = [];
+  for(let Ci = 0; Ci < n_col; Ci++){
+    switch(col_names[Ci]){
+      case "date":
+      case "delButton":
+      case "no":
+        data_type[Ci] = col_names[Ci];
+        break;
+      default:
+        var f_child = first_data_row[Ci].firstChild;
+        if(f_child.value === void 0){
+          data_type[Ci] = "fixed";
+        } else {
+          if(f_child.getAttribute("type") === null){
+            data_type[Ci] = "select_option";
+          } else {
+            data_type[Ci] = f_child.getAttribute("type");
+          }
+        }
+      break;
+    }
+  }
+  return data_type;
+}
+
 // Helper to get first child from html elements
 //    @params elements   html elements by document.getElementsByClassName()
 //    @return        An array.
@@ -90,4 +167,10 @@ function getNow(){
   //    const ms  = String(now.getMilliseconds()).padStart(3, `0`);
   //    return(`${yr}_${mo}_${dd}_${hh}_${mi}_${ss}_${ms}`)
    return(`${yr}_${mo}_${dd}_${hh}_${mi}_${ss}`)
+}
+
+// delete a row
+function deleteRow(obj){
+    var tr = obj.parentNode.parentNode;          // clicked row
+    tr.parentNode.deleteRow(tr.sectionRowIndex); // delete clicked row
 }
