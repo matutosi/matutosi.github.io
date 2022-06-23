@@ -6,7 +6,19 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 22 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DeepL API</title>
+      <link>https://matutosi.github.io/post/20220623/</link>
+      <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220623/</guid>
+      <description>Google翻訳も良いが，DeepLの翻訳は結構自然で良い． APIが使えるのはしばらく前から知っていたが，手を出していなかった． ちょっと調べると簡単に使えそう．
+https://qiita.com/yaju/items/bf4613393cd4ee402d17
+上のページのものをちょっと改変してJavaScript版で作ってみた． APIは自分で取得して，それを入力する必要がある(16行目)．
+https://gist.github.com/matutosi/01bbc564ba3ae249f121965dc725b649</description>
+    </item>
+    
     <item>
       <title>JavaScript</title>
       <link>https://matutosi.github.io/post/20220622/</link>
