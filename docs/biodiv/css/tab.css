@@ -1,0 +1,38 @@
+/* https://allabout.co.jp/gm/gc/23969/5/ */
+
+/* overall */
+#tabcontrol {
+  margin: 0;
+}
+
+/* tab */
+#tabcontrol a {
+  display: inline-block;
+  border-width: 1px 1px 0px 1px;        /* border line except bottom */
+  border-style: solid;
+  border-color: black;
+  border-radius: 0.75em 0.75em 0px 0px; /* round at left-top and right-top */
+  padding: 0.75em 1em;
+  text-decoration: none;                /* delete link underline */
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  position: relative;                   /* needs in JavaScript at z-index adjastment */
+}
+
+/* contents of tab */
+#tabbody div {
+  border: 1px solid black;
+  margin-top: -1px;        /* override upside tab */
+  padding: 1em;
+  background-color: white;
+  position: relative;      /* needs adjastment of z-index */
+  z-index: 0;              /* layout at backside */
+  min-height: 5em;         /* optional */
+}
+
+/* tab coloar */
+#tabcontrol a:nth-child(1), #tabbody div:nth-child(1) { background-color: #efefff; }
+#tabcontrol a:nth-child(2), #tabbody div:nth-child(2) { background-color: #efffef; }
+#tabcontrol a:nth-child(3), #tabbody div:nth-child(3) { background-color: #ffffea; }
+#tabcontrol a:nth-child(4), #tabbody div:nth-child(4) { background-color: #ffefef; }

@@ -1,0 +1,171 @@
+<html>
+<head>
+    <script src="js/data.js"></script>
+    <script src="js/json.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ns.js"></script>
+    <script src="js/settingTable.js"></script>
+    <script src="js/occurrenceTable.js"></script>
+    <script src="js/sortable.js"></script>
+    <script src="js/gps.js"></script>
+    <script src="js/fullScreen.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/mailer.js"></script>
+    <!--  Not use in progress
+    <script src="js/inhibitClose.js"></script>
+    -->
+
+    <!--  in progress
+    <script src="download.js"></script>
+    -->
+
+    <link rel="stylesheet" href="css/tab.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/fullScreen.css">
+
+<script>
+// js/occurrenceTable.js(18):   const col_names = getFirstChild(document.getElementsByClassName("ts_cnames"));
+// occurrenceTable.js(19):   const dat_types = getFirstChild(document.getElementsByClassName("ts_itypes"));
+// occurrenceTable.js(20):   const optionals = getFirstChild(document.getElementsByClassName("ts_option"));
+// getTableData("setting_stand")
+
+</script>
+
+
+  <script>
+  // // // // // // // // // // // // // // // // // // // 
+  // 
+  // TODO: 
+  //    var -> const ?
+  //    Can remove data_id if do not use it
+  //    Can remove class in data table if do not use it
+  //    
+  //    Compute cover in each layer
+  //    generate 2 selectOpt tag with options (colnames)
+  //        group
+  //        caluculate: sum, mean, max, min
+  // 
+  // // // // // // // // // // // // // // // // // // // 
+
+  // Get data from a table for download
+  // Can restore table?
+  //    getTableData("occurrence")
+  //    getSelectOption(table)
+  //    getDataType(table)
+  // 
+  // local data
+  // https://developer.mozilla.org/ja/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage
+  // https://qiita.com/masuda-sankosc/items/cff6131efd6e1b5138e6
+  // https://qiita.com/w-tdon/items/81034bd3006806f7d7c3
+  </script>
+
+
+  <script>
+  // // // // // // // // // // // // // // // // // // // 
+  // 
+  //       tab (OK)
+  // 
+  // // // // // // // // // // // // // // // // // // // 
+  // https://allabout.co.jp/gm/gc/23969/
+  // tab.html
+  // tab.js
+  // tab.css
+  </script>
+
+</head>
+
+<body>
+
+
+<p>
+Biodiversity Investigation System (BIS)
+<!--            Switch full screen           -->
+<input id="switch_screen_show" type="button" value="TO FULL SCREEN"  onclick="switchScreenShow(this.id)" />
+</p>
+
+<div class="sample-area">
+  <p id="tabcontrol">
+    <a href="#tab1">Settings</a>
+    <a href="#tab2">Inputs</a>
+    <a href="#tab3">Tools</a>
+    <a href="#tab4">tab4</a>
+  </p>
+
+  <div id="tabbody">
+    <div id="tab1">
+      <span id="setting"></span>
+
+      <script>
+        createSpanSettings("meta_setting");
+        createSpanSettings("plot_setting");
+        createSpanSettings("occ_setting");
+      </script>
+
+    </div>
+
+
+    <div id="tab2">
+      <input type="search" id="search_text" onkeyup="searchTable('occurrence', this.id)" placeholder="Search text input">
+      <table id='occurrence'></table>
+      <p>
+        <input id="clone_n_row" type="number" value="5" step="1", min="1" max="20">
+        <input type="button" value="add row"  onclick="cloneRows(occ_tbl)" />
+      </p>
+      <p>
+        <input type="button" value="calc" onclick="showSumByGroup('occurrence', 'Cover', 'Layer', 'calc_result')">
+        <span  id='calc_result'></span>
+      </p>
+      </script>
+
+      <script>
+        // variables for sotable table
+        let occ_tbl = 'occurrence';
+        var column_no = 0;       // now clicked
+        var column_no_prev = 0;  // previous clicked
+        var dir = "asc";
+      </script>
+
+      <script>
+      //  <p id="table">
+      //   <!--  Test code for generate ENTIRELY NEW table  -->
+      // TODO: generate ENTIRELY NEW table for each plotrow_rj
+      // get table name from input tag as text and use itrow_rj
+      //   <input id="new_table_name" type="text"  placeholder="table name: stand_01" />row_rj
+      //   <input type="button" value="create occurrence table"  onclick="createNewOccurrenceTable()" />row_rj
+      // TODO: generate add row button and clone_n_row input like belowrow_rj
+      // <input type="button" value="add row"  onclick="cloneRows()" />row_rj
+      // <input id="clone_n_row" type="number" value="5" step="1", min="1" max="20">row_rj
+      //   function generateTable(id_table){
+      //     table = document.createElement('table');
+      //     table.setAttribute('id', id_table);
+      //     document.getElementById('table').appendChild(table);
+      //   }
+      //   generateTable("a");
+      //  generateTable("b");
+      </script>
+
+    </div>
+    <div id="tab3">
+      <!--            Launch Mailer                -->
+      <input type='button' value="launch mailer" onclick="launchMailer()" />
+
+      <!--            GPS                           -->
+      <!--      TODO: Use different background color or something CLEAR for users in switching on / off       -->
+      <input type="button" value="start getting GPS" onclick="startWatchPosition()" />
+      <input type="button" value="stop  getting GPS" onclick="stopWatchPosition()" />
+    </div>
+
+    <div id="tab4">
+      tab4
+    </div>
+  </div>
+
+</div>
+
+
+</body>
+
+<!-- need to located after tab HTML -->
+<script src="js/tab.js"></script>
+
+</html>
