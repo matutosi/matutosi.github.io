@@ -14,6 +14,12 @@
 // 
 function createOccurrenceTable(id_span, id_setting, id_table){
 // var id_table = "setting_occ"
+  // console.log(id_span);
+  // console.log(id_setting);
+  // console.log(id_table);
+  // var id_span    = "input";
+  // var id_setting = "meta_setting_table" ;
+  // var id_table   = "meta_table";
   var setting_table = document.getElementById(id_setting);
   var st_cnames = getColNames(setting_table);
   const col_names = getColData(setting_table, st_cnames[0]);

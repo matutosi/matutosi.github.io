@@ -335,6 +335,9 @@ function getNow(){
 
 // delete a row
 function deleteRow(obj){
-    var tr = obj.parentNode.parentNode;          // clicked row
-    tr.parentNode.deleteRow(tr.sectionRowIndex); // delete clicked row
+    var table = obj.parentNode.parentNode.parentNode; // clicked table
+    if(table.rows.length > 2){                        // delete more than 3 rows (th + tb*2)
+      var tr = obj.parentNode.parentNode;             // clicked row
+      tr.parentNode.deleteRow(tr.sectionRowIndex);    // delete clicked row
+    }
 }

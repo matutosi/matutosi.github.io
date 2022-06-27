@@ -1,6 +1,11 @@
 function createSpanSettings(ns){
-  // main-span
+  // main-subtitle
   var main = document.getElementById('setting');
+  var subtitle = document.createElement('strong');
+  subtitle.innerHTML = ns;
+  main.appendChild(subtitle);
+  main.appendChild(createButtonHideShow(ns + "_contents" ));
+  // main-span
   var span = document.createElement('span');
   span.setAttribute("id", ns + "_span");
   main.appendChild(span);
@@ -14,9 +19,7 @@ function createSpanSettings(ns){
   contents.appendChild(createButtonAddRow(  ns + "_table"           ));  // input: table name to add rows
   contents.appendChild(createButtonNewTable(ns + "_new_table"       ));
   span.appendChild(contents);
-
-  // switch to hide/show
-  span.appendChild(createButtonHideShow(ns + "_contents" ));
+  // hr for division
   span.appendChild(document.createElement('hr'));
 }
 
@@ -25,22 +28,30 @@ function createInputNrow(id_input){
   return createInput({ id: id_input, type: "number", value: "3", step: "1", min: "1", max:"20" });
 }
 function createButtonAddRow(table){
-  return createInput({ type: "button", value: "add row", onclick: "cloneRows('" + table + "')" });
+  return createInput({ type: "button", value: "Add row(s)", onclick: "cloneRows('" + table + "')" });
 }
 function createButtonNewTable(id_table){
   var name = id_table.split('_')[0]; // meta, plot, occ
-  return createInput({ type: "button", value: "Create new " + name + " table", 
-    onclick: "createOccurrenceTable('setting', name+'-setting', name+'-table')" });
+  var value = "Create new " + name + " table";
+  var onclick = "createOccurrenceTable('input', '" + name + "_setting_table', '" + name + "_table')"
+  // console.log(onclick);
+  return createInput({ type: "button", value: value, onclick: onclick });
 }
-function createButtonHideShow(id){
-  return createInput({ type: "button", value: "show / hide", onclick: "switchHideShow('" + id +"')" })
+function createButtonHideShow(id_span){
+  var id      = id_span + "_hide_show";
+  var onclick = "switchHideShow('" + id_span + "', this)";
+  return createInput({id: id, type: "button", value: "Hide table", onclick: onclick })
 }
-function switchHideShow(id){
-  var contents = document.getElementById(id);
-  if(contents.style.display=="block"){ contents.style.display = "none";  }  // show -> hide
-  else                               { contents.style.display = "block"; }  // hide -> show
+function switchHideShow(id_span, button){
+  var contents = document.getElementById(id_span);
+  if(contents.style.display === "block"){ // show -> hide
+    contents.style.display = "none";
+    button.setAttribute("value", "Show table");
+  }else{                                  // hide -> show
+    contents.style.display = "block";
+    button.setAttribute("value", "Hide table");
+  }
 }
-
 
 function createTd(child){
   var td = document.createElement('td');
