@@ -21,6 +21,8 @@ function createInputSpan(ns){
   main.appendChild( createInput({ type: "Button", value: "Calculate", onclick: onclick }) );
   main.appendChild( crElAtIhTc({ el: 'span', ats: {id: table_name + "_calc_result"} }) );
 
+  // hr
+  main.appendChild( createElement('hr') );
 }
 
 // TODO: Write documents
@@ -123,7 +125,7 @@ function createInputTd(dat_type, col_name, optional){
       break;
     case "fixed":
       if(optional === ""){ 
-        alert("Fixed columns should be input!");
+//        alert("Fixed columns should be input!");
         var optional = "NO INPUT";
       }
       td.innerHTML = optional;
