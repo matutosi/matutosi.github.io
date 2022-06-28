@@ -6,6 +6,7 @@
 // ocnsole.log(sumByGroup("occurrence", "Cover", "Layer"))
 
 
+
 // Unique array
 function uniq(array){
   return Array.from(new Set(array));
@@ -21,11 +22,14 @@ function hash2table(hash_array){
   var table = document.createElement('table');
   for(let i = 0; i < Object.keys(hash_array).length; i++){
     var tr = document.createElement('tr');
-    var td = document.createElement("td");
-    td.textContent = Object.keys(hash_array)[i];
-    tr.appendChild(td);
-    var td = document.createElement("td");
-    td.textContent = Object.values(hash_array)[i];
+  //     var td = document.createElement("td");
+  //     td.textContent = Object.keys(hash_array)[i];
+  //     tr.appendChild(td);
+    tr.appendChild( crElAtIhTc({ el: 'td', tc: Object.keys(hash_array)[i] }) );
+  //     var td = document.createElement("td");
+  //     td.textContent = Object.values(hash_array)[i];
+  //     tr.appendChild(td);
+    tr.appendChild( crElAtIhTc({ el: 'td', ih: Object.values(hash_array)[i] }) );
     tr.appendChild(td);
     table.appendChild(tr);
   }
@@ -74,12 +78,14 @@ function sumByGroup(id_table, array, group){
   sum = hash2table(sum);
   // add th
   var tr = document.createElement('tr');
-  var th = document.createElement("th");
-  th.textContent = array;
-  tr.appendChild(th);
-  var th = document.createElement("th");
-  th.textContent = group;
-  tr.appendChild(th);
+  //   var th = document.createElement("th");
+  //   th.textContent = array;
+  //   tr.appendChild(th);
+  tr.appendChild( crElAtIhTc({ el: 'th', tc: array }) );
+  //   var th = document.createElement("th");
+  //   th.textContent = group;
+  //   tr.appendChild(th);
+  tr.appendChild( crElAtIhTc({ el: 'th', tc: group }) );
   // add as header
   sum.insertBefore(tr, sum.firstChild);
   return sum;
@@ -340,4 +346,23 @@ function deleteRow(obj){
       var tr = obj.parentNode.parentNode;             // clicked row
       tr.parentNode.deleteRow(tr.sectionRowIndex);    // delete clicked row
     }
+}
+// Helper to createElement(), setAttribute(), innerHTML, textContent
+//   @paramas el A string for element name.
+//   @paramas ats An array with attribute names. {id: "hoge", value: "foo"}
+//   @paramas ih,tc A string for innerHTML and textContent.
+//            Both of them are given, ih is overwritten by tc.
+//   @return HTML An object.
+//   @examples 
+//   crElAtIhTc({ el: 'p', ats: {id: "id_test", class: "some_class"}, ih: "test" });
+//   
+function crElAtIhTc({ el, ats, ih, tc }){
+  var ele = document.createElement(el);
+  if(ats != void 0){
+    var keys  = Object.keys(ats);
+    for(key of keys){ ele.setAttribute(key, ats[key]); }
+  }
+  if(ih != void 0){ ele.innerHTML   = ih; }
+  if(tc != void 0){ ele.textContent = tc; }
+  return ele;
 }
