@@ -2,10 +2,8 @@
 //    Clear input text, all rows will be shown.
 //    Regular expression can be used.
 //    
-
 function searchTable(id_table, text){
   // function searchTable(id_table, id_text){
-  //   var input  = document.getElementById(id_text).value;
   var input = text.value;
   var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
   var table  = document.getElementById(id_table);

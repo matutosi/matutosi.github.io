@@ -6,7 +6,7 @@ function createInputSpan(ns){
   // search
   var id = ns + "search_text";
   var onkeyup = "searchTable('" + table_name + "', this)";
-  main.appendChild( createInput({ type:"search", id: id, onkeyup: onkeyup,  placeholder: "Search text input" }) );
+  main.appendChild( createInput({ type:"text", id: id, onkeyup: onkeyup,  placeholder: "Search text input" }) );
 
   //   table
   var table = createInputTable(ns);

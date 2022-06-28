@@ -22,21 +22,15 @@ function hash2table(hash_array){
   var table = document.createElement('table');
   for(let i = 0; i < Object.keys(hash_array).length; i++){
     var tr = document.createElement('tr');
-  //     var td = document.createElement("td");
-  //     td.textContent = Object.keys(hash_array)[i];
-  //     tr.appendChild(td);
     tr.appendChild( crElAtIhTc({ el: 'td', tc: Object.keys(hash_array)[i] }) );
-  //     var td = document.createElement("td");
-  //     td.textContent = Object.values(hash_array)[i];
-  //     tr.appendChild(td);
     tr.appendChild( crElAtIhTc({ el: 'td', ih: Object.values(hash_array)[i] }) );
-    tr.appendChild(td);
     table.appendChild(tr);
   }
   return table
 }
 
 function showSumByGroup(id_table, array, group, id_show){
+  // console.log(id_table + ", " + array + ", " + group + ", " + id_show);
   const table = sumByGroup(id_table, array, group);
   document.getElementById(id_show).appendChild(table);
 }
@@ -45,7 +39,7 @@ function showSumByGroup(id_table, array, group, id_show){
 //     sumByGroup("occurrence", "Cover", "Layer")
 //     
 function sumByGroup(id_table, array, group){
-  // var id_table = "occurrence";
+  // var id_table = "occ_input_table";
   // var array = "Cover";
   // var group = "Layer";
   var table = document.getElementById(id_table);
@@ -62,8 +56,8 @@ function sumByGroup(id_table, array, group){
     }
   }
   // use all select options
+  var col_no = getColNames(table).indexOf(group);
   if(getDataType(table)[col_no] === "select_option"){
-    var col_no = getColNames(table).indexOf(group);
     var all_groups = getSelectOptionInCell(table.rows[1].cells[col_no].firstChild); 
     var ordered_sum_array = [];
     for(let i=0; i < all_groups.length; i++){
@@ -78,14 +72,8 @@ function sumByGroup(id_table, array, group){
   sum = hash2table(sum);
   // add th
   var tr = document.createElement('tr');
-  //   var th = document.createElement("th");
-  //   th.textContent = array;
-  //   tr.appendChild(th);
-  tr.appendChild( crElAtIhTc({ el: 'th', tc: array }) );
-  //   var th = document.createElement("th");
-  //   th.textContent = group;
-  //   tr.appendChild(th);
   tr.appendChild( crElAtIhTc({ el: 'th', tc: group }) );
+  tr.appendChild( crElAtIhTc({ el: 'th', tc: array }) );
   // add as header
   sum.insertBefore(tr, sum.firstChild);
   return sum;

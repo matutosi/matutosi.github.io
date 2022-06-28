@@ -88,9 +88,9 @@ function createSetting(id_table, json){
     // type
     tr.appendChild( createTd( createSelectOpt( Array(type[i]).concat(data_types) ) ) );
     // value
-    tr.appendChild( createTd( createInput({ type: "text", placeholder: option[i] }) ) );
+    tr.appendChild( createTd( createInput({ type: "text", value: value[i], placeholder: option[i] }) ) );
     // option
-    tr.appendChild( createTd( createInput({ type: "text", value: value[i] }) ) );
+    tr.appendChild( createTd( createInput({ type: "text"}) ) );
     // show/hide checkbox
     var input_table = id_table.split("_")[0] + "_input_table";    // id_table: setting_table
     tr.appendChild( createTd( createInput({ type: "checkbox", onclick: "hideCol('" + id_table + "', '" + input_table + "')" }) ) );
