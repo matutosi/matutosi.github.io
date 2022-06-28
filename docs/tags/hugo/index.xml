@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on matutosi</title>
+    <link>https://matutosi.github.io/tags/hugo/</link>
+    <description>Recent content in hugo on matutosi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-jp</language>
+    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ひっそりと</title>
+      <link>https://matutosi.github.io/post/20220608/</link>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220608/</guid>
+      <description>ひっそりとブログを再開，というか適当にメモを書く予定．
+とりあえず，HugoでthemeはMainraodで開始した． themeは変更の可能性あり．</description>
+    </item>
+    
+  </channel>
+</rss>

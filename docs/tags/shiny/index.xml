@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shiny on matutosi</title>
+    <link>https://matutosi.github.io/tags/shiny/</link>
+    <description>Recent content in shiny on matutosi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-jp</language>
+    <lastBuildDate>Mon, 27 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/shiny/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ShinyとJavaScript</title>
+      <link>https://matutosi.github.io/post/20220627/</link>
+      <pubDate>Mon, 27 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220627/</guid>
+      <description>引き続き，植生調査アプリのコーディングをしている． JavaScriptのお作法は相変わらずよくわかっていないが，Shinyでのアプリ作成やRのパッケージ作成の経験が活用できている気がする． Shinyではmodule化することで，コードを簡潔に書くことができる．
+ https://github.com/matutosi/textmining https://github.com/matutosi/ecanvis https://github.com/matutosi/moranajp  Shinyの内部で具体的にどのようなことがされているのかまでは確認していないが，たぶんこんな感じだろうと想像しながらmodule化している． そのおかげで，汎用的に使えるものができそう．
+ただ，コードを書き散らしているので，説明の文書が中途半端な状態だ． また，関数の入出力を統一できていないし，未使用の関数も残っている． このあたりの整理は今後ぼちぼちとする予定．</description>
+    </item>
+    
+  </channel>
+</rss>
