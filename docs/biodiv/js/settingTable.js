@@ -92,7 +92,8 @@ function createSetting(id_table, json){
     // option
     tr.appendChild( createTd( createInput({ type: "text", value: value[i] }) ) );
     // show/hide checkbox
-    tr.appendChild( createTd( createInput({ type: "checkbox", onclick: "hideCol('occurrence')" }) ) );
+    var input_table = id_table.split("_")[0] + "_input_table";    // id_table: setting_table
+    tr.appendChild( createTd( createInput({ type: "checkbox", onclick: "hideCol('" + id_table + "', '" + input_table + "')" }) ) );
     // delButton
     tr.appendChild( createTd( createDelButton() ) );
     // append
@@ -102,10 +103,9 @@ function createSetting(id_table, json){
 }
 
 // Hide columns checked in table setting
-function hideCol(id_table){
-  var table = document.getElementById(id_table);
-  var checkbox = document.getElementsByClassName('ts_checkbox');
-  var hide = getChecked(getFirstChild(checkbox));
+function hideCol(setting_table, input_table){
+  var hide = getColData(document.getElementById(setting_table), "hide");
+  var table = document.getElementById(input_table);
   for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){
     for(let Rj = 0; Rj < table.rows.length; Rj++){
       table.rows[Rj].cells[Ci].style.display = (hide[Ci]) ? 'none' : '';

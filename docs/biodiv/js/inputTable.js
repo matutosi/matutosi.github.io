@@ -11,6 +11,7 @@ function createInputSpan(ns){
   //   table
   var table = createInputTable(ns);
   main.appendChild(table);
+  setSortable(table_name);
 
   // add rows
   main.appendChild(createInputNrow(    table_name + "_n_row" ));
@@ -22,7 +23,7 @@ function createInputSpan(ns){
   main.appendChild( crElAtIhTc({ el: 'span', ats: {id: table_name + "_calc_result"} }) );
 
   // hr
-  main.appendChild( createElement('hr') );
+  main.appendChild( document.createElement('hr') );
 }
 
 // TODO: Write documents
@@ -50,56 +51,7 @@ function createInputTable(ns){
     }
     table.appendChild(tr);
   }
-  setSortable(id_table);
   return table;
-}
-
-
-
-// Create occurrence table accoding to table settings
-//    Three columns as shown below will generate automatically.
-//        date (auto), delButton (button), no (auto)
-//        These columns should not be operated from users.
-//          "date" is hidden only recorded and output.
-//          "delButton" is hidden unless clicked "show delButton".
-//          "no" is only readable.
-//    Other columns will generate accoding to user input.
-//        col_name   : Any text. 
-//        input_typpe: Select from lists. 
-//                     Used as "types" in <input> tag.
-//        option     : Available in "fixed" and list "input_typpe". 
-//                     Omitted if other types are selected.
-// 
-function createOccurrenceTable(id_span, id_setting, id_table){
-// var id_table = "setting_occ"
-  // console.log(id_span);
-  // console.log(id_setting);
-  // console.log(id_table);
-  // var id_span    = "input";
-  // var id_setting = "meta_setting_table" ;
-  // var id_table   = "meta_table";
-  var setting_table = document.getElementById(id_setting);
-  var st_cnames = getColNames(setting_table);
-  const col_names = getColData(setting_table, st_cnames[0]);
-  const dat_types = getColData(setting_table, st_cnames[1]);
-  const optionals = getColData(setting_table, st_cnames[2]);
-  //   const optionals = getColData(table, col_names[3]);
-
-  // 
-  var table = document.createElement('table');
-  var span = document.getElementById(id_span);
-  span.appendChild(table);
-  createTable(table, col_names); // add th
-
-  var tr = document.createElement('tr');
-  for(let i = 0; i < col_names.length; i++){
-    if(col_names[i] !== ""){
-      var td = createInputTd(dat_types[i], col_names[i], optionals[i]);
-      tr.appendChild(td);
-    }
-    table.appendChild(tr);
-  }
-  setSortable(id_table);
 }
 
 
@@ -195,23 +147,23 @@ function cloneRow(id_table){
   for(let Ci = 0; Ci < n_col; Ci++){
   //     var next_id = updateId(next_row.children[Ci].getAttribute("id"));
   //     next_row.children[Ci].setAttribute("id", next_id);
-    switch(col_names[Ci]){
+    switch(col_names[Ci].toLowerCase()){
       case "date":  // update "date"
         next_row.children[Ci].innerHTML = getNow();
         break;
-      case "locLat":  // update GPS data
+      case "loclat":  // update GPS data
         next_row.children[Ci].innerHTML = getLat();
         break;
-      case "locLon":
+      case "loclon":
         next_row.children[Ci].innerHTML = getLon();
         break;
-      case "locAcc":
+      case "locacc":
         next_row.children[Ci].innerHTML = getAcc();
         break;
-      case "delButton": // do nothing
+      case "delbutton": // do nothing
         break;
       case "no":   // no = max(no) + 1
-        var nos = getInnerHTML(document.getElementsByClassName("occ_no"));
+        var nos = getColData(table, col_names[Ci]);
         next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1;
         break;
       default:

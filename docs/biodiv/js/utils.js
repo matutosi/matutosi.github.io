@@ -95,13 +95,19 @@ function sumByGroup(id_table, array, group){
 //    @params id_table A string.
 //    @params col_name A string.
 //    @return An array.
-function getColData(table, col_name){
+function getColData(table, col_name, list_with_index=false){
+  // var table = document.getElementById("meta_setting_table");
+  // var col_name = "type";
   const col_no   = getColNames(table).indexOf(col_name);
   const col_type = getDataType(table)[col_no];
   var group_value = [];
   for(Ri = 0; Ri < table.rows.length - 1; Ri++){
     // except th (rows[0])
-    group_value[Ri] = getCellData(table.rows[Ri + 1].cells[col_no], col_type);
+    if(list_with_index && col_type === "select_option"){
+      group_value[Ri] = table.rows[Ri + 1].cells[col_no].firstChild.selectedIndex;
+    } else {
+      group_value[Ri] = getCellData(table.rows[Ri + 1].cells[col_no], col_type);
+    }
   }
   return group_value;
 }
@@ -245,51 +251,6 @@ function getDataType(table){
   return data_type;
 }
 
-// Helper to get first child from html elements
-//    @params elements   html elements by document.getElementsByClassName()
-//    @return        An array.
-function getFirstChild(elements){
-  var res = [];
-  for(let i = 0; i < elements.length; i++){ res[i] = elements[i].firstChild; }
-  return res
-}
-
-// Helper to get values from input objects
-//    @params objs   list objects by document.getElementsByClassName()
-//    @return        An array.
-function getValues(objs){
-  var res = [];
-  for(let i = 0; i < objs.length; i++){ res[i] = objs[i].value; }
-  return res
-}
-
-// Helper to get checked (Boolean) from input objects
-//    @params objs   list objects by getFirstChild(document.getElementsByClassName())
-//    @return        An array.
-function getChecked(objs){
-  var res = [];
-  for(let i = 0; i < objs.length; i++){ res[i] = objs[i].checked; }
-  return res
-}
-
-// Helper to get selectedIndex from input objects
-//    @params objs   list objects by getFirstChild(document.getElementsByClassName())
-//    @return        An array.
-function getSelectedIndex(objs){
-  var res = [];
-  for(let i = 0; i < objs.length; i++){ res[i] = objs[i].selectedIndex; }
-  return res
-}
-
-// Helper to get innerHTML from input objects
-//    @params objs   list objects by document.getElementsByClassName()
-//    @return        An array.
-function getInnerHTML(objs){
-  var res = [];
-  for(let i = 0; i < objs.length; i++){ res[i] = objs[i].innerHTML; }
-  return res
-}
-
 function getColNames(table){
   const row_0 = table.rows[0];
   const col_names = [];
@@ -297,32 +258,6 @@ function getColNames(table){
     col_names[Ri] = row_0.cells[Ri].innerHTML;
   }
   return col_names
-}
-
-// Helper to updateId: Get next id from id_items
-//    class when id_items = "occ_date", which includes "occ_date_001", "occ_date_002", "occ_date_004",
-//    return "occ_date_005"
-//    
-// updateId('occ_date_001')
-// 'occ_date_001'.split("_").slice(0,-1).join("_");
-// getNextId('occ_date')
-function updateId(id){
-  var id_items = id.split("_").slice(0,-1).join("_");
-  return getNextId(id_items);
-}
-
-// Helper to updateId: Get next id from id_items
-//    class when id_items = "occ_date", which includes "occ_date_001", "occ_date_002", "occ_date_004",
-//    return "occ_date_005"
-//    
-function getNextId(id_items){
-  var ids = [];
-  const items = document.getElementsByClassName(id_items);
-  for(it of items){
-    ids.push(Number(it.getAttribute("id").split("_").slice(-1)));
-  }
-  const max = Math.max.apply(Math, ids);
-  return id_items + "_" + String(max + 1).padStart(3, `0`);
 }
 
 // Get time like 2022_05_18_15_51_28: yyyy-mm-dd-hh-mm-ss

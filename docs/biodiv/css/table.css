@@ -18,11 +18,11 @@ table th{
   padding: 0.3em 1em;
 }
 
-#occurrence span#calc_result th{
+table[id*="input_table"] th{
   background-color: #00552e;
   cursor: pointer;
 }
 
-#occurrence span#calc_result td{
+table[id*="input_table"] td{
   border-color: #00552e;   /* line color    */
 }

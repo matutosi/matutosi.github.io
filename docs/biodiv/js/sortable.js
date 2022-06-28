@@ -8,73 +8,38 @@
 //    If executed before creation, a table will not be sortable.
 //    
 function setSortable(id_table){
-    document.querySelectorAll('#' + id_table + ' th').forEach(elm => {
-        elm.onclick = function (){
-            // settings
-            var table = document.getElementById(id_table);
-            column_no = this.cellIndex; // now clicked
-            // sort direction: clicked: sort reverse
-            if(column_no_prev !== column_no) {
-              dir = "asc"; 
-            } else if(column_no_prev === column_no && dir === "desc") {
-              dir = "asc"; 
-            } else if(column_no_prev === column_no && dir === "asc"){
-              dir = "desc"; 
-            } 
-            column_no_prev = column_no;
-            // rank_index: sorting order
-            var col_name = getColNames(table)[column_no];
-            var cl = "occ_" + col_name;
-            var elements = document.getElementsByClassName(cl);
-            const n_row = table.rows.length;
-            switch(col_name){
-                case "date":
-                case "delButton":
-                    // do nothing
-                    //    rank_index ([0, 1, 2, ..., i]) is dammy, which can not sort array.
-                    //    avoid error by "rank_index.unshift(0)"
-                    var rank_index = [];
-                    for(let i=0; i<table.rows.length - 1; i++){ rank_index[i] = i; }
-                    break;
-                case "no":
-                    var rank_index = rank(getInnerHTML(elements), dir);
-                    break;
-                default:
-                    // fixed // for debug: var cl = "occ_"+getColNames(table)[2]
-                    var val_0 = elements[0].firstChild.value;
-                    if(val_0    === void 0){ // void 0 means undifined -> fixed text
-                        // for debug:    var cl = "occ_"+getColNames(table)[5]
-                        var rank_index = rank(getInnerHTML(elements), dir);
-                        break;
-                    } else {
-                        switch(elements[0].firstChild.getAttribute("type")){
-                            case "checkbox":
-                                var rank_index = rank(getChecked(getFirstChild(elements)), dir);
-                                break;
-                            case "text": 
-                            case "number":
-                                var rank_index = rank(getValues(getFirstChild(elements)), dir);
-// console.log(getValues(getFirstChild(elements)));
-// console.log(rank_index);
-                                break;
-                            case null: // select from list
-                                // for debug: var cl = "occ_"+getColNames(table)[6]
-                                var rank_index = rank(getSelectedIndex(getFirstChild(elements)), dir);
-                                break;
-                        }
-                    }
-                    break;
-            }
-            // sort table
-            var trs = table.rows;
-            for(let i=0; i<rank_index.length; i++){ rank_index[i]++; }
-            rank_index.unshift(0);
-            var new_trs = sortByOrder(trs, rank_index);
-            for(let i=0; i<new_trs.length; i++){
-                table.appendChild(new_trs[i]);
-            }
-        }
-    })
+  // console.log(id_table);
+  // console.log( document.querySelectorAll('#' + id_table + ' th') );
+  document.querySelectorAll('#' + id_table + ' th').forEach(elm => {
+    elm.onclick = function (){
+      // settings
+      var table = document.getElementById(id_table);
+      column_no = this.cellIndex; // now clicked
+      // sort direction: clicked: sort reverse
+      if(column_no_prev !== column_no) {
+        dir = "asc"; 
+      } else if(column_no_prev === column_no && dir === "desc") {
+        dir = "asc"; 
+      } else if(column_no_prev === column_no && dir === "asc"){
+        dir = "desc"; 
+      } 
+      column_no_prev = column_no;
+      // rank_index: sorting order
+      var col_name = getColNames(table)[column_no];
+      var elements = getColData(table, col_name, list_with_index=true);
+  // console.log("elements in sort: " + elements);
+      var rank_index = rank(elements, dir);
+
+      // sort table
+      var trs = table.rows;
+      for(let i=0; i<rank_index.length; i++){ rank_index[i]++; }
+      rank_index.unshift(0);
+      var new_trs = sortByOrder(trs, rank_index);
+      for(let i=0; i<new_trs.length; i++){
+        table.appendChild(new_trs[i]);
+      }
+    }
+  })
 }
 
 // Convert string array to numeric array
