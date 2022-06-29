@@ -20,7 +20,9 @@ function createInputSpan(ns){
   // calc sum
   var onclick = "showSumByGroup('" + table_name + "', 'Cover', 'Layer', '" + table_name + "_calc_result')"; 
   main.appendChild( createInput({ type: "Button", value: "Calculate", onclick: onclick }) );
-  main.appendChild( crElAtIhTc({ el: 'span', ats: {id: table_name + "_calc_result"} }) );
+  var span = document.createElement('span');
+  span.appendChild( crEl({ el: 'table', ats: {id: table_name + "_calc_result"} })); // table with no data
+  main.appendChild(span);
 
   // hr
   main.appendChild( document.createElement('hr') );
@@ -40,7 +42,7 @@ function createInputTable(ns){
   const optionals = getColData(setting_table, st_cnames[2]);
   //   const optionals = getColData(table, col_names[3]);
   var id_table = ns + "_input_table";
-  var table = crElAtIhTc({ el: 'table',  ats: {id: id_table} })
+  var table = crEl({ el: 'table',  ats: {id: id_table} })
   createTable(table, col_names); // add th
 
   var tr = document.createElement('tr');
@@ -117,7 +119,7 @@ function createTable(table, col_names){
   const n_col = col_names.length;
   var tr = document.createElement('tr');
   for(let Ni = 0; Ni < n_col; Ni++){
-    if(col_names[Ni] !== "") tr.appendChild( crElAtIhTc({ el: 'th', ih: col_names[Ni] }) );
+    if(col_names[Ni] !== "") tr.appendChild( crEl({ el: 'th', ih: col_names[Ni] }) );
   }
   table.appendChild(tr)  // return by side effiect
 }

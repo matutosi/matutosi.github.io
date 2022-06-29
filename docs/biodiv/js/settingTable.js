@@ -1,13 +1,13 @@
 function createSettingSpan(ns){
   // main-subtitle
   var main = document.getElementById('setting');
-  main.appendChild( crElAtIhTc({ el: 'strong',ih: ns }) );
+  main.appendChild( crEl({ el: 'strong',ih: ns }) );
   main.appendChild( createButtonHideShow(ns + "_contents" ) );
   // main-span
-  var span = crElAtIhTc({ el: 'span', ats: {id: ns } });
+  var span = crEl({ el: 'span', ats: {id: ns } });
   main.appendChild(span);
   // span-contents
-  var contents = crElAtIhTc({ el: 'span', ats: {id: ns + "_contents" } });
+  var contents = crEl({ el: 'span', ats: {id: ns + "_contents" } });
   contents.style.display  = "block"; // default: show contents
   // contents
   contents.appendChild( createSetting(       ns + "_table", "data." + ns + "_json"));
@@ -73,11 +73,11 @@ function createSetting(id_table, json){
   const data_types = data.data_types;
 
   // table
-  var table = crElAtIhTc({ el: 'table', ats: {id: id_table} });
+  var table = crEl({ el: 'table', ats: {id: id_table} });
 
   // head
   var tr = document.createElement('tr');
-  for(head of heads){  tr.appendChild(crElAtIhTc({ el: 'th', ih: head })); }
+  for(head of heads){  tr.appendChild(crEl({ el: 'th', ih: head })); }
   table.appendChild(tr);
 
   // body

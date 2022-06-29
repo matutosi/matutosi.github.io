@@ -22,27 +22,27 @@ function hash2table(hash_array){
   var table = document.createElement('table');
   for(let i = 0; i < Object.keys(hash_array).length; i++){
     var tr = document.createElement('tr');
-    tr.appendChild( crElAtIhTc({ el: 'td', tc: Object.keys(hash_array)[i] }) );
-    tr.appendChild( crElAtIhTc({ el: 'td', ih: Object.values(hash_array)[i] }) );
+    tr.appendChild( crEl({ el: 'td', tc: Object.keys(hash_array)[i] }) );
+    tr.appendChild( crEl({ el: 'td', ih: Object.values(hash_array)[i] }) );
     table.appendChild(tr);
   }
   return table
 }
 
-function showSumByGroup(id_table, array, group, id_show){
+function showSumByGroup(id_input_table, array, group, id_result){
   // console.log(id_table + ", " + array + ", " + group + ", " + id_show);
-  const table = sumByGroup(id_table, array, group);
-  document.getElementById(id_show).appendChild(table);
+  var table = document.getElementById(id_result);
+  table.replaceWith( sumByGroup(id_input_table, array, group, id_result) );
 }
 
 // Sum by group
 //     sumByGroup("occurrence", "Cover", "Layer")
 //     
-function sumByGroup(id_table, array, group){
+function sumByGroup(id_input_table, array, group, id_result){
   // var id_table = "occ_input_table";
   // var array = "Cover";
   // var group = "Layer";
-  var table = document.getElementById(id_table);
+  var table = document.getElementById(id_input_table);
   var array_val = getColData(table, array);
   var group_val = getColData(table, group);
   var grouped_array = splitByGroup(array_val, group_val);
@@ -70,10 +70,11 @@ function sumByGroup(id_table, array, group){
     var sum = sum_array;
   }
   sum = hash2table(sum);
+  sum.setAttribute("id", id_result);
   // add th
   var tr = document.createElement('tr');
-  tr.appendChild( crElAtIhTc({ el: 'th', tc: group }) );
-  tr.appendChild( crElAtIhTc({ el: 'th', tc: array }) );
+  tr.appendChild( crEl({ el: 'th', tc: group }) );
+  tr.appendChild( crEl({ el: 'th', tc: array }) );
   // add as header
   sum.insertBefore(tr, sum.firstChild);
   return sum;
@@ -277,9 +278,9 @@ function deleteRow(obj){
 //            Both of them are given, ih is overwritten by tc.
 //   @return HTML An object.
 //   @examples 
-//   crElAtIhTc({ el: 'p', ats: {id: "id_test", class: "some_class"}, ih: "test" });
+//   crEl({ el: 'p', ats: {id: "id_test", class: "some_class"}, ih: "test" });
 //   
-function crElAtIhTc({ el, ats, ih, tc }){
+function crEl({ el, ats, ih, tc }){
   var ele = document.createElement(el);
   if(ats != void 0){
     var keys  = Object.keys(ats);
