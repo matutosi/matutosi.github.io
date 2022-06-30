@@ -11,19 +11,27 @@
     <script src="js/fullScreen.js"></script>
     <script src="js/search.js"></script>
     <script src="js/mailer.js"></script>
+    <script src="js/download.js"></script>
+
     <!--  Not use in progress
     <script src="js/inhibitClose.js"></script>
     -->
 
-    <!--  in progress
-    <script src="download.js"></script>
-    -->
 
     <link rel="stylesheet" href="css/tab.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/fullScreen.css">
 
   <script> // test script
+  // var table = document.getElementById("occ_setting_table");
+
+var json = getInputData("occ_input_table");
+localStorage.setItem('bis_occ_example_plot_01', json)
+// '{"sys_c_names":["Date","locLat","locLon","locAcc","delButton","No","Identified","Sampled","Plot","Layer","Species","Cover","Memo"]};{"sys_d_types":["fixed","fixed","fixed","fixed","button","fixed","checkbox","checkbox","fixed","select-one","text","number","text"]};{"sys_selects":[null,null,null,null,null,null,null,null,null,["B1","B2","S1","S2","K",""],null,null,null]};{"Date":["2022_05_30_16_15_32","2022_05_30_16_15_36","2022_05_30_16_15_36","2022_05_30_16_15_36","2022_05_30_16_15_40","2022_05_30_16_15_40","2022_05_30_16_15_40","2022_05_30_16_16_13","2022_05_30_16_16_13","2022_05_30_16_16_13"],"locLat":["34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808"],"locLon":["135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356"],"locAcc":["15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792"],"delButton":[null,null,null,null,null,null,null,null,null,null],"No":["1","2","3","4","5","6","7","8","9","10"],"Identified":[true,true,false,false,true,false,true,false,true,false],"Sampled":[false,true,true,false,false,true,true,false,false,true],"Plot":["Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01"],"Layer":["B1","B1","B2","B2","S1","S2","K","K","K","K"],"Species":["abc","bbbbbb","ccccccccccccc","dd","e e","dd sp.","eeee","fffffffffff","gg gg gg","hhhhhhh"],"Cover":["75","10","7","12","14","6","0.01","0.1","0.001","0.1"],"Memo":["memo","","","","???","","","","",""]}'
+
+for(var i=0; i < localStorage.length; i++){ console.log(localStorage.key(i)); }
+localStorage.clear();
+
   </script>
 
   <script>

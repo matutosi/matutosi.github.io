@@ -178,7 +178,7 @@ function getCellData(cell_data, data_type){
 }
 
 // Get options in select tag in a cell
-//    Retrun string array.
+//    Return string array.
 function getSelectOptionInCell(select){
   var select_opt = [];
   var opts = select.children;
@@ -187,7 +187,7 @@ function getSelectOptionInCell(select){
 }
 
 // Get options in select tag
-//    Retrun string like "B1,B2,..." for select tag,
+//    Return string like "B1,B2,..." for select tag,
 //    "" (vacant string) for pother input tag
 function getSelectOption(table){
   const data_types = getDataType(table);
@@ -214,7 +214,7 @@ function getDataType(table){
 //   const table = document.getElementById(id_table);
   const col_names = getColNames(table);
   const n_col = col_names.length;
-  const first_data_row = table.rows[1].cells;
+  const first_row = table.rows[1].cells;
   var data_type = [];
   for(let Ci = 0; Ci < n_col; Ci++){
     switch(col_names[Ci]){
@@ -224,7 +224,7 @@ function getDataType(table){
         data_type[Ci] = col_names[Ci];
         break;
       default:
-        var f_child = first_data_row[Ci].firstChild;
+        var f_child = first_row[Ci].firstChild;
         if(f_child.value === void 0){
           data_type[Ci] = "fixed";
         } else {
@@ -238,6 +238,17 @@ function getDataType(table){
     }
   }
   return data_type;
+}
+
+function get_data_type(cell){
+  return (cell.firstChild.type === void 0) ? "fixed" : cell.firstChild.type;
+}
+function get_data_types(table){
+  var types = [];
+  for(cell of table.rows[1].cells){ // 1: first td row
+    types.push(get_data_type(cell));
+  }
+  return types;
 }
 
 function getColNames(table){
