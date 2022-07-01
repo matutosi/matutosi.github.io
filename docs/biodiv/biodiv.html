@@ -30,16 +30,6 @@
   //    make "input" tag for sum group (data_type: 'select-one') and number (data_type: 'number')
   //    
   // // // // // // // // // // // // // // // // // // // 
-
-fetchLSKeys();
-
-saveTable("occ_setting_table");
-saveTable("plot_setting_table");
-
-
-
-
-
   </script>
 
 </head>
@@ -64,9 +54,10 @@ Biodiversity Investigation System (BIS)
     <div id="tab1">
       <span id="setting"></span>
       <script>
-        createSettingSpan("occ_setting");
+        var span = document.getElementById("setting");
+        span.appendChild( createSettingSpan("plot_setting") );
+        span.appendChild( createSettingSpan("occ_setting") );
 //        createSettingSpan("meta_setting");
-        createSettingSpan("plot_setting");
       </script>
     </div>
 
@@ -74,6 +65,7 @@ Biodiversity Investigation System (BIS)
     <div id="tab2">
       <span id="input"></span>
       <script>
+
         // variables for sotable table
         let occ_tbl = 'occurrence';
         var column_no = 0;       // now clicked
@@ -83,7 +75,6 @@ Biodiversity Investigation System (BIS)
     </div>
 
 
-    </div>
     <div id="tab3">
       <!--            Launch Mailer                -->
       <input type='button' value="launch mailer" onclick="launchMailer()" />
@@ -100,6 +91,15 @@ Biodiversity Investigation System (BIS)
   </div>
 
 </div>
+
+  <script>
+//  fetchLSKeys();
+//  saveTable("occ_setting_table");
+//  saveTable("plot_setting_table");
+//  restoreTable("occ_setting_table");
+//  restoreTable("plot_setting_table");
+  </script>
+
 
 
 <div>

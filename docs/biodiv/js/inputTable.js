@@ -92,7 +92,7 @@ function createInputTd(dat_type, col_name, optional){
       td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} ));
       break;
     case "list":
-      arry_list = optional.split(';').concat(Array(""));
+      arry_list = optional.split(':').concat(Array(""));
       td.appendChild(createSelectOpt(arry_list, arry_list.length - 1));
       break;
   }

@@ -1,6 +1,8 @@
 function createSettingSpan(ns){
+  // var ns = "occ_setting";
   // main-subtitle
-  var main = document.getElementById('setting');
+  //   var main = document.getElementById('setting');
+  var main = crEl({ el: 'span', ats:{id: ns} });
   main.appendChild( crEl({ el: 'strong',ih: ns }) );
   main.appendChild( createButtonHideShow(ns + "_contents" ) );
   // main-span
@@ -17,6 +19,7 @@ function createSettingSpan(ns){
   span.appendChild(contents);
   // hr for division
   span.appendChild(document.createElement('hr'));
+  return main;
 }
 
 // Create captions for settings

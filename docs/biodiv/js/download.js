@@ -14,6 +14,7 @@ function fetchLSKeys(){
 //    @params id_table      A string to specify table id.
 //    @return               Nothing.
 function saveTable(id_table){
+  // var id_table = "occ_setting_table";
   var table_data = getTableDataPlus(id_table);
   localStorage.setItem("bis_" + id_table, table_data);
 }
@@ -81,6 +82,7 @@ function getSelectOne(table, col_name){
 //    restoreTable(table_name)
 function restoreTable(table_name){
   // input data
+var table_name = "occ_setting_table";
   var plot  = localStorage[ "bis_" + table_name ].split(";")
   var col_names = JSON.parse(plot[0])["sys_c_names"];
   var dat_types = JSON.parse(plot[1])["sys_d_types"];
