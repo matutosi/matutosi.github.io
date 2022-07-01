@@ -17,40 +17,29 @@
     <script src="js/inhibitClose.js"></script>
     -->
 
-
     <link rel="stylesheet" href="css/tab.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/fullScreen.css">
 
   <script> // test script
-  // var table = document.getElementById("occ_setting_table");
-
-var json = getInputData("occ_input_table");
-localStorage.setItem('bis_occ_example_plot_01', json)
-// '{"sys_c_names":["Date","locLat","locLon","locAcc","delButton","No","Identified","Sampled","Plot","Layer","Species","Cover","Memo"]};{"sys_d_types":["fixed","fixed","fixed","fixed","button","fixed","checkbox","checkbox","fixed","select-one","text","number","text"]};{"sys_selects":[null,null,null,null,null,null,null,null,null,["B1","B2","S1","S2","K",""],null,null,null]};{"Date":["2022_05_30_16_15_32","2022_05_30_16_15_36","2022_05_30_16_15_36","2022_05_30_16_15_36","2022_05_30_16_15_40","2022_05_30_16_15_40","2022_05_30_16_15_40","2022_05_30_16_16_13","2022_05_30_16_16_13","2022_05_30_16_16_13"],"locLat":["34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808","34.7346808"],"locLon":["135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356","135.2872356"],"locAcc":["15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792"],"delButton":[null,null,null,null,null,null,null,null,null,null],"No":["1","2","3","4","5","6","7","8","9","10"],"Identified":[true,true,false,false,true,false,true,false,true,false],"Sampled":[false,true,true,false,false,true,true,false,false,true],"Plot":["Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01"],"Layer":["B1","B1","B2","B2","S1","S2","K","K","K","K"],"Species":["abc","bbbbbb","ccccccccccccc","dd","e e","dd sp.","eeee","fffffffffff","gg gg gg","hhhhhhh"],"Cover":["75","10","7","12","14","6","0.01","0.1","0.001","0.1"],"Memo":["memo","","","","???","","","","",""]}'
-
-for(var i=0; i < localStorage.length; i++){ console.log(localStorage.key(i)); }
-localStorage.clear();
-
-  </script>
-
-  <script>
   // // // // // // // // // // // // // // // // // // // 
-  // 
   // TODO: 
   //    var -> const ?
+  //    Add update button for "Date"  and "GPS data"
+  //    Create table according to plot_id
+  //    make "input" tag for sum group (data_type: 'select-one') and number (data_type: 'number')
+  //    
   // // // // // // // // // // // // // // // // // // // 
 
-  // Get data from a table for download
-  // Can restore table?
-  //    getTableData("occurrence")
-  //    getSelectOption(table)
-  //    getDataType(table)
-  // 
-  // local data
-  // https://developer.mozilla.org/ja/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage
-  // https://qiita.com/masuda-sankosc/items/cff6131efd6e1b5138e6
-  // https://qiita.com/w-tdon/items/81034bd3006806f7d7c3
+fetchLSKeys();
+
+saveTable("occ_setting_table");
+saveTable("plot_setting_table");
+
+
+
+
+
   </script>
 
 </head>
@@ -74,19 +63,16 @@ Biodiversity Investigation System (BIS)
   <div id="tabbody">
     <div id="tab1">
       <span id="setting"></span>
-
       <script>
         createSettingSpan("occ_setting");
-        createSettingSpan("meta_setting");
+//        createSettingSpan("meta_setting");
         createSettingSpan("plot_setting");
       </script>
-
     </div>
 
 
     <div id="tab2">
       <span id="input"></span>
-
       <script>
         // variables for sotable table
         let occ_tbl = 'occurrence';
@@ -94,9 +80,7 @@ Biodiversity Investigation System (BIS)
         var column_no_prev = 0;  // previous clicked
         var dir = "asc";
       </script>
-
-<script>
-</script>
+    </div>
 
 
     </div>
