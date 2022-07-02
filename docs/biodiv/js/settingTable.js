@@ -18,7 +18,7 @@ function createSettingSpan(ns){
   contents.appendChild( createButtonNewTable(ns + "_new_table"       ));
   span.appendChild(contents);
   // hr for division
-  span.appendChild(document.createElement('hr'));
+  span.appendChild( document.createElement('hr') );
   return main;
 }
 
@@ -32,8 +32,7 @@ function createButtonAddRow(table){
 function createButtonNewTable(id_table){
   var name = id_table.split('_')[0]; // meta, plot, occ
   var value = "Create new " + name + " table";
-  var onclick = "createInputSpan('" + name + "')";
-  //   var onclick = "createOccurrenceTable('input', '" + name + "_setting_table', '" + name + "_input_table')"
+  var onclick = "createInputPart('" + name + "')";
   // console.log(onclick);
   return createInput({ type: "button", value: value, onclick: onclick });
 }

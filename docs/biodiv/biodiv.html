@@ -25,11 +25,11 @@
   // // // // // // // // // // // // // // // // // // // 
   // TODO: 
   //    var -> const ?
-  //    Add update button for "Date"  and "GPS data"
   //    Create table according to plot_id
   //    make "input" tag for sum group (data_type: 'select-one') and number (data_type: 'number')
   //    
   // // // // // // // // // // // // // // // // // // // 
+
   </script>
 
 </head>
@@ -44,38 +44,46 @@ Biodiversity Investigation System (BIS)
 
 <div class="Biodiversity Investigation System (BIS)">
   <p id="tabcontrol">
-    <a href="#tab1">Settings</a>
-    <a href="#tab2">Inputs</a>
-    <a href="#tab3">Tools</a>
-    <a href="#tab4">Spare</a>
+    <a href="#tab_setting">Settings </a>
+    <a href="#tab_inputs" >Inputs   </a>
+    <a href="#tab_tools"  >Tools    </a>
+    <a href="#tab4"       >Spare    </a>
   </p>
 
   <div id="tabbody">
-    <div id="tab1">
-      <span id="setting"></span>
+    <div id="tab_setting">
       <script>
-        var span = document.getElementById("setting");
-        span.appendChild( createSettingSpan("plot_setting") );
-        span.appendChild( createSettingSpan("occ_setting") );
-//        createSettingSpan("meta_setting");
+        var setting_tab = document.getElementById("tab_setting");
+        setting_tab.appendChild( createSettingSpan("occ_setting") );
+        setting_tab.appendChild( createSettingSpan("plot_setting") );
+
+// var id_table = "occ_input_example_01";
+// var type = "number";
+// selectColByType(id_table, type);
+
+
+
       </script>
     </div>
 
 
-    <div id="tab2">
-      <span id="input"></span>
+    <div id="tab_inputs">
       <script>
+        var input_tab = document.getElementById("tab_inputs");
+//        input_tab.appendChild( restoreTable('occ_input_table_example_01') );
+        input_tab.appendChild( restoreInputPart("occ", "example_01") );
 
         // variables for sotable table
-        let occ_tbl = 'occurrence';
+        let occ_tbl = 'occ_input_table';
         var column_no = 0;       // now clicked
         var column_no_prev = 0;  // previous clicked
         var dir = "asc";
       </script>
     </div>
+    
 
 
-    <div id="tab3">
+    <div id="tab_tools">
       <!--            Launch Mailer                -->
       <input type='button' value="launch mailer" onclick="launchMailer()" />
 

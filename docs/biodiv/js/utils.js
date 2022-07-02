@@ -154,14 +154,13 @@ function getTableData(id_table){
 
 function getCellData(cell_data, data_type){
   switch(data_type){
-    case "delButton":  //  skip
-      return null;
-      break;
     case "date":
     case "no":
     case "fixed":
       return cell_data.innerHTML;
       break;
+    case "delButton":
+    case "updatebutton":
     case "text":
     case "number":
       return cell_data.firstChild.value;
@@ -220,10 +219,12 @@ function getDataType(table){
     switch(col_names[Ci]){
       case "date":
       case "delButton":
+      case "updateButton":
       case "no":
         data_type[Ci] = col_names[Ci];
         break;
       default:
+  // console.log(col_names[Ci]);
         var f_child = first_row[Ci].firstChild;
         if(f_child.value === void 0){
           data_type[Ci] = "fixed";
@@ -264,7 +265,7 @@ function getColNames(table){
 function getNow(){
    var now = new Date();
    const yr  = now.getFullYear();
-   const mo  = String(now.getMonth()).padStart(2, `0`);
+   const mo  = String(now.getMonth()+1).padStart(2, `0`); // getMonth() return 0 when January
    const dd  = String(now.getDate()).padStart(2, `0`);
    const hh  = String(now.getHours()).padStart(2, `0`);
    const mi  = String(now.getMinutes()).padStart(2, `0`);
@@ -275,7 +276,7 @@ function getNow(){
 }
 
 // delete a row
-function deleteRow(obj){
+function delRow(obj){
     var table = obj.parentNode.parentNode.parentNode; // clicked table
     if(table.rows.length > 2){                        // delete more than 3 rows (th + tb*2)
       var tr = obj.parentNode.parentNode;             // clicked row
@@ -300,4 +301,26 @@ function crEl({ el, ats, ih, tc }){
   if(ih != void 0){ ele.innerHTML   = ih; }
   if(tc != void 0){ ele.textContent = tc; }
   return ele;
+}
+
+//    @paramas id_table  A string to specify a table.
+//    @paramas type      A string to specify a data type, 
+//                       which can be retrive by get_data_types() as shown below.
+//                       "fixed", "text", "button", "checkbox", 'select-one','number'. 
+//    @return  A string array.
+//    @examples
+//    var id_table = "occ_input_example_01";
+//    var type = "number";
+//    selectColByType(id_table, type);
+//    var type = "select-one";
+//    selectColByType(id_table, type);
+function selectColByType(id_table, type){
+  var table = document.getElementById(id_table);
+  var types = get_data_types(table);
+  var c_names = getColNames(table);
+  var cols = [];
+  for(let i = 0; i < types.length; i++){
+    if(types[i] === type){ cols.push(c_names[i]); }
+  }
+  return cols;
 }

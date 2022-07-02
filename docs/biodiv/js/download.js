@@ -77,12 +77,13 @@ function getSelectOne(table, col_name){
 //                        localStorage key name is "bis_" + table_name.
 //    @return             A table element with id: table_name.
 //    @examples
-//    var table_name = 'occ_input_example_01'; 
-//    localStorage.setItem("bis_" + table_name, data.bis_occ_input_example_01);
-//    restoreTable(table_name)
+//    var table_name = 'occ_input_table_example_01'; 
+//    localStorage.setItem("bis_" + table_name, data.bis_occ_input_table_example_01);
+//    restoreTable(table_name);
 function restoreTable(table_name){
   // input data
-var table_name = "occ_setting_table";
+  // var table_name = "occ_setting_table";
+  // console.log(table_name);
   var plot  = localStorage[ "bis_" + table_name ].split(";")
   var col_names = JSON.parse(plot[0])["sys_c_names"];
   var dat_types = JSON.parse(plot[1])["sys_d_types"];
@@ -117,19 +118,25 @@ var table_name = "occ_setting_table";
 function restoreTd(table_data, data_type, select){
   switch(data_type){
     case "text":
-      var td = crEl({ el:'input', ats:{type: data_type, value: table_data} });
+      var td = crEl({ el: "td" });
+      td.appendChild( crEl({ el:'input', ats:{type: data_type, value: table_data} }) );
       break;
     case "number":
-      var td = crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} });
+      var td = crEl({ el: "td" });
+      td.appendChild(crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} }));
       break;
     case "checkbox":
-      var td = crEl({ el:'input', ats:{type: data_type, checked: table_data} });
+      var td = crEl({ el: "td" });
+      var checkbox = crEl({ el:'input', ats:{type: data_type} });
+      if(table_data) checkbox.setAttribute("checked", true);
+      td.appendChild( checkbox );
       break;
     case "fixed":
       var td = crEl({ el:'td', ih: table_data });
       break;
     case "button":
-      var td = createTd( createDelButton() );
+      if(table_data === "DELETE")           { var td = createTd( createDelButton() ); }
+      if(table_data === "Update Time & GPS"){ var td = createTd( createUpdateButton()  ); }
       break;
     case "select-one":
       var sel_no = select.indexOf(table_data);

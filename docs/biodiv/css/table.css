@@ -18,11 +18,11 @@ table th{
   padding: 0.3em 1em;
 }
 
-table[id*="input_table"] th{
+table[id*="input"] th{
   background-color: #00552e;
   cursor: pointer;
 }
 
-table[id*="input_table"] td{
+table[id*="input"] td{
   border-color: #00552e;   /* line color    */
 }

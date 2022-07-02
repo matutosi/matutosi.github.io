@@ -1,10 +1,41 @@
+
+function restoreInputPart(ns, id_table=""){
+  var main = document.getElementById('tab_inputs');
+  var table_name = ns + "_input_table_" + id_table;
+  // search
+  var id = ns + "search_text";
+  // console.log(ns);
+  var onkeyup = "searchTable('" + table_name + "', this)";
+  main.appendChild( createInput({ type:"text", id: id, onkeyup: onkeyup,  placeholder: "Search text input" }) );
+
+  //   table
+  var table = restoreTable(table_name);
+  main.appendChild(table);
+  setSortable(table_name);
+
+  // add rows
+  main.appendChild(createInputNrow(    table_name + "_n_row" ));
+  main.appendChild(createButtonAddRow( table_name            ));  // input: table name to add rows
+
+  // calc sum
+  var onclick = "showSumByGroup('" + table_name + "', 'Cover', 'Layer', '" + table_name + "_calc_result')"; 
+  main.appendChild( createInput({ type: "Button", value: "Calculate", onclick: onclick }) );
+  var span = document.createElement('span');
+  span.appendChild( crEl({ el: 'table', ats: {id: table_name + "_calc_result"} })); // table with no data
+  main.appendChild(span);
+
+  // hr
+  main.appendChild( document.createElement('hr') );
+}
+
 // TODO: Write documents
 //    
-function createInputSpan(ns){
-  var main = document.getElementById('input');
+function createInputPart(ns){
+  var main = document.getElementById('tab_inputs');
   var table_name = ns + "_input_table";
   // search
   var id = ns + "search_text";
+  // console.log(ns);
   var onkeyup = "searchTable('" + table_name + "', this)";
   main.appendChild( createInput({ type:"text", id: id, onkeyup: onkeyup,  placeholder: "Search text input" }) );
 
@@ -74,8 +105,9 @@ function createInputTd(dat_type, col_name, optional){
       if(col_name === "locacc") td.innerHTML = getAcc();
       if(col_name === "no")     td.innerHTML = 1;
       break;
-    case "button": // delButton
-      td.appendChild(createDelButton());
+    case "button": // delButton, update button
+      if(col_name === "delbutton")   { td.appendChild( createDelButton() );     };
+      if(col_name === "updatebutton"){ td.appendChild( createUpdateButton()  ); };
       break;
     case "fixed":
       if(optional === ""){ 
@@ -98,10 +130,34 @@ function createInputTd(dat_type, col_name, optional){
   }
   return td;
 }
+// Update "Date", "locLat", "locLon", "locAcc"
+//    When "Update" bottun clicked, update informations in the row.
+//    @paramas obj Clicked row.
+//    @return null.
+function updateTimeGPS(obj){
+  // settings
+  var cols = ["Date", "locLat", "locLon", "locAcc"];
+  var funs = [getNow, getLat, getLon, getAcc]
+  // clicked things
+  var table = obj.parentNode.parentNode.parentNode;
+  var tr = obj.parentNode.parentNode;
+  var row_no = tr.sectionRowIndex;
+  // update
+  for(let i = 0; i < cols.length; i++){
+    var col_no = getColNames(table).indexOf(cols[i]);
+    var cell = table.rows[row_no].cells[col_no];
+    cell.replaceWith( crEl({ el:'td', ih: funs[col_no]() }) );
+  }
+}
 
 // Create delete button
 function createDelButton(){
-  return createInput({ type: "button", value: "DELETE", onclick: "deleteRow(this)" });
+  return createInput({ type: "button", value: "DELETE", onclick: "delRow(this)" });
+}
+
+// Create update time and GPS button
+function createUpdateButton(){
+  return createInput({ type: "button", value: "Update Time & GPS", onclick: "updateTimeGPS(this)" });
 }
 
 // Create (new) table
@@ -128,7 +184,7 @@ function createTable(table, col_names){
 // Helper to call cloneRow() multiple times
 function cloneRows(id_table){
   const n_row = document.getElementById(id_table + "_n_row").value;
-// console.log(n_row);
+  // console.log(n_row);
   for(let i=0; i<n_row; i++) cloneRow(id_table)
 }
 
@@ -147,8 +203,7 @@ function cloneRow(id_table){
   var last_row = table.rows[n_row - 1];  // to get selectedIndex
   var next_row = table.rows[n_row - 1].cloneNode(true);
   for(let Ci = 0; Ci < n_col; Ci++){
-  //     var next_id = updateId(next_row.children[Ci].getAttribute("id"));
-  //     next_row.children[Ci].setAttribute("id", next_id);
+  // console.log(col_names[Ci].toLowerCase());
     switch(col_names[Ci].toLowerCase()){
       case "date":  // update "date"
         next_row.children[Ci].innerHTML = getNow();
@@ -162,7 +217,8 @@ function cloneRow(id_table){
       case "locacc":
         next_row.children[Ci].innerHTML = getAcc();
         break;
-      case "delbutton": // do nothing
+      case "updatebutton": // do nothing
+      case "delbutton":    // do nothing
         break;
       case "no":   // no = max(no) + 1
         var nos = getColData(table, col_names[Ci]);
