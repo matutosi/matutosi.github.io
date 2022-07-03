@@ -6,7 +6,16 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>this</title>
+      <link>https://matutosi.github.io/post/20220703/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220703/</guid>
+      <description>JavaScriptでのthisはよくは分かっていないが，使い方によってはすごく便利． inputタグのところで，とりあえず&amp;quot;onclick&amp;quot; =&amp;ldquo;fun(this)&amp;ldquo;としておけばあとでなんとかなりそう． 取り出しは，&amp;ldquo;this&amp;quot;や&amp;quot;this.parentNode;&amp;quot;(さらに親Nodeが欲しければ，&amp;quot;.parentNode&amp;quot;を追加)でなんとかなりそう．</description>
+    </item>
+    
     <item>
       <title>植生調査アプリの仮公開</title>
       <link>https://matutosi.github.io/post/20220628/</link>
