@@ -1,6 +1,6 @@
 
 function restoreInputPart(ns, id_table=""){
-  var main = document.getElementById('tab_inputs');
+  var main = crEl({ el:'span' });
   var table_name = ns + "_input_table_" + id_table;
   // search
   var id = ns + "search_text";
@@ -9,7 +9,10 @@ function restoreInputPart(ns, id_table=""){
   main.appendChild( createInput({ type:"text", id: id, onkeyup: onkeyup,  placeholder: "Search text input" }) );
 
   //   table
-  var table = restoreTable(table_name);
+  // console.log(table_name);
+  // restoreTable("occ_input_table_example_01", "localStorage");
+  var table = restoreTable(table_name, "localStorage");
+  // console.log(table);
   main.appendChild(table);
   setSortable(table_name);
 
@@ -26,6 +29,8 @@ function restoreInputPart(ns, id_table=""){
 
   // hr
   main.appendChild( document.createElement('hr') );
+
+  return main;
 }
 
 // TODO: Write documents

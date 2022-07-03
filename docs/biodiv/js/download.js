@@ -80,11 +80,19 @@ function getSelectOne(table, col_name){
 //    var table_name = 'occ_input_table_example_01'; 
 //    localStorage.setItem("bis_" + table_name, data.bis_occ_input_table_example_01);
 //    restoreTable(table_name);
-function restoreTable(table_name){
+function restoreTable(table_name, from = "localStorage"){
   // input data
-  // var table_name = "occ_setting_table";
   // console.log(table_name);
-  var plot  = localStorage[ "bis_" + table_name ].split(";")
+  // var table_name ="occ_input_table_example_01";
+  // var from = "localStorage";
+  switch(from){
+    case "localStorage":
+      var plot = localStorage[ "bis_" + table_name ].split(";")
+      break;
+    default:
+      var plot = data[table_name].split(";");
+      break;
+  }
   var col_names = JSON.parse(plot[0])["sys_c_names"];
   var dat_types = JSON.parse(plot[1])["sys_d_types"];
   var selects   = JSON.parse(plot[2])["sys_selects"];
