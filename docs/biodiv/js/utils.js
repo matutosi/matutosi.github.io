@@ -256,7 +256,8 @@ function getColNames(table){
   const row_0 = table.rows[0];
   const col_names = [];
   for(let Ri=0; Ri<row_0.cells.length; Ri++){
-    col_names[Ri] = row_0.cells[Ri].innerHTML;
+    col_names[Ri] = row_0.cells[Ri].innerText;
+  //     col_names[Ri] = row_0.cells[Ri].innerHTML;
   }
   return col_names
 }

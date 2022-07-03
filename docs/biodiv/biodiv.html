@@ -23,14 +23,16 @@
 
   <script> // test script
   // // // // // // // // // // // // // // // // // // // 
+  // TODO: var -> const ?
   // TODO: 
-  //    var -> const ?
   //    Create table according to plot_id
   //    Make "input" tag for sum group (data_type: 'select-one') and number (data_type: 'number')
   //        can use selectColByType(id_table, type)
-  //    Add "hide" and "show all" button in input table
+  // TODO: Write documents for functions.
+  // TODO: use hiddenInputCols() with showInputCols() and hideInputCol(). 
   //    
   // // // // // // // // // // // // // // // // // // // 
+
 
   </script>
 
@@ -58,13 +60,6 @@ Biodiversity Investigation System (BIS)
         var setting_tab = document.getElementById("tab_setting");
         setting_tab.appendChild( createSettingSpan("occ_setting") );
         setting_tab.appendChild( createSettingSpan("plot_setting") );
-
-// var id_table = "occ_input_example_01";
-// var type = "number";
-// selectColByType(id_table, type);
-
-
-
       </script>
     </div>
 
@@ -87,7 +82,7 @@ Biodiversity Investigation System (BIS)
 
     <div id="tab_tools">
       <!--            Launch Mailer                -->
-      <input type='button' value="launch mailer" onclick="launchMailer()" />
+      <input type='button' value="Launch mailer" onclick="launchMailer()" />
 
       <!--            GPS                           -->
       <!--      TODO: Use different background color or something CLEAR for users in switching on / off       -->

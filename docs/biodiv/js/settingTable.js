@@ -79,7 +79,7 @@ function createSetting(id_table, json){
 
   // head
   var tr = document.createElement('tr');
-  for(head of heads){  tr.appendChild(crEl({ el: 'th', ih: head })); }
+  for(head of heads){ tr.appendChild(crEl({ el: 'th', ih: head })); }
   table.appendChild(tr);
 
   // body
@@ -114,7 +114,6 @@ function hideCol(setting_table, input_table){
     }
   }
 }
-
 
 // Helper to create input with select options
 //    when selected_no is given, 

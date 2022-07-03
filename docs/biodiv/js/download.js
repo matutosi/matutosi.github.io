@@ -103,7 +103,12 @@ function restoreTable(table_name, from = "localStorage"){
   const n_col = col_names.length;
   var tr = document.createElement('tr');
   for(let Ni = 0; Ni < n_col; Ni++){
-    if(col_names[Ni] !== "") tr.appendChild( crEl({ el: 'th', ih: col_names[Ni] }) );
+  //     if(col_names[Ni] !== "") tr.appendChild( crEl({ el: 'th', ih: col_names[Ni] }) );
+    if(col_names[Ni] !== ""){
+      var th = crEl({ el: 'th', ih: col_names[Ni] });
+      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide col", onclick:"hideInputCol(this)"} }) );
+      tr.appendChild(th);
+    }
   }
   table.appendChild(tr)
   // td
