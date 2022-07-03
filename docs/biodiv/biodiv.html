@@ -26,7 +26,9 @@
   // TODO: 
   //    var -> const ?
   //    Create table according to plot_id
-  //    make "input" tag for sum group (data_type: 'select-one') and number (data_type: 'number')
+  //    Make "input" tag for sum group (data_type: 'select-one') and number (data_type: 'number')
+  //        can use selectColByType(id_table, type)
+  //    Add "hide" and "show all" button in input table
   //    
   // // // // // // // // // // // // // // // // // // // 
 
@@ -72,9 +74,9 @@ Biodiversity Investigation System (BIS)
         var input_tab = document.getElementById("tab_inputs");
 //        input_tab.appendChild( restoreTable('bis_occ_input_table_example_01', "data") );
         input_tab.appendChild( restoreInputPart("occ", "example_01") );
+        setSortable("occ_input_table_example_01");
 
         // variables for sotable table
-        let occ_tbl = 'occ_input_table';
         var column_no = 0;       // now clicked
         var column_no_prev = 0;  // previous clicked
         var dir = "asc";

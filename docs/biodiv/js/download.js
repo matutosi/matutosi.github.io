@@ -90,7 +90,7 @@ function restoreTable(table_name, from = "localStorage"){
       var plot = localStorage[ "bis_" + table_name ].split(";")
       break;
     default:
-      var plot = data[table_name].split(";");
+      var plot = data["bis_" + table_name].split(";");
       break;
   }
   var col_names = JSON.parse(plot[0])["sys_c_names"];

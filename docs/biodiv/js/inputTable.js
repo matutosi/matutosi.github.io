@@ -10,9 +10,7 @@ function restoreInputPart(ns, id_table=""){
 
   //   table
   // console.log(table_name);
-  // restoreTable("occ_input_table_example_01", "localStorage");
-  var table = restoreTable(table_name, "localStorage");
-  // console.log(table);
+  var table = restoreTable(table_name, "");
   main.appendChild(table);
   setSortable(table_name);
 

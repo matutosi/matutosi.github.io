@@ -10,6 +10,7 @@
 function setSortable(id_table){
   // console.log(id_table);
   // console.log( document.querySelectorAll('#' + id_table + ' th') );
+  // var id_table = "occ_input_table_example_01";
   document.querySelectorAll('#' + id_table + ' th').forEach(elm => {
     elm.onclick = function (){
       // settings
