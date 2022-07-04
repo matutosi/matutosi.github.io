@@ -1,0 +1,47 @@
+<html>
+<head>
+    <link rel="stylesheet" href="css/tab.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/fullScreen.css">
+
+    <script src="js/data.js"></script>
+    <script src="js/json.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ns.js"></script>
+    <script src="js/settingTable.js"></script>
+    <script src="js/inputTable.js"></script>
+    <script src="js/sortable.js"></script>
+    <script src="js/gps.js"></script>
+    <script src="js/fullScreen.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/mailer.js"></script>
+    <script src="js/download.js"></script>
+
+
+    <script src="js/module_table.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="input">
+</div>
+
+
+<script>
+var div = document.getElementById("input");
+var  ns = "occ_input_table_example_01";
+div.appendChild( tableModule(ns) );
+setSortable(ns); // can not set sortable in a function
+
+// variables for sotable table
+var column_no = 0;       // now clicked
+var column_no_prev = 0;  // previous clicked
+var dir = "asc";
+</script>
+
+
+
+</body>
+</html>
