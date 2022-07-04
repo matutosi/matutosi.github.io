@@ -25,3 +25,4 @@ function searchTable(id_table, text){
     if(input === "")        { trs[k].style.display = "";     } // no input, show all
   }
 }
+

@@ -1,6 +1,6 @@
 // TODO:
 //    make select option input in HTML
-//         (group) for data_types: "text", "select_option"
+//         (group) for data_types: "text", "select-one"
 //         (array) for data_types: "number"
 //   decide how to show results
 // ocnsole.log(sumByGroup("occurrence", "Cover", "Layer"))
@@ -55,9 +55,9 @@ function sumByGroup(id_input_table, array, group, id_result){
       sum_array[groups[i]] += Number(gr_ar[j]);
     }
   }
-  // use all select options
+  // if use all select options
   var col_no = getColNames(table).indexOf(group);
-  if(getDataType(table)[col_no] === "select_option"){
+  if(getDataType(table)[col_no] === "select-one"){
     var all_groups = getSelectOptionInCell(table.rows[1].cells[col_no].firstChild); 
     var ordered_sum_array = [];
     for(let i=0; i < all_groups.length; i++){
@@ -92,7 +92,7 @@ function getColData(table, col_name, list_with_index=false){
   var group_value = [];
   for(Ri = 0; Ri < table.rows.length - 1; Ri++){
     // except th (rows[0])
-    if(list_with_index && col_type === "select_option"){
+    if(list_with_index && col_type === "select-one"){
       group_value[Ri] = table.rows[Ri + 1].cells[col_no].firstChild.selectedIndex;
     } else {
       group_value[Ri] = getCellData(table.rows[Ri + 1].cells[col_no], col_type);
@@ -168,7 +168,7 @@ function getCellData(cell_data, data_type){
     case "checkbox": 
       return cell_data.firstChild.checked;
       break;
-    case "select_option":
+    case "select-one":
       var opts = getSelectOptionInCell(cell_data.firstChild);
       var index = cell_data.firstChild.selectedIndex;
       return opts[index];
@@ -194,7 +194,7 @@ function getSelectOption(table){
   var select_opt = [];
   for(let Ci = 0; Ci < data_types.length; Ci++){ select_opt[Ci] = ""; }
   for(let Ci = 0; Ci < data_types.length; Ci++){
-    if(data_types[Ci] === "select_option"){
+    if(data_types[Ci] === "select-one"){
       opts = row_1[Ci].firstChild.children;
       for(opt of opts){ select_opt[Ci] = select_opt[Ci] + "," + opt.value; }
     }
@@ -207,7 +207,7 @@ function getSelectOption(table){
 //        "date", "delButton", "no", "locLat", "locLon", "locAcc"
 //        These columns can not be set by users. 
 //    Other columns can be devided into 5 data types: 
-//        "fixed", "checkbox", "text", "number", "select_option".
+//        "fixed", "checkbox", "text", "number", "select-one".
 //    
 function getDataType(table){
 //   const table = document.getElementById(id_table);
@@ -230,7 +230,7 @@ function getDataType(table){
           data_type[Ci] = "fixed";
         } else {
           if(f_child.getAttribute("type") === null){
-            data_type[Ci] = "select_option";
+            data_type[Ci] = "select-one";
           } else {
             data_type[Ci] = f_child.getAttribute("type");
           }
@@ -325,3 +325,4 @@ function selectColByType(id_table, type){
   }
   return cols;
 }
+

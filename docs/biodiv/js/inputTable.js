@@ -5,7 +5,10 @@ function restoreInputPart(ns, id_table=""){
   // search
   var id = ns + "search_text";
   // console.log(ns);
-  var onkeyup = "searchTable('" + table_name + "', this)";
+
+  //   var onkeyup = "searchTable('" + table_name + "', this)";
+  var onkeyup = "searchTableText(this)"; // for test
+
   main.appendChild( createInput({ type:"text", id: id, onkeyup: onkeyup, placeholder: "Search text input" }) );
   main.appendChild( createInput({ type:"button", value:"ShowCols", onclick:"showInputCols(this)"}) );
 
