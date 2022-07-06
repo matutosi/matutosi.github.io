@@ -28,8 +28,32 @@
 <div id="input">
 </div>
 
+<div class="x">
+  <div class="a">a1</div>
+  <div class="b">b1</div>
+  <div class="c">c1</div>
+  <input type="button" value="test" onclick="fun(this)">
+</div>
+
+<div class="y">
+  <div class="a">a2</div>
+  <div class="b">b2</div>
+  <div class="c">c2</div>
+</div>
+
+
 
 <script>
+
+function fun(obj){
+  var b = obj.parentNode;
+  var a = b.getElementsByClassName("a")
+  console.log(a[0]);
+}
+
+document.getElementsByClassName("x")
+
+
 var div = document.getElementById("input");
 var  ns = "occ_input_table_example_01";
 div.appendChild( tableModule(ns) );

@@ -1,5 +1,88 @@
 
-function tableModule(ns){
+function settingTableModule(ns){
+  // var ns = "occ_input_table_example_01";
+  var main  = crEl({ el:'span', id: "main_"   + ns});
+
+  // Up span
+  var up = crEl({ el:'span', ats:{id: "up_" + ns} });
+  up.appendChild( crEl({ el: 'B', tc: ns}) );
+  up.appendChild( crEl({ el: 'br' }) );
+
+  up.appendChild( crEl({ el: 'span', tc: "Load settings: " }) );
+  up.appendChild( createFileButton() );
+
+  up.appendChild( createInput({ type: "text", placeholder: "File name" }) );
+  up.appendChild( createSaveButton() );
+
+  up.appendChild( createHideButton() );
+  up.appendChild( crEl({ el: 'br' }) );
+  up.appendChild( crEl({ el: 'span'}) );
+  main.appendChild(up);
+
+  // Table
+  var table = restoreTable(ns, "", false);
+
+  // Down span
+  var dn = crEl({ el:'span', ats:{id: "dn_" + ns} });
+  dn.appendChild( createNrowInput() );
+  dn.appendChild( createAddRowButton() );
+
+  main.appendChild(up);
+  main.appendChild(table);
+  main.appendChild(dn);
+  main.appendChild( crEl({ el: 'hr' }) );
+
+  return main;
+}
+
+async function replaceTable(obj){
+  var text = await readFile(obj.files[0]);
+  var text = text.split(";");
+  var table_name = obj.value.split("\\").slice(-1)[0].replace("\.conf", "")
+  var new_table = makeTable(text, table_name, false);
+  var old_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  old_table.replaceWith(new_table);
+  //   return table;
+}
+
+  // https://www.delftstack.com/ja/howto/javascript/open-local-text-file-using-javascript/
+function readFile(file){
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader();
+    reader.onload = x=> resolve(reader.result);
+    reader.readAsText(file);
+  })
+}
+
+function createFileButton(){
+  return createInput({ type: "file", accept: ".conf", onchange: "makeTbleFromFile(this)" });
+}
+
+
+function createSaveButton(){
+  return createInput({ type: "button", value: "Save settings", onclick: "saveSettings(this)" });
+}
+
+function saveSettings(obj){
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var table_data = getTableDataPlus(table.id);
+  var f_name = obj.previousElementSibling.value;
+  if(f_name === ""){ f_name = "temp_settings"; }
+   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
+   var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
+   const url = URL.createObjectURL(blob);
+   const a = document.createElement("a");
+   document.body.appendChild(a);
+   a.download = f_name + ".conf";
+  a.href = url;
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  delete table_data;
+}
+
+
+function inputTableModule(ns){
   // var ns = "occ_input_table_example_01";
   var main   = crEl({ el:'span', id: "main_"   + ns});
 
@@ -9,11 +92,11 @@ function tableModule(ns){
   up.appendChild( createSearchInput() );
   up.appendChild( createHideButton() );
   up.appendChild( crEl({ el: 'br' }) );
-  up.appendChild( crEl({ el: 'span'}) );
+  //   up.appendChild( crEl({ el: 'span'}) );
   main.appendChild(up);
 
   // Table
-  var table = restoreTable(ns, from = "");
+  var table = restoreTable(ns, "", true);
 
   // Down span
   var dn = crEl({ el:'span', ats:{id: "dn_" + ns} });
@@ -37,7 +120,7 @@ function tableModule(ns){
 
 function showAllCols(obj){
   // console.log(obj.parentNode.parentNode.nextElementSibling);
-  var table = obj.parentNode.parentNode.nextElementSibling;
+  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
   for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){
     for(let Rj = 0; Rj < table.rows.length; Rj++){
       table.rows[Rj].cells[Ci].style.display = '';
@@ -49,7 +132,7 @@ function showAllCols(obj){
 
 // Hide a column in a table.
 function hideTableCol(obj){
-  var table = obj.parentNode.parentNode.parentNode;
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var c_name = obj.parentNode.innerText;
   var c_no = getColNames(table).indexOf(c_name);
   for(let Rj = 0; Rj < table.rows.length; Rj++){
@@ -67,7 +150,7 @@ function hideTableCol(obj){
 function showCol(obj){
   // show col
   var c_name = obj.value;
-  var table = obj.parentNode.parentNode.nextElementSibling;
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var c_no = getColNames(table).indexOf(c_name);
   for(let Rj = 0; Rj < table.rows.length; Rj++){
       table.rows[Rj].cells[c_no].style.display = '';
@@ -87,7 +170,7 @@ function createShowColButton(c_name){
 function sumWithGroup(obj){
   var array = obj.previousElementSibling.previousElementSibling.previousElementSibling.value;
   var group = obj.previousElementSibling.value;
-  var table = obj.parentNode.previousElementSibling;
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var array_val = getColData(table, array);
   var group_val = getColData(table, group);
   var grouped_array = splitByGroup(array_val, group_val);
@@ -137,7 +220,7 @@ function searchTableText(obj){
   // console.log(obj.parentNode.nextElementSibling);
   var input = obj.value;
   var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
-  var table  = obj.parentNode.nextElementSibling;
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var trs    = table.rows;
   var data_types = getDataType(table);
   var display_flag = [1];                // 1: show first row (th)
@@ -164,7 +247,7 @@ function addRows(obj){
   // console.log(obj);
   // console.log(obj.parentNode.previousElementSibling);
   var n_row = obj.previousElementSibling.value;
-  var table = obj.parentNode.previousElementSibling;
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   for(let i = 0; i < n_row; i++) addRow(table)
 }
 
@@ -229,15 +312,15 @@ function addRow(table){
 
 
 function createNrowInput(){
-  return createInput({ type: "number", value: "3", step: "1", min: "1", max:"20" });
+  return createInput({ class: "n_row", type: "number", value: "3", step: "1", min: "1", max:"20" });
 }
 
 function createAddRowButton(){
-  return createInput({ type: "button", value: "Add row(s)", onclick: "addRows(this)" });
+  return createInput({ class: "add_row", type: "button", value: "Add row(s)", onclick: "addRows(this)" });
 }
 
 function createHideButton(){
-  return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
+  return createInput({ class: "hide_show",  type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
 }
 
 function hideShowNext(obj){

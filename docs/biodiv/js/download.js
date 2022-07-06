@@ -80,7 +80,7 @@ function getSelectOne(table, col_name){
 //    var table_name = 'occ_input_table_example_01'; 
 //    localStorage.setItem("bis_" + table_name, data.bis_occ_input_table_example_01);
 //    restoreTable(table_name);
-function restoreTable(table_name, from = "localStorage"){
+function restoreTable(table_name, from = "localStorage", hide_col = true){
   // input data
   // console.log(table_name);
   // var table_name ="occ_input_table_example_01";
@@ -93,6 +93,12 @@ function restoreTable(table_name, from = "localStorage"){
       var plot = data[table_name].split(";");
       break;
   }
+  var table = makeTable(plot, table_name, hide_col);
+  return table;
+}
+
+function makeTable(plot, table_name, hide_col = true){
+  // console.log(plot);
   var col_names = JSON.parse(plot[0])["sys_c_names"];
   var dat_types = JSON.parse(plot[1])["sys_d_types"];
   var selects   = JSON.parse(plot[2])["sys_selects"];
@@ -106,8 +112,7 @@ function restoreTable(table_name, from = "localStorage"){
   //     if(col_names[Ni] !== "") tr.appendChild( crEl({ el: 'th', ih: col_names[Ni] }) );
     if(col_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: col_names[Ni] });
-      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide col", onclick:"hideTableCol(this)"} }) );
-  //       th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide col", onclick:"hideInputCol(this)"} }) );
+      if(hide_col){ th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide col", onclick:"hideTableCol(this)"} }) ); }
       tr.appendChild(th);
     }
   }
@@ -123,6 +128,7 @@ function restoreTable(table_name, from = "localStorage"){
   }
   return table;
 }
+
 
 // Helper for restoreTable()
 //    @params table_data  A string to specify data in td.

@@ -30,8 +30,6 @@
   // TODO: Write documents for functions.
   // 
   // // // // // // // // // // // // // // // // // // // 
-
-
   </script>
 
 </head>
@@ -54,25 +52,26 @@ Biodiversity Investigation System (BIS)
 
   <div id="tabbody">
     <div id="tab_setting">
+
       <script>
         var setting_tab = document.getElementById("tab_setting");
-        setting_tab.appendChild( createSettingSpan("occ_setting") );
-        setting_tab.appendChild( createSettingSpan("plot_setting") );
-      </script>
-    </div>
 
+        setting_tab.appendChild( settingTableModule("occ_setting") );
+//        setting_tab.appendChild( createSettingSpan("occ_setting") );
+//        setting_tab.appendChild( createSettingSpan("plot_setting") );
+      </script>
+
+
+    </div>
 
     <div id="tab_inputs">
       <script>
         var input_tab = document.getElementById("tab_inputs");
 
         var  ns = "occ_input_table_example_01";
-        input_tab.appendChild( tableModule(ns) );
-        setSortable(ns); // can not set sortable in a function
+        input_tab.appendChild( inputTableModule(ns) );
+        setSortable(ns); // Can not set sortable in a function
 
-//        input_tab.appendChild( restoreTable('bis_occ_input_table_example_01', "data") );
-//        input_tab.appendChild( restoreInputPart("occ", "example_01") );
-//        setSortable("occ_input_table_example_01");
 
         // variables for sotable table
         var column_no = 0;       // now clicked
