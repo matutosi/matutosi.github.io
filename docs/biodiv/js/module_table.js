@@ -1,3 +1,83 @@
+function inputTableModule(ns, table = null){
+  // var ns = "occ_input_table_example_01";
+  var main   = crEl({ el:'span', id: "main_"   + ns});
+
+  // Up span
+  var up = crEl({ el:'span', ats:{id: "up_" + ns} });
+  up.appendChild( crEl({ el: 'B', tc: ns}) );
+  up.appendChild( createSearchInput() );
+
+  up.appendChild( createSaveInputButton() );
+
+  up.appendChild( createHideButton() );
+  up.appendChild( crEl({ el: 'br' }) );
+  up.appendChild( crEl({ el: 'span'}) );
+  main.appendChild(up);
+
+  // Table
+  if(table === null){ var table = restoreTable(ns, "", true); }
+
+  // Down span
+  var dn = crEl({ el:'span', ats:{id: "dn_" + ns} });
+  dn.appendChild( createNrowInput() );
+  dn.appendChild( createAddRowButton() );
+  dn.appendChild( crEl({ el: 'br' }) );
+  dn.appendChild( crEl({ el: 'span', tc: "Value: " }) );
+  dn.appendChild( createSelectOpt( colByType(table, "number") ) );
+  dn.appendChild( crEl({ el: 'span', tc: "; Group: " }) );
+  dn.appendChild( createSelectOpt( colByType(table, "select-one") ) );
+  dn.appendChild( createSumButton() );
+
+  main.appendChild(up);
+  main.appendChild(table);
+  main.appendChild(dn);
+  main.appendChild( crEl({ el: 'hr' }) );
+
+  return main;
+}
+
+function makePlotInputModule(obj){
+  var table = makePlotTable(obj);
+  var module = inputTableModule(table.id, table);
+  var tab_inputs = document.getElementById("tab_inputs");
+  tab_inputs.appendChild(module);
+  setSortable(table.id);  // Should setSortable() after appendChild()
+}
+
+function makePlotTable(obj){
+  var setting_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var setting_c_names = getColNames(setting_table);
+  var c_names = getColData(setting_table, setting_c_names[0]);
+  var d_types = getColData(setting_table, setting_c_names[1]);
+  var selects = getColData(setting_table, setting_c_names[2]);
+  var id_table = setting_table.id.replace("setting", "input");
+  var table = crEl({ el: 'table', ats: {id: id_table} });
+  // th
+  const n_col = c_names.length;
+  var tr = document.createElement('tr');
+  for(let Ni = 0; Ni < n_col; Ni++){
+    if(c_names[Ni] !== ""){
+      var th = crEl({ el: 'th', ih: c_names[Ni] });
+      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+      tr.appendChild(th);
+    }
+  }
+  table.appendChild(tr)
+  // td
+  var tr = document.createElement('tr');
+  for(let i = 0; i < c_names.length; i++){
+    if(setting_c_names[i] !== ""){
+      var td = createInputTd(d_types[i], c_names[i], selects[i]);
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  return table;
+}
+
+function createMakePlotButton(){
+  return createInput({ type:"button", value: "Make plot table", onclick: "makePlotInputModule(this)" });
+}
 
 function settingTableModule(ns, plot = true){
   // var ns = "occ_input_table_example_01";
@@ -34,32 +114,6 @@ function settingTableModule(ns, plot = true){
   main.appendChild( crEl({ el: 'hr' }) );
 
   return main;
-}
-
-
-function makePlotTable(obj){
-  var setting_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var setting_c_names = getColNames(setting_table);
-  var c_names = getColData(setting_table, setting_c_names[0]);
-  var d_types = getColData(setting_table, setting_c_names[1]);
-  var selects = getColData(setting_table, setting_c_names[2]);
-  var id_table = setting_table.id.replace("setting", "input");
-  var table = crEl({ el: 'table',  ats: {id: id_table} })
-  createTable(table, c_names); // add th
-  var tr = document.createElement('tr');
-  for(let i = 0; i < c_names.length; i++){
-    if(setting_c_names[i] !== ""){
-      var td = createInputTd(d_types[i], c_names[i], selects[i]);
-      tr.appendChild(td);
-    }
-    table.appendChild(tr);
-  }
-  //   console.log(table);
-  return table;
-}
-
-function createMakePlotButton(){
-  return createInput({ type:"button", value: "Make plot table", onclick: "makePlotTable(this)" });
 }
 
 
@@ -126,7 +180,7 @@ function createSaveInputButton(){
 function saveInputs(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var table_data = getTableDataPlus(table.id);
-  var f_name = table.id + getNow() + ".bis"
+  var f_name = table.id + "_" + getNow() + ".bis"
   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
   var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
   const url = URL.createObjectURL(blob);
@@ -138,45 +192,6 @@ function saveInputs(obj){
   a.remove();
   URL.revokeObjectURL(url);
   delete table_data;
-}
-
-
-function inputTableModule(ns){
-  // var ns = "occ_input_table_example_01";
-  var main   = crEl({ el:'span', id: "main_"   + ns});
-
-  // Up span
-  var up = crEl({ el:'span', ats:{id: "up_" + ns} });
-  up.appendChild( crEl({ el: 'B', tc: ns}) );
-  up.appendChild( createSearchInput() );
-
-  up.appendChild( createSaveInputButton() );
-
-  up.appendChild( createHideButton() );
-  up.appendChild( crEl({ el: 'br' }) );
-  up.appendChild( crEl({ el: 'span'}) );
-  main.appendChild(up);
-
-  // Table
-  var table = restoreTable(ns, "", true);
-
-  // Down span
-  var dn = crEl({ el:'span', ats:{id: "dn_" + ns} });
-  dn.appendChild( createNrowInput() );
-  dn.appendChild( createAddRowButton() );
-  dn.appendChild( crEl({ el: 'br' }) );
-  dn.appendChild( crEl({ el: 'span', tc: "Value: " }) );
-  dn.appendChild( createSelectOpt( colByType(table, "number") ) );
-  dn.appendChild( crEl({ el: 'span', tc: "; Group: " }) );
-  dn.appendChild( createSelectOpt( colByType(table, "select-one") ) );
-  dn.appendChild( createSumButton() );
-
-  main.appendChild(up);
-  main.appendChild(table);
-  main.appendChild(dn);
-  main.appendChild( crEl({ el: 'hr' }) );
-
-  return main;
 }
 
 

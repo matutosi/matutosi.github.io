@@ -59,24 +59,31 @@ Biodiversity Investigation System (BIS)
         setting_tab.appendChild( settingTableModule("setting_plot_default", true) );
         setting_tab.appendChild( settingTableModule("setting_occ_default" , false) );
       </script>
-
-
     </div>
 
     <div id="tab_inputs">
       <script>
         var input_tab = document.getElementById("tab_inputs");
-
-        var  ns = "occ_input_table_example_01";
-        input_tab.appendChild( inputTableModule(ns) );
-        setSortable(ns); // Can not set sortable in a function
-
+        input_tab.appendChild( createInput({ type:"button", value: "Load Example", onclick: "loadExample(this)" }) );
 
         // variables for sotable table
         var column_no = 0;       // now clicked
         var column_no_prev = 0;  // previous clicked
         var dir = "asc";
       </script>
+
+<script> // example data
+function loadExample(obj){
+  console.log(obj.parentNode);
+  var main = obj.parentNode;
+
+  var example_name = "input_occ_example";
+  main.appendChild( inputTableModule(example_name) );
+  setSortable(example_name); // Can not set sortable in a function
+
+  obj.remove()
+}
+</script>
     </div>
 
 
