@@ -253,6 +253,7 @@ function get_data_types(table){
 }
 
 function getColNames(table){
+  // console.log(table.rows[0]);
   const row_0 = table.rows[0];
   const col_names = [];
   for(let Ri=0; Ri<row_0.cells.length; Ri++){

@@ -12,7 +12,7 @@ function settingTableModule(ns){
   up.appendChild( createFileButton() );
 
   up.appendChild( createInput({ type: "text", placeholder: "File name" }) );
-  up.appendChild( createSaveButton() );
+  up.appendChild( createSaveSettingButton() );
 
   up.appendChild( createHideButton() );
   up.appendChild( crEl({ el: 'br' }) );
@@ -40,9 +40,14 @@ async function replaceTable(obj){
   var text = text.split(";");
   var table_name = obj.value.split("\\").slice(-1)[0].replace("\.conf", "")
   var new_table = makeTable(text, table_name, false);
+
   var old_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   old_table.replaceWith(new_table);
-  //   return table;
+
+  var old_title = obj.parentNode.parentNode.querySelectorAll("b")[0];
+  var new_title = crEl({ el: 'B', tc: table_name})
+  old_title.replaceWith( new_title );
+
 }
 
   // https://www.delftstack.com/ja/howto/javascript/open-local-text-file-using-javascript/
@@ -55,11 +60,11 @@ function readFile(file){
 }
 
 function createFileButton(){
-  return createInput({ type: "file", accept: ".conf", onchange: "makeTbleFromFile(this)" });
+  return createInput({ type: "file", accept: ".conf", onchange: "replaceTable(this)" });
 }
 
 
-function createSaveButton(){
+function createSaveSettingButton(){
   return createInput({ type: "button", value: "Save settings", onclick: "saveSettings(this)" });
 }
 
@@ -68,12 +73,34 @@ function saveSettings(obj){
   var table_data = getTableDataPlus(table.id);
   var f_name = obj.previousElementSibling.value;
   if(f_name === ""){ f_name = "temp_settings"; }
-   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
-   var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
-   const url = URL.createObjectURL(blob);
-   const a = document.createElement("a");
-   document.body.appendChild(a);
-   a.download = f_name + ".conf";
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
+  var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = f_name + ".conf";
+  a.href = url;
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  delete table_data;
+}
+
+
+function createSaveInputButton(){
+  return createInput({ type: "button", value: "Save inputs", onclick: "saveInputs(this)" });
+}
+
+function saveInputs(obj){
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var table_data = getTableDataPlus(table.id);
+  var f_name = table.id + getNow() + ".bis"
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
+  var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = f_name;
   a.href = url;
   a.click();
   a.remove();
@@ -90,9 +117,12 @@ function inputTableModule(ns){
   var up = crEl({ el:'span', ats:{id: "up_" + ns} });
   up.appendChild( crEl({ el: 'B', tc: ns}) );
   up.appendChild( createSearchInput() );
+
+  up.appendChild( createSaveInputButton() );
+
   up.appendChild( createHideButton() );
   up.appendChild( crEl({ el: 'br' }) );
-  //   up.appendChild( crEl({ el: 'span'}) );
+  up.appendChild( crEl({ el: 'span'}) );
   main.appendChild(up);
 
   // Table
@@ -132,8 +162,10 @@ function showAllCols(obj){
 
 // Hide a column in a table.
 function hideTableCol(obj){
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  // console.log(obj.parentNode.parentNode.parentNode);
+  var table = obj.parentNode.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
   var c_name = obj.parentNode.innerText;
+  // console.log(c_name);
   var c_no = getColNames(table).indexOf(c_name);
   for(let Rj = 0; Rj < table.rows.length; Rj++){
     table.rows[Rj].cells[c_no].style.display = 'none';
@@ -150,7 +182,7 @@ function hideTableCol(obj){
 function showCol(obj){
   // show col
   var c_name = obj.value;
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
   var c_no = getColNames(table).indexOf(c_name);
   for(let Rj = 0; Rj < table.rows.length; Rj++){
       table.rows[Rj].cells[c_no].style.display = '';
@@ -326,13 +358,16 @@ function createHideButton(){
 function hideShowNext(obj){
   // console.log(obj);
   // console.log(obj.parentNode.nextElementSibling);
+  var span   = obj.nextElementSibling.nextElementSibling;
   var next   = obj.parentNode.nextElementSibling;
   var next_2 = obj.parentNode.nextElementSibling.nextElementSibling;
   if(next.style.display === 'none'){
+    span.style.display = '';
     next.style.display = '';
     next_2.style.display = '';
     obj.value = "Hide table";
   } else {
+    span.style.display = 'none';
     next.style.display = 'none';
     next_2.style.display = 'none';
     obj.value = "Show table";

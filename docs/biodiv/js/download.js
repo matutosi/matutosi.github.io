@@ -112,7 +112,7 @@ function makeTable(plot, table_name, hide_col = true){
   //     if(col_names[Ni] !== "") tr.appendChild( crEl({ el: 'th', ih: col_names[Ni] }) );
     if(col_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: col_names[Ni] });
-      if(hide_col){ th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide col", onclick:"hideTableCol(this)"} }) ); }
+      if(hide_col){ th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); }
       tr.appendChild(th);
     }
   }
