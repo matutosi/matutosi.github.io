@@ -40,6 +40,7 @@
 Biodiversity Investigation System (BIS)
 <!--            Switch full screen           -->
 <input id="switch_screen_show" type="button" value="TO FULL SCREEN"  onclick="switchScreenShow(this.id)" />
+<input type="button" value="saveHTML"  onclick="saveHTML()" />
 </p>
 
 <div class="Biodiversity Investigation System (BIS)">
@@ -65,6 +66,7 @@ Biodiversity Investigation System (BIS)
       <script>
         var input_tab = document.getElementById("tab_inputs");
         input_tab.appendChild( createInput({ type:"button", value: "Load Example", onclick: "loadExample(this)" }) );
+        input_tab.appendChild( crEl({ el: 'br' }) );
 
         // variables for sotable table
         var column_no = 0;       // now clicked
@@ -73,16 +75,19 @@ Biodiversity Investigation System (BIS)
       </script>
 
 <script> // example data
-function loadExample(obj){
-  console.log(obj.parentNode);
-  var main = obj.parentNode;
 
-  var example_name = "input_occ_example";
-  main.appendChild( inputTableModule(example_name) );
-  setSortable(example_name); // Can not set sortable in a function
-
-  obj.remove()
+function saveHTML(obj){
+  var doc = document.documentElement.outerHTML;
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
+  var blob = new Blob([bom, doc], { "type" : "text/tsv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.download = "biodiv.html"
+  a.href = url;
+  a.click();
+  URL.revokeObjectURL(url);
 }
+
 </script>
     </div>
 

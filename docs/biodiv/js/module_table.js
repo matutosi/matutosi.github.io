@@ -1,3 +1,35 @@
+function createMakePlotButton(){
+  return createInput({ type:"button", value: "Make plot table", onclick: "makePlotInputModule(this)" });
+}
+function createFileButton(){
+  return createInput({ type: "file", accept: ".conf", onchange: "replaceTable(this)" });
+}
+function createSaveSettingButton(){
+  return createInput({ type: "button", value: "Save settings", onclick: "saveSettings(this)" });
+}
+function createSaveInputButton(){
+  return createInput({ type: "button", value: "Save inputs", onclick: "saveInputs(this)" });
+}
+function createShowColButton(c_name){
+  return createInput({ type: "Button", value: c_name, onclick: "showCol(this)" });
+}
+function createSumButton(){
+  return createInput({ type: "Button", value: "Calculate", onclick: "sumWithGroup(this)" });
+}
+function createSearchInput(){
+  return createInput({ type:"text", onkeyup: "searchTableText(this)", placeholder: "Search text" });
+}
+function createNrowInput(){
+  return createInput({ type: "number", value: "3", step: "1", min: "1", max:"20" });
+}
+function createAddRowButton(){
+  return createInput({ type: "button", value: "Add row(s)", onclick: "addRows(this)" });
+}
+function createHideButton(){
+  return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
+}
+
+
 function inputTableModule(ns, table = null){
   // var ns = "occ_input_table_example_01";
   var main   = crEl({ el:'span', id: "main_"   + ns});
@@ -42,6 +74,7 @@ function makePlotInputModule(obj){
   var tab_inputs = document.getElementById("tab_inputs");
   tab_inputs.appendChild(module);
   setSortable(table.id);  // Should setSortable() after appendChild()
+  tabs[1].click();        // move to tab_inputs
 }
 
 function makePlotTable(obj){
@@ -73,10 +106,6 @@ function makePlotTable(obj){
     table.appendChild(tr);
   }
   return table;
-}
-
-function createMakePlotButton(){
-  return createInput({ type:"button", value: "Make plot table", onclick: "makePlotInputModule(this)" });
 }
 
 function settingTableModule(ns, plot = true){
@@ -141,14 +170,6 @@ function readFile(file){
   })
 }
 
-function createFileButton(){
-  return createInput({ type: "file", accept: ".conf", onchange: "replaceTable(this)" });
-}
-
-
-function createSaveSettingButton(){
-  return createInput({ type: "button", value: "Save settings", onclick: "saveSettings(this)" });
-}
 
 function saveSettings(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
@@ -173,9 +194,6 @@ function saveSettings(obj){
 }
 
 
-function createSaveInputButton(){
-  return createInput({ type: "button", value: "Save inputs", onclick: "saveInputs(this)" });
-}
 
 function saveInputs(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
@@ -240,9 +258,6 @@ function showCol(obj){
 }
 
 
-function createShowColButton(c_name){
-  return createInput({ type: "Button", value: c_name, onclick: "showCol(this)" });
-}
 
 
 // Sum with group
@@ -280,13 +295,6 @@ function sumWithGroup(obj){
   }
 }
 
-function createSumButton(){
-  return createInput({ type: "Button", value: "Calculate", onclick: "sumWithGroup(this)" });
-}
-
-function createSearchInput(){
-  return createInput({ type:"text", onkeyup: "searchTableText(this)", placeholder: "Search text" });
-}
 
 // Search text input tags in a table and show only matching rows
 //    Clear input text, all rows will be shown.
@@ -390,17 +398,6 @@ function addRow(table){
 }
 
 
-function createNrowInput(){
-  return createInput({ class: "n_row", type: "number", value: "3", step: "1", min: "1", max:"20" });
-}
-
-function createAddRowButton(){
-  return createInput({ class: "add_row", type: "button", value: "Add row(s)", onclick: "addRows(this)" });
-}
-
-function createHideButton(){
-  return createInput({ class: "hide_show",  type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
-}
 
 function hideShowNext(obj){
   // console.log(obj);
@@ -435,4 +432,15 @@ function colByType(table, type){
     if(types[i] === type){ cols.push(c_names[i]); }
   }
   return cols;
+}
+
+function loadExample(obj){
+  console.log(obj.parentNode);
+  var main = obj.parentNode;
+
+  var example_name = "input_occ_example";
+  main.appendChild( inputTableModule(example_name) );
+  setSortable(example_name); // Can not set sortable in a function
+  obj.nextElementSibling.remove(); // <br>
+  obj.remove();
 }
