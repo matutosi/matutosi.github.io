@@ -56,9 +56,8 @@ Biodiversity Investigation System (BIS)
       <script>
         var setting_tab = document.getElementById("tab_setting");
 
-        setting_tab.appendChild( settingTableModule("occ_setting") );
-//        setting_tab.appendChild( createSettingSpan("occ_setting") );
-//        setting_tab.appendChild( createSettingSpan("plot_setting") );
+        setting_tab.appendChild( settingTableModule("setting_plot_default", true) );
+        setting_tab.appendChild( settingTableModule("setting_occ_default" , false) );
       </script>
 
 

@@ -1,5 +1,5 @@
 
-function settingTableModule(ns){
+function settingTableModule(ns, plot = true){
   // var ns = "occ_input_table_example_01";
   var main  = crEl({ el:'span', id: "main_"   + ns});
 
@@ -26,6 +26,7 @@ function settingTableModule(ns){
   var dn = crEl({ el:'span', ats:{id: "dn_" + ns} });
   dn.appendChild( createNrowInput() );
   dn.appendChild( createAddRowButton() );
+  if(plot){ dn.appendChild( createMakePlotButton() );}  
 
   main.appendChild(up);
   main.appendChild(table);
@@ -34,6 +35,33 @@ function settingTableModule(ns){
 
   return main;
 }
+
+
+function makePlotTable(obj){
+  var setting_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var setting_c_names = getColNames(setting_table);
+  var c_names = getColData(setting_table, setting_c_names[0]);
+  var d_types = getColData(setting_table, setting_c_names[1]);
+  var selects = getColData(setting_table, setting_c_names[2]);
+  var id_table = setting_table.id.replace("setting", "input");
+  var table = crEl({ el: 'table',  ats: {id: id_table} })
+  createTable(table, c_names); // add th
+  var tr = document.createElement('tr');
+  for(let i = 0; i < c_names.length; i++){
+    if(setting_c_names[i] !== ""){
+      var td = createInputTd(d_types[i], c_names[i], selects[i]);
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  //   console.log(table);
+  return table;
+}
+
+function createMakePlotButton(){
+  return createInput({ type:"button", value: "Make plot table", onclick: "makePlotTable(this)" });
+}
+
 
 async function replaceTable(obj){
   var text = await readFile(obj.files[0]);
@@ -72,13 +100,17 @@ function saveSettings(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var table_data = getTableDataPlus(table.id);
   var f_name = obj.previousElementSibling.value;
-  if(f_name === ""){ f_name = "temp_settings"; }
+  if(f_name === ""){ 
+    f_name = table.id + ".conf"; 
+  } else {
+    f_name = table.id.split("_")[0] + "_" + table.id.split("_")[1] + "_" + f_name  + ".conf";
+  }
   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
   var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   document.body.appendChild(a);
-  a.download = f_name + ".conf";
+  a.download = f_name
   a.href = url;
   a.click();
   a.remove();
