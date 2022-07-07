@@ -28,6 +28,63 @@ function createAddRowButton(){
 function createHideButton(){
   return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
 }
+function createNewOccButton(){
+  return createInput({ type: "button", value: "occ table", onclick: "makeNewOccTable(this)" });
+}
+
+
+function makeNewOccTable(obj){
+  // var obj = temp1;
+  var tr = obj.parentElement.parentElement;
+  var table = obj.parentElement.parentElement.parentElement;
+  var c_no = getColNames(table).indexOf("Plot");
+  var plot = tr.cells[c_no].firstChild.value;
+  // create new input table for occurrence and appendChild()
+
+  var tab_settings = document.getElementById("tab_settings");
+  var setting_table = tab_settings.querySelectorAll("table")[1];
+  
+  var table = makeOccTable(setting_table, plot);
+  console.log(table);
+  
+  var tab_inputs = document.getElementById("tab_inputs");
+  tab_inputs.appendChild(table);
+  
+}
+
+
+function makeOccTable(setting_table, plot){
+  var setting_c_names = getColNames(setting_table);
+  var c_names = getColData(setting_table, setting_c_names[0]);
+  var d_types = getColData(setting_table, setting_c_names[1]);
+  var selects = getColData(setting_table, setting_c_names[2]);
+  var id_table = setting_table.id.replace("setting", "input");
+  var table = crEl({ el: 'table', ats: {id: id_table} });
+  // th
+  const n_col = c_names.length;
+  var tr = document.createElement('tr');
+  tr.appendChild( crEl({ el: 'th', ih: "Plot" }) );
+  for(let Ni = 0; Ni < n_col; Ni++){
+    if(c_names[Ni] !== ""){
+      var th = crEl({ el: 'th', ih: c_names[Ni] });
+      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+      tr.appendChild(th);
+    }
+  }
+  table.appendChild(tr)
+  // td
+  var tr = document.createElement('tr');
+  var td = crEl({ el: 'td' })
+  tr.appendChild( crEl({ el: 'td', ih: plot }) );
+  for(let i = 0; i < c_names.length; i++){
+    if(setting_c_names[i] !== ""){
+      var td = createInputTd(d_types[i], c_names[i], selects[i]);
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  return table;
+}
 
 
 function inputTableModule(ns, table = null){
@@ -47,18 +104,22 @@ function inputTableModule(ns, table = null){
   main.appendChild(up);
 
   // Table
-  if(table === null){ var table = restoreTable(ns, "", true); }
+  if(table === null){ var table = restoreTable(ns, ""); }
 
   // Down span
   var dn = crEl({ el:'span', ats:{id: "dn_" + ns} });
   dn.appendChild( createNrowInput() );
   dn.appendChild( createAddRowButton() );
-  dn.appendChild( crEl({ el: 'br' }) );
-  dn.appendChild( crEl({ el: 'span', tc: "Value: " }) );
-  dn.appendChild( createSelectOpt( colByType(table, "number") ) );
-  dn.appendChild( crEl({ el: 'span', tc: "; Group: " }) );
-  dn.appendChild( createSelectOpt( colByType(table, "select-one") ) );
-  dn.appendChild( createSumButton() );
+
+  var occ = ns.split("_")[1] === "occ";
+  if(occ){
+    dn.appendChild( crEl({ el: 'br' }) );
+    dn.appendChild( crEl({ el: 'span', tc: "Value: " }) );
+    dn.appendChild( createSelectOpt( colByType(table, "number") ) );
+    dn.appendChild( crEl({ el: 'span', tc: "; Group: " }) );
+    dn.appendChild( createSelectOpt( colByType(table, "select-one") ) );
+    dn.appendChild( createSumButton() );
+  }
 
   main.appendChild(up);
   main.appendChild(table);
@@ -88,6 +149,9 @@ function makePlotTable(obj){
   // th
   const n_col = c_names.length;
   var tr = document.createElement('tr');
+  var th = crEl({ el: 'th', ih: "New" });
+  th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+  tr.appendChild(th);
   for(let Ni = 0; Ni < n_col; Ni++){
     if(c_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: c_names[Ni] });
@@ -98,6 +162,9 @@ function makePlotTable(obj){
   table.appendChild(tr)
   // td
   var tr = document.createElement('tr');
+  var td = crEl({ el: 'td' })
+  td.appendChild( createNewOccButton() );
+  tr.appendChild( td );
   for(let i = 0; i < c_names.length; i++){
     if(setting_c_names[i] !== ""){
       var td = createInputTd(d_types[i], c_names[i], selects[i]);
@@ -108,7 +175,7 @@ function makePlotTable(obj){
   return table;
 }
 
-function settingTableModule(ns, plot = true){
+function settingTableModule(ns){
   // var ns = "occ_input_table_example_01";
   var main  = crEl({ el:'span', id: "main_"   + ns});
 
@@ -129,12 +196,14 @@ function settingTableModule(ns, plot = true){
   main.appendChild(up);
 
   // Table
-  var table = restoreTable(ns, "", false);
+  var table = restoreTable(ns, "");
 
   // Down span
   var dn = crEl({ el:'span', ats:{id: "dn_" + ns} });
   dn.appendChild( createNrowInput() );
   dn.appendChild( createAddRowButton() );
+
+  var plot = (ns.split("_")[1] === 'plot');
   if(plot){ dn.appendChild( createMakePlotButton() );}  
 
   main.appendChild(up);
@@ -435,7 +504,7 @@ function colByType(table, type){
 }
 
 function loadExample(obj){
-  console.log(obj.parentNode);
+  // console.log(obj.parentNode);
   var main = obj.parentNode;
 
   var example_name = "input_occ_example";

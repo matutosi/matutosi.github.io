@@ -80,7 +80,7 @@ function getSelectOne(table, col_name){
 //    var table_name = 'occ_input_table_example_01'; 
 //    localStorage.setItem("bis_" + table_name, data.bis_occ_input_table_example_01);
 //    restoreTable(table_name);
-function restoreTable(table_name, from = "localStorage", hide_col = true){
+function restoreTable(table_name, from = "localStorage"){
   // input data
   // console.log(table_name);
   // var table_name ="occ_input_table_example_01";
@@ -93,11 +93,11 @@ function restoreTable(table_name, from = "localStorage", hide_col = true){
       var plot = data[table_name].split(";");
       break;
   }
-  var table = makeTable(plot, table_name, hide_col);
+  var table = makeTable(plot, table_name);
   return table;
 }
 
-function makeTable(plot, table_name, hide_col = true){
+function makeTable(plot, table_name){
   // console.log(plot);
   var col_names = JSON.parse(plot[0])["sys_c_names"];
   var dat_types = JSON.parse(plot[1])["sys_d_types"];
@@ -107,9 +107,9 @@ function makeTable(plot, table_name, hide_col = true){
   var table = crEl({ el: 'table', ats:{id: table_name} });
   // th
   const n_col = col_names.length;
+  var hide_col = (table_name.split("_")[0] === "input");
   var tr = document.createElement('tr');
   for(let Ni = 0; Ni < n_col; Ni++){
-  //     if(col_names[Ni] !== "") tr.appendChild( crEl({ el: 'th', ih: col_names[Ni] }) );
     if(col_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: col_names[Ni] });
       if(hide_col){ th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); }

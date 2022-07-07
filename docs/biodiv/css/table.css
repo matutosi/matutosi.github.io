@@ -18,6 +18,13 @@ table th{
   padding: 0.3em 1em;
 }
 
+/*
+table[id*="input"] td{
+  width: 2000px;
+  table-layout: fixed;
+}
+*/
+
 table[id*="input"] th{
   background-color: #00552e;
   cursor: pointer;
@@ -25,4 +32,7 @@ table[id*="input"] th{
 
 table[id*="input"] td{
   border-color: #00552e;   /* line color    */
+}
+
+table th{
 }

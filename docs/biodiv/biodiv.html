@@ -45,20 +45,20 @@ Biodiversity Investigation System (BIS)
 
 <div class="Biodiversity Investigation System (BIS)">
   <p id="tabcontrol">
-    <a href="#tab_setting">Settings </a>
+    <a href="#tab_settings">Settings </a>
     <a href="#tab_inputs" >Inputs   </a>
     <a href="#tab_tools"  >Tools    </a>
     <a href="#tab4"       >Spare    </a>
   </p>
 
   <div id="tabbody">
-    <div id="tab_setting">
+    <div id="tab_settings">
 
       <script>
-        var setting_tab = document.getElementById("tab_setting");
+        var setting_tab = document.getElementById("tab_settings");
 
-        setting_tab.appendChild( settingTableModule("setting_plot_default", true) );
-        setting_tab.appendChild( settingTableModule("setting_occ_default" , false) );
+        setting_tab.appendChild( settingTableModule("setting_plot_default") );
+        setting_tab.appendChild( settingTableModule("setting_occ_default" ) );
       </script>
     </div>
 
