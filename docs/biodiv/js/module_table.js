@@ -29,9 +29,16 @@ function createHideButton(){
   return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
 }
 function createNewOccButton(){
-  return createInput({ type: "button", value: "occ table", onclick: "makeNewOccTable(this)" });
+  return createInput({ type: "button", value: "occ table", onclick: "makeNewOccTableModule(this)" });
 }
 
+
+function makeNewOccTableModule(obj){
+  var table = makeNewOccTable(obj)
+  var module = inputTableModule(table.id, table = table);
+  var tab_inputs = document.getElementById("tab_inputs");
+  tab_inputs.appendChild(module);
+}
 
 function makeNewOccTable(obj){
   // var obj = temp1;
@@ -45,13 +52,8 @@ function makeNewOccTable(obj){
   var setting_table = tab_settings.querySelectorAll("table")[1];
   
   var table = makeOccTable(setting_table, plot);
-  console.log(table);
-  
-  var tab_inputs = document.getElementById("tab_inputs");
-  tab_inputs.appendChild(table);
-  
+  return table;
 }
-
 
 function makeOccTable(setting_table, plot){
   var setting_c_names = getColNames(setting_table);
@@ -59,6 +61,9 @@ function makeOccTable(setting_table, plot){
   var d_types = getColData(setting_table, setting_c_names[1]);
   var selects = getColData(setting_table, setting_c_names[2]);
   var id_table = setting_table.id.replace("setting", "input");
+  var old_plot = id_table.split("_")[2];
+  id_table = id_table.replace(old_plot, plot);
+
   var table = crEl({ el: 'table', ats: {id: id_table} });
   // th
   const n_col = c_names.length;
