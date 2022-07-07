@@ -153,7 +153,7 @@ function updateTimeGPS(obj){
   for(let i = 0; i < cols.length; i++){
     var col_no = getColNames(table).indexOf(cols[i]);
     var cell = table.rows[row_no].cells[col_no];
-    cell.replaceWith( crEl({ el:'td', ih: funs[col_no]() }) );
+    cell.replaceWith( crEl({ el:'td', ih: funs[i]() }) );
   }
 }
 
