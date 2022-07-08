@@ -78,7 +78,7 @@ function getSelectOne(table, col_name){
 //    @return             A table element with id: table_name.
 //    @examples
 //    var table_name = 'occ_input_table_example_01'; 
-//    localStorage.setItem("bis_" + table_name, data.bis_occ_input_table_example_01);
+//    localStorage.setItem("bis_" + table_name, data.occ_input_table_example_01);
 //    restoreTable(table_name);
 function restoreTable(table_name, from = "localStorage"){
   // input data

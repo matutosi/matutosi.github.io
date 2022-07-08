@@ -294,7 +294,7 @@ function saveSettings(obj){
 function saveInputs(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var table_data = getTableDataPlus(table.id);
-  var f_name = table.id + "_" + getNow() + ".bis"
+  var f_name = table.id + "_" + getNow() + ".txt"
   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
   var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
   const url = URL.createObjectURL(blob);
@@ -541,11 +541,22 @@ function colByType(table, type){
 
 function loadExample(obj){
   // console.log(obj.parentNode);
-  var main = obj.parentNode;
 
-  var example_name = "input_occ_example";
-  main.appendChild( inputTableModule(example_name) );
-  setSortable(example_name); // Can not set sortable in a function
+  // plot
+  var make_plot_button = document.getElementById("dn_setting_plot_default").children[2];
+  make_plot_button.click();
+  var table = document.getElementById("input_plot_default");
+  table.rows[1].cells[1].firstChild.value = "exam01";
+  table.rows[1].cells[0].firstChild.click()
+
+  // occ
+  var main = obj.parentNode;
+  var main = document.getElementById("tab_inputs");
+  var occ_example = "input_occ_exam01";
+  var new_module = inputTableModule(occ_example);
+  main.children[4].replaceWith(new_module);
+  setSortable(occ_example); // Can not set sortable in a function
+
   obj.nextElementSibling.remove(); // <br>
   obj.remove();
 }
