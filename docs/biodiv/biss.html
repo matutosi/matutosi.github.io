@@ -1,0 +1,1721 @@
+<html> <head> <script>const data={data_types:["auto","button","checkbox","fixed","list","text","number"],input_occ_example:'{"sys_c_names":["Date","locLat","locLon","locAcc","delButton","updatebutton","No","Identified","Sampled","Plot","Layer","Species","Cover","Memo"]};{"sys_d_types":["fixed","fixed","fixed","fixed","button","button","fixed","checkbox","checkbox","fixed","select-one","text","number","text"]};{"sys_selects":[null,null,null,null,null,null,null,null,null,null,["B1","B2","S1","S2","K",""],null,null,null]};{"Date":["2022_06_30_16_15_32","2022_06_30_16_15_36","2022_06_30_16_15_36","2022_06_30_16_15_36","2022_06_30_16_15_40","2022_06_30_16_15_40","2022_06_30_16_15_40","2022_06_30_16_16_13","2022_06_30_16_16_13","2022_06_30_16_16_13"],"locLat":["34.7346","34.7346","34.7346","34.7346","34.7346","34.7346","34.7346","34.7346","34.7346","34.7346"],"locLon":["135.2872","135.2872","135.2872","135.2872","135.2872","135.2872","135.2872","135.2872","135.2872","135.2872"],"locAcc":["15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792","15.792"],"delButton":["DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE"],"updatebutton":["Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS"],"No":["1","2","3","4","5","6","7","8","9","10"],"Identified":[true,true,false,false,true,false,true,false,true,false],"Sampled":[false,true,true,false,false,true,true,false,false,true],"Plot":["Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01","Plot_01"],"Layer":["B1","B1","B2","B2","S1","S2","K","K","K","K"],"Species":["abc","bbbbbb","ccccccccccccc","dd","e e","dd sp.","eeee","fffffffffff","gg gg gg","hhhhhhh"],"Cover":["75","10","7","12","14","6","0.01","0.1","0.001","0.1"],"Memo":["memo","","","","???","","","","",""]}',setting_plot_default:'{"sys_c_names":["item","type","value","delButton"]};{"sys_d_types":["text","select-one","text","button"]};{"sys_selects":[null,["auto","button","checkbox","fixed","list","text","number"],null,null]};{"item":["Plot","Investigator","delButton","Date","No","Location","locLat","locLon","locAcc","updateButton","Altitude","Aspect","Inclination","B1Height","B2Height","S1Height","S2Height","K1Hieght","B1Cover","B2Cover","S1Cover","S21Cover","K1Cover","Memo"],"type":["text","text","button","auto","auto","text","auto","auto","auto","button","number","text","number","number","number","number","number","number","number","number","number","number","number","text"],"value":[" ","","","","","","","","","","","","","","","","","","","","","","",""],"delButton":["DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE"]}',setting_occ_default:'{"sys_c_names":["item","type","value","delButton"]};{"sys_d_types":["text","select-one","text","button"]};{"sys_selects":[null,["auto","button","checkbox","fixed","list","text","number"],null,null]};{"item":["Date","locLat","locLon","locAcc","delButton","updateButton","No","Layer","Species","Cover","Identified","Sampled","Memo"],"type":["auto","auto","auto","auto","button","button","auto","list","text","number","checkbox","checkbox","text"],"value":[" ","","","","","","","B1:B2:S1:S2:K","","","","",""],"delButton":["DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE"]}'};</script> <script>// Convert csv to json format 
+//    can convert from tsv using by sep="\t" 
+//    @example 
+//    var csv = `item type value option 
+//    Project fixed  Biodiv 
+//    Investigator text   
+//    delButton button  Don't change 
+//    Date auto  Don't change 
+//    No auto  Don't change 
+//    Location text  ` 
+//    csv2json(csv, sep="\t") 
+//     
+function csv2json(csv, sep=","){ 
+  var json_array = []; 
+  var csv_array = []; 
+  csv_array = csv.split('\n'); 
+  var items = csv_array[0].split(sep); 
+    for (var i = 1; i < csv_array.length; i++) { 
+      var line = new Object; 
+      var tmp_array = csv_array[i].split(sep); 
+      for (var j = 0; j < items.length; j++) { 
+        if(tmp_array[j] !== ''){ line[items[j]] = tmp_array[j]; } 
+      } 
+      json_array.push(line); 
+  } 
+  JSON.stringify(json_array); 
+  console.log(json_array); 
+  return JSON.stringify(json_array); 
+} 
+ 
+// Extract all data from JSON data 
+//    Can extract data from simple JSON () 
+//    @params json A JSON data. 
+//    @examples 
+//    extractJson(data.stand_json); 
+function extractJson(json){ 
+  const keys = jsonKeys(json); 
+  var arr = []; 
+  for(k of keys){ arr[k] = []; } 
+  for(k of keys){ 
+    for(j of json){  
+      if(j[k] === void 0) arr[k].push("") 
+      else                arr[k].push(j[k]); 
+    } 
+  } 
+  return arr; 
+} 
+ 
+// Extract JSON data with key 
+//    @params json A JSON data. 
+//    @params key  A key string. 
+//    @examples 
+//    json2Array(data.stand_json, "item"); 
+//    json2Array(data.test, "item"); 
+function json2Array(json, key){ 
+  var arr = []; 
+  for(j of json){  
+    if(j[key] === void 0) arr.push("") 
+    else                  arr.push(j[key]); 
+  } 
+  return arr; 
+} 
+ 
+// Extract keys from JSON data 
+//    @params json A JSON data. 
+//    @examples 
+//    jsonKeys(data.stand_json) 
+//   
+function jsonKeys(json){ 
+  var arr = []; 
+  for(j of json){ arr = arr.concat(Object.keys(j)); } 
+  return uniq(arr); 
+}</script> <script>// TODO: 
+//    make select option input in HTML 
+//         (group) for data_types: "text", "select-one" 
+//         (array) for data_types: "number" 
+//   decide how to show results 
+// ocnsole.log(sumByGroup("occurrence", "Cover", "Layer")) 
+ 
+ 
+ 
+// Unique array 
+function uniq(array){ 
+  return Array.from(new Set(array)); 
+} 
+ 
+// Convert hasy array table 
+//    In progress: can not convert hasy that has array as a value 
+//    @example  
+//    var hash_array = sumByGroup("occurrence", "Cover", "Layer"); 
+//    hash2table(hasy_array); 
+//     
+function hash2table(hash_array){ 
+  var table = document.createElement('table'); 
+  for(let i = 0; i < Object.keys(hash_array).length; i++){ 
+    var tr = document.createElement('tr'); 
+    tr.appendChild( crEl({ el: 'td', tc: Object.keys(hash_array)[i] }) ); 
+    tr.appendChild( crEl({ el: 'td', ih: Object.values(hash_array)[i] }) ); 
+    table.appendChild(tr); 
+  } 
+  return table 
+} 
+ 
+function showSumByGroup(id_input_table, array, group, id_result){ 
+  // console.log(id_table + ", " + array + ", " + group + ", " + id_show); 
+  var table = document.getElementById(id_result); 
+  table.replaceWith( sumByGroup(id_input_table, array, group, id_result) ); 
+} 
+ 
+// Sum by group 
+//     sumByGroup("occurrence", "Cover", "Layer") 
+//      
+function sumByGroup(id_input_table, array, group, id_result){ 
+  // var id_table = "occ_input_table"; 
+  // var array = "Cover"; 
+  // var group = "Layer"; 
+  var table = document.getElementById(id_input_table); 
+  var array_val = getColData(table, array); 
+  var group_val = getColData(table, group); 
+  var grouped_array = splitByGroup(array_val, group_val); 
+  var groups = Object.keys(grouped_array).sort(); 
+  var sum_array = []; 
+  for(let i = 0; i < groups.length; i++){ sum_array[groups[i]] = 0; } 
+  for(let i = 0; i < groups.length; i++){ 
+    var gr_ar = grouped_array[groups[i]]; 
+    for(let j = 0; j < gr_ar.length; j++){ 
+      sum_array[groups[i]] += Number(gr_ar[j]); 
+    } 
+  } 
+  // if use all select options 
+  var col_no = getColNames(table).indexOf(group); 
+  if(getDataType(table)[col_no] === "select-one"){ 
+    var all_groups = getSelectOptionInCell(table.rows[1].cells[col_no].firstChild);  
+    var ordered_sum_array = []; 
+    for(let i=0; i < all_groups.length; i++){ 
+      if(sum_array[all_groups[i]] !== void 0){ 
+        ordered_sum_array[[all_groups[i]]] = sum_array[all_groups[i]]; 
+      } 
+    } 
+    var sum = ordered_sum_array; 
+  } else { 
+    var sum = sum_array; 
+  } 
+  sum = hash2table(sum); 
+  sum.setAttribute("id", id_result); 
+  // add th 
+  var tr = document.createElement('tr'); 
+  tr.appendChild( crEl({ el: 'th', tc: group }) ); 
+  tr.appendChild( crEl({ el: 'th', tc: array }) ); 
+  // add as header 
+  sum.insertBefore(tr, sum.firstChild); 
+  return sum; 
+} 
+ 
+// Get column data in a table 
+//    @params id_table A string. 
+//    @params col_name A string. 
+//    @return An array. 
+function getColData(table, col_name, list_with_index=false){ 
+  // var table = document.getElementById("meta_setting_table"); 
+  // var col_name = "type"; 
+  const col_no   = getColNames(table).indexOf(col_name); 
+  const col_type = getDataType(table)[col_no]; 
+  var group_value = []; 
+  for(Ri = 0; Ri < table.rows.length - 1; Ri++){ 
+    // except th (rows[0]) 
+    if(list_with_index && col_type === "select-one"){ 
+      group_value[Ri] = table.rows[Ri + 1].cells[col_no].firstChild.selectedIndex; 
+    } else { 
+      group_value[Ri] = getCellData(table.rows[Ri + 1].cells[col_no], col_type); 
+    } 
+  } 
+  return group_value; 
+} 
+ 
+// Split array by group 
+//    @params array An array. 
+//    @params group An array. 
+//    @return Grouped array.  
+//    @examples 
+//    var array = [ 1,   2,   3,   4]; 
+//    var group = ["a", "b", "a", "b"]; 
+//    splitByGroup(array, group); 
+//    // [a: [1,3], b: [2,4]] 
+function splitByGroup(array, group){ 
+  if(array.length !== group.length){ return array; } 
+  var grouped = []; 
+  for(let i=0; i < array.length; i++){ grouped[group[i]] = []; } 
+  for(let i=0; i < array.length; i++){ 
+    grouped[group[i]].push(array[i]); 
+  } 
+  return grouped; 
+} 
+ 
+// Get data from occurrence table. 
+//    returns [array], [array], [array],  
+//    Each array means a row in the table.  
+//     
+function getTableData(id_table){ 
+// var id_table = "occurrence"; 
+  const table = document.getElementById(id_table); 
+  const col_names = getColNames(table); 
+  const n_col = col_names.length; 
+  const n_row = table.rows.length; 
+  const data_types = getDataType(table); 
+  var table_data = []; 
+  // th 
+  var Rj = 0; 
+  var row_rj = table.rows[Rj].cells; 
+  var row_data = []; 
+  for(let Ci = 0; Ci < n_col; Ci++){ 
+    row_data[Ci] = row_rj[Ci].innerHTML; 
+  } 
+  table_data[Rj] = row_data; 
+  // td 
+  for(let Rj=1; Rj<n_row; Rj++){ 
+    var row_rj = table.rows[Rj].cells; 
+    var row_data = []; 
+    for(let Ci = 0; Ci < n_col; Ci++){ 
+      row_data[Ci] = getCellData(row_rj[Ci], data_types[Ci]); 
+    } 
+    table_data[Rj] = row_data; 
+  } 
+  return table_data; 
+} 
+ 
+function getCellData(cell_data, data_type){ 
+  switch(data_type){ 
+    case "date": 
+    case "no": 
+    case "fixed": 
+      return cell_data.innerHTML; 
+      break; 
+    case "delButton": 
+    case "updatebutton": 
+    case "text": 
+    case "number": 
+      return cell_data.firstChild.value; 
+      break; 
+    case "checkbox":  
+      return cell_data.firstChild.checked; 
+      break; 
+    case "select-one": 
+      var opts = getSelectOptionInCell(cell_data.firstChild); 
+      var index = cell_data.firstChild.selectedIndex; 
+      return opts[index]; 
+      break; 
+  } 
+} 
+ 
+// Get options in select tag in a cell 
+//    Return string array. 
+function getSelectOptionInCell(select){ 
+  var select_opt = []; 
+  var opts = select.children; 
+  for(let i = 0; i < opts.length; i++){ select_opt.push(opts[i].value); } 
+  return select_opt; 
+} 
+ 
+// Get options in select tag 
+//    Return string like "B1,B2,..." for select tag, 
+//    "" (vacant string) for pother input tag 
+function getSelectOption(table){ 
+  const data_types = getDataType(table); 
+  const row_1 = table.rows[1].cells;  // table row except th (rows[0]) 
+  var select_opt = []; 
+  for(let Ci = 0; Ci < data_types.length; Ci++){ select_opt[Ci] = ""; } 
+  for(let Ci = 0; Ci < data_types.length; Ci++){ 
+    if(data_types[Ci] === "select-one"){ 
+      opts = row_1[Ci].firstChild.children; 
+      for(opt of opts){ select_opt[Ci] = select_opt[Ci] + "," + opt.value; } 
+    } 
+  } 
+  return select_opt; 
+} 
+ 
+// Get data types from occurrence table. 
+//    Columns shown below are special,  
+//        "date", "delButton", "no", "locLat", "locLon", "locAcc" 
+//        These columns can not be set by users.  
+//    Other columns can be devided into 5 data types:  
+//        "fixed", "checkbox", "text", "number", "select-one". 
+//     
+function getDataType(table){ 
+//   const table = document.getElementById(id_table); 
+  const col_names = getColNames(table); 
+  const n_col = col_names.length; 
+  const first_row = table.rows[1].cells; 
+  var data_type = []; 
+  for(let Ci = 0; Ci < n_col; Ci++){ 
+    switch(col_names[Ci]){ 
+      case "date": 
+      case "delButton": 
+      case "updateButton": 
+      case "no": 
+        data_type[Ci] = col_names[Ci]; 
+        break; 
+      default: 
+  // console.log(col_names[Ci]); 
+        var f_child = first_row[Ci].firstChild; 
+        if(f_child.value === void 0){ 
+          data_type[Ci] = "fixed"; 
+        } else { 
+          if(f_child.getAttribute("type") === null){ 
+            data_type[Ci] = "select-one"; 
+          } else { 
+            data_type[Ci] = f_child.getAttribute("type"); 
+          } 
+        } 
+      break; 
+    } 
+  } 
+  return data_type; 
+} 
+ 
+function get_data_type(cell){ 
+  return (cell.firstChild.type === void 0) ? "fixed" : cell.firstChild.type; 
+} 
+function get_data_types(table){ 
+  var types = []; 
+  for(cell of table.rows[1].cells){ // 1: first td row 
+    types.push(get_data_type(cell)); 
+  } 
+  return types; 
+} 
+ 
+function getColNames(table){ 
+  // console.log(table.rows[0]); 
+  const row_0 = table.rows[0]; 
+  const col_names = []; 
+  for(let Ri=0; Ri<row_0.cells.length; Ri++){ 
+    col_names[Ri] = row_0.cells[Ri].innerText; 
+  //     col_names[Ri] = row_0.cells[Ri].innerHTML; 
+  } 
+  return col_names 
+} 
+ 
+// Get time like 2022_05_18_15_51_28: yyyy-mm-dd-hh-mm-ss 
+function getNow(){ 
+   var now = new Date(); 
+   const yr  = now.getFullYear(); 
+   const mo  = String(now.getMonth()+1).padStart(2, `0`); // getMonth() return 0 when January 
+   const dd  = String(now.getDate()).padStart(2, `0`); 
+   const hh  = String(now.getHours()).padStart(2, `0`); 
+   const mi  = String(now.getMinutes()).padStart(2, `0`); 
+   const ss  = String(now.getSeconds()).padStart(2, `0`); 
+  //    const ms  = String(now.getMilliseconds()).padStart(3, `0`); 
+  //    return(`${yr}_${mo}_${dd}_${hh}_${mi}_${ss}_${ms}`) 
+   return(`${yr}_${mo}_${dd}_${hh}_${mi}_${ss}`) 
+} 
+ 
+// delete a row 
+function delRow(obj){ 
+    var table = obj.parentNode.parentNode.parentNode; // clicked table 
+    if(table.rows.length > 2){                        // delete more than 3 rows (th + tb*2) 
+      var tr = obj.parentNode.parentNode;             // clicked row 
+      tr.parentNode.deleteRow(tr.sectionRowIndex);    // delete clicked row 
+    } 
+} 
+// Helper to createElement(), setAttribute(), innerHTML, textContent 
+//   @paramas el A string for element name. 
+//   @paramas ats An array with attribute names. {id: "hoge", value: "foo"} 
+//   @paramas ih,tc A string for innerHTML and textContent. 
+//            Both of them are given, ih is overwritten by tc. 
+//   @return HTML An object. 
+//   @examples  
+//   crEl({ el: 'p', ats: {id: "id_test", class: "some_class"}, ih: "test" }); 
+//    
+function crEl({ el, ats, ih, tc }){ 
+  var ele = document.createElement(el); 
+  if(ats != void 0){ 
+    var keys  = Object.keys(ats); 
+    for(key of keys){ ele.setAttribute(key, ats[key]); } 
+  } 
+  if(ih != void 0){ ele.innerHTML   = ih; } 
+  if(tc != void 0){ ele.textContent = tc; } 
+  return ele; 
+} 
+ 
+//    @paramas id_table  A string to specify a table. 
+//    @paramas type      A string to specify a data type,  
+//                       which can be retrive by get_data_types() as shown below. 
+//                       "fixed", "text", "button", "checkbox", 'select-one','number'.  
+//    @return  A string array. 
+//    @examples 
+//    var id_table = "occ_input_example_01"; 
+//    var type = "number"; 
+//    selectColByType(id_table, type); 
+//    var type = "select-one"; 
+//    selectColByType(id_table, type); 
+function selectColByType(id_table, type){ 
+  var table = document.getElementById(id_table); 
+  var types = get_data_types(table); 
+  var c_names = getColNames(table); 
+  var cols = []; 
+  for(let i = 0; i < types.length; i++){ 
+    if(types[i] === type){ cols.push(c_names[i]); } 
+  } 
+  return cols; 
+}</script> <script>function getNs(n){return n.split("-")[0]}function setNs(n){return function(t){return n+"-"+t}}</script> <script>function createSettingSpan(ns){ 
+  // var ns = "occ_setting"; 
+  // main-subtitle 
+  //   var main = document.getElementById('setting'); 
+  var main = crEl({ el: 'span', ats:{id: ns} }); 
+  main.appendChild( crEl({ el: 'strong',ih: ns }) ); 
+  main.appendChild( createButtonHideShow(ns + "_contents" ) ); 
+  // main-span 
+  var span = crEl({ el: 'span', ats: {id: ns } }); 
+  main.appendChild(span); 
+  // span-contents 
+  var contents = crEl({ el: 'span', ats: {id: ns + "_contents" } }); 
+  contents.style.display  = "block"; // default: show contents 
+  // contents 
+  contents.appendChild( createSetting(       ns + "_table", "data." + ns + "_json")); 
+  contents.appendChild( createInputNrow(     ns + "_table_n_row"     )); 
+  contents.appendChild( createButtonAddRow(  ns + "_table"           ));  // input: table name to add rows 
+  contents.appendChild( createButtonNewTable(ns + "_new_table"       )); 
+  span.appendChild(contents); 
+  // hr for division 
+  span.appendChild( document.createElement('hr') ); 
+  return main; 
+} 
+ 
+// Create captions for settings 
+function createInputNrow(id_input){ 
+  return createInput({ id: id_input, type: "number", value: "3", step: "1", min: "1", max:"20" }); 
+} 
+function createButtonAddRow(table){ 
+  return createInput({ type: "button", value: "Add row(s)", onclick: "cloneRows('" + table + "')" }); 
+} 
+function createButtonNewTable(id_table){ 
+  var name = id_table.split('_')[0]; // meta, plot, occ 
+  var value = "Create new " + name + " table"; 
+  var onclick = "createInputPart('" + name + "')"; 
+  // console.log(onclick); 
+  return createInput({ type: "button", value: value, onclick: onclick }); 
+} 
+function createButtonHideShow(id_span){ 
+  var id      = id_span + "_hide_show"; 
+  var onclick = "switchHideShowSpan('" + id_span + "', this)"; 
+  return createInput({id: id, type: "button", value: "Hide table", onclick: onclick }) 
+} 
+function switchHideShowSpan(id_span, button){ 
+  var contents = document.getElementById(id_span); 
+  if(contents.style.display === "block"){ // show -> hide 
+    contents.style.display = "none"; 
+    button.setAttribute("value", "Show table"); 
+  }else{                                  // hide -> show 
+    contents.style.display = "block"; 
+    button.setAttribute("value", "Hide table"); 
+  } 
+} 
+ 
+function createTd(child){ 
+  var td = document.createElement('td'); 
+  td.appendChild(child); 
+  return td; 
+} 
+ 
+// Create setting table 
+//    TODO: Write documents !!!!!!!!!!!! 
+//     
+//     
+function createSetting(id_table, json){ 
+// var json = data.stand_json; 
+// var id_table = "setting_stand"; 
+  var json = eval(json);  // convert String to JSON object 
+  // // // settings // // //  
+  // data.stand_json: item, type, value, option, hide 
+  for(key of jsonKeys(json)){ 
+    eval("var " + key + " = extractJson(json)['" + key + "'];"); 
+  } 
+  var heads = jsonKeys(json); 
+  const data_types = data.data_types; 
+ 
+  // table 
+  var table = crEl({ el: 'table', ats: {id: id_table} }); 
+ 
+  // head 
+  var tr = document.createElement('tr'); 
+  for(head of heads){ tr.appendChild(crEl({ el: 'th', ih: head })); } 
+  table.appendChild(tr); 
+ 
+  // body 
+  for(let i = 0; i < json.length; i++){ 
+    var tr = document.createElement('tr'); 
+    // item 
+    tr.appendChild( createTd( createInput({ type: "text", value: item[i] }) ) ); 
+    // type 
+    tr.appendChild( createTd( createSelectOpt( Array(type[i]).concat(data_types) ) ) ); 
+    // value 
+    tr.appendChild( createTd( createInput({ type: "text", value: value[i], placeholder: option[i] }) ) ); 
+    // option 
+    tr.appendChild( createTd( createInput({ type: "text"}) ) ); 
+    // show/hide checkbox 
+    var input_table = id_table.split("_")[0] + "_input_table";    // id_table: setting_table 
+    tr.appendChild( createTd( createInput({ type: "checkbox", onclick: "hideCol('" + id_table + "', '" + input_table + "')" }) ) ); 
+    // delButton 
+    tr.appendChild( createTd( createDelButton() ) ); 
+    // append 
+    table.appendChild(tr); 
+  } 
+  return table; 
+} 
+ 
+// Hide columns checked in table setting 
+function hideCol(setting_table, input_table){ 
+  var hide = getColData(document.getElementById(setting_table), "hide"); 
+  var table = document.getElementById(input_table); 
+  for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){ 
+    for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+      table.rows[Rj].cells[Ci].style.display = (hide[Ci]) ? 'none' : ''; 
+    } 
+  } 
+} 
+ 
+// Helper to create input with select options 
+//    when selected_no is given,  
+//    its <option> (start with 0) will be set as "selected". 
+function createSelectOpt(list, selected_no = 0){ 
+  const n_list = list.length; 
+  var select = document.createElement('select'); 
+  for(let j = 0; j < n_list; j++){ 
+    var option = document.createElement('option'); 
+    if(selected_no === j){ option.setAttribute('selected', 'true'); } 
+    option.innerHTML = list[j]; 
+    select.appendChild(option); 
+  } 
+  return select; 
+} 
+ 
+ 
+// Helper to create input tag with class, id, type, value, and placeholder 
+//    @example 
+//    createInput({ type: "text", value: "Val"}); 
+//    createInput({ type: "button", value: "Push here"}); 
+function createInput( ...args ){ 
+  var input = document.createElement('input'); 
+  var keys  = Object.keys(args[0]); 
+  for(key of keys){ 
+    input.setAttribute(key, args[0][key]); 
+  } 
+  return input; 
+}</script> <script>function restoreInputPart(ns, id_table=""){ 
+  var main = crEl({ el:'span' }); 
+  var table_name = ns + "_input_table_" + id_table; 
+  // search 
+  var id = ns + "search_text"; 
+  // console.log(ns); 
+ 
+  //   var onkeyup = "searchTable('" + table_name + "', this)"; 
+  var onkeyup = "searchTableText(this)"; // for test 
+ 
+  main.appendChild( createInput({ type:"text", id: id, onkeyup: onkeyup, placeholder: "Search text input" }) ); 
+  main.appendChild( createInput({ type:"button", value:"ShowCols", onclick:"showInputCols(this)"}) ); 
+ 
+  //   table 
+  // console.log(table_name); 
+  var table = restoreTable(table_name, ""); 
+  main.appendChild(table); 
+  setSortable(table_name); 
+ 
+  // add rows 
+  main.appendChild(createInputNrow(    table_name + "_n_row" )); 
+  main.appendChild(createButtonAddRow( table_name            ));  // input: table name to add rows 
+ 
+  // calc sum 
+  var onclick = "showSumByGroup('" + table_name + "', 'Cover', 'Layer', '" + table_name + "_calc_result')";  
+  main.appendChild( createInput({ type: "Button", value: "Calculate", onclick: onclick }) ); 
+  var span = document.createElement('span'); 
+  span.appendChild( crEl({ el: 'table', ats: {id: table_name + "_calc_result"} })); // table with no data 
+  main.appendChild(span); 
+ 
+  // hr 
+  main.appendChild( document.createElement('hr') ); 
+ 
+  return main; 
+} 
+ 
+// TODO: Write documents 
+//     
+function createInputPart(ns){ 
+  var main = document.getElementById('tab_inputs'); 
+  var table_name = ns + "_input_table"; 
+  // search 
+  var id = ns + "search_text"; 
+  // console.log(ns); 
+  var onkeyup = "searchTable('" + table_name + "', this)"; 
+  main.appendChild( createInput({ type:"text", id: id, onkeyup: onkeyup,  placeholder: "Search text input" }) ); 
+ 
+  //   table 
+  var table = createInputTable(ns); 
+  main.appendChild(table); 
+  setSortable(table_name); 
+ 
+  // add rows 
+  main.appendChild(createInputNrow(    table_name + "_n_row" )); 
+  main.appendChild(createButtonAddRow( table_name            ));  // input: table name to add rows 
+ 
+  // calc sum 
+  var onclick = "showSumByGroup('" + table_name + "', 'Cover', 'Layer', '" + table_name + "_calc_result')";  
+  main.appendChild( createInput({ type: "Button", value: "Calculate", onclick: onclick }) ); 
+  var span = document.createElement('span'); 
+  span.appendChild( crEl({ el: 'table', ats: {id: table_name + "_calc_result"} })); // table with no data 
+  main.appendChild(span); 
+ 
+  // hr 
+  main.appendChild( document.createElement('hr') ); 
+} 
+ 
+// TODO: Write documents 
+//     
+function createInputTable(ns){ 
+  // console.log(id_span); 
+  // var id_span    = "input"; 
+  // var id_setting = "meta_setting_table" ; 
+  // var id_table   = "meta_input_table"; 
+  var setting_table = document.getElementById(ns + "_setting_table"); 
+  var st_cnames = getColNames(setting_table); 
+  const col_names = getColData(setting_table, st_cnames[0]); 
+  const dat_types = getColData(setting_table, st_cnames[1]); 
+  const optionals = getColData(setting_table, st_cnames[2]); 
+  //   const optionals = getColData(table, col_names[3]); 
+  var id_table = ns + "_input_table"; 
+  var table = crEl({ el: 'table',  ats: {id: id_table} }) 
+  createTable(table, col_names); // add th 
+ 
+  var tr = document.createElement('tr'); 
+  for(let i = 0; i < col_names.length; i++){ 
+    if(col_names[i] !== ""){ 
+      var td = createInputTd(dat_types[i], col_names[i], optionals[i]); 
+      tr.appendChild(td); 
+    } 
+    table.appendChild(tr); 
+  } 
+  return table; 
+} 
+ 
+ 
+// TODO: write documents 
+//     
+//     
+function createInputTd(dat_type, col_name, optional){ 
+  // console.log(dat_type); 
+  // console.log(col_name); 
+  // console.log(optional); 
+  var td = document.createElement('td'); 
+  var col_name = col_name.toLowerCase(); 
+  switch(dat_type){ 
+    case "auto": // date, no, GPS 
+      if(col_name === "date")   td.innerHTML = getNow(); 
+      if(col_name === "loclat") td.innerHTML = getLat(); 
+      if(col_name === "loclon") td.innerHTML = getLon(); 
+      if(col_name === "locacc") td.innerHTML = getAcc(); 
+      if(col_name === "no")     td.innerHTML = 1; 
+      break; 
+    case "button": // delButton, update button 
+      if(col_name === "delbutton")   { td.appendChild( createDelButton() );     }; 
+      if(col_name === "updatebutton"){ td.appendChild( createUpdateButton()  ); }; 
+      break; 
+    case "fixed": 
+      if(optional === ""){  
+//        alert("Fixed columns should be input!"); 
+        var optional = "NO INPUT"; 
+      } 
+      td.innerHTML = optional; 
+      break; 
+    case "checkbox": 
+    case "text": 
+      td.appendChild(createInput({ type: dat_type })); 
+      break; 
+    case "number": 
+      td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} )); 
+      break; 
+    case "list": 
+      arry_list = optional.split(':').concat(Array("")); 
+      td.appendChild(createSelectOpt(arry_list, arry_list.length - 1)); 
+      break; 
+  } 
+  return td; 
+} 
+// Update "Date", "locLat", "locLon", "locAcc" 
+//    When "Update" bottun clicked, update informations in the row. 
+//    @paramas obj Clicked row. 
+//    @return null. 
+function updateTimeGPS(obj){ 
+  // settings 
+  var cols = ["Date", "locLat", "locLon", "locAcc"]; 
+  var funs = [getNow, getLat, getLon, getAcc] 
+  // clicked things 
+  var table = obj.parentNode.parentNode.parentNode; 
+  var tr = obj.parentNode.parentNode; 
+  var row_no = tr.sectionRowIndex; 
+  // update 
+  for(let i = 0; i < cols.length; i++){ 
+    var col_no = getColNames(table).indexOf(cols[i]); 
+    var cell = table.rows[row_no].cells[col_no]; 
+    cell.replaceWith( crEl({ el:'td', ih: funs[i]() }) ); 
+  } 
+} 
+ 
+// Create delete button 
+function createDelButton(){ 
+  return createInput({ type: "button", value: "DELETE", onclick: "delRow(this)" }); 
+} 
+ 
+// Create update time and GPS button 
+function createUpdateButton(){ 
+  return createInput({ type: "button", value: "Update Time & GPS", onclick: "updateTimeGPS(this)" }); 
+} 
+ 
+// Create (new) table 
+//   Create (new) table, but exactly not new.  
+//   When id of exsiting table with no data and col item are given,  
+//   createTable() add header to the table. 
+//   When table with header are given, return nothing and alert. 
+//    
+function createTable(table, col_names){ 
+  const n_row = table.rows.length; 
+  if(n_row != 0){ 
+    alert("Can not create table, \n table already exists") 
+    return; 
+  } 
+  const n_col = col_names.length; 
+  var tr = document.createElement('tr'); 
+  for(let Ni = 0; Ni < n_col; Ni++){ 
+  //     if(col_names[Ni] !== "") tr.appendChild( crEl({ el: 'th', ih: col_names[Ni] }) ); 
+    if(col_names[Ni] !== ""){ 
+      var th = crEl({ el: 'th', ih: col_names[Ni] }); 
+      th.appendChild( crEl({ el: 'input', ats:{type: "checkbox"} }) ); 
+      tr.appendChild(th); 
+    } 
+  } 
+  table.appendChild(tr)  // return by side effiect 
+} 
+ 
+ 
+// Helper to call cloneRow() multiple times 
+function cloneRows(id_table){ 
+  const n_row = document.getElementById(id_table + "_n_row").value; 
+  // console.log(n_row); 
+  for(let i=0; i<n_row; i++) cloneRow(id_table) 
+} 
+ 
+// Copy buttom row and paste it as new rows 
+//    id of each cell will be updated: "occ_date_001" -> "occ_date_002" 
+//    Column date  getNow() will be applied. 
+//    Column fixed and <select> <option> will be used the same selection. 
+//    Column "checkbox" and "text" will be made in unchecked and blank. 
+//     
+function cloneRow(id_table){ 
+// var id_table = "meta_input_table" 
+  var table = document.getElementById(id_table); 
+  const col_names = getColNames(table); 
+  const n_col = col_names.length; 
+  const n_row = table.rows.length; 
+  var last_row = table.rows[n_row - 1];  // to get selectedIndex 
+  var next_row = table.rows[n_row - 1].cloneNode(true); 
+  for(let Ci = 0; Ci < n_col; Ci++){ 
+  // console.log(col_names[Ci].toLowerCase()); 
+    switch(col_names[Ci].toLowerCase()){ 
+      case "date":  // update "date" 
+        next_row.children[Ci].innerHTML = getNow(); 
+        break; 
+      case "loclat":  // update GPS data 
+        next_row.children[Ci].innerHTML = getLat(); 
+        break; 
+      case "loclon": 
+        next_row.children[Ci].innerHTML = getLon(); 
+        break; 
+      case "locacc": 
+        next_row.children[Ci].innerHTML = getAcc(); 
+        break; 
+      case "updatebutton": // do nothing 
+      case "delbutton":    // do nothing 
+        break; 
+      case "no":   // no = max(no) + 1 
+        var nos = getColData(table, col_names[Ci]); 
+        next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1; 
+        break; 
+      default: 
+        if(next_row.children[Ci].firstChild.value === void 0){   
+          // void 0 means undifined -> fixed text: do nothing 
+          break; 
+        } else { 
+          switch(next_row.children[Ci].firstChild.getAttribute("type")){ 
+            case "checkbox": // clear checkbox 
+              next_row.children[Ci].firstChild.checked = false; 
+              break; 
+            case "text":    // clear input text 
+            case "number":  // clear input text 
+              next_row.children[Ci].firstChild.value = ""; 
+              break; 
+            case null: // select from list 
+              selected_opt = last_row.children[Ci].firstChild.selectedIndex; 
+              next_row.children[Ci].firstChild.selectedIndex = selected_opt; 
+              break; 
+          } 
+        } 
+        break; 
+    } 
+  } 
+  table.appendChild(next_row); 
+} 
+ 
+// Get Hidden column names in a table. 
+//   Not used yet in code for showing column.  
+//     Should be worked with showInputCols() and hideInputCol().  
+//     Have no idea to code this.s 
+function hiddenInputCols(table){ 
+  // var table = document.getElementById("occ_input_table_example_01"); 
+  var row_0 = table.rows[0]; 
+  var hidden_cols = []; 
+  for(let Ci = 0; Ci < row_0.cells.length; Ci++){ 
+    if(row_0.cells[Ci].style.display === 'none'){ hided_cols.push(row_0.cells[Ci].innerText) ;} 
+  } 
+  return hidden_cols; 
+} 
+ 
+// Show columns in a table. 
+//    Should be set button as shon below,  
+//      <input type="button" value="ShowCols" onclick="showInputCols(this)"> 
+//    Can be generated by folowing code. 
+//      createInput({ type:"button", value:"ShowCols", onclick:"showInputCols(this)"}) 
+//    The button should be put JUST BEFORE the table. 
+//    @paramas obj input button. 
+//      which can be specified by obj.nextElementSibling. 
+function showInputCols(obj){ 
+  var table = obj.nextElementSibling; 
+  for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){ 
+    for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+      table.rows[Rj].cells[Ci].style.display = ''; 
+    } 
+  } 
+} 
+ 
+// Hide a column in a table. 
+//    hideInputCol() can only hide a column, use showInputCols() to show hidden columns again. 
+//    Should be set button in each th as shon below,  
+//      <input type="button" value="Hide col" onclick="hideInputCol(this)"> 
+//    Can be generated by folowing code. 
+//      crEl({ el: 'input', ats:{type: "button", value: "Hide col", onclick: "hideInputCol(this)"} }) 
+//    The button should be put in th (table header). 
+//    @paramas obj input button. 
+function hideInputCol(obj){ 
+  var table = obj.parentNode.parentNode.parentNode; 
+  var c_name = obj.parentNode.innerText; 
+  var c_no = getColNames(table).indexOf(c_name); 
+  for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+    table.rows[Rj].cells[c_no].style.display = 'none'; 
+  } 
+}</script> <script>// Set table sortable 
+//    Inspired by https://blog.ver001.com/javascript-table-sort/ 
+//    Click th, and sort table by its th order. 
+//    The same th clicked again, sort by descending order. 
+//    "" in number will be converted into null for sorting in last element. 
+//    "" in string keep "" (NOT null) for sorting in last element. 
+//    This function should be executed after a table is created,  
+//    If executed before creation, a table will not be sortable. 
+//     
+function setSortable(id_table){ 
+  // console.log(id_table); 
+  // console.log( document.querySelectorAll('#' + id_table + ' th') ); 
+  // var id_table = "occ_input_table_example_01"; 
+  document.querySelectorAll('#' + id_table + ' th').forEach(elm => { 
+    elm.onclick = function (){ 
+      // settings 
+      var table = document.getElementById(id_table); 
+      column_no = this.cellIndex; // now clicked 
+      // sort direction: clicked: sort reverse 
+      if(column_no_prev !== column_no) { 
+        dir = "asc";  
+      } else if(column_no_prev === column_no && dir === "desc") { 
+        dir = "asc";  
+      } else if(column_no_prev === column_no && dir === "asc"){ 
+        dir = "desc";  
+      }  
+      column_no_prev = column_no; 
+      // rank_index: sorting order 
+      var col_name = getColNames(table)[column_no]; 
+      var elements = getColData(table, col_name, list_with_index=true); 
+  // console.log("elements in sort: " + elements); 
+      var rank_index = rank(elements, dir); 
+ 
+      // sort table 
+      var trs = table.rows; 
+      for(let i=0; i<rank_index.length; i++){ rank_index[i]++; } 
+      rank_index.unshift(0); 
+      var new_trs = sortByOrder(trs, rank_index); 
+      for(let i=0; i<new_trs.length; i++){ 
+        table.appendChild(new_trs[i]); 
+      } 
+    } 
+  }) 
+} 
+ 
+// Convert string array to numeric array 
+//    Available when all element of array can be convert to numeric by Number(). 
+//    Some element can NOT be converted, return input array. 
+//    "" in number will be converted into null for sorting in last element. 
+//    "" in string keep "" (NOT null) for sorting in last element. 
+function string2Numeric(array){ 
+  new_array = blank2Null(array);  // keep original for return in string 
+  var res_array = []; 
+  for(let i=0; i<array.length; i++){ 
+    if(isNaN(Number(new_array[i]))){ return array; } // string: return original array 
+    if(new_array[i] === null){ res_array[i] = null;                } 
+    else                     { res_array[i] = Number(new_array[i]); } 
+  } 
+  return res_array; 
+} 
+ 
+// Convert blank ("") string in array to null. 
+function blank2Null(array){ 
+  var res_array = []; 
+  for(let i=0; i<array.length; i++){ 
+    if(array[i] === ""){ res_array[i] = null;     } 
+    else               { res_array[i] = array[i]; } 
+  } 
+  return res_array; 
+} 
+ 
+// Rank of each element in an array (1st version) 
+//     
+//    Rank starts with 0, because rank will be used to sort arrays. 
+//    In case of tie, return former element with a smaller index. 
+//    null return as the last element. 
+//    "" in number will be converted into null, and return as the last element. 
+//    "" in string keep "" (NOT null), and return as the last element. 
+//      rank([5, 3, 2, 4, null, 1, 3]) 
+//      >>   [5, 2, 1, 4, 6,    0, 3] 
+function rank(array, dir = "asc"){ 
+// var array = ["3","1","","", "2"]; 
+// var array = [3,2,"","", 2]; 
+// var array = ["c","","a","", "b", "c"]; 
+//  
+// string MUST keep "", do NOT convert into null  
+//    in string2Numeric 
+    array = string2Numeric(array); 
+    var rank = []; 
+    var n_array = array.length; 
+    for (let i=0; i<n_array; i++) { rank[i] = 0; } 
+    if(dir === "desc"){ 
+      for (let i=1; i<n_array; i++) { 
+          for (let j=0; j<i; j++) { 
+              if( array[j]  <  array[i]) { rank[j]++; } 
+              if( array[j]  >  array[i]) { rank[i]++; } 
+              if( array[j] === array[i]) { rank[j]++; } 
+          } 
+      } 
+    } else { 
+      for (let i=1; i<n_array; i++) { 
+          for (let j=0; j<i; j++) { 
+              if( array[j] > array[i]){ 
+                  if( array[i] === null || array[i] === "" ){ rank[i]++; } 
+                  else                                      { rank[j]++; } 
+              } 
+              if( array[j] < array[i]){ 
+                  if(array[j] === null || array[j] === "" ) { rank[j]++; } 
+                  else                                      { rank[i]++; } 
+              } 
+              if( array[j] === array[i])                    { rank[i]++; } 
+          } 
+      } 
+    } 
+    return rank; 
+} 
+ 
+// Sort array with rank_array 
+function sortByOrder(array, rank_array){ 
+  const n = array.length; 
+  if(n !== rank_array.length){ 
+    alert("Length of array and rank_array must be same!"); 
+    return array; 
+  } 
+  var sorted_array = []; 
+  for(let Ni=0; Ni<n; Ni++){ 
+    sorted_array[rank_array[Ni]] = array[Ni]; 
+  } 
+  return sorted_array; 
+}</script> <script>function getLat(){return String(locations.lat[locations.lat.length-1])}function getLon(){return String(locations.lon[locations.lon.length-1])}function getAcc(){return String(locations.acc[locations.acc.length-1])}function successCallback(o){locations.lat.push(o.coords.latitude),locations.lon.push(o.coords.longitude),locations.acc.push(o.coords.accuracy)}function errorCallback(o){document.getElementById("poslog").innerHTML+=o.code+", "+o.message+"<br>"}function stopWatchPosition(){navigator.geolocation.clearWatch(watchId)}function startWatchPosition(){watchId=navigator.geolocation.watchPosition(successCallback,errorCallback,positionOptions)}function getPosition(){document.getElementById("getloc").innerHTML+=locations.lat[locations.lat.length-1]+", "+locations.lon[locations.lon.length-1]+", "+locations.acc[locations.acc.length-1]+", <br>"}var watchId=0,positionOptions={enableHighAccuracy:!0,timeout:6e4,maximumAge:0},locations={lat:[],lon:[],acc:[]};</script> <script>function switchScreenShow(e){var t=document.getElementById(e);checkFullScreen()?(document.exitFullscreen(),t.setAttribute("value","TO FULL SCREEN")):(document.body.requestFullscreen(),t.setAttribute("value","to normal show"))}function checkFullScreen(){var e=!1;return document.fullscreenElement&&(e=!0),e}</script> <script>// Search text input tags in a table and show only matching rows 
+//    Clear input text, all rows will be shown. 
+//    Regular expression can be used. 
+//     
+function searchTable(id_table, text){ 
+  // function searchTable(id_table, id_text){ 
+  var input = text.value; 
+  var reg_ex = new RegExp(input, 'i');  // i: case-insensitive 
+  var table  = document.getElementById(id_table); 
+  var trs    = table.rows; 
+  var data_types = getDataType(table); 
+  var display_flag = [1];                // 1: show first row (th) 
+  for(let Rj = 1; Rj < trs.length; Rj++){ display_flag[Rj] = 0; } 
+  for(let Ci = 0; Ci < data_types.length; Ci++){ 
+    if(data_types[Ci] === "text"){ 
+      for(let Rj = 1; Rj < trs.length; Rj++){ 
+        var text = trs[Rj].cells[Ci].firstChild.value; 
+        if(reg_ex.test(text)){ display_flag[Rj]++; } 
+      } 
+    } 
+  } 
+  for(let k = 1; k < display_flag.length; k++){ 
+    if(display_flag[k] > 0) { trs[k].style.display = "";     } 
+    else                    { trs[k].style.display = "none"; } 
+    if(input === "")        { trs[k].style.display = "";     } // no input, show all 
+  } 
+}</script> <script>function launchMailer(){location.href='mailto: matutosi@gmail.com?subject="text"&body="testmail"'}</script> <script>// Fetch keys that begin with "bis_" from localStorage.
+//    @return    A string array of localStorage keys.
+function fetchLSKeys(){
+  var keys = [];
+  Object.keys(localStorage).forEach( function(key) {
+      if( RegExp("bis_").test(key) ){ keys.push(key.replace("bis_", "")) ;}
+  });
+  return keys
+}
+
+// Get data and optional information from a table.
+//    @params id_table      A string to specify table id.
+//    @return               Nothing.
+function saveTable(id_table){
+  // var id_table = "occ_setting_table";
+  var table_data = getTableDataPlus(id_table);
+  localStorage.setItem("bis_" + id_table, table_data);
+}
+
+// Get data and optional information from a table.
+//    A function getTableData() retrieve only input data in a table, 
+//    while this function retrieve some more information, such as column names, data types, selects. 
+//    @params id_table      A string to specify table id.
+//    @return               A string with 4 parts as shown below. 
+//                          Each part is JSON format.
+//                            c_names: Column names of table, which will be used for making th.
+//                            d_types: Data types of each column for judging the td and input types.
+//                            selects: Select options for 'select-one' element. null for other types.
+//                            t_data : Table data for making td values or innnerHTML.
+function getTableDataPlus(id_table){
+  // var id_table = "occ_input_table";
+  var table = document.getElementById(id_table);
+  var c_names = getColNames(table);
+  var d_types = get_data_types(table);
+  var t_data = [];
+  for(name of c_names){
+    t_data[name] = getColData(table, name);
+  }
+  var selects = [];
+  for(var i = 0; i < d_types.length; i++){ 
+    selects.push( (d_types[i] === "select-one") ? getSelectOne(table, c_names[i]): null) 
+  };
+  var t_data = JSON.stringify(Object.assign({}, t_data));
+  c_names = JSON.stringify({ sys_c_names: c_names });
+  d_types = JSON.stringify({ sys_d_types: d_types });
+  selects = JSON.stringify({ sys_selects: selects });
+  return c_names + ";" + d_types + ";" + selects + ";" + t_data;
+}
+
+// Helper for getInputData()
+//    @params table      A table element.
+//    @params col_names  A string of column name to get options in select element.
+//    @return            An array of select options.
+function getSelectOne(table, col_name){
+  // var col_name = "Layer";
+  const col_no = getColNames(table).indexOf(col_name);
+  var options = table.rows[1].cells[col_no].firstChild.options;
+  var sel_opt = [];
+  for(option of options){
+    sel_opt.push(option.innerText);
+  }
+  return sel_opt;
+}
+
+
+// Restore table from localStorage
+//    Restore setting or input table data form localStorage. 
+//    The data should be saved with saveTable() and genetated by getInputData().
+//    The data has 4 parts as shown below. 
+//      c_names: Column names of table, which will be used for making th.
+//      d_types: Data types of each column for judging the td and input types.
+//      selects: Select options for 'select-one' element. null for other types.
+//      t_data : Table data for making td values or innnerHTML.
+//    @params table_name  A string to specify table name. 
+//                        localStorage key name is "bis_" + table_name.
+//    @return             A table element with id: table_name.
+//    @examples
+//    var table_name = 'occ_input_table_example_01'; 
+//    localStorage.setItem("bis_" + table_name, data.bis_occ_input_table_example_01);
+//    restoreTable(table_name);
+function restoreTable(table_name, from = "localStorage"){
+  // input data
+  // console.log(table_name);
+  // var table_name ="occ_input_table_example_01";
+  // var from = "localStorage";
+  switch(from){
+    case "localStorage":
+      var plot = localStorage[ "bis_" + table_name ].split(";")
+      break;
+    default:
+      var plot = data[table_name].split(";");
+      break;
+  }
+  var table = makeTable(plot, table_name);
+  return table;
+}
+
+function makeTable(plot, table_name){
+  // console.log(plot);
+  var col_names = JSON.parse(plot[0])["sys_c_names"];
+  var dat_types = JSON.parse(plot[1])["sys_d_types"];
+  var selects   = JSON.parse(plot[2])["sys_selects"];
+  var tab_data  = JSON.parse(plot[3]);
+  // create table
+  var table = crEl({ el: 'table', ats:{id: table_name} });
+  // th
+  const n_col = col_names.length;
+  var hide_col = (table_name.split("_")[0] === "input");
+  var tr = document.createElement('tr');
+  for(let Ni = 0; Ni < n_col; Ni++){
+    if(col_names[Ni] !== ""){
+      var th = crEl({ el: 'th', ih: col_names[Ni] });
+      if(hide_col){ th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); }
+      tr.appendChild(th);
+    }
+  }
+  table.appendChild(tr)
+  // td
+  const n_row = tab_data[col_names[0]].length;
+  for(let Ri = 0; Ri < n_row; Ri++){
+    var tr = document.createElement('tr');
+    for(let Cj = 0; Cj < n_col; Cj++){
+      tr.appendChild( restoreTd(tab_data[col_names[Cj]][Ri], dat_types[Cj], selects[Cj]) );
+    }
+    table.appendChild(tr);
+  }
+  return table;
+}
+
+
+// Helper for restoreTable()
+//    @params table_data  A string to specify data in td.
+//    @params data_type   A string to specify data type.
+//    @params select      An array for select-option.
+//    return              An td element with innerText or input element
+function restoreTd(table_data, data_type, select){
+  switch(data_type){
+    case "text":
+      var td = crEl({ el: "td" });
+      td.appendChild( crEl({ el:'input', ats:{type: data_type, value: table_data} }) );
+      break;
+    case "number":
+      var td = crEl({ el: "td" });
+      td.appendChild(crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} }));
+      break;
+    case "checkbox":
+      var td = crEl({ el: "td" });
+      var checkbox = crEl({ el:'input', ats:{type: data_type} });
+      if(table_data) checkbox.setAttribute("checked", true);
+      td.appendChild( checkbox );
+      break;
+    case "fixed":
+      var td = crEl({ el:'td', ih: table_data });
+      break;
+    case "button":
+      if(table_data === "DELETE")           { var td = createTd( createDelButton() ); }
+      if(table_data === "Update Time & GPS"){ var td = createTd( createUpdateButton()  ); }
+      break;
+    case "select-one":
+      var sel_no = select.indexOf(table_data);
+      var td = createTd( createSelectOpt(select, sel_no) );
+      break;
+  }
+  return td;
+}</script> <script>function createMakePlotButton(){ 
+  return createInput({ type:"button", value: "Make plot table", onclick: "makePlotInputModule(this)" }); 
+} 
+function createFileButton(){ 
+  return createInput({ type: "file", accept: ".conf", onchange: "replaceTable(this)" }); 
+} 
+function createSaveSettingButton(){ 
+  return createInput({ type: "button", value: "Save settings", onclick: "saveSettings(this)" }); 
+} 
+function createSaveInputButton(){ 
+  return createInput({ type: "button", value: "Save inputs", onclick: "saveInputs(this)" }); 
+} 
+function createShowColButton(c_name){ 
+  return createInput({ type: "Button", value: c_name, onclick: "showCol(this)" }); 
+} 
+function createSumButton(){ 
+  return createInput({ type: "Button", value: "Calculate", onclick: "sumWithGroup(this)" }); 
+} 
+function createSearchInput(){ 
+  return createInput({ type:"text", onkeyup: "searchTableText(this)", placeholder: "Search text" }); 
+} 
+function createNrowInput(){ 
+  return createInput({ type: "number", value: "3", step: "1", min: "1", max:"20" }); 
+} 
+function createAddRowButton(){ 
+  return createInput({ type: "button", value: "Add row(s)", onclick: "addRows(this)" }); 
+} 
+function createHideButton(){ 
+  return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" }); 
+} 
+function createNewOccButton(){ 
+  return createInput({ type: "button", value: "occ table", onclick: "makeNewOccTableModule(this)" }); 
+} 
+ 
+ 
+function makeNewOccTableModule(obj){ 
+  var table = makeNewOccTable(obj); 
+  if(table === null){ return void 0 ;}  // no table 
+  var module = inputTableModule(table.id, table = table); 
+  var tab_inputs = document.getElementById("tab_inputs"); 
+  tab_inputs.appendChild(module); 
+  setSortable(table.id); 
+  obj.setAttribute("disabled", true) 
+} 
+ 
+function makePlotInputModule(obj){ 
+  var table = makePlotTable(obj); 
+  var module = inputTableModule(table.id, table); 
+  var tab_inputs = document.getElementById("tab_inputs"); 
+  tab_inputs.appendChild(module); 
+  setSortable(table.id);  // Should setSortable() after appendChild() 
+  tabs[1].click();        // move to tab_inputs 
+} 
+ 
+function makeNewOccTable(obj){ 
+  // var obj = temp1; 
+  var tr = obj.parentElement.parentElement; 
+  var table = obj.parentElement.parentElement.parentElement; 
+  var c_no = getColNames(table).indexOf("Plot"); 
+  var plot = tr.cells[c_no].firstChild.value; 
+  if(plot === ""){ 
+    alert("Input Plot!"); 
+    return null; 
+  } 
+  if(hasDupPlot(plot)){ return null;} 
+  // create new input table for occurrence and appendChild() 
+  var tab_settings = document.getElementById("tab_settings"); 
+  var setting_table = tab_settings.querySelectorAll("table")[1]; 
+   
+  var table = makeOccTable(setting_table, plot); 
+  return table; 
+} 
+ 
+function hasDupPlot(plot){ 
+  var tab_inputs = document.getElementById("tab_inputs"); 
+  var input_tables = tab_inputs.querySelectorAll("table"); 
+  for(table of input_tables){ 
+    if(table.id.split("_")[1] === "occ"){ 
+      if(table.id.split("_")[2] === plot){ 
+        alert("Duplicated Plot!"); 
+        return true; 
+      } 
+    } 
+  } 
+  return false; 
+} 
+ 
+ 
+function makeOccTable(setting_table, plot){ 
+  var setting_c_names = getColNames(setting_table); 
+  var c_names = getColData(setting_table, setting_c_names[0]); 
+  var d_types = getColData(setting_table, setting_c_names[1]); 
+  var selects = getColData(setting_table, setting_c_names[2]); 
+  var id_table = setting_table.id.replace("setting", "input"); 
+  var old_plot = id_table.split("_")[2]; 
+  id_table = id_table.replace(old_plot, plot); 
+ 
+  var table = crEl({ el: 'table', ats: {id: id_table} }); 
+  // th 
+  const n_col = c_names.length; 
+  var tr = document.createElement('tr'); 
+  tr.appendChild( crEl({ el: 'th', ih: "Plot" }) ); 
+  for(let Ni = 0; Ni < n_col; Ni++){ 
+    if(c_names[Ni] !== ""){ 
+      var th = crEl({ el: 'th', ih: c_names[Ni] }); 
+      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );  
+      tr.appendChild(th); 
+    } 
+  } 
+  table.appendChild(tr) 
+  // td 
+  var tr = document.createElement('tr'); 
+  var td = crEl({ el: 'td' }) 
+  tr.appendChild( crEl({ el: 'td', ih: plot }) ); 
+  for(let i = 0; i < c_names.length; i++){ 
+    if(setting_c_names[i] !== ""){ 
+      var td = createInputTd(d_types[i], c_names[i], selects[i]); 
+      tr.appendChild(td); 
+    } 
+    table.appendChild(tr); 
+  } 
+  return table; 
+} 
+ 
+ 
+function inputTableModule(ns, table = null){ 
+  // var ns = "occ_input_table_example_01"; 
+  var main   = crEl({ el:'span', id: "main_"   + ns}); 
+ 
+  // Up span 
+  var up = crEl({ el:'span', ats:{id: "up_" + ns} }); 
+  up.appendChild( crEl({ el: 'B', tc: ns}) ); 
+  up.appendChild( createSearchInput() ); 
+ 
+  up.appendChild( createSaveInputButton() ); 
+ 
+  up.appendChild( createHideButton() ); 
+  up.appendChild( crEl({ el: 'br' }) ); 
+  up.appendChild( crEl({ el: 'span'}) ); 
+  main.appendChild(up); 
+ 
+  // Table 
+  if(table === null){ var table = restoreTable(ns, ""); } 
+ 
+  // Down span 
+  var dn = crEl({ el:'span', ats:{id: "dn_" + ns} }); 
+  dn.appendChild( createNrowInput() ); 
+  dn.appendChild( createAddRowButton() ); 
+ 
+  var occ = ns.split("_")[1] === "occ"; 
+  if(occ){ 
+    dn.appendChild( crEl({ el: 'br' }) ); 
+    dn.appendChild( crEl({ el: 'span', tc: "Value: " }) ); 
+    dn.appendChild( createSelectOpt( colByType(table, "number") ) ); 
+    dn.appendChild( crEl({ el: 'span', tc: "; Group: " }) ); 
+    dn.appendChild( createSelectOpt( colByType(table, "select-one") ) ); 
+    dn.appendChild( createSumButton() ); 
+  } 
+ 
+  main.appendChild(up); 
+  main.appendChild(table); 
+  main.appendChild(dn); 
+  main.appendChild( crEl({ el: 'hr' }) ); 
+ 
+  return main; 
+} 
+ 
+function makePlotTable(obj){ 
+  var setting_table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var setting_c_names = getColNames(setting_table); 
+  var c_names = getColData(setting_table, setting_c_names[0]); 
+  var d_types = getColData(setting_table, setting_c_names[1]); 
+  var selects = getColData(setting_table, setting_c_names[2]); 
+  var id_table = setting_table.id.replace("setting", "input"); 
+  var table = crEl({ el: 'table', ats: {id: id_table} }); 
+  // th 
+  const n_col = c_names.length; 
+  var tr = document.createElement('tr'); 
+  var th = crEl({ el: 'th', ih: "New" }); 
+  th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );  
+  tr.appendChild(th); 
+  for(let Ni = 0; Ni < n_col; Ni++){ 
+    if(c_names[Ni] !== ""){ 
+      var th = crEl({ el: 'th', ih: c_names[Ni] }); 
+      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );  
+      tr.appendChild(th); 
+    } 
+  } 
+  table.appendChild(tr) 
+  // td 
+  var tr = document.createElement('tr'); 
+  var td = crEl({ el: 'td' }) 
+  td.appendChild( createNewOccButton() ); 
+  tr.appendChild( td ); 
+  for(let i = 0; i < c_names.length; i++){ 
+    if(setting_c_names[i] !== ""){ 
+      var td = createInputTd(d_types[i], c_names[i], selects[i]); 
+      tr.appendChild(td); 
+    } 
+    table.appendChild(tr); 
+  } 
+  return table; 
+} 
+ 
+function settingTableModule(ns){ 
+  // var ns = "occ_input_table_example_01"; 
+  var main  = crEl({ el:'span', id: "main_"   + ns}); 
+ 
+  // Up span 
+  var up = crEl({ el:'span', ats:{id: "up_" + ns} }); 
+  up.appendChild( crEl({ el: 'B', tc: ns}) ); 
+  up.appendChild( crEl({ el: 'br' }) ); 
+ 
+  up.appendChild( crEl({ el: 'span', tc: "Load settings: " }) ); 
+  up.appendChild( createFileButton() ); 
+ 
+  up.appendChild( createInput({ type: "text", placeholder: "File name" }) ); 
+  up.appendChild( createSaveSettingButton() ); 
+ 
+  up.appendChild( createHideButton() ); 
+  up.appendChild( crEl({ el: 'br' }) ); 
+  up.appendChild( crEl({ el: 'span'}) ); 
+  main.appendChild(up); 
+ 
+  // Table 
+  var table = restoreTable(ns, ""); 
+ 
+  // Down span 
+  var dn = crEl({ el:'span', ats:{id: "dn_" + ns} }); 
+  dn.appendChild( createNrowInput() ); 
+  dn.appendChild( createAddRowButton() ); 
+ 
+  var plot = (ns.split("_")[1] === 'plot'); 
+  if(plot){ dn.appendChild( createMakePlotButton() );}   
+ 
+  main.appendChild(up); 
+  main.appendChild(table); 
+  main.appendChild(dn); 
+  main.appendChild( crEl({ el: 'hr' }) ); 
+ 
+  return main; 
+} 
+ 
+ 
+async function replaceTable(obj){ 
+  var text = await readFile(obj.files[0]); 
+  var text = text.split(";"); 
+  var table_name = obj.value.split("\\").slice(-1)[0].replace("\.conf", "") 
+  var new_table = makeTable(text, table_name, false); 
+ 
+  var old_table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  old_table.replaceWith(new_table); 
+ 
+  var old_title = obj.parentNode.parentNode.querySelectorAll("b")[0]; 
+  var new_title = crEl({ el: 'B', tc: table_name}) 
+  old_title.replaceWith( new_title ); 
+ 
+} 
+ 
+  // https://www.delftstack.com/ja/howto/javascript/open-local-text-file-using-javascript/ 
+function readFile(file){ 
+  return new Promise((resolve, reject) => { 
+    let reader = new FileReader(); 
+    reader.onload = x=> resolve(reader.result); 
+    reader.readAsText(file); 
+  }) 
+} 
+ 
+ 
+function saveSettings(obj){ 
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var table_data = getTableDataPlus(table.id); 
+  var f_name = obj.previousElementSibling.value; 
+  if(f_name === ""){  
+    f_name = table.id + ".conf";  
+  } else { 
+    f_name = table.id.split("_")[0] + "_" + table.id.split("_")[1] + "_" + f_name  + ".conf"; 
+  } 
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM 
+  var blob = new Blob([bom, table_data], { "type" : "text/tsv" }); 
+  const url = URL.createObjectURL(blob); 
+  const a = document.createElement("a"); 
+  document.body.appendChild(a); 
+  a.download = f_name 
+  a.href = url; 
+  a.click(); 
+  a.remove(); 
+  URL.revokeObjectURL(url); 
+  delete table_data; 
+} 
+ 
+ 
+ 
+function saveInputs(obj){ 
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var table_data = getTableDataPlus(table.id); 
+  var f_name = table.id + "_" + getNow() + ".bis" 
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM 
+  var blob = new Blob([bom, table_data], { "type" : "text/tsv" }); 
+  const url = URL.createObjectURL(blob); 
+  const a = document.createElement("a"); 
+  document.body.appendChild(a); 
+  a.download = f_name; 
+  a.href = url; 
+  a.click(); 
+  a.remove(); 
+  URL.revokeObjectURL(url); 
+  delete table_data; 
+} 
+ 
+ 
+function showAllCols(obj){ 
+  // console.log(obj.parentNode.parentNode.nextElementSibling); 
+  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0]; 
+  for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){ 
+    for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+      table.rows[Rj].cells[Ci].style.display = ''; 
+    } 
+  } 
+  obj.parentNode.textContent = ""; 
+} 
+ 
+ 
+// Hide a column in a table. 
+function hideTableCol(obj){ 
+  // console.log(obj.parentNode.parentNode.parentNode); 
+  var table = obj.parentNode.parentNode.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var c_name = obj.parentNode.innerText; 
+  // console.log(c_name); 
+  var c_no = getColNames(table).indexOf(c_name); 
+  for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+    table.rows[Rj].cells[c_no].style.display = 'none'; 
+  } 
+  var span = obj.parentNode.parentNode.parentNode.previousElementSibling.lastElementChild; 
+  // tc: "Show " 
+  if(span.children.length === 0){ 
+    span.textContent = "Show: "; 
+    span.appendChild( createInput({ type:"button", value:"All cols", onclick:"showAllCols(this)"}) ); 
+  } 
+  span.appendChild( createShowColButton(c_name) ); 
+} 
+ 
+function showCol(obj){ 
+  // show col 
+  var c_name = obj.value; 
+  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var c_no = getColNames(table).indexOf(c_name); 
+  for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+      table.rows[Rj].cells[c_no].style.display = ''; 
+  } 
+  // remove 
+  if(obj.parentNode.children.length === 1){ obj.parentNode.textContent = ""; } 
+  obj.remove(); 
+} 
+ 
+ 
+// Sum with group 
+function sumWithGroup(obj){ 
+  var array = obj.previousElementSibling.previousElementSibling.previousElementSibling.value; 
+  var group = obj.previousElementSibling.value; 
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var array_val = getColData(table, array); 
+  var group_val = getColData(table, group); 
+  var grouped_array = splitByGroup(array_val, group_val); 
+  // set groups by 'select-one' order 
+  var c_no = getColNames(table).indexOf(group); 
+  var opts = table.rows[1].cells[c_no].firstChild.options; 
+  var groups = []; 
+  for(o of opts){ 
+    if(o.value !== ''){ groups.push(o.value); } 
+  } 
+  var sum_array = []; 
+  for(let i = 0; i < groups.length; i++){ sum_array[groups[i]] = 0; } 
+  for(let i = 0; i < groups.length; i++){ 
+    var gr_ar = grouped_array[groups[i]]; 
+    for(let j = 0; j < gr_ar.length; j++){ 
+      sum_array[groups[i]] += Number(gr_ar[j]) * 10000;  // avoid dicimal error 
+    } 
+  } 
+  for(let i = 0; i < groups.length; i++){ 
+    sum_array[groups[i]] = Math.round(sum_array[groups[i]]) / 10000;  // avoid dicimal error 
+  } 
+  sum = hash2table(sum_array); 
+  // add th 
+  var tr = document.createElement('tr'); 
+  tr.appendChild( crEl({ el: 'th', tc: group }) ); 
+  tr.appendChild( crEl({ el: 'th', tc: array }) ); 
+  sum.insertBefore(tr, sum.firstChild); 
+  // Show sum 
+  if(obj.parentNode.lastElementChild === obj){ 
+    obj.parentNode.appendChild(sum); 
+  } else { 
+    obj.parentNode.replaceChild(sum, obj.parentNode.lastElementChild); 
+  } 
+} 
+ 
+ 
+// Search text input tags in a table and show only matching rows 
+//    Clear input text, all rows will be shown. 
+//    Regular expression can be used. 
+//    @paramas obj  A input element. 
+//                  Normally use "this".  
+function searchTableText(obj){ 
+  // console.log(obj); 
+  // console.log(obj.value); 
+  // console.log(obj.parentNode.nextElementSibling); 
+  var input = obj.value; 
+  var reg_ex = new RegExp(input, 'i');  // i: case-insensitive 
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var trs    = table.rows; 
+  var data_types = getDataType(table); 
+  var display_flag = [1];                // 1: show first row (th) 
+  for(let Rj = 1; Rj < trs.length; Rj++){ display_flag[Rj] = 0; } 
+  for(let Ci = 0; Ci < data_types.length; Ci++){ 
+    if(data_types[Ci] === "text"){ 
+      for(let Rj = 1; Rj < trs.length; Rj++){ 
+        var text = trs[Rj].cells[Ci].firstChild.value; 
+        if(reg_ex.test(text)){ display_flag[Rj]++; } 
+      } 
+    } 
+  } 
+  for(let k = 1; k < display_flag.length; k++){ 
+    if(display_flag[k] > 0) { trs[k].style.display = "";     } 
+    else                    { trs[k].style.display = "none"; } 
+    if(input === "")        { trs[k].style.display = "";     } // no input, show all 
+  } 
+} 
+ 
+ 
+ 
+// Helper to call addRow() multiple times 
+function addRows(obj){ 
+  // console.log(obj); 
+  // console.log(obj.parentNode.previousElementSibling); 
+  var n_row = obj.previousElementSibling.value; 
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  for(let i = 0; i < n_row; i++) addRow(table) 
+} 
+ 
+// Copy buttom row and paste it as new rows 
+//    Column date  getNow() will be applied. 
+//    Column fixed and <select> <option> will be used the same selection. 
+//    Column "checkbox" and "text" will be made in unchecked and blank. 
+//     
+function addRow(table){ 
+  // console.log(table); 
+  const col_names = getColNames(table); 
+  const n_col = col_names.length; 
+  const n_row = table.rows.length; 
+  var last_row = table.rows[n_row - 1];  // to get selectedIndex 
+  var next_row = table.rows[n_row - 1].cloneNode(true); 
+  for(let Ci = 0; Ci < n_col; Ci++){ 
+    switch(col_names[Ci].toLowerCase()){ 
+      case "new":  // Make bottun 
+        if(next_row.children[Ci].firstChild === null){ 
+          next_row.children[Ci].appendChild( createNewOccButton() ); 
+        } else { 
+          next_row.children[Ci].firstChild.replaceWith( createNewOccButton() ); 
+        } 
+        break; 
+      case "date":  // update "date" 
+        next_row.children[Ci].innerHTML = getNow(); 
+        break; 
+      case "loclat":  // update GPS data 
+        next_row.children[Ci].innerHTML = getLat(); 
+        break; 
+      case "loclon": 
+        next_row.children[Ci].innerHTML = getLon(); 
+        break; 
+      case "locacc": 
+        next_row.children[Ci].innerHTML = getAcc(); 
+        break; 
+      case "updatebutton": // do nothing 
+      case "delbutton":    // do nothing 
+        break; 
+      case "no":   // no = max(no) + 1 
+        var nos = getColData(table, col_names[Ci]); 
+        next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1; 
+        break; 
+      default: 
+        if(next_row.children[Ci].firstChild.value === void 0){   
+          // void 0 means undifined -> fixed text: do nothing 
+          break; 
+        } else { 
+          switch(next_row.children[Ci].firstChild.getAttribute("type")){ 
+            case "checkbox": // clear checkbox 
+              next_row.children[Ci].firstChild.checked = false; 
+              break; 
+            case "text":    // clear input text 
+            case "number":  // clear input text 
+              next_row.children[Ci].firstChild.value = ""; 
+              break; 
+            case null: // select from list 
+              selected_opt = last_row.children[Ci].firstChild.selectedIndex; 
+              next_row.children[Ci].firstChild.selectedIndex = selected_opt; 
+              break; 
+          } 
+        } 
+        break; 
+    } 
+  } 
+  table.appendChild(next_row); 
+} 
+ 
+ 
+ 
+function hideShowNext(obj){ 
+  // console.log(obj); 
+  // console.log(obj.parentNode.nextElementSibling); 
+  var span   = obj.nextElementSibling.nextElementSibling; 
+  var next   = obj.parentNode.nextElementSibling; 
+  var next_2 = obj.parentNode.nextElementSibling.nextElementSibling; 
+  if(next.style.display === 'none'){ 
+    span.style.display = ''; 
+    next.style.display = ''; 
+    next_2.style.display = ''; 
+    obj.value = "Hide table"; 
+  } else { 
+    span.style.display = 'none'; 
+    next.style.display = 'none'; 
+    next_2.style.display = 'none'; 
+    obj.value = "Show table"; 
+  } 
+} 
+ 
+//    @paramas table  A table element. 
+//    @paramas type   A string to specify a data type,  
+//                    which can be retrive by get_data_types() as shown below. 
+//                    "fixed", "text", "button", "checkbox", 'select-one','number'.  
+//    @return  A string array. 
+//    @examples 
+function colByType(table, type){ 
+  var types = get_data_types(table); 
+  var c_names = getColNames(table); 
+  var cols = []; 
+  for(let i = 0; i < types.length; i++){ 
+    if(types[i] === type){ cols.push(c_names[i]); } 
+  } 
+  return cols; 
+} 
+ 
+function loadExample(obj){ 
+  // console.log(obj.parentNode); 
+  var main = obj.parentNode; 
+ 
+  var example_name = "input_occ_example"; 
+  main.appendChild( inputTableModule(example_name) ); 
+  setSortable(example_name); // Can not set sortable in a function 
+  obj.nextElementSibling.remove(); // <br> 
+  obj.remove(); 
+}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#efefff;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efffef;}#tabcontrol a:nth-child(3), #tabbody div:nth-child(3){ background-color:#ffffea;}#tabcontrol a:nth-child(4), #tabbody div:nth-child(4){ background-color:#ffefef;}</style> <style>table{ border-collapse:collapse;}table td{ font-size :12pt;border-width:1.5px 0px; border-color:#0033CC; border-style:solid; padding :0.3em 1em; }table th{ background-color:#0033CC;color:white;border-color:white;border-style:solid;padding:0.3em 1em;} table[id*="input"] th{ background-color:#00552e;cursor:pointer;}table[id*="input"] td{ border-color:#00552e; }table th{ }</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <script></script> </head> <body> <p> Biodiversity Investigation Support System (BISS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startWatchPosition()"> <input type="button" value="Stop GPS" onclick="stopWatchPosition()"> <input type="button" value="Launch mailer" onclick="launchMailer()"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_settings">Settings </a> <a href="#tab_inputs">Inputs </a> <a href="#tab_tools">Tools </a> <a href="#tab4">Spare </a> </p> <div id="tabbody"> <div id="tab_settings"> <script>var setting_tab=document.getElementById("tab_settings");setting_tab.appendChild(settingTableModule("setting_plot_default")),setting_tab.appendChild(settingTableModule("setting_occ_default"));</script> </div> <div id="tab_inputs"> <script>var input_tab=document.getElementById("tab_inputs");input_tab.appendChild(createInput({type:"button",value:"Load Example",onclick:"loadExample(this)"})),input_tab.appendChild(crEl({el:"br"}));var column_no=0,column_no_prev=0,dir="asc";</script> <script>function saveHTML(e){var t=document.documentElement.outerHTML,n=new Uint8Array([239,187,191]),c=new Blob([n,t],{type:"text/tsv"});const o=URL.createObjectURL(c),r=document.createElement("a");r.download="biodiv.html",r.href=o,r.click(),URL.revokeObjectURL(o)}</script> </div> <div id="tab_tools"> </div> <div id="tab4"> spare tab </div> </div> </div> <script></script> <div> <script>function changeTab(){for(var e=this.href.substring(this.href.indexOf("#")+1,this.href.length),t=0;t<pages.length;t++)pages[t].id!=e?pages[t].style.display="none":pages[t].style.display="block";for(var t=0;t<tabs.length;t++)tabs[t].style.zIndex="0";return this.style.zIndex="10",!1}for(var tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div"),i=0;i<tabs.length;i++)tabs[i].onclick=changeTab;tabs[0].onclick();</script> <div> </div></div></body> </html> 

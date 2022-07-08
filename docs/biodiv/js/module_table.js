@@ -39,6 +39,7 @@ function makeNewOccTableModule(obj){
   var module = inputTableModule(table.id, table = table);
   var tab_inputs = document.getElementById("tab_inputs");
   tab_inputs.appendChild(module);
+  setSortable(table.id);
   obj.setAttribute("disabled", true)
 }
 
@@ -353,8 +354,6 @@ function showCol(obj){
 }
 
 
-
-
 // Sum with group
 function sumWithGroup(obj){
   var array = obj.previousElementSibling.previousElementSibling.previousElementSibling.value;
@@ -363,8 +362,13 @@ function sumWithGroup(obj){
   var array_val = getColData(table, array);
   var group_val = getColData(table, group);
   var grouped_array = splitByGroup(array_val, group_val);
-
-  var groups = Object.keys(grouped_array).sort();
+  // set groups by 'select-one' order
+  var c_no = getColNames(table).indexOf(group);
+  var opts = table.rows[1].cells[c_no].firstChild.options;
+  var groups = [];
+  for(o of opts){
+    if(o.value !== ''){ groups.push(o.value); }
+  }
   var sum_array = [];
   for(let i = 0; i < groups.length; i++){ sum_array[groups[i]] = 0; }
   for(let i = 0; i < groups.length; i++){
