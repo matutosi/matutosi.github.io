@@ -34,10 +34,21 @@ function createNewOccButton(){
 
 
 function makeNewOccTableModule(obj){
-  var table = makeNewOccTable(obj)
+  var table = makeNewOccTable(obj);
+  if(table === null){ return void 0 ;}  // no table
   var module = inputTableModule(table.id, table = table);
   var tab_inputs = document.getElementById("tab_inputs");
   tab_inputs.appendChild(module);
+  obj.setAttribute("disabled", true)
+}
+
+function makePlotInputModule(obj){
+  var table = makePlotTable(obj);
+  var module = inputTableModule(table.id, table);
+  var tab_inputs = document.getElementById("tab_inputs");
+  tab_inputs.appendChild(module);
+  setSortable(table.id);  // Should setSortable() after appendChild()
+  tabs[1].click();        // move to tab_inputs
 }
 
 function makeNewOccTable(obj){
@@ -46,14 +57,33 @@ function makeNewOccTable(obj){
   var table = obj.parentElement.parentElement.parentElement;
   var c_no = getColNames(table).indexOf("Plot");
   var plot = tr.cells[c_no].firstChild.value;
+  if(plot === ""){
+    alert("Input Plot!");
+    return null;
+  }
+  if(hasDupPlot(plot)){ return null;}
   // create new input table for occurrence and appendChild()
-
   var tab_settings = document.getElementById("tab_settings");
   var setting_table = tab_settings.querySelectorAll("table")[1];
   
   var table = makeOccTable(setting_table, plot);
   return table;
 }
+
+function hasDupPlot(plot){
+  var tab_inputs = document.getElementById("tab_inputs");
+  var input_tables = tab_inputs.querySelectorAll("table");
+  for(table of input_tables){
+    if(table.id.split("_")[1] === "occ"){
+      if(table.id.split("_")[2] === plot){
+        alert("Duplicated Plot!");
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 
 function makeOccTable(setting_table, plot){
   var setting_c_names = getColNames(setting_table);
@@ -132,15 +162,6 @@ function inputTableModule(ns, table = null){
   main.appendChild( crEl({ el: 'hr' }) );
 
   return main;
-}
-
-function makePlotInputModule(obj){
-  var table = makePlotTable(obj);
-  var module = inputTableModule(table.id, table);
-  var tab_inputs = document.getElementById("tab_inputs");
-  tab_inputs.appendChild(module);
-  setSortable(table.id);  // Should setSortable() after appendChild()
-  tabs[1].click();        // move to tab_inputs
 }
 
 function makePlotTable(obj){
@@ -425,8 +446,14 @@ function addRow(table){
   var last_row = table.rows[n_row - 1];  // to get selectedIndex
   var next_row = table.rows[n_row - 1].cloneNode(true);
   for(let Ci = 0; Ci < n_col; Ci++){
-  // console.log(col_names[Ci].toLowerCase());
     switch(col_names[Ci].toLowerCase()){
+      case "new":  // Make bottun
+        if(next_row.children[Ci].firstChild === null){
+          next_row.children[Ci].appendChild( createNewOccButton() );
+        } else {
+          next_row.children[Ci].firstChild.replaceWith( createNewOccButton() );
+        }
+        break;
       case "date":  // update "date"
         next_row.children[Ci].innerHTML = getNow();
         break;

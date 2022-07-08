@@ -37,10 +37,14 @@
 <body>
 
 <p>
-Biodiversity Investigation System (BIS)
+Biodiversity Investigation Support System (BISS)
 <!--            Switch full screen           -->
 <input id="switch_screen_show" type="button" value="TO FULL SCREEN"  onclick="switchScreenShow(this.id)" />
 <input type="button" value="saveHTML"  onclick="saveHTML()" />
+<!--      TODO: Use different background color or something CLEAR for users in switching on / off       -->
+<input type="button" value="Start GPS" onclick="startWatchPosition()" />
+<input type="button" value="Stop GPS"  onclick="stopWatchPosition()" />
+<input type='button' value="Launch mailer" onclick="launchMailer()" />
 </p>
 
 <div class="Biodiversity Investigation System (BIS)">
@@ -94,13 +98,6 @@ function saveHTML(obj){
 
 
     <div id="tab_tools">
-      <!--            Launch Mailer                -->
-      <input type='button' value="Launch mailer" onclick="launchMailer()" />
-
-      <!--            GPS                           -->
-      <!--      TODO: Use different background color or something CLEAR for users in switching on / off       -->
-      <input type="button" value="Start GPS" onclick="startWatchPosition()" />
-      <input type="button" value="Stop GPS"  onclick="stopWatchPosition()" />
     </div>
 
     <div id="tab4">
