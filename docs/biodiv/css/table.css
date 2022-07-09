@@ -26,7 +26,6 @@ table[id*="input","result"] th{
 table[id*="input","result"] td{
   border-color: #00552e;   /* line color    */
 }
-
 /* apply only to Plot Input */
 /*
 table[id*="input_plot"] th{
@@ -38,4 +37,8 @@ table[id*="input_plot"] td{
 */
 table[id*="input_plot"] td:before{
   content: attr(th-lab);
+}
+
+table[id*="input_plot"] tr{
+  border:5px solid blue;
 }
