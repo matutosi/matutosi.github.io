@@ -28,13 +28,14 @@ table[id*="input","result"] td{
 }
 
 /* apply only to Plot Input */
+/*
 table[id*="input_plot"] th{
-   display: none;
+   display: inline-block;
 }
 table[id*="input_plot"] td{
    display: inline-block;
 }
+*/
 table[id*="input_plot"] td:before{
   content: attr(th-lab);
-  display: inline-block;
 }
