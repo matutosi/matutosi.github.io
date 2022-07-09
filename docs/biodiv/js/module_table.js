@@ -182,7 +182,7 @@ function makePlotTable(obj){
   for(let Ni = 0; Ni < n_col; Ni++){
     if(c_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: c_names[Ni] });
-      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );
       tr.appendChild(th);
     }
   }
@@ -191,10 +191,12 @@ function makePlotTable(obj){
   var tr = document.createElement('tr');
   var td = crEl({ el: 'td' })
   td.appendChild( createNewOccButton() );
+  td.setAttribute("th-lab", c_names[i])
   tr.appendChild( td );
   for(let i = 0; i < c_names.length; i++){
     if(setting_c_names[i] !== ""){
       var td = createInputTd(d_types[i], c_names[i], selects[i]);
+      td.setAttribute("th-lab", c_names[i])
       tr.appendChild(td);
     }
     table.appendChild(tr);
