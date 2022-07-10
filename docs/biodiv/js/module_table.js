@@ -416,23 +416,24 @@ function sumWithGroup(obj){
   var array_val = getColData(table, array);
   var group_val = getColData(table, group);
   var grouped_array = splitByGroup(array_val, group_val);
-  // set groups by 'select-one' order
+  // set groups order with 'select-one'
   var c_no = getColNames(table).indexOf(group);
   var opts = table.rows[1].cells[c_no].firstChild.options;
   var groups = [];
-  for(o of opts){
-    if(o.value !== ''){ groups.push(o.value); }
-  }
+  for(o of opts){ groups.push(o.value); }
   var sum_array = [];
   for(let i = 0; i < groups.length; i++){ sum_array[groups[i]] = 0; }
   for(let i = 0; i < groups.length; i++){
-    var gr_ar = grouped_array[groups[i]];
-    for(let j = 0; j < gr_ar.length; j++){
-      sum_array[groups[i]] += Number(gr_ar[j]) * 10000;  // avoid dicimal error
+    if(grouped_array[groups[i]] !== void 0){
+      var gr_ar = grouped_array[groups[i]];
+      for(let j = 0; j < gr_ar.length; j++){
+        sum_array[groups[i]] += Number(gr_ar[j]);
+      }
     }
   }
   for(let i = 0; i < groups.length; i++){
-    sum_array[groups[i]] = Math.round(sum_array[groups[i]]) / 10000;  // avoid dicimal error
+    sum_array[groups[i]] = Math.round(sum_array[groups[i]] * 10000) / 10000;  // avoid dicimal error
+    if(sum_array[groups[i]] === 0){ delete sum_array[groups[i]]; }
   }
   sum = hash2table(sum_array);
   // add th
