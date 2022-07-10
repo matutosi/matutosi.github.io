@@ -625,7 +625,8 @@ function shortTable(obj){
     var row = rows[Ri];
     for(let Cj = 0; Cj < row.cells.length; Cj++){
       var td = row.cells[Cj];
-      td.style.display = 'inline-block';
+  //       td.style.display = 'inline-block';
+      td.style.display = 'block';
     }
   }
   addThLabel(table);
