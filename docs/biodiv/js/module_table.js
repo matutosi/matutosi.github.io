@@ -631,6 +631,8 @@ function shortTable(obj){
   }
   addThLabel(table);
   obj.replaceWith( createShowWideTable() );
+  //   var tds = table.querySelectorAll("td");
+  //   for(let i = 0; i < tds.length; i++){ tds[i].style.border = "0px"; }
 }
 function wideTable(obj){
   var table = obj.parentNode.nextElementSibling;
