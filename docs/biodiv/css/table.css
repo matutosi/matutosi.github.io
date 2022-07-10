@@ -38,6 +38,7 @@ table{
 }
 
 #tab_inputs table tr{
+  display: inline-block;
   border-width: 1px 1px;
   border-color: #00552e;   /* line color    */
   border-style: solid;     /* line type     */
