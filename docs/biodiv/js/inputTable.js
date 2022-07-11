@@ -1,5 +1,3 @@
-
-
 // TODO: write documents
 //    
 //    
@@ -18,8 +16,8 @@ function createInputTd(dat_type, col_name, optional){
       if(col_name === "no")     td.innerHTML = 1;
       break;
     case "button": // delButton, update button
-      if(col_name === "delbutton")   { td.appendChild( createDelButton() );     };
-      if(col_name === "updatebutton"){ td.appendChild( createUpdateButton()  ); };
+      if(col_name === "delbutton")   { td.appendChild( createDelButton() );    };
+      if(col_name === "updatebutton"){ td.appendChild( createUpdateButton() ); };
       break;
     case "fixed":
       if(optional === ""){ 
@@ -42,6 +40,7 @@ function createInputTd(dat_type, col_name, optional){
   }
   return td;
 }
+
 // Update "Date", "locLat", "locLon", "locAcc"
 //    When "Update" bottun clicked, update informations in the row.
 //    @paramas obj Clicked row.
@@ -58,7 +57,7 @@ function updateTimeGPS(obj){
   for(let i = 0; i < cols.length; i++){
     var col_no = getColNames(table).indexOf(cols[i]);
     var cell = table.rows[row_no].cells[col_no];
-    cell.replaceWith( crEl({ el:'td', ih: funs[i]() }) );
+    cell.innerHTML = funs[i]();
   }
 }
 
@@ -71,5 +70,3 @@ function createDelButton(){
 function createUpdateButton(){
   return createInput({ type: "button", value: "Update Time & GPS", onclick: "updateTimeGPS(this)" });
 }
-
-

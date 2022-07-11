@@ -30,13 +30,6 @@ function successCallback(position) {
   locations.lat.push(position.coords.latitude);
   locations.lon.push(position.coords.longitude);
   locations.acc.push(position.coords.accuracy);
-//  document.getElementById('poslog').innerHTML +=
-//     position.coords.latitude         + ', ' + 
-//     position.coords.longitude        + ', ' + 
-//     position.coords.accuracy         + ', ' + 
-//     position.coords.altitude         + ', ' + 
-//     position.coords.altitudeAccuracy + ', ' + 
-//     '<br>';
 }
 
 // GPS error
@@ -53,5 +46,3 @@ function stopWatchPosition() {
 function startWatchPosition() {
   watchId = navigator.geolocation.watchPosition(successCallback, errorCallback, positionOptions);
 }
-
-

@@ -1,4 +1,3 @@
-
 // Get data and optional information from a table.
 //    A function getTableData() retrieve only input data in a table, 
 //    while getTableDataPlus() retrieve some more information, such as column names, data types, selects. 
@@ -136,7 +135,7 @@ function restoreTd(table_data, data_type, select){
       break;
     case "button":
       if(table_data === "DELETE")           { var td = createTd( createDelButton() ); }
-      if(table_data === "Update Time & GPS"){ var td = createTd( createUpdateButton()  ); }
+      if(table_data === "Update Time & GPS"){ var td = createTd( createUpdateButton() ); }
       break;
     case "select-one":
       var sel_no = select.indexOf(table_data);

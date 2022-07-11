@@ -243,16 +243,14 @@ function makePlotTable(obj){
   var td = crEl({ el: 'td' })
   td.appendChild( createNewOccButton() );
   td.appendChild( createHideRowButton("plot info") );
-  //   td.setAttribute("th-lab", "");
   tr.appendChild( td );
-  for(let i = 0; i < c_names.length; i++){
-    if(setting_c_names[i] !== ""){
+  for(let i = 0; i < n_col; i++){
+    if(c_names[i] !== ""){
       var td = createInputTd(d_types[i], c_names[i], selects[i]);
-  //       td.setAttribute("th-lab", c_names[i])
       tr.appendChild(td);
     }
-    table.appendChild(tr);
   }
+  table.appendChild(tr);
   return table;
 }
 
