@@ -37,19 +37,19 @@ table{
   content: attr(th-lab);
 }
 
-#tab_inputs table[id*="plot"] tr{
 /*
-  display: inline-block;
+#tab_inputs table[id*="plot"] tr{
+  border-width: 0.5px 0px;
 */
-  display: flex;
-  flex-wrap: wrap;
-  border-width: 1px 0px;
+#tab_inputs table tr{
   border-color: #00552e;   /* line color    */
   border-style: solid;     /* line type     */
 }
 
+/*
 #tab_inputs table[id*="occ"] tr{
-  border-width: 0.5px 0px;   /* line width: horizontal, vertical */
-  border-color: #00552e;   /* line color    */
-  border-style: solid;     /* line type     */
+  border-width: 0.5px 0px;
+  border-color: #00552e;  
+  border-style: solid;    
 }
+*/
