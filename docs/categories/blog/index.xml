@@ -6,7 +6,17 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Sun, 03 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSSでレスポンシブ・レイアウト</title>
+      <link>https://matutosi.github.io/post/20220711/</link>
+      <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220711/</guid>
+      <description>HTMLのtableはデータの整理には便利だが，項目が多くなると1行がどんどんと横に長くなってしまう． パソコンであれば良いが，スマホやタブレットではちょっと使いづらい． そこでレイアウトをレスポンシブ(画面サイズに合わせた表示)にする必要がある． そのあたりの変更を自動でしても良いが，植生調査アプリでは使用者がボタンを押して切り返す仕組みにした． ボタンを押すと，JavaScriptでスタイルを書き換えて，表示を途中で折り返すようにした． だいぶできてきた．
+ アプリ(CSS/JavaScript別ファイルバージョン) https://matutosi.github.io/biodiv/biodiv.html アプリ(1ファイルバージョン) https://matutosi.github.io/biodiv/biss.html 使用例 https://matutosi.github.io/biodiv/exam01.html  </description>
+    </item>
+    
     <item>
       <title>this</title>
       <link>https://matutosi.github.io/post/20220703/</link>

@@ -74,6 +74,24 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220711/" rel="bookmark">
+			CSSでレスポンシブ・レイアウト
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-11T00:00:00Z">July 11, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		HTMLのtableはデータの整理には便利だが，項目が多くなると1行がどんどんと横に長くなってしまう． パソコンであれば良いが，スマホやタブレットではちょっと使いづらい． そこでレイアウトをレスポンシブ(画面サイズに合わせた表示)にする必要がある． そのあたりの変更を自動でしても良いが，植生調査アプリでは使用者がボタンを押して切り返す仕組みにした． ボタンを押すと，JavaScriptでスタイルを書き換えて，表示を途中で折り返すようにした． だいぶできてきた．
+ アプリ(CSS/JavaScript別ファイルバージョン) https://matutosi.github.io/biodiv/biodiv.html アプリ(1ファイルバージョン) https://matutosi.github.io/biodiv/biss.html 使用例 https://matutosi.github.io/biodiv/exam01.html  
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220703/" rel="bookmark">
 			this
 			</a>
@@ -233,27 +251,13 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 	<div class="content list__excerpt post__content clearfix">
 		植生調査アプリを作成するのに，JavaScriptを勉強中． そういえば，学生のときにホームページを作ってJavaScriptを作っていた． 嬉しがって，ページを移動するたびに「本当に良いですか」のようなポップアップを出すスクリプトを書いていた． 知人から「鬱陶しいからやめて」と言われたのを思い出す．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220608/" rel="bookmark">
-			ひっそりと
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-08T00:00:00Z">June 08, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		ひっそりとブログを再開，というか適当にメモを書く予定．
-とりあえず，HugoでthemeはMainraodで開始した． themeは変更の可能性あり．
-	</div>
 </article>
 </main>
 
+<div class="pagination">
+	<span class="pagination__item pagination__item--current">1/2</span>
+	<a class="pagination__item pagination__item--next btn" href="/categories/blog/page/2/">»</a>
+</div>
 
 			</div>
 			
@@ -262,6 +266,7 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20220711/">CSSでレスポンシブ・レイアウト</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220703/">this</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220628/">植生調査アプリの仮公開</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220627/">ShinyとJavaScript</a></li>
@@ -271,7 +276,6 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 			<li class="widget__item"><a class="widget__link" href="/post/20220617/">植生調査アプリ(大枠)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220611/">植生調査アプリ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220609/">JavaScriptの勉強</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20220608/">ひっそりと</a></li>
 		</ul>
 	</div>
 </div>
@@ -289,7 +293,7 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/biodiv/" title="biodiv">biodiv</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="hugo">hugo</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="javascript">javascript</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/shiny/" title="shiny">shiny</a>
 	</div>
 </div>
