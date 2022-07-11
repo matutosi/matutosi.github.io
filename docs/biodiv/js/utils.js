@@ -7,15 +7,10 @@
 
 
 
-// Unique array
-function uniq(array){
-  return Array.from(new Set(array));
-}
-
 // Convert hasy array table
 //    In progress: can not convert hasy that has array as a value
 //    @example 
-//    var hash_array = sumByGroup("occurrence", "Cover", "Layer");
+//    var hash_array = sumWithGroup("occurrence", "Cover", "Layer");
 //    hash2table(hasy_array);
 //    
 function hash2table(hash_array){
@@ -29,56 +24,6 @@ function hash2table(hash_array){
   return table
 }
 
-function showSumByGroup(id_input_table, array, group, id_result){
-  // console.log(id_table + ", " + array + ", " + group + ", " + id_show);
-  var table = document.getElementById(id_result);
-  table.replaceWith( sumByGroup(id_input_table, array, group, id_result) );
-}
-
-// Sum by group
-//     sumByGroup("occurrence", "Cover", "Layer")
-//     
-function sumByGroup(id_input_table, array, group, id_result){
-  // var id_table = "occ_input_table";
-  // var array = "Cover";
-  // var group = "Layer";
-  var table = document.getElementById(id_input_table);
-  var array_val = getColData(table, array);
-  var group_val = getColData(table, group);
-  var grouped_array = splitByGroup(array_val, group_val);
-  var groups = Object.keys(grouped_array).sort();
-  var sum_array = [];
-  for(let i = 0; i < groups.length; i++){ sum_array[groups[i]] = 0; }
-  for(let i = 0; i < groups.length; i++){
-    var gr_ar = grouped_array[groups[i]];
-    for(let j = 0; j < gr_ar.length; j++){
-      sum_array[groups[i]] += Number(gr_ar[j]);
-    }
-  }
-  // if use all select options
-  var col_no = getColNames(table).indexOf(group);
-  if(getDataType(table)[col_no] === "select-one"){
-    var all_groups = getSelectOptionInCell(table.rows[1].cells[col_no].firstChild); 
-    var ordered_sum_array = [];
-    for(let i=0; i < all_groups.length; i++){
-      if(sum_array[all_groups[i]] !== void 0){
-        ordered_sum_array[[all_groups[i]]] = sum_array[all_groups[i]];
-      }
-    }
-    var sum = ordered_sum_array;
-  } else {
-    var sum = sum_array;
-  }
-  sum = hash2table(sum);
-  sum.setAttribute("id", id_result);
-  // add th
-  var tr = document.createElement('tr');
-  tr.appendChild( crEl({ el: 'th', tc: group }) );
-  tr.appendChild( crEl({ el: 'th', tc: array }) );
-  // add as header
-  sum.insertBefore(tr, sum.firstChild);
-  return sum;
-}
 
 // Get column data in a table
 //    @params id_table A string.

@@ -594,28 +594,6 @@ function colByType(table, type){
   return cols;
 }
 
-function loadExample(obj){
-  // console.log(obj.parentNode);
-
-  // plot
-  var make_plot_button = document.getElementById("dn_setting_plot_default").children[2];
-  make_plot_button.click();
-  var table = document.getElementById("input_plot_default");
-  table.rows[1].cells[1].firstChild.value = "exam01";
-  table.rows[1].cells[0].firstChild.click()
-
-  // occ
-  var main = obj.parentNode;
-  var main = document.getElementById("tab_inputs");
-  var occ_example = "input_occ_exam01";
-  var new_module = inputTableModule(occ_example);
-  main.children[4].replaceWith(new_module);
-  setSortable(occ_example); // Can not set sortable in a function
-
-  obj.nextElementSibling.remove(); // <br>
-  obj.remove();
-}
-
 
 function shortTable(obj){
   var table = obj.parentNode.nextElementSibling;
@@ -666,4 +644,26 @@ function createShowShortTable(){
 }
 function createShowWideTable(){
   return createInput({ type:"button", value: "Show wide table", onclick: "wideTable(this)" });
+}
+
+function loadExample(obj){
+  // console.log(obj.parentNode);
+
+  // plot
+  var make_plot_button = document.getElementById("dn_setting_plot_default").children[2];
+  make_plot_button.click();
+  var table = document.getElementById("input_plot_default");
+  table.rows[1].cells[1].firstChild.value = "exam01";
+  table.rows[1].cells[0].firstChild.click()
+
+  // occ
+  var main = obj.parentNode;
+  var main = document.getElementById("tab_inputs");
+  var occ_example = "input_occ_exam01";
+  var new_module = inputTableModule(occ_example);
+  main.children[4].replaceWith(new_module);
+  setSortable(occ_example); // Can not set sortable in a function
+
+  obj.nextElementSibling.remove(); // <br>
+  obj.remove();
 }

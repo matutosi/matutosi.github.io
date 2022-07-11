@@ -71,3 +71,8 @@ function jsonKeys(json){
   for(j of json){ arr = arr.concat(Object.keys(j)); }
   return uniq(arr);
 }
+
+// Unique array
+function uniq(array){
+  return Array.from(new Set(array));
+}

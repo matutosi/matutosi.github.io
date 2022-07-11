@@ -55,14 +55,3 @@ function startWatchPosition() {
 }
 
 
-// get latest GPS location
-//   Use with tags below in html
-//   <div id="getloc" ></div>
-//   <input type="button" value="get" onclick="getPosition()" />
-function getPosition() {
-  document.getElementById('getloc').innerHTML +=
-    locations.lat[locations.lat.length - 1]   + ', ' + 
-    locations.lon[locations.lon.length - 1]   + ', ' + 
-    locations.acc[locations.acc.length - 1]   + ', ' + 
-     '<br>';
-}

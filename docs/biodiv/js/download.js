@@ -1,24 +1,4 @@
 
-
-// Fetch keys that begin with "bis_" from localStorage.
-//    @return    A string array of localStorage keys.
-function fetchLSKeys(){
-  var keys = [];
-  Object.keys(localStorage).forEach( function(key) {
-      if( RegExp("bis_").test(key) ){ keys.push(key.replace("bis_", "")) ;}
-  });
-  return keys
-}
-
-// Get data and optional information from a table.
-//    @params id_table      A string to specify table id.
-//    @return               Nothing.
-function saveTable(id_table){
-  // var id_table = "occ_setting_table";
-  var table_data = getTableDataPlus(id_table);
-  localStorage.setItem("bis_" + id_table, table_data);
-}
-
 // Get data and optional information from a table.
 //    A function getTableData() retrieve only input data in a table, 
 //    while getTableDataPlus() retrieve some more information, such as column names, data types, selects. 
