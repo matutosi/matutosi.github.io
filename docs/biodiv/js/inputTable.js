@@ -1,4 +1,3 @@
-
 function restoreInputPart(ns, id_table=""){
   var main = crEl({ el:'span' });
   var table_name = ns + "_input_table_" + id_table;

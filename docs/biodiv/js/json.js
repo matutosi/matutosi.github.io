@@ -1,13 +1,13 @@
 // Convert csv to json format
 //    can convert from tsv using by sep="\t"
 //    @example
-//    var csv = `item	type	value	option
-//    Project	fixed		Biodiv
-//    Investigator	text		
-//    delButton	button		Don't change
-//    Date	auto		Don't change
-//    No	auto		Don't change
-//    Location	text		`
+//    var csv = `item  type  value  option
+//    Project  fixed    Biodiv
+//    Investigator  text    
+//    delButton  button    Don't change
+//    Date  auto    Don't change
+//    No  auto    Don't change
+//    Location  text    `
 //    csv2json(csv, sep="\t")
 //    
 function csv2json(csv, sep=","){

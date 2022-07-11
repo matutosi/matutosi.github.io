@@ -38,7 +38,11 @@ table{
 }
 
 #tab_inputs table[id*="plot"] tr{
+/*
   display: inline-block;
+*/
+  display: flex;
+  flex-wrap: wrap;
   border-width: 1px 0px;
   border-color: #00552e;   /* line color    */
   border-style: solid;     /* line type     */

@@ -21,7 +21,7 @@ function saveTable(id_table){
 
 // Get data and optional information from a table.
 //    A function getTableData() retrieve only input data in a table, 
-//    while this function retrieve some more information, such as column names, data types, selects. 
+//    while getTableDataPlus() retrieve some more information, such as column names, data types, selects. 
 //    @params id_table      A string to specify table id.
 //    @return               A string with 4 parts as shown below. 
 //                          Each part is JSON format.

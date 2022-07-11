@@ -24,7 +24,7 @@ const data = {
 // JSON2csv https://qiita.com/_s_/items/79c24b62cebb02e9304a
 // 
 // meta_tsv
-// item	type	value	option	hide	delButton
+// item  type	value	option	hide	delButton
 // Project	fixed	 	Biodiv	 	 
 // Investigator	text				
 // delButton	button		Don't change		

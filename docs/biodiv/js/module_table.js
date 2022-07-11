@@ -489,7 +489,7 @@ function addRows(obj){
   // console.log(obj.parentNode.previousElementSibling);
   var n_row = obj.previousElementSibling.value;
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  for(let i = 0; i < n_row; i++) addRow(table)
+  for(let i = 0; i < n_row; i++){ addRow(table); }
 }
 
 // Copy buttom row and paste it as new rows

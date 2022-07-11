@@ -4,7 +4,7 @@
 //    The same th clicked again, sort by descending order.
 //    "" in number will be converted into null for sorting in last element.
 //    "" in string keep "" (NOT null) for sorting in last element.
-//    This function should be executed after a table is created, 
+//    setSortable() should be executed after a table is created, 
 //    If executed before creation, a table will not be sortable.
 //    
 function setSortable(id_table){
