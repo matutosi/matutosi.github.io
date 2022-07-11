@@ -42,12 +42,3 @@ table{
   border-color: #00552e;   /* line color    */
   border-style: solid;     /* line type     */
 }
-
-/*
-#tab_inputs table[id*="plot"] tr{
-#tab_inputs table[id*="occ"] tr{
-  border-width: 0.5px 0px;
-  border-color: #00552e;  
-  border-style: solid;    
-}
-*/

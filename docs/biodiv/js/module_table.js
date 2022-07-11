@@ -625,10 +625,6 @@ function shortTable(obj){
     var tr = rows[Ri];
     tr.style.display = "flex";
     tr.style["flex-wrap"] = "wrap";
-  //     for(let Cj = 1; Cj < tr.cells.length; Cj++){
-  //       var td = tr.cells[Cj];
-  //       td.style.display = "inline-block";
-  //     }
   }
   addThLabel(table);
   obj.replaceWith( createShowWideTable() );
@@ -640,11 +636,6 @@ function wideTable(obj){
     var tr = rows[Ri];
     tr.style.display = "";
     tr.style["flex-wrap"] = "";
-  //     tr.style.display = "block";
-  //     for(let Cj = 1; Cj < tr.cells.length; Cj++){
-  //       var td = tr.cells[Cj];
-  //       td.style.display = "";
-  //     }
   }
   removeThLabel(table);
   obj.replaceWith( createShowShortTable() );
