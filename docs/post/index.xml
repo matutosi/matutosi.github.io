@@ -6,7 +6,16 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>関数・ドキュメントの整理</title>
+      <link>https://matutosi.github.io/post/20220712/</link>
+      <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220712/</guid>
+      <description>植生調査アプリの基本機能のスクリプトは完成にかなり近づいた． ただ，コードを書きなぐってきたので，コードが汚すぎる． JavaScriptのコーディングスタイルに合っていないのは仕方ないとして， たぶん，不要な関数があったり，関数の引数が統一されていなかったりするあたりは整理が必要だ． どれが不要な関数かどうかはよく確認しないといけない． 一応，関数の関係性を確認するコードをRで書いたので，それを使って不要な関数を洗い出そうとするが，うまくいくかどうか． 関数の説明をちゃんと書いていないのも問題だ． このあたりは，徐々に整理する予定．</description>
+    </item>
+    
     <item>
       <title>CSSでレスポンシブ・レイアウト</title>
       <link>https://matutosi.github.io/post/20220711/</link>
