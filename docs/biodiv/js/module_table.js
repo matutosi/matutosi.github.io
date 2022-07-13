@@ -201,9 +201,9 @@ function inputTableModule(ns, table = null){
   var occ = ns.split("_")[1] === "occ";
   if(occ){
     dn.appendChild( crEl({ el: 'br' }) );
-    dn.appendChild( crEl({ el: 'span', tc: "Value: " }) );
+    dn.appendChild( crEl({ el: 'span', ih: "<b>Value: </b>" }) );
     dn.appendChild( createSelectOpt( colByType(table, "number") ) );
-    dn.appendChild( crEl({ el: 'span', tc: "; Group: " }) );
+    dn.appendChild( crEl({ el: 'span', ih: "; <b>Group: </b>" }) );
     dn.appendChild( createSelectOpt( colByType(table, "select-one") ) );
     dn.appendChild( createSumButton() );
   }
@@ -263,7 +263,7 @@ function settingTableModule(ns){
   up.appendChild( crEl({ el: 'B', tc: ns}) );
   up.appendChild( crEl({ el: 'br' }) );
 
-  up.appendChild( crEl({ el: 'span', tc: "Load settings: " }) );
+  up.appendChild( crEl({ el: 'span', ih: "<b>Load settings: </b>" }) );
   up.appendChild( createFileButton() );
 
   up.appendChild( createInput({ type: "text", placeholder: "File name" }) );

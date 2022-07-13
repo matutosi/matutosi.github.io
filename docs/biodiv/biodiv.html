@@ -1,5 +1,9 @@
 <html>
 <head>
+<script>
+
+</script>
+    <script src="js/font_size.js"></script>
     <script src="js/data.js"></script>
     <script src="js/json.js"></script>
     <script src="js/utils.js"></script>
@@ -34,6 +38,8 @@
 <body>
 
 <p>
+<input type="button" value="smaller" onclick="smaller()" />
+<input type="button" value="LARGER" onclick="larger()"  />
 Biodiversity Investigation Support System (BISS)
 <!--            Switch full screen           -->
 <input id="switch_screen_show" type="button" value="TO FULL SCREEN"  onclick="switchScreenShow(this.id)" />
@@ -67,9 +73,6 @@ Biodiversity Investigation Support System (BISS)
     <div id="tab_inputs">
       <script>
         var input_tab = document.getElementById("tab_inputs");
-//         input_tab.appendChild( createInput({ type:"button", value: "Load Example", onclick: "loadExample(this)" }) );
-//         input_tab.appendChild( crEl({ el: 'br' }) );
-
         // variables for sotable table
         var column_no = 0;       // now clicked
         var column_no_prev = 0;  // previous clicked

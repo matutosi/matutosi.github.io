@@ -1,36 +1,42 @@
+:root {
+  --font-size: 16px;
+}
+
 table{
   border-collapse:collapse;
 }
 
-#tab_settings table td{
-  font-size   : 12pt;
-  border-width: 1px 0px; /* line width: horizontal, vertical */
-  border-color: #0033CC;   /* line color    */
+input,select,chkbox,b{
+  font-size   : var(--font-size);
+}
+
+table td,th{
+  font-size   : var(--font-size);
   border-style: solid;     /* line type     */
   padding     : 0.3em 1em; /* innder margin */
+  
 }
 
 #tab_settings table th{
   color: white;
   background-color: #0033CC;
-  border-style: solid;
-  padding: 0.3em 1em;
 }
 
 #tab_inputs table th{
   color: white;
-  border-style: solid;
-  padding: 0.3em 1em;
   background-color: #00552e;
   cursor: pointer;
 }
 
+#tab_settings table td{
+  border-width: 1px 0px; /* line width: horizontal, vertical */
+  border-color: #0033CC;   /* line color    */
+}
+
+
 #tab_inputs table td{
-  font-size   : 12pt;
   border-width: 0px 0px;   /* line width: horizontal, vertical */
   border-color: #00552e;   /* line color    */
-  border-style: solid;     /* line type     */
-  padding     : 0.3em 1em; /* innder margin */
 }
 
 #tab_inputs table td:before{
