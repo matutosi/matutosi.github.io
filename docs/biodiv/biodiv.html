@@ -7,24 +7,22 @@
     <script src="js/data.js"></script>
     <script src="js/json.js"></script>
     <script src="js/utils.js"></script>
-    <script src="js/settingTable.js"></script>
-    <script src="js/inputTable.js"></script>
+    <script src="js/setting_table.js"></script>
+    <script src="js/input_table.js"></script>
     <script src="js/sortable.js"></script>
     <script src="js/gps.js"></script>
-    <script src="js/fullScreen.js"></script>
-    <script src="js/search.js"></script>
+    <script src="js/full_screen.js"></script>
     <script src="js/mailer.js"></script>
     <script src="js/download.js"></script>
-
     <script src="js/module_table.js"></script>
-
+    <script src="js/wamei.js" charset="utf-8"></script>
     <!--  Not use in progress
-    <script src="js/inhibitClose.js"></script>
+    <script src="js/inhibit_close.js"></script>
     -->
 
     <link rel="stylesheet" href="css/tab.css">
     <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/fullScreen.css">
+    <link rel="stylesheet" href="css/full_screen.css">
 
   <script> // test script
   // // // // // // // // // // // // // // // // // // // 
@@ -64,7 +62,6 @@ Biodiversity Investigation Support System (BISS)
 
       <script>
         var setting_tab = document.getElementById("tab_settings");
-
         setting_tab.appendChild( settingTableModule("setting_plot_default") );
         setting_tab.appendChild( settingTableModule("setting_occ_default") );
       </script>
@@ -80,9 +77,42 @@ Biodiversity Investigation Support System (BISS)
       </script>
     </div>
 
-
-
     <div id="tab_tools">
+      <script>
+var tab = document.getElementById("tab_tools");
+tab.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
+
+function generateTable(data){
+var data = wamei;
+  var table = crEl({ el: 'table' });
+  table.appendChild( crEl({ el: 'th', tc: "species" }) );
+//  for(let i = 0; i < 20; i++){
+  for(let i = 0; i < data.length; i++){
+    var tr = crEl({ el: 'tr' });
+    var td = crEl({ el: 'td', tc: data[i] });
+    tr.appendChild( td );
+    tr.style.display = 'none';
+    table.appendChild(tr);
+  }
+  return table
+}
+
+// wamei
+function generateSearchTable(ns, table){
+  // Up span
+  var up = crEl({ el:'span', ats:{id: "up_" + ns} });
+  up.appendChild( crEl({ el: 'B', tc: ns}) );
+  up.appendChild( createSearchShowInput() );
+  // Table
+  var table = generateTable(wamei);
+
+  // Main
+  var main   = crEl({ el:'span', id: "main_"   + ns});
+  main.appendChild(up);
+  main.appendChild(table);
+  return main;
+}
+      </script>
     </div>
 
     <div id="tab4">

@@ -1,6 +1,5 @@
 // Get data and optional information from a table.
-//    A function getTableData() retrieve only input data in a table, 
-//    while getTableDataPlus() retrieve some more information, such as column names, data types, selects. 
+//    getTableDataPlus() retrieve table data as well as column names, data types, selects. 
 //    @params id_table      A string to specify table id.
 //    @return               A string with 4 parts as shown below. 
 //                          Each part is JSON format.
@@ -134,12 +133,12 @@ function restoreTd(table_data, data_type, select){
       var td = crEl({ el:'td', ih: table_data });
       break;
     case "button":
-      if(table_data === "DELETE")           { var td = createTd( createDelButton() ); }
-      if(table_data === "Update Time & GPS"){ var td = createTd( createUpdateButton() ); }
+      if(table_data === "DELETE")           { var td = createTdWithChild( createDelButton() ); }
+      if(table_data === "Update Time & GPS"){ var td = createTdWithChild( createUpdateButton() ); }
       break;
     case "select-one":
       var sel_no = select.indexOf(table_data);
-      var td = createTd( createSelectOpt(select, sel_no) );
+      var td = createTdWithChild( createSelectOpt(select, sel_no) );
       break;
   }
   return td;

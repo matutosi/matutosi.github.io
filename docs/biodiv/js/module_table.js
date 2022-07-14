@@ -69,6 +69,9 @@ function createSumButton(){
 function createSearchInput(){
   return createInput({ type:"text", onkeyup: "searchTableText(this)", placeholder: "Search text" });
 }
+function createSearchShowInput(){
+  return createInput({ type:"text", onkeyup: "searchTableTextShow(this)", placeholder: "Search text" });
+}
 function createNrowInput(){
   return createInput({ type: "number", value: "3", step: "1", min: "1", max:"20" });
 }
@@ -175,7 +178,6 @@ function makeOccTable(setting_table, plot){
 
 function inputTableModule(ns, table = null){
   // var ns = "occ_input_table_example_01";
-  var main   = crEl({ el:'span', id: "main_"   + ns});
 
   // Up span
   var up = crEl({ el:'span', ats:{id: "up_" + ns} });
@@ -188,7 +190,6 @@ function inputTableModule(ns, table = null){
   up.appendChild( createHideButton() );
   up.appendChild( crEl({ el: 'br' }) );
   up.appendChild( crEl({ el: 'span'}) );
-  main.appendChild(up);
 
   // Table
   if(table === null){ var table = restoreTable(ns, ""); }
@@ -208,6 +209,8 @@ function inputTableModule(ns, table = null){
     dn.appendChild( createSumButton() );
   }
 
+  // Main
+  var main   = crEl({ el:'span', id: "main_"   + ns});
   main.appendChild(up);
   main.appendChild(table);
   main.appendChild(dn);
@@ -447,9 +450,8 @@ function sumWithGroup(obj){
   }
 }
 
-
 // Search text input tags in a table and show only matching rows
-//    Clear input text, all rows will be shown.
+//    Clear input text, ALL rows will be shown.
 //    Regular expression can be used.
 //    @paramas obj  A input element.
 //                  Normally use "this". 
@@ -475,11 +477,26 @@ function searchTableText(obj){
   for(let k = 1; k < display_flag.length; k++){
     if(display_flag[k] > 0) { trs[k].style.display = "";     }
     else                    { trs[k].style.display = "none"; }
-    if(input === "")        { trs[k].style.display = "";     } // no input, show all
+    if(input === "")        { trs[k].style.display = ""; }
   }
 }
 
-
+// Search text input tags in a table and show only matching rows
+//    Clear input text, NO rows will be shown.
+//    Regular expression can be used.
+//    @paramas obj  A input element.
+//                  Normally use "this". 
+function searchTableTextShow(obj){
+  var input = obj.value;
+  var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var trs    = table.rows;
+  for(let Rj = 1; Rj < trs.length; Rj++){
+    var text = trs[Rj].cells[0].innerText;
+    if(reg_ex.test(text)){ trs[Rj].style.display = ""; }
+    if(input === "")     { trs[Rj].style.display = "none"; }
+  }
+}
 
 // Helper to call addRow() multiple times
 function addRows(obj){

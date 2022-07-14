@@ -1,12 +1,12 @@
 /* https://allabout.co.jp/gm/gc/23969/5/ */
 
 /* overall */
-#tabcontrol {
+#tabcontrol{
   margin: 0;
 }
 
 /* tab */
-#tabcontrol a {
+#tabcontrol a{
   display: inline-block;
   border-width: 1px 1px 0px 1px;        /* border line except bottom */
   border-style: solid;
@@ -21,7 +21,7 @@
 }
 
 /* contents of tab */
-#tabbody div {
+#tabbody div{
   border: 1px solid black;
   margin-top: -1px;        /* override upside tab */
   padding: 1em;

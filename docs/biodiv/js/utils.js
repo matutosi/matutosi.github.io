@@ -1,12 +1,3 @@
-// TODO:
-//    make select option input in HTML
-//         (group) for data_types: "text", "select-one"
-//         (array) for data_types: "number"
-//   decide how to show results
-// ocnsole.log(sumByGroup("occurrence", "Cover", "Layer"))
-
-
-
 // Convert hasy array table
 //    In progress: can not convert hasy that has array as a value
 //    @example 
@@ -23,7 +14,6 @@ function hash2table(hash_array){
   }
   return table
 }
-
 
 // Get column data in a table
 //    @params id_table A string.
@@ -65,38 +55,13 @@ function splitByGroup(array, group){
   return grouped;
 }
 
-// Get data from occurrence table.
-//    returns [array], [array], [array], 
-//    Each array means a row in the table. 
-//    
-function getTableData(id_table){
-// var id_table = "occurrence";
-  const table = document.getElementById(id_table);
-  const col_names = getColNames(table);
-  const n_col = col_names.length;
-  const n_row = table.rows.length;
-  const data_types = getDataType(table);
-  var table_data = [];
-  // th
-  var Rj = 0;
-  var row_rj = table.rows[Rj].cells;
-  var row_data = [];
-  for(let Ci = 0; Ci < n_col; Ci++){
-    row_data[Ci] = row_rj[Ci].innerHTML;
-  }
-  table_data[Rj] = row_data;
-  // td
-  for(let Rj=1; Rj<n_row; Rj++){
-    var row_rj = table.rows[Rj].cells;
-    var row_data = [];
-    for(let Ci = 0; Ci < n_col; Ci++){
-      row_data[Ci] = getCellData(row_rj[Ci], data_types[Ci]);
-    }
-    table_data[Rj] = row_data;
-  }
-  return table_data;
-}
-
+// Get input value, select-one, or innerHTML cell data in a table.
+//    In BISS, the values varies input, select-one, or innerHTML. 
+//    getCellData() 
+//    @params cell_data A td element in a table.
+//    @params data_type A string to specify the data type of the cell, 
+//                      which can be retrived with col_type().
+//    @return A string.
 function getCellData(cell_data, data_type){
   switch(data_type){
     case "date":
@@ -130,30 +95,14 @@ function getSelectOptionInCell(select){
   return select_opt;
 }
 
-// Get options in select tag
-//    Return string like "B1,B2,..." for select tag,
-//    "" (vacant string) for pother input tag
-function getSelectOption(table){
-  const data_types = getDataType(table);
-  const row_1 = table.rows[1].cells;  // table row except th (rows[0])
-  var select_opt = [];
-  for(let Ci = 0; Ci < data_types.length; Ci++){ select_opt[Ci] = ""; }
-  for(let Ci = 0; Ci < data_types.length; Ci++){
-    if(data_types[Ci] === "select-one"){
-      opts = row_1[Ci].firstChild.children;
-      for(opt of opts){ select_opt[Ci] = select_opt[Ci] + "," + opt.value; }
-    }
-  }
-  return select_opt;
-}
-
 // Get data types from occurrence table.
 //    Columns shown below are special, 
 //        "date", "delButton", "no", "locLat", "locLon", "locAcc"
 //        These columns can not be set by users. 
 //    Other columns can be devided into 5 data types: 
 //        "fixed", "checkbox", "text", "number", "select-one".
-//    
+//   @paramas table A table element.
+//   @return A string array.
 function getDataType(table){
 //   const table = document.getElementById(id_table);
   const col_names = getColNames(table);
@@ -186,9 +135,7 @@ function getDataType(table){
   return data_type;
 }
 
-function get_data_type(cell){
-  return (cell.firstChild.type === void 0) ? "fixed" : cell.firstChild.type;
-}
+// Helper for getDataType()
 function get_data_types(table){
   var types = [];
   for(cell of table.rows[1].cells){ // 1: first td row
@@ -197,13 +144,20 @@ function get_data_types(table){
   return types;
 }
 
+// Helper for getDataType()
+function get_data_type(cell){
+  return (cell.firstChild.type === void 0) ? "fixed" : cell.firstChild.type;
+}
+
+// Get column names as a string array.
+//   @paramas table A table element.
+//   @return A string array.
 function getColNames(table){
   // console.log(table.rows[0]);
   const row_0 = table.rows[0];
   const col_names = [];
   for(let Ri=0; Ri<row_0.cells.length; Ri++){
     col_names[Ri] = row_0.cells[Ri].innerText;
-  //     col_names[Ri] = row_0.cells[Ri].innerHTML;
   }
   return col_names
 }
@@ -217,12 +171,12 @@ function getNow(){
    const hh  = String(now.getHours()).padStart(2, `0`);
    const mi  = String(now.getMinutes()).padStart(2, `0`);
    const ss  = String(now.getSeconds()).padStart(2, `0`);
-  //    const ms  = String(now.getMilliseconds()).padStart(3, `0`);
-  //    return(`${yr}_${mo}_${dd}_${hh}_${mi}_${ss}_${ms}`)
    return(`${yr}_${mo}_${dd}_${hh}_${mi}_${ss}`)
 }
 
-// delete a row
+// Delete a row in a table.
+//   When the raw is the only one row in a table, the row will not be deleted.
+//   @paramas  obj An element of input button of a row in a table.
 function delRow(obj){
     var table = obj.parentNode.parentNode.parentNode; // clicked table
     if(table.rows.length > 2){                        // delete more than 3 rows (th + tb*2)
@@ -230,6 +184,7 @@ function delRow(obj){
       tr.parentNode.deleteRow(tr.sectionRowIndex);    // delete clicked row
     }
 }
+
 // Helper to createElement(), setAttribute(), innerHTML, textContent
 //   @paramas el A string for element name.
 //   @paramas ats An array with attribute names. {id: "hoge", value: "foo"}
@@ -238,7 +193,6 @@ function delRow(obj){
 //   @return HTML An object.
 //   @examples 
 //   crEl({ el: 'p', ats: {id: "id_test", class: "some_class"}, ih: "test" });
-//   
 function crEl({ el, ats, ih, tc }){
   var ele = document.createElement(el);
   if(ats != void 0){
@@ -250,29 +204,10 @@ function crEl({ el, ats, ih, tc }){
   return ele;
 }
 
-//    @paramas id_table  A string to specify a table.
-//    @paramas type      A string to specify a data type, 
-//                       which can be retrive by get_data_types() as shown below.
-//                       "fixed", "text", "button", "checkbox", 'select-one','number'. 
-//    @return  A string array.
-//    @examples
-//    var id_table = "occ_input_example_01";
-//    var type = "number";
-//    selectColByType(id_table, type);
-//    var type = "select-one";
-//    selectColByType(id_table, type);
-function selectColByType(id_table, type){
-  var table = document.getElementById(id_table);
-  var types = get_data_types(table);
-  var c_names = getColNames(table);
-  var cols = [];
-  for(let i = 0; i < types.length; i++){
-    if(types[i] === type){ cols.push(c_names[i]); }
-  }
-  return cols;
-}
-
-
+// Save html as it is.
+//   Crtl + S can save an original html file 
+//   that is not generated by JavaScript.
+//   saveHTML() save the generated html file as it is.
 function saveHTML(obj){
   var doc = document.documentElement.outerHTML;
   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
