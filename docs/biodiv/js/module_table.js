@@ -1,3 +1,68 @@
+// TODO: write documents
+//    
+//    
+function createInputTd(dat_type, col_name, optional){
+  // console.log(dat_type);
+  // console.log(col_name);
+  // console.log(optional);
+  var td = document.createElement('td');
+  var col_name = col_name.toLowerCase();
+  switch(dat_type){
+    case "auto": // date, no, GPS
+      if(col_name === "date")   td.innerHTML = getNow();
+      if(col_name === "loclat") td.innerHTML = getLat();
+      if(col_name === "loclon") td.innerHTML = getLon();
+      if(col_name === "locacc") td.innerHTML = getAcc();
+      if(col_name === "no")     td.innerHTML = 1;
+      break;
+    case "button": // delButton, update button
+      if(col_name === "delbutton")   { td.appendChild( createDelButton() );    };
+      if(col_name === "updatebutton"){ td.appendChild( createUpdateButton() ); };
+      break;
+    case "fixed":
+      if(optional === ""){ 
+//        alert("Fixed columns should be input!");
+        var optional = "NO INPUT";
+      }
+      td.innerHTML = optional;
+      break;
+    case "checkbox":
+    case "text":
+      td.appendChild(createInput({ type: dat_type }));
+      break;
+    case "number":
+      td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} ));
+      break;
+    case "list":
+      arry_list = optional.split(':').concat(Array(""));
+      td.appendChild(createSelectOpt(arry_list, arry_list.length - 1));
+      break;
+  }
+  return td;
+}
+
+// Update "Date", "locLat", "locLon", "locAcc"
+//    When "Update" bottun clicked, update informations in the row.
+//    @paramas obj Clicked row.
+//    @return null.
+function updateTimeGPS(obj){
+  // settings
+  var cols = ["Date", "locLat", "locLon", "locAcc"];
+  var funs = [getNow, getLat, getLon, getAcc]
+  // clicked things
+  var table = obj.parentNode.parentNode.parentNode;
+  var tr = obj.parentNode.parentNode;
+  var row_no = tr.sectionRowIndex;
+  // update
+  for(let i = 0; i < cols.length; i++){
+    var col_no = getColNames(table).indexOf(cols[i]);
+    var cell = table.rows[row_no].cells[col_no];
+    cell.innerHTML = funs[i]();
+  }
+}
+
+// TODO: write documents
+
 function showRow(obj){
   var tr = obj.parentNode.parentNode;
   var table = obj.parentNode.parentNode.parentNode;
@@ -41,51 +106,6 @@ function hideRow(obj){
     }
   }
 }
-function createHideRowButton(row = "row"){
-  return createInput({ type:"button", value: "Hide " + row, onclick: "hideRow(this)" });
-}
-function createShowRowButton(row = "row"){
-  return createInput({ type:"button", value: "Show " + row, onclick: "showRow(this)" });
-}
-
-function createMakePlotButton(){
-  return createInput({ type:"button", value: "Make plot table", onclick: "makePlotInputModule(this)" });
-}
-function createFileButton(){
-  return createInput({ type: "file", accept: ".conf", onchange: "replaceTable(this)" });
-}
-function createSaveSettingButton(){
-  return createInput({ type: "button", value: "Save settings", onclick: "saveSettings(this)" });
-}
-function createSaveInputButton(){
-  return createInput({ type: "button", value: "Save inputs", onclick: "saveInputs(this)" });
-}
-function createShowColButton(c_name){
-  return createInput({ type: "Button", value: c_name, onclick: "showCol(this)" });
-}
-function createSumButton(){
-  return createInput({ type: "Button", value: "Calculate", onclick: "sumWithGroup(this)" });
-}
-function createSearchInput(){
-  return createInput({ type:"text", onkeyup: "searchTableText(this)", placeholder: "Search text" });
-}
-function createSearchShowInput(){
-  return createInput({ type:"text", onkeyup: "searchTableTextShow(this)", placeholder: "Search text" });
-}
-function createNrowInput(){
-  return createInput({ type: "number", value: "3", step: "1", min: "1", max:"20" });
-}
-function createAddRowButton(){
-  return createInput({ type: "button", value: "Add row(s)", onclick: "addRows(this)" });
-}
-function createHideButton(){
-  return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
-}
-function createNewOccButton(){
-  return createInput({ type: "button", value: "occ table", onclick: "makeNewOccTableModule(this)" });
-}
-
-
 
 function makeNewOccTableModule(obj){
   var table = makeNewOccTable(obj);
@@ -487,6 +507,7 @@ function searchTableText(obj){
 //    @paramas obj  A input element.
 //                  Normally use "this". 
 function searchTableTextShow(obj){
+// TODO: Limit show rows 
   var input = obj.value;
   var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
@@ -510,7 +531,7 @@ function addRows(obj){
 // Copy buttom row and paste it as new rows
 //    Column date  getNow() will be applied.
 //    Column fixed and <select> <option> will be used the same selection.
-//    Column "checkbox" and "text" will be made in unchecked and blank.
+//    Column "checkbox" and "text" will be made as unchecked and blank one.
 //    
 function addRow(table){
   // console.log(table);
@@ -654,12 +675,6 @@ function removeThLabel(table){
     }
   }
 }
-function createShowShortTable(){
-  return createInput({ type:"button", value: "Show short table", onclick: "shortTable(this)" });
-}
-function createShowWideTable(){
-  return createInput({ type:"button", value: "Show wide table", onclick: "wideTable(this)" });
-}
 
 function loadExample(obj){
   // console.log(obj.parentNode);
@@ -681,4 +696,28 @@ function loadExample(obj){
 
   obj.nextElementSibling.remove(); // <br>
   obj.remove();
+}
+
+// Create td with a child element. 
+//    @paramas child A child element.
+//    @return  A td element with a child element
+function createTdWithChild(child){
+  var td = document.createElement('td');
+  td.appendChild(child);
+  return td;
+}
+
+// Helper to create input with select options
+//    when selected_no is given, 
+//    its <option> (start with 0) will be set as "selected".
+function createSelectOpt(list, selected_no = 0){
+  const n_list = list.length;
+  var select = document.createElement('select');
+  for(let j = 0; j < n_list; j++){
+    var option = document.createElement('option');
+    if(selected_no === j){ option.setAttribute('selected', 'true'); }
+    option.innerHTML = list[j];
+    select.appendChild(option);
+  }
+  return select;
 }
