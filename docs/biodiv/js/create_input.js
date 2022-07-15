@@ -53,7 +53,10 @@ function createSearchInput(){
   return createInput({ type:"text", onkeyup: "searchTableText(this)", placeholder: "Search text" });
 }
 function createSearchShowInput(){
-  return createInput({ type:"text", onkeyup: "searchTableTextShow(this)", placeholder: "Search text" });
+  return createInput({ type:"text", placeholder: "Input text" });
+}
+function createSearchShowButton(){
+  return createInput({ type: "button", value: "Search text", onclick: "searchTableTextShow(this)" });
 }
 function createNrowInput(){
   return createInput({ type: "number", value: "3", step: "1", min: "1", max:"20" });

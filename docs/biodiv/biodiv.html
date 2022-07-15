@@ -102,6 +102,7 @@ function generateSearchTable(ns, table){
   var up = crEl({ el:'span', ats:{id: "up_" + ns} });
   up.appendChild( crEl({ el: 'B', tc: ns}) );
   up.appendChild( createSearchShowInput() );
+  up.appendChild( createSearchShowButton() );
   // Table
   var table = generateTable(wamei);
 

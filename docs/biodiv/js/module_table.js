@@ -508,13 +508,22 @@ function searchTableText(obj){
 //                  Normally use "this". 
 function searchTableTextShow(obj){
 // TODO: Limit show rows 
-  var input = obj.value;
+  var input = obj.previousElementSibling.value;
   var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var trs    = table.rows;
+  var matches = 0;
+  for(let Rj = 1; Rj < trs.length; Rj++){ trs[Rj].style.display = "none"; }
   for(let Rj = 1; Rj < trs.length; Rj++){
+    if(matches > 101){
+      alert("Over 100 matches, showing 100 matches")
+      return void 0;
+    }
     var text = trs[Rj].cells[0].innerText;
-    if(reg_ex.test(text)){ trs[Rj].style.display = ""; }
+    if(reg_ex.test(text)){
+      trs[Rj].style.display = "";
+      matches++;
+    }
     if(input === "")     { trs[Rj].style.display = "none"; }
   }
 }
