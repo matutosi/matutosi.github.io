@@ -6,7 +6,17 @@
     <description>Recent content in javascript on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手作業とスクリプト</title>
+      <link>https://matutosi.github.io/post/20220720/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220720/</guid>
+      <description>JavaScriptを勉強していると，普段使うwebツール上でマウスを駆使してクリックしているのがアホらしくなってきた． 一度だけの作業ならまだしも，同じような作業の繰り返しを定期的にしなければならないことがある． チェックボックスを探してそれをクリックするなどだ． 手作業で同じことをするのは面倒だし，間違いのもとである． JavaScriptで，使いそうなスクリプトを組んでみた． たぶん，それなりに使えそうな感じ．
+手を抜くための苦労はいとわない．</description>
+    </item>
+    
     <item>
       <title>CSSでレスポンシブ・レイアウト</title>
       <link>https://matutosi.github.io/post/20220711/</link>
