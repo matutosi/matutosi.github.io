@@ -1,204 +1,13 @@
 // TODO: write documents
-//    
-//    
-function createInputTd(dat_type, col_name, optional){
-  // console.log(dat_type);
-  // console.log(col_name);
-  // console.log(optional);
-  var td = document.createElement('td');
-  var col_name = col_name.toLowerCase();
-  switch(dat_type){
-    case "auto": // date, no, GPS
-      if(col_name === "date")   td.innerHTML = getNow();
-      if(col_name === "loclat") td.innerHTML = getLat();
-      if(col_name === "loclon") td.innerHTML = getLon();
-      if(col_name === "locacc") td.innerHTML = getAcc();
-      if(col_name === "no")     td.innerHTML = 1;
-      break;
-    case "button": // delButton, update button
-      if(col_name === "delbutton")   { td.appendChild( createDelButton() );    };
-      if(col_name === "updatebutton"){ td.appendChild( createUpdateButton() ); };
-      break;
-    case "fixed":
-      if(optional === ""){ 
-//        alert("Fixed columns should be input!");
-        var optional = "NO INPUT";
-      }
-      td.innerHTML = optional;
-      break;
-    case "checkbox":
-    case "text":
-      td.appendChild(createInput({ type: dat_type }));
-      break;
-    case "number":
-      td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} ));
-      break;
-    case "list":
-      arry_list = optional.split(':').concat(Array(""));
-      td.appendChild(createSelectOpt(arry_list, arry_list.length - 1));
-      break;
-  }
-  return td;
-}
-
-// Update "Date", "locLat", "locLon", "locAcc"
-//    When "Update" bottun clicked, update informations in the row.
-//    @paramas obj Clicked row.
-//    @return null.
-function updateTimeGPS(obj){
-  // settings
-  var cols = ["Date", "locLat", "locLon", "locAcc"];
-  var funs = [getNow, getLat, getLon, getAcc]
-  // clicked things
-  var table = obj.parentNode.parentNode.parentNode;
-  var tr = obj.parentNode.parentNode;
-  var row_no = tr.sectionRowIndex;
-  // update
-  for(let i = 0; i < cols.length; i++){
-    var col_no = getColNames(table).indexOf(cols[i]);
-    var cell = table.rows[row_no].cells[col_no];
-    cell.innerHTML = funs[i]();
-  }
-}
-
-// TODO: write documents
-
-function showRow(obj){
-  var tr = obj.parentNode.parentNode;
-  var table = obj.parentNode.parentNode.parentNode;
-  var c_names = getColNames(table);
-  if(table.rows[0].style.display === 'none'){
-    var disp = 'inline-block';
-  }else{
-    var disp = '';
-  }
-  for(let i = 0; i < tr.cells.length; i++){
-    var td = tr.cells[i];
-    var label = c_names[i].toLowerCase();
-    switch(label){
-      case "new":
-        td.firstChild.nextElementSibling.replaceWith( createHideRowButton("plot info") );
-        break;
-      case "plot": // remain td
-        break;
-      default:
-        td.style.display = disp;
-        break;
-    }
-  }
-}
-function hideRow(obj){
-  var tr = obj.parentNode.parentNode;
-  var table = obj.parentNode.parentNode.parentNode;
-  var c_names = getColNames(table);
-  for(let i = 0; i < tr.cells.length; i++){
-    var td = tr.cells[i];
-    var label = c_names[i].toLowerCase();
-    switch(label){
-      case "new":
-        td.firstChild.nextElementSibling.replaceWith( createShowRowButton("plot info") );
-        break;
-      case "plot": // remain td
-        break;
-      default:
-        td.style.display = 'none';
-        break;
-    }
-  }
-}
-
-function makeNewOccTableModule(obj){
-  var table = makeNewOccTable(obj);
-  if(table === null){ return void 0 ;}  // no table
-  var module = inputTableModule(table.id, table = table);
-  var tab_inputs = document.getElementById("tab_inputs");
-  tab_inputs.appendChild(module);
-  setSortable(table.id);
-  obj.setAttribute("disabled", true)
-}
-
-function makePlotInputModule(obj){
-  var table = makePlotTable(obj);
-  var module = inputTableModule(table.id, table);
-  var tab_inputs = document.getElementById("tab_inputs");
-  tab_inputs.appendChild(module);
-  setSortable(table.id);  // Should setSortable() after appendChild()
-  tabs[1].click();        // move to tab_inputs
-}
-
-function makeNewOccTable(obj){
-  // var obj = temp1;
-  var tr = obj.parentElement.parentElement;
-  var table = obj.parentElement.parentElement.parentElement;
-  var c_no = getColNames(table).indexOf("Plot");
-  var plot = tr.cells[c_no].firstChild.value;
-  if(plot === ""){
-    alert("Input Plot!");
-    return null;
-  }
-  if(hasDupPlot(plot)){ return null;}
-  // create new input table for occurrence and appendChild()
-  var tab_settings = document.getElementById("tab_settings");
-  var setting_table = tab_settings.querySelectorAll("table")[1];
-  var table = makeOccTable(setting_table, plot);
-  return table;
-}
-
-function hasDupPlot(plot){
-  var tab_inputs = document.getElementById("tab_inputs");
-  var input_tables = tab_inputs.querySelectorAll("table");
-  for(table of input_tables){
-    if(table.id.split("_")[1] === "occ"){
-      if(table.id.split("_")[2] === plot){
-        alert("Duplicated Plot!");
-        return true;
-      }
-    }
-  }
-  return false;
-}
 
 
-function makeOccTable(setting_table, plot){
-  var setting_c_names = getColNames(setting_table);
-  var c_names = getColData(setting_table, setting_c_names[0]);
-  var d_types = getColData(setting_table, setting_c_names[1]);
-  var selects = getColData(setting_table, setting_c_names[2]);
-  var id_table = setting_table.id.replace("setting", "input");
-  var old_plot = id_table.split("_")[2];
-  id_table = id_table.replace(old_plot, plot);
-
-  var table = crEl({ el: 'table', ats: {id: id_table} });
-  // th
-  const n_col = c_names.length;
-  var tr = document.createElement('tr');
-  tr.appendChild( crEl({ el: 'th', ih: "Plot" }) );
-  for(let Ni = 0; Ni < n_col; Ni++){
-    if(c_names[Ni] !== ""){
-      var th = crEl({ el: 'th', ih: c_names[Ni] });
-      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
-      tr.appendChild(th);
-    }
-  }
-  table.appendChild(tr)
-  // td
-  var tr = document.createElement('tr');
-  var td = crEl({ el: 'td' })
-  tr.appendChild( crEl({ el: 'td', ih: plot }) );
-  for(let i = 0; i < c_names.length; i++){
-    if(setting_c_names[i] !== ""){
-      var td = createInputTd(d_types[i], c_names[i], selects[i]);
-      tr.appendChild(td);
-    }
-    table.appendChild(tr);
-  }
-  return table;
-}
-
-
+// Create input table module
+//   In a module has a table and other input elements, 
+//   which operate the table.
+// @paramas ns    A string to specify input table module.
+// @paramas table A table element.
+// @retrun  A span including a table and other elements.
 function inputTableModule(ns, table = null){
-  // var ns = "occ_input_table_example_01";
-
   // Up span
   var up = crEl({ el:'span', ats:{id: "up_" + ns} });
   up.appendChild( crEl({ el: 'B', tc: ns}) );
@@ -239,44 +48,11 @@ function inputTableModule(ns, table = null){
   return main;
 }
 
-function makePlotTable(obj){
-  var setting_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var setting_c_names = getColNames(setting_table);
-  var c_names = getColData(setting_table, setting_c_names[0]);
-  var d_types = getColData(setting_table, setting_c_names[1]);
-  var selects = getColData(setting_table, setting_c_names[2]);
-  var id_table = setting_table.id.replace("setting", "input");
-  var table = crEl({ el: 'table', ats: {id: id_table} });
-  // th
-  const n_col = c_names.length;
-  var tr = document.createElement('tr');
-  var th = crEl({ el: 'th', ih: "New" });
-  th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
-  tr.appendChild(th);
-  for(let Ni = 0; Ni < n_col; Ni++){
-    if(c_names[Ni] !== ""){
-      var th = crEl({ el: 'th', ih: c_names[Ni] });
-      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );
-      tr.appendChild(th);
-    }
-  }
-  table.appendChild(tr)
-  // td
-  var tr = document.createElement('tr');
-  var td = crEl({ el: 'td' })
-  td.appendChild( createNewOccButton() );
-  td.appendChild( createHideRowButton("plot info") );
-  tr.appendChild( td );
-  for(let i = 0; i < n_col; i++){
-    if(c_names[i] !== ""){
-      var td = createInputTd(d_types[i], c_names[i], selects[i]);
-      tr.appendChild(td);
-    }
-  }
-  table.appendChild(tr);
-  return table;
-}
-
+// Create setting table module
+//   In a module has a table and other input elements, 
+//   which operate the table.
+// @paramas ns    A string to specify input table module.
+// @retrun  A span including a table and other elements.
 function settingTableModule(ns){
   // var ns = "occ_input_table_example_01";
   var main  = crEl({ el:'span', id: "main_"   + ns});
@@ -317,119 +93,213 @@ function settingTableModule(ns){
 }
 
 
-async function replaceTable(obj){
-  var text = await readFile(obj.files[0]);
-  var text = text.split(";");
-  var table_name = obj.value.split("\\").slice(-1)[0].replace("\.conf", "")
-  var new_table = makeTable(text, table_name, false);
-
-  var old_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  old_table.replaceWith(new_table);
-
-  var old_title = obj.parentNode.parentNode.querySelectorAll("b")[0];
-  var new_title = crEl({ el: 'B', tc: table_name})
-  old_title.replaceWith( new_title );
-
+// Create occurrence table module
+//   @paramas obj  A input element.
+//                 Normally use "this". 
+//   @retrun  A span including a table and other elements.
+function makeNewOccTableModule(obj){
+  var table = makeNewOccTable(obj);
+  if(table === null){ return void 0 ;}  // no table
+  var module = inputTableModule(table.id, table = table);
+  var tab_inputs = document.getElementById("tab_inputs");
+  tab_inputs.appendChild(module);
+  setSortable(table.id);
+  obj.setAttribute("disabled", true)
 }
 
-  // https://www.delftstack.com/ja/howto/javascript/open-local-text-file-using-javascript/
-function readFile(file){
-  return new Promise((resolve, reject) => {
-    let reader = new FileReader();
-    reader.onload = x=> resolve(reader.result);
-    reader.readAsText(file);
-  })
-}
-
-
-function saveSettings(obj){
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table.id);
-  var f_name = obj.previousElementSibling.value;
-  if(f_name === ""){ 
-    f_name = table.id + ".conf"; 
-  } else {
-    f_name = table.id.split("_")[0] + "_" + table.id.split("_")[1] + "_" + f_name  + ".conf";
+// Helper for makeNewOccTableModule()
+//   @paramas obj  A input element.
+//                 Normally use "this". 
+//   @retrun  A table element.
+function makeNewOccTable(obj){
+  // var obj = temp1;
+  var tr = obj.parentElement.parentElement;
+  var table = obj.parentElement.parentElement.parentElement;
+  var c_no = getColNames(table).indexOf("Plot");
+  var plot = tr.cells[c_no].firstChild.value;
+  if(plot === ""){
+    alert("Input Plot!");
+    return null;
   }
-  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
-  var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  document.body.appendChild(a);
-  a.download = f_name
-  a.href = url;
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-  delete table_data;
+  if(hasDupPlot(plot)){ return null;}
+  // create new input table for occurrence and appendChild()
+  var tab_settings = document.getElementById("tab_settings");
+  var setting_table = tab_settings.querySelectorAll("table")[1];
+  var table = makeOccTable(setting_table, plot);
+  return table;
 }
 
-
-
-function saveInputs(obj){
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table.id);
-  var f_name = table.id + "_" + getNow() + ".txt"
-  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
-  var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  document.body.appendChild(a);
-  a.download = f_name;
-  a.href = url;
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-  delete table_data;
+// Make plot input module
+//   @paramas obj  A input element.
+//                 Normally use "this". 
+//   @retrun  A plot input module and change input tab.
+function makePlotInputModule(obj){
+  var table = makePlotTable(obj);
+  var module = inputTableModule(table.id, table);
+  var tab_inputs = document.getElementById("tab_inputs");
+  tab_inputs.appendChild(module);
+  setSortable(table.id);  // Should setSortable() after appendChild()
+  tabs[1].click();        // move to tab_inputs
 }
 
+// Helper for makeNewOccTableModule() and makeNewOccTable()
+//   @paramas setting_table  A setting table
+//   @paramas plot           A string to specify a plot name
+//   @return  A occurrence table
+function makeOccTable(setting_table, plot){
+  var setting_c_names = getColNames(setting_table);
+  var c_names = getColData(setting_table, setting_c_names[0]);
+  var d_types = getColData(setting_table, setting_c_names[1]);
+  var selects = getColData(setting_table, setting_c_names[2]);
+  var id_table = setting_table.id.replace("setting", "input");
+  var old_plot = id_table.split("_")[2];
+  id_table = id_table.replace(old_plot, plot);
 
-function showAllCols(obj){
-  // console.log(obj.parentNode.parentNode.nextElementSibling);
-  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
-  for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){
-    for(let Rj = 0; Rj < table.rows.length; Rj++){
-      table.rows[Rj].cells[Ci].style.display = '';
+  var table = crEl({ el: 'table', ats: {id: id_table} });
+  // th
+  const n_col = c_names.length;
+  var tr = document.createElement('tr');
+  tr.appendChild( crEl({ el: 'th', ih: "Plot" }) );
+  for(let Ni = 0; Ni < n_col; Ni++){
+    if(c_names[Ni] !== ""){
+      var th = crEl({ el: 'th', ih: c_names[Ni] });
+      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+      tr.appendChild(th);
     }
   }
-  obj.parentNode.textContent = "";
+  table.appendChild(tr)
+  // td
+  var tr = document.createElement('tr');
+  var td = crEl({ el: 'td' })
+  tr.appendChild( crEl({ el: 'td', ih: plot }) );
+  for(let i = 0; i < c_names.length; i++){
+    if(setting_c_names[i] !== ""){
+      var td = createInputTd(d_types[i], c_names[i], selects[i]);
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  return table;
 }
 
-
-// Hide a column in a table.
-function hideTableCol(obj){
-  // console.log(obj.parentNode.parentNode.parentNode);
-  var table = obj.parentNode.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
-  var c_name = obj.parentNode.innerText;
-  // console.log(c_name);
-  var c_no = getColNames(table).indexOf(c_name);
-  for(let Rj = 0; Rj < table.rows.length; Rj++){
-    table.rows[Rj].cells[c_no].style.display = 'none';
+// Helper for makePlotInputModule(
+//   @paramas obj  A input element.
+//                 Normally use "this". 
+//   @return  A plot table
+function makePlotTable(obj){
+  var setting_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var setting_c_names = getColNames(setting_table);
+  var c_names = getColData(setting_table, setting_c_names[0]);
+  var d_types = getColData(setting_table, setting_c_names[1]);
+  var selects = getColData(setting_table, setting_c_names[2]);
+  var id_table = setting_table.id.replace("setting", "input");
+  var table = crEl({ el: 'table', ats: {id: id_table} });
+  // th
+  const n_col = c_names.length;
+  var tr = document.createElement('tr');
+  var th = crEl({ el: 'th', ih: "New" });
+  th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+  tr.appendChild(th);
+  for(let Ni = 0; Ni < n_col; Ni++){
+    if(c_names[Ni] !== ""){
+      var th = crEl({ el: 'th', ih: c_names[Ni] });
+      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );
+      tr.appendChild(th);
+    }
   }
-  var span = obj.parentNode.parentNode.parentNode.previousElementSibling.lastElementChild;
-  // tc: "Show "
-  if(span.children.length === 0){
-    span.textContent = "Show: ";
-    span.appendChild( createInput({ type:"button", value:"All cols", onclick:"showAllCols(this)"}) );
+  table.appendChild(tr)
+  // td
+  var tr = document.createElement('tr');
+  var td = crEl({ el: 'td' })
+  td.appendChild( createNewOccButton() );
+  td.appendChild( createHideRowButton("plot info") );
+  tr.appendChild( td );
+  for(let i = 0; i < n_col; i++){
+    if(c_names[i] !== ""){
+      var td = createInputTd(d_types[i], c_names[i], selects[i]);
+      tr.appendChild(td);
+    }
   }
-  span.appendChild( createShowColButton(c_name) );
+  table.appendChild(tr);
+  return table;
 }
 
-function showCol(obj){
-  // show col
-  var c_name = obj.value;
-  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
-  var c_no = getColNames(table).indexOf(c_name);
-  for(let Rj = 0; Rj < table.rows.length; Rj++){
-      table.rows[Rj].cells[c_no].style.display = '';
+// Helper for makeOccTable() and makePlotTable()
+//   td is basic element, createInputTd() create 
+//   from data type, column name, and  optional.
+//   @paramas dat_type  A string to specify data type.
+//   @paramas col_name  A string to specify column name.
+//   @paramas optional  A string to specify optional.
+//   @return  A td element
+function createInputTd(dat_type, col_name, optional){
+  // console.log(dat_type);
+  // console.log(col_name);
+  // console.log(optional);
+  var td = document.createElement('td');
+  var col_name = col_name.toLowerCase();
+  switch(dat_type){
+    case "auto": // date, no, GPS
+      if(col_name === "date")   td.innerHTML = getNow();
+      if(col_name === "loclat") td.innerHTML = getLat();
+      if(col_name === "loclon") td.innerHTML = getLon();
+      if(col_name === "locacc") td.innerHTML = getAcc();
+      if(col_name === "no")     td.innerHTML = 1;
+      break;
+    case "button": // delButton, update button
+      if(col_name === "delbutton")   { td.appendChild( createDelButton() );    };
+      if(col_name === "updatebutton"){ td.appendChild( createUpdateButton() ); };
+      break;
+    case "fixed":
+      if(optional === ""){ 
+//        alert("Fixed columns should be input!");
+        var optional = "NO INPUT";
+      }
+      td.innerHTML = optional;
+      break;
+    case "checkbox":
+    case "text":
+      td.appendChild(createInput({ type: dat_type }));
+      break;
+    case "number":
+      td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} ));
+      break;
+    case "list":
+      arry_list = optional.split(':').concat(Array(""));
+      td.appendChild(createSelectOpt(arry_list, arry_list.length - 1));
+      break;
   }
-  // remove
-  if(obj.parentNode.children.length === 1){ obj.parentNode.textContent = ""; }
-  obj.remove();
+  return td;
 }
 
+## DONE: update date GPS
 
-// Sum with group
+// Update "Date", "locLat", "locLon", "locAcc"
+//    When "Update" bottun clicked, update informations in the row.
+//    @paramas obj Clicked row.
+//    @return null.
+function updateTimeGPS(obj){
+  // settings
+  var cols = ["Date", "locLat", "locLon", "locAcc"];
+  var funs = [getNow, getLat, getLon, getAcc]
+  // clicked things
+  var table = obj.parentNode.parentNode.parentNode;
+  var tr = obj.parentNode.parentNode;
+  var row_no = tr.sectionRowIndex;
+  // update
+  for(let i = 0; i < cols.length; i++){
+    var col_no = getColNames(table).indexOf(cols[i]);
+    var cell = table.rows[row_no].cells[col_no];
+    cell.innerHTML = funs[i]();
+  }
+}
+
+## DONE: 
+
+// Sum numeric with groups.
+//     In BISS, number input is the subject to sum, 
+//     select-one input is the options to group.
+//   @paramas obj  A input element.
+//                 Normally use "this". 
 function sumWithGroup(obj){
   var array = obj.previousElementSibling.previousElementSibling.previousElementSibling.value;
   var group = obj.previousElementSibling.value;
@@ -470,159 +340,9 @@ function sumWithGroup(obj){
   }
 }
 
-// Search text input tags in a table and show only matching rows
-//    Clear input text, ALL rows will be shown.
-//    Regular expression can be used.
-//    @paramas obj  A input element.
-//                  Normally use "this". 
-function searchTableText(obj){
-  // console.log(obj);
-  // console.log(obj.value);
-  // console.log(obj.parentNode.nextElementSibling);
-  var input = obj.value;
-  var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var trs    = table.rows;
-  var data_types = getDataType(table);
-  var display_flag = [1];                // 1: show first row (th)
-  for(let Rj = 1; Rj < trs.length; Rj++){ display_flag[Rj] = 0; }
-  for(let Ci = 0; Ci < data_types.length; Ci++){
-    if(data_types[Ci] === "text"){
-      for(let Rj = 1; Rj < trs.length; Rj++){
-        var text = trs[Rj].cells[Ci].firstChild.value;
-        if(reg_ex.test(text)){ display_flag[Rj]++; }
-      }
-    }
-  }
-  for(let k = 1; k < display_flag.length; k++){
-    if(display_flag[k] > 0) { trs[k].style.display = "";     }
-    else                    { trs[k].style.display = "none"; }
-    if(input === "")        { trs[k].style.display = ""; }
-  }
-}
-
-// Search text input tags in a table and show only matching rows
-//    Clear input text, NO rows will be shown.
-//    Regular expression can be used.
-//    @paramas obj  A input element.
-//                  Normally use "this". 
-function searchTableTextShow(obj){
-// TODO: Limit show rows 
-  var input = obj.previousElementSibling.value;
-  var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var trs    = table.rows;
-  var matches = 0;
-  for(let Rj = 1; Rj < trs.length; Rj++){ trs[Rj].style.display = "none"; }
-  for(let Rj = 1; Rj < trs.length; Rj++){
-    if(matches > 101){
-      alert("Over 100 matches, showing 100 matches")
-      return void 0;
-    }
-    var text = trs[Rj].cells[0].innerText;
-    if(reg_ex.test(text)){
-      trs[Rj].style.display = "";
-      matches++;
-    }
-    if(input === "")     { trs[Rj].style.display = "none"; }
-  }
-}
-
-// Helper to call addRow() multiple times
-function addRows(obj){
-  // console.log(obj);
-  // console.log(obj.parentNode.previousElementSibling);
-  var n_row = obj.previousElementSibling.value;
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  for(let i = 0; i < n_row; i++){ addRow(table); }
-}
-
-// Copy buttom row and paste it as new rows
-//    Column date  getNow() will be applied.
-//    Column fixed and <select> <option> will be used the same selection.
-//    Column "checkbox" and "text" will be made as unchecked and blank one.
-//    
-function addRow(table){
-  // console.log(table);
-  const col_names = getColNames(table);
-  const n_col = col_names.length;
-  const n_row = table.rows.length;
-  var last_row = table.rows[n_row - 1];  // to get selectedIndex
-  var next_row = table.rows[n_row - 1].cloneNode(true);
-  for(let Ci = 0; Ci < n_col; Ci++){
-    switch(col_names[Ci].toLowerCase()){
-      case "new":  // Make bottun
-        if(next_row.children[Ci].firstChild === null){
-          next_row.children[Ci].appendChild( createNewOccButton() );
-        } else {
-          next_row.children[Ci].firstChild.replaceWith( createNewOccButton() );
-        }
-        break;
-      case "date":  // update "date"
-        next_row.children[Ci].innerHTML = getNow();
-        break;
-      case "loclat":  // update GPS data
-        next_row.children[Ci].innerHTML = getLat();
-        break;
-      case "loclon":
-        next_row.children[Ci].innerHTML = getLon();
-        break;
-      case "locacc":
-        next_row.children[Ci].innerHTML = getAcc();
-        break;
-      case "updatebutton": // do nothing
-      case "delbutton":    // do nothing
-        break;
-      case "no":   // no = max(no) + 1
-        var nos = getColData(table, col_names[Ci]);
-        next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1;
-        break;
-      default:
-        if(next_row.children[Ci].firstChild.value === void 0){  
-          // void 0 means undifined -> fixed text: do nothing
-          break;
-        } else {
-          switch(next_row.children[Ci].firstChild.getAttribute("type")){
-            case "checkbox": // clear checkbox
-              next_row.children[Ci].firstChild.checked = false;
-              break;
-            case "text":    // clear input text
-            case "number":  // clear input text
-              next_row.children[Ci].firstChild.value = "";
-              break;
-            case null: // select from list
-              selected_opt = last_row.children[Ci].firstChild.selectedIndex;
-              next_row.children[Ci].firstChild.selectedIndex = selected_opt;
-              break;
-          }
-        }
-        break;
-    }
-  }
-  table.appendChild(next_row);
-}
 
 
-
-function hideShowNext(obj){
-  // console.log(obj);
-  // console.log(obj.parentNode.nextElementSibling);
-  var span   = obj.nextElementSibling.nextElementSibling;
-  var next   = obj.parentNode.nextElementSibling;
-  var next_2 = obj.parentNode.nextElementSibling.nextElementSibling;
-  if(next.style.display === 'none'){
-    span.style.display = '';
-    next.style.display = '';
-    next_2.style.display = '';
-    obj.value = "Hide table";
-  } else {
-    span.style.display = 'none';
-    next.style.display = 'none';
-    next_2.style.display = 'none';
-    obj.value = "Show table";
-  }
-}
-
+## DONE: utils ???
 //    @paramas table  A table element.
 //    @paramas type   A string to specify a data type, 
 //                    which can be retrive by get_data_types() as shown below.
@@ -637,74 +357,6 @@ function colByType(table, type){
     if(types[i] === type){ cols.push(c_names[i]); }
   }
   return cols;
-}
-
-
-function shortTable(obj){
-  var table = obj.parentNode.nextElementSibling;
-  var rows = table.rows;
-  rows[0].style.display = 'none';
-  for(let Ri = 1; Ri < rows.length; Ri++){
-    var tr = rows[Ri];
-    tr.style.display = "flex";
-    tr.style["flex-wrap"] = "wrap";
-  }
-  addThLabel(table);
-  obj.replaceWith( createShowWideTable() );
-}
-function wideTable(obj){
-  var table = obj.parentNode.nextElementSibling;
-  var rows = table.rows;
-  for(let Ri = 0; Ri < rows.length; Ri++){
-    var tr = rows[Ri];
-    tr.style.display = "";
-    tr.style["flex-wrap"] = "";
-  }
-  removeThLabel(table);
-  obj.replaceWith( createShowShortTable() );
-}
-function addThLabel(table){
-  var c_names = getColNames(table);
-  var rows = table.rows;
-  for(let Ri = 1; Ri < rows.length; Ri++){
-    var row = rows[Ri];
-    for(let Cj = 0; Cj < row.cells.length; Cj++){
-      var td = row.cells[Cj];
-      td.setAttribute("th-lab", c_names[Cj] + ": ")
-    }
-  }
-}
-function removeThLabel(table){
-  var rows = table.rows;
-  for(let Ri = 1; Ri < rows.length; Ri++){
-    var row = rows[Ri];
-    for(let Cj = 0; Cj < row.cells.length; Cj++){
-      var td = row.cells[Cj];
-      td.removeAttribute("th-lab");
-    }
-  }
-}
-
-function loadExample(obj){
-  // console.log(obj.parentNode);
-
-  // plot
-  var make_plot_button = document.getElementById("dn_setting_plot_default").children[2];
-  make_plot_button.click();
-  var table = document.getElementById("input_plot_default");
-  table.rows[1].cells[1].firstChild.value = "exam01";
-  table.rows[1].cells[0].firstChild.click()
-
-  // occ
-  var main = obj.parentNode;
-  var main = document.getElementById("tab_inputs");
-  var occ_example = "input_occ_exam01";
-  var new_module = inputTableModule(occ_example);
-  main.children[4].replaceWith(new_module);
-  setSortable(occ_example); // Can not set sortable in a function
-
-  obj.nextElementSibling.remove(); // <br>
-  obj.remove();
 }
 
 // Create td with a child element. 
@@ -729,4 +381,117 @@ function createSelectOpt(list, selected_no = 0){
     select.appendChild(option);
   }
   return select;
+}
+
+// Check if the same plot has already existed. 
+//   @paramas plot A string to specify plot.
+//   @return  A logical.
+function hasDupPlot(plot){
+  var tab_inputs = document.getElementById("tab_inputs");
+  var input_tables = tab_inputs.querySelectorAll("table");
+  for(table of input_tables){
+    if(table.id.split("_")[1] === "occ"){
+      if(table.id.split("_")[2] === plot){
+        alert("Duplicated Plot!");
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+
+## DONE: Save and load Settings 
+
+// Load settings and replace setting table for plot or occurrence.
+//   @paramas obj  A input element.
+//                 Normally use "this". 
+async function replaceTable(obj){
+  var text = await readFile(obj.files[0]);
+  var text = text.split(";");
+  var table_name = obj.value.split("\\").slice(-1)[0].replace("\.conf", "")
+  var new_table = makeTable(text, table_name, false);
+  // Table
+  var old_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  old_table.replaceWith(new_table);
+  // Title
+  var old_title = obj.parentNode.parentNode.querySelectorAll("b")[0];
+  var new_title = crEl({ el: 'B', tc: table_name})
+  old_title.replaceWith( new_title );
+}
+// Helper for replaceTable(). 
+function readFile(file){
+  // https://www.delftstack.com/ja/howto/javascript/open-local-text-file-using-javascript/
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader();
+    reader.onload = x=> resolve(reader.result);
+    reader.readAsText(file);
+  })
+}
+
+// Save settings of plot or occurrence data.
+//   @paramas obj  A input element.
+//                 Normally use "this". 
+function saveSettings(obj){
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var table_data = getTableDataPlus(table.id);
+  var f_name = obj.previousElementSibling.value;
+  if(f_name === ""){ 
+    f_name = table.id + ".conf"; 
+  } else {
+    f_name = table.id.split("_")[0] + "_" + table.id.split("_")[1] + "_" + f_name  + ".conf";
+  }
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
+  var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = f_name
+  a.href = url;
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  delete table_data;
+}
+// Save inputs of a table
+//   @paramas obj  A input element.
+//                 Normally use "this". 
+function saveInputs(obj){
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
+  var table_data = getTableDataPlus(table.id);
+  var f_name = table.id + "_" + getNow() + ".txt"
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
+  var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = f_name;
+  a.href = url;
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  delete table_data;
+}
+
+// Load example data
+//   Using in example.html, run like as click buttons in html.
+//   @paramas obj  A input element.
+//                 Normally use "this". 
+function loadExample(obj){
+  // plot
+  var make_plot_button = document.getElementById("dn_setting_plot_default").children[2];
+  make_plot_button.click();
+  var table = document.getElementById("input_plot_default");
+  table.rows[1].cells[1].firstChild.value = "exam01";
+  table.rows[1].cells[0].firstChild.click()
+  // occ
+  var main = obj.parentNode;
+  var main = document.getElementById("tab_inputs");
+  var occ_example = "input_occ_exam01";
+  var new_module = inputTableModule(occ_example);
+  main.children[4].replaceWith(new_module);
+  setSortable(occ_example); // Can not set sortable in a function
+
+  obj.nextElementSibling.remove(); // <br>
+  obj.remove();
 }

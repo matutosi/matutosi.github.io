@@ -1,15 +1,18 @@
 // Convert csv to json format
 //    can convert from tsv using by sep="\t"
 //    @example
-//    var csv = `item  type  value  option
-//    Project  fixed    Biodiv
-//    Investigator  text    
-//    delButton  button    Don't change
-//    Date  auto    Don't change
-//    No  auto    Don't change
-//    Location  text    `
-//    csv2json(csv, sep="\t")
-//    
+//    var csv = `item	type	value	option
+//    Project	fixed		Biodiv
+//    Investigator	text		
+//    delButton	button		Don't change
+//    Date	auto		Don't change
+//    No	auto		Don't change
+//    Location	text		`
+//    var json = csv2json(csv, sep="\t");
+//    var json_2 = JSON.parse(json);
+//    jsonKeys(json_2);
+//    extractJson(json_2);
+//    json2Array(json_2, "item")
 function csv2json(csv, sep=","){
   var json_array = [];
   var csv_array = [];
@@ -23,16 +26,12 @@ function csv2json(csv, sep=","){
       }
       json_array.push(line);
   }
-  JSON.stringify(json_array);
-  console.log(json_array);
   return JSON.stringify(json_array);
 }
 
 // Extract all data from JSON data
 //    Can extract data from simple JSON ()
 //    @params json A JSON data.
-//    @examples
-//    extractJson(data.stand_json);
 function extractJson(json){
   const keys = jsonKeys(json);
   var arr = [];
@@ -49,9 +48,6 @@ function extractJson(json){
 // Extract JSON data with key
 //    @params json A JSON data.
 //    @params key  A key string.
-//    @examples
-//    json2Array(data.stand_json, "item");
-//    json2Array(data.test, "item");
 function json2Array(json, key){
   var arr = [];
   for(j of json){ 
@@ -62,10 +58,6 @@ function json2Array(json, key){
 }
 
 // Extract keys from JSON data
-//    @params json A JSON data.
-//    @examples
-//    jsonKeys(data.stand_json)
-//  
 function jsonKeys(json){
   var arr = [];
   for(j of json){ arr = arr.concat(Object.keys(j)); }

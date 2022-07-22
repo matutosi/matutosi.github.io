@@ -214,7 +214,7 @@ function saveHTML(obj){
   var blob = new Blob([bom, doc], { "type" : "text/tsv" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  a.download = "biodiv.html"
+  a.download = "biodiv.html";
   a.href = url;
   a.click();
   URL.revokeObjectURL(url);
