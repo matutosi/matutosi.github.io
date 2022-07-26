@@ -8,6 +8,16 @@
     <language>jp-jp</language>
     <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>プログラミングと文章の構造化</title>
+      <link>https://matutosi.github.io/post/20220726/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220726/</guid>
+      <description>プログラムを書いていると文章を構造的に書くのに役立つと思う． 関数が1つの段落だとすると，関数のトピックセンテンスは返り値である． 何を出力したいかが明確でないと，関数は書けない．
+ある関数から次の関数につなぐのは，引数や返り値である． これによってプログラムがつながっていく． 文章もキーワードなどによってつながっていく．</description>
+    </item>
+    
+    <item>
       <title>手作業とスクリプト</title>
       <link>https://matutosi.github.io/post/20220720/</link>
       <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
