@@ -8,6 +8,15 @@
     <language>jp-jp</language>
     <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>localStorage</title>
+      <link>https://matutosi.github.io/post/20220727/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220727/</guid>
+      <description>正規のHTML内に書かれた操作ではなく，デベロッパーツールのConsoleにJavaScriptを打ち込んでウェブページを色々と操作しようとしている． ページが移動すると，関数がクリアされるのが難点だ． localStorageを使って，関数やその他のデータを保存しておけば，なんとかなりそうだ． ただし，すごくトリッキーな使い方で，本来の使い方ではなさそう．</description>
+    </item>
+    
+    <item>
       <title>プログラミングと文章の構造化</title>
       <link>https://matutosi.github.io/post/20220726/</link>
       <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
