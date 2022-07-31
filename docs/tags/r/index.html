@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>R - matutosi</title>
+	<title>r - matutosi</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,19 +69,24 @@
 			
 <main class="main list" role="main">
 	<header class="main__header">
-		<h1 class="main__title">R</h1>
+		<h1 class="main__title">r</h1>
 	</header><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/post/20220606/" rel="bookmark">
-			RのNSE
+			<a href="/post/20220801/" rel="bookmark">
+			datar
 			</a>
 		</h2>
-		
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-20T00:00:00Z">July 20, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		タグができるか?
+		JavaScriptでのウェブページ操作で，ページ移動のたびにlocalStorageやsessionStorageから関数群を引き出すというトリッキーな使い方をしていた． これはこれで良いが，結局手作業が必要なのが不便だ．
+そこでSeleniumを導入して自動化を試みたものの，RSeleniumがどうもうまくいかない． Pythonならつながるので，Selenium自体やChromeDriverはちゃんと動いているようだ． 仕方ないので，Pythonで操作しはじめたが，Rのtidyverseの便利さには敵わない． と思っていたら，datarというPythonのライブラリを見つけた． できる限りtidyverseとほぼ同じようにやってしまおうというライブラリのようだ． 試しに使ってみたら，ほとんどRの書き方でできる． これは便利だ． datarに慣れるとPythonを使っているのか，Rを使っているのか分からなくなりそう． まあ，そもそも使えれば良いので，そんなことはどっちでも良い．
 	</div>
 </article>
 </main>
@@ -89,21 +94,21 @@
 
 			</div>
 			
-<aside class="sidebar"><div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
-		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
-		</label>
-		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="https://matutosi.github.io/" />
-	</form>
-</div>
+<aside class="sidebar">
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/20220606/">RのNSE</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/test/">Test</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220801/">datar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220727/">sessionStorage</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220726/">プログラミングと文章の構造化</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220720/">手作業とスクリプト</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220712/">関数・ドキュメントの整理</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220711/">CSSでレスポンシブ・レイアウト</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220703/">this</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220628/">植生調査アプリの仮公開</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220627/">ShinyとJavaScript</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220623/">DeepL API</a></li>
 		</ul>
 	</div>
 </div>
@@ -112,15 +117,20 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E3%83%86%E3%82%B9%E3%83%88/">テスト</a></li>
+				<a class="widget__link" href="/categories/blog/">blog</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/dplyr/" title="dplyr">dplyr</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/r/" title="R">R</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/biodiv/" title="biodiv">biodiv</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="hugo">hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="javascript">javascript</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/programing/" title="programing">programing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="python">python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/r/" title="r">r</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shiny/" title="shiny">shiny</a>
 	</div>
 </div>
 </aside>
