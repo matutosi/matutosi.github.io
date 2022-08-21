@@ -6,11 +6,29 @@
     <description>Recent content in Tags on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>r</title>
+      <link>https://matutosi.github.io/tags/r/</link>
+      <pubDate>Sun, 21 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://matutosi.github.io/tags/python/</link>
+      <pubDate>Mon, 01 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>javascript</title>
       <link>https://matutosi.github.io/tags/javascript/</link>
-      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/tags/javascript/</guid>
       <description></description>
@@ -19,27 +37,9 @@
     <item>
       <title>programing</title>
       <link>https://matutosi.github.io/tags/programing/</link>
-      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 26 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/tags/programing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://matutosi.github.io/tags/python/</link>
-      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r</title>
-      <link>https://matutosi.github.io/tags/r/</link>
-      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/tags/r/</guid>
       <description></description>
     </item>
     

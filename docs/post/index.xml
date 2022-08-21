@@ -6,11 +6,21 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RSelenium</title>
+      <link>https://matutosi.github.io/post/20220821/</link>
+      <pubDate>Sun, 21 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220821/</guid>
+      <description>RからSeleniumを操作しようとだいぶ前に色々とやっていたが，RSeleniumが動かず断念した． 一応，Pythonでやりたいことはしたが，それでもやはりRが慣れていて便利なので，再挑戦した． 色々と試した結果，Seleniumのバージョンが4.0以上の場合は，RSeleniumが動かないことがわかった． バージョン2や3だとうまく動いた．
+Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っていたので，Rへの移植はそれほど難しくなかった．</description>
+    </item>
+    
     <item>
       <title>datar</title>
       <link>https://matutosi.github.io/post/20220801/</link>
-      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Aug 2022 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/post/20220801/</guid>
       <description>JavaScriptでのウェブページ操作で，ページ移動のたびにlocalStorageやsessionStorageから関数群を引き出すというトリッキーな使い方をしていた． これはこれで良いが，結局手作業が必要なのが不便だ．
@@ -20,7 +30,7 @@
     <item>
       <title>sessionStorage</title>
       <link>https://matutosi.github.io/post/20220727/</link>
-      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/post/20220727/</guid>
       <description>正規のHTML内に書かれた操作ではなく，デベロッパーツールのConsoleにJavaScriptを打ち込んでウェブページを色々と操作しようとしている． ページが移動すると，関数がクリアされるのが難点だ． sessionStorageを使って，関数やその他のデータを保存しておけば，なんとかなりそうだ． ただし，すごくトリッキーな使い方で，本来の使い方ではなさそう．</description>
@@ -29,7 +39,7 @@
     <item>
       <title>プログラミングと文章の構造化</title>
       <link>https://matutosi.github.io/post/20220726/</link>
-      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 26 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/post/20220726/</guid>
       <description>プログラムを書いていると文章を構造的に書くのに役立つと思う． 関数が1つの段落だとすると，関数のトピックセンテンスは返り値である． 何を出力したいかが明確でないと，関数は書けない．

@@ -6,11 +6,21 @@
     <description>Recent content in r on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RSelenium</title>
+      <link>https://matutosi.github.io/post/20220821/</link>
+      <pubDate>Sun, 21 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220821/</guid>
+      <description>RからSeleniumを操作しようとだいぶ前に色々とやっていたが，RSeleniumが動かず断念した． 一応，Pythonでやりたいことはしたが，それでもやはりRが慣れていて便利なので，再挑戦した． 色々と試した結果，Seleniumのバージョンが4.0以上の場合は，RSeleniumが動かないことがわかった． バージョン2や3だとうまく動いた．
+Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っていたので，Rへの移植はそれほど難しくなかった．</description>
+    </item>
+    
     <item>
       <title>datar</title>
       <link>https://matutosi.github.io/post/20220801/</link>
-      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Aug 2022 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/post/20220801/</guid>
       <description>JavaScriptでのウェブページ操作で，ページ移動のたびにlocalStorageやsessionStorageから関数群を引き出すというトリッキーな使い方をしていた． これはこれで良いが，結局手作業が必要なのが不便だ．
