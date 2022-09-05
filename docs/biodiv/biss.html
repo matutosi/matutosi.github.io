@@ -630,7 +630,7 @@ function createHideButton(){
   return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" }); 
 } 
 function createNewOccButton(){ 
-  return createInput({ type: "button", value: "occ table", onclick: "makeNewOccTableModule(this)" }); 
+  return createInput({ type: "button", value: "New occ table", onclick: "makeNewOccTableModule(this)" }); 
 }</script> <script>// TODO: write documents 
  
  
@@ -830,7 +830,7 @@ function makePlotTable(obj){
   // th 
   const n_col = c_names.length; 
   var tr = document.createElement('tr'); 
-  var th = crEl({ el: 'th', ih: "New" }); 
+  var th = crEl({ el: 'th', ih: "" }); 
   th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );  
   tr.appendChild(th); 
   for(let Ni = 0; Ni < n_col; Ni++){ 
@@ -1463,4 +1463,4 @@ function generateSearchTable(ns, table){
   main.appendChild(up); 
   main.appendChild(table); 
   return main; 
-}</script> </div> <div id="tab4"> spare tab </div> </div> </div> <script></script> <div> <script>function changeTab(){for(var e=this.href.substring(this.href.indexOf("#")+1,this.href.length),t=0;t<pages.length;t++)pages[t].id!=e?pages[t].style.display="none":pages[t].style.display="block";for(var t=0;t<tabs.length;t++)tabs[t].style.zIndex="0";return this.style.zIndex="10",!1}for(var tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div"),i=0;i<tabs.length;i++)tabs[i].onclick=changeTab;tabs[0].onclick();</script> <div> </div></div></body> </html> 
+}</script> </div> <div id="tab4"> </div> </div> </div> <script></script> <div> <script>function changeTab(){for(var e=this.href.substring(this.href.indexOf("#")+1,this.href.length),t=0;t<pages.length;t++)pages[t].id!=e?pages[t].style.display="none":pages[t].style.display="block";for(var t=0;t<tabs.length;t++)tabs[t].style.zIndex="0";return this.style.zIndex="10",!1}for(var tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div"),i=0;i<tabs.length;i++)tabs[i].onclick=changeTab;tabs[0].onclick();</script> <div> </div></div></body> </html> 

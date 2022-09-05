@@ -197,7 +197,7 @@ function makePlotTable(obj){
   // th
   const n_col = c_names.length;
   var tr = document.createElement('tr');
-  var th = crEl({ el: 'th', ih: "New" });
+  var th = crEl({ el: 'th', ih: "" });
   th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
   tr.appendChild(th);
   for(let Ni = 0; Ni < n_col; Ni++){

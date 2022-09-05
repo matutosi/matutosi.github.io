@@ -68,5 +68,5 @@ function createHideButton(){
   return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
 }
 function createNewOccButton(){
-  return createInput({ type: "button", value: "occ table", onclick: "makeNewOccTableModule(this)" });
+  return createInput({ type: "button", value: "New occ table", onclick: "makeNewOccTableModule(this)" });
 }

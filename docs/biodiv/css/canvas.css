@@ -1,0 +1,23 @@
+canvas{
+  border:2px solid #000;
+}
+.color{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+.black{
+  background-color: #000000;
+}
+.green{
+  background-color: #00ff00;
+}
+.red{
+  background-color: #ff0000;
+}
+.blue{
+  background-color: #0000ff;
+}
+.white{
+  background-color: #ffffff;
+}
