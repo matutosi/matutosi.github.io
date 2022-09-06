@@ -10,7 +10,7 @@ function searchTableText(obj){
   var input = obj.value;
   var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var trs    = table.rows;
+  var trs   = table.rows;
   var data_types = getDataType(table);
   var display_flag = [1];                // 1: show first row (th)
   for(let Rj = 1; Rj < trs.length; Rj++){ display_flag[Rj] = 0; }
@@ -32,11 +32,13 @@ function searchTableText(obj){
 // Search text input tags in a table and show only matching rows
 //    Clear input text, NO rows will be shown.
 //    Regular expression can be used.
+//    Spaces means match all text. 
+//        ex.) "aaa bbb" matches texts including both "aaa" and "bbb".
 //    @paramas obj  A input element.
 //                  Normally use "this". 
 function searchTableTextShow(obj){
-// TODO: Limit show rows 
-  var input = obj.previousElementSibling.value;
+  // https://www-creators.com/archives/5332
+  var input = "^(?=.*" + obj.previousElementSibling.value.replaceAll(" ", ")(?=.*") + ").*$";
   var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var trs    = table.rows;
