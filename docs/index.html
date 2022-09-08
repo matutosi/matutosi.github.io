@@ -74,7 +74,7 @@
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/post/20220905/" rel="bookmark">
-			RSelenium
+			MacでSelenium
 			</a>
 		</h2>
 		<div class="list__meta meta">
@@ -84,7 +84,9 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		# Install Homebrew /bin/bash -c &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&#34; # Install chorome driver brew install chromedriver # setup java brew tap AdoptOpenJDK/openjdk brew install --cask adoptopenjdk12 # check java installation java -version # download selenium curl -OL https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar 
+		準備：色々とインストール
+# Homebrew /bin/bash -c &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&#34; # Chorome driver brew install chromedriver # java brew tap AdoptOpenJDK/openjdk brew install --cask adoptopenjdk12 # check java installation java -version # download selenium curl -OL https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar mv selenium-server-standalone-3.141.59.jar /Applications/ seleniumの実行と
+# run selenium java -jar /Applications/selenium-server-standalone-3.141.59.jar # ちょっとまっていると色々と表示される # check process id ps -A | grep &#39;java&#39; # 12708 ttys000 0:00.20 /usr/bin/java -jar /Applications/selenium-server-standalone-3.141.59.jar # 12802 ttys000 0:00.00 grep java # stop selenium # 数字は1行目の左端に表示されるprocess idを入力 kill 12708 
 	</div>
 </article><article class="list__item post">
 	
@@ -260,7 +262,7 @@ https://matutosi.github.io/biodiv/biodiv.html
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/20220905/">RSelenium</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20220905/">MacでSelenium</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220821/">RSelenium</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220801/">datar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220727/">sessionStorage</a></li>
@@ -291,6 +293,7 @@ https://matutosi.github.io/biodiv/biodiv.html
 		<a class="widget-taglist__link widget__link btn" href="/tags/programing/" title="programing">programing</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="python">python</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/r/" title="r">r</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="selenium">selenium</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/shiny/" title="shiny">shiny</a>
 	</div>
 </div>

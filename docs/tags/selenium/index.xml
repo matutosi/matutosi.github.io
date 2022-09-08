@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>selenium on matutosi</title>
+    <link>https://matutosi.github.io/tags/selenium/</link>
+    <description>Recent content in selenium on matutosi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-jp</language>
+    <lastBuildDate>Mon, 05 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/selenium/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacでSelenium</title>
+      <link>https://matutosi.github.io/post/20220905/</link>
+      <pubDate>Mon, 05 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220905/</guid>
+      <description>準備：色々とインストール
+# Homebrew /bin/bash -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;#34; # Chorome driver brew install chromedriver # java brew tap AdoptOpenJDK/openjdk brew install --cask adoptopenjdk12 # check java installation java -version # download selenium curl -OL https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar mv selenium-server-standalone-3.141.59.jar /Applications/ seleniumの実行と
+# run selenium java -jar /Applications/selenium-server-standalone-3.141.59.jar # ちょっとまっていると色々と表示される # check process id ps -A | grep &amp;#39;java&amp;#39; # 12708 ttys000 0:00.20 /usr/bin/java -jar /Applications/selenium-server-standalone-3.141.59.jar # 12802 ttys000 0:00.00 grep java # stop selenium # 数字は1行目の左端に表示されるprocess idを入力 kill 12708 </description>
+    </item>
+    
+  </channel>
+</rss>
