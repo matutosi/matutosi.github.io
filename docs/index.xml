@@ -6,7 +6,16 @@
     <description>Recent content on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 05 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>正規表現</title>
+      <link>https://matutosi.github.io/post/20220910/</link>
+      <pubDate>Sat, 10 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220910/</guid>
+      <description>「詳説 正規表現」を読み始めた． まだ1章しか読んでないが，結構勘違いしていたことや知らなかったことが多い．</description>
+    </item>
+    
     <item>
       <title>MacでSelenium</title>
       <link>https://matutosi.github.io/post/20220905/</link>
