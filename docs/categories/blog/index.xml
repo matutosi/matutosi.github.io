@@ -6,7 +6,18 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Sat, 10 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RのNSE(Non-Standard Evaluation)</title>
+      <link>https://matutosi.github.io/post/20220914/</link>
+      <pubDate>Wed, 14 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220914/</guid>
+      <description>RのNSE(Non-Standard Evaluation)というのがあって，便利な面とそうでない面がある． 本来なら，列名を指定するのに，&amp;ldquo;displ&amp;quot;のように指定すべきところを，ダブルクオーテーションなしでdisplとできるので，普段は便利だ．
+library(tidyverse) mpg %&amp;gt;% dplyr::select(displ, year, cyl) ただし，パッケージ開発をするときにこの使い方をしていると，devtools::check()でWarningsとかNotesの対象になる． 新たな列名として使いたいときには，以下のようにする必要がある．変数に入れた文字列を使う時，既存の列の指定では.data[col_nameとして，新たな列のときは{{col_name}}({{&amp;ldquo;year_displ&amp;rdquo;}}はエラー)とする．
+col_1 &amp;lt;- &amp;#34;year&amp;#34; col_2 &amp;lt;- &amp;#34;displ&amp;#34; new_col &amp;lt;- &amp;#34;year_displ&amp;#34; # `:=`を通常の関数みたいに使用 mpg %&amp;gt;% dplyr::transmute(`:=`({{new_col}}, stringr::str_c(.data[[col_1]], &amp;#34;_&amp;#34;, .data[[col_2]]))) # 以下でも同じ mpg %&amp;gt;% dplyr::transmute({{new_col}} := stringr::str_c(.data[[col_1]], &amp;#34;_&amp;#34;, .data[[col_2]])) </description>
+    </item>
+    
     <item>
       <title>正規表現</title>
       <link>https://matutosi.github.io/post/20220910/</link>
