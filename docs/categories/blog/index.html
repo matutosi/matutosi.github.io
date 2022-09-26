@@ -74,6 +74,25 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220926/" rel="bookmark">
+			clidatajp
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-26T00:00:00Z">September 26, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		clidatajpというパッケージを作った． CRANからの返事はまだ無い． どこで処理が止まっているのかは，とんと見当がつかない．
+https://github.com/matutosi/clidatajp/blob/main/READMEjp.md
+ウソです．普通に時間がかかっているだけだと思います．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220914/" rel="bookmark">
 			RのNSE(Non-Standard Evaluation)
 			</a>
@@ -231,29 +250,11 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 	<div class="content list__excerpt post__content clearfix">
 		植生調査アプリの基本機能のスクリプトは完成にかなり近づいた． ただ，コードを書きなぐってきたので，コードが汚すぎる． JavaScriptのコーディングスタイルに合っていないのは仕方ないとして， たぶん，不要な関数があったり，関数の引数が統一されていなかったりするあたりは整理が必要だ． どれが不要な関数かどうかはよく確認しないといけない． 一応，関数の関係性を確認するコードをRで書いたので，それを使って不要な関数を洗い出そうとするが，うまくいくかどうか． 関数の説明をちゃんと書いていないのも問題だ． このあたりは，徐々に整理する予定．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220711/" rel="bookmark">
-			CSSでレスポンシブ・レイアウト
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-11T00:00:00Z">July 11, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		HTMLのtableはデータの整理には便利だが，項目が多くなると1行がどんどんと横に長くなってしまう． パソコンであれば良いが，スマホやタブレットではちょっと使いづらい． そこでレイアウトをレスポンシブ(画面サイズに合わせた表示)にする必要がある． そのあたりの変更を自動でしても良いが，植生調査アプリでは使用者がボタンを押して切り返す仕組みにした． ボタンを押すと，JavaScriptでスタイルを書き換えて，表示を途中で折り返すようにした． だいぶできてきた．
- アプリ(CSS/JavaScript別ファイルバージョン) https://matutosi.github.io/biodiv/biodiv.html アプリ(1ファイルバージョン) https://matutosi.github.io/biodiv/biss.html 使用例 https://matutosi.github.io/biodiv/exam01.html  
-	</div>
 </article>
 </main>
 
 <div class="pagination">
-	<span class="pagination__item pagination__item--current">1/2</span>
+	<span class="pagination__item pagination__item--current">1/3</span>
 	<a class="pagination__item pagination__item--next btn" href="/categories/blog/page/2/">»</a>
 </div>
 
@@ -264,6 +265,7 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20220926/">clidatajp</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220914/">RのNSE(Non-Standard Evaluation)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220910/">正規表現</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220905/">MacでSelenium</a></li>
@@ -273,7 +275,6 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 			<li class="widget__item"><a class="widget__link" href="/post/20220726/">プログラミングと文章の構造化</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220720/">手作業とスクリプト</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220712/">関数・ドキュメントの整理</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20220711/">CSSでレスポンシブ・レイアウト</a></li>
 		</ul>
 	</div>
 </div>
@@ -290,6 +291,7 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/biodiv/" title="biodiv">biodiv</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/clidatajp/" title="clidatajp">clidatajp</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/grep/" title="grep">grep</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="hugo">hugo</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="javascript">javascript</a>
