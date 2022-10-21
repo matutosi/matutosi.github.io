@@ -418,150 +418,150 @@ function sortByOrder(array, rank_array){
     sorted_array[rank_array[Ni]] = array[Ni]; 
   } 
   return sorted_array; 
-}</script> <script>function getLat(){return String(locations.lat[locations.lat.length-1])}function getLon(){return String(locations.lon[locations.lon.length-1])}function getAcc(){return String(locations.acc[locations.acc.length-1])}function successCallback(o){locations.lat.push(o.coords.latitude),locations.lon.push(o.coords.longitude),locations.acc.push(o.coords.accuracy)}function errorCallback(o){document.getElementById("poslog").innerHTML+=o.code+", "+o.message+"<br>"}function stopWatchPosition(){navigator.geolocation.clearWatch(watchId)}function startWatchPosition(){watchId=navigator.geolocation.watchPosition(successCallback,errorCallback,positionOptions)}var watchId=0,positionOptions={enableHighAccuracy:!0,timeout:6e4,maximumAge:0},locations={lat:[],lon:[],acc:[]};</script> <script>function switchScreenShow(e){var t=document.getElementById(e);checkFullScreen()?(document.exitFullscreen(),t.setAttribute("value","TO FULL SCREEN")):(document.body.requestFullscreen(),t.setAttribute("value","to normal show"))}function checkFullScreen(){var e=!1;return document.fullscreenElement&&(e=!0),e}</script> <script>function launchMailer(){location.href='mailto: matutosi@gmail.com?subject="text"&body="testmail"'}</script> <script>// Get data and optional information from a table.
-//    getTableDataPlus() retrieve table data as well as column names, data types, selects. 
-//    @params id_table      A string to specify table id.
-//    @return               A string with 4 parts as shown below. 
-//                          Each part is JSON format.
-//                            c_names: Column names of table, which will be used for making th.
-//                            d_types: Data types of each column for judging the td and input types.
-//                            selects: Select options for 'select-one' element. null for other types.
-//                            t_data : Table data for making td values or innnerHTML.
-function getTableDataPlus(id_table){
-  // var id_table = "occ_input_table";
-  var table = document.getElementById(id_table);
-  var c_names = getColNames(table);
-  var d_types = get_data_types(table);
-  var t_data = [];
-  for(name of c_names){
-    t_data[name] = getColData(table, name);
-  }
-  var selects = [];
-  for(var i = 0; i < d_types.length; i++){ 
-    selects.push( (d_types[i] === "select-one") ? getSelectOne(table, c_names[i]): null) 
-  };
-  var t_data = JSON.stringify(Object.assign({}, t_data));
-  c_names = JSON.stringify({ sys_c_names: c_names });
-  d_types = JSON.stringify({ sys_d_types: d_types });
-  selects = JSON.stringify({ sys_selects: selects });
-  return c_names + ";" + d_types + ";" + selects + ";" + t_data;
-}
-
-// Helper for getInputData()
-//    @params table      A table element.
-//    @params col_names  A string of column name to get options in select element.
-//    @return            An array of select options.
-function getSelectOne(table, col_name){
-  // var col_name = "Layer";
-  const col_no = getColNames(table).indexOf(col_name);
-  var options = table.rows[2].cells[col_no].firstChild.options;
-  var sel_opt = [];
-  for(option of options){
-    sel_opt.push(option.innerText);
-  }
-  return sel_opt;
-}
-
-
-// Restore table from localStorage
-//    Restore setting or input table data form localStorage. 
-//    The data should be saved with saveTable() and genetated by getInputData().
-//    The data has 4 parts as shown below. 
-//      c_names: Column names of table, which will be used for making th.
-//      d_types: Data types of each column for judging the td and input types.
-//      selects: Select options for 'select-one' element. null for other types.
-//      t_data : Table data for making td values or innnerHTML.
-//    @params table_name  A string to specify table name. 
-//                        localStorage key name is "bis_" + table_name.
-//    @return             A table element with id: table_name.
-//    @examples
-//    var table_name = 'occ_input_table_example_01'; 
-//    localStorage.setItem("bis_" + table_name, data.occ_input_table_example_01);
-//    restoreTable(table_name);
-function restoreTable(table_name, from = "localStorage"){
-  // input data
-  // console.log(table_name);
-  // var table_name ="occ_input_table_example_01";
-  // var from = "localStorage";
-  switch(from){
-    case "localStorage":
-      var plot = localStorage[ "bis_" + table_name ].split(";")
-      break;
-    default:
-      var plot = data[table_name].split(";");
-      break;
-  }
-  var table = makeTable(plot, table_name);
-  return table;
-}
-
-function makeTable(plot, table_name){
-  // console.log(plot);
-  var col_names = JSON.parse(plot[0])["sys_c_names"];
-  var dat_types = JSON.parse(plot[1])["sys_d_types"];
-  var selects   = JSON.parse(plot[2])["sys_selects"];
-  var tab_data  = JSON.parse(plot[3]);
-  // create table
-  var table = crEl({ el: 'table', ats:{id: table_name} });
-  // th
-  const n_col = col_names.length;
-  var hide_col = (table_name.split("_")[0] === "input");
-  var tr = document.createElement('tr');
-  for(let Ni = 0; Ni < n_col; Ni++){
-    if(col_names[Ni] !== ""){
-      var th = crEl({ el: 'th', ih: col_names[Ni] });
-      if(hide_col){ th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); }
-      tr.appendChild(th);
-    }
-  }
-  table.appendChild(tr)
-  // td
-  const n_row = tab_data[col_names[0]].length;
-  for(let Ri = 0; Ri < n_row; Ri++){
-    var tr = document.createElement('tr');
-    for(let Cj = 0; Cj < n_col; Cj++){
-      tr.appendChild( restoreTd(tab_data[col_names[Cj]][Ri], dat_types[Cj], selects[Cj]) );
-    }
-    table.appendChild(tr);
-  }
-  return table;
-}
-
-
-// Helper for restoreTable()
-//    @params table_data  A string to specify data in td.
-//    @params data_type   A string to specify data type.
-//    @params select      An array for select-option.
-//    return              An td element with innerText or input element
-function restoreTd(table_data, data_type, select){
-  switch(data_type){
-    case "text":
-      var td = crEl({ el: "td" });
-      td.appendChild( crEl({ el:'input', ats:{type: data_type, value: table_data} }) );
-      break;
-    case "number":
-      var td = crEl({ el: "td" });
-      td.appendChild(crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} }));
-      break;
-    case "checkbox":
-      var td = crEl({ el: "td" });
-      var checkbox = crEl({ el:'input', ats:{type: data_type} });
-      if(table_data) checkbox.setAttribute("checked", true);
-      td.appendChild( checkbox );
-      break;
-    case "fixed":
-      var td = crEl({ el:'td', ih: table_data });
-      break;
-    case "button":
-      if(table_data === "DELETE")           { var td = createTdWithChild( createDelButton() ); }
-      if(table_data === "Update Time & GPS"){ var td = createTdWithChild( createUpdateButton() ); }
-      break;
-    case "select-one":
-      var sel_no = select.indexOf(table_data);
-      var td = createTdWithChild( createSelectOpt(select, sel_no) );
-      break;
-  }
-  return td;
+}</script> <script>function getLat(){return String(locations.lat[locations.lat.length-1])}function getLon(){return String(locations.lon[locations.lon.length-1])}function getAcc(){return String(locations.acc[locations.acc.length-1])}function successCallback(o){locations.lat.push(o.coords.latitude),locations.lon.push(o.coords.longitude),locations.acc.push(o.coords.accuracy)}function errorCallback(o){document.getElementById("poslog").innerHTML+=o.code+", "+o.message+"<br>"}function stopWatchPosition(){navigator.geolocation.clearWatch(watchId)}function startWatchPosition(){watchId=navigator.geolocation.watchPosition(successCallback,errorCallback,positionOptions)}var watchId=0,positionOptions={enableHighAccuracy:!0,timeout:6e4,maximumAge:0},locations={lat:[],lon:[],acc:[]};</script> <script>function switchScreenShow(e){var t=document.getElementById(e);checkFullScreen()?(document.exitFullscreen(),t.setAttribute("value","TO FULL SCREEN")):(document.body.requestFullscreen(),t.setAttribute("value","to normal show"))}function checkFullScreen(){var e=!1;return document.fullscreenElement&&(e=!0),e}</script> <script>function launchMailer(){location.href='mailto: matutosi@gmail.com?subject="text"&body="testmail"'}</script> <script>// Get data and optional information from a table. 
+//    getTableDataPlus() retrieve table data as well as column names, data types, selects.  
+//    @params id_table      A string to specify table id. 
+//    @return               A string with 4 parts as shown below.  
+//                          Each part is JSON format. 
+//                            c_names: Column names of table, which will be used for making th. 
+//                            d_types: Data types of each column for judging the td and input types. 
+//                            selects: Select options for 'select-one' element. null for other types. 
+//                            t_data : Table data for making td values or innnerHTML. 
+function getTableDataPlus(id_table){ 
+  // var id_table = "occ_input_table"; 
+  var table = document.getElementById(id_table); 
+  var c_names = getColNames(table); 
+  var d_types = get_data_types(table); 
+  var t_data = []; 
+  for(name of c_names){ 
+    t_data[name] = getColData(table, name); 
+  } 
+  var selects = []; 
+  for(var i = 0; i < d_types.length; i++){  
+    selects.push( (d_types[i] === "select-one") ? getSelectOne(table, c_names[i]): null)  
+  }; 
+  var t_data = JSON.stringify(Object.assign({}, t_data)); 
+  c_names = JSON.stringify({ sys_c_names: c_names }); 
+  d_types = JSON.stringify({ sys_d_types: d_types }); 
+  selects = JSON.stringify({ sys_selects: selects }); 
+  return c_names + ";" + d_types + ";" + selects + ";" + t_data; 
+} 
+ 
+// Helper for getInputData() 
+//    @params table      A table element. 
+//    @params col_names  A string of column name to get options in select element. 
+//    @return            An array of select options. 
+function getSelectOne(table, col_name){ 
+  // var col_name = "Layer"; 
+  const col_no = getColNames(table).indexOf(col_name); 
+  var options = table.rows[2].cells[col_no].firstChild.options; 
+  var sel_opt = []; 
+  for(option of options){ 
+    sel_opt.push(option.innerText); 
+  } 
+  return sel_opt; 
+} 
+ 
+ 
+// Restore table from localStorage 
+//    Restore setting or input table data form localStorage.  
+//    The data should be saved with saveTable() and genetated by getInputData(). 
+//    The data has 4 parts as shown below.  
+//      c_names: Column names of table, which will be used for making th. 
+//      d_types: Data types of each column for judging the td and input types. 
+//      selects: Select options for 'select-one' element. null for other types. 
+//      t_data : Table data for making td values or innnerHTML. 
+//    @params table_name  A string to specify table name.  
+//                        localStorage key name is "bis_" + table_name. 
+//    @return             A table element with id: table_name. 
+//    @examples 
+//    var table_name = 'occ_input_table_example_01';  
+//    localStorage.setItem("bis_" + table_name, data.occ_input_table_example_01); 
+//    restoreTable(table_name); 
+function restoreTable(table_name, from = "localStorage"){ 
+  // input data 
+  // console.log(table_name); 
+  // var table_name ="occ_input_table_example_01"; 
+  // var from = "localStorage"; 
+  switch(from){ 
+    case "localStorage": 
+      var plot = localStorage[ "bis_" + table_name ].split(";") 
+      break; 
+    default: 
+      var plot = data[table_name].split(";"); 
+      break; 
+  } 
+  var table = makeTable(plot, table_name); 
+  return table; 
+} 
+ 
+function makeTable(plot, table_name){ 
+  // console.log(plot); 
+  var col_names = JSON.parse(plot[0])["sys_c_names"]; 
+  var dat_types = JSON.parse(plot[1])["sys_d_types"]; 
+  var selects   = JSON.parse(plot[2])["sys_selects"]; 
+  var tab_data  = JSON.parse(plot[3]); 
+  // create table 
+  var table = crEl({ el: 'table', ats:{id: table_name} }); 
+  // th 
+  const n_col = col_names.length; 
+  var hide_col = (table_name.split("_")[0] === "input"); 
+  var tr = document.createElement('tr'); 
+  for(let Ni = 0; Ni < n_col; Ni++){ 
+    if(col_names[Ni] !== ""){ 
+      var th = crEl({ el: 'th', ih: col_names[Ni] }); 
+      if(hide_col){ th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); } 
+      tr.appendChild(th); 
+    } 
+  } 
+  table.appendChild(tr) 
+  // td 
+  const n_row = tab_data[col_names[0]].length; 
+  for(let Ri = 0; Ri < n_row; Ri++){ 
+    var tr = document.createElement('tr'); 
+    for(let Cj = 0; Cj < n_col; Cj++){ 
+      tr.appendChild( restoreTd(tab_data[col_names[Cj]][Ri], dat_types[Cj], selects[Cj]) ); 
+    } 
+    table.appendChild(tr); 
+  } 
+  return table; 
+} 
+ 
+ 
+// Helper for restoreTable() 
+//    @params table_data  A string to specify data in td. 
+//    @params data_type   A string to specify data type. 
+//    @params select      An array for select-option. 
+//    return              An td element with innerText or input element 
+function restoreTd(table_data, data_type, select){ 
+  switch(data_type){ 
+    case "text": 
+      var td = crEl({ el: "td" }); 
+      td.appendChild( crEl({ el:'input', ats:{type: data_type, value: table_data} }) ); 
+      break; 
+    case "number": 
+      var td = crEl({ el: "td" }); 
+      td.appendChild(crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} })); 
+      break; 
+    case "checkbox": 
+      var td = crEl({ el: "td" }); 
+      var checkbox = crEl({ el:'input', ats:{type: data_type} }); 
+      if(table_data) checkbox.setAttribute("checked", true); 
+      td.appendChild( checkbox ); 
+      break; 
+    case "fixed": 
+      var td = crEl({ el:'td', ih: table_data }); 
+      break; 
+    case "button": 
+      if(table_data === "DELETE")           { var td = createTdWithChild( createDelButton() ); } 
+      if(table_data === "Update Time & GPS"){ var td = createTdWithChild( createUpdateButton() ); } 
+      break; 
+    case "select-one": 
+      var sel_no = select.indexOf(table_data); 
+      var td = createTdWithChild( createSelectOpt(select, sel_no) ); 
+      break; 
+  } 
+  return td; 
 }</script> <script>// Helper to create input tag with attributes such as class, id, type, value, and placeholder. 
 //    @paramas ...args Some arguments. 
 //    @return  An input element. 
@@ -1152,252 +1152,252 @@ function loadExample(obj){
  
   obj.nextElementSibling.remove(); // <br> 
   obj.remove(); 
-}</script> <script>// Helper to call addRow() multiple times
-//    @paramas obj  A input element.
-//                  Normally use "this". 
-//    In BISS, addRows() is generated by createAddRowButton() as below. 
-//      createNrowInput() is necessary as well.
-//      
-//      // Down span
-//      var dn = crEl({ el:'span', ats:{id: "dn_" + ns} });
-//      dn.appendChild( createNrowInput() );
-//      dn.appendChild( createAddRowButton() );
-//      // Main
-//      var main   = crEl({ el:'span', id: "main_"   + ns})
-//      main.appendChild(up);
-//      main.appendChild(table);
-//      main.appendChild(dn);
-//      main.appendChild( crEl({ el: 'hr' }) );
-function addRows(obj){
-  // console.log(obj);
-  // console.log(obj.parentNode.previousElementSibling);
-  var n_row = obj.previousElementSibling.value;
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  for(let i = 0; i < n_row; i++){ addRow(table); }
-}
-
-// Copy buttom row and paste it as new rows
-//    Column date  getNow() will be applied.
-//    Column fixed and <select> <option> will be used the same selection.
-//    Column "checkbox" and "text" will be made as unchecked and blank one.
+}</script> <script>// Helper to call addRow() multiple times 
+//    @paramas obj  A input element. 
+//                  Normally use "this".  
+//    In BISS, addRows() is generated by createAddRowButton() as below.  
+//      createNrowInput() is necessary as well. 
+//       
+//      // Down span 
+//      var dn = crEl({ el:'span', ats:{id: "dn_" + ns} }); 
+//      dn.appendChild( createNrowInput() ); 
+//      dn.appendChild( createAddRowButton() ); 
+//      // Main 
+//      var main   = crEl({ el:'span', id: "main_"   + ns}) 
+//      main.appendChild(up); 
+//      main.appendChild(table); 
+//      main.appendChild(dn); 
+//      main.appendChild( crEl({ el: 'hr' }) ); 
+function addRows(obj){ 
+  // console.log(obj); 
+  // console.log(obj.parentNode.previousElementSibling); 
+  var n_row = obj.previousElementSibling.value; 
+  var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  for(let i = 0; i < n_row; i++){ addRow(table); } 
+} 
+ 
+// Copy buttom row and paste it as new rows 
+//    Column date  getNow() will be applied. 
+//    Column fixed and <select> <option> will be used the same selection. 
+//    Column "checkbox" and "text" will be made as unchecked and blank one. 
+//     
+function addRow(table){ 
+  // console.log(table); 
+  const col_names = getColNames(table); 
+  const n_col = col_names.length; 
+  const n_row = table.rows.length; 
+  var last_row = table.rows[n_row - 1];  // to get selectedIndex 
+  var next_row = table.rows[n_row - 1].cloneNode(true); 
+  for(let Ci = 0; Ci < n_col; Ci++){ 
+    switch(col_names[Ci].toLowerCase()){  // // toLowerCase  // //  
+      case "make":  // Make bottun 
+        if(next_row.children[Ci].firstChild === null){ 
+          next_row.children[Ci].appendChild( createNewOccButton() ); 
+        } else { 
+          next_row.children[Ci].firstChild.replaceWith( createNewOccButton() ); 
+        } 
+        break; 
+      case "date":  // update "date" 
+        next_row.children[Ci].innerHTML = getNow(); 
+        break; 
+      case "loclat":  // update GPS data 
+        next_row.children[Ci].innerHTML = getLat(); 
+        break; 
+      case "loclon": 
+        next_row.children[Ci].innerHTML = getLon(); 
+        break; 
+      case "locacc": 
+        next_row.children[Ci].innerHTML = getAcc(); 
+        break; 
+      case "updatebutton": // do nothing 
+      case "delbutton":    // do nothing 
+        break; 
+      case "no":   // no = max(no) + 1 
+        var nos = getColData(table, col_names[Ci]); 
+        nos.shift(); // delete hide button 
+        next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1; 
+        break; 
+      default: 
+        if(next_row.children[Ci].firstChild.value === void 0){   
+          // void 0 means undifined -> fixed text: do nothing 
+          break; 
+        } else { 
+          switch(next_row.children[Ci].firstChild.getAttribute("type")){ 
+            case "checkbox": // clear checkbox 
+              next_row.children[Ci].firstChild.checked = false; 
+              break; 
+            case "text":    // clear input text 
+            case "number":  // clear input text 
+              next_row.children[Ci].firstChild.value = ""; 
+              break; 
+            case null: // select from list 
+              selected_opt = last_row.children[Ci].firstChild.selectedIndex; 
+              next_row.children[Ci].firstChild.selectedIndex = selected_opt; 
+              break; 
+          } 
+        } 
+        break; 
+    } 
+  } 
+  table.appendChild(next_row); 
+}</script> <script>// Change table view wide <--> short.  
+//   Short table hide th and show label in td. 
 //    
-function addRow(table){
-  // console.log(table);
-  const col_names = getColNames(table);
-  const n_col = col_names.length;
-  const n_row = table.rows.length;
-  var last_row = table.rows[n_row - 1];  // to get selectedIndex
-  var next_row = table.rows[n_row - 1].cloneNode(true);
-  for(let Ci = 0; Ci < n_col; Ci++){
-    switch(col_names[Ci].toLowerCase()){  // // toLowerCase  // // 
-      case "make":  // Make bottun
-        if(next_row.children[Ci].firstChild === null){
-          next_row.children[Ci].appendChild( createNewOccButton() );
-        } else {
-          next_row.children[Ci].firstChild.replaceWith( createNewOccButton() );
-        }
-        break;
-      case "date":  // update "date"
-        next_row.children[Ci].innerHTML = getNow();
-        break;
-      case "loclat":  // update GPS data
-        next_row.children[Ci].innerHTML = getLat();
-        break;
-      case "loclon":
-        next_row.children[Ci].innerHTML = getLon();
-        break;
-      case "locacc":
-        next_row.children[Ci].innerHTML = getAcc();
-        break;
-      case "updatebutton": // do nothing
-      case "delbutton":    // do nothing
-        break;
-      case "no":   // no = max(no) + 1
-        var nos = getColData(table, col_names[Ci]);
-        nos.shift(); // delete hide button
-        next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1;
-        break;
-      default:
-        if(next_row.children[Ci].firstChild.value === void 0){  
-          // void 0 means undifined -> fixed text: do nothing
-          break;
-        } else {
-          switch(next_row.children[Ci].firstChild.getAttribute("type")){
-            case "checkbox": // clear checkbox
-              next_row.children[Ci].firstChild.checked = false;
-              break;
-            case "text":    // clear input text
-            case "number":  // clear input text
-              next_row.children[Ci].firstChild.value = "";
-              break;
-            case null: // select from list
-              selected_opt = last_row.children[Ci].firstChild.selectedIndex;
-              next_row.children[Ci].firstChild.selectedIndex = selected_opt;
-              break;
-          }
-        }
-        break;
-    }
-  }
-  table.appendChild(next_row);
-}</script> <script>// Change table view wide <--> short. 
-//   Short table hide th and show label in td.
-//   
-//    In BISS, input button is generated by following functions.
-//        createShortTable()
-//        createWideTable
-//    @paramas obj   A input element.
-//                   Normally use "this". 
-//    @paramas table A table element.
-function shortTable(obj){
-  var table = obj.parentNode.nextElementSibling;
-  var rows = table.rows;
-  rows[0].style.display = 'none';          //  0: colnames
-  rows[1].style.display = 'none';          //  1: hide buttons
-  for(let Ri = 2; Ri < rows.length; Ri++){ //  2: data
-    var tr = rows[Ri];
-    tr.style.display = "flex";
-    tr.style["flex-wrap"] = "wrap";
-  }
-  addThLabel(table);
-  obj.replaceWith( createWideTable() );
-}
-function wideTable(obj){
-  var table = obj.parentNode.nextElementSibling;
-  var rows = table.rows;
-  for(let Ri = 0; Ri < rows.length; Ri++){
-    var tr = rows[Ri];
-    tr.style.display = "";
-    tr.style["flex-wrap"] = "";
-  }
-  removeThLabel(table);
-  obj.replaceWith( createShortTable() );
-}
-function addThLabel(table){
-  var c_names = getColNames(table);
-  var rows = table.rows;
-  for(let Ri = 1; Ri < rows.length; Ri++){
-    var row = rows[Ri];
-    for(let Cj = 0; Cj < row.cells.length; Cj++){
-      var td = row.cells[Cj];
-      td.setAttribute("th-lab", c_names[Cj] + ": ")
-    }
-  }
-}
-function removeThLabel(table){
-  var rows = table.rows;
-  for(let Ri = 1; Ri < rows.length; Ri++){
-    var row = rows[Ri];
-    for(let Cj = 0; Cj < row.cells.length; Cj++){
-      var td = row.cells[Cj];
-      td.removeAttribute("th-lab");
-    }
-  }
-}</script> <script>// Hide / show row or column in a table
-//    In BISS, input button is generated by following functions.
-//        createShortTable()
-//        createWideTable()
-//        createHideRowButton()
-//        createShowRowButton()
-//        createShowColButton()
-//    @paramas obj  A input element.
-//                  Normally use "this". 
-function showRow(obj){
-  var tr = obj.parentNode.parentNode;
-  var table = obj.parentNode.parentNode.parentNode;
-  var c_names = getColNames(table);
-  if(table.rows[0].style.display === 'none'){
-    var disp = 'inline-block';
-  }else{
-    var disp = '';
-  }
-  for(let i = 0; i < tr.cells.length; i++){
-    var td = tr.cells[i];
-    var label = c_names[i].toLowerCase();
-    switch(label){
-      case "plot": // remain td
-        break;
-      default:
-        td.style.display = disp;
-        break;
-    }
-  }
-  obj.replaceWith( createHideRowButton("plot info") );
-}
-function hideRow(obj){
-  var tr = obj.parentNode.parentNode;
-  var table = obj.parentNode.parentNode.parentNode;
-  var c_names = getColNames(table);
-  for(let i = 0; i < tr.cells.length; i++){
-    var td = tr.cells[i];
-    var label = c_names[i].toLowerCase();
-    switch(label){
-      case "plot": // remain td
-        break;
-      default:
-        td.style.display = 'none';
-        break;
-    }
-  }
-  obj.parentNode.style.display = ''; // show button
-  obj.replaceWith( createShowRowButton("plot info") );
-}
-function showAllCols(obj){
-  // console.log(obj.parentNode.parentNode.nextElementSibling);
-  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
-  for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){
-    for(let Rj = 0; Rj < table.rows.length; Rj++){
-      table.rows[Rj].cells[Ci].style.display = '';
-    }
-  }
-  obj.parentNode.textContent = "";
-}
-function hideTableCol(obj){
-  // console.log(obj.parentNode.parentNode.parentNode);
-  var table = obj.parentNode.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
-  var c_no = obj.parentElement.cellIndex;
-  var c_name = table.rows[0].cells[c_no].innerText;
-  // console.log(c_name);
-  for(let Rj = 0; Rj < table.rows.length; Rj++){
-    table.rows[Rj].cells[c_no].style.display = 'none';
-  }
-  var span = obj.parentNode.parentNode.parentNode.previousElementSibling.lastElementChild;
-  // tc: "Show "
-  if(span.children.length === 0){
-    span.textContent = "Show: ";
-    span.appendChild( createInput({ type:"button", value:"All cols", onclick:"showAllCols(this)"}) );
-  }
-  span.appendChild( createShowColButton(c_name) );
-}
-function showCol(obj){
-  // show col
-  var c_name = obj.value;
-  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
-  var c_no = getColNames(table).indexOf(c_name);
-  for(let Rj = 0; Rj < table.rows.length; Rj++){
-      table.rows[Rj].cells[c_no].style.display = '';
-  }
-  // remove
-  if(obj.parentNode.children.length === 1){ obj.parentNode.textContent = ""; }
-  obj.remove();
-}
-function hideShowNext(obj){
-  // console.log(obj);
-  // console.log(obj.parentNode.nextElementSibling);
-  var span   = obj.nextElementSibling.nextElementSibling;
-  var next   = obj.parentNode.nextElementSibling;
-  var next_2 = obj.parentNode.nextElementSibling.nextElementSibling;
-  if(next.style.display === 'none'){
-    span.style.display = '';
-    next.style.display = '';
-    next_2.style.display = '';
-    obj.value = "Hide table";
-  } else {
-    span.style.display = 'none';
-    next.style.display = 'none';
-    next_2.style.display = 'none';
-    obj.value = "Show table";
-  }
+//    In BISS, input button is generated by following functions. 
+//        createShortTable() 
+//        createWideTable 
+//    @paramas obj   A input element. 
+//                   Normally use "this".  
+//    @paramas table A table element. 
+function shortTable(obj){ 
+  var table = obj.parentNode.nextElementSibling; 
+  var rows = table.rows; 
+  rows[0].style.display = 'none';          //  0: colnames 
+  rows[1].style.display = 'none';          //  1: hide buttons 
+  for(let Ri = 2; Ri < rows.length; Ri++){ //  2: data 
+    var tr = rows[Ri]; 
+    tr.style.display = "flex"; 
+    tr.style["flex-wrap"] = "wrap"; 
+  } 
+  addThLabel(table); 
+  obj.replaceWith( createWideTable() ); 
+} 
+function wideTable(obj){ 
+  var table = obj.parentNode.nextElementSibling; 
+  var rows = table.rows; 
+  for(let Ri = 0; Ri < rows.length; Ri++){ 
+    var tr = rows[Ri]; 
+    tr.style.display = ""; 
+    tr.style["flex-wrap"] = ""; 
+  } 
+  removeThLabel(table); 
+  obj.replaceWith( createShortTable() ); 
+} 
+function addThLabel(table){ 
+  var c_names = getColNames(table); 
+  var rows = table.rows; 
+  for(let Ri = 1; Ri < rows.length; Ri++){ 
+    var row = rows[Ri]; 
+    for(let Cj = 0; Cj < row.cells.length; Cj++){ 
+      var td = row.cells[Cj]; 
+      td.setAttribute("th-lab", c_names[Cj] + ": ") 
+    } 
+  } 
+} 
+function removeThLabel(table){ 
+  var rows = table.rows; 
+  for(let Ri = 1; Ri < rows.length; Ri++){ 
+    var row = rows[Ri]; 
+    for(let Cj = 0; Cj < row.cells.length; Cj++){ 
+      var td = row.cells[Cj]; 
+      td.removeAttribute("th-lab"); 
+    } 
+  } 
+}</script> <script>// Hide / show row or column in a table 
+//    In BISS, input button is generated by following functions. 
+//        createShortTable() 
+//        createWideTable() 
+//        createHideRowButton() 
+//        createShowRowButton() 
+//        createShowColButton() 
+//    @paramas obj  A input element. 
+//                  Normally use "this".  
+function showRow(obj){ 
+  var tr = obj.parentNode.parentNode; 
+  var table = obj.parentNode.parentNode.parentNode; 
+  var c_names = getColNames(table); 
+  if(table.rows[0].style.display === 'none'){ 
+    var disp = 'inline-block'; 
+  }else{ 
+    var disp = ''; 
+  } 
+  for(let i = 0; i < tr.cells.length; i++){ 
+    var td = tr.cells[i]; 
+    var label = c_names[i].toLowerCase(); 
+    switch(label){ 
+      case "plot": // remain td 
+        break; 
+      default: 
+        td.style.display = disp; 
+        break; 
+    } 
+  } 
+  obj.replaceWith( createHideRowButton("plot info") ); 
+} 
+function hideRow(obj){ 
+  var tr = obj.parentNode.parentNode; 
+  var table = obj.parentNode.parentNode.parentNode; 
+  var c_names = getColNames(table); 
+  for(let i = 0; i < tr.cells.length; i++){ 
+    var td = tr.cells[i]; 
+    var label = c_names[i].toLowerCase(); 
+    switch(label){ 
+      case "plot": // remain td 
+        break; 
+      default: 
+        td.style.display = 'none'; 
+        break; 
+    } 
+  } 
+  obj.parentNode.style.display = ''; // show button 
+  obj.replaceWith( createShowRowButton("plot info") ); 
+} 
+function showAllCols(obj){ 
+  // console.log(obj.parentNode.parentNode.nextElementSibling); 
+  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0]; 
+  for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){ 
+    for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+      table.rows[Rj].cells[Ci].style.display = ''; 
+    } 
+  } 
+  obj.parentNode.textContent = ""; 
+} 
+function hideTableCol(obj){ 
+  // console.log(obj.parentNode.parentNode.parentNode); 
+  var table = obj.parentNode.parentNode.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var c_no = obj.parentElement.cellIndex; 
+  var c_name = table.rows[0].cells[c_no].innerText; 
+  // console.log(c_name); 
+  for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+    table.rows[Rj].cells[c_no].style.display = 'none'; 
+  } 
+  var span = obj.parentNode.parentNode.parentNode.previousElementSibling.lastElementChild; 
+  // tc: "Show " 
+  if(span.children.length === 0){ 
+    span.textContent = "Show: "; 
+    span.appendChild( createInput({ type:"button", value:"All cols", onclick:"showAllCols(this)"}) ); 
+  } 
+  span.appendChild( createShowColButton(c_name) ); 
+} 
+function showCol(obj){ 
+  // show col 
+  var c_name = obj.value; 
+  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0]; 
+  var c_no = getColNames(table).indexOf(c_name); 
+  for(let Rj = 0; Rj < table.rows.length; Rj++){ 
+      table.rows[Rj].cells[c_no].style.display = ''; 
+  } 
+  // remove 
+  if(obj.parentNode.children.length === 1){ obj.parentNode.textContent = ""; } 
+  obj.remove(); 
+} 
+function hideShowNext(obj){ 
+  // console.log(obj); 
+  // console.log(obj.parentNode.nextElementSibling); 
+  var span   = obj.nextElementSibling.nextElementSibling; 
+  var next   = obj.parentNode.nextElementSibling; 
+  var next_2 = obj.parentNode.nextElementSibling.nextElementSibling; 
+  if(next.style.display === 'none'){ 
+    span.style.display = ''; 
+    next.style.display = ''; 
+    next_2.style.display = ''; 
+    obj.value = "Hide table"; 
+  } else { 
+    span.style.display = 'none'; 
+    next.style.display = 'none'; 
+    next_2.style.display = 'none'; 
+    obj.value = "Show table"; 
+  } 
 }</script> <script>// Search text input tags in a table and show only matching rows
 //    Clear input text, ALL rows will be shown.
 //    Regular expression can be used.
