@@ -99,7 +99,7 @@ function makeTable(plot, table_name){
   // td: hide buttons
   if(hide_col){
       var tr = document.createElement('tr');
-      for(let Ni = 0; Ni < n_col + 1; Ni++){
+      for(let Ni = 0; Ni < n_col; Ni++){
         if(col_names[Ni] !== ""){
           var td = crEl({ el: 'td', ih: "" });
           td.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
