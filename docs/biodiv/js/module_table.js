@@ -12,10 +12,8 @@ function inputTableModule(ns, table = null){
   var up = crEl({ el:'span', ats:{id: "up_" + ns} });
   up.appendChild( crEl({ el: 'B', tc: ns}) );
   up.appendChild( createSearchInput() );
-
   up.appendChild( createSaveInputButton() );
-
-  up.appendChild( createShowShortTable() );
+  up.appendChild( createWideTable() ); 
   up.appendChild( createHideButton() );
   up.appendChild( crEl({ el: 'br' }) );
   up.appendChild( crEl({ el: 'span'}) );
@@ -139,6 +137,7 @@ function makePlotInputModule(obj){
   var tab_inputs = document.getElementById("tab_inputs");
   tab_inputs.appendChild(module);
   setSortable(table.id);  // Should setSortable() after appendChild()
+  shortTable(table.previousElementSibling.children[3])  // Short table
   tabs[1].click();        // move to tab_inputs
 }
 
@@ -197,7 +196,7 @@ function makePlotTable(obj){
   // th
   const n_col = c_names.length;
   var tr = document.createElement('tr');
-  var th = crEl({ el: 'th', ih: "" });
+  var th = crEl({ el: 'th', ih: "Make" });
   th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
   tr.appendChild(th);
   for(let Ni = 0; Ni < n_col; Ni++){
@@ -261,7 +260,7 @@ function createInputTd(dat_type, col_name, optional){
       td.appendChild(createInput({ type: dat_type }));
       break;
     case "number":
-      td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} ));
+      td.appendChild(createInput({ size: "10", type: dat_type, inputmode: "numeric", min: "0"} ));
       break;
     case "list":
       arry_list = optional.split(':').concat(Array(""));

@@ -19,11 +19,11 @@ function createDelButton(){
 function createUpdateButton(){
   return createInput({ type: "button", value: "Update Time & GPS", onclick: "updateTimeGPS(this)" });
 }
-function createShowShortTable(){
-  return createInput({ type:"button", value: "Show short table", onclick: "shortTable(this)" });
+function createShortTable(){
+  return createInput({ type:"button", value: "Short table", onclick: "shortTable(this)" });
 }
-function createShowWideTable(){
-  return createInput({ type:"button", value: "Show wide table", onclick: "wideTable(this)" });
+function createWideTable(){
+  return createInput({ type:"button", value: "Wide table", onclick: "wideTable(this)" });
 }
 function createHideRowButton(row = "row"){
   return createInput({ type:"button", value: "Hide " + row, onclick: "hideRow(this)" });

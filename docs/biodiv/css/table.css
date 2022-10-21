@@ -9,38 +9,50 @@ table{
 input,select,chkbox,b{
   font-size   : var(--font-size);
 }
+input{
+/*  width       : 100%; */
+   width       : auto; 
+}
 
 table td,th{
   font-size   : var(--font-size);
   border-style: solid;     /* line type     */
   padding     : 0.3em 1em; /* innder margin */
+  text-align  : center;
+/*     width       : 1%;  */
+
 }
 
 #tab_settings table th{
   color: white;
   background-color: #0033CC;
 }
+#tab_settings table td{
+  border-width: 1px 0px;   /* line width: horizontal, vertical */
+  border-color: #0033CC;   /* line color    */
+}
+#tab_settings table tr:nth-child(odd){  /*  zebra  */
+  background:#BAD3FF;
+}
+
 
 #tab_inputs table th{
   color: white;
   background-color: #00552e;
   cursor: pointer;
 }
-
-#tab_settings table td{
-  border-width: 1px 0px; /* line width: horizontal, vertical */
-  border-color: #0033CC;   /* line color    */
-}
-
-
 #tab_inputs table td{
   border-width: 0px 0px;   /* line width: horizontal, vertical */
   border-color: #00552e;   /* line color    */
+}
+#tab_inputs table tr:nth-child(odd){  /*  zebra  */
+  background:#AEFFBD;
 }
 
 #tab_inputs table td:before{
   content: attr(th-lab);
 }
+
 
 #tab_inputs table tr{
   border-width: 0.5px 0.5px;

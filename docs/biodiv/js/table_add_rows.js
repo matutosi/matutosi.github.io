@@ -35,8 +35,8 @@ function addRow(table){
   var last_row = table.rows[n_row - 1];  // to get selectedIndex
   var next_row = table.rows[n_row - 1].cloneNode(true);
   for(let Ci = 0; Ci < n_col; Ci++){
-    switch(col_names[Ci].toLowerCase()){
-      case "new":  // Make bottun
+    switch(col_names[Ci].toLowerCase()){  // // toLowerCase  // // 
+      case "make":  // Make bottun
         if(next_row.children[Ci].firstChild === null){
           next_row.children[Ci].appendChild( createNewOccButton() );
         } else {
