@@ -176,7 +176,7 @@ function getDataType(table){
 //   const table = document.getElementById(id_table); 
   const col_names = getColNames(table); 
   const n_col = col_names.length; 
-  const first_row = table.rows[1].cells; 
+  const first_row = table.rows[2].cells; // 2: data, (0: colnames, 1: hide buttons) 
   var data_type = []; 
   for(let Ci = 0; Ci < n_col; Ci++){ 
     switch(col_names[Ci]){ 
@@ -207,7 +207,7 @@ function getDataType(table){
 // Helper for getDataType() 
 function get_data_types(table){ 
   var types = []; 
-  for(cell of table.rows[1].cells){ // 1: first td row 
+  for(cell of table.rows[2].cells){ // 2: first data row (0: colnames, 1: hide buttons) 
     types.push(get_data_type(cell)); 
   } 
   return types; 
@@ -248,7 +248,7 @@ function getNow(){
 //   @paramas  obj An element of input button of a row in a table. 
 function delRow(obj){ 
     var table = obj.parentNode.parentNode.parentNode; // clicked table 
-    if(table.rows.length > 2){                        // delete more than 3 rows (th + tb*2) 
+    if(table.rows.length > 3){                        // delete more than 3 rows (th + tb * 2) 
       var tr = obj.parentNode.parentNode;             // clicked row 
       tr.parentNode.deleteRow(tr.sectionRowIndex);    // delete clicked row 
     } 
@@ -314,18 +314,20 @@ function setSortable(id_table){
         dir = "desc";  
       }  
       column_no_prev = column_no; 
-      // rank_index: sorting order 
       var col_name = getColNames(table)[column_no]; 
-      var elements = getColData(table, col_name, list_with_index=true); 
+      var elements = getColData(table, col_name, list_with_index = true); 
+      elements.shift() // delete hide button 
   // console.log("elements in sort: " + elements); 
-      var rank_index = rank(elements, dir); 
- 
+      var rank_index = rank(elements, dir);  // rank_index: sorting order 
       // sort table 
       var trs = table.rows; 
-      for(let i=0; i<rank_index.length; i++){ rank_index[i]++; } 
-      rank_index.unshift(0); 
+      for(let i = 0; i < rank_index.length; i++){  
+        rank_index[i]++;  // add 2 (colnames and hide button) 
+        rank_index[i]++; 
+      } 
+      rank_index.unshift(0, 1);  // 0: colnames, 1: hide button 
       var new_trs = sortByOrder(trs, rank_index); 
-      for(let i=0; i<new_trs.length; i++){ 
+      for(let i = 0; i < new_trs.length; i++){ 
         table.appendChild(new_trs[i]); 
       } 
     } 
@@ -377,7 +379,7 @@ function rank(array, dir = "asc"){
     array = string2Numeric(array); 
     var rank = []; 
     var n_array = array.length; 
-    for (let i=0; i<n_array; i++) { rank[i] = 0; } 
+    for (let i = 0; i < n_array; i++) { rank[i] = 0; } 
     if(dir === "desc"){ 
       for (let i=1; i<n_array; i++) { 
           for (let j=0; j<i; j++) { 
@@ -387,8 +389,8 @@ function rank(array, dir = "asc"){
           } 
       } 
     } else { 
-      for (let i=1; i<n_array; i++) { 
-          for (let j=0; j<i; j++) { 
+      for (let i = 1; i < n_array; i++) { 
+          for (let j = 0; j < i; j++) { 
               if( array[j] > array[i]){ 
                   if( array[i] === null || array[i] === "" ){ rank[i]++; } 
                   else                                      { rank[j]++; } 
@@ -412,7 +414,7 @@ function sortByOrder(array, rank_array){
     return array; 
   } 
   var sorted_array = []; 
-  for(let Ni=0; Ni<n; Ni++){ 
+  for(let Ni = 0; Ni < n; Ni++){ 
     sorted_array[rank_array[Ni]] = array[Ni]; 
   } 
   return sorted_array; 
@@ -452,7 +454,7 @@ function getTableDataPlus(id_table){
 function getSelectOne(table, col_name){
   // var col_name = "Layer";
   const col_no = getColNames(table).indexOf(col_name);
-  var options = table.rows[1].cells[col_no].firstChild.options;
+  var options = table.rows[2].cells[col_no].firstChild.options;
   var sel_opt = [];
   for(option of options){
     sel_opt.push(option.innerText);
@@ -646,7 +648,7 @@ function inputTableModule(ns, table = null){
   up.appendChild( crEl({ el: 'B', tc: ns}) ); 
   up.appendChild( createSearchInput() ); 
   up.appendChild( createSaveInputButton() ); 
-  up.appendChild( createWideTable() );  
+  up.appendChild( createShortTable() );  
   up.appendChild( createHideButton() ); 
   up.appendChild( crEl({ el: 'br' }) ); 
   up.appendChild( crEl({ el: 'span'}) ); 
@@ -788,19 +790,32 @@ function makeOccTable(setting_table, plot){
   id_table = id_table.replace(old_plot, plot); 
  
   var table = crEl({ el: 'table', ats: {id: id_table} }); 
-  // th 
+ 
+  // th: colnames 
   const n_col = c_names.length; 
   var tr = document.createElement('tr'); 
   tr.appendChild( crEl({ el: 'th', ih: "Plot" }) ); 
   for(let Ni = 0; Ni < n_col; Ni++){ 
     if(c_names[Ni] !== ""){ 
       var th = crEl({ el: 'th', ih: c_names[Ni] }); 
-      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );  
       tr.appendChild(th); 
     } 
   } 
   table.appendChild(tr) 
-  // td 
+ 
+  // td: hide buttons 
+  var tr = document.createElement('tr'); 
+  for(let Ni = 0; Ni < n_col + 1; Ni++){ 
+    if(c_names[Ni] !== ""){ 
+      var td = crEl({ el: 'td', ih: "" }); 
+      td.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );  
+      tr.appendChild(td); 
+    } 
+  } 
+  table.appendChild(tr) 
+ 
+ 
+  // td: data 
   var tr = document.createElement('tr'); 
   var td = crEl({ el: 'td' }) 
   tr.appendChild( crEl({ el: 'td', ih: plot }) ); 
@@ -826,21 +841,32 @@ function makePlotTable(obj){
   var selects = getColData(setting_table, setting_c_names[2]); 
   var id_table = setting_table.id.replace("setting", "input"); 
   var table = crEl({ el: 'table', ats: {id: id_table} }); 
-  // th 
+ 
+  // th: colnames 
   const n_col = c_names.length; 
   var tr = document.createElement('tr'); 
   var th = crEl({ el: 'th', ih: "Make" }); 
-  th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );  
   tr.appendChild(th); 
   for(let Ni = 0; Ni < n_col; Ni++){ 
     if(c_names[Ni] !== ""){ 
       var th = crEl({ el: 'th', ih: c_names[Ni] }); 
-      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
       tr.appendChild(th); 
     } 
   } 
   table.appendChild(tr) 
-  // td 
+ 
+  // td: hide buttons 
+  var tr = document.createElement('tr'); 
+  for(let Ni = 0; Ni < n_col + 1; Ni++){ 
+    if(c_names[Ni] !== ""){ 
+      var td = crEl({ el: 'td', ih: "" }); 
+      td.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );  
+      tr.appendChild(td); 
+    } 
+  } 
+  table.appendChild(tr) 
+ 
+  // td: data 
   var tr = document.createElement('tr'); 
   var td = crEl({ el: 'td' }) 
   td.appendChild( createNewOccButton() ); 
@@ -893,7 +919,7 @@ function createInputTd(dat_type, col_name, optional){
       td.appendChild(createInput({ type: dat_type })); 
       break; 
     case "number": 
-      td.appendChild(createInput({ size: "10", type: dat_type, inputmode: "numeric", min: "0"} )); 
+      td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} )); 
       break; 
     case "list": 
       arry_list = optional.split(':').concat(Array("")); 
@@ -941,7 +967,7 @@ function sumWithGroup(obj){
   var grouped_array = splitByGroup(array_val, group_val); 
   // set groups order with 'select-one' 
   var c_no = getColNames(table).indexOf(group); 
-  var opts = table.rows[1].cells[c_no].firstChild.options; 
+  var opts = table.rows[2].cells[c_no].firstChild.options; 
   var groups = []; 
   for(o of opts){ groups.push(o.value); } 
   var sum_array = []; 
@@ -1114,8 +1140,8 @@ function loadExample(obj){
   var make_plot_button = document.getElementById("dn_setting_plot_default").children[2]; 
   make_plot_button.click(); 
   var table = document.getElementById("input_plot_default"); 
-  table.rows[1].cells[1].firstChild.value = "exam01"; 
-  table.rows[1].cells[0].firstChild.click() 
+  table.rows[2].cells[1].firstChild.value = "exam01"; 
+  table.rows[2].cells[0].firstChild.click() 
   // occ 
   var main = obj.parentNode; 
   var main = document.getElementById("tab_inputs"); 
@@ -1188,6 +1214,7 @@ function addRow(table){
         break;
       case "no":   // no = max(no) + 1
         var nos = getColData(table, col_names[Ci]);
+        nos.shift(); // delete hide button
         next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1;
         break;
       default:
@@ -1225,8 +1252,9 @@ function addRow(table){
 function shortTable(obj){
   var table = obj.parentNode.nextElementSibling;
   var rows = table.rows;
-  rows[0].style.display = 'none';
-  for(let Ri = 1; Ri < rows.length; Ri++){
+  rows[0].style.display = 'none';          //  0: colnames
+  rows[1].style.display = 'none';          //  1: hide buttons
+  for(let Ri = 2; Ri < rows.length; Ri++){ //  2: data
     var tr = rows[Ri];
     tr.style.display = "flex";
     tr.style["flex-wrap"] = "wrap";
@@ -1327,9 +1355,9 @@ function showAllCols(obj){
 function hideTableCol(obj){
   // console.log(obj.parentNode.parentNode.parentNode);
   var table = obj.parentNode.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
-  var c_name = obj.parentNode.innerText;
+  var c_no = obj.parentElement.cellIndex;
+  var c_name = table.rows[0].cells[c_no].innerText;
   // console.log(c_name);
-  var c_no = getColNames(table).indexOf(c_name);
   for(let Rj = 0; Rj < table.rows.length; Rj++){
     table.rows[Rj].cells[c_no].style.display = 'none';
   }
@@ -1455,4 +1483,4 @@ function generateSearchTable(ns, table){
   main.appendChild(up); 
   main.appendChild(table); 
   return main; 
-}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#efefff;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efffef;}#tabcontrol a:nth-child(3), #tabbody div:nth-child(3){ background-color:#ffffea;}#tabcontrol a:nth-child(4), #tabbody div:nth-child(4){ background-color:#ffefef;}</style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input,select,chkbox,b{ font-size :var(--font-size);}input{ width :auto;}table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_inputs table th{ color:white;background-color:#00552e;cursor:pointer;}#tab_inputs table td{ border-width:0px 0px; border-color:#00552e; }#tab_inputs table tr:nth-child(odd){ background:#AEFFBD;}#tab_inputs table td:before{ content:attr(th-lab);}#tab_inputs table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> Biodiversity Investigation Support System (BISS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startWatchPosition()"> <input type="button" value="Stop GPS" onclick="stopWatchPosition()"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <a href="exam01.html">Show example</a> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_settings">Settings </a> <a href="#tab_inputs">Inputs </a> <a href="#tab_tools">Tools </a> <a href="#tab4">Spare </a> </p> <div id="tabbody"> <div id="tab_settings"> <script>var setting_tab=document.getElementById("tab_settings");setting_tab.appendChild(settingTableModule("setting_plot_default")),setting_tab.appendChild(settingTableModule("setting_occ_default"));</script> </div> <div id="tab_inputs"> <script>var input_tab=document.getElementById("tab_inputs"),column_no=0,column_no_prev=0,dir="asc";</script> </div> <div id="tab_tools"> <script>var tab=document.getElementById("tab_tools");tab.appendChild(generateSearchTable("wamei",generateTable(wamei)));</script> <p> "aaa bbb" matches texts including both "aaa" and "bbb". </p><p> Wamei (Japanese plant names) is obtained from Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. A checklist of Japanese plant names (https://www.gbif.jp/v2/activities/wamei_checklist.html) </p></div> <div id="tab4"> </div> </div> </div> <script></script> <div> <script>function changeTab(){for(var e=this.href.substring(this.href.indexOf("#")+1,this.href.length),t=0;t<pages.length;t++)pages[t].id!=e?pages[t].style.display="none":pages[t].style.display="block";for(var t=0;t<tabs.length;t++)tabs[t].style.zIndex="0";return this.style.zIndex="10",!1}for(var tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div"),i=0;i<tabs.length;i++)tabs[i].onclick=changeTab;tabs[0].onclick();</script> <div> </div></div></body> </html> 
+}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#efefff;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efffef;}#tabcontrol a:nth-child(3), #tabbody div:nth-child(3){ background-color:#ffffea;}#tabcontrol a:nth-child(4), #tabbody div:nth-child(4){ background-color:#ffefef;}</style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input,select,chkbox,b{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_inputs table th{ color:white;background-color:#00552e;cursor:pointer;}#tab_inputs table td{ border-width:0px 0px; border-color:#00552e; }#tab_inputs table tr:nth-child(odd){ background:#AEFFBD;}#tab_inputs table td:before{ content:attr(th-lab);}#tab_inputs table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> Biodiversity Investigation Support System (BISS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startWatchPosition()"> <input type="button" value="Stop GPS" onclick="stopWatchPosition()"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <a href="exam01.html">Show example</a> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_settings">Settings </a> <a href="#tab_inputs">Inputs </a> <a href="#tab_tools">Tools </a> <a href="#tab4">Spare </a> </p> <div id="tabbody"> <div id="tab_settings"> <script>var setting_tab=document.getElementById("tab_settings");setting_tab.appendChild(settingTableModule("setting_plot_default")),setting_tab.appendChild(settingTableModule("setting_occ_default"));</script> </div> <div id="tab_inputs"> <script>var input_tab=document.getElementById("tab_inputs"),column_no=0,column_no_prev=0,dir="asc";</script> </div> <div id="tab_tools"> <script>var tab=document.getElementById("tab_tools");tab.appendChild(generateSearchTable("wamei",generateTable(wamei)));</script> <p> "aaa bbb" matches texts including both "aaa" and "bbb". </p><p> Wamei (Japanese plant names) is obtained from Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. A checklist of Japanese plant names (https://www.gbif.jp/v2/activities/wamei_checklist.html) </p></div> <div id="tab4"> </div> </div> </div> <script></script> <div> <script>function changeTab(){for(var e=this.href.substring(this.href.indexOf("#")+1,this.href.length),t=0;t<pages.length;t++)pages[t].id!=e?pages[t].style.display="none":pages[t].style.display="block";for(var t=0;t<tabs.length;t++)tabs[t].style.zIndex="0";return this.style.zIndex="10",!1}for(var tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div"),i=0;i<tabs.length;i++)tabs[i].onclick=changeTab;tabs[0].onclick();</script> <div> </div></div></body> </html> 

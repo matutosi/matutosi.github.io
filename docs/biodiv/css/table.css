@@ -10,8 +10,10 @@ input,select,chkbox,b{
   font-size   : var(--font-size);
 }
 input{
-/*  width       : 100%; */
-   width       : auto; 
+/*
+   width       : auto;
+   width       : 100%;
+*/
 }
 
 table td,th{

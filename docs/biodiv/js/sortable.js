@@ -25,18 +25,20 @@ function setSortable(id_table){
         dir = "desc"; 
       } 
       column_no_prev = column_no;
-      // rank_index: sorting order
       var col_name = getColNames(table)[column_no];
-      var elements = getColData(table, col_name, list_with_index=true);
+      var elements = getColData(table, col_name, list_with_index = true);
+      elements.shift() // delete hide button
   // console.log("elements in sort: " + elements);
-      var rank_index = rank(elements, dir);
-
+      var rank_index = rank(elements, dir);  // rank_index: sorting order
       // sort table
       var trs = table.rows;
-      for(let i=0; i<rank_index.length; i++){ rank_index[i]++; }
-      rank_index.unshift(0);
+      for(let i = 0; i < rank_index.length; i++){ 
+        rank_index[i]++;  // add 2 (colnames and hide button)
+        rank_index[i]++;
+      }
+      rank_index.unshift(0, 1);  // 0: colnames, 1: hide button
       var new_trs = sortByOrder(trs, rank_index);
-      for(let i=0; i<new_trs.length; i++){
+      for(let i = 0; i < new_trs.length; i++){
         table.appendChild(new_trs[i]);
       }
     }
@@ -88,7 +90,7 @@ function rank(array, dir = "asc"){
     array = string2Numeric(array);
     var rank = [];
     var n_array = array.length;
-    for (let i=0; i<n_array; i++) { rank[i] = 0; }
+    for (let i = 0; i < n_array; i++) { rank[i] = 0; }
     if(dir === "desc"){
       for (let i=1; i<n_array; i++) {
           for (let j=0; j<i; j++) {
@@ -98,8 +100,8 @@ function rank(array, dir = "asc"){
           }
       }
     } else {
-      for (let i=1; i<n_array; i++) {
-          for (let j=0; j<i; j++) {
+      for (let i = 1; i < n_array; i++) {
+          for (let j = 0; j < i; j++) {
               if( array[j] > array[i]){
                   if( array[i] === null || array[i] === "" ){ rank[i]++; }
                   else                                      { rank[j]++; }
@@ -123,7 +125,7 @@ function sortByOrder(array, rank_array){
     return array;
   }
   var sorted_array = [];
-  for(let Ni=0; Ni<n; Ni++){
+  for(let Ni = 0; Ni < n; Ni++){
     sorted_array[rank_array[Ni]] = array[Ni];
   }
   return sorted_array;

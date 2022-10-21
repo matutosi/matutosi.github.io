@@ -60,6 +60,7 @@ function addRow(table){
         break;
       case "no":   // no = max(no) + 1
         var nos = getColData(table, col_names[Ci]);
+        nos.shift(); // delete hide button
         next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1;
         break;
       default:

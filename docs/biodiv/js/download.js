@@ -34,7 +34,7 @@ function getTableDataPlus(id_table){
 function getSelectOne(table, col_name){
   // var col_name = "Layer";
   const col_no = getColNames(table).indexOf(col_name);
-  var options = table.rows[1].cells[col_no].firstChild.options;
+  var options = table.rows[2].cells[col_no].firstChild.options;
   var sel_opt = [];
   for(option of options){
     sel_opt.push(option.innerText);

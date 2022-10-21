@@ -107,7 +107,7 @@ function getDataType(table){
 //   const table = document.getElementById(id_table);
   const col_names = getColNames(table);
   const n_col = col_names.length;
-  const first_row = table.rows[1].cells;
+  const first_row = table.rows[2].cells; // 2: data, (0: colnames, 1: hide buttons)
   var data_type = [];
   for(let Ci = 0; Ci < n_col; Ci++){
     switch(col_names[Ci]){
@@ -138,7 +138,7 @@ function getDataType(table){
 // Helper for getDataType()
 function get_data_types(table){
   var types = [];
-  for(cell of table.rows[1].cells){ // 1: first td row
+  for(cell of table.rows[2].cells){ // 2: first data row (0: colnames, 1: hide buttons)
     types.push(get_data_type(cell));
   }
   return types;
@@ -179,7 +179,7 @@ function getNow(){
 //   @paramas  obj An element of input button of a row in a table.
 function delRow(obj){
     var table = obj.parentNode.parentNode.parentNode; // clicked table
-    if(table.rows.length > 2){                        // delete more than 3 rows (th + tb*2)
+    if(table.rows.length > 3){                        // delete more than 3 rows (th + tb * 2)
       var tr = obj.parentNode.parentNode;             // clicked row
       tr.parentNode.deleteRow(tr.sectionRowIndex);    // delete clicked row
     }

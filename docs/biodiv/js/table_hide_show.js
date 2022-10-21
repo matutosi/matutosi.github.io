@@ -60,9 +60,9 @@ function showAllCols(obj){
 function hideTableCol(obj){
   // console.log(obj.parentNode.parentNode.parentNode);
   var table = obj.parentNode.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
-  var c_name = obj.parentNode.innerText;
+  var c_no = obj.parentElement.cellIndex;
+  var c_name = table.rows[0].cells[c_no].innerText;
   // console.log(c_name);
-  var c_no = getColNames(table).indexOf(c_name);
   for(let Rj = 0; Rj < table.rows.length; Rj++){
     table.rows[Rj].cells[c_no].style.display = 'none';
   }

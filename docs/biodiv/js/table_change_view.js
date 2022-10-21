@@ -10,8 +10,9 @@
 function shortTable(obj){
   var table = obj.parentNode.nextElementSibling;
   var rows = table.rows;
-  rows[0].style.display = 'none';
-  for(let Ri = 1; Ri < rows.length; Ri++){
+  rows[0].style.display = 'none';          //  0: colnames
+  rows[1].style.display = 'none';          //  1: hide buttons
+  for(let Ri = 2; Ri < rows.length; Ri++){ //  2: data
     var tr = rows[Ri];
     tr.style.display = "flex";
     tr.style["flex-wrap"] = "wrap";

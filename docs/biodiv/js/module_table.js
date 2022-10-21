@@ -13,7 +13,7 @@ function inputTableModule(ns, table = null){
   up.appendChild( crEl({ el: 'B', tc: ns}) );
   up.appendChild( createSearchInput() );
   up.appendChild( createSaveInputButton() );
-  up.appendChild( createWideTable() ); 
+  up.appendChild( createShortTable() ); 
   up.appendChild( createHideButton() );
   up.appendChild( crEl({ el: 'br' }) );
   up.appendChild( crEl({ el: 'span'}) );
@@ -155,19 +155,32 @@ function makeOccTable(setting_table, plot){
   id_table = id_table.replace(old_plot, plot);
 
   var table = crEl({ el: 'table', ats: {id: id_table} });
-  // th
+
+  // th: colnames
   const n_col = c_names.length;
   var tr = document.createElement('tr');
   tr.appendChild( crEl({ el: 'th', ih: "Plot" }) );
   for(let Ni = 0; Ni < n_col; Ni++){
     if(c_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: c_names[Ni] });
-      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
       tr.appendChild(th);
     }
   }
   table.appendChild(tr)
-  // td
+
+  // td: hide buttons
+  var tr = document.createElement('tr');
+  for(let Ni = 0; Ni < n_col + 1; Ni++){
+    if(c_names[Ni] !== ""){
+      var td = crEl({ el: 'td', ih: "" });
+      td.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+      tr.appendChild(td);
+    }
+  }
+  table.appendChild(tr)
+
+
+  // td: data
   var tr = document.createElement('tr');
   var td = crEl({ el: 'td' })
   tr.appendChild( crEl({ el: 'td', ih: plot }) );
@@ -193,21 +206,32 @@ function makePlotTable(obj){
   var selects = getColData(setting_table, setting_c_names[2]);
   var id_table = setting_table.id.replace("setting", "input");
   var table = crEl({ el: 'table', ats: {id: id_table} });
-  // th
+
+  // th: colnames
   const n_col = c_names.length;
   var tr = document.createElement('tr');
   var th = crEl({ el: 'th', ih: "Make" });
-  th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
   tr.appendChild(th);
   for(let Ni = 0; Ni < n_col; Ni++){
     if(c_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: c_names[Ni] });
-      th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) );
       tr.appendChild(th);
     }
   }
   table.appendChild(tr)
-  // td
+
+  // td: hide buttons
+  var tr = document.createElement('tr');
+  for(let Ni = 0; Ni < n_col + 1; Ni++){
+    if(c_names[Ni] !== ""){
+      var td = crEl({ el: 'td', ih: "" });
+      td.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+      tr.appendChild(td);
+    }
+  }
+  table.appendChild(tr)
+
+  // td: data
   var tr = document.createElement('tr');
   var td = crEl({ el: 'td' })
   td.appendChild( createNewOccButton() );
@@ -260,7 +284,7 @@ function createInputTd(dat_type, col_name, optional){
       td.appendChild(createInput({ type: dat_type }));
       break;
     case "number":
-      td.appendChild(createInput({ size: "10", type: dat_type, inputmode: "numeric", min: "0"} ));
+      td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} ));
       break;
     case "list":
       arry_list = optional.split(':').concat(Array(""));
@@ -308,7 +332,7 @@ function sumWithGroup(obj){
   var grouped_array = splitByGroup(array_val, group_val);
   // set groups order with 'select-one'
   var c_no = getColNames(table).indexOf(group);
-  var opts = table.rows[1].cells[c_no].firstChild.options;
+  var opts = table.rows[2].cells[c_no].firstChild.options;
   var groups = [];
   for(o of opts){ groups.push(o.value); }
   var sum_array = [];
@@ -481,8 +505,8 @@ function loadExample(obj){
   var make_plot_button = document.getElementById("dn_setting_plot_default").children[2];
   make_plot_button.click();
   var table = document.getElementById("input_plot_default");
-  table.rows[1].cells[1].firstChild.value = "exam01";
-  table.rows[1].cells[0].firstChild.click()
+  table.rows[2].cells[1].firstChild.value = "exam01";
+  table.rows[2].cells[0].firstChild.click()
   // occ
   var main = obj.parentNode;
   var main = document.getElementById("tab_inputs");
