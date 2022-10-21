@@ -59,7 +59,7 @@ function createSearchShowButton(){
   return createInput({ type: "button", value: "Search text", onclick: "searchTableTextShow(this)" });
 }
 function createNrowInput(){
-  return createInput({ type: "number", value: "3", step: "1", min: "1", max:"20" });
+  return createInput({ type: "number", value: "1", step: "1", min: "1", max:"20" });
 }
 function createAddRowButton(){
   return createInput({ type: "button", value: "Add row(s)", onclick: "addRows(this)" });

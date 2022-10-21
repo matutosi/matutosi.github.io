@@ -83,6 +83,7 @@ function makeTable(plot, table_name){
   var tab_data  = JSON.parse(plot[3]);
   // create table
   var table = crEl({ el: 'table', ats:{id: table_name} });
+
   // th
   const n_col = col_names.length;
   var hide_col = (table_name.split("_")[0] === "input");
@@ -90,11 +91,25 @@ function makeTable(plot, table_name){
   for(let Ni = 0; Ni < n_col; Ni++){
     if(col_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: col_names[Ni] });
-      if(hide_col){ th.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); }
       tr.appendChild(th);
     }
   }
   table.appendChild(tr)
+
+  // td: hide buttons
+  if(hide_col){
+      var tr = document.createElement('tr');
+      for(let Ni = 0; Ni < n_col + 1; Ni++){
+        if(col_names[Ni] !== ""){
+          var td = crEl({ el: 'td', ih: "" });
+          td.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
+          tr.appendChild(td);
+        }
+      }
+      table.appendChild(tr)
+  }
+
+
   // td
   const n_row = tab_data[col_names[0]].length;
   for(let Ri = 0; Ri < n_row; Ri++){
