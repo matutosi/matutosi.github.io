@@ -6,6 +6,10 @@ table{
   border-collapse:collapse;
 }
 
+input[type="number"]{
+  width       : 5em;
+}
+
 input,select,chkbox,b{
   font-size   : var(--font-size);
 }
