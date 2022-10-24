@@ -457,7 +457,7 @@ function readFile(file){
 //                 Normally use "this". 
 function saveSettings(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table.id);
+  var table_data = getTableDataPlus(table.id, shift_one = false);
   var f_name = obj.previousElementSibling.value;
   if(f_name === ""){ 
     f_name = table.id + ".conf"; 
@@ -481,7 +481,7 @@ function saveSettings(obj){
 //                 Normally use "this". 
 function saveInputs(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table.id);
+  var table_data = getTableDataPlus(table.id, shift_one = true);
   var f_name = table.id + "_" + getNow() + ".txt"
   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
   var blob = new Blob([bom, table_data], { "type" : "text/tsv" });

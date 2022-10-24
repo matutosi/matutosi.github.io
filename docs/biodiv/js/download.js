@@ -1,13 +1,14 @@
 // Get data and optional information from a table.
 //    getTableDataPlus() retrieve table data as well as column names, data types, selects. 
 //    @params id_table      A string to specify table id.
+//    @params shift_one     A logical. If true, delete first element. (To delete hide_button)
 //    @return               A string with 4 parts as shown below. 
 //                          Each part is JSON format.
 //                            c_names: Column names of table, which will be used for making th.
 //                            d_types: Data types of each column for judging the td and input types.
 //                            selects: Select options for 'select-one' element. null for other types.
 //                            t_data : Table data for making td values or innnerHTML.
-function getTableDataPlus(id_table){
+function getTableDataPlus(id_table, shift_one = false){
   // var id_table = "occ_input_table";
   var table = document.getElementById(id_table);
   var c_names = getColNames(table);
@@ -15,6 +16,7 @@ function getTableDataPlus(id_table){
   var t_data = [];
   for(name of c_names){
     t_data[name] = getColData(table, name);
+    if(shift_one) t_data[name].shift();  // delete hide button
   }
   var selects = [];
   for(var i = 0; i < d_types.length; i++){ 
