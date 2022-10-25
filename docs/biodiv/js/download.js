@@ -1,3 +1,30 @@
+function downloadStrings(strings, file_name){
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
+  var blob = new Blob([bom, strings], { "type" : "text/tsv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = file_name;
+  a.href = url;
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+
+function getInputTables(id_tab){
+var id_tab = 'tab_inputs';
+  var tab = document.getElementById(id_tab);
+  var tables = tab.getElementsByTagName('table');
+  // plot table
+  var data_table = getTableDataPlus(tables[0].id, shift_one = true);
+  for(var i = 1; i < tables.length; i++){   // occ tables
+    data_table = data_table + getTableDataPlus(tables[i].id, shift_one = true);
+  }
+  data_table
+}
+
+
 // Get data and optional information from a table.
 //    getTableDataPlus() retrieve table data as well as column names, data types, selects. 
 //    @params id_table      A string to specify table id.
@@ -21,7 +48,7 @@ function getTableDataPlus(id_table, shift_one = false){
   var selects = [];
   for(var i = 0; i < d_types.length; i++){ 
     selects.push( (d_types[i] === "select-one") ? getSelectOne(table, c_names[i]): null) 
-  };
+  }
   var t_data = JSON.stringify(Object.assign({}, t_data));
   c_names = JSON.stringify({ sys_c_names: c_names });
   d_types = JSON.stringify({ sys_d_types: d_types });

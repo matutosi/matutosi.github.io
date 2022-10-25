@@ -279,14 +279,7 @@ function crEl({ el, ats, ih, tc }){
 //   saveHTML() save the generated html file as it is. 
 function saveHTML(obj){ 
   var doc = document.documentElement.outerHTML; 
-  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM 
-  var blob = new Blob([bom, doc], { "type" : "text/tsv" }); 
-  const url = URL.createObjectURL(blob); 
-  const a = document.createElement("a"); 
-  a.download = "biodiv.html"; 
-  a.href = url; 
-  a.click(); 
-  URL.revokeObjectURL(url); 
+  downloadStrings(strings = doc, file_name = "biodiv.html") 
 }</script> <script>// Set table sortable 
 //    Inspired by https://blog.ver001.com/javascript-table-sort/ 
 //    Click th, and sort table by its th order. 
@@ -418,7 +411,34 @@ function sortByOrder(array, rank_array){
     sorted_array[rank_array[Ni]] = array[Ni]; 
   } 
   return sorted_array; 
-}</script> <script>function getLat(){return String(locations.lat[locations.lat.length-1])}function getLon(){return String(locations.lon[locations.lon.length-1])}function getAcc(){return String(locations.acc[locations.acc.length-1])}function successCallback(o){locations.lat.push(o.coords.latitude),locations.lon.push(o.coords.longitude),locations.acc.push(o.coords.accuracy)}function errorCallback(o){document.getElementById("poslog").innerHTML+=o.code+", "+o.message+"<br>"}function stopWatchPosition(){navigator.geolocation.clearWatch(watchId)}function startWatchPosition(){watchId=navigator.geolocation.watchPosition(successCallback,errorCallback,positionOptions)}var watchId=0,positionOptions={enableHighAccuracy:!0,timeout:6e4,maximumAge:0},locations={lat:[],lon:[],acc:[]};</script> <script>function switchScreenShow(e){var t=document.getElementById(e);checkFullScreen()?(document.exitFullscreen(),t.setAttribute("value","TO FULL SCREEN")):(document.body.requestFullscreen(),t.setAttribute("value","to normal show"))}function checkFullScreen(){var e=!1;return document.fullscreenElement&&(e=!0),e}</script> <script>function launchMailer(){location.href='mailto: matutosi@gmail.com?subject="text"&body="testmail"'}</script> <script>// Get data and optional information from a table. 
+}</script> <script>function getLat(){return String(locations.lat[locations.lat.length-1])}function getLon(){return String(locations.lon[locations.lon.length-1])}function getAcc(){return String(locations.acc[locations.acc.length-1])}function successCallback(o){locations.lat.push(o.coords.latitude),locations.lon.push(o.coords.longitude),locations.acc.push(o.coords.accuracy)}function errorCallback(o){document.getElementById("poslog").innerHTML+=o.code+", "+o.message+"<br>"}function stopWatchPosition(){navigator.geolocation.clearWatch(watchId)}function startWatchPosition(){watchId=navigator.geolocation.watchPosition(successCallback,errorCallback,positionOptions)}var watchId=0,positionOptions={enableHighAccuracy:!0,timeout:6e4,maximumAge:0},locations={lat:[],lon:[],acc:[]};</script> <script>function switchScreenShow(e){var t=document.getElementById(e);checkFullScreen()?(document.exitFullscreen(),t.setAttribute("value","TO FULL SCREEN")):(document.body.requestFullscreen(),t.setAttribute("value","to normal show"))}function checkFullScreen(){var e=!1;return document.fullscreenElement&&(e=!0),e}</script> <script>function launchMailer(){location.href='mailto: matutosi@gmail.com?subject="text"&body="testmail"'}</script> <script>function downloadStrings(strings, file_name){ 
+  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM 
+  var blob = new Blob([bom, strings], { "type" : "text/tsv" }); 
+  const url = URL.createObjectURL(blob); 
+  const a = document.createElement("a"); 
+  document.body.appendChild(a); 
+  a.download = file_name; 
+  a.href = url; 
+  a.click(); 
+  a.remove(); 
+  URL.revokeObjectURL(url); 
+} 
+ 
+ 
+function getInputTables(id_tab){ 
+var id_tab = 'tab_inputs'; 
+  var tab = document.getElementById(id_tab); 
+  var tables = tab.getElementsByTagName('table'); 
+  // plot table 
+  var data_table = getTableDataPlus(tables[0].id, shift_one = true); 
+  for(var i = 1; i < tables.length; i++){   // occ tables 
+    data_table = data_table + getTableDataPlus(tables[i].id, shift_one = true); 
+  } 
+  data_table 
+} 
+ 
+ 
+// Get data and optional information from a table. 
 //    getTableDataPlus() retrieve table data as well as column names, data types, selects.  
 //    @params id_table      A string to specify table id. 
 //    @params shift_one     A logical. If true, delete first element. (To delete hide_button) 
@@ -441,7 +461,7 @@ function getTableDataPlus(id_table, shift_one = false){
   var selects = []; 
   for(var i = 0; i < d_types.length; i++){  
     selects.push( (d_types[i] === "select-one") ? getSelectOne(table, c_names[i]): null)  
-  }; 
+  } 
   var t_data = JSON.stringify(Object.assign({}, t_data)); 
   c_names = JSON.stringify({ sys_c_names: c_names }); 
   d_types = JSON.stringify({ sys_d_types: d_types }); 
@@ -1116,18 +1136,9 @@ function saveSettings(obj){
   } else { 
     f_name = table.id.split("_")[0] + "_" + table.id.split("_")[1] + "_" + f_name  + ".conf"; 
   } 
-  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM 
-  var blob = new Blob([bom, table_data], { "type" : "text/tsv" }); 
-  const url = URL.createObjectURL(blob); 
-  const a = document.createElement("a"); 
-  document.body.appendChild(a); 
-  a.download = f_name 
-  a.href = url; 
-  a.click(); 
-  a.remove(); 
-  URL.revokeObjectURL(url); 
-  delete table_data; 
+  downloadStrings(strings = table_data, file_name = f_name) 
 } 
+ 
 // Save inputs of a table 
 //   @paramas obj  A input element. 
 //                 Normally use "this".  
@@ -1135,17 +1146,7 @@ function saveInputs(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
   var table_data = getTableDataPlus(table.id, shift_one = true); 
   var f_name = table.id + "_" + getNow() + ".txt" 
-  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM 
-  var blob = new Blob([bom, table_data], { "type" : "text/tsv" }); 
-  const url = URL.createObjectURL(blob); 
-  const a = document.createElement("a"); 
-  document.body.appendChild(a); 
-  a.download = f_name; 
-  a.href = url; 
-  a.click(); 
-  a.remove(); 
-  URL.revokeObjectURL(url); 
-  delete table_data; 
+  downloadStrings(strings = table_data, file_name = f_name) 
 } 
  
 // Load example data 

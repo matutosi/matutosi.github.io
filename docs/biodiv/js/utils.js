@@ -210,12 +210,5 @@ function crEl({ el, ats, ih, tc }){
 //   saveHTML() save the generated html file as it is.
 function saveHTML(obj){
   var doc = document.documentElement.outerHTML;
-  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
-  var blob = new Blob([bom, doc], { "type" : "text/tsv" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.download = "biodiv.html";
-  a.href = url;
-  a.click();
-  URL.revokeObjectURL(url);
+  downloadStrings(strings = doc, file_name = "biodiv.html")
 }
