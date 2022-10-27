@@ -37,11 +37,18 @@ function searchTableText(obj){
 //    @paramas obj  A input element.
 //                  Normally use "this". 
 function searchTableTextShow(obj){
-  // https://www-creators.com/archives/5332
-  var input = "^(?=.*" + obj.previousElementSibling.value.replaceAll(" ", ")(?=.*") + ").*$";
-  var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
+  var input = obj.previousElementSibling.value;
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var trs    = table.rows;
+  if(input === ""){
+    for(let Rj = 1; Rj < trs.length; Rj++){
+      trs[Rj].style.display = "none";
+    }
+    return void 0;
+  }
+  // look ahead: https://www-creators.com/archives/5332
+  input = "^(?=.*" + input.replaceAll(" ", ")(?=.*") + ").*$";
+  var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
   var matches = 0;
   for(let Rj = 1; Rj < trs.length; Rj++){ trs[Rj].style.display = "none"; }
   for(let Rj = 1; Rj < trs.length; Rj++){
@@ -54,6 +61,5 @@ function searchTableTextShow(obj){
       trs[Rj].style.display = "";
       matches++;
     }
-    if(input === "")     { trs[Rj].style.display = "none"; }
   }
 }
