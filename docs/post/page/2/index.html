@@ -74,6 +74,24 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220720/" rel="bookmark">
+			手作業とスクリプト
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-20T00:00:00Z">July 20, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		JavaScriptを勉強していると，普段使うwebツール上でマウスを駆使してクリックしているのがアホらしくなってきた． 一度だけの作業ならまだしも，同じような作業の繰り返しを定期的にしなければならないことがある． チェックボックスを探してそれをクリックするなどだ． 手作業で同じことをするのは面倒だし，間違いのもとである． JavaScriptで，使いそうなスクリプトを組んでみた． たぶん，それなりに使えそうな感じ．
+手を抜くための苦労はいとわない．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220712/" rel="bookmark">
 			関数・ドキュメントの整理
 			</a>
@@ -233,24 +251,6 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 		植生調査アプリをHTMLとJavaScriptで作っている． JavaScriptにも徐々になれてきて，大体の大枠ができた(ような気がする)． ネットの情報や書籍を参考にしたが，JavaScriptのお作法をちゃんとは理解できていない． そのため，JavaScriptらしくない我流のコードになっている(はず)． mapとかapplyを使えば，もっと単純に書けそうだと思う部分がある． でも使い方が分からないので，forループを回しまくった．
 それでも，他のコードを参考にしつつもだいたい理解して，ほとんどのコードを自分で書くことができた． コードを書いている途中で，たくさん関数を作ったが，結果的に使っていない関数も色々とある． とりあえずは整理して，必要なものだけに絞らなければ．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220611/" rel="bookmark">
-			植生調査アプリ
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-11T00:00:00Z">June 11, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		しばらく前にSwiftでiOS用の植生調査アプリを作りかけていた． そこそこのところまではできてきたが，ちょっと行き詰まっていた．
-JavaScriptでいちから作り直しているが，こっちのほうが簡単にできそう． iOSだけでなくAndroidやWindowsでも使えるはず． HTML, JavaScript, cssだけで作っている． これらのファイルをローカル環境にダウンロードすれば簡単に使えるようになるはずだ． AppStoreとかGooglePlayに登録せずとも，GitHubからダウンロードできるようにすれば良いので管理も簡単だ． HTML, JavaScript, cssをちょっと勉強すれば，カスタマイズもできるだろう．
-	</div>
 </article>
 </main>
 
@@ -267,6 +267,7 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20221107/">clidatajp</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220929/">clidatajp</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220926/">clidatajp</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220914/">RのNSE(Non-Standard Evaluation)</a></li>
@@ -276,7 +277,6 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 			<li class="widget__item"><a class="widget__link" href="/post/20220801/">datar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220727/">sessionStorage</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220726/">プログラミングと文章の構造化</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20220720/">手作業とスクリプト</a></li>
 		</ul>
 	</div>
 </div>
