@@ -217,11 +217,11 @@ function createSearchShowInput(){
 function createSearchShowButton(){
   return createInput({ type: "button", value: "Search text", onclick: "searchTableTextShow(this)" });
 }
-function createNrowInput(){
-  return createInput({ type: "number", value: "1", step: "1", min: "1", max:"20" });
+function createNrowInput(id){
+  return createInput({ type: "number", value: "1", step: "1", min: "1", max:"20", id: id });
 }
-function createAddRowButton(){
-  return createInput({ type: "button", value: "Add row(s)", onclick: "addRows(this)" });
+function createAddRowButton(id){
+  return createInput({ type: "button", value: "Add row(s)", onclick: "addRows(this)", id: id });
 }
 function createHideButton(){
   return createInput({ type: "button", value: "Hide table", onclick: "hideShowNext(this)" });
@@ -299,10 +299,10 @@ const data_test = {
     biss_d_types: ["text","list","text","button"],
     biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
     biss_inputs: {
-      item:   ["Invest","DATE","NO","Loc","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Alt"],
-      type:   ["fixed","auto","auto","text","auto","auto","auto","button","number"],
-      value:  ["fixed_text","","","","","","","",""],
-      DELETE: [""          ,"","","","","","","",""]
+      item:   ["Invest","DATE","Loc","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Alt"],
+      type:   ["fixed","auto","text","auto","auto","auto","button","number"],
+      value:  ["fixed_text","","","","","","",""],
+      DELETE: [""          ,"","","","","","",""]
     }
   },
   setting_occ: {
@@ -709,7 +709,7 @@ function setSortable(id_table){
       column_no_prev = column_no;
       var col_name = getColNames(table)[column_no];
       var elements = getColData(table, col_name, list_with_index = true);
-      elements.shift() // delete hide button
+  //       elements.shift() // delete hide button
   // console.log("elements in sort: " + elements);
       var rank_index = rank(elements, dir);  // rank_index: sorting order
       // sort table
@@ -843,13 +843,31 @@ function updateTab(){
   }
 }
 
-function addPlotData(plot_data, id){
+function addPlotId(plot_data, id){
   // var plot_data = temp1;
   plot_data['biss_c_names'].unshift('PLOT');
   plot_data['biss_d_types'].unshift('fixed');
   plot_data['biss_selects'].unshift('');
   plot_data['biss_inputs']['PLOT'] = [id];
   return plot_data;
+}
+
+function addPlotNo(plot_data, no){
+  // var plot_data = temp1;
+  plot_data['biss_c_names'].unshift('NO');
+  plot_data['biss_d_types'].unshift('fixed');
+  plot_data['biss_selects'].unshift('');
+  plot_data['biss_inputs']['NO'] = [no];
+  return plot_data;
+}
+
+function getPlotMaxNo(){
+  var tables = document.querySelectorAll("table[id^='input_plot']");
+  var max_no = [0];
+  for(tb of tables){
+    max_no.push(getColData(tb, "NO")[0]);
+  }
+  return Math.max.apply(Math, string2Numeric(max_no));
 }
 
 // Add a tab
@@ -871,8 +889,13 @@ function addTab(obj){
   tabbody.appendChild(div);
 
   // create input tables
-  var plot_setting = addPlotData( convertTableData( getTableData( document.getElementById("setting_plot_tb"))), id);
-  var occ_setting  = addPlotData( convertTableData( getTableData( document.getElementById("setting_occ_tb" ))), id);
+      // PLOT
+  var plot_setting = convertTableData( getTableData( document.getElementById("setting_plot_tb")));
+  var plot_setting = addPlotNo(plot_setting, getPlotMaxNo() + 1);
+  var plot_setting = addPlotId(plot_setting, id);
+      // OCC
+  var occ_setting  = convertTableData( getTableData( document.getElementById("setting_occ_tb" )))
+  var occ_setting  = addPlotId(occ_setting, id);
   // console.log(occ_setting );
   div.appendChild( tableModule({
                       table_data: plot_setting, ns: 'input_plot_' + id, 
@@ -884,8 +907,11 @@ function addTab(obj){
                       id_text: true, search_input: true,
                       hide_button: true, fit_button: true, 
                       add_button: true, calc_button: true}) );
+  document.getElementById('input_occ_' + id + '_nrow').value = 3;
+  document.getElementById('input_occ_' + id + '_add_rows').onclick();
   updateTab();
   tabs[tabs.length - 1].onclick();  // move tab
+  setSortable('input_occ_' + id + '_tb');  // Should setSortable() after appendChild()
 }
 
 function changePlotName(obj){
@@ -1372,8 +1398,8 @@ function tableModule({ table_data, ns,
 
   // Down span
   var dn = crEl({  el:'span', ats:{id: ns + "_dn"} });
-  if(add_button  != void 0){    dn.appendChild( createNrowInput() );
-                                dn.appendChild( createAddRowButton() );
+  if(add_button  != void 0){    dn.appendChild( createNrowInput( ns + '_nrow') );
+                                dn.appendChild( createAddRowButton( ns + '_add_rows') );
   }
   if(calc_button != void 0){    dn.appendChild( crEl({ el: 'br' }) );
                                 dn.appendChild( crEl({ el: 'span', ih: "<b>Value: </b>" }) );
