@@ -32,7 +32,7 @@ function inputTableModule(ns, table = null){
     dn.appendChild( crEl({ el: 'span', ih: "<b>Value: </b>" }) );
     dn.appendChild( createSelectOpt( colByType(table, "number") ) );
     dn.appendChild( crEl({ el: 'span', ih: "; <b>Group: </b>" }) );
-    dn.appendChild( createSelectOpt( colByType(table, "select-one") ) );
+    dn.appendChild( createSelectOpt( colByType(table, "list") ) );
     dn.appendChild( createSumButton() );
   }
 
@@ -79,7 +79,7 @@ function settingTableModule(ns){
   dn.appendChild( createNrowInput() );
   dn.appendChild( createAddRowButton() );
 
-  var plot = (ns.split("_")[1] === 'plot');
+  var plot = (ns.split("_")[1] === 'PLOT');
   if(plot){ dn.appendChild( createMakePlotButton() );}  
 
   main.appendChild(up);
@@ -113,10 +113,10 @@ function makeNewOccTable(obj){
   // var obj = temp1;
   var tr = obj.parentElement.parentElement;
   var table = obj.parentElement.parentElement.parentElement;
-  var c_no = getColNames(table).indexOf("Plot");
+  var c_no = getColNames(table).indexOf("PLOT");
   var plot = tr.cells[c_no].firstChild.value;
   if(plot === ""){
-    alert("Input Plot!");
+    alert("Input PLOT!");
     return null;
   }
   if(hasDupPlot(plot)){ return null;}
@@ -159,7 +159,7 @@ function makeOccTable(setting_table, plot){
   // th: colnames
   const n_col = c_names.length;
   var tr = document.createElement('tr');
-  tr.appendChild( crEl({ el: 'th', ih: "Plot" }) );
+  tr.appendChild( crEl({ el: 'th', ih: "PLOT" }) );
   for(let Ni = 0; Ni < n_col; Ni++){
     if(c_names[Ni] !== ""){
       var th = crEl({ el: 'th', ih: c_names[Ni] });
@@ -259,18 +259,18 @@ function createInputTd(dat_type, col_name, optional){
   // console.log(col_name);
   // console.log(optional);
   var td = document.createElement('td');
-  var col_name = col_name.toLowerCase();
+  //   var col_name = col_name.toLowerCase();
   switch(dat_type){
     case "auto": // date, no, GPS
-      if(col_name === "date")   td.innerHTML = getNow();
-      if(col_name === "loclat") td.innerHTML = getLat();
-      if(col_name === "loclon") td.innerHTML = getLon();
-      if(col_name === "locacc") td.innerHTML = getAcc();
-      if(col_name === "no")     td.innerHTML = 1;
+      if(col_name === "DATE")   td.innerHTML = getNow();
+      if(col_name === "LOC_LAT") td.innerHTML = getLat();
+      if(col_name === "LOC_LON") td.innerHTML = getLon();
+      if(col_name === "LOC_ACC") td.innerHTML = getAcc();
+      if(col_name === "NO")     td.innerHTML = 1;
       break;
-    case "button": // delButton, update button
-      if(col_name === "delbutton")   { td.appendChild( createDelButton() );    };
-      if(col_name === "updatebutton"){ td.appendChild( createUpdateButton() ); };
+    case "button": // DELETE, update button
+      if(col_name === "DELETE")   { td.appendChild( createDelButton() );    };
+      if(col_name === "UPDATE_TIME_GPS"){ td.appendChild( createUpdateButton() ); };
       break;
     case "fixed":
       if(optional === ""){ 
@@ -296,13 +296,13 @@ function createInputTd(dat_type, col_name, optional){
 
 // DONE: update date GPS
 
-// Update "Date", "locLat", "locLon", "locAcc"
+// Update "DATE", "LOC_LAT", "LOC_LON", "LOC_ACC"
 //    When "Update" bottun clicked, update informations in the row.
 //    @paramas obj Clicked row.
 //    @return null.
 function updateTimeGPS(obj){
   // settings
-  var cols = ["Date", "locLat", "locLon", "locAcc"];
+  var cols = ["DATE", "LOC_LAT", "LOC_LON", "LOC_ACC"];
   var funs = [getNow, getLat, getLon, getAcc]
   // clicked things
   var table = obj.parentNode.parentNode.parentNode;
@@ -320,7 +320,7 @@ function updateTimeGPS(obj){
 
 // Sum numeric with groups.
 //     In BISS, number input is the subject to sum, 
-//     select-one input is the options to group.
+//     list input is the options to group.
 //   @paramas obj  A input element.
 //                 Normally use "this". 
 function sumWithGroup(obj){
@@ -330,7 +330,7 @@ function sumWithGroup(obj){
   var array_val = getColData(table, array);
   var group_val = getColData(table, group);
   var grouped_array = splitByGroup(array_val, group_val);
-  // set groups order with 'select-one'
+  // set groups order with 'list'
   var c_no = getColNames(table).indexOf(group);
   var opts = table.rows[2].cells[c_no].firstChild.options;
   var groups = [];
@@ -368,12 +368,12 @@ function sumWithGroup(obj){
 // DONE: utils ???
 //    @paramas table  A table element.
 //    @paramas type   A string to specify a data type, 
-//                    which can be retrive by get_data_types() as shown below.
-//                    "fixed", "text", "button", "checkbox", 'select-one','number'. 
+//                    which can be retrive by getDataTypes() as shown below.
+//                    "fixed", "text", "button", "checkbox", 'list','number'. 
 //    @return  A string array.
 //    @examples
 function colByType(table, type){
-  var types = get_data_types(table);
+  var types = getDataTypes(table);
   var c_names = getColNames(table);
   var cols = [];
   for(let i = 0; i < types.length; i++){
@@ -406,6 +406,7 @@ function createSelectOpt(list, selected_no = 0){
   return select;
 }
 
+
 // Check if the same plot has already existed. 
 //   @paramas plot A string to specify plot.
 //   @return  A logical.
@@ -415,7 +416,7 @@ function hasDupPlot(plot){
   for(table of input_tables){
     if(table.id.split("_")[1] === "occ"){
       if(table.id.split("_")[2] === plot){
-        alert("Duplicated Plot!");
+        alert("Duplicated PLOT!");
         return true;
       }
     }
@@ -482,7 +483,7 @@ function saveInputs(obj){
 //   @paramas obj  A input element.
 //                 Normally use "this". 
 function loadExample(obj){
-  // plot
+  // PLOT
   var make_plot_button = document.getElementById("dn_setting_plot_default").children[2];
   make_plot_button.click();
   var table = document.getElementById("input_plot_default");

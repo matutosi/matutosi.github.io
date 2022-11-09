@@ -18,9 +18,10 @@ function showRow(obj){
   }
   for(let i = 0; i < tr.cells.length; i++){
     var td = tr.cells[i];
-    var label = c_names[i].toLowerCase();
+  //     var label = c_names[i].toLowerCase();
+    var label = c_names[i];
     switch(label){
-      case "plot": // remain td
+      case "PLOT": // remain td
         break;
       default:
         td.style.display = disp;
@@ -35,9 +36,10 @@ function hideRow(obj){
   var c_names = getColNames(table);
   for(let i = 0; i < tr.cells.length; i++){
     var td = tr.cells[i];
-    var label = c_names[i].toLowerCase();
+  //     var label = c_names[i].toLowerCase();
+    var label = c_names[i];
     switch(label){
-      case "plot": // remain td
+      case "PLOT": // remain td
         break;
       default:
         td.style.display = 'none';
@@ -48,7 +50,7 @@ function hideRow(obj){
   obj.replaceWith( createShowRowButton("plot info") );
 }
 function showAllCols(obj){
-  // console.log(obj.parentNode.parentNode.nextElementSibling);
+console.log(obj.parentNode.parentNode.nextElementSibling);
   var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
   for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){
     for(let Rj = 0; Rj < table.rows.length; Rj++){

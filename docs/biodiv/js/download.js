@@ -33,13 +33,13 @@ var id_tab = 'tab_inputs';
 //                          Each part is JSON format.
 //                            c_names: Column names of table, which will be used for making th.
 //                            d_types: Data types of each column for judging the td and input types.
-//                            selects: Select options for 'select-one' element. null for other types.
+//                            selects: Select options for 'list' element. null for other types.
 //                            t_data : Table data for making td values or innnerHTML.
 function getTableDataPlus(id_table, shift_one = false){
   // var id_table = "occ_input_table";
   var table = document.getElementById(id_table);
   var c_names = getColNames(table);
-  var d_types = get_data_types(table);
+  var d_types = getDataTypes(table);
   var t_data = [];
   for(name of c_names){
     t_data[name] = getColData(table, name);
@@ -47,12 +47,12 @@ function getTableDataPlus(id_table, shift_one = false){
   }
   var selects = [];
   for(var i = 0; i < d_types.length; i++){ 
-    selects.push( (d_types[i] === "select-one") ? getSelectOne(table, c_names[i]): null) 
+    selects.push( (d_types[i] === "list") ? getSelectOne(table, c_names[i]): null) 
   }
   var t_data = JSON.stringify(Object.assign({}, t_data));
-  c_names = JSON.stringify({ sys_c_names: c_names });
-  d_types = JSON.stringify({ sys_d_types: d_types });
-  selects = JSON.stringify({ sys_selects: selects });
+  c_names = JSON.stringify({ biss_c_names: c_names });
+  d_types = JSON.stringify({ biss_d_types: d_types });
+  selects = JSON.stringify({ biss_selects: selects });
   return c_names + ";" + d_types + ";" + selects + ";" + t_data;
 }
 
@@ -78,7 +78,7 @@ function getSelectOne(table, col_name){
 //    The data has 4 parts as shown below. 
 //      c_names: Column names of table, which will be used for making th.
 //      d_types: Data types of each column for judging the td and input types.
-//      selects: Select options for 'select-one' element. null for other types.
+//      selects: Select options for 'list' element. null for other types.
 //      t_data : Table data for making td values or innnerHTML.
 //    @params table_name  A string to specify table name. 
 //                        localStorage key name is "bis_" + table_name.
@@ -106,9 +106,9 @@ function restoreTable(table_name, from = "localStorage"){
 
 function makeTable(plot, table_name){
   // console.log(plot);
-  var col_names = JSON.parse(plot[0])["sys_c_names"];
-  var dat_types = JSON.parse(plot[1])["sys_d_types"];
-  var selects   = JSON.parse(plot[2])["sys_selects"];
+  var col_names = JSON.parse(plot[0])["biss_c_names"];
+  var dat_types = JSON.parse(plot[1])["biss_d_types"];
+  var selects   = JSON.parse(plot[2])["biss_selects"];
   var tab_data  = JSON.parse(plot[3]);
   // create table
   var table = crEl({ el: 'table', ats:{id: table_name} });
@@ -180,7 +180,7 @@ function restoreTd(table_data, data_type, select){
       if(table_data === "DELETE")           { var td = createTdWithChild( createDelButton() ); }
       if(table_data === "Update Time & GPS"){ var td = createTdWithChild( createUpdateButton() ); }
       break;
-    case "select-one":
+    case "list":
       var sel_no = select.indexOf(table_data);
       var td = createTdWithChild( createSelectOpt(select, sel_no) );
       break;

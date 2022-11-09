@@ -11,7 +11,8 @@ function searchTableText(obj){
   var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var trs   = table.rows;
-  var data_types = getDataType(table);
+  //   var data_types = getDataType(table);
+  var data_types = getDataTypes(table);
   var display_flag = [1];                // 1: show first row (th)
   for(let Rj = 1; Rj < trs.length; Rj++){ display_flag[Rj] = 0; }
   for(let Ci = 0; Ci < data_types.length; Ci++){

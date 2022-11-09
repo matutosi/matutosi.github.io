@@ -35,30 +35,31 @@ function addRow(table){
   var last_row = table.rows[n_row - 1];  // to get selectedIndex
   var next_row = table.rows[n_row - 1].cloneNode(true);
   for(let Ci = 0; Ci < n_col; Ci++){
-    switch(col_names[Ci].toLowerCase()){  // // toLowerCase  // // 
-      case "make":  // Make bottun
+    switch(col_names[Ci]){  // // toLowerCase  // // 
+  //     switch(col_names[Ci].toLowerCase()){  // // toLowerCase  // // 
+      case "Make":  // Make bottun
         if(next_row.children[Ci].firstChild === null){
           next_row.children[Ci].appendChild( createNewOccButton() );
         } else {
           next_row.children[Ci].firstChild.replaceWith( createNewOccButton() );
         }
         break;
-      case "date":  // update "date"
+      case "DATE":  // update "DATE"
         next_row.children[Ci].innerHTML = getNow();
         break;
-      case "loclat":  // update GPS data
+      case "LOC_LAT":  // update GPS data
         next_row.children[Ci].innerHTML = getLat();
         break;
-      case "loclon":
+      case "LOC_LON":
         next_row.children[Ci].innerHTML = getLon();
         break;
-      case "locacc":
+      case "LOC_ACC":
         next_row.children[Ci].innerHTML = getAcc();
         break;
-      case "updatebutton": // do nothing
-      case "delbutton":    // do nothing
+      case "UPDATE_TIME_GPS": // do nothing
+      case "DELETE":    // do nothing
         break;
-      case "no":   // no = max(no) + 1
+      case "NO":   // no = max(no) + 1
         var nos = getColData(table, col_names[Ci]);
         nos.shift(); // delete hide button
         next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1;

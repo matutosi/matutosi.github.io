@@ -3,24 +3,30 @@
 <script>
 </script>
 
-    <script src="js/font_size.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/json.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/sortable.js"></script>
-    <script src="js/gps.js"></script>
-    <script src="js/full_screen.js"></script>
-    <script src="js/mailer.js"></script>
-    <script src="js/download.js"></script>
-    <script src="js/create_input.js"></script>
-    <script src="js/module_table.js"></script>
-    <script src="js/table_add_rows.js"></script>
-    <script src="js/table_change_view.js"></script>
-    <script src="js/table_hide_show.js"></script>
-    <script src="js/table_search_text.js"></script>
+    <script src="js/font_size.js">          </script>
+    <script src="js/data.js">               </script>
+    <script src="js/json.js">               </script>
+    <script src="js/utils.js">              </script>
+    <script src="js/sortable.js">           </script>
+    <script src="js/gps.js">                </script>
+    <script src="js/full_screen.js">        </script>
+    <script src="js/mailer.js">             </script>
+    <script src="js/download.js">           </script>
+    <script src="js/create_input.js">       </script>
+    <script src="js/module_table.js">       </script>
+    <script src="js/table_add_rows.js">     </script>
+    <script src="js/table_change_view.js">  </script>
+    <script src="js/table_hide_show.js">    </script>
+    <script src="js/table_search_text.js">  </script>
+    <script src="js/tab.js">                </script>
 
     <script src="js/wamei_data.js" charset="utf-8"></script>
     <script src="js/wamei_search.js" charset="utf-8"></script>
+
+<!-- in progress   -->
+    <script src="js/auto_save.js"></script>
+<!-- in progress   -->
+
     <!--  Not use in progress
     <script src="js/inhibit_close.js"></script>
     -->
@@ -29,35 +35,15 @@
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/full_screen.css">
 
-  <script> // test script
+  <script>
+  // test script
   // // // // // // // // // // // // // // // // // // // 
   // TODO: var -> const ?
   // TODO: Write documents for functions.
   // // // // // // // // // // // // // // // // // // // 
 
-// test for autoSave
-function testSaveTable(){
-  var table_data = "test_data";
-  var f_name = "temp.txt";
-  var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);  //set encoding UTF-8 with BOM
-  var blob = new Blob([bom, table_data], { "type" : "text/tsv" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  document.body.appendChild(a);
-  a.download = f_name;
-  a.href = url;
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-  delete table_data;
-}
-// setInterval(testSaveTable, 1000 * 2 );  // 1min: 1000ms * 60sec
-// 
-// function autoSave(){
-//     console.log(getNow())
-// // localStorage
-// }
-// setInterval(autoSave, 1000 * 60);  // 1min: 1000ms * 60sec
+// addTab('aaa')
+
 
 </script>
 
@@ -87,11 +73,11 @@ Biodiversity Investigation Support System (BISS)
     <a href="#tab_inputs" >Inputs   </a>
     <a href="#tab_tools"  >Tools    </a>
     <a href="#tab4"       >Spare    </a>
+    <input id = "add_tab" type = "button" value = "+" onclick = "addTab(this)" />
   </p>
 
   <div id="tabbody">
     <div id="tab_settings">
-
       <script>
         var setting_tab = document.getElementById("tab_settings");
         setting_tab.appendChild( settingTableModule("setting_plot_default") );
@@ -102,10 +88,6 @@ Biodiversity Investigation Support System (BISS)
     <div id="tab_inputs">
       <script>
         var input_tab = document.getElementById("tab_inputs");
-
-        var column_no = 0;       // now clicked
-        var column_no_prev = 0;  // previous clicked
-        var dir = "asc";
       </script>
     </div>
 
@@ -168,12 +150,22 @@ Biodiversity Investigation Support System (BISS)
   </script>
 
 
-
 <div>
-  <!-- need to located at the end of tab HTML -->
-  <script src="js/tab.js"></script>
+  <script>
+    var column_no = 0;       // now clicked
+    var column_no_prev = 0;  // previous clicked
+    var dir = "asc";
+  </script>
+</div>
+
+<div>  <!-- need to located at the end of tab HTML -->
+  <script>
+    var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
+    var pages = document.getElementById('tabbody').getElementsByTagName('div');
+    updateTab()
+    tabs[0].onclick();  // tab at first 
+  </script>
 <div>
 
 </body>
-
 </html>

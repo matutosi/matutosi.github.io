@@ -4,7 +4,7 @@
 //    var csv = `item	type	value	option
 //    Project	fixed		Biodiv
 //    Investigator	text		
-//    delButton	button		Don't change
+//    DELETE	button		Don't change
 //    Date	auto		Don't change
 //    No	auto		Don't change
 //    Location	text		`

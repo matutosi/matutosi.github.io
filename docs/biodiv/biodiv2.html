@@ -1,0 +1,140 @@
+<html>
+<head>
+<script>
+</script>
+
+    <script src="js2/font_size.js">          </script>
+    <script src="js2/data.js">               </script>
+    <script src="js2/json.js">               </script>
+    <script src="js2/utils.js">              </script>
+    <script src="js2/sortable.js">           </script>
+    <script src="js2/gps.js">                </script>
+    <script src="js2/full_screen.js">        </script>
+    <script src="js2/mailer.js">             </script>
+    <script src="js2/download.js">           </script>
+    <script src="js2/create_input.js">       </script>
+    <script src="js2/table_module.js">       </script>
+    <script src="js2/table_add_rows.js">     </script>
+    <script src="js2/table_change_view.js">  </script>
+    <script src="js2/table_hide_show.js">    </script>
+    <script src="js2/table_search_text.js">  </script>
+    <script src="js2/tab.js">                </script>
+
+    <script src="js2/wamei_data.js" charset="utf-8"></script>
+    <script src="js2/wamei_search.js" charset="utf-8"></script>
+
+    <script src="js2/table.js">              </script>
+
+<!-- in progress   -->
+    <script src="js2/auto_save.js"></script>
+<!-- in progress   -->
+
+    <!--  Not use in progress
+    <script src="js2/inhibit_close.js"></script>
+    -->
+
+    <link rel="stylesheet" href="css/tab.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/full_screen.css">
+
+  <script>
+  // test script
+  // // // // // // // // // // // // // // // // // // // 
+  // TODO: var -> const ?
+  // TODO: Write documents for functions.
+  // // // // // // // // // // // // // // // // // // // 
+
+// addTab('aaa')
+
+
+</script>
+
+</head>
+
+<body>
+
+
+
+<p>
+<input type="button" value="smaller" onclick="smaller()" />
+<input type="button" value="LARGER" onclick="larger()"  />
+Biodiversity Investigation Support System (BISS)
+<!--            Switch full screen           -->
+<input id="switch_screen_show" type="button" value="TO FULL SCREEN"  onclick="switchScreenShow(this.id)" />
+<input type="button" value="saveHTML"  onclick="saveHTML()" />
+<!--      TODO: Use different background color or something CLEAR for users in switching on / off       -->
+<input type="button" value="Start GPS" onclick="startWatchPosition()" />
+<input type="button" value="Stop GPS"  onclick="stopWatchPosition()" />
+<input type='button' value="Launch mailer" onclick="launchMailer()" />
+<a href="exam01.html">Show example</a>
+</p>
+
+<div class="Biodiversity Investigation System (BIS)">
+  <p id="tabcontrol">
+    <a href="#tab_tools"  >Tools    </a>
+    <a href="#tab_settings">Settings </a>
+<!--
+    <a href="#tab_inputs" >Inputs   </a>
+-->
+    <input id = "add_tab" type = "button" value = "+ PLOT" onclick = "addTab(this)" />
+  </p>
+
+  <div id="tabbody">
+    <div id="tab_tools">
+      <script>
+      var tab = document.getElementById("tab_tools");
+      tab.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
+      </script>
+      <p>
+      "aaa bbb" matches texts including both "aaa" and "bbb".
+      <p>
+      Wamei (Japanese plant names) is obtained from <br>
+      Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br>
+      A checklist of Japanese plant names <br>
+      (https://www.gbif.jp/v2/activities/wamei_checklist.html)
+    </div>
+
+    <div id="tab_settings">
+      <script>
+        var setting_tab = document.getElementById("tab_settings");
+        setting_tab.appendChild( tableModule({ 
+                                   table_data: data_test.setting_plot, ns: "setting_plot",
+                                   id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                   add_button: true }) );
+        setting_tab.appendChild( tableModule({ 
+                                   table_data: data_test.setting_occ , ns: "setting_occ",
+                                   id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                   add_button: true }) );
+      </script>
+    </div>
+  </div>
+</div>
+
+  <script>
+//  fetchLSKeys();
+//  saveTable("occ_setting_table");
+//  saveTable("plot_setting_table");
+//  restoreTable("occ_setting_table");
+//  restoreTable("plot_setting_table");
+  </script>
+
+
+<div>
+  <script>
+    var column_no = 0;       // now clicked
+    var column_no_prev = 0;  // previous clicked
+    var dir = "asc";
+  </script>
+</div>
+
+<div>  <!-- need to located at the end of tab HTML -->
+  <script>
+    var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
+    var pages = document.getElementById('tabbody').getElementsByTagName('div');
+    updateTab()
+    tabs[1].onclick();  // tab at first 
+  </script>
+<div>
+
+</body>
+</html>

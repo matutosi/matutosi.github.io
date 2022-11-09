@@ -15,6 +15,34 @@ function hash2table(hash_array){
   return table
 }
 
+// Check if an object is or has table. 
+//    @params obj An object.
+//    @return A logical.
+function isTable(obj){
+  return obj.tagName === 'TABLE';
+}
+function hasTable(obj){
+  return obj.getElementsByTagName('table').length > 0;
+}
+
+// Search parent table of a object
+//    Search parentNode of a object.
+//    When object has multiple tables, return the first table in default.
+//    Can return another table by using index.
+//    @params obj   An object.
+//    @params index A numeric.
+//    @return A table.
+function searchParentTable(obj, index = 0){
+  while( !isTable(obj) && !hasTable(obj) ){
+    var obj = obj.parentNode;
+  }
+  if(isTable(obj)){
+    return obj;
+  }else{
+    return obj.getElementsByTagName("table")[index];
+  }
+}
+
 // Get column data in a table
 //    @params id_table A string.
 //    @params col_name A string.
@@ -23,17 +51,59 @@ function getColData(table, col_name, list_with_index=false){
   // var table = document.getElementById("meta_setting_table");
   // var col_name = "type";
   const col_no   = getColNames(table).indexOf(col_name);
-  const col_type = getDataType(table)[col_no];
+  const col_type = getDataTypes(table)[col_no];
   var group_value = [];
   for(Ri = 0; Ri < table.rows.length - 1; Ri++){
     // except th (rows[0])
-    if(list_with_index && col_type === "select-one"){
+    if(list_with_index && col_type === "list"){
       group_value[Ri] = table.rows[Ri + 1].cells[col_no].firstChild.selectedIndex;
     } else {
       group_value[Ri] = getCellData(table.rows[Ri + 1].cells[col_no], col_type);
     }
   }
   return group_value;
+}
+
+// Get input value, list, or innerHTML cell data in a table.
+//    In BISS, the values varies input, list, or innerHTML. 
+//    getCellData() 
+//    @params cell_data A td element in a table.
+//    @params data_type A string to specify the data type of the cell, 
+//                      which can be retrived with col_type().
+//    @return A string.
+function getCellData(cell_data, data_type){
+  switch(data_type){
+  //     case "DATE":
+  //     case "NO":
+    case "fixed":
+      return cell_data.innerHTML;
+      break;
+  //     case "DELETE":
+  //     case "UPDATE_TIME_GPS":
+    case "button":
+    case "text":
+    case "number":
+      return cell_data.firstChild.value;
+      break;
+    case "checkbox": 
+      return cell_data.firstChild.checked;
+      break;
+    case "list":
+      var opts = getSelectOptionInCell(cell_data.firstChild);
+      var index = cell_data.firstChild.selectedIndex;
+      return opts[index];
+      break;
+  }
+}
+
+
+// Get options in select tag in a cell
+//    Return string array.
+function getSelectOptionInCell(select){
+  var select_opt = [];
+  var opts = select.children;
+  for(let i = 0; i < opts.length; i++){ select_opt.push(opts[i].value); }
+  return select_opt;
 }
 
 // Split array by group
@@ -55,98 +125,66 @@ function splitByGroup(array, group){
   return grouped;
 }
 
-// Get input value, select-one, or innerHTML cell data in a table.
-//    In BISS, the values varies input, select-one, or innerHTML. 
-//    getCellData() 
-//    @params cell_data A td element in a table.
-//    @params data_type A string to specify the data type of the cell, 
-//                      which can be retrived with col_type().
-//    @return A string.
-function getCellData(cell_data, data_type){
-  switch(data_type){
-    case "date":
-    case "no":
-    case "fixed":
-      return cell_data.innerHTML;
-      break;
-    case "delButton":
-    case "updatebutton":
-    case "text":
-    case "number":
-      return cell_data.firstChild.value;
-      break;
-    case "checkbox": 
-      return cell_data.firstChild.checked;
-      break;
-    case "select-one":
-      var opts = getSelectOptionInCell(cell_data.firstChild);
-      var index = cell_data.firstChild.selectedIndex;
-      return opts[index];
-      break;
-  }
-}
 
-// Get options in select tag in a cell
-//    Return string array.
-function getSelectOptionInCell(select){
-  var select_opt = [];
-  var opts = select.children;
-  for(let i = 0; i < opts.length; i++){ select_opt.push(opts[i].value); }
-  return select_opt;
-}
-
+// DEPRECATED, use getDataTypes()
+// 
 // Get data types from occurrence table.
 //    Columns shown below are special, 
-//        "date", "delButton", "no", "locLat", "locLon", "locAcc"
+//        "DATE", "DELETE", "NO", "LOC_LAT", "LOC_LON", "LOC_ACC":
 //        These columns can not be set by users. 
 //    Other columns can be devided into 5 data types: 
-//        "fixed", "checkbox", "text", "number", "select-one".
+//        "fixed", "checkbox", "text", "number", "list".
 //   @paramas table A table element.
-//   @return A string array.
-function getDataType(table){
-//   const table = document.getElementById(id_table);
-  const col_names = getColNames(table);
-  const n_col = col_names.length;
-  const first_row = table.rows[2].cells; // 2: data, (0: colnames, 1: hide buttons)
-  var data_type = [];
-  for(let Ci = 0; Ci < n_col; Ci++){
-    switch(col_names[Ci]){
-      case "date":
-      case "delButton":
-      case "updateButton":
-      case "no":
-        data_type[Ci] = col_names[Ci];
-        break;
-      default:
-  // console.log(col_names[Ci]);
-        var f_child = first_row[Ci].firstChild;
-        if(f_child.value === void 0){
-          data_type[Ci] = "fixed";
-        } else {
-          if(f_child.getAttribute("type") === null){
-            data_type[Ci] = "select-one";
-          } else {
-            data_type[Ci] = f_child.getAttribute("type");
-          }
-        }
-      break;
-    }
-  }
-  return data_type;
-}
+//   @return        A string array.
+// function getDataType(table){
+// //   const table = document.getElementById(id_table);
+//   const col_names = getColNames(table);
+//   const n_col = col_names.length;
+//   const first_row = table.rows[2].cells; // 2: data, (0: colnames, 1: hide buttons)
+//   var data_type = [];
+//   for(let Ci = 0; Ci < n_col; Ci++){
+//     switch(col_names[Ci]){
+//       case "DATE":
+//       case "DELETE":
+//       case "UPDATE_TIME_GPS":
+//       case "NO":
+//         data_type[Ci] = col_names[Ci];
+//         break;
+//       default:
+//   // console.log(col_names[Ci]);
+//         var f_child = first_row[Ci].firstChild;
+//         if(f_child.value === void 0){
+//           data_type[Ci] = "fixed";
+//         } else {
+//           if(f_child.getAttribute("type") === null){
+//             data_type[Ci] = "list";
+//           } else {
+//             data_type[Ci] = f_child.getAttribute("type");
+//           }
+//         }
+//       break;
+//     }
+//   }
+//   return data_type;
+// }
+
+
 
 // Helper for getDataType()
-function get_data_types(table){
+function getDataTypes(table){
   var types = [];
-  for(cell of table.rows[2].cells){ // 2: first data row (0: colnames, 1: hide buttons)
-    types.push(get_data_type(cell));
+  var table = table.querySelectorAll("tr:not([class=hide_button]"); // remove tr with hide buttons
+  for(cell of table[2].cells){                                      // 1: first data row (0: colnames)
+    types.push(getDataTypeCell(cell));
   }
   return types;
 }
 
 // Helper for getDataType()
-function get_data_type(cell){
-  return (cell.firstChild.type === void 0) ? "fixed" : cell.firstChild.type;
+function getDataTypeCell(cell){
+  var type = (cell.firstChild.type === void 0) ? "fixed" : cell.firstChild.type;
+  if(type === 'select-one') var type = 'list';
+  return type;
 }
 
 // Get column names as a string array.
