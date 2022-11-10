@@ -63,19 +63,17 @@ Biodiversity Investigation Support System (BISS)
 <input id="switch_screen_show" type="button" value="TO FULL SCREEN"  onclick="switchScreenShow(this.id)" />
 <input type="button" value="saveHTML"  onclick="saveHTML()" />
 <!--      TODO: Use different background color or something CLEAR for users in switching on / off       -->
-<input type="button" value="Start GPS" onclick="startWatchPosition()" />
-<input type="button" value="Stop GPS"  onclick="stopWatchPosition()" />
+<input type="button" value="Start GPS" onclick="startGPS(this)" />
 <input type='button' value="Launch mailer" onclick="launchMailer()" />
 <a href="exam01.html">Show example</a>
 </p>
 
+
 <div class="Biodiversity Investigation System (BIS)">
   <p id="tabcontrol">
-    <a href="#tab_tools"  >Tools    </a>
+    <a href="#tab_tools"  >Tools     </a>
     <a href="#tab_settings">Settings </a>
-<!--
-    <a href="#tab_inputs" >Inputs   </a>
--->
+    <a href="#tab_all"     >All plots</a>
     <input id = "add_tab" type = "button" value = "+ PLOT" onclick = "addTab(this)" />
   </p>
 
@@ -107,6 +105,16 @@ Biodiversity Investigation Support System (BISS)
                                    add_button: true }) );
       </script>
     </div>
+
+    <div id="tab_all">
+      <script>
+        var setting_tab = document.getElementById("tab_all");
+        setting_tab.appendChild( updateAllInputsTablesButton() );
+      </script>
+      <table id='pl_all'></table>
+      <table id='oc_all'></table>
+    </div>
+
   </div>
 </div>
 

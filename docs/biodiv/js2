@@ -169,11 +169,21 @@ function createInput( ...args ){
   return input;
 }
 
+function updateAllInputsTablesButton(){
+  return createInput({ type: "button", value: "Update all inputs tables", onclick: "updateAllInputsTables(this)" });
+}
+
 function createDelButton(){
   return createInput({ type: "button", value: "DELETE", onclick: "delRow(this)" });
 }
 function createUpdateButton(){
-  return createInput({ type: "button", value: "Update Time & GPS", onclick: "updateTimeGPS(this)" });
+  return createInput({ type: "button", value: "UPDATE_TIME_GPS", onclick: "updateTimeGPS(this)" });
+}
+function createStartGPSButton(){
+  return createInput({ type: "button", value: "Start GPS", onclick: "startGPS(this)" });
+}
+function createStopGPSButton(){
+  return createInput({ type: "button", value: "Stop GPS", onclick: "stopGPS(this)" });
 }
 function createFitTable(id){
   return createInput({ type:"button", value: "Fit width", onclick: "shortTable(this)", id: id});
@@ -242,7 +252,7 @@ const data = {
 
   setting_occ_default: '{"biss_c_names":["item","type","value","DELETE"]};{"biss_d_types":["text","list","text","button"]};{"biss_selects":[null,["auto","button","checkbox","fixed","list","text","number"],null,null]};{"item":["DATE","LOC_LAT","LOC_LON","LOC_ACC","DELETE","UPDATE_TIME_GPS","NO","Layer","Species","Cover","Identified","Sampled","Memo"],"type":["auto","auto","auto","auto","button","button","auto","list","text","number","checkbox","checkbox","text"],"value":["","","","","","","","T1:T2:S1:S2:H","","","","",""],"DELETE":["DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE"]}',
 
-  input_occ_exam01: '{"biss_c_names":["PLOT","DATE","LOC_LAT","LOC_LON","LOC_ACC","DELETE","UPDATE_TIME_GPS","NO","Layer","Species","Cover","Identified","Sampled","Memo"]};{"biss_d_types":["fixed","fixed","fixed","fixed","fixed","button","button","fixed","list","text","number","checkbox","checkbox","text"]};{"biss_selects":[null,null,null,null,null,null,null,null,["","T1","T2","S1","S2","H"],null,null,null,null,null]};{"PLOT":["exam01","exam01","exam01","exam01","exam01","exam01","exam01","exam01"],"DATE":["2022_07_08_14_47_27","2022_07_08_14_47_26","2022_07_08_14_48_21","2022_07_08_14_47_29","2022_07_08_14_47_31","2022_07_08_14_47_30","2022_07_08_14_47_30","2022_07_08_14_47_27"],"LOC_LAT":["34.734","34.734","34.734","34.734","34.734","34.734","34.734","34.734"],"LOC_LON":["135.287","135.287","135.287","135.287","135.287","135.287","135.287","135.287"],"LOC_ACC":["16.8","16.8","16.8","16.8","16.8","16.8","16.8","16.8"],"DELETE":["DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE"],"UPDATE_TIME_GPS":["Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS","Update Time & GPS"],"NO":["2","1","8","4","7","6","5","3"],"Layer":["T1","T1","H","T2","H","S1","S2","T2"],"Species":["bbbb","abc","hhhh sp","dddddddddddd sp","ggg","fff","eeee","ccccccccc"],"Cover":["53","29","9","11","13","9","0.2",".1"],"Identified":[true,true,false,true,true,true,true,true],"Sampled":[false,false,true,true,false,false,false,false],"Memo":["","","","maybe","","","",""]}',
+  input_occ_exam01: '{"biss_c_names":["PLOT","DATE","LOC_LAT","LOC_LON","LOC_ACC","DELETE","UPDATE_TIME_GPS","NO","Layer","Species","Cover","Identified","Sampled","Memo"]};{"biss_d_types":["fixed","fixed","fixed","fixed","fixed","button","button","fixed","list","text","number","checkbox","checkbox","text"]};{"biss_selects":[null,null,null,null,null,null,null,null,["","T1","T2","S1","S2","H"],null,null,null,null,null]};{"PLOT":["exam01","exam01","exam01","exam01","exam01","exam01","exam01","exam01"],"DATE":["2022_07_08_14_47_27","2022_07_08_14_47_26","2022_07_08_14_48_21","2022_07_08_14_47_29","2022_07_08_14_47_31","2022_07_08_14_47_30","2022_07_08_14_47_30","2022_07_08_14_47_27"],"LOC_LAT":["34.734","34.734","34.734","34.734","34.734","34.734","34.734","34.734"],"LOC_LON":["135.287","135.287","135.287","135.287","135.287","135.287","135.287","135.287"],"LOC_ACC":["16.8","16.8","16.8","16.8","16.8","16.8","16.8","16.8"],"DELETE":["DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE","DELETE"],"UPDATE_TIME_GPS":["UPDATE_TIME_GPS","UPDATE_TIME_GPS","UPDATE_TIME_GPS","UPDATE_TIME_GPS","UPDATE_TIME_GPS","UPDATE_TIME_GPS","UPDATE_TIME_GPS","UPDATE_TIME_GPS"],"NO":["2","1","8","4","7","6","5","3"],"Layer":["T1","T1","H","T2","H","S1","S2","T2"],"Species":["bbbb","abc","hhhh sp","dddddddddddd sp","ggg","fff","eeee","ccccccccc"],"Cover":["53","29","9","11","13","9","0.2",".1"],"Identified":[true,true,false,true,true,true,true,true],"Sampled":[false,false,true,true,false,false,false,false],"Memo":["","","","maybe","","","",""]}',
 };
 
 const data_00 = {
@@ -497,7 +507,7 @@ function restoreTd(table_data, data_type, select){
       break;
     case "button":
       if(table_data === "DELETE")           { var td = createTdWithChild( createDelButton() ); }
-      if(table_data === "Update Time & GPS"){ var td = createTdWithChild( createUpdateButton() ); }
+      if(table_data === "UPDATE_TIME_GPS"){ var td = createTdWithChild( createUpdateButton() ); }
       break;
     case "list":
       var sel_no = select.indexOf(table_data);
@@ -577,10 +587,10 @@ function getAcc() { return String(locations.acc[locations.acc.length - 1]); }
 
 // GPS success
 //   Use with tags below in html
-//   <input type="button" value="start" onclick="startWatchPosition()" />
-//   <input type="button" value="stop" onclick="stopWatchPosition()" />
+//   <input type="button" value="start" onclick="startGPS()" />
+//   <input type="button" value="stop" onclick="stopGPS()" />
 //   <div id="poslog" ></div>
-function successCallback(position) {
+function successCallback(position){
   locations.lat.push(position.coords.latitude);
   locations.lon.push(position.coords.longitude);
   locations.acc.push(position.coords.accuracy);
@@ -592,13 +602,15 @@ function errorCallback(positionError) {
 }
 
 // stop GPS
-function stopWatchPosition() {
+function stopGPS(obj) {
   navigator.geolocation.clearWatch(watchId);
+  obj.replaceWith( createStartGPSButton() );
 }
 
 // start GPS
-function startWatchPosition() {
+function startGPS(obj) {
   watchId = navigator.geolocation.watchPosition(successCallback, errorCallback, positionOptions);
+  obj.replaceWith( createStopGPSButton() );
 }
 // Alert when move to other page
 //     https://www.sejuku.net/blog/25316
@@ -914,6 +926,63 @@ function addTab(obj){
   setSortable('input_occ_' + id + '_tb');  // Should setSortable() after appendChild()
 }
 
+function updateAllInputsTables(obj){
+  var plots = document.querySelectorAll("table[id^='input_plot']");
+  var occs  = document.querySelectorAll("table[id^='input_occ']");
+  var pl_c_names = [];
+  var oc_c_names = [];
+  for(let i = 0; i < plots.length; i++) {
+    var pl_c_names = pl_c_names.concat(getColNames(plots[i]));
+    var oc_c_names = oc_c_names.concat(getColNames(occs[i] ));
+  }
+  var pl_c_names = uniq(pl_c_names);
+  var oc_c_names = uniq(oc_c_names);
+
+  // editing now
+  // no need cols: DELETE DATE UPDATE_TIME_GPS
+
+  var pl_inputs = [];
+  for(c_name of pl_c_names){
+    pl_inputs[c_name] = [];
+    for(pl of plots){
+      pl_inputs[c_name] = pl_inputs[c_name].concat(getColData(pl, c_name));
+    }
+  }
+  var oc_inputs = [];
+  for(c_name of oc_c_names){
+    oc_inputs[c_name] = [];
+    for(oc of occs){
+      oc_inputs[c_name] = oc_inputs[c_name].concat(getColData(oc, c_name));
+    }
+  }
+  var pl_d_types = []; for(let i = 0; i <pl_c_names.length; i++){ pl_d_types.push('fixed'); }
+  var pl_selects = []; for(let i = 0; i <pl_c_names.length; i++){ pl_selects.push(''); }
+  var pl_data = {
+    biss_c_names: pl_c_names,
+    biss_d_types: pl_d_types,
+    biss_selects: pl_selects,
+    biss_inputs : pl_inputs
+  }
+
+  var oc_d_types = []; for(let i = 0; i <oc_c_names.length; i++){ oc_d_types.push('fixed'); }
+  var oc_selects = []; for(let i = 0; i <oc_c_names.length; i++){ oc_selects.push(''); }
+  var oc_data = {
+    biss_c_names: oc_c_names,
+    biss_d_types: oc_d_types,
+    biss_selects: oc_selects,
+    biss_inputs : oc_inputs
+  }
+
+  // var table_data_jo = oc_data;
+  var all_pl_table = makeTableJO(pl_data, 'pl_all');
+  var all_oc_table = makeTableJO(oc_data, 'oc_all');
+
+  document.getElementById('pl_all').replaceWith(all_pl_table);
+  document.getElementById('oc_all').replaceWith(all_oc_table);
+  setSortable("pl_all");
+  setSortable("oc_all");
+}
+
 function changePlotName(obj){
   var new_name = obj.previousElementSibling.value;
  // var old_name = obj.parentNode.
@@ -954,6 +1023,7 @@ function createTd(col_name, data_type, select, table_data){
       if(col_name === "UPDATE_TIME_GPS"){ var td = createTdWithChild( createUpdateButton() ); }
       break;
     case "list":
+      select.push('');
       if(select.indexOf(table_data) === -1){ var selected_no = 0;                          }
       else                                 { var selected_no = select.indexOf(table_data); }
       var td = createTdWithChild( createSelectOpt(select, selected_no) );
@@ -1044,16 +1114,17 @@ function getTableData(table){
 //   @paramas 
 //   @paramas 
 //   @return  A table
-function makeTableJO(table_data_json, table_name){
+function makeTableJO(table_data_jo, table_name){
   // data for test
   //   var col_names = data_00[table_name]["biss_c_names"];
   //   var dat_types = data_00[table_name]["biss_d_types"];
   //   var selects   = data_00[table_name]["biss_selects"];
   //   var tab_data  = data_00[table_name]["biss_inputs"];
-  var col_names = table_data_json["biss_c_names"];
-  var dat_types = table_data_json["biss_d_types"];
-  var selects   = table_data_json["biss_selects"];
-  var tab_data  = table_data_json["biss_inputs"];
+  // var table_data_jo = oc_data; var table_name = "a";
+  var col_names = table_data_jo["biss_c_names"];
+  var dat_types = table_data_jo["biss_d_types"];
+  var selects   = table_data_jo["biss_selects"];
+  var tab_data  = table_data_jo["biss_inputs"];
 
   var table = crEl({ el: 'table', ats:{id: table_name} });
   var table = addThTr(table, col_names);                                    // tr with th (col names)
@@ -1527,10 +1598,10 @@ function createInputTd(dat_type, col_name, optional){
 //    @return null.
 function updateTimeGPS(obj){
   // settings
+  // var obj = temp1;
   var cols = ["DATE", "LOC_LAT", "LOC_LON", "LOC_ACC"];
   var funs = [getNow, getLat, getLon, getAcc]
-  // clicked things
-  var table = obj.parentNode.parentNode.parentNode;
+  var table = searchParentTable(obj);
   var tr = obj.parentNode.parentNode;
   var row_no = tr.sectionRowIndex;
   // update
