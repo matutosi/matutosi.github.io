@@ -9,7 +9,7 @@
 //      dn.appendChild( createNrowInput() );
 //      dn.appendChild( createAddRowButton() );
 //      // Main
-//      var main   = crEl({ el:'span', id: "main_"   + ns})
+//      var main   = crEl({ el:'span', ats:{id: "main_"   + ns} })
 //      main.appendChild(up);
 //      main.appendChild(table);
 //      main.appendChild(dn);

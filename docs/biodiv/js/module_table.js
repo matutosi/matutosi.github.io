@@ -37,7 +37,7 @@ function inputTableModule(ns, table = null){
   }
 
   // Main
-  var main   = crEl({ el:'span', id: "main_"   + ns});
+  var main   = crEl({ el:'span', ats:{id: "main_"   + ns} });
   main.appendChild(up);
   main.appendChild(table);
   main.appendChild(dn);
@@ -53,7 +53,7 @@ function inputTableModule(ns, table = null){
 // @retrun  A span including a table and other elements.
 function settingTableModule(ns){
   // var ns = "occ_input_table_example_01";
-  var main  = crEl({ el:'span', id: "main_"   + ns});
+  var main  = crEl({ el:'span', ats:{id: "main_"   + ns} });
 
   // Up span
   var up = crEl({ el:'span', ats:{id: "up_" + ns} });
@@ -334,7 +334,7 @@ function sumWithGroup(obj){
   var c_no = getColNames(table).indexOf(group);
   var opts = table.rows[2].cells[c_no].firstChild.options;
   var groups = [];
-  for(o of opts){ groups.push(o.value); }
+  for(let o of opts){ groups.push(o.value); }
   var sum_array = [];
   for(let i = 0; i < groups.length; i++){ sum_array[groups[i]] = 0; }
   for(let i = 0; i < groups.length; i++){
@@ -413,7 +413,7 @@ function createSelectOpt(list, selected_no = 0){
 function hasDupPlot(plot){
   var tab_inputs = document.getElementById("tab_inputs");
   var input_tables = tab_inputs.querySelectorAll("table");
-  for(table of input_tables){
+  for(let table of input_tables){
     if(table.id.split("_")[1] === "occ"){
       if(table.id.split("_")[2] === plot){
         alert("Duplicated PLOT!");

@@ -7,7 +7,7 @@
 function createInput( ...args ){
   var input = document.createElement('input');
   var keys  = Object.keys(args[0]);
-  for(key of keys){
+  for(let key of keys){
     input.setAttribute(key, args[0][key]);
   }
   return input;

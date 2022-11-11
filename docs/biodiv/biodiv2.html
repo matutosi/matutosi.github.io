@@ -74,7 +74,7 @@ Biodiversity Investigation Support System (BISS)
     <a href="#tab_tools"  >Tools     </a>
     <a href="#tab_settings">Settings </a>
     <a href="#tab_all"     >All plots</a>
-    <input id = "add_tab" type = "button" value = "+ PLOT" onclick = "addTab(this)" />
+    <input id = "add_tab" type = "button" value = "+ PLOT" onclick = "addInputTab(this)" />
   </p>
 
   <div id="tabbody">
@@ -108,11 +108,13 @@ Biodiversity Investigation Support System (BISS)
 
     <div id="tab_all">
       <script>
-        var setting_tab = document.getElementById("tab_all");
-        setting_tab.appendChild( updateAllInputsTablesButton() );
+        var all_tab = document.getElementById("tab_all");
+        all_tab.appendChild( updateAllInputsTablesButton() );
       </script>
-      <table id='pl_all'></table>
-      <table id='oc_all'></table>
+      <br>
+      <span id='plot_all'></span>
+      <span id='occ_all' ></span>
+      <table id='comp_table' ></table>
     </div>
 
   </div>

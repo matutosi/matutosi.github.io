@@ -163,7 +163,7 @@ function draw(src){
 function createInput( ...args ){
   var input = document.createElement('input');
   var keys  = Object.keys(args[0]);
-  for(key of keys){
+  for(let key of keys){
     input.setAttribute(key, args[0][key]);
   }
   return input;
@@ -370,7 +370,7 @@ function getTableDataPlus(id_table, shift_one = false){
   var c_names = getColNames(table);
   var d_types = getDataTypes(table);
   var t_data = [];
-  for(name of c_names){
+  for(let name of c_names){
     t_data[name] = getColData(table, name);
     if(shift_one) t_data[name].shift();  // delete hide button
   }
@@ -394,7 +394,7 @@ function getSelectOne(table, col_name){
   const col_no = getColNames(table).indexOf(col_name);
   var options = table.rows[2].cells[col_no].firstChild.options;
   var sel_opt = [];
-  for(option of options){
+  for(let option of options){
     sel_opt.push(option.innerText);
   }
   return sel_opt;
@@ -654,9 +654,9 @@ function csv2json(csv, sep=","){
 function extractJson(json){
   const keys = jsonKeys(json);
   var arr = [];
-  for(k of keys){ arr[k] = []; }
-  for(k of keys){
-    for(j of json){ 
+  for(let k of keys){ arr[k] = []; }
+  for(let k of keys){
+    for(let j of json){ 
       if(j[k] === void 0) arr[k].push("")
       else                arr[k].push(j[k]);
     }
@@ -669,7 +669,7 @@ function extractJson(json){
 //    @params key  A key string.
 function json2Array(json, key){
   var arr = [];
-  for(j of json){ 
+  for(let j of json){ 
     if(j[key] === void 0) arr.push("")
     else                  arr.push(j[key]);
   }
@@ -679,7 +679,7 @@ function json2Array(json, key){
 // Extract keys from JSON data
 function jsonKeys(json){
   var arr = [];
-  for(j of json){ arr = arr.concat(Object.keys(j)); }
+  for(let j of json){ arr = arr.concat(Object.keys(j)); }
   return uniq(arr);
 }
 
@@ -705,6 +705,7 @@ function setSortable(id_table){
   // console.log(id_table);
   // console.log( document.querySelectorAll('#' + id_table + ' th') );
   // var id_table = "occ_input_table_example_01";
+  // var id_table = "comp_table";
   document.querySelectorAll('#' + id_table + ' th').forEach(elm => {
     elm.onclick = function (){
       // settings
@@ -876,7 +877,7 @@ function addPlotNo(plot_data, no){
 function getPlotMaxNo(){
   var tables = document.querySelectorAll("table[id^='input_plot']");
   var max_no = [0];
-  for(tb of tables){
+  for(let tb of tables){
     max_no.push(getColData(tb, "NO")[0]);
   }
   return Math.max.apply(Math, string2Numeric(max_no));
@@ -884,11 +885,18 @@ function getPlotMaxNo(){
 
 // Add a tab
 //   in progress
-function addTab(obj){
+function addInputTab(obj){
   // input PLOT name
   var id = prompt("Input PLOT name", "");
+  if(null === id){ 
+    return void 0;
+  }
+  if("" === id){
+    alert("PLOT should NOT be empty!");
+    return void 0; 
+  }
   if(null !== document.getElementById(id)){
-    alert(id + " is already exist. PLOT should NOT be DUPLICATED !");
+    alert(id + " is already exist. PLOT should NOT be DUPLICATED!");
     return void 0; 
   }
   // create tabcontrol
@@ -909,78 +917,119 @@ function addTab(obj){
   var occ_setting  = convertTableData( getTableData( document.getElementById("setting_occ_tb" )))
   var occ_setting  = addPlotId(occ_setting, id);
   // console.log(occ_setting );
-  div.appendChild( tableModule({
-                      table_data: plot_setting, ns: 'input_plot_' + id, 
-                      id_text: true, 
-                      hide_button: true, fit_button: true }) );
+  var pl_table = tableModule({table_data: plot_setting, ns: 'input_plot_' + id, 
+                              id_text: true, 
+                              hide_button: true, fit_button: true })
+  div.appendChild( pl_table );
   document.getElementById('input_plot_' + id + '_fit').onclick();
-  div.appendChild( tableModule({
-                      table_data: occ_setting, ns: 'input_occ_' + id, 
-                      id_text: true, search_input: true,
-                      hide_button: true, fit_button: true, 
-                      add_button: true, calc_button: true}) );
+  var oc_table = tableModule({table_data: occ_setting, ns: 'input_occ_' + id, 
+                              id_text: true, search_input: true,
+                              hide_button: true, fit_button: true, 
+                              add_button: true, calc_button: true})
+  div.appendChild( oc_table );
   document.getElementById('input_occ_' + id + '_nrow').value = 3;
   document.getElementById('input_occ_' + id + '_add_rows').onclick();
   updateTab();
   tabs[tabs.length - 1].onclick();  // move tab
-  setSortable('input_occ_' + id + '_tb');  // Should setSortable() after appendChild()
+  var table = searchParentTable(oc_table);
+  setSortable(table.id);  // Should setSortable() after appendChild()
 }
 
 function updateAllInputsTables(obj){
-  var plots = document.querySelectorAll("table[id^='input_plot']");
-  var occs  = document.querySelectorAll("table[id^='input_occ']");
-  var pl_c_names = [];
-  var oc_c_names = [];
-  for(let i = 0; i < plots.length; i++) {
-    var pl_c_names = pl_c_names.concat(getColNames(plots[i]));
-    var oc_c_names = oc_c_names.concat(getColNames(occs[i] ));
+  var pl_table = createAllInputsTable('input_plot')
+  var oc_table = createAllInputsTable('input_occ' )
+  document.getElementById('plot_all').replaceWith(pl_table);
+  document.getElementById('occ_all' ).replaceWith(oc_table);
+  setSortable( searchParentTable(pl_table).id );
+  setSortable( searchParentTable(oc_table).id );
+
+  var tables = document.querySelectorAll("table[id^='input_occ']");
+  var comp_table = createCompositionTable(tables);
+  document.getElementById('comp_table').replaceWith(comp_table);
+  setSortable( searchParentTable(comp_table).id );
+}
+
+function createAllInputsTable(table_name){
+  // var table_name = "input_occ"
+  var tables = document.querySelectorAll("table[id^='" + table_name + "']");
+
+  var c_names = getUniqeColNames(tables);
+  var removals = ['DATE', 'DATE', "LOC_LAT","LOC_LON","LOC_ACC","DELETE","\_TIME_GPS"];
+  var c_names = c_names.filter(item => ! removals.includes(item));
+
+  var inputs = getMultiTableInputs(tables, c_names);
+  var d_types = []; for(let i = 0; i <c_names.length; i++){ d_types.push('fixed'); }
+  var selects = []; for(let i = 0; i <c_names.length; i++){ selects.push(''); }
+
+  var all_data = {
+    biss_c_names: c_names,
+    biss_d_types: d_types,
+    biss_selects: selects,
+    biss_inputs : inputs
   }
-  var pl_c_names = uniq(pl_c_names);
-  var oc_c_names = uniq(oc_c_names);
 
-  // editing now
-  // no need cols: DELETE DATE UPDATE_TIME_GPS
-
-  var pl_inputs = [];
-  for(c_name of pl_c_names){
-    pl_inputs[c_name] = [];
-    for(pl of plots){
-      pl_inputs[c_name] = pl_inputs[c_name].concat(getColData(pl, c_name));
+  var all_table_name = table_name.split("_")[1] + '_all';
+  //   var all_table = makeTableJO(all_data, all_table_name);
+  var all_table = tableModule({table_data: all_data, ns: all_table_name,
+                              id_text: true, search_input: true,
+                              hide_button: true})
+  return all_table;
+}
+function getUniqeColNames(tables){
+  var c_names = [];
+  for(let i = 0; i < tables.length; i++) {
+    var c_names = c_names.concat(getColNames(tables[i]));
+  }
+  return uniq(c_names);
+}
+function getMultiTableInputs(tables, c_names){
+  var inputs = [];
+  for(let c_name of c_names){
+    inputs[c_name] = [];
+    for(let pl of tables){
+      inputs[c_name] = inputs[c_name].concat(getColData(pl, c_name));
     }
   }
-  var oc_inputs = [];
-  for(c_name of oc_c_names){
-    oc_inputs[c_name] = [];
-    for(oc of occs){
-      oc_inputs[c_name] = oc_inputs[c_name].concat(getColData(oc, c_name));
+  return inputs;
+}
+
+
+function createCompositionTable(tables, pl = "PLOT", sp = "Species", ab = "Cover"){
+  // var pl = "PLOT";var sp = "Species"; var ab = "Cover"; var tables = document.querySelectorAll("table[id^='input_occ']");
+  var inputs = getMultiTableInputs(tables, [pl, sp, ab]);
+  var uniq_pl = uniq(inputs[pl]);
+  var uniq_sp = uniq(inputs[sp]);
+  var c_names = [sp].concat(uniq_pl);
+  var data_table = [];
+  data_table[sp] = uniq_sp;
+  for(let p of uniq_pl){
+    var data_col = [];
+    for(let s of uniq_sp){
+      var value = 0;
+      for(let i=0; i < inputs[ab].length; i++){
+        if(inputs[pl][i] === p && inputs[sp][i] === s ){
+          value = value + Number(inputs[ab][i]);
+        }
+      }
+      if(value === 0){ var value = ''; }
+      data_col.push(value);
     }
+    data_table[p] = data_col;
   }
-  var pl_d_types = []; for(let i = 0; i <pl_c_names.length; i++){ pl_d_types.push('fixed'); }
-  var pl_selects = []; for(let i = 0; i <pl_c_names.length; i++){ pl_selects.push(''); }
-  var pl_data = {
-    biss_c_names: pl_c_names,
-    biss_d_types: pl_d_types,
-    biss_selects: pl_selects,
-    biss_inputs : pl_inputs
+  data_table;
+
+  var d_types = []; for(let i = 0; i <c_names.length; i++){ d_types.push('fixed'); }
+  var selects = []; for(let i = 0; i <c_names.length; i++){ selects.push(''); }
+  var comp_data = {
+    biss_c_names: c_names,
+    biss_d_types: d_types,
+    biss_selects: selects,
+    biss_inputs : data_table
   }
-
-  var oc_d_types = []; for(let i = 0; i <oc_c_names.length; i++){ oc_d_types.push('fixed'); }
-  var oc_selects = []; for(let i = 0; i <oc_c_names.length; i++){ oc_selects.push(''); }
-  var oc_data = {
-    biss_c_names: oc_c_names,
-    biss_d_types: oc_d_types,
-    biss_selects: oc_selects,
-    biss_inputs : oc_inputs
-  }
-
-  // var table_data_jo = oc_data;
-  var all_pl_table = makeTableJO(pl_data, 'pl_all');
-  var all_oc_table = makeTableJO(oc_data, 'oc_all');
-
-  document.getElementById('pl_all').replaceWith(all_pl_table);
-  document.getElementById('oc_all').replaceWith(all_oc_table);
-  setSortable("pl_all");
-  setSortable("oc_all");
+  var comp_table = tableModule({table_data: comp_data, ns: 'comp_table',
+                              id_text: true, search_input: true,
+                              hide_button: true})
+  return comp_table;
 }
 
 function changePlotName(obj){
@@ -1096,7 +1145,7 @@ function getTableData(table){
   var d_types = getDataTypes(table);
   // getInputs
   var t_data = [];
-  for(name of c_names){
+  for(let name of c_names){
     t_data[name] = getColData(table, name);
   }
   var selects = [];
@@ -1189,7 +1238,7 @@ function convertTableData(table_data){
 //      dn.appendChild( createNrowInput() );
 //      dn.appendChild( createAddRowButton() );
 //      // Main
-//      var main   = crEl({ el:'span', id: "main_"   + ns})
+//      var main   = crEl({ el:'span', ats:{id: "main_"   + ns} })
 //      main.appendChild(up);
 //      main.appendChild(table);
 //      main.appendChild(dn);
@@ -1376,8 +1425,6 @@ function hideRow(obj){
   obj.replaceWith( createShowRowButton("plot info") );
 }
 function showAllCols(obj){
-console.log(obj.parentNode.parentNode.nextElementSibling);
-  //  var table = obj.parentNode.parentNode.parentNode.querySelectorAll("table")[0];
   var table = searchParentTable(obj);
   for(let Ci = 0; Ci < table.rows[0].cells.length; Ci++){
     for(let Rj = 0; Rj < table.rows.length; Rj++){
@@ -1443,7 +1490,7 @@ function hideShowNext(obj){
 function tableModule({ table_data, ns, 
                        id_text, search_input, load_button, save_button, hide_button, fit_button, 
                        add_button, calc_button }){
-  var main  = crEl({ el:'span', id: ns});
+  var main  = crEl({ el:'span', ats:{id: ns} });
   // Up span
   var up = crEl({ el:'span', ats:{id: ns + "_up"} });
   if(id_text      != void 0){   up.appendChild( crEl({ el: 'B', tc: ns}) ); 
@@ -1630,7 +1677,7 @@ function sumWithGroup(obj){
   var c_no = getColNames(table).indexOf(group);
   var opts = table.rows[2].cells[c_no].firstChild.options;
   var groups = [];
-  for(o of opts){ groups.push(o.value); }
+  for(let o of opts){ groups.push(o.value); }
   var sum_array = [];
   for(let i = 0; i < groups.length; i++){ sum_array[groups[i]] = 0; }
   for(let i = 0; i < groups.length; i++){
@@ -1709,7 +1756,7 @@ function createSelectOpt(list, selected_no = 0){
 function hasDupPlot(plot){
   var tab_inputs = document.getElementById("tab_inputs");
   var input_tables = tab_inputs.querySelectorAll("table");
-  for(table of input_tables){
+  for(let table of input_tables){
     if(table.id.split("_")[1] === "occ"){
       if(table.id.split("_")[2] === plot){
         alert("Duplicated PLOT!");
@@ -2047,7 +2094,7 @@ function splitByGroup(array, group){
 function getDataTypes(table){
   var types = [];
   var table = table.querySelectorAll("tr:not([class=hide_button]"); // remove tr with hide buttons
-  for(cell of table[1].cells){                                      // 1: first data row (0: colnames)
+  for(let cell of table[1].cells){                                  // 1: first data row (0: colnames)
     types.push(getDataTypeCell(cell));
   }
   return types;
@@ -2055,6 +2102,7 @@ function getDataTypes(table){
 
 // Helper for getDataType()
 function getDataTypeCell(cell){
+  if(cell.firstChild === null){ return "fixed"; }
   var type = (cell.firstChild.type === void 0) ? "fixed" : cell.firstChild.type;
   if(type === 'select-one') var type = 'list';
   return type;
@@ -2108,7 +2156,7 @@ function crEl({ el, ats, ih, tc }){
   var ele = document.createElement(el);
   if(ats != void 0){
     var keys  = Object.keys(ats);
-    for(key of keys){ ele.setAttribute(key, ats[key]); }
+    for(let key of keys){ ele.setAttribute(key, ats[key]); }
   }
   if(ih != void 0){ ele.innerHTML   = ih; }
   if(tc != void 0){ ele.textContent = tc; }
@@ -2123,6 +2171,88 @@ function saveHTML(obj){
   var doc = document.documentElement.outerHTML;
   downloadStrings(strings = doc, file_name = "biodiv.html")
 }
+const species = [
+"アオナラ",
+"アオナラガシワ",
+"アオミズナラ",
+"アズミノナライシダ",
+"アツカワコナラ",
+"アヅミノナライシダ",
+"アマナラン",
+"アメリカクロヤマナラシ",
+"アメリカヤマナラシ",
+"イギリスナラ",
+"イケミネナライシダ",
+"イタリアヤマナラシ",
+"エゾヤマナラシ",
+"オウシュウナラ",
+"オオナラ",
+"オオバコナラ",
+"オオバヤマナラシ",
+"オオミノミズナラ",
+"オキナワヒナラン",
+"カシワコナラ",
+"カシワナラ",
+"カラカシワナラ",
+"カラフトヤマナラシ",
+"キサラギナライシダ",
+"キバナラッキョウ",
+"キバナランタナ",
+"キラサギナライシダ",
+"ケチョウセンヤマナラシ",
+"ケナライシダ",
+"コウトウアマナラン",
+"コナラ",
+"コナラガシワ",
+"シダレコナラ",
+"シロバナラシャナス",
+"シロバナラショウモンカズラ",
+"タイワンコナラ",
+"タカサゴヒナラン",
+"タカヤマナライシダ",
+"タレハハゴロモアオナラ",
+"チバナライシダ",
+"チョウセンコナラ",
+"チョウセンヤマナラシ",
+"ツクシオオナラ",
+"テリハコナラ",
+"トウコナラ",
+"ナガバコナラ",
+"ナガバチョウセンヤマナラシ",
+"ナガバミズナラ",
+"ナガミコナラ",
+"ナラ",
+"ナライシダ",
+"ナラガシワ",
+"ナラミズガシワ",
+"ナンゴクナライシダ",
+"ノコバナラガシワ",
+"ハゴロモアオナラ",
+"ハゴロモナラ",
+"ハゴロモミズナラ",
+"ハナランザン",
+"ヒナラン",
+"ヒロハナライシダ",
+"ヒロハノナライシダ",
+"ヒロハヤマナラシ",
+"ビワバコナラ",
+"ピラミッドヤマナラシ",
+"フクシマナライシダ",
+"フモトミズナラ",
+"ホソバナライシダ",
+"マルバコナラ",
+"ミズコナラ",
+"ミズナラ",
+"ミヤマナラ",
+"ムヨウヒナラン",
+"モウコナラ",
+"モンゴリコナラ",
+"モンゴリナラ",
+"ヤマナラシ",
+"ヨーロッパクロヤマナラシ",
+"ヨーロッパヤマナラシ",
+"リュウキュウヒナラン"
+];
 const wamei = [
 "アーティチョーク","アーネルスゲ","アーノルドラフレシア","アーモンド","アイ","アイアシ","アイアスカイノデ","アイイシカグマ","アイイズハナワラビ","アイイタドリ",
 "アイイヌケホシダ","アイイヌタマシダ","アイイノモトソウ","アイイロニワゼキショウ","アイイワヒトデ","アイイワヒメワラビ","アイオオアカウキクサ","アイオオカグマ","アイオニタビラコ","アイオニヤブソテツ",
@@ -4858,7 +4988,7 @@ function generateSearchTable(ns, table){
   // Table
   var table = generateTable(wamei);
   // Main
-  var main   = crEl({ el:'span', id: "main_"   + ns});
+  var main   = crEl({ el:'span', ats:{id: "main_"   + ns} });
   main.appendChild(up);
   main.appendChild(table);
   return main;

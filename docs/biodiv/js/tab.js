@@ -31,7 +31,7 @@ function updateTab(){
 
 // Add a tab
 //   in progress
-function addTab(obj){
+function addInputTab(obj){
   var id = prompt("Input plot name", "");
 
   var a = crEl({ el: 'a', ats: {href: "#" + id}, ih: id });
@@ -40,7 +40,7 @@ function addTab(obj){
   var tabbody = document.getElementById('tabbody');
   var div = crEl({ el: 'div', ats: {id: id} });
 
-  var change_tab = crEl({ el:'span', id: "change_tab"   + ns});
+  var change_tab = crEl({ el:'span', ats:{id: "change_tab"   + ns} });
   var text_input = createInput({ type:"text", placeholder: "New plot name" });
 
   div.appendChild();

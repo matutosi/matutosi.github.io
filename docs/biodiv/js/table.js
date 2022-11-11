@@ -98,7 +98,7 @@ var table = document.getElementById("setting_occ_default");
   var d_types = getDataTypes(table);
   // getInputs
   var t_data = [];
-  for(name of c_names){
+  for(let name of c_names){
     t_data[name] = getColData(table, name);
   }
   var selects = [];

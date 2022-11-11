@@ -41,7 +41,7 @@ function getTableDataPlus(id_table, shift_one = false){
   var c_names = getColNames(table);
   var d_types = getDataTypes(table);
   var t_data = [];
-  for(name of c_names){
+  for(let name of c_names){
     t_data[name] = getColData(table, name);
     if(shift_one) t_data[name].shift();  // delete hide button
   }
@@ -65,7 +65,7 @@ function getSelectOne(table, col_name){
   const col_no = getColNames(table).indexOf(col_name);
   var options = table.rows[2].cells[col_no].firstChild.options;
   var sel_opt = [];
-  for(option of options){
+  for(let option of options){
     sel_opt.push(option.innerText);
   }
   return sel_opt;
