@@ -33,8 +33,8 @@
 
 /* tab coloar */
 
-#tabcontrol a:nth-child(1), #tabbody div:nth-child(1) { background-color: #FFFFE0; }
-#tabcontrol a:nth-child(2), #tabbody div:nth-child(2) { background-color: #efefff; }
+#tabcontrol a:nth-child(1),   #tabbody div:nth-child(1)   { background-color: #FFFFE0; }
+#tabcontrol a:nth-child(2),   #tabbody div:nth-child(2)   { background-color: #efefff; }
 #tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3) { background-color: #efffef; }
 /* red
 #tabcontrol a:nth-child(4), #tabbody div:nth-child(4) { background-color: #ffefef; }

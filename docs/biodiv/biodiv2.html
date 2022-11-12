@@ -20,7 +20,7 @@
     <script src="js2/table_search_text.js">  </script>
     <script src="js2/tab.js">                </script>
 
-    <script src="js2/wamei_data.js" charset="utf-8"></script>
+    <script src="js2/wamei_data.js"   charset="utf-8"></script>
     <script src="js2/wamei_search.js" charset="utf-8"></script>
 
     <script src="js2/table.js">              </script>
@@ -80,8 +80,9 @@ Biodiversity Investigation Support System (BISS)
   <div id="tabbody">
     <div id="tab_tools">
       <script>
-      var tab = document.getElementById("tab_tools");
-      tab.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
+      var tab_tools = document.getElementById("tab_tools");
+      tab_tools.appendChild( generateSpeciesTable(species) );
+      tab_tools.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
       </script>
       <p>
       "aaa bbb" matches texts including both "aaa" and "bbb".
@@ -94,12 +95,12 @@ Biodiversity Investigation Support System (BISS)
 
     <div id="tab_settings">
       <script>
-        var setting_tab = document.getElementById("tab_settings");
-        setting_tab.appendChild( tableModule({ 
+        var tab_setting = document.getElementById("tab_settings");
+        tab_setting.appendChild( tableModule({ 
                                    table_data: data_test.setting_plot, ns: "setting_plot",
                                    id_text: true, load_button: true, save_button: true, hide_button: true, 
                                    add_button: true }) );
-        setting_tab.appendChild( tableModule({ 
+        tab_setting.appendChild( tableModule({ 
                                    table_data: data_test.setting_occ , ns: "setting_occ",
                                    id_text: true, load_button: true, save_button: true, hide_button: true, 
                                    add_button: true }) );
@@ -108,8 +109,8 @@ Biodiversity Investigation Support System (BISS)
 
     <div id="tab_all">
       <script>
-        var all_tab = document.getElementById("tab_all");
-        all_tab.appendChild( updateAllInputsTablesButton() );
+        var tab_all = document.getElementById("tab_all");
+        tab_all.appendChild( updateAllInputsTablesButton() );
       </script>
       <br>
       <span id='plot_all'></span>
