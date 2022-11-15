@@ -43,11 +43,12 @@
   // TODO: var -> const ?
   // TODO: Write documents for functions.
   // // // // // // // // // // // // // // // // // // // 
-function showExample(){
+function showExample(obj){
   addInputTab({ obj:document.getElementById('add_tab'), id:'pl_1' });
   addInputTab({ obj:document.getElementById('add_tab'), id:'pl_2' });
   document.getElementById('update_all_inputs_tables_button').click();
   document.getElementById('update_input_species_list').click();
+  obj.remove();
 }
 
 </script>
@@ -68,7 +69,7 @@ Biodiversity Investigation Support System (BISS)
 <!--      TODO: Use different background color or something CLEAR for users in switching on / off       -->
 <input type="button" value="Start GPS" onclick="startGPS(this)" />
 <input type='button' value="Launch mailer" onclick="launchMailer()" />
-<input type='button' value="Show example"  onclick="showExample()" />
+<input type='button' value="Show example"  onclick="showExample(this)" />
 </p>
 
 
