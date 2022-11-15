@@ -6,19 +6,21 @@ function getChildrenValues(element){
   return values;
 }
 function addSpecies(obj){
+  // var obj = temp1;
   // get data
   var staged = obj.parentNode.children[2];
   var input  = obj.parentNode.children[4];
-  var plot   = obj.parentNode.children[7].innerText;
+  var plot   = obj.parentElement.children[7];
+  var plot   = plot.children[plot.selectedIndex].value;
   var layer  = obj.parentNode.children[10];
   var layer = layer.children[layer.selectedIndex].value;
   var sp = getChildrenValues(staged);
   var sp = sp.concat(input.value.split(','));
 
   // add species
-  var table = document.getElementById('input_occ_' + plot + '_tb')
+  var table = document.getElementById('input_occ_' + plot + '_tb');
   for(let s of sp){
-    addRowWithSpecies({ table: table, layer: layer, species: s})
+    addRowWithSpecies({ table: table, layer: layer, species: s});
   }
 
   // clear inputs
