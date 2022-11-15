@@ -58,9 +58,11 @@ function getPlotMaxNo(){
 
 // Add a tab
 //   in progress
-function addInputTab(obj){
+function addInputTab({ obj, id }){
   // input PLOT name
-  var id = prompt("Input PLOT name", "");
+  if(id == void 0){
+    var id = prompt("Input PLOT name", "");
+  }
   if(null === id){ 
     return void 0;
   }

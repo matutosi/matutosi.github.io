@@ -88,7 +88,7 @@ function createLayerSelect(tables, pl = 'PLOT'){
 
 function generateSpeciesTable(species){
   var main = crEl({ el: 'span', ats: {id: 'species_list'} });
-  main.appendChild( createInput({ type:'button', value: 'Update input species list', onclick: 'updateSpeciesList()'}) );
+  main.appendChild( crEl({ el:'input', ats:{type:'button', id:'update_input_species_list', value: 'Update input species list', onclick: 'updateSpeciesList()'} }) );
 
   // species list
   main.appendChild(createSpeciesList(species, 15));

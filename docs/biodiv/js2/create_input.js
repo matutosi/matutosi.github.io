@@ -14,9 +14,8 @@ function createInput( ...args ){
 }
 
 function updateAllInputsTablesButton(){
-  return createInput({ type: "button", value: "Update all inputs tables", onclick: "updateAllInputsTables(this)" });
+  return crEl({ el:'input', ats:{type:'button', id:'update_all_inputs_tables_button', value:'Update all inputs tables', onclick: 'updateAllInputsTables(this)'} });
 }
-
 function createDelButton(){
   return createInput({ type: "button", value: "DELETE", onclick: "delRow(this)" });
 }
