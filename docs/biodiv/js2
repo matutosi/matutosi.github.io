@@ -1934,6 +1934,19 @@ function searchTableTextShow(obj){
     }
   }
 }
+// Use namespace like shiny::NS.
+//  @examples
+//  var ns = NS('plot');
+//  ns('table');
+//  // 'plot-table'
+//  
+function NS(namespace){
+  var f = function f(id){
+    return namespace + '-' + id;
+  }
+  return f;
+}
+
 // Convert hasy array table
 //    In progress: can not convert hasy that has array as a value
 //    @example 
@@ -4984,12 +4997,35 @@ const wamei = [
 "ワニグチソウ","ワニグチナルコユリ","ワニグチモダマ","ワニナシ","ワビスケ","ワラタ","ワラビ","ワラビツナギ","ワラベナカセ","ワラベノカンザシ",
 "ワリンゴ","ワルタビラコ","ワルナスビ","ワレモコウ","ワレモコウモドキ","ワンドスゲ","ワンピ"
 ];
-function inputSpecies(obj){
-  
-  obj
+function getChildrenValues(element){
+  var values = [];
+  for(let child of element.children){
+    values.push(child.value);
+  }
+  return values;
+}
+function addSpecies(obj){
+  // get data
+  var staged = obj.parentNode.children[2];
+  var input  = obj.parentNode.children[4];
+  var plot   = obj.parentNode.children[7].innerText;
+  var layer  = obj.parentNode.children[10];
+  var layer = layer.children[layer.selectedIndex].value;
+  var sp = getChildrenValues(staged);
+  var sp = sp.concat(input.value.split(','));
 
-  // generateSpeciesTable(sp_list);
+  // add species
+  var table = document.getElementById('input_occ_' + plot + '_tb')
+  for(let s of sp){
+    addRowWithSpecies({ table: table, layer: layer, species: s})
+  }
 
+  // clear inputs
+  input.value = '';
+    // Delete from the front, elements will be shifted and don't work well
+  for(let i = staged.children.length; 0 < i; i--){ // loop backwards
+    staged.children[i-1].click();
+  }
 }
 
 function updateSpeciesList(){
@@ -4998,12 +5034,12 @@ function updateSpeciesList(){
   old_sp_list.replaceWith(new_sp_list);
 
   var tables = document.querySelectorAll("table[id^='input_occ']");
-  var old_plot_list = document.getElementById('plot_list');
+  var old_plot_list = document.getElementById('plot_select');
   var new_plot_list = createPlotSelect(tables);
   old_plot_list.replaceWith(new_plot_list);
 
-  var old_layer_list = document.getElementById('layer_list');
-  var new_layer_list = createlayerSelect(tables);
+  var old_layer_list = document.getElementById('layer_select');
+  var new_layer_list = createLayerSelect(tables);
   old_layer_list.replaceWith(new_layer_list);
 }
 
@@ -5049,25 +5085,27 @@ function createLayerSelect(tables, pl = 'PLOT'){
 
 function generateSpeciesTable(species){
   var main = crEl({ el: 'span', ats: {id: 'species_list'} });
-  main.appendChild( createInput({ type:"button", value: 'Update input species list', onclick: 'updateSpeciesTable()'}) );
+  main.appendChild( createInput({ type:'button', value: 'Update input species list', onclick: 'updateSpeciesList()'}) );
 
   // species list
   main.appendChild(createSpeciesList(species, 15));
-  main.appendChild( crEl({ el: 'hr' }) );
 
   // species staged
   var sp_staged = crEl({ el: 'span', ats:{ id: 'sp_staged'} })
   main.appendChild(sp_staged);
   main.appendChild( crEl({ el: 'br' }) );
   var placeholder = "Input species (separate with ',')";
-  main.appendChild( createInput({ type:"text", placeholder:placeholder, size:"100" }) );
+  main.appendChild( crEl({ el:'input', ats:{type: 'text', id: 'sp_input', placeholder: placeholder, size:'100'} }) );
   main.appendChild( crEl({ el: 'br' }) );
 
   // plot, layer, add
   var tables = document.querySelectorAll("table[id^='input_occ']");
+  main.appendChild( crEl({ el:'span', ih: 'PLOT:' }) );
   main.appendChild( createPlotSelect(tables) );
+  main.appendChild( crEl({ el:'span', ih: ', ' }) );
+  main.appendChild( crEl({ el:'span', ih: 'Layer:' }) );
   main.appendChild( createLayerSelect(tables) );
-  main.appendChild( crEl({ el:'input', ats:{type: 'button', value: 'Add species', onclick: 'inputSpecies(this)' } }) );
+  main.appendChild( crEl({ el:'input', ats:{type: 'button', value: 'Add species', onclick: 'addSpecies(this)' } }) );
 
   main.appendChild( crEl({ el: 'hr' }) );
   return main;
