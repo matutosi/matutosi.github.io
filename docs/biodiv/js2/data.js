@@ -74,17 +74,6 @@ const data_test = {
       DELETE: [""          ,"","","","","","",""]
     }
   },
-  setting_plot: {
-    biss_c_names: ["item" ,"type","value","DELETE"],
-    biss_d_types: ["fixed","fixed","text","button"],
-    biss_selects: [null,null,null,null],
-    biss_inputs: {
-      item:   ["DELETE","NO"  ,"DATE","Investigator","Investigator","Photo","Location","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Altitude","Aspect","Inclination","T1_height","T2_height","S1_height","S2_height","H_height","T1_cover","T2_cover","S1_cover","S2_cover","H_cover","Memo"],
-      type:   ["button","auto","auto","fixed"       ,"text"        ,"text" ,"text"    ,"auto"   ,"auto"   ,"auto"   ,"button"         ,"number"  ,"text"  ,"number"     ,"number"   ,"number"   ,"number"   ,"number"   ,"number"  ,"number"  ,"number"  ,"number"  ,"number"  ,"number" ,"text"],
-      value:  [""      ,""    ,""    ,""            ,""            ,""     ,""        ,""       ,""       ,""       ,""               ,""        ,""      ,""           ,""         ,""         ,""         ,""         ,""        ,""        ,""        ,""        ,""        ,""       ,""    ],
-      DELETE: [""      ,""    ,""    ,""            ,""            ,""     ,""        ,""       ,""       ,""       ,""               ,""        ,""      ,""           ,""         ,""         ,""         ,""         ,""        ,""        ,""        ,""        ,""        ,""       ,""    ]
-    }
-  },
   setting_occ: {
     biss_c_names: ["item","type","value","DELETE"],
     biss_d_types: ["text","list","text","button"],
@@ -94,6 +83,18 @@ const data_test = {
       type:   ["button","auto","auto","auto"   ,"button"         ,"text"   ,"list" ,"number","checkbox","text"],
       value:  ["","","","","","","T1:T2:S1:S2:H","","","",""],
       DELETE: ["","","","","","",""             ,"","","",""]
+    }
+  },
+
+  setting_plot: {
+    biss_c_names: ["item" ,"type","value","DELETE"],
+    biss_d_types: ["fixed","fixed","text","button"],
+    biss_selects: [null,null,null,null],
+    biss_inputs: {
+      item:   ["DELETE","DATE","Investigator","Investigator","Photo","Location","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Altitude","Aspect","Inclination","T1_height","T2_height","S1_height","S2_height","H_height","T1_cover","T2_cover","S1_cover","S2_cover","H_cover","Memo"],
+      type:   ["button","auto","fixed"       ,"text"        ,"text" ,"text"    ,"auto"   ,"auto"   ,"auto"   ,"button"         ,"number"  ,"text"  ,"number"     ,"number"   ,"number"   ,"number"   ,"number"   ,"number"  ,"number"  ,"number"  ,"number"  ,"number"  ,"number" ,"text"],
+      value:  [""      ,""    ,""            ,""            ,""     ,""        ,""       ,""       ,""       ,""               ,""        ,""      ,""           ,""         ,""         ,""         ,""         ,""        ,""        ,""        ,""        ,""        ,""       ,""    ],
+      DELETE: [""      ,""    ,""            ,""            ,""     ,""        ,""       ,""       ,""       ,""               ,""        ,""      ,""           ,""         ,""         ,""         ,""         ,""        ,""        ,""        ,""        ,""        ,""       ,""    ]
     }
   },
 }
