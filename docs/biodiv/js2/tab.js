@@ -193,12 +193,20 @@ function createCompositionTable(tables, pl = "PLOT", sp = "Species", ab = "Cover
     var data_col = [];
     for(let s of uniq_sp){
       var value = 0;
+      var is_present = 0;
       for(let i=0; i < inputs[ab].length; i++){
         if(inputs[pl][i] === p && inputs[sp][i] === s ){
           value = value + Number(inputs[ab][i]);
+          is_present++;
         }
       }
-      if(value === 0){ var value = ''; }
+      if(is_present === 0){  // absent
+        var value = '';
+      }else{                 // present
+        if(value === 0){
+          var value = '--';
+        }
+      }
       data_col.push(value);
     }
     data_table[p] = data_col;
