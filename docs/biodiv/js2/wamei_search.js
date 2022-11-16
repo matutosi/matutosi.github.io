@@ -9,13 +9,13 @@ function addSpecies(obj){
   // var obj = temp1;
   // get data
   var staged = obj.parentNode.children[2];
-  var input  = obj.parentNode.children[4];
-  var plot   = obj.parentElement.children[7];
+  var input  = obj.parentNode.children[4].value;
+  var plot   = obj.parentElement.children[7]; // parentNode don't work (can't specify the reason)
   var plot   = plot.children[plot.selectedIndex].value;
   var layer  = obj.parentNode.children[10];
   var layer = layer.children[layer.selectedIndex].value;
   var sp = getChildrenValues(staged);
-  var sp = sp.concat(input.value.split(','));
+  if(input !== ''){ var sp = sp.concat(input.split(',')); }
 
   // add species
   var table = document.getElementById('input_occ_' + plot + '_tb');

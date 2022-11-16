@@ -1,4 +1,4 @@
-function addRowWithSpecies({ table, layer, species }){
+function addRowWithSpecies({ table, layer, species, cover }){
   // var table = document.getElementById('input_occ_a_tb'); var layer = 'H'; var species = 'new_species';
   addRow(table);
 
@@ -12,6 +12,11 @@ function addRowWithSpecies({ table, layer, species }){
 
   table.rows[row_no].cells[index_ly].firstChild.selectedIndex = index_selected;
   table.rows[row_no].cells[index_sp].firstChild.value = species;
+
+  if(cover !== void 0){ 
+    var index_cv = c_names.indexOf('Cover');
+    table.rows[row_no].cells[index_cv].firstChild.value = cover;
+  }
 }
 
 // Helper to call addRow() multiple times
