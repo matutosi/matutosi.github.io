@@ -18,7 +18,7 @@ function createTd(col_name, data_type, select, table_data){
       var td = createTdWithChild( crEl({ el:'input', ats:{type: data_type, checked: !!table_data} }) );
       break;
     case "fixed":
-      if(table_data === ""){ table_data = "NO_INPUT"; }   // alert("Fixed columns should be input!");
+  //       if(table_data === ""){ table_data = "NO_INPUT"; }   // alert("Fixed columns should be input!");
       var td = crEl({ el:'td', ih: table_data });
       break;
     case "button":
