@@ -203,7 +203,7 @@ const data_settings = {
   full: {
     plot: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DATE","Investigator","Investigator","Location","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Altitude","Aspect","Inclination","T1_height","T2_height","S1_height","S2_height","H_height","T1_cover","T2_cover","S1_cover","S2_cover","H_cover","Photo","Memo"],
@@ -214,7 +214,7 @@ const data_settings = {
     },
     occ: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DELETE","DATE","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
@@ -228,7 +228,7 @@ const data_settings = {
   _5_layers: {
     plot: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DATE","Investigator","Location","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Altitude","Aspect","Inclination","T1_height","T2_height","S1_height","S2_height","H_height","T1_cover","T2_cover","S1_cover","S2_cover","H_cover","Photo","Memo"],
@@ -239,7 +239,7 @@ const data_settings = {
     },
     occ: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DELETE","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
@@ -253,7 +253,7 @@ const data_settings = {
   _3_layers: {
     plot: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DATE","Investigator","Location","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Altitude","Aspect","Inclination","T_height","S_height","H_height","T_cover","S_cover","H_cover","Photo","Memo"],
@@ -264,7 +264,7 @@ const data_settings = {
     },
     occ: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DELETE","Layer","Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
@@ -278,7 +278,7 @@ const data_settings = {
   no_layers: {
     plot: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DATE","Investigator","Location","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Altitude","Aspect","Inclination","Height","Cover" ,"Photo","Memo"],
@@ -289,7 +289,7 @@ const data_settings = {
     },
     occ: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DELETE","Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
@@ -303,7 +303,7 @@ const data_settings = {
   flora: {
     plot: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DATE","Investigator","Location","Memo"],
@@ -314,7 +314,7 @@ const data_settings = {
     },
     occ: {
       biss_c_names: ["item" ,"type","value","DELETE"],
-      biss_d_types: ["text","list","text","button"],
+      biss_d_types: ["fixed","list","text","button"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null],
       biss_inputs :{
         item:   ["DELETE","Species","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Sampled" ,"Identified" ,"Photo","Memo"],

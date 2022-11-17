@@ -85,11 +85,13 @@ function addInputTab({ obj, id }){
 
   // create input tables
       // PLOT
-  var plot_setting = convertTableData( getTableData( document.getElementById("setting_plot_tb")));
+  //   var plot_setting = convertTableData( getTableData( document.getElementById("setting_plot_tb")));
+  var plot_setting = convertTableData( getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[0] ) );
   var plot_setting = addPlotNo(plot_setting, getPlotMaxNo() + 1);
   var plot_setting = addPlotId(plot_setting, id);
       // OCC
-  var occ_setting  = convertTableData( getTableData( document.getElementById("setting_occ_tb" )))
+  //   var occ_setting  = convertTableData( getTableData( document.getElementById("setting_occ_tb" )))
+  var occ_setting = convertTableData( getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[1] ) );
   var occ_setting  = addPlotId(occ_setting, id);
   // console.log(occ_setting );
   var pl_table = tableModule({table_data: plot_setting, ns: 'input_plot_' + id, 
