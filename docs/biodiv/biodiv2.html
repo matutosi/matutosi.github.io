@@ -109,11 +109,31 @@ Biodiversity Investigation Support System (BISS)
     <div id="tab_settings">
       <script>
         var tab_setting = document.getElementById("tab_settings");
-        tab_setting.appendChild( tableModule({ 
+var settings = Object.keys(data_settings);
+var selects = createSelectOpt(settings);
+selects.setAttribute('onChange', 'changeSettings(this)');
+tab_setting.appendChild( selects );
+tab_setting.appendChild( crEl({ 'el': 'br' }) );
+
+function changeSettings(obj){
+  var setting = obj.value;
+  var plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot',
+                                  id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                  add_button: true });
+  obj.nextSibling.nextSibling.replaceWith(plot_module);
+
+  var occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ',
+                                  id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                  add_button: true });
+  plot_module.nextSibling.replaceWith(occ_module);
+
+}
+
+     tab_setting.appendChild( tableModule({ 
                                    table_data: data_test.setting_plot, ns: "setting_plot",
                                    id_text: true, load_button: true, save_button: true, hide_button: true, 
                                    add_button: true }) );
-        tab_setting.appendChild( tableModule({ 
+     tab_setting.appendChild( tableModule({ 
                                    table_data: data_test.setting_occ , ns: "setting_occ",
                                    id_text: true, load_button: true, save_button: true, hide_button: true, 
                                    add_button: true }) );
