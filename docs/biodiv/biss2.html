@@ -738,7 +738,30 @@ function createHideButton(){
 } 
 function createNewOccButton(){ 
   return createInput({ type: "button", value: "New occ table", onclick: "makeNewOccTableModule(this)" }); 
-}</script> <script>// Create table module 
+}</script> <script>function createSettingSelect(){ 
+  var main = crEl({ el:'span' }); 
+  var settings = Object.keys(data_settings); 
+  var selects = createSelectOpt(settings); 
+  selects.setAttribute('onChange', 'changeSettings(this)'); 
+  main.appendChild(selects); 
+  main.appendChild( crEl({ 'el': 'br' }) ); 
+  return main; 
+} 
+ 
+function changeSettings(obj){ 
+  var setting = obj.value; 
+  var plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot', 
+                                  id_text: true, load_button: true, save_button: true, hide_button: true,  
+                                  add_button: true }); 
+  obj.parentNode.nextSibling.replaceWith(plot_module); 
+  var occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ', 
+                                  id_text: true, load_button: true, save_button: true, hide_button: true,  
+                                  add_button: true }); 
+  plot_module.nextSibling.replaceWith(occ_module); 
+ 
+} 
+ 
+// Create table module 
 //   In a module has a table and other input elements,  
 //   which operate the table. 
 // @paramas table_data     
@@ -1105,24 +1128,22 @@ function loadExample(obj){
 // dn.appendChild( createSelectOpt( colByType(table, "list") ) ); 
 // dn.appendChild( createSumButton() ); 
 // table = document.getElementById("input_occ_a_tb"); 
-// colByType(table, "number")</script> <script>function addRowWithSpecies({ table, layer, species, cover }){ 
+// colByType(table, "number")</script> <script>// addRowWithValues({ table:document.getElementById('full_plot_tb'), values:{ item:"new_item", type:"auto", value:"new_value", DELETE:"del"} }); 
+function addRowWithValues({ table, values }){ 
   // var table = document.getElementById('input_occ_a_tb'); var layer = 'H'; var species = 'new_species'; 
+  // var table = document.getElementById('full_plot_tb'); var key = "item"; value = "new_val"; 
   addRow(table); 
- 
   var c_names = getColNames(table); 
-  if(layer == void 0){ var layer =  '' };  
-  var index_sp = c_names.indexOf('Species'); 
-  var index_ly = c_names.indexOf('Layer'); 
+  var keys = Object.keys(values); 
   var row_no   = table.rows.length - 1; 
-  var options = getSelectOptionInCell(table.rows[row_no].cells[index_ly].firstChild); 
-  var index_selected = options.indexOf(layer); 
- 
-  table.rows[row_no].cells[index_ly].firstChild.selectedIndex = index_selected; 
-  table.rows[row_no].cells[index_sp].firstChild.value = species; 
- 
-  if(cover !== void 0){  
-    var index_cv = c_names.indexOf('Cover'); 
-    table.rows[row_no].cells[index_cv].firstChild.value = cover; 
+  for(let key of keys){ 
+    var col_no = c_names.indexOf(key); 
+    var td = table.rows[row_no].cells[col_no]; 
+    if(td.firstChild.value === void 0){ 
+      td.innerHTML = values[key]; 
+    }else{ 
+      td.firstChild.value = values[key]; 
+    } 
   } 
 } 
  
@@ -1685,18 +1706,18 @@ function addSpecies(obj){
   // var obj = temp1; 
   // get data 
   var staged = obj.parentNode.children[2]; 
-  var input  = obj.parentNode.children[4].value; 
+  var input  = obj.parentNode.children[4];    // Here, don't use "obj.parentNode.children[4].value" ; this don't work in clear inputs 
   var plot   = obj.parentElement.children[7]; // parentNode don't work (can't specify the reason) 
   var plot   = plot.children[plot.selectedIndex].value; 
   var layer  = obj.parentNode.children[10]; 
   var layer = layer.children[layer.selectedIndex].value; 
   var sp = getChildrenValues(staged); 
-  if(input !== ''){ var sp = sp.concat(input.split(',')); } 
+  if(input.value !== ''){ var sp = sp.concat(input.value.split(',')); } 
  
   // add species 
   var table = document.getElementById('input_occ_' + plot + '_tb'); 
   for(let s of sp){ 
-    addRowWithSpecies({ table: table, layer: layer, species: s}); 
+    addRowWithValues({ table: table, values: {Layer: layer, Species: s} }); 
   } 
  
   // clear inputs 
@@ -2027,12 +2048,7 @@ function convertTableData(table_data){
  
   // data_00["setting_plot_01"]["biss_inputs"]["item"] 
   // JSON.stringify(data_00) 
-  // JSON.parse(JSON.stringify(data_00))</script> <script>function testSaveTable(){var e="test_data",t=new Uint8Array([239,187,191]),a=new Blob([t,e],{type:"text/tsv"});const n=URL.createObjectURL(a),c=document.createElement("a");document.body.appendChild(c),c.download="temp.txt",c.href=n,c.click(),c.remove(),URL.revokeObjectURL(n),delete e}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <script>// test script 
-  // // // // // // // // // // // // // // // // // // //  
-  // TODO: var -> const ? 
-  // TODO: Write documents for functions. 
-  // // // // // // // // // // // // // // // // // // //  
-function showExample(obj){ 
+  // JSON.parse(JSON.stringify(data_00))</script> <script>function showExample(obj){ 
   addInputTab({ obj:document.getElementById('add_tab'), id:'pl_1' }); 
   addInputTab({ obj:document.getElementById('add_tab'), id:'pl_2' }); 
   var tb_1 = document.getElementById('input_occ_pl_1_tb'); 
@@ -2040,11 +2056,11 @@ function showExample(obj){
   var ly = ['T1',  'T2',  'H',   'H',   'H']; 
   var sp = ['sp1', 'sp2', 'sp3', 'sp4', 'sp5']; 
   var cv = [  80,    40,       ,    1.5,   0.5]; 
-  for(let i = 0; i < 3; i++){ addRowWithSpecies({ table: tb_1, layer: ly[i], species:sp[i], cover:cv[i] }); } 
-  for(let i = 2; i < 5; i++){ addRowWithSpecies({ table: tb_2, layer: ly[i], species:sp[i], cover:cv[i] }); } 
+  for(let i = 0; i < 3; i++){ addRowWithValues({ table: tb_1, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } }); } 
+  for(let i = 2; i < 5; i++){ addRowWithValues({ table: tb_2, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } }); } 
   for(let i = 1; i < 5; i++){ tb_1.rows[2].cells[1].firstChild.click(); } 
   for(let i = 1; i < 5; i++){ tb_2.rows[2].cells[1].firstChild.click(); } 
   document.getElementById('update_all_inputs_tables_button').click(); 
   document.getElementById('update_input_species_list').click(); 
   obj.remove(); 
-}</script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> Biodiversity Investigation Support System (BiSS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools");tab_tools.appendChild(generateSpeciesTable(sp_list)),tab_tools.appendChild(generateSearchTable("wamei",generateTable(wamei)));</script> <p> "aaa bbb" matches texts including both "aaa" and "bbb". </p><p> Wamei (Japanese plant names) is obtained from <br> Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br> A checklist of Japanese plant names <br> (https://www.gbif.jp/v2/activities/wamei_checklist.html) </p></div> <div id="tab_settings"> <script>function changeSettings(t){var e=t.value,a=tableModule({table_data:data_settings[e].plot,ns:e+"_plot",id_text:!0,load_button:!0,save_button:!0,hide_button:!0,add_button:!0});t.nextSibling.nextSibling.replaceWith(a);var n=tableModule({table_data:data_settings[e].occ,ns:e+"_occ",id_text:!0,load_button:!0,save_button:!0,hide_button:!0,add_button:!0});a.nextSibling.replaceWith(n)}var tab_setting=document.getElementById("tab_settings"),settings=Object.keys(data_settings),selects=createSelectOpt(settings);selects.setAttribute("onChange","changeSettings(this)"),tab_setting.appendChild(selects),tab_setting.appendChild(crEl({el:"br"})),tab_setting.appendChild(tableModule({table_data:data_test.setting_plot,ns:"setting_plot",id_text:!0,load_button:!0,save_button:!0,hide_button:!0,add_button:!0})),tab_setting.appendChild(tableModule({table_data:data_test.setting_occ,ns:"setting_occ",id_text:!0,load_button:!0,save_button:!0,hide_button:!0,add_button:!0}));</script> </div> <div id="tab_all"> <script>var tab_all=document.getElementById("tab_all");tab_all.appendChild(updateAllInputsTablesButton());</script> <br> <span id="plot_all"></span> <span id="occ_all"></span> <table id="comp_table"></table> </div> </div> </div> <script></script> <div> <script>var column_no=0,column_no_prev=0,dir="asc";</script> </div> <div> <script>var tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
+}</script> <script>function testSaveTable(){var e="test_data",t=new Uint8Array([239,187,191]),a=new Blob([t,e],{type:"text/tsv"});const n=URL.createObjectURL(a),c=document.createElement("a");document.body.appendChild(c),c.download="temp.txt",c.href=n,c.click(),c.remove(),URL.revokeObjectURL(n),delete e}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> Biodiversity Investigation Support System (BiSS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools");tab_tools.appendChild(generateSpeciesTable(sp_list)),tab_tools.appendChild(generateSearchTable("wamei",generateTable(wamei)));</script> <p> "aaa bbb" matches texts including both "aaa" and "bbb". </p><p> Wamei (Japanese plant names) is obtained from <br> Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br> A checklist of Japanese plant names <br> (https://www.gbif.jp/v2/activities/wamei_checklist.html) </p></div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(tableModule({table_data:data_test.setting_plot,ns:"setting_plot",id_text:!0,load_button:!0,save_button:!0,hide_button:!0,add_button:!0})),tab_setting.appendChild(tableModule({table_data:data_test.setting_occ,ns:"setting_occ",id_text:!0,load_button:!0,save_button:!0,hide_button:!0,add_button:!0}));</script> </div> <div id="tab_all"> <script>var tab_all=document.getElementById("tab_all");tab_all.appendChild(updateAllInputsTablesButton());</script> <br> <span id="plot_all"></span> <span id="occ_all"></span> <table id="comp_table"></table> </div> </div> </div> <script></script> <div> <script>var column_no=0,column_no_prev=0,dir="asc";</script> </div> <div> <script>var tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 

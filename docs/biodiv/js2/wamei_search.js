@@ -9,18 +9,18 @@ function addSpecies(obj){
   // var obj = temp1;
   // get data
   var staged = obj.parentNode.children[2];
-  var input  = obj.parentNode.children[4].value;
+  var input  = obj.parentNode.children[4];    // Here, don't use "obj.parentNode.children[4].value" ; this don't work in clear inputs
   var plot   = obj.parentElement.children[7]; // parentNode don't work (can't specify the reason)
   var plot   = plot.children[plot.selectedIndex].value;
   var layer  = obj.parentNode.children[10];
   var layer = layer.children[layer.selectedIndex].value;
   var sp = getChildrenValues(staged);
-  if(input !== ''){ var sp = sp.concat(input.split(',')); }
+  if(input.value !== ''){ var sp = sp.concat(input.value.split(',')); }
 
   // add species
   var table = document.getElementById('input_occ_' + plot + '_tb');
   for(let s of sp){
-    addRowWithSpecies({ table: table, layer: layer, species: s});
+    addRowWithValues({ table: table, values: {Layer: layer, Species: s} });
   }
 
   // clear inputs

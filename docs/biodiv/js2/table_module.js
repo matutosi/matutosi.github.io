@@ -1,3 +1,26 @@
+function createSettingSelect(){
+  var main = crEl({ el:'span' });
+  var settings = Object.keys(data_settings);
+  var selects = createSelectOpt(settings);
+  selects.setAttribute('onChange', 'changeSettings(this)');
+  main.appendChild(selects);
+  main.appendChild( crEl({ 'el': 'br' }) );
+  return main;
+}
+
+function changeSettings(obj){
+  var setting = obj.value;
+  var plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot',
+                                  id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                  add_button: true });
+  obj.parentNode.nextSibling.replaceWith(plot_module);
+  var occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ',
+                                  id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                  add_button: true });
+  plot_module.nextSibling.replaceWith(occ_module);
+
+}
+
 // Create table module
 //   In a module has a table and other input elements, 
 //   which operate the table.

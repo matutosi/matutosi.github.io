@@ -24,6 +24,7 @@
     <script src="js2/wamei_search.js" charset="utf-8"></script>
 
     <script src="js2/table.js">              </script>
+    <script src="js2/example.js">              </script>
 
 <!-- in progress   -->
     <script src="js2/auto_save.js"></script>
@@ -43,22 +44,7 @@
   // TODO: var -> const ?
   // TODO: Write documents for functions.
   // // // // // // // // // // // // // // // // // // // 
-function showExample(obj){
-  addInputTab({ obj:document.getElementById('add_tab'), id:'pl_1' });
-  addInputTab({ obj:document.getElementById('add_tab'), id:'pl_2' });
-  var tb_1 = document.getElementById('input_occ_pl_1_tb');
-  var tb_2 = document.getElementById('input_occ_pl_2_tb');
-  var ly = ['T1',  'T2',  'H',   'H',   'H'];
-  var sp = ['sp1', 'sp2', 'sp3', 'sp4', 'sp5'];
-  var cv = [  80,    40,       ,    1.5,   0.5];
-  for(let i = 0; i < 3; i++){ addRowWithSpecies({ table: tb_1, layer: ly[i], species:sp[i], cover:cv[i] }); }
-  for(let i = 2; i < 5; i++){ addRowWithSpecies({ table: tb_2, layer: ly[i], species:sp[i], cover:cv[i] }); }
-  for(let i = 1; i < 5; i++){ tb_1.rows[2].cells[1].firstChild.click(); }
-  for(let i = 1; i < 5; i++){ tb_2.rows[2].cells[1].firstChild.click(); }
-  document.getElementById('update_all_inputs_tables_button').click();
-  document.getElementById('update_input_species_list').click();
-  obj.remove();
-}
+
 
 </script>
 
@@ -109,34 +95,15 @@ Biodiversity Investigation Support System (BiSS)
     <div id="tab_settings">
       <script>
         var tab_setting = document.getElementById("tab_settings");
-var settings = Object.keys(data_settings);
-var selects = createSelectOpt(settings);
-selects.setAttribute('onChange', 'changeSettings(this)');
-tab_setting.appendChild( selects );
-tab_setting.appendChild( crEl({ 'el': 'br' }) );
-
-function changeSettings(obj){
-  var setting = obj.value;
-  var plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot',
-                                  id_text: true, load_button: true, save_button: true, hide_button: true, 
-                                  add_button: true });
-  obj.nextSibling.nextSibling.replaceWith(plot_module);
-
-  var occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ',
-                                  id_text: true, load_button: true, save_button: true, hide_button: true, 
-                                  add_button: true });
-  plot_module.nextSibling.replaceWith(occ_module);
-
-}
-
-     tab_setting.appendChild( tableModule({ 
-                                   table_data: data_test.setting_plot, ns: "setting_plot",
-                                   id_text: true, load_button: true, save_button: true, hide_button: true, 
-                                   add_button: true }) );
-     tab_setting.appendChild( tableModule({ 
-                                   table_data: data_test.setting_occ , ns: "setting_occ",
-                                   id_text: true, load_button: true, save_button: true, hide_button: true, 
-                                   add_button: true }) );
+        tab_setting.appendChild( createSettingSelect() );
+        tab_setting.appendChild( tableModule({ 
+                                      table_data: data_test.setting_plot, ns: "setting_plot",
+                                      id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                      add_button: true }) );
+        tab_setting.appendChild( tableModule({ 
+                                      table_data: data_test.setting_occ , ns: "setting_occ",
+                                      id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                      add_button: true }) );
       </script>
     </div>
 
