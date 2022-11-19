@@ -10,10 +10,11 @@ function addRowWithValues({ table, values }){
   for(let key of keys){
     var col_no = c_names.indexOf(key);
     var td = table.rows[row_no].cells[col_no];
+    var value = (values[key] === void 0) ? '' : values[key];
     if(td.firstChild.value === void 0){
-      td.innerHTML = values[key];
+      td.innerHTML = value;
     }else{
-      td.firstChild.value = values[key];
+      td.firstChild.value = value;
     }
   }
 }

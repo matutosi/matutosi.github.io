@@ -1,5 +1,59 @@
+
+
+function addSettingPart(category, obj){
+  //   console.log(category);   //  "plot" or "occ"
+  //   console.log(obj.value);  //  add_items
+  //   var obj = temp1; obj  var obj = temp1; obj.parentNode.nextSibling.nextSibling.nextSibling;
+  var table_category = "_" + category + "_tb";
+  var table = document.getElementById('tab_settings').querySelectorAll("table[id$='" + table_category + "']");
+  var values = data_settings_part[category][obj.value];
+  //   console.log(table);
+  //   console.log(values)
+
+ // var values = data_settings_part["occ"]["_5_layers"];
+  var keys = Object.keys(values);
+  var n = values[keys[0]].length;
+
+  for(let i = 0; i < n; i++){
+    var json = '{';
+    for(let key of keys){
+      var json = json + '"' + key + '":"' + values[key][i] + '",';
+    }
+    var json = json.slice(0, -1) + '}';
+    console.log(json);
+  }
+
+  JSON.parse(json)
+
+
+  //   addRowWithValues({ table: table, values:{  } });
+
+  //       item: ["Layer"        ,"Species","Cover" ],
+  //       type: ["list"         ,"text"   ,"number"],
+  //       value:["T1:T2:S1:S2:H",""       ,""      ]
+  //   var ly = ['T1' ,  'T2',    'H',   'H',   'H'];
+  //   var sp = ['sp1', 'sp2',  'sp3', 'sp4', 'sp5'];
+  //   var cv = [  80 ,    40,       ,   1.5,   0.5];
+
+
+
+}
+
+function addSettingPartButton(category){
+  var keys = Object.keys(data_settings_part[category]);
+  var main = crEl({ el:'span'});
+  main.appendChild( crEl({ el: 'span', ih: 'Add items to <b>' + category + '</b>: ' }) );
+  for(let key of keys){
+    var input = crEl({ el:'input', ats:{ type:'button', value: key, onclick: 'addSettingPart("' + category + '", this)'} });
+    main.appendChild(input);
+  }
+  main.appendChild( crEl({ 'el': 'br' }) );
+  return main;
+}
+
 function createSettingSelect(){
   var main = crEl({ el:'span' });
+  main.appendChild( crEl({ el: 'span', ih: 'Choose <b>main</b> setting: ' }) );
   var settings = Object.keys(data_settings);
   var selects = createSelectOpt(settings);
   selects.setAttribute('onChange', 'changeSettings(this)');
@@ -13,7 +67,8 @@ function changeSettings(obj){
   var plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot',
                                   id_text: true, load_button: true, save_button: true, hide_button: true, 
                                   add_button: true });
-  obj.parentNode.nextSibling.replaceWith(plot_module);
+  var next = obj.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
+  next.replaceWith(plot_module);
   var occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ',
                                   id_text: true, load_button: true, save_button: true, hide_button: true, 
                                   add_button: true });

@@ -60,22 +60,18 @@ function searchParentTable(obj, index = 0){
 //    @params id_table A string.
 //    @params col_name A string.
 //    @return An array.
+//    @examples
+//    var table = document.getElementById('input_occ_pl_1_tb');
+//    var tds = table.rows[2].cells;
+//    for(let name of getColNames(table)){ console.log(getColData(table, name, true)) }
+//    for(let td of tds                 ){ console.log(getCellData(td, true)) }
+//    for(let td of tds                 ){ console.log(getCellData(td)) }
 function getColData(table, col_name, list_with_index = false){
-  // var table = document.getElementById("setting_plot_tb");
-  // var col_name = "type";
-  // var col_name = "item";
-  // var list_with_index = false;
   const col_no   = getColNames(table).indexOf(col_name);
-  const col_type = getDataTypes(table)[col_no];
   var group_value = [];
   var table = table.querySelectorAll("tr:not([class=hide_button]");
   for(Ri = 1; Ri < table.length; Ri++){    // except th (rows[0])
-    if(list_with_index && col_type === "list"){
-      // -1: Ri starts with 1, so Ri should be -1
-      group_value[Ri - 1] = table[Ri].cells[col_no].firstChild.selectedIndex;
-    } else {
-      group_value[Ri - 1] = getCellData(table[Ri].cells[col_no], col_type);
-    }
+    group_value[Ri - 1] = getCellData(table[Ri].cells[col_no], list_with_index)
   }
   return group_value;
 }
@@ -87,28 +83,19 @@ function getColData(table, col_name, list_with_index = false){
 //    @params data_type A string to specify the data type of the cell, 
 //                      which can be retrived with col_type().
 //    @return A string.
-function getCellData(cell_data, data_type){
-  switch(data_type){
-  //     case "DATE":
-  //     case "NO":
-    case "fixed":
-      return cell_data.innerHTML;
-      break;
-  //     case "DELETE":
-  //     case "UPDATE_TIME_GPS":
-    case "button":
-    case "text":
-    case "number":
-      return cell_data.firstChild.value;
-      break;
-    case "checkbox": 
-      return cell_data.firstChild.checked;
-      break;
-    case "list":
-      var opts = getSelectOptionInCell(cell_data.firstChild);
-      var index = cell_data.firstChild.selectedIndex;
-      return opts[index];
-      break;
+function getCellData(td, list_with_index = false){
+  if(td.firstChild.value === void 0){
+    return td.innerHTML;
+  }else{
+    if(td.firstChild.type === 'checkbox'){
+      return td.firstChild.checked;
+    }else{
+      if(list_with_index === true && td.firstChild.tagName === 'SELECT'){
+        return td.firstChild.selectedIndex;
+      }else{
+        return td.firstChild.value;
+      }
+    }
   }
 }
 

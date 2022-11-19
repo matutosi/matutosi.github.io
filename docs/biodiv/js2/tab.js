@@ -1,5 +1,7 @@
 function changeTab(){
-  var targetid = this.href.substring(this.href.indexOf('#')+1,this.href.length);
+  var ref = decodeURI(this.href);  // For multibyte character
+  var targetid = ref.substring(ref.indexOf('#')+1, ref.length);
+// console.log([ref,targetid]);
   // show delected tab
   for(var i = 0; i < pages.length; i++) {
     if( pages[i].id != targetid ) {
