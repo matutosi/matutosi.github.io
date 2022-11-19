@@ -58,6 +58,9 @@ function changeSettings(obj){
                                   add_button: true });
   plot_module.nextSibling.replaceWith(occ_module);
 
+  setSortable(setting + '_plot_tb');
+  setSortable(setting + '_occ_tb');
+
 }
 
 // Create table module
