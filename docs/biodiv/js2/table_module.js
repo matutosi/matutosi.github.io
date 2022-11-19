@@ -2,15 +2,12 @@
 
 function addSettingPart(category, obj){
   //   console.log(category);   //  "plot" or "occ"
-  //   console.log(obj.value);  //  add_items
+  //   console.log(obj.value);  //  items to add
   //   var obj = temp1; obj  var obj = temp1; obj.parentNode.nextSibling.nextSibling.nextSibling;
   var table_category = "_" + category + "_tb";
-  var table = document.getElementById('tab_settings').querySelectorAll("table[id$='" + table_category + "']");
+  var table = document.getElementById('tab_settings').querySelector("table[id$='" + table_category + "']");
   var values = data_settings_part[category][obj.value];
-  //   console.log(table);
-  //   console.log(values)
 
- // var values = data_settings_part["occ"]["_5_layers"];
   var keys = Object.keys(values);
   var n = values[keys[0]].length;
 
@@ -20,23 +17,10 @@ function addSettingPart(category, obj){
       var json = json + '"' + key + '":"' + values[key][i] + '",';
     }
     var json = json.slice(0, -1) + '}';
-    console.log(json);
+  // console.log( table );
+  // console.log( JSON.parse(json) );
+    addRowWithValues({ table: table, values: JSON.parse(json) });
   }
-
-  JSON.parse(json)
-
-
-  //   addRowWithValues({ table: table, values:{  } });
-
-  //       item: ["Layer"        ,"Species","Cover" ],
-  //       type: ["list"         ,"text"   ,"number"],
-  //       value:["T1:T2:S1:S2:H",""       ,""      ]
-  //   var ly = ['T1' ,  'T2',    'H',   'H',   'H'];
-  //   var sp = ['sp1', 'sp2',  'sp3', 'sp4', 'sp5'];
-  //   var cv = [  80 ,    40,       ,   1.5,   0.5];
-
-
-
 }
 
 function addSettingPartButton(category){
