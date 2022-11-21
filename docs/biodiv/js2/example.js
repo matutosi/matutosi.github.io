@@ -17,7 +17,7 @@ function showExample(obj){
 
   // update "all inputs tables" and "input species list"
   document.getElementById('update_all_inputs_tables_button').click();
-  document.getElementById('update_input_species_list').click();
+  document.getElementById('sp_list_update-all').click();
 
   obj.remove();
 }

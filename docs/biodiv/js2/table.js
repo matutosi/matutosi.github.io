@@ -117,31 +117,28 @@ function getTableData(table){
 //   @paramas 
 //   @paramas 
 //   @return  A table
-function makeTableJO(table_data_jo, table_name){
-  // data for test
-  //   var col_names = data_00[table_name]["biss_c_names"];
-  //   var dat_types = data_00[table_name]["biss_d_types"];
-  //   var selects   = data_00[table_name]["biss_selects"];
-  //   var tab_data  = data_00[table_name]["biss_inputs"];
-  // var table_data_jo = oc_data; var table_name = "a";
-  var col_names = table_data_jo["biss_c_names"];
-  var dat_types = table_data_jo["biss_d_types"];
-  var selects   = table_data_jo["biss_selects"];
-  var tab_data  = table_data_jo["biss_inputs"];
-
-  var table = crEl({ el: 'table', ats:{id: table_name} });
-  var table = addThTr(table, col_names);                                    // tr with th (col names)
-  var table = addHideRowTr(table);                                          // tr with hide buttons
-  var table = addTableData(table, col_names, dat_types, selects, tab_data); // table data
+function makeTableJO(table_data, table_name){
+  if(Array.isArray(table_data) === true){
+    var table = createSpeciesListTable(table_data, table_name, n=15);
+  }else{
+    var col_names = table_data.biss_c_names;
+    var dat_types = table_data.biss_d_types;
+    var selects   = table_data.biss_selects;
+    var inputs    = table_data.biss_inputs ;
+    var table = crEl({ el: 'table', ats:{id: table_name} });
+    var table = addThTr(table, col_names);                                    // tr with th (col names)
+    var table = addHideRowTr(table);                                          // tr with hide buttons
+    var table = addTableData(table, col_names, dat_types, selects, inputs);   // table data
+  }
   return table;
 }
 
-function addTableData(table, col_names, dat_types, selects, tab_data){
-  for(let Ri = 0; Ri < tab_data[col_names[0]].length; Ri++){
+function addTableData(table, col_names, dat_types, selects, inputs){
+  for(let Ri = 0; Ri < inputs[col_names[0]].length; Ri++){
     var tr = document.createElement('tr');
     for(let Cj = 0; Cj < nCol(table); Cj++){
       if(col_names[Cj] !== ""){
-        tr.appendChild( createTd(col_names[Cj], dat_types[Cj], selects[Cj], tab_data[col_names[Cj]][Ri]) );
+        tr.appendChild( createTd(col_names[Cj], dat_types[Cj], selects[Cj], inputs[col_names[Cj]][Ri]) );
       }
     }
     table.appendChild(tr);

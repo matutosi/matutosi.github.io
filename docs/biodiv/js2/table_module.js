@@ -97,7 +97,7 @@ function tableModule({ table_data, ns,
   var table = makeTableJO(table_data, ns + "_tb");
 
   // Down span
-  var dn = crEl({  el:'span', ats:{id: ns + "_dn"} });
+  var dn = crEl({ el:'span', ats:{id: ns + "_dn"} });
   if(add_button  != void 0){    dn.appendChild( createNrowInput( ns + '_nrow') );
                                 dn.appendChild( createAddRowButton( ns + '_add_rows') );
   }
@@ -116,9 +116,6 @@ function tableModule({ table_data, ns,
 
   return main;
 }
-
-
-
 
 
 // Create occurrence table module

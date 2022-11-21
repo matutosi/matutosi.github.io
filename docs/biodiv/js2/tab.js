@@ -129,11 +129,11 @@ function updateAllInputsTables(obj){
 }
 
 function createAllInputsTable(table_name){
-  // var table_name = "input_occ"
+  // var table_name = "input_occ"; var table_name = "input_plot";
   var tables = document.querySelectorAll("table[id^='" + table_name + "']");
 
   var c_names = getUniqeColNames(tables);
-  var removals = ['DATE', 'DATE', "LOC_LAT","LOC_LON","LOC_ACC","DELETE","\_TIME_GPS"];
+  var removals = ['DATE', 'DATE', "LOC_LAT","LOC_LON","LOC_ACC","DELETE","UPDATE_TIME_GPS"];
   var c_names = c_names.filter(item => ! removals.includes(item));
 
   var inputs = getMultiTableInputs(tables, c_names);
@@ -151,7 +151,7 @@ function createAllInputsTable(table_name){
   //   var all_table = makeTableJO(all_data, all_table_name);
   var all_table = tableModule({table_data: all_data, ns: all_table_name,
                               id_text: true, search_input: true,
-                              hide_button: true})
+                              hide_button: true});
   return all_table;
 }
 function getUniqeColNames(tables){

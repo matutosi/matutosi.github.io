@@ -1,4 +1,6 @@
 // Search text input tags in a table and show only matching rows
+//    Results are shown immediately.
+//    Using in Input Table.
 //    Clear input text, ALL rows will be shown.
 //    Regular expression can be used.
 //    @paramas obj  A input element.
@@ -18,7 +20,7 @@ function searchTableText(obj){
   for(let Ci = 0; Ci < data_types.length; Ci++){
     if(data_types[Ci] === "text"){
       for(let Rj = 1; Rj < trs.length; Rj++){
-        var text = trs[Rj].cells[Ci].firstChild.value;
+        var text = getCellData(trs[Rj].cells[Ci]);
         if(reg_ex.test(text)){ display_flag[Rj]++; }
       }
     }
@@ -31,6 +33,8 @@ function searchTableText(obj){
 }
 
 // Search text input tags in a table and show only matching rows
+//    Results are shown after button is pushed.
+//    Using in Wamei saerch. 
 //    Clear input text, NO rows will be shown.
 //    Regular expression can be used.
 //    Spaces means match all text. 

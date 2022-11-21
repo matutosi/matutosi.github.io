@@ -19,7 +19,7 @@
     <script src="js2/table_hide_show.js">    </script>
     <script src="js2/table_search_text.js">  </script>
     <script src="js2/tab.js">                </script>
-
+    <script src="js2/ul_module.js">          </script>
     <script src="js2/wamei_data.js"   charset="utf-8"></script>
     <script src="js2/wamei_search.js" charset="utf-8"></script>
 
@@ -37,15 +37,14 @@
     <link rel="stylesheet" href="css/tab.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/full_screen.css">
+    <link rel="stylesheet" href="css/ul.css">
 
-  <script>
+<script>
   // test script
   // // // // // // // // // // // // // // // // // // // 
   // TODO: var -> const ?
   // TODO: Write documents for functions.
   // // // // // // // // // // // // // // // // // // // 
-
-
 </script>
 
 </head>
@@ -80,7 +79,8 @@ Biodiversity Investigation Support System (BiSS)
     <div id="tab_tools">
       <script>
         var tab_tools = document.getElementById("tab_tools");
-        tab_tools.appendChild( generateSpeciesTable(sp_list) );
+tab_tools.appendChild( createSpecieUlModule(sp_list, 'all') );
+//        tab_tools.appendChild( generateSpeciesTable(sp_list) );
         tab_tools.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
       </script>
       <p>
@@ -99,7 +99,6 @@ Biodiversity Investigation Support System (BiSS)
         tab_setting.appendChild( addSettingPartButton('plot') );
         tab_setting.appendChild( addSettingPartButton('occ')  );
         tab_setting.appendChild( crEl({ 'el': 'hr' }) );
-
         tab_setting.appendChild( tableModule({ 
                                       table_data: data_settings.default.plot, ns: "default_plot",
                                       id_text: true, load_button: true, save_button: true, hide_button: true, 
@@ -127,25 +126,13 @@ Biodiversity Investigation Support System (BiSS)
   </div>
 </div>
 
-  <script>
-//  fetchLSKeys();
-//  saveTable("occ_setting_table");
-//  saveTable("plot_setting_table");
-//  restoreTable("occ_setting_table");
-//  restoreTable("plot_setting_table");
-  </script>
 
-
-<div>
+<div>  <!-- need to located at the end of tab HTML -->
   <script>
     var column_no = 0;       // now clicked
     var column_no_prev = 0;  // previous clicked
     var dir = "asc";
-  </script>
-</div>
 
-<div>  <!-- need to located at the end of tab HTML -->
-  <script>
     var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
     var pages = document.getElementById('tabbody').getElementsByTagName('div');
     updateTab()
