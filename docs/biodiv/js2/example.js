@@ -26,5 +26,7 @@ function showExample(obj){
   replaceSpeciesList(getSLinLS(), base_name + 'pl_1')
   replaceSpeciesList(getSLinLS(), base_name + 'pl_2')
 
+  document.getElementById('sp_list_update-all').click();
+
   obj.remove();
 }
