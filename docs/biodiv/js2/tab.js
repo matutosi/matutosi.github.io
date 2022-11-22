@@ -112,6 +112,10 @@ function addInputTab({ obj, id }){
   tabs[tabs.length - 1].onclick();  // move tab
   var table = searchParentTable(oc_table);
   setSortable(table.id);  // Should setSortable() after appendChild()
+
+  div.appendChild( createSpecieUlModule('', id) );
+  //   div.appendChild( createSpecieUlModule(sp_list, id) );
+
 }
 
 function updateAllInputsTables(obj){

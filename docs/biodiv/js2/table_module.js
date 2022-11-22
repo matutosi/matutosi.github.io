@@ -1,5 +1,7 @@
-
-
+// 
+// 
+// 
+// 
 function addSettingPart(category, obj){
   //   console.log(category);   //  "plot" or "occ"
   //   console.log(obj.value);  //  items to add
