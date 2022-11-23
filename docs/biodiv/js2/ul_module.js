@@ -72,7 +72,7 @@ function changeUlColumns(obj){
   document.documentElement.style.setProperty('--cc', ncols);
 }
 function createUpdateSLButton(id){
-  return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update species list', onclick: 'updateSpeciesList(this)'} });
+  return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update plot and layer', onclick: 'updateSpeciesList(this)'} });
 }
 function createSpecieList(species, id){
   var ns = id.split('-')[1];
