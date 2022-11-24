@@ -18,8 +18,19 @@ function showExample(obj){
   // update "all inputs tables" and "input species list"
   document.getElementById('update_all_inputs_tables_button').click();
   // add species list
-  var sp_list = grepArray(wamei, /ナラ/);
-  addSLinLS(sp_list);
+  var sp_nara   = grepArray(wamei, /ナラ/);
+  var sp_buna   = grepArray(wamei, /ブナ/);
+  var sp_kusu   = grepArray(wamei, /クス/);
+  var sp_tabu   = grepArray(wamei, /タブ/);
+  var sp_kaya   = grepArray(wamei, /カヤ/);
+  var sp_susuki = grepArray(wamei, /ススキ/);
+  addSLinLS(sp_nara  , 'nara');
+  addSLinLS(sp_buna  , 'buna');
+  addSLinLS(sp_kusu  , 'kusu');
+  addSLinLS(sp_tabu  , 'tabu');
+  addSLinLS(sp_kaya  , 'kaya');
+  addSLinLS(sp_susuki, 'susuki');
+
   var base_name = 'sp_list_sp_list-';
   addSpeciesList(getSLinLS(), base_name + 'all');
   addSpeciesList(getSLinLS(), base_name + 'pl_1');
