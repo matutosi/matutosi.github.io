@@ -21,11 +21,12 @@ function showExample(obj){
   var sp_list = grepArray(wamei, /ナラ/);
   addSLinLS(sp_list);
   var base_name = 'sp_list_sp_list-';
-  replaceSpeciesList(getSLinLS(), base_name + 'all');
-  replaceSpeciesList(getSLinLS(), base_name + 'pl_1');
-  replaceSpeciesList(getSLinLS(), base_name + 'pl_2');
+  addSpeciesList(getSLinLS(), base_name + 'all');
+  addSpeciesList(getSLinLS(), base_name + 'pl_1');
+  addSpeciesList(getSLinLS(), base_name + 'pl_2');
 
-  document.getElementById('sp_list_update-all').click();
+  //   document.getElementById('sp_list_update-all').click();
+  document.getElementById('sp_list_update_pl-all').click();
 
   obj.remove();
 }

@@ -71,9 +71,10 @@ function createHideTableColButton(){
 // Helper to create input with select options
 //    when selected_no is given, 
 //    its <option> (start with 0) will be set as "selected".
-function createSelectOpt(list, selected_no = 0){
+function createSelectOpt(list, selected_no = 0, id = ''){
   const n_list = list.length;
-  var select = document.createElement('select');
+  //   var select = document.createElement('select');
+  var select = crEl({ el:'select', ats:{id: id} });
   for(let j = 0; j < n_list; j++){
     var option = document.createElement('option');
     if(selected_no === j){ option.setAttribute('selected', 'true'); }

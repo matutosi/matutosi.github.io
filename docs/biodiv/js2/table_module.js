@@ -315,22 +315,6 @@ function createTdWithChild(child){
   return td;
 }
 
-// Helper to create input with select options
-//    when selected_no is given, 
-//    its <option> (start with 0) will be set as "selected".
-function createSelectOpt(list, selected_no = 0){
-  const n_list = list.length;
-  var select = document.createElement('select');
-  for(let j = 0; j < n_list; j++){
-    var option = document.createElement('option');
-    if(selected_no === j){ option.setAttribute('selected', 'true'); }
-    option.innerHTML = list[j];
-    select.appendChild(option);
-  }
-  return select;
-}
-
-
 // Check if the same plot has already existed. 
 //   @paramas plot A string to specify plot.
 //   @return  A logical.

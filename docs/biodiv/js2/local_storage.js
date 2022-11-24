@@ -52,3 +52,10 @@ function grepArray(array, regex){
   }
   return matched;
 }
+function replaceArrayAll(array, search, replace){
+  var replaced = [];
+  for(let a of array){
+    replaced.push(a.replaceAll(search, replace));
+  }
+  return replaced;
+}
