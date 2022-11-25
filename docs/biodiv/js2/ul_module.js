@@ -289,8 +289,8 @@ function addSpecies(obj){
   var ns = obj.id.split('-')[1];
   var staged  = document.getElementById(base_name + 'staged-' + ns);
   var input   = document.getElementById(base_name + 'input-'  + ns);
-  var plot    = document.getElementById(base_name + 'plot-'   + ns).children[0].value;
-  var layer   = document.getElementById(base_name + 'layer-'  + ns).children[0].value;
+  var plot    = document.getElementById(base_name + 'plot-'   + ns).value;
+  var layer   = document.getElementById(base_name + 'layer-'  + ns).value;
   var species = getChildrenValues(staged);
   if(input.value !== ''){ var sp = sp.concat(input.value.split(',')); }
   // add species
@@ -298,6 +298,7 @@ function addSpecies(obj){
   for(let spec of species){
     var [sp, sa] = spec.split('_');
     if(sa === void 0) var sa = '';
+  // console.log(layer);
     addRowWithValues({ table: table, values: {Layer: layer, Species: sp, SameAs: sa} });
   }
 

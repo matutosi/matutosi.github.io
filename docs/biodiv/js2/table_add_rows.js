@@ -11,7 +11,9 @@ function addRowWithValues({ table, values }){
     var col_no = c_names.indexOf(key);
     var td = table.rows[row_no].cells[col_no];
     var value = (values[key] === void 0) ? '' : values[key];
-  // console.log(td)
+  // console.log(td);
+  // console.log(values);
+  // console.log(key);
     if(td.firstChild === null){
       td.innerHTML = value;
     }else{
