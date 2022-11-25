@@ -77,13 +77,13 @@ function addRow(table){
         next_row.children[Ci].innerHTML = getAcc();
         break;
       case "UPDATE_TIME_GPS": // do nothing
-      case "DELETE":    // do nothing
+      case "DELETE":          // do nothing
         break;
-      case "NO":        // no = max(no) + 1
+      case "NO":             // no = max(no) + 1
         var nos = getColData(table, col_names[Ci]);
         next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1;
         break;
-      case "SameAs":   // clear
+      case "SameAs":        // clear
         next_row.children[Ci].innerHTML = "";
         break;
       default:
@@ -99,7 +99,7 @@ function addRow(table){
             case "number":  // clear input text
               next_row.children[Ci].firstChild.value = "";
               break;
-            case null: // select from list
+            case null:      // select from list
               selected_opt = last_row.children[Ci].firstChild.selectedIndex;
               next_row.children[Ci].firstChild.selectedIndex = selected_opt;
               break;
