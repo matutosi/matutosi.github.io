@@ -14,7 +14,7 @@ const data_settings = {
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null,null],
       biss_inputs :{
         item:   ["DATE","Investigator","Location","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Altitude","Aspect","Inclination","T1_height","T2_height","S1_height","S2_height","H_height","T1_cover","T2_cover","S1_cover","S2_cover","H_cover","Photo","Memo"],
-        type:   ["auto","text"       ,"text"    ,"auto"   ,"auto"   ,"auto"   ,"button"         ,"number"  ,"text"  ,"number"     ,"number"   ,"number"   ,"number"   ,"number"   ,"number"  ,"number"  ,"number"  ,"number"  ,"number"  ,"number" ,"text" ,"text"],
+        type:   ["auto","text"       ,"text"    ,"auto"   ,"auto"   ,"auto"   ,"button"         ,"number"  ,"text"  ,"number"     ,"number"   ,"number"   ,"number"   ,"number"   ,"number"  ,"number"  ,"number"  ,"number"  ,"number"  ,"number" ,"text" ,"text" ],
         value:  [""    ,""            ,""        ,""       ,""       ,""       ,""               ,""        ,""      ,""           ,""         ,""         ,""         ,""         ,""        ,""        ,""        ,""        ,""        ,""       ,""     ,""    ],
         DELETE: [""    ,""            ,""        ,""       ,""       ,""       ,""               ,""        ,""      ,""           ,""         ,""         ,""         ,""         ,""        ,""        ,""        ,""        ,""        ,""       ,""     ,""    ],
         memo  : [""    ,""            ,""        ,""       ,""       ,""       ,""               ,""        ,""      ,""           ,""         ,""         ,""         ,""         ,""        ,""        ,""        ,""        ,""        ,""       ,""     ,""    ],
@@ -25,11 +25,11 @@ const data_settings = {
       biss_d_types: ["text","list" ,"text" ,"button","text"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null,null],
       biss_inputs :{
-        item:   ["DELETE","DATE","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
-        type:   ["button","auto","auto"   ,"auto"   ,"auto"   ,"button"         ,"list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text"],
-        value:  [""      ,""    ,""       ,""       ,""       ,""               ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ],
-        DELETE: [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ],
-        memo  : [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ]
+        item:   ["DELETE","DATE","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
+        type:   ["button","auto","auto"   ,"auto"   ,"auto"   ,"button"         ,"list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
+        value:  [""      ,""    ,""       ,""       ,""       ,""               ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        DELETE: [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
+        memo  : [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       }
     },
   },
@@ -80,11 +80,11 @@ const data_settings = {
       biss_d_types: ["text","list" ,"text" ,"button","text"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null,null],
       biss_inputs :{
-        item:   ["DELETE","DATE","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
-        type:   ["button","auto","auto"   ,"auto"   ,"auto"   ,"button"         ,"list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text"],
-        value:  [""      ,""    ,""       ,""       ,""       ,""               ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ],
-        DELETE: [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ],
-        memo  : [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ]
+        item:   ["DELETE","DATE","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
+        type:   ["button","auto","auto"   ,"auto"   ,"auto"   ,"button"         ,"list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
+        value:  [""      ,""    ,""       ,""       ,""       ,""               ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        DELETE: [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
+        memo  : [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       }
     },
   },
@@ -107,11 +107,11 @@ const data_settings = {
       biss_d_types: ["text","list" ,"text" ,"button","text"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null,null],
       biss_inputs :{
-        item:   ["DELETE","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
-        type:   ["button","list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text"],
-        value:  [""      ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ],
-        DELETE: [""      ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ],
-        memo  : [""      ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ]
+        item:   ["DELETE","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
+        type:   ["button","list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
+        value:  [""      ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        DELETE: [""      ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
+        memo  : [""      ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       }
     },
   },
@@ -134,11 +134,11 @@ const data_settings = {
       biss_d_types: ["text","list" ,"text" ,"button","text"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null,null],
       biss_inputs :{
-        item:   ["DELETE","Layer","Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
-        type:   ["button","list" ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text"],
-        value:  [""      ,"T:S:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ],
-        DELETE: [""      ,""     ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ],
-        memo  : [""      ,""     ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ]
+        item:   ["DELETE","Layer","Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
+        type:   ["button","list" ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
+        value:  [""      ,"T:S:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        DELETE: [""      ,""     ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
+        memo  : [""      ,""     ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       } 
     },
   },
@@ -161,11 +161,11 @@ const data_settings = {
       biss_d_types: ["text","list" ,"text" ,"button","text"],
       biss_selects: [null,["auto","button","checkbox","fixed","list","text","number"],null,null,null],
       biss_inputs :{
-        item:   ["DELETE","Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo"],
-        type:   ["button","text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text"],
-        value:  [""      ,""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ],
-        DELETE: [""      ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ],
-        memo  : [""      ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ]
+        item:   ["DELETE","Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
+        type:   ["button","text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
+        value:  [""      ,""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        DELETE: [""      ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
+        memo  : [""      ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       }
     },
   },
@@ -253,8 +253,8 @@ const data_settings_part = {
       type: ["checkbox","checkbox"  ],
     },
     memo:{
-      item: ["Photo","Memo"],
-      type: ["text" ,"text"],
+      item: ["Photo","Memo","SameAs"],
+      type: ["text" ,"text","auto"  ],
     },
   }
 }

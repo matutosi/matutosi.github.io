@@ -11,10 +11,15 @@ function addRowWithValues({ table, values }){
     var col_no = c_names.indexOf(key);
     var td = table.rows[row_no].cells[col_no];
     var value = (values[key] === void 0) ? '' : values[key];
-    if(td.firstChild.value === void 0){
+  // console.log(td)
+    if(td.firstChild === null){
       td.innerHTML = value;
     }else{
-      td.firstChild.value = value;
+      if(td.firstChild.value === void 0){
+        td.innerHTML = value;
+      }else{
+        td.firstChild.value = value;
+      }
     }
   }
 }
@@ -56,7 +61,7 @@ function addRow(table){
   var last_row = table.rows[n_row - 1];  // to get selectedIndex
   var next_row = table.rows[n_row - 1].cloneNode(true);
   for(let Ci = 0; Ci < n_col; Ci++){
-    switch(col_names[Ci]){  // // toLowerCase  // // 
+    switch(col_names[Ci]){
       case "DATE":  // update "DATE"
         next_row.children[Ci].innerHTML = getNow();
         break;
@@ -72,9 +77,12 @@ function addRow(table){
       case "UPDATE_TIME_GPS": // do nothing
       case "DELETE":    // do nothing
         break;
-      case "NO":   // no = max(no) + 1
+      case "NO":        // no = max(no) + 1
         var nos = getColData(table, col_names[Ci]);
         next_row.children[Ci].innerHTML = Math.max.apply(Math, string2Numeric(nos)) + 1;
+        break;
+      case "SameAs":   // clear
+        next_row.children[Ci].innerHTML = "";
         break;
       default:
         if(next_row.children[Ci].firstChild.value === void 0){  

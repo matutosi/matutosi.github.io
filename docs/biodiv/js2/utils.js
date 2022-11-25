@@ -84,6 +84,8 @@ function getColData(table, col_name, list_with_index = false){
 //                      which can be retrived with col_type().
 //    @return A string.
 function getCellData(td, list_with_index = false){
+  if(td.firstChild === void 0){ return ''; }
+  if(td.firstChild === null  ){ return ''; }
   if(td.firstChild.value === void 0){
     return td.innerHTML;
   }else{

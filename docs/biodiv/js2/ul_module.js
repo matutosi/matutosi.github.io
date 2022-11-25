@@ -1,24 +1,38 @@
+function addComp(obj, sp = 'Species'){
+  // var sp = 'Species';
+  var ns = obj.id.split('-')[1];
+  var id = 'sp_list_sp_list-'+ ns;
+  var comp = document.getElementById('comp_table_tb');
+  var sp_list = getColData(comp, sp);
+  // console.log(sp_list);
+  addSpeciesList(id, sp_list);
+}
+function createAddCompButton(id){
+  return crEl({ el:'input', ats:{type:'button', id: id, value: 'Add from Composition', onclick: 'addComp(this)'} });
+}
 
 function createSpecieUlModule(species, ns){
   // var ns = 'all'; var species = sp_list;
   var base_name = 'sp_list_';
-  var main          = createSpanWithId             ( base_name + 'module-'    + ns );
-  var select_button = createSelectSL               ( base_name + 'select-'    + ns );
-  var update_sl     = createUpdateSLButoon         ( base_name + 'update-'    + ns );
-  var ncol_select   = createSelectNumber           ( base_name + 'ncols-'     + ns );
+  var main          = createSpanWithId    ( base_name + 'module-'    + ns          );
+  var select_button = createSelectSL      ( base_name + 'select-'    + ns          );
+  var update_sl     = createUpdateSLButoon( base_name + 'update-'    + ns          );
+  var add_comp      = createAddCompButton ( base_name + 'add_comp-'  + ns          );
+  var ncol_select   = createSelectNumber  ( base_name + 'ncols-'     + ns          );
 
-  var load_button   = createLoadSLButton           ( base_name + 'load-'      + ns );
-  var save_button   = createSaveSLButoon           ( base_name + 'save-'      + ns );
-  var sp_list       = createSpecieList     (species, base_name + 'sp_list-'   + ns );
-  var staged        = createSpanWithId             ( base_name + 'staged-'    + ns );
-  var input         = createSLInput                ( base_name + 'input-'     + ns );
-  var update_pl     = createUpdatePLButton         ( base_name + 'update_pl-' + ns );
-  var select_plot   = createSelectPlot             ( base_name + 'plot-'      + ns );
-  var select_layer  = createSelectLayer            ( base_name + 'layer-'     + ns );
-  var add           = createSLAdd                  ( base_name + 'add-'       + ns );
+  var load_button   = createLoadSLButton  ( base_name + 'load-'      + ns          );
+  var save_button   = createSaveSLButoon  ( base_name + 'save-'      + ns          );
+  var sp_list       = createSpecieList    ( base_name + 'sp_list-'   + ns, species );
+  var staged        = createSpanWithId    ( base_name + 'staged-'    + ns          );
+  var input         = createSLInput       ( base_name + 'input-'     + ns          );
+  var update_pl     = createUpdatePLButton( base_name + 'update_pl-' + ns          );
+  var select_plot   = createSelectPlot    ( base_name + 'plot-'      + ns          );
+  var select_layer  = createSelectLayer   ( base_name + 'layer-'     + ns          );
+  var add           = createSLAdd         ( base_name + 'add-'       + ns          );
 
   main.appendChild( select_button      );
   main.appendChild( update_sl          );
+  main.appendChild( add_comp           );
   main.appendChild( ncol_select        );
   main.appendChild( crEl({ el: 'br' }) );
 
@@ -85,11 +99,11 @@ function changeSL(obj){
 async function loadSL(obj){
   var text = await readFile(obj.files[0]);
   var add_sp = text.replaceAll('\r', '').split(/[,\n]/);
-console.log(text);
-console.log(add_sp);
+  // console.log(text);
+  // console.log(add_sp);
   var ns = obj.id.split('-')[1];
   var id = 'sp_list_sp_list-'+ ns;
-  addSpeciesList(add_sp, id);
+  addSpeciesList(id, add_sp);
   obj.value = '';  // for select the same file twice or more
 }
 // Helper function
@@ -153,7 +167,7 @@ function changeUlColumns(obj){
 }
 
 // Species list
-function createSpecieList(species, id){
+function createSpecieList(id, species){
   var ns = id.split('-')[1];
   var ul = crEl({ el:'ul', ats:{id: id} });
   // console.log(species);
@@ -167,9 +181,9 @@ function createSpecieList(species, id){
 }
 function replaceSpeciesList(ns, id){
   if(ns === 'NEW'){
-    var new_sp_list = createSpecieList('', id);
+    var new_sp_list = createSpecieList(id, '');
   }else{
-    var new_sp_list = createSpecieList(getSLinLS(ns), id);
+    var new_sp_list = createSpecieList(id, getSLinLS(ns));
   }
   var old_sp_list = document.getElementById(id);
   old_sp_list.replaceWith(new_sp_list);
@@ -222,7 +236,7 @@ function updatePlotLayer(obj){
   // console.log(ns);
   var base_name = 'sp_list_';
   //   var list_id  = base_name + 'sp_list-'+ ns;
-  //   addSpeciesList('', list_id);
+  //   addSpeciesList(list_id, '');
   var plot_id  = base_name + 'plot-'   + ns;
   var layer_id = base_name + 'layer-'  + ns;
   replaceSelectPlot (    plot_id);
@@ -243,14 +257,14 @@ function replaceSelectLayer(id){
 function createSLAdd(id){
   return crEl({ el:'input', ats:{type: 'button', id: id, value: 'Add species to PLOT', onclick: 'addSpecies(this)' } });
 }
-function addSpeciesList(add_sp, id){
+function addSpeciesList(id, add_sp){
   var old_sp_list = document.getElementById(id);
   // console.log(id);
-  // console.log(old_sp_list);
   var old_sp = getGrandChildrenValues( old_sp_list );
+  if(old_sp === void 0) var old_sp = '';
   var new_sp = uniq(old_sp.concat(add_sp)).sort();
   if(new_sp.indexOf('') >= 0){ new_sp.splice(new_sp.indexOf(''), 1); }  // remove ''
-  var new_sp_list = createSpecieList(new_sp, id);
+  var new_sp_list = createSpecieList(id, new_sp);
   old_sp_list.replaceWith(new_sp_list);
 }
 function stageSpecies(obj){
@@ -273,16 +287,18 @@ function addSpecies(obj){
   // console.log(obj.id);
   var base_name = 'sp_list_';
   var ns = obj.id.split('-')[1];
-  var staged = document.getElementById(base_name + 'staged-' + ns);
-  var input  = document.getElementById(base_name + 'input-'  + ns);
-  var plot   = document.getElementById(base_name + 'plot-'   + ns).children[0].value;
-  var layer  = document.getElementById(base_name + 'layer-'  + ns).children[0].value;
-  var sp = getChildrenValues(staged);
+  var staged  = document.getElementById(base_name + 'staged-' + ns);
+  var input   = document.getElementById(base_name + 'input-'  + ns);
+  var plot    = document.getElementById(base_name + 'plot-'   + ns).children[0].value;
+  var layer   = document.getElementById(base_name + 'layer-'  + ns).children[0].value;
+  var species = getChildrenValues(staged);
   if(input.value !== ''){ var sp = sp.concat(input.value.split(',')); }
   // add species
   var table = document.getElementById('input_occ_' + plot + '_tb');
-  for(let s of sp){
-    addRowWithValues({ table: table, values: {Layer: layer, Species: s} });
+  for(let spec of species){
+    var [sp, sa] = spec.split('_');
+    if(sa === void 0) var sa = '';
+    addRowWithValues({ table: table, values: {Layer: layer, Species: sp, SameAs: sa} });
   }
 
   // clear inputs

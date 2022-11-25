@@ -186,11 +186,12 @@ function createInputTd(dat_type, col_name, optional){
   //   var col_name = col_name.toLowerCase();
   switch(dat_type){
     case "auto": // date, no, GPS
-      if(col_name === "DATE")   td.innerHTML = getNow();
+      if(col_name === "DATE")    td.innerHTML = getNow();
       if(col_name === "LOC_LAT") td.innerHTML = getLat();
       if(col_name === "LOC_LON") td.innerHTML = getLon();
       if(col_name === "LOC_ACC") td.innerHTML = getAcc();
-      if(col_name === "NO")     td.innerHTML = 1;
+      if(col_name === "NO")      td.innerHTML = 1;
+      if(col_name === "SameAs")  td.innerHTML = '';
       break;
     case "button": // DELETE, update button
       if(col_name === "DELETE")   { td.appendChild( createDelButton() );    };

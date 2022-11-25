@@ -10,7 +10,7 @@
 //    console.log(addSLinLS([1,2,5,6,7]));
 //    console.log(uniq(getSLinLS()));
 function addSLinLS(sp_list, ns='base'){
-  if(getSLinLS(ns) === void 0){
+  if(getSLinLS(ns) === ''){
     var new_list = sp_list;
   }else{
     var old_list = getSLinLS(ns);
@@ -21,7 +21,7 @@ function addSLinLS(sp_list, ns='base'){
 }
 function getSLinLS(ns='base'){
   if(localStorage['biss_sl-' + ns] === void 0){
-    return void 0;
+    return '';
   }else{
     return localStorage['biss_sl-' + ns].split(',');
   }

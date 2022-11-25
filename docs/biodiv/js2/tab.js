@@ -127,7 +127,7 @@ function updateAllInputsTables(obj){
   setSortable( searchParentTable(oc_table).id );
 
   var tables = document.querySelectorAll("table[id^='input_occ']");
-  var comp_table = createCompositionTable(tables);
+  var comp_table = createCompTable(tables);
   document.getElementById('comp_table').replaceWith(comp_table);
   setSortable( searchParentTable(comp_table).id );
 }
@@ -170,6 +170,8 @@ function getMultiTableInputs(tables, c_names){
   for(let c_name of c_names){
     inputs[c_name] = [];
     for(let tb of tables){
+  // console.log(tb);
+  // console.log(c_name);
       inputs[c_name] = inputs[c_name].concat(getColData(tb, c_name));
     }
   }
@@ -188,10 +190,23 @@ function getMultiTableOptions(tables, c_names){
   return options;
 }
 
-
-function createCompositionTable(tables, pl = "PLOT", sp = "Species", ab = "Cover"){
+function checkSameAs(inputs, pl, sp, id, sa){
+  // var inputs = temp1; var pl = 'PLOT'; var sp = 'Species'; var id = 'Identified'; var sa = 'SameAs';
+  for(let i=0; i < inputs[pl].length; i++){
+    if(inputs[id][i] === false)
+      if(inputs[sa][i] === ''){
+         inputs[sp][i] = inputs[sp][i] + '_' + inputs[pl][i];
+       }else{
+         inputs[sp][i] = inputs[sp][i] + '_' + inputs[sa][i];
+      }
+  }
+  return inputs;
+}
+function createCompTable(tables, pl = "PLOT", sp = "Species", ab = "Cover", id = "Identified", sa = "SameAs"){
   // var pl = "PLOT";var sp = "Species"; var ab = "Cover"; var tables = document.querySelectorAll("table[id^='input_occ']");
-  var inputs = getMultiTableInputs(tables, [pl, sp, ab]);
+  var inputs = getMultiTableInputs(tables, [pl, sp, ab, id, sa]);
+  // console.log(inputs);
+  var inputs = checkSameAs(inputs, pl, sp, id, sa)
   var uniq_pl = uniq(inputs[pl]);
   var uniq_sp = uniq(inputs[sp]);
   var c_names = [sp].concat(uniq_pl);

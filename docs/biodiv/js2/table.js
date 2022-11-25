@@ -5,7 +5,8 @@ function createTd(col_name, data_type, select, table_data){
       if(col_name === "LOC_LAT") td = crEl({ el: 'td', ih: getLat() });
       if(col_name === "LOC_LON") td = crEl({ el: 'td', ih: getLon() });
       if(col_name === "LOC_ACC") td = crEl({ el: 'td', ih: getAcc() });
-      if(col_name === "NO"    ) td = crEl({ el: 'td', ih: 1        });
+      if(col_name === "NO"     ) td = crEl({ el: 'td', ih: 1        });
+      if(col_name === "SameAs" ) td = crEl({ el: 'td', ih: ''       });
       break;
     case "text":
       var td = createTdWithChild( crEl({ el:'input', ats:{type: data_type, value: table_data} }) );
