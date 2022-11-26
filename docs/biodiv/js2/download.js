@@ -170,7 +170,8 @@ function restoreTd(table_data, data_type, select){
     case "checkbox":
       var td = crEl({ el: "td" });
       var checkbox = crEl({ el:'input', ats:{type: data_type} });
-      if(table_data) checkbox.setAttribute("checked", true);
+  //       if(!!table_data) checkbox.setAttribute("checked", true);
+      checkbox.checked = !!table_data;
       td.appendChild( checkbox );
       break;
     case "fixed":

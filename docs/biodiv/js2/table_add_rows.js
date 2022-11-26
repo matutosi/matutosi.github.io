@@ -93,7 +93,11 @@ function addRow(table){
         } else {
           switch(next_row.children[Ci].firstChild.getAttribute("type")){
             case "checkbox": // clear checkbox
-              next_row.children[Ci].firstChild.checked = false;
+              if(col_names[Ci] === 'Identified'){
+                next_row.children[Ci].firstChild.checked = true;
+              }else{
+                next_row.children[Ci].firstChild.checked = false;
+              }
               break;
             case "text":    // clear input text
             case "number":  // clear input text

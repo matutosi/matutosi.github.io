@@ -41,7 +41,7 @@ function createSettingSelect(){
   var main = crEl({ el:'span' });
   main.appendChild( crEl({ el: 'span', ih: 'Choose <b>main</b> setting: ' }) );
   var settings = Object.keys(data_settings);
-  var selects = createSelectOpt(settings);
+  var selects = createSelectOpt(settings, selected_no = 0, id = 'selectSettings');
   selects.setAttribute('onChange', 'changeSettings(this)');
   main.appendChild(selects);
   main.appendChild( crEl({ 'el': 'br' }) );
@@ -62,7 +62,6 @@ function changeSettings(obj){
 
   setSortable(setting + '_plot_tb');
   setSortable(setting + '_occ_tb');
-
 }
 
 // Create table module
@@ -205,6 +204,9 @@ function createInputTd(dat_type, col_name, optional){
       td.innerHTML = optional;
       break;
     case "checkbox":
+      td.appendChild(createInput({ type: dat_type }));
+      td.firstChild.checked = !!optional;
+      break;
     case "text":
       td.appendChild(createInput({ type: dat_type }));
       break;

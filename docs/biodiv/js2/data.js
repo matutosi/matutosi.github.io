@@ -27,7 +27,7 @@ const data_settings = {
       biss_inputs :{
         item:   ["DELETE","DATE","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
         type:   ["button","auto","auto"   ,"auto"   ,"auto"   ,"button"         ,"list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
-        value:  [""      ,""    ,""       ,""       ,""       ,""               ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        value:  [""      ,""    ,""       ,""       ,""       ,""               ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,"checked"    ,""     ,""    ,""      ],
         DELETE: [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
         memo  : [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       }
@@ -82,7 +82,7 @@ const data_settings = {
       biss_inputs :{
         item:   ["DELETE","DATE","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
         type:   ["button","auto","auto"   ,"auto"   ,"auto"   ,"button"         ,"list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
-        value:  [""      ,""    ,""       ,""       ,""       ,""               ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        value:  [""      ,""    ,""       ,""       ,""       ,""               ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,"checked"    ,""     ,""    ,""      ],
         DELETE: [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
         memo  : [""      ,""    ,""       ,""       ,""       ,""               ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       }
@@ -109,7 +109,7 @@ const data_settings = {
       biss_inputs :{
         item:   ["DELETE","Layer"        ,"Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
         type:   ["button","list"         ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
-        value:  [""      ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        value:  [""      ,"T1:T2:S1:S2:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,"checked"    ,""     ,""    ,""      ],
         DELETE: [""      ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
         memo  : [""      ,""             ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       }
@@ -136,7 +136,7 @@ const data_settings = {
       biss_inputs :{
         item:   ["DELETE","Layer","Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
         type:   ["button","list" ,"text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
-        value:  [""      ,"T:S:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        value:  [""      ,"T:S:H",""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,"checked"    ,""     ,""    ,""      ],
         DELETE: [""      ,""     ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
         memo  : [""      ,""     ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       } 
@@ -163,7 +163,7 @@ const data_settings = {
       biss_inputs :{
         item:   ["DELETE","Species","Cover" ,"Abundance","Rank"         ,"Sampled" ,"Identified" ,"Photo","Memo","SameAs"],
         type:   ["button","text"   ,"number","number"   ,"list"         ,"checkbox","checkbox"   ,"text" ,"text","auto"  ],
-        value:  [""      ,""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,""           ,""     ,""    ,""      ],
+        value:  [""      ,""       ,""      ,""         ,"5:4:3:2:1:+:r",""        ,"checked"    ,""     ,""    ,""      ],
         DELETE: [""      ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ],
         memo  : [""      ,""       ,""      ,""         ,""             ,""        ,""           ,""     ,""    ,""      ]
       }
@@ -190,7 +190,7 @@ const data_settings = {
       biss_inputs :{
         item:   ["DELETE","Species","LOC_LAT","LOC_LON","LOC_ACC","UPDATE_TIME_GPS","Sampled" ,"Identified" ,"Photo","Memo"],
         type:   ["button","text"   ,"auto"   ,"auto"   ,"auto"   ,"button"         ,"checkbox","checkbox"   ,"text" ,"text"],
-        value:  [""      ,""       ,""       ,""       ,""       ,""               ,""        ,""           ,""     ,""    ],
+        value:  [""      ,""       ,""       ,""       ,""       ,""               ,""        ,"checked"    ,""     ,""    ],
         DELETE: [""      ,""       ,""       ,""       ,""       ,""               ,""        ,""           ,""     ,""    ],
         memo  : [""      ,""       ,""       ,""       ,""       ,""               ,""        ,""           ,""     ,""    ]
       }
@@ -251,6 +251,7 @@ const data_settings_part = {
     sampled_identified:{
       item: ["Sampled" ,"Identified"],
       type: ["checkbox","checkbox"  ],
+      value:[""        ,"checked"   ]
     },
     memo:{
       item: ["Photo","Memo","SameAs"],

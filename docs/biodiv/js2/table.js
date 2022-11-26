@@ -16,7 +16,9 @@ function createTd(col_name, data_type, select, table_data){
         crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} }) );
       break;
     case "checkbox":
-      var td = createTdWithChild( crEl({ el:'input', ats:{type: data_type, checked: !!table_data} }) );
+console.log([table_data, !!table_data]);
+      var td = createTdWithChild( crEl({ el:'input', ats:{type: data_type} }) );
+      td.firstChild.checked = !!table_data;
       break;
     case "fixed":
   //       if(table_data === ""){ table_data = "NO_INPUT"; }   // alert("Fixed columns should be input!");
@@ -149,13 +151,15 @@ function addTableData(table, col_names, dat_types, selects, inputs){
 }
 
 function convertTableData(table_data){
+  // var table_data = temp1;
   var c_names = table_data['biss_inputs']['item'];
   var d_types = table_data['biss_inputs']['type'];
   var selects = [];
   var inputs  = [];
   for(var i = 0; i < d_types.length; i++){
     selects.push( (d_types[i] === 'list' ) ? table_data['biss_inputs']['value'][i].split(':') : '' );
-    inputs[c_names[i]] = [(d_types[i] === 'fixed') ? table_data['biss_inputs']['value'][i]: ''];
+    inputs[c_names[i]] = [(d_types[i] === 'fixed' || d_types[i] === 'checkbox') ? table_data['biss_inputs']['value'][i]: ''];
+  //     inputs[c_names[i]] = table_data['biss_inputs']['value'][i];
   }
   return {
     biss_c_names: c_names,
