@@ -92,13 +92,6 @@ function addRow(table){
           break;
         } else {
           switch(next_row.children[Ci].firstChild.getAttribute("type")){
-            case "checkbox": // clear checkbox
-              if(col_names[Ci] === 'Identified'){
-                next_row.children[Ci].firstChild.checked = true;
-              }else{
-                next_row.children[Ci].firstChild.checked = false;
-              }
-              break;
             case "text":    // clear input text
             case "number":  // clear input text
               next_row.children[Ci].firstChild.value = "";
@@ -106,6 +99,11 @@ function addRow(table){
             case null:      // select from list
               selected_opt = last_row.children[Ci].firstChild.selectedIndex;
               next_row.children[Ci].firstChild.selectedIndex = selected_opt;
+              break;
+            case "checkbox": // do nothing
+  // if want 'Identified' checked and others no checked -> activate the codes below
+  //               if(col_names[Ci] === 'Identified'){ next_row.children[Ci].firstChild.checked = true; 
+  //               }else{                              next_row.children[Ci].firstChild.checked = false; }
               break;
           }
         }

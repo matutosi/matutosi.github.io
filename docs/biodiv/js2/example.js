@@ -1,4 +1,8 @@
 function showExample(obj){
+
+  // select settings: '_5_layers'
+  changeSettingsByName('_5_layers');
+
   // add plots
   addInputTab({ obj:document.getElementById('add_tab'), id:'biss01' });
   addInputTab({ obj:document.getElementById('add_tab'), id:'biss02' });

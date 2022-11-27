@@ -99,7 +99,7 @@ function addInputTab({ obj, id }){
   //   var occ_setting  = convertTableData( getTableData( document.getElementById("setting_occ_tb" )))
   // console.log(getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[1] ));
   var occ_setting = convertTableData( getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[1] ) );
-console.log(occ_setting);
+  // console.log(occ_setting);
   var occ_setting  = addPlotId(occ_setting, id);
   var pl_table = tableModule({table_data: plot_setting, ns: 'input_plot_' + id, 
                               id_text: true, 

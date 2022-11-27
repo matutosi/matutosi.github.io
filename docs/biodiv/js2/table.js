@@ -16,7 +16,7 @@ function createTd(col_name, data_type, select, table_data){
         crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} }) );
       break;
     case "checkbox":
-console.log([table_data, !!table_data]);
+  // console.log([table_data, !!table_data]);
       var td = createTdWithChild( crEl({ el:'input', ats:{type: data_type} }) );
       td.firstChild.checked = !!table_data;
       break;

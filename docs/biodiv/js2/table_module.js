@@ -41,25 +41,30 @@ function createSettingSelect(){
   var main = crEl({ el:'span' });
   main.appendChild( crEl({ el: 'span', ih: 'Choose <b>main</b> setting: ' }) );
   var settings = Object.keys(data_settings);
-  var selects = createSelectOpt(settings, selected_no = 0, id = 'selectSettings');
+  var selects = createSelectOpt(settings, selected_no = 0, id = 'select_settings');
   selects.setAttribute('onChange', 'changeSettings(this)');
   main.appendChild(selects);
   main.appendChild( crEl({ 'el': 'br' }) );
   return main;
 }
 
+function changeSettingsByName(ns){
+  var select = document.getElementById('select_settings');
+  select.selectedIndex = getSelectOptionInCell(select).indexOf(ns)
+  changeSettings(select);
+}
 function changeSettings(obj){
   var setting = obj.value;
-  var plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot',
-                                  id_text: true, load_button: true, save_button: true, hide_button: true, 
-                                  add_button: true });
-  var next = obj.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
-  next.replaceWith(plot_module);
-  var occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ',
-                                  id_text: true, load_button: true, save_button: true, hide_button: true, 
-                                  add_button: true });
-  plot_module.nextSibling.replaceWith(occ_module);
-
+  var new_plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot',
+                                      id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                      add_button: true });
+  var new_occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ',
+                                      id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                      add_button: true });
+  var old_plot_module = obj.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
+  old_plot_module.replaceWith(new_plot_module);
+  var old_occ_module = new_plot_module.nextSibling;
+  old_occ_module.replaceWith(new_occ_module);
   setSortable(setting + '_plot_tb');
   setSortable(setting + '_occ_tb');
 }

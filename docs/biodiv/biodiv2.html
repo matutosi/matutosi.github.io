@@ -58,7 +58,6 @@
 <body>
 
 
-
 <p>
 <input type="button" value="smaller" onclick="smaller()" />
 <input type="button" value="LARGER" onclick="larger()"  />
@@ -86,7 +85,6 @@ Biodiversity Investigation Support System (BiSS)
       <script>
         var tab_tools = document.getElementById("tab_tools");
         tab_tools.appendChild( createSpecieUlModule('', 'all') );
-//         tab_tools.appendChild( createSpecieUlModule('sp_list', 'all') );
         tab_tools.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
       </script>
       <p>
@@ -105,16 +103,9 @@ Biodiversity Investigation Support System (BiSS)
         tab_setting.appendChild( addSettingPartButton('plot') );
         tab_setting.appendChild( addSettingPartButton('occ')  );
         tab_setting.appendChild( crEl({ 'el': 'hr' }) );
-        tab_setting.appendChild( tableModule({ 
-                                      table_data: data_settings.default.plot, ns: "default_plot",
-                                      id_text: true, load_button: true, save_button: true, hide_button: true, 
-                                      add_button: true }) );
-        tab_setting.appendChild( tableModule({ 
-                                      table_data: data_settings.default.occ , ns: "default_occ",
-                                      id_text: true, load_button: true, save_button: true, hide_button: true, 
-                                      add_button: true }) );
-       setSortable("default_plot_tb");
-       setSortable("default_occ_tb");
+        tab_setting.appendChild( crEl({ 'el': 'span' }) );
+        tab_setting.appendChild( crEl({ 'el': 'span' }) );
+        changeSettingsByName('empty');
       </script>
     </div>
 

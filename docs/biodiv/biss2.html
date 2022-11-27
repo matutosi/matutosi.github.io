@@ -831,25 +831,30 @@ function createSettingSelect(){
   var main = crEl({ el:'span' }); 
   main.appendChild( crEl({ el: 'span', ih: 'Choose <b>main</b> setting: ' }) ); 
   var settings = Object.keys(data_settings); 
-  var selects = createSelectOpt(settings, selected_no = 0, id = 'selectSettings'); 
+  var selects = createSelectOpt(settings, selected_no = 0, id = 'select_settings'); 
   selects.setAttribute('onChange', 'changeSettings(this)'); 
   main.appendChild(selects); 
   main.appendChild( crEl({ 'el': 'br' }) ); 
   return main; 
 } 
  
+function changeSettingsByName(ns){ 
+  var select = document.getElementById('select_settings'); 
+  select.selectedIndex = getSelectOptionInCell(select).indexOf(ns) 
+  changeSettings(select); 
+} 
 function changeSettings(obj){ 
   var setting = obj.value; 
-  var plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot', 
-                                  id_text: true, load_button: true, save_button: true, hide_button: true,  
-                                  add_button: true }); 
-  var next = obj.parentNode.nextSibling.nextSibling.nextSibling.nextSibling; 
-  next.replaceWith(plot_module); 
-  var occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ', 
-                                  id_text: true, load_button: true, save_button: true, hide_button: true,  
-                                  add_button: true }); 
-  plot_module.nextSibling.replaceWith(occ_module); 
- 
+  var new_plot_module = tableModule({ table_data: data_settings[setting].plot, ns: setting + '_plot', 
+                                      id_text: true, load_button: true, save_button: true, hide_button: true,  
+                                      add_button: true }); 
+  var new_occ_module = tableModule({ table_data: data_settings[setting].occ, ns: setting + '_occ', 
+                                      id_text: true, load_button: true, save_button: true, hide_button: true,  
+                                      add_button: true }); 
+  var old_plot_module = obj.parentNode.nextSibling.nextSibling.nextSibling.nextSibling; 
+  old_plot_module.replaceWith(new_plot_module); 
+  var old_occ_module = new_plot_module.nextSibling; 
+  old_occ_module.replaceWith(new_occ_module); 
   setSortable(setting + '_plot_tb'); 
   setSortable(setting + '_occ_tb'); 
 } 
@@ -1299,13 +1304,6 @@ function addRow(table){
           break; 
         } else { 
           switch(next_row.children[Ci].firstChild.getAttribute("type")){ 
-            case "checkbox": // clear checkbox 
-              if(col_names[Ci] === 'Identified'){ 
-                next_row.children[Ci].firstChild.checked = true; 
-              }else{ 
-                next_row.children[Ci].firstChild.checked = false; 
-              } 
-              break; 
             case "text":    // clear input text 
             case "number":  // clear input text 
               next_row.children[Ci].firstChild.value = ""; 
@@ -1313,6 +1311,11 @@ function addRow(table){
             case null:      // select from list 
               selected_opt = last_row.children[Ci].firstChild.selectedIndex; 
               next_row.children[Ci].firstChild.selectedIndex = selected_opt; 
+              break; 
+            case "checkbox": // do nothing 
+  // if want 'Identified' checked and others no checked -> activate the codes below 
+  //               if(col_names[Ci] === 'Identified'){ next_row.children[Ci].firstChild.checked = true;  
+  //               }else{                              next_row.children[Ci].firstChild.checked = false; } 
               break; 
           } 
         } 
@@ -1652,7 +1655,7 @@ function addInputTab({ obj, id }){
   //   var occ_setting  = convertTableData( getTableData( document.getElementById("setting_occ_tb" ))) 
   // console.log(getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[1] )); 
   var occ_setting = convertTableData( getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[1] ) ); 
-console.log(occ_setting); 
+  // console.log(occ_setting); 
   var occ_setting  = addPlotId(occ_setting, id); 
   var pl_table = tableModule({table_data: plot_setting, ns: 'input_plot_' + id,  
                               id_text: true,  
@@ -2190,7 +2193,7 @@ function generateSearchTable(ns, table){
         crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} }) ); 
       break; 
     case "checkbox": 
-console.log([table_data, !!table_data]); 
+  // console.log([table_data, !!table_data]); 
       var td = createTdWithChild( crEl({ el:'input', ats:{type: data_type} }) ); 
       td.firstChild.checked = !!table_data; 
       break; 
@@ -2358,6 +2361,10 @@ function convertTableData(table_data){
   // data_00["setting_plot_01"]["biss_inputs"]["item"] 
   // JSON.stringify(data_00) 
   // JSON.parse(JSON.stringify(data_00))</script> <script charset="utf-8">function showExample(obj){ 
+ 
+  // select settings: '_5_layers' 
+  changeSettingsByName('_5_layers'); 
+ 
   // add plots 
   addInputTab({ obj:document.getElementById('add_tab'), id:'biss01' }); 
   addInputTab({ obj:document.getElementById('add_tab'), id:'biss02' }); 
@@ -2400,4 +2407,4 @@ function convertTableData(table_data){
   document.getElementById('sp_list_update_pl-all').click(); 
  
   obj.remove(); 
-}</script> <script>function testSaveTable(){var e="test_data",t=new Uint8Array([239,187,191]),a=new Blob([t,e],{type:"text/tsv"});const n=URL.createObjectURL(a),c=document.createElement("a");document.body.appendChild(c),c.download="temp.txt",c.href=n,c.click(),c.remove(),URL.revokeObjectURL(n),delete e}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> Biodiversity Investigation Support System (BiSS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools");tab_tools.appendChild(createSpecieUlModule("","all")),tab_tools.appendChild(generateSearchTable("wamei",generateTable(wamei)));</script> <p> "aaa bbb" matches texts including both "aaa" and "bbb". </p><p> Wamei (Japanese plant names) is obtained from <br> Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br> A checklist of Japanese plant names <br> (https://www.gbif.jp/v2/activities/wamei_checklist.html) </p></div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(tableModule({table_data:data_settings.default.plot,ns:"default_plot",id_text:!0,load_button:!0,save_button:!0,hide_button:!0,add_button:!0})),tab_setting.appendChild(tableModule({table_data:data_settings.default.occ,ns:"default_occ",id_text:!0,load_button:!0,save_button:!0,hide_button:!0,add_button:!0})),setSortable("default_plot_tb"),setSortable("default_occ_tb");</script> </div> <div id="tab_all"> <script>var tab_all=document.getElementById("tab_all");tab_all.appendChild(updateAllInputsTablesButton());</script> <br> <span id="plot_all"></span> <span id="occ_all"></span> <table id="comp_table"></table> </div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
+}</script> <script>function testSaveTable(){var e="test_data",t=new Uint8Array([239,187,191]),a=new Blob([t,e],{type:"text/tsv"});const n=URL.createObjectURL(a),c=document.createElement("a");document.body.appendChild(c),c.download="temp.txt",c.href=n,c.click(),c.remove(),URL.revokeObjectURL(n),delete e}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> Biodiversity Investigation Support System (BiSS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools");tab_tools.appendChild(createSpecieUlModule("","all")),tab_tools.appendChild(generateSearchTable("wamei",generateTable(wamei)));</script> <p> "aaa bbb" matches texts including both "aaa" and "bbb". </p><p> Wamei (Japanese plant names) is obtained from <br> Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br> A checklist of Japanese plant names <br> (https://www.gbif.jp/v2/activities/wamei_checklist.html) </p></div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <script>var tab_all=document.getElementById("tab_all");tab_all.appendChild(updateAllInputsTablesButton());</script> <br> <span id="plot_all"></span> <span id="occ_all"></span> <table id="comp_table"></table> </div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
