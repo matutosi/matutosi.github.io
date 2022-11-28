@@ -16,7 +16,7 @@ function hash2table(hash_array){
 }
 
 // Check if an object is or has table. 
-//    @params obj An object.
+//    @param obj An object.
 //    @return A logical.
 function isTable(obj){
   return obj.tagName === 'TABLE';
@@ -29,8 +29,8 @@ function hasTable(obj){
 //    Search parentNode of a object.
 //    When object has multiple tables, return the first table in default.
 //    Can return another table by using index.
-//    @params obj   An object.
-//    @params index A numeric.
+//    @param obj   An object.
+//    @param index A numeric.
 //    @return A table.
 function searchParentTable(obj, index = 0){
   while( !isTable(obj) && !hasTable(obj) ){
@@ -44,8 +44,8 @@ function searchParentTable(obj, index = 0){
 }
 
 // Get column data in a table
-//    @params id_table A string.
-//    @params col_name A string.
+//    @param id_table A string.
+//    @param col_name A string.
 //    @return An array.
 function getColData(table, col_name, list_with_index=false){
   // var table = document.getElementById("meta_setting_table");
@@ -67,8 +67,8 @@ function getColData(table, col_name, list_with_index=false){
 // Get input value, list, or innerHTML cell data in a table.
 //    In BISS, the values varies input, list, or innerHTML. 
 //    getCellData() 
-//    @params cell_data A td element in a table.
-//    @params data_type A string to specify the data type of the cell, 
+//    @param cell_data A td element in a table.
+//    @param data_type A string to specify the data type of the cell, 
 //                      which can be retrived with col_type().
 //    @return A string.
 function getCellData(cell_data, data_type){
@@ -107,8 +107,8 @@ function getSelectOptionInCell(select){
 }
 
 // Split array by group
-//    @params array An array.
-//    @params group An array.
+//    @param array An array.
+//    @param group An array.
 //    @return Grouped array. 
 //    @examples
 //    var array = [ 1,   2,   3,   4];
@@ -134,7 +134,7 @@ function splitByGroup(array, group){
 //        These columns can not be set by users. 
 //    Other columns can be devided into 5 data types: 
 //        "fixed", "checkbox", "text", "number", "list".
-//   @paramas table A table element.
+//   @param table A table element.
 //   @return        A string array.
 // function getDataType(table){
 // //   const table = document.getElementById(id_table);
@@ -188,7 +188,7 @@ function getDataTypeCell(cell){
 }
 
 // Get column names as a string array.
-//   @paramas table A table element.
+//   @param table A table element.
 //   @return A string array.
 function getColNames(table){
   // console.log(table.rows[0]);
@@ -214,7 +214,7 @@ function getNow(){
 
 // Delete a row in a table.
 //   When the raw is the only one row in a table, the row will not be deleted.
-//   @paramas  obj An element of input button of a row in a table.
+//   @param  obj An element of input button of a row in a table.
 function delRow(obj){
     var table = obj.parentNode.parentNode.parentNode; // clicked table
     if(table.rows.length > 3){                        // delete more than 3 rows (th + tb * 2)
@@ -224,9 +224,9 @@ function delRow(obj){
 }
 
 // Helper to createElement(), setAttribute(), innerHTML, textContent
-//   @paramas el A string for element name.
-//   @paramas ats An array with attribute names. {id: "hoge", value: "foo"}
-//   @paramas ih,tc A string for innerHTML and textContent.
+//   @param el A string for element name.
+//   @param ats An array with attribute names. {id: "hoge", value: "foo"}
+//   @param ih,tc A string for innerHTML and textContent.
 //            Both of them are given, ih is overwritten by tc.
 //   @return HTML An object.
 //   @examples 

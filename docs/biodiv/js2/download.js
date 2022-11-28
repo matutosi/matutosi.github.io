@@ -27,8 +27,8 @@ var id_tab = 'tab_inputs';
 
 // Get data and optional information from a table.
 //    getTableDataPlus() retrieve table data as well as column names, data types, selects. 
-//    @params id_table      A string to specify table id.
-//    @params shift_one     A logical. If true, delete first element. (To delete hide_button)
+//    @param id_table      A string to specify table id.
+//    @param shift_one     A logical. If true, delete first element. (To delete hide_button)
 //    @return               A string with 4 parts as shown below. 
 //                          Each part is JSON format.
 //                            c_names: Column names of table, which will be used for making th.
@@ -57,8 +57,8 @@ function getTableDataPlus(id_table, shift_one = false){
 }
 
 // Helper for getInputData()
-//    @params table      A table element.
-//    @params col_names  A string of column name to get options in select element.
+//    @param table      A table element.
+//    @param col_names  A string of column name to get options in select element.
 //    @return            An array of select options.
 function getSelectOne(table, col_name){
   // var col_name = "Layer";
@@ -80,7 +80,7 @@ function getSelectOne(table, col_name){
 //      d_types: Data types of each column for judging the td and input types.
 //      selects: Select options for 'list' element. null for other types.
 //      t_data : Table data for making td values or innnerHTML.
-//    @params table_name  A string to specify table name. 
+//    @param table_name  A string to specify table name. 
 //                        localStorage key name is "bis_" + table_name.
 //    @return             A table element with id: table_name.
 //    @examples
@@ -153,9 +153,9 @@ function makeTable(plot, table_name){
 
 
 // Helper for restoreTable()
-//    @params table_data  A string to specify data in td.
-//    @params data_type   A string to specify data type.
-//    @params select      An array for select-option.
+//    @param table_data  A string to specify data in td.
+//    @param data_type   A string to specify data type.
+//    @param select      An array for select-option.
 //    return              An td element with innerText or input element
 function restoreTd(table_data, data_type, select){
   switch(data_type){

@@ -90,7 +90,7 @@ function createSelectOpt(list, selected_no = 0, id = ''){
 
 // Get data and optional information from a table.
 //    getTableDataPlus() retrieve table data as well as column names, data types, selects. 
-//    @params id_table      A string to specify table id.
+//    @param id_table      A string to specify table id.
 //    @return               A string with 4 parts as shown below. 
 //                          Each part is JSON format.
 //                            c_names: Column names of table, which will be used for making th.
@@ -118,8 +118,8 @@ function getTableData(table){
   }
 }
 
-//   @paramas 
-//   @paramas 
+//   @param 
+//   @param 
 //   @return  A table
 function makeTableJO(table_data, table_name){
   if(Array.isArray(table_data) === true){

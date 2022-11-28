@@ -3,7 +3,7 @@
 //    Using in Input Table.
 //    Clear input text, ALL rows will be shown.
 //    Regular expression can be used.
-//    @paramas obj  A input element.
+//    @param obj  A input element.
 //                  Normally use "this". 
 function searchTableText(obj){
   // console.log(obj);
@@ -39,7 +39,7 @@ function searchTableText(obj){
 //    Regular expression can be used.
 //    Spaces means match all text. 
 //        ex.) "aaa bbb" matches texts including both "aaa" and "bbb".
-//    @paramas obj  A input element.
+//    @param obj  A input element.
 //                  Normally use "this". 
 function searchTableTextShow(obj){
   var input = obj.previousElementSibling.value;
@@ -51,9 +51,7 @@ function searchTableTextShow(obj){
     }
     return void 0;
   }
-  // look ahead: https://www-creators.com/archives/5332
-  input = "^(?=.*" + input.replaceAll(" ", ")(?=.*") + ").*$";
-  var reg_ex = new RegExp(input, 'i');  // i: case-insensitive
+  var reg_ex = makeLookAheadReg(input);
   var matches = 0;
   for(let Rj = 1; Rj < trs.length; Rj++){ trs[Rj].style.display = "none"; }
   for(let Rj = 1; Rj < trs.length; Rj++){

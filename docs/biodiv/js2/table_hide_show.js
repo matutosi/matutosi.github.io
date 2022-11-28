@@ -5,7 +5,7 @@
 //        createHideRowButton()
 //        createShowRowButton()
 //        createShowColButton()
-//    @paramas obj  A input element.
+//    @param obj  A input element.
 //                  Normally use "this". 
 function showRow(obj){
   var tr = obj.parentNode.parentNode;

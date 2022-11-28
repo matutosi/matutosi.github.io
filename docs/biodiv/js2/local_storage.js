@@ -1,6 +1,6 @@
 // 
 // 
-//    @paramas sp_list An array.
+//    @param sp_list An array.
 //    @examples
 //    console.log(removeSLinLS());
 //    console.log(getLSKeys());

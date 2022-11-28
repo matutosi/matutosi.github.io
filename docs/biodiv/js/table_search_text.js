@@ -1,7 +1,7 @@
 // Search text input tags in a table and show only matching rows
 //    Clear input text, ALL rows will be shown.
 //    Regular expression can be used.
-//    @paramas obj  A input element.
+//    @param obj  A input element.
 //                  Normally use "this". 
 function searchTableText(obj){
   // console.log(obj);
@@ -35,7 +35,7 @@ function searchTableText(obj){
 //    Regular expression can be used.
 //    Spaces means match all text. 
 //        ex.) "aaa bbb" matches texts including both "aaa" and "bbb".
-//    @paramas obj  A input element.
+//    @param obj  A input element.
 //                  Normally use "this". 
 function searchTableTextShow(obj){
   var input = obj.previousElementSibling.value;

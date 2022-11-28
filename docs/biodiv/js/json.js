@@ -31,7 +31,7 @@ function csv2json(csv, sep=","){
 
 // Extract all data from JSON data
 //    Can extract data from simple JSON ()
-//    @params json A JSON data.
+//    @param json A JSON data.
 function extractJson(json){
   const keys = jsonKeys(json);
   var arr = [];
@@ -46,8 +46,8 @@ function extractJson(json){
 }
 
 // Extract JSON data with key
-//    @params json A JSON data.
-//    @params key  A key string.
+//    @param json A JSON data.
+//    @param key  A key string.
 function json2Array(json, key){
   var arr = [];
   for(let j of json){ 

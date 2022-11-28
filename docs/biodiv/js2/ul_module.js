@@ -94,7 +94,7 @@ function changeSL(obj){
 }
 
 // Load 
-//   @paramas obj  A input element.
+//   @param obj  A input element.
 //                 Normally use "this". 
 async function loadSL(obj){
   var text = await readFile(obj.files[0]);
@@ -173,7 +173,7 @@ function createSpecieList(id, species){
   // console.log(species);
   for(let sp of species){
     var li = crEl({ el:'li' })
-    var button = createSpeciesButton({ sp: sp, to_stage: true, ns:ns })
+    var button = createSpeciesButton({ sp: sp, to_stage: true, ns: ns })
     li.appendChild(button);
     ul.appendChild(li);
   }
@@ -272,7 +272,8 @@ function stageSpecies(obj){
   var sp_staged = document.getElementById('sp_list_staged-' + ns);
   var sp = obj.value;
   obj.setAttribute("disabled", true);
-  sp_staged.appendChild( createSpeciesButton({ sp: sp, to_stage: false }) );
+  var button = createSpeciesButton({ sp: sp, to_stage: false, ns: ns });
+  sp_staged.appendChild( button );
 }
 function unStageSpecies(obj){
   // console.log(obj)

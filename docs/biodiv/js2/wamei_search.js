@@ -1,4 +1,23 @@
 
+
+function stageWamei(array, input, ns = 'wamei'){
+  var reg_exp = makeLookAheadReg(input);
+  var species = grepArray(array, reg_exp);
+  var id = 'sp_list_sp_list-' + ns;
+  //   var ul = document.getElementById(id);
+  var ul = crEl({ el:'ul', ats:{id: id} });
+  for(let sp of species){
+    var li = crEl({ el:'li' })
+    var button = createSpeciesButton({ sp: sp, to_stage: true, ns: ns })
+    li.appendChild(button);
+    ul.appendChild(li);
+  }
+  var span = document.getElementById('sp_list_module-all');
+  span.appendChild(ul);
+}
+  // stageWamei(wamei, 'イシ ナラ'); 
+
+
 function generateTable(data){
   var table = crEl({ el: 'table' });
   table.appendChild( crEl({ el: 'th', tc: "wamei" }) );

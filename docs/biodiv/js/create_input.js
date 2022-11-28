@@ -1,5 +1,5 @@
 // Helper to create input tag with attributes such as class, id, type, value, and placeholder.
-//    @paramas ...args Some arguments.
+//    @param ...args Some arguments.
 //    @return  An input element.
 //    @examples
 //    createInput({ type: "text", value: "Val"});
