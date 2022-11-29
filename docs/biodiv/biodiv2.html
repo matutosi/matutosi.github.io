@@ -84,16 +84,23 @@ Biodiversity Investigation Support System (BiSS)
     <div id="tab_tools">
       <script>
         var tab_tools = document.getElementById("tab_tools");
-        tab_tools.appendChild( createSpecieUlModule({ species: '', ns: 'all' }) );
-        tab_tools.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
+        var ul_module = createSpecieUlModule({ species: '', ns: 'all',
+                        show_select_button   : true, show_button_update_sl: true, show_button_add_comp: true , 
+                        show_select_ncol     : true, 
+                        show_button_load_sl  : true, show_button_save_sl  : true, 
+                        show_text_input      : true, 
+                        show_button_update_pl: true, show_select_plot     : true, show_select_layer   : true });
+        tab_tools.appendChild( ul_module );
+        tab_tools.appendChild( createWameiSpan() );
+//        tab_tools.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
       </script>
       <p>
       "aaa bbb" matches texts including both "aaa" and "bbb".
       <p>
       Wamei (Japanese plant names) is obtained from <br>
       Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br>
-      A checklist of Japanese plant names <br>
-      (https://www.gbif.jp/v2/activities/wamei_checklist.html)
+      A checklist of Japanese plant names. <br>
+      https://www.gbif.jp/v2/activities/wamei_checklist.html
     </div>
 
     <div id="tab_settings">

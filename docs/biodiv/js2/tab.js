@@ -91,21 +91,18 @@ function addInputTab({ obj, id }){
 
   // create input tables
       // PLOT
-  //   var plot_setting = convertTableData( getTableData( document.getElementById("setting_plot_tb")));
   var plot_setting = convertTableData( getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[0] ) );
   var plot_setting = addPlotNo(plot_setting, getPlotMaxNo() + 1);
   var plot_setting = addPlotId(plot_setting, id);
-      // OCC
-  //   var occ_setting  = convertTableData( getTableData( document.getElementById("setting_occ_tb" )))
-  // console.log(getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[1] ));
-  var occ_setting = convertTableData( getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[1] ) );
-  // console.log(occ_setting);
-  var occ_setting  = addPlotId(occ_setting, id);
   var pl_table = tableModule({table_data: plot_setting, ns: 'input_plot_' + id, 
                               id_text: true, 
                               hide_button: true, fit_button: true })
   div.appendChild( pl_table );
   document.getElementById('input_plot_' + id + '_fit').onclick();
+
+      // OCC
+  var occ_setting = convertTableData( getTableData( document.getElementById('tab_settings').getElementsByTagName('table')[1] ) );
+  var occ_setting  = addPlotId(occ_setting, id);
   var oc_table = tableModule({table_data: occ_setting, ns: 'input_occ_' + id, 
                               id_text: true, search_input: true,
                               hide_button: true, fit_button: true, 
@@ -118,9 +115,16 @@ function addInputTab({ obj, id }){
   var table = searchParentTable(oc_table);
   setSortable(table.id);  // Should setSortable() after appendChild()
 
-  div.appendChild( createSpecieUlModule({ species: '', ns: id }) );
-  //   div.appendChild( createSpecieUlModule({ species: sp_list, ns: id }) );
-
+  if(occ_setting.biss_c_names.indexOf('Layer') < 0){ 
+    var show_select_layer = void 0;
+  }else{
+    var show_select_layer = true;
+  }
+  var ul_module = createSpecieUlModule({ species: '', ns: id,
+                  show_select_button   : true, show_button_update_sl: true, show_button_add_comp: true, 
+                  show_text_input      : true, 
+                  show_select_layer    : show_select_layer   });
+  div.appendChild( ul_module );
 }
 
 function updateAllInputsTables(obj){

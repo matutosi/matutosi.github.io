@@ -1,25 +1,26 @@
-
-
-function stageWamei(array, input, ns = 'wamei'){
-  var reg_exp = makeLookAheadReg(input);
-  var species = grepArray(array, reg_exp);
-  var id = 'sp_list_sp_list-' + ns;
-  //   var ul = document.getElementById(id);
-  var ul = crEl({ el:'ul', ats:{id: id} });
-  for(let sp of species){
-    var li = crEl({ el:'li' })
-    var button = createSpeciesButton({ sp: sp, to_stage: true, ns: ns })
-    li.appendChild(button);
-    ul.appendChild(li);
-  }
-  var span = document.getElementById('sp_list_module-all');
-  span.appendChild(ul);
+// wamei
+function createWameiSpan(){
+  // Up span
+  var main = crEl({ el:'span', ats:{id: 'wamei'} });
+  main.appendChild( createSearchShowInput()   );
+  main.appendChild( createSearchWameiButton() );
+  return main;
 }
 
-  // var span = document.getElementById('tab_tools');
-  // var reg_exp = makeLookAheadReg('イシ ナラ');
-  // var sp_wamei = createSpecieUlModule(species: species, ns: 'wamei');
-  // span.appendChild(sp_wamei);
+function createSearchWameiButton(){
+  return createInput({ type: "button", value: "Search wamei", onclick: "searchWamei(this)" });
+}
+
+function searchWamei(obj){
+  var parent    = obj.parentNode;
+  var input     = obj.previousElementSibling.value;
+  var reg_exp   = makeLookAheadReg(input);
+  var species   = grepArray(wamei, reg_exp);
+  var ul_module = createSpecieUlModule({ species: species, ns: 'wamei',
+                  show_button_update_pl: true, show_select_plot     : true, show_select_layer   : true });
+  parent.appendChild( ul_module );
+}
+
 
 
 function generateTable(data){
@@ -39,9 +40,10 @@ function generateTable(data){
 function generateSearchTable(ns, table){
   // Up span
   var up = crEl({ el:'span', ats:{id: "up_" + ns} });
-  up.appendChild( crEl({ el: 'B', tc: ns}) );
-  up.appendChild( createSearchShowInput() );
-  up.appendChild( createSearchShowButton() );
+  up.appendChild( crEl({ el: 'B', tc: ns})  );
+  up.appendChild( createSearchShowInput()   );
+  up.appendChild( createSearchShowButton()  );
+  up.appendChild( createSearchWameiButton() );
   // Table
   var table = generateTable(wamei);
   // Main

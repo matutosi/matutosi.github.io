@@ -63,6 +63,7 @@ function getTableDataPlus(id_table, shift_one = false){
 function getSelectOne(table, col_name){
   // var col_name = "Layer";
   const col_no = getColNames(table).indexOf(col_name);
+  if(col_no < 0){ return []; }  // no col_name
   var options = table.rows[2].cells[col_no].firstChild.options;
   var sel_opt = [];
   for(let option of options){

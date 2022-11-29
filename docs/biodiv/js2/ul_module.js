@@ -12,7 +12,7 @@ function createAddCompButton(id){
 }
 
 function createSpecieUlModule({ species, ns,
-                                show_select_button   , show_button_update_sl, show_button_add_comp , 
+                                show_select_button   , show_button_update_sl, show_button_add_comp, 
                                 show_select_ncol     , 
                                 show_button_load_sl  , show_button_save_sl  , 
                                 show_text_input      , 
@@ -36,24 +36,35 @@ function createSpecieUlModule({ species, ns,
   var button_add       = createSLAdd         ( base_name + 'add-'       + ns          );
   var sp_list          = createSpecieList    ( base_name + 'sp_list-'   + ns, species );
 
-  if( show_select_button    != void 0){ main.appendChild( select_button       ); }
-  if( show_button_update_sl != void 0){ main.appendChild( button_update_sl    ); }
-  if( show_button_add_comp  != void 0){ main.appendChild( button_add_comp     ); }
-  if( show_select_ncol      != void 0){ main.appendChild( select_ncol         ); }
-                                        main.appendChild( crEl({ el: 'br' })  );
-  if( show_button_load_sl   != void 0){ main.appendChild( button_load_sl      ); }
-  if( show_button_save_sl   != void 0){ main.appendChild( button_save_sl      ); }
-                                        main.appendChild( crEl({ el: 'br' })  );
-                                        main.appendChild( staged              );
-                                        main.appendChild( crEl({ el: 'br' })  );
-  if( show_text_input       != void 0){ main.appendChild( text_input          ); }
-                                        main.appendChild( crEl({ el: 'br' })  );
-  if( show_button_update_pl != void 0){ main.appendChild( button_update_pl    ); }
-  if( show_select_plot      != void 0){ main.appendChild( select_plot         ); }
-  if( show_select_layer     != void 0){ main.appendChild( select_layer        ); }
-                                        main.appendChild( button_add          );
-                                        main.appendChild( sp_list             );
-                                        main.appendChild( crEl({el:'hr'})     );
+  main.appendChild( select_button       );
+  main.appendChild( button_update_sl    );
+  main.appendChild( button_add_comp     );
+  main.appendChild( select_ncol         );
+  main.appendChild( crEl({ el: 'br' })  );
+  main.appendChild( button_load_sl      );
+  main.appendChild( button_save_sl      );
+  main.appendChild( crEl({ el: 'br' })  );
+  main.appendChild( staged              );
+  main.appendChild( crEl({ el: 'br' })  );
+  main.appendChild( text_input          );
+  main.appendChild( crEl({ el: 'br' })  );
+  main.appendChild( button_update_pl    );
+  main.appendChild( select_plot         );
+  main.appendChild( select_layer        );
+  main.appendChild( button_add          );
+  main.appendChild( sp_list             );
+  main.appendChild( crEl({el:'hr'})     );
+
+  if( show_select_button    === void 0){ select_button      .style.display = "none"; }
+  if( show_button_update_sl === void 0){ button_update_sl   .style.display = "none"; }
+  if( show_button_add_comp  === void 0){ button_add_comp    .style.display = "none"; }
+  if( show_select_ncol      === void 0){ select_ncol        .style.display = "none"; }
+  if( show_button_load_sl   === void 0){ button_load_sl     .style.display = "none"; }
+  if( show_button_save_sl   === void 0){ button_save_sl     .style.display = "none"; }
+  if( show_text_input       === void 0){ text_input         .style.display = "none"; }
+  if( show_button_update_pl === void 0){ button_update_pl   .style.display = "none"; }
+  if( show_select_plot      === void 0){ select_plot        .style.display = "none"; }
+  if( show_select_layer     === void 0){ select_layer       .style.display = "none"; }
 
   return main;
 }
@@ -213,7 +224,7 @@ function createUpdatePLButton(id){
 function createSelectPlot(id){
   var span = crEl({ el:'span', ih: 'PLOT:' });
   var ns = id.split('-')[1];
-  if(ns === 'all'){
+  if(ns === 'all' || ns === 'wamei'){
     var tables = document.querySelectorAll("table[id^='input_occ']");
     var pl = 'PLOT';
     var plot_list = uniq(getMultiTableInputs(tables, [pl])[pl]);
@@ -222,13 +233,13 @@ function createSelectPlot(id){
   }
   var plot_select = createSelectOpt(plot_list, 0, id);
   span.appendChild(plot_select)
-  if(ns !== 'all'){ span.setAttribute('style', 'display:none'); }
   return span;
 }
 function createSelectLayer(id){
   var span = crEl({ el:'span', ih: 'Layer:' });
   var tables = document.querySelectorAll("table[id^='input_occ']");
   var ly = 'Layer';
+  // console.log(getMultiTableOptions(tables, [ly]));
   var layer_list = uniq(getMultiTableOptions(tables, [ly])[ly]);
   var layer_select = createSelectOpt(layer_list, layer_list.length - 1, id);
   span.appendChild(layer_select)
@@ -296,7 +307,7 @@ function addSpecies(obj){
   var plot    = document.getElementById(base_name + 'plot-'   + ns).value;
   var layer   = document.getElementById(base_name + 'layer-'  + ns).value;
   var species = getChildrenValues(staged);
-  if(input.value !== ''){ var sp = sp.concat(input.value.split(',')); }
+  if(input.value !== ''){ var species = species.concat(input.value.split(',')); }
   // add species
   var table = document.getElementById('input_occ_' + plot + '_tb');
   for(let spec of species){
