@@ -118,8 +118,8 @@ function addInputTab({ obj, id }){
   var table = searchParentTable(oc_table);
   setSortable(table.id);  // Should setSortable() after appendChild()
 
-  div.appendChild( createSpecieUlModule('', id) );
-  //   div.appendChild( createSpecieUlModule(sp_list, id) );
+  div.appendChild( createSpecieUlModule({ species: '', ns: id }) );
+  //   div.appendChild( createSpecieUlModule({ species: sp_list, ns: id }) );
 
 }
 

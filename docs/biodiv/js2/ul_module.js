@@ -11,47 +11,50 @@ function createAddCompButton(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Add from Composition', onclick: 'addComp(this)'} });
 }
 
-function createSpecieUlModule(species, ns){
+function createSpecieUlModule({ species, ns,
+                                show_select_button   , show_button_update_sl, show_button_add_comp , 
+                                show_select_ncol     , 
+                                show_button_load_sl  , show_button_save_sl  , 
+                                show_text_input      , 
+                                show_button_update_pl, show_select_plot     , show_select_layer}){
   // var ns = 'all'; var species = sp_list;
   var base_name = 'sp_list_';
-  var main          = createSpanWithId    ( base_name + 'module-'    + ns          );
-  var select_button = createSelectSL      ( base_name + 'select-'    + ns          );
-  var update_sl     = createUpdateSLButoon( base_name + 'update-'    + ns          );
-  var add_comp      = createAddCompButton ( base_name + 'add_comp-'  + ns          );
-  var ncol_select   = createSelectNumber  ( base_name + 'ncols-'     + ns          );
+  var main             = createSpanWithId    ( base_name + 'module-'    + ns          );
+  var select_button    = createSelectSL      ( base_name + 'select-'    + ns          );
+  var button_update_sl = createUpdateSLButoon( base_name + 'update-'    + ns          );
+  var button_add_comp  = createAddCompButton ( base_name + 'add_comp-'  + ns          );
+  var select_ncol      = createSelectNumber  ( base_name + 'ncols-'     + ns          );
 
-  var load_button   = createLoadSLButton  ( base_name + 'load-'      + ns          );
-  var save_button   = createSaveSLButoon  ( base_name + 'save-'      + ns          );
-  var sp_list       = createSpecieList    ( base_name + 'sp_list-'   + ns, species );
-  var staged        = createSpanWithId    ( base_name + 'staged-'    + ns          );
-  var input         = createSLInput       ( base_name + 'input-'     + ns          );
-  var update_pl     = createUpdatePLButton( base_name + 'update_pl-' + ns          );
-  var select_plot   = createSelectPlot    ( base_name + 'plot-'      + ns          );
-  var select_layer  = createSelectLayer   ( base_name + 'layer-'     + ns          );
-  var add           = createSLAdd         ( base_name + 'add-'       + ns          );
+  var button_load_sl   = createLoadSLButton  ( base_name + 'load-'      + ns          );
+  var button_save_sl   = createSaveSLButoon  ( base_name + 'save-'      + ns          );
 
-  main.appendChild( select_button      );
-  main.appendChild( update_sl          );
-  main.appendChild( add_comp           );
-  main.appendChild( ncol_select        );
-  main.appendChild( crEl({ el: 'br' }) );
+  var staged           = createSpanWithId    ( base_name + 'staged-'    + ns          );
+  var text_input       = createSLInput       ( base_name + 'input-'     + ns          );
+  var button_update_pl = createUpdatePLButton( base_name + 'update_pl-' + ns          );
+  var select_plot      = createSelectPlot    ( base_name + 'plot-'      + ns          );
+  var select_layer     = createSelectLayer   ( base_name + 'layer-'     + ns          );
+  var button_add       = createSLAdd         ( base_name + 'add-'       + ns          );
+  var sp_list          = createSpecieList    ( base_name + 'sp_list-'   + ns, species );
 
-  main.appendChild( load_button        );
-  main.appendChild( save_button        );
-  main.appendChild( crEl({ el: 'br' }) );
+  if( show_select_button    != void 0){ main.appendChild( select_button       ); }
+  if( show_button_update_sl != void 0){ main.appendChild( button_update_sl    ); }
+  if( show_button_add_comp  != void 0){ main.appendChild( button_add_comp     ); }
+  if( show_select_ncol      != void 0){ main.appendChild( select_ncol         ); }
+                                        main.appendChild( crEl({ el: 'br' })  );
+  if( show_button_load_sl   != void 0){ main.appendChild( button_load_sl      ); }
+  if( show_button_save_sl   != void 0){ main.appendChild( button_save_sl      ); }
+                                        main.appendChild( crEl({ el: 'br' })  );
+                                        main.appendChild( staged              );
+                                        main.appendChild( crEl({ el: 'br' })  );
+  if( show_text_input       != void 0){ main.appendChild( text_input          ); }
+                                        main.appendChild( crEl({ el: 'br' })  );
+  if( show_button_update_pl != void 0){ main.appendChild( button_update_pl    ); }
+  if( show_select_plot      != void 0){ main.appendChild( select_plot         ); }
+  if( show_select_layer     != void 0){ main.appendChild( select_layer        ); }
+                                        main.appendChild( button_add          );
+                                        main.appendChild( sp_list             );
+                                        main.appendChild( crEl({el:'hr'})     );
 
-  main.appendChild( staged             );
-  main.appendChild( crEl({ el: 'br' }) );
-  main.appendChild( input              );
-  main.appendChild( crEl({ el: 'br' }) );
-  main.appendChild( update_pl          );
-  main.appendChild( select_plot        );
-  main.appendChild( select_layer       );
-  main.appendChild( add                );
-
-  main.appendChild(sp_list);
-
-  main.appendChild( crEl({el:'hr'}) );
   return main;
 }
 

@@ -15,7 +15,11 @@ function stageWamei(array, input, ns = 'wamei'){
   var span = document.getElementById('sp_list_module-all');
   span.appendChild(ul);
 }
-  // stageWamei(wamei, 'イシ ナラ'); 
+
+  // var span = document.getElementById('tab_tools');
+  // var reg_exp = makeLookAheadReg('イシ ナラ');
+  // var sp_wamei = createSpecieUlModule(species: species, ns: 'wamei');
+  // span.appendChild(sp_wamei);
 
 
 function generateTable(data){

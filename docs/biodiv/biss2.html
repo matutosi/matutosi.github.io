@@ -1687,8 +1687,8 @@ function addInputTab({ obj, id }){
   var table = searchParentTable(oc_table); 
   setSortable(table.id);  // Should setSortable() after appendChild() 
  
-  div.appendChild( createSpecieUlModule('', id) ); 
-  //   div.appendChild( createSpecieUlModule(sp_list, id) ); 
+  div.appendChild( createSpecieUlModule({ species: '', ns: id }) ); 
+  //   div.appendChild( createSpecieUlModule({ species: sp_list, ns: id }) ); 
  
 } 
  
@@ -1847,47 +1847,50 @@ function createAddCompButton(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Add from Composition', onclick: 'addComp(this)'} }); 
 } 
  
-function createSpecieUlModule(species, ns){ 
+function createSpecieUlModule({ species, ns, 
+                                show_select_button   , show_button_update_sl, show_button_add_comp ,  
+                                show_select_ncol     ,  
+                                show_button_load_sl  , show_button_save_sl  ,  
+                                show_text_input      ,  
+                                show_button_update_pl, show_select_plot     , show_select_layer}){ 
   // var ns = 'all'; var species = sp_list; 
   var base_name = 'sp_list_'; 
-  var main          = createSpanWithId    ( base_name + 'module-'    + ns          ); 
-  var select_button = createSelectSL      ( base_name + 'select-'    + ns          ); 
-  var update_sl     = createUpdateSLButoon( base_name + 'update-'    + ns          ); 
-  var add_comp      = createAddCompButton ( base_name + 'add_comp-'  + ns          ); 
-  var ncol_select   = createSelectNumber  ( base_name + 'ncols-'     + ns          ); 
+  var main             = createSpanWithId    ( base_name + 'module-'    + ns          ); 
+  var select_button    = createSelectSL      ( base_name + 'select-'    + ns          ); 
+  var button_update_sl = createUpdateSLButoon( base_name + 'update-'    + ns          ); 
+  var button_add_comp  = createAddCompButton ( base_name + 'add_comp-'  + ns          ); 
+  var select_ncol      = createSelectNumber  ( base_name + 'ncols-'     + ns          ); 
  
-  var load_button   = createLoadSLButton  ( base_name + 'load-'      + ns          ); 
-  var save_button   = createSaveSLButoon  ( base_name + 'save-'      + ns          ); 
-  var sp_list       = createSpecieList    ( base_name + 'sp_list-'   + ns, species ); 
-  var staged        = createSpanWithId    ( base_name + 'staged-'    + ns          ); 
-  var input         = createSLInput       ( base_name + 'input-'     + ns          ); 
-  var update_pl     = createUpdatePLButton( base_name + 'update_pl-' + ns          ); 
-  var select_plot   = createSelectPlot    ( base_name + 'plot-'      + ns          ); 
-  var select_layer  = createSelectLayer   ( base_name + 'layer-'     + ns          ); 
-  var add           = createSLAdd         ( base_name + 'add-'       + ns          ); 
+  var button_load_sl   = createLoadSLButton  ( base_name + 'load-'      + ns          ); 
+  var button_save_sl   = createSaveSLButoon  ( base_name + 'save-'      + ns          ); 
  
-  main.appendChild( select_button      ); 
-  main.appendChild( update_sl          ); 
-  main.appendChild( add_comp           ); 
-  main.appendChild( ncol_select        ); 
-  main.appendChild( crEl({ el: 'br' }) ); 
+  var staged           = createSpanWithId    ( base_name + 'staged-'    + ns          ); 
+  var text_input       = createSLInput       ( base_name + 'input-'     + ns          ); 
+  var button_update_pl = createUpdatePLButton( base_name + 'update_pl-' + ns          ); 
+  var select_plot      = createSelectPlot    ( base_name + 'plot-'      + ns          ); 
+  var select_layer     = createSelectLayer   ( base_name + 'layer-'     + ns          ); 
+  var button_add       = createSLAdd         ( base_name + 'add-'       + ns          ); 
+  var sp_list          = createSpecieList    ( base_name + 'sp_list-'   + ns, species ); 
  
-  main.appendChild( load_button        ); 
-  main.appendChild( save_button        ); 
-  main.appendChild( crEl({ el: 'br' }) ); 
+  if( show_select_button    != void 0){ main.appendChild( select_button       ); } 
+  if( show_button_update_sl != void 0){ main.appendChild( button_update_sl    ); } 
+  if( show_button_add_comp  != void 0){ main.appendChild( button_add_comp     ); } 
+  if( show_select_ncol      != void 0){ main.appendChild( select_ncol         ); } 
+                                        main.appendChild( crEl({ el: 'br' })  ); 
+  if( show_button_load_sl   != void 0){ main.appendChild( button_load_sl      ); } 
+  if( show_button_save_sl   != void 0){ main.appendChild( button_save_sl      ); } 
+                                        main.appendChild( crEl({ el: 'br' })  ); 
+                                        main.appendChild( staged              ); 
+                                        main.appendChild( crEl({ el: 'br' })  ); 
+  if( show_text_input       != void 0){ main.appendChild( text_input          ); } 
+                                        main.appendChild( crEl({ el: 'br' })  ); 
+  if( show_button_update_pl != void 0){ main.appendChild( button_update_pl    ); } 
+  if( show_select_plot      != void 0){ main.appendChild( select_plot         ); } 
+  if( show_select_layer     != void 0){ main.appendChild( select_layer        ); } 
+                                        main.appendChild( button_add          ); 
+                                        main.appendChild( sp_list             ); 
+                                        main.appendChild( crEl({el:'hr'})     ); 
  
-  main.appendChild( staged             ); 
-  main.appendChild( crEl({ el: 'br' }) ); 
-  main.appendChild( input              ); 
-  main.appendChild( crEl({ el: 'br' }) ); 
-  main.appendChild( update_pl          ); 
-  main.appendChild( select_plot        ); 
-  main.appendChild( select_layer       ); 
-  main.appendChild( add                ); 
- 
-  main.appendChild(sp_list); 
- 
-  main.appendChild( crEl({el:'hr'}) ); 
   return main; 
 } 
  
@@ -2177,7 +2180,11 @@ function getGrandChildrenValues(element){
   var span = document.getElementById('sp_list_module-all'); 
   span.appendChild(ul); 
 } 
-  // stageWamei(wamei, 'イシ ナラ');  
+ 
+  // var span = document.getElementById('tab_tools'); 
+  // var reg_exp = makeLookAheadReg('イシ ナラ'); 
+  // var sp_wamei = createSpecieUlModule(species: species, ns: 'wamei'); 
+  // span.appendChild(sp_wamei); 
  
  
 function generateTable(data){ 
@@ -2439,4 +2446,4 @@ function convertTableData(table_data){
   document.getElementById('sp_list_update_pl-all').click(); 
  
   obj.remove(); 
-}</script> <script>function testSaveTable(){var e="test_data",t=new Uint8Array([239,187,191]),a=new Blob([t,e],{type:"text/tsv"});const n=URL.createObjectURL(a),c=document.createElement("a");document.body.appendChild(c),c.download="temp.txt",c.href=n,c.click(),c.remove(),URL.revokeObjectURL(n),delete e}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> Biodiversity Investigation Support System (BiSS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools");tab_tools.appendChild(createSpecieUlModule("","all")),tab_tools.appendChild(generateSearchTable("wamei",generateTable(wamei)));</script> <p> "aaa bbb" matches texts including both "aaa" and "bbb". </p><p> Wamei (Japanese plant names) is obtained from <br> Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br> A checklist of Japanese plant names <br> (https://www.gbif.jp/v2/activities/wamei_checklist.html) </p></div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <script>var tab_all=document.getElementById("tab_all");tab_all.appendChild(updateAllInputsTablesButton());</script> <br> <span id="plot_all"></span> <span id="occ_all"></span> <table id="comp_table"></table> </div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
+}</script> <script>function testSaveTable(){var e="test_data",t=new Uint8Array([239,187,191]),a=new Blob([t,e],{type:"text/tsv"});const n=URL.createObjectURL(a),c=document.createElement("a");document.body.appendChild(c),c.download="temp.txt",c.href=n,c.click(),c.remove(),URL.revokeObjectURL(n),delete e}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> Biodiversity Investigation Support System (BiSS) <input id="switch_screen_show" type="button" value="TO FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="saveHTML" onclick="saveHTML()"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools");tab_tools.appendChild(createSpecieUlModule({species:"",ns:"all"})),tab_tools.appendChild(generateSearchTable("wamei",generateTable(wamei)));</script> <p> "aaa bbb" matches texts including both "aaa" and "bbb". </p><p> Wamei (Japanese plant names) is obtained from <br> Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br> A checklist of Japanese plant names <br> (https://www.gbif.jp/v2/activities/wamei_checklist.html) </p></div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <script>var tab_all=document.getElementById("tab_all");tab_all.appendChild(updateAllInputsTablesButton());</script> <br> <span id="plot_all"></span> <span id="occ_all"></span> <table id="comp_table"></table> </div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
