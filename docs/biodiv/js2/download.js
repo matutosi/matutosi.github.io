@@ -17,9 +17,9 @@ var id_tab = 'tab_inputs';
   var tab = document.getElementById(id_tab);
   var tables = tab.getElementsByTagName('table');
   // plot table
-  var data_table = getTableDataPlus(tables[0].id, shift_one = true);
+  var data_table = getTableDataPlus(tables[0].id);
   for(var i = 1; i < tables.length; i++){   // occ tables
-    data_table = data_table + getTableDataPlus(tables[i].id, shift_one = true);
+    data_table = data_table + getTableDataPlus(tables[i].id);
   }
   data_table
 }
@@ -28,37 +28,40 @@ var id_tab = 'tab_inputs';
 // Get data and optional information from a table.
 //    getTableDataPlus() retrieve table data as well as column names, data types, selects. 
 //    @param id_table      A string to specify table id.
-//    @param shift_one     A logical. If true, delete first element. (To delete hide_button)
-//    @return               A string with 4 parts as shown below. 
-//                          Each part is JSON format.
+//    @return              A JavaScript Object.
 //                            c_names: Column names of table, which will be used for making th.
 //                            d_types: Data types of each column for judging the td and input types.
 //                            selects: Select options for 'list' element. null for other types.
-//                            t_data : Table data for making td values or innnerHTML.
-function getTableDataPlus(id_table, shift_one = false){
+//                            inputs : Table data for making td values or innnerHTML.
+function getTableDataPlus(id_table){
   // var id_table = "occ_input_table";
-  var table = document.getElementById(id_table);
+  var table   = document.getElementById(id_table);
   var c_names = getColNames(table);
   var d_types = getDataTypes(table);
-  var t_data = [];
+  var inputs  = [];
   for(let name of c_names){
-    t_data[name] = getColData(table, name);
-    if(shift_one) t_data[name].shift();  // delete hide button
+    inputs[name] = getColData(table, name);
   }
+  var inputs = Object.assign({}, inputs)
   var selects = [];
   for(var i = 0; i < d_types.length; i++){ 
     selects.push( (d_types[i] === "list") ? getSelectOne(table, c_names[i]): null) 
   }
-  var t_data = JSON.stringify(Object.assign({}, t_data));
-  c_names = JSON.stringify({ biss_c_names: c_names });
-  d_types = JSON.stringify({ biss_d_types: d_types });
-  selects = JSON.stringify({ biss_selects: selects });
-  return c_names + ";" + d_types + ";" + selects + ";" + t_data;
+  var biss_data = { biss_c_names: c_names,
+                    biss_d_types: d_types,
+                    biss_selects: selects,
+                    biss_inputs : inputs  };
+  return biss_data;
+  //   var inputs  = JSON.stringify();
+  //   var c_names = JSON.stringify({ biss_c_names: c_names });
+  //   var d_types = JSON.stringify({ biss_d_types: d_types });
+  //   var selects = JSON.stringify({ biss_selects: selects });
+  //   return c_names + ";" + d_types + ";" + selects + ";" + inputs;
 }
 
 // Helper for getInputData()
 //    @param table      A table element.
-//    @param col_names  A string of column name to get options in select element.
+//    @param c_names  A string of column name to get options in select element.
 //    @return            An array of select options.
 function getSelectOne(table, col_name){
   // var col_name = "Layer";
@@ -80,7 +83,7 @@ function getSelectOne(table, col_name){
 //      c_names: Column names of table, which will be used for making th.
 //      d_types: Data types of each column for judging the td and input types.
 //      selects: Select options for 'list' element. null for other types.
-//      t_data : Table data for making td values or innnerHTML.
+//      inputs : Table data for making td values or innnerHTML.
 //    @param table_name  A string to specify table name. 
 //                        localStorage key name is "bis_" + table_name.
 //    @return             A table element with id: table_name.
@@ -107,20 +110,20 @@ function restoreTable(table_name, from = "localStorage"){
 
 function makeTable(plot, table_name){
   // console.log(plot);
-  var col_names = JSON.parse(plot[0])["biss_c_names"];
-  var dat_types = JSON.parse(plot[1])["biss_d_types"];
+  var c_names = JSON.parse(plot[0])["biss_c_names"];
+  var d_types = JSON.parse(plot[1])["biss_d_types"];
   var selects   = JSON.parse(plot[2])["biss_selects"];
-  var tab_data  = JSON.parse(plot[3]);
+  var inputs  = JSON.parse(plot[3]);
   // create table
   var table = crEl({ el: 'table', ats:{id: table_name} });
 
   // th
-  const n_col = col_names.length;
+  const n_col = c_names.length;
   var hide_col = (table_name.split("_")[0] === "input");
   var tr = document.createElement('tr');
   for(let Ni = 0; Ni < n_col; Ni++){
-    if(col_names[Ni] !== ""){
-      var th = crEl({ el: 'th', ih: col_names[Ni] });
+    if(c_names[Ni] !== ""){
+      var th = crEl({ el: 'th', ih: c_names[Ni] });
       tr.appendChild(th);
     }
   }
@@ -130,7 +133,7 @@ function makeTable(plot, table_name){
   if(hide_col){
       var tr = document.createElement('tr');
       for(let Ni = 0; Ni < n_col; Ni++){
-        if(col_names[Ni] !== ""){
+        if(c_names[Ni] !== ""){
           var td = crEl({ el: 'td', ih: "" });
           td.appendChild( crEl({ el: 'input', ats:{type:"button", value:"Hide", onclick:"hideTableCol(this)"} }) ); 
           tr.appendChild(td);
@@ -141,11 +144,11 @@ function makeTable(plot, table_name){
 
 
   // td
-  const n_row = tab_data[col_names[0]].length;
+  const n_row = inputs[c_names[0]].length;
   for(let Ri = 0; Ri < n_row; Ri++){
     var tr = document.createElement('tr');
     for(let Cj = 0; Cj < n_col; Cj++){
-      tr.appendChild( restoreTd(tab_data[col_names[Cj]][Ri], dat_types[Cj], selects[Cj]) );
+      tr.appendChild( restoreTd(inputs[c_names[Cj]][Ri], d_types[Cj], selects[Cj]) );
     }
     table.appendChild(tr);
   }
@@ -154,36 +157,36 @@ function makeTable(plot, table_name){
 
 
 // Helper for restoreTable()
-//    @param table_data  A string to specify data in td.
-//    @param data_type   A string to specify data type.
-//    @param select      An array for select-option.
-//    return              An td element with innerText or input element
-function restoreTd(table_data, data_type, select){
-  switch(data_type){
+//    @param inputs   A string to specify data in td.
+//    @param d_types  A string to specify data type.
+//    @param select   An array for select-option.
+//    return          An td element with innerText or input element
+function restoreTd(inputs, d_types, select){
+  switch(d_types){
     case "text":
       var td = crEl({ el: "td" });
-      td.appendChild( crEl({ el:'input', ats:{type: data_type, value: table_data} }) );
+      td.appendChild( crEl({ el:'input', ats:{type: d_types, value: inputs} }) );
       break;
     case "number":
       var td = crEl({ el: "td" });
-      td.appendChild(crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} }));
+      td.appendChild(crEl({ el:'input', ats:{type: d_types, value: inputs, inputmode: "numeric", min: "0"} }));
       break;
     case "checkbox":
       var td = crEl({ el: "td" });
-      var checkbox = crEl({ el:'input', ats:{type: data_type} });
-  //       if(!!table_data) checkbox.setAttribute("checked", true);
-      checkbox.checked = !!table_data;
+      var checkbox = crEl({ el:'input', ats:{type: d_types} });
+  //       if(!!inputs) checkbox.setAttribute("checked", true);
+      checkbox.checked = !!inputs;
       td.appendChild( checkbox );
       break;
     case "fixed":
-      var td = crEl({ el:'td', ih: table_data });
+      var td = crEl({ el:'td', ih: inputs });
       break;
     case "button":
-      if(table_data === "DELETE")           { var td = createTdWithChild( createDelButton() ); }
-      if(table_data === "UPDATE_TIME_GPS"){ var td = createTdWithChild( createUpdateButton() ); }
+      if(inputs === "DELETE"         ){ var td = createTdWithChild( createDelButton() ); }
+      if(inputs === "UPDATE_TIME_GPS"){ var td = createTdWithChild( createUpdateButton() ); }
       break;
     case "list":
-      var sel_no = select.indexOf(table_data);
+      var sel_no = select.indexOf(inputs);
       var td = createTdWithChild( createSelectOpt(select, sel_no) );
       break;
   }

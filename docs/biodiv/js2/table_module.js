@@ -74,7 +74,7 @@ function changeSettings(obj){
 //   which operate the table.
 // @param table_data    
 // @param ns            A string to specify input table module.
-// @retrun  A span including a table and other elements.
+// @retrun    A span including a table and other elements.
 function tableModule({ table_data, ns, 
                        id_text, search_input, load_button, save_button, hide_button, fit_button, 
                        add_button, calc_button }){
@@ -374,14 +374,15 @@ function readFile(file){
 //                 Normally use "this". 
 function saveSettings(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table.id, shift_one = false);
+  var table_data = getTableDataPlus(table.id);
+  var table_json = JSON.stringify(table_data);
   var f_name = obj.previousElementSibling.value;
   if(f_name === ""){ 
     f_name = table.id + ".conf"; 
   } else {
     f_name = table.id.split("_")[0] + "_" + table.id.split("_")[1] + "_" + f_name  + ".conf";
   }
-  downloadStrings(strings = table_data, file_name = f_name)
+  downloadStrings(strings = table_json, file_name = f_name)
 }
 
 // Save inputs of a table
@@ -389,7 +390,7 @@ function saveSettings(obj){
 //                 Normally use "this". 
 function saveInputs(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table.id, shift_one = true);
+  var table_data = getTableDataPlus(table.id);
   var f_name = table.id + "_" + getNow() + ".txt"
   downloadStrings(strings = table_data, file_name = f_name)
 }

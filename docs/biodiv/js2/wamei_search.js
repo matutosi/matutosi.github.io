@@ -1,9 +1,16 @@
 // wamei
 function createWameiSpan(){
-  // Up span
+  var note_search = ' "aaa bbb" matches texts including both "aaa" and "bbb".';
+  var note_wamei  = `Wamei (Japanese plant names) is obtained from <br>
+                     Yamanouchi, T., Shutoh, K., Osawa, T., Yonekura, K., Kato, S., Shiga, T. 2019. <br>
+                     A checklist of Japanese plant names. <br>
+                     https://www.gbif.jp/v2/activities/wamei_checklist.html`;
   var main = crEl({ el:'span', ats:{id: 'wamei'} });
-  main.appendChild( createSearchShowInput()   );
-  main.appendChild( createSearchWameiButton() );
+  main.appendChild( createSearchShowInput('wamei_input')               );
+  main.appendChild( createSearchWameiButton()                          );
+  main.appendChild( crEl({ el:'span', ih: note_search               }) )
+  main.appendChild( createSpecieUlModule({ species: '', ns: 'wamei' }) );
+  main.appendChild( crEl({ el:'span', ih: note_wamei                }) )
   return main;
 }
 
@@ -13,42 +20,20 @@ function createSearchWameiButton(){
 
 function searchWamei(obj){
   var parent    = obj.parentNode;
-  var input     = obj.previousElementSibling.value;
-  var reg_exp   = makeLookAheadReg(input);
-  var species   = grepArray(wamei, reg_exp);
-  var ul_module = createSpecieUlModule({ species: species, ns: 'wamei',
-                  show_button_update_pl: true, show_select_plot     : true, show_select_layer   : true });
-  parent.appendChild( ul_module );
-}
-
-
-
-function generateTable(data){
-  var table = crEl({ el: 'table' });
-  table.appendChild( crEl({ el: 'th', tc: "wamei" }) );
-  for(let i = 0; i < data.length; i++){
-    var tr = crEl({ el: 'tr' });
-    var td = crEl({ el: 'td', tc: data[i] });
-    tr.appendChild( td );
-    tr.style.display = 'none';
-    table.appendChild(tr);
+  var input     = document.getElementById('wamei_input').value;
+  if(input === ''){
+    var species = '';
+  }else{
+    var reg_exp   = makeLookAheadReg(input);
+    var species   = grepArray(wamei, reg_exp);
   }
-  return table
-}
-
-// wamei
-function generateSearchTable(ns, table){
-  // Up span
-  var up = crEl({ el:'span', ats:{id: "up_" + ns} });
-  up.appendChild( crEl({ el: 'B', tc: ns})  );
-  up.appendChild( createSearchShowInput()   );
-  up.appendChild( createSearchShowButton()  );
-  up.appendChild( createSearchWameiButton() );
-  // Table
-  var table = generateTable(wamei);
-  // Main
-  var main   = crEl({ el:'span', ats:{id: "main_"   + ns} });
-  main.appendChild(up);
-  main.appendChild(table);
-  return main;
+  var limits = 200;
+  if(species.length > limits){
+    alert('Over ' + limits + ' matches, showing ' + limits + ' matches');
+    species.splice(limits);
+  }
+  var new_wamei  = createSpecieUlModule({ species: species, ns: 'wamei',
+                   show_button_update_pl: true, show_select_plot     : true, show_select_layer   : true });
+  var old_wamei = document.getElementById('sp_list_module-wamei');
+  old_wamei.replaceWith(new_wamei);
 }

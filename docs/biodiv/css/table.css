@@ -10,7 +10,7 @@ input[type="number"]{
   width       : 5em;
 }
 
-input,select,chkbox,b{
+input,select,chkbox,b,span,div{
   font-size   : var(--font-size);
 }
 input{
