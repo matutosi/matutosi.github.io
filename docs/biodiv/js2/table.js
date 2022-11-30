@@ -114,7 +114,7 @@ function getTableData(table){
     biss_c_names: c_names,
     biss_d_types: d_types,
     biss_selects: selects,
-    biss_inputs: t_data
+    biss_inputs : t_data
   }
 }
 

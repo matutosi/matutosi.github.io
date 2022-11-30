@@ -76,7 +76,9 @@ function changeSettings(obj){
 // @param ns            A string to specify input table module.
 // @retrun    A span including a table and other elements.
 function tableModule({ table_data, ns, 
-                       id_text, search_input, load_button, save_button, hide_button, fit_button, 
+                       id_text, search_input, 
+                       load_button, save_button, 
+                       hide_button, fit_button, 
                        add_button, calc_button }){
   var main  = crEl({ el:'span', ats:{id: ns} });
   // Up span
@@ -347,18 +349,17 @@ function hasDupPlot(plot){
 //   @param obj  A input element.
 //                 Normally use "this". 
 async function replaceTable(obj){
-  var text = await readFile(obj.files[0]);
-  var text = text.split(";");
-  var table_name = obj.value.split("\\").slice(-1)[0].replace("\.conf", "")
-  var new_table = makeTable(text, table_name, false);
-  // Table
-  var old_table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  old_table.replaceWith(new_table);
-  // Title
-  var old_title = obj.parentNode.parentNode.querySelectorAll("b")[0];
-  var new_title = crEl({ el: 'B', tc: table_name})
-  old_title.replaceWith( new_title );
+  var json = await readFile(obj.files[0]);
+  var table_data = JSON.parse(json);
+  var ns = obj.value.split("\\").slice(-1)[0].replace("\.conf", "")
+  var new_module = tableModule({ table_data: table_data, ns: ns,
+                                      id_text: true, load_button: true, save_button: true, hide_button: true, 
+                                      add_button: true });
+  var old_ns = obj.parentNode.parentNode.id;
+  var old_module = document.getElementById(old_ns);
+  old_module.replaceWith(new_module);
 }
+
 // Helper for replaceTable(). 
 function readFile(file){
   // https://www.delftstack.com/ja/howto/javascript/open-local-text-file-using-javascript/
@@ -374,15 +375,11 @@ function readFile(file){
 //                 Normally use "this". 
 function saveSettings(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table.id);
+  var table_data = getTableDataPlus(table);
   var table_json = JSON.stringify(table_data);
-  var f_name = obj.previousElementSibling.value;
-  if(f_name === ""){ 
-    f_name = table.id + ".conf"; 
-  } else {
-    f_name = table.id.split("_")[0] + "_" + table.id.split("_")[1] + "_" + f_name  + ".conf";
-  }
-  downloadStrings(strings = table_json, file_name = f_name)
+  var f_name = obj.nextElementSibling.value;
+  if(f_name === ""){ f_name = table.id.replace(/_tb$/, ''); }
+  downloadStrings(strings = table_json, file_name = f_name + ".conf")
 }
 
 // Save inputs of a table
@@ -390,7 +387,7 @@ function saveSettings(obj){
 //                 Normally use "this". 
 function saveInputs(obj){
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table.id);
+  var table_data = getTableDataPlus(table);
   var f_name = table.id + "_" + getNow() + ".txt"
   downloadStrings(strings = table_data, file_name = f_name)
 }

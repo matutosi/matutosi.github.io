@@ -17,9 +17,9 @@ var id_tab = 'tab_inputs';
   var tab = document.getElementById(id_tab);
   var tables = tab.getElementsByTagName('table');
   // plot table
-  var data_table = getTableDataPlus(tables[0].id);
+  var data_table = getTableDataPlus(tables[0]);
   for(var i = 1; i < tables.length; i++){   // occ tables
-    data_table = data_table + getTableDataPlus(tables[i].id);
+    data_table = data_table + getTableDataPlus(tables[i]);
   }
   data_table
 }
@@ -27,15 +27,13 @@ var id_tab = 'tab_inputs';
 
 // Get data and optional information from a table.
 //    getTableDataPlus() retrieve table data as well as column names, data types, selects. 
-//    @param id_table      A string to specify table id.
+//    @param table      A table.
 //    @return              A JavaScript Object.
 //                            c_names: Column names of table, which will be used for making th.
 //                            d_types: Data types of each column for judging the td and input types.
 //                            selects: Select options for 'list' element. null for other types.
 //                            inputs : Table data for making td values or innnerHTML.
-function getTableDataPlus(id_table){
-  // var id_table = "occ_input_table";
-  var table   = document.getElementById(id_table);
+function getTableDataPlus(table){
   var c_names = getColNames(table);
   var d_types = getDataTypes(table);
   var inputs  = [];
@@ -52,11 +50,6 @@ function getTableDataPlus(id_table){
                     biss_selects: selects,
                     biss_inputs : inputs  };
   return biss_data;
-  //   var inputs  = JSON.stringify();
-  //   var c_names = JSON.stringify({ biss_c_names: c_names });
-  //   var d_types = JSON.stringify({ biss_d_types: d_types });
-  //   var selects = JSON.stringify({ biss_selects: selects });
-  //   return c_names + ";" + d_types + ";" + selects + ";" + inputs;
 }
 
 // Helper for getInputData()
@@ -112,7 +105,7 @@ function makeTable(plot, table_name){
   // console.log(plot);
   var c_names = JSON.parse(plot[0])["biss_c_names"];
   var d_types = JSON.parse(plot[1])["biss_d_types"];
-  var selects   = JSON.parse(plot[2])["biss_selects"];
+  var selects = JSON.parse(plot[2])["biss_selects"];
   var inputs  = JSON.parse(plot[3]);
   // create table
   var table = crEl({ el: 'table', ats:{id: table_name} });

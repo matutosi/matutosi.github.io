@@ -550,9 +550,9 @@ var id_tab = 'tab_inputs';
   var tab = document.getElementById(id_tab); 
   var tables = tab.getElementsByTagName('table'); 
   // plot table 
-  var data_table = getTableDataPlus(tables[0].id); 
+  var data_table = getTableDataPlus(tables[0]); 
   for(var i = 1; i < tables.length; i++){   // occ tables 
-    data_table = data_table + getTableDataPlus(tables[i].id); 
+    data_table = data_table + getTableDataPlus(tables[i]); 
   } 
   data_table 
 } 
@@ -560,15 +560,13 @@ var id_tab = 'tab_inputs';
  
 // Get data and optional information from a table. 
 //    getTableDataPlus() retrieve table data as well as column names, data types, selects.  
-//    @param id_table      A string to specify table id. 
+//    @param table      A table. 
 //    @return              A JavaScript Object. 
 //                            c_names: Column names of table, which will be used for making th. 
 //                            d_types: Data types of each column for judging the td and input types. 
 //                            selects: Select options for 'list' element. null for other types. 
 //                            inputs : Table data for making td values or innnerHTML. 
-function getTableDataPlus(id_table){ 
-  // var id_table = "occ_input_table"; 
-  var table   = document.getElementById(id_table); 
+function getTableDataPlus(table){ 
   var c_names = getColNames(table); 
   var d_types = getDataTypes(table); 
   var inputs  = []; 
@@ -585,11 +583,6 @@ function getTableDataPlus(id_table){
                     biss_selects: selects, 
                     biss_inputs : inputs  }; 
   return biss_data; 
-  //   var inputs  = JSON.stringify(); 
-  //   var c_names = JSON.stringify({ biss_c_names: c_names }); 
-  //   var d_types = JSON.stringify({ biss_d_types: d_types }); 
-  //   var selects = JSON.stringify({ biss_selects: selects }); 
-  //   return c_names + ";" + d_types + ";" + selects + ";" + inputs; 
 } 
  
 // Helper for getInputData() 
@@ -645,7 +638,7 @@ function makeTable(plot, table_name){
   // console.log(plot); 
   var c_names = JSON.parse(plot[0])["biss_c_names"]; 
   var d_types = JSON.parse(plot[1])["biss_d_types"]; 
-  var selects   = JSON.parse(plot[2])["biss_selects"]; 
+  var selects = JSON.parse(plot[2])["biss_selects"]; 
   var inputs  = JSON.parse(plot[3]); 
   // create table 
   var table = crEl({ el: 'table', ats:{id: table_name} }); 
@@ -885,7 +878,9 @@ function changeSettings(obj){
 // @param ns            A string to specify input table module. 
 // @retrun    A span including a table and other elements. 
 function tableModule({ table_data, ns,  
-                       id_text, search_input, load_button, save_button, hide_button, fit_button,  
+                       id_text, search_input,  
+                       load_button, save_button,  
+                       hide_button, fit_button,  
                        add_button, calc_button }){ 
   var main  = crEl({ el:'span', ats:{id: ns} }); 
   // Up span 
@@ -1156,18 +1151,17 @@ function hasDupPlot(plot){
 //   @param obj  A input element. 
 //                 Normally use "this".  
 async function replaceTable(obj){ 
-  var text = await readFile(obj.files[0]); 
-  var text = text.split(";"); 
-  var table_name = obj.value.split("\\").slice(-1)[0].replace("\.conf", "") 
-  var new_table = makeTable(text, table_name, false); 
-  // Table 
-  var old_table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
-  old_table.replaceWith(new_table); 
-  // Title 
-  var old_title = obj.parentNode.parentNode.querySelectorAll("b")[0]; 
-  var new_title = crEl({ el: 'B', tc: table_name}) 
-  old_title.replaceWith( new_title ); 
+  var json = await readFile(obj.files[0]); 
+  var table_data = JSON.parse(json); 
+  var ns = obj.value.split("\\").slice(-1)[0].replace("\.conf", "") 
+  var new_module = tableModule({ table_data: table_data, ns: ns, 
+                                      id_text: true, load_button: true, save_button: true, hide_button: true,  
+                                      add_button: true }); 
+  var old_ns = obj.parentNode.parentNode.id; 
+  var old_module = document.getElementById(old_ns); 
+  old_module.replaceWith(new_module); 
 } 
+ 
 // Helper for replaceTable().  
 function readFile(file){ 
   // https://www.delftstack.com/ja/howto/javascript/open-local-text-file-using-javascript/ 
@@ -1183,15 +1177,11 @@ function readFile(file){
 //                 Normally use "this".  
 function saveSettings(obj){ 
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
-  var table_data = getTableDataPlus(table.id); 
+  var table_data = getTableDataPlus(table); 
   var table_json = JSON.stringify(table_data); 
-  var f_name = obj.previousElementSibling.value; 
-  if(f_name === ""){  
-    f_name = table.id + ".conf";  
-  } else { 
-    f_name = table.id.split("_")[0] + "_" + table.id.split("_")[1] + "_" + f_name  + ".conf"; 
-  } 
-  downloadStrings(strings = table_json, file_name = f_name) 
+  var f_name = obj.nextElementSibling.value; 
+  if(f_name === ""){ f_name = table.id.replace(/_tb$/, ''); } 
+  downloadStrings(strings = table_json, file_name = f_name + ".conf") 
 } 
  
 // Save inputs of a table 
@@ -1199,7 +1189,7 @@ function saveSettings(obj){
 //                 Normally use "this".  
 function saveInputs(obj){ 
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
-  var table_data = getTableDataPlus(table.id); 
+  var table_data = getTableDataPlus(table); 
   var f_name = table.id + "_" + getNow() + ".txt" 
   downloadStrings(strings = table_data, file_name = f_name) 
 } 
@@ -2339,7 +2329,7 @@ function getTableData(table){
     biss_c_names: c_names, 
     biss_d_types: d_types, 
     biss_selects: selects, 
-    biss_inputs: t_data 
+    biss_inputs : t_data 
   } 
 } 
  
@@ -2455,4 +2445,4 @@ function convertTableData(table_data){
   document.getElementById('sp_list_update_pl-all').click(); 
  
   obj.remove(); 
-}</script> <script>function testSaveTable(){var e="test_data",t=new Uint8Array([239,187,191]),a=new Blob([t,e],{type:"text/tsv"});const n=URL.createObjectURL(a),c=document.createElement("a");document.body.appendChild(c),c.download="temp.txt",c.href=n,c.click(),c.remove(),URL.revokeObjectURL(n),delete e}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b,span,div{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> <span>Biodiversity Investigation Support System (BiSS)</span> <input id="switch_screen_show" type="button" value="FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools"),ul_all=createSpecieUlModule({species:"",ns:"all",show_select_button:!0,show_button_update_sl:!0,show_button_add_comp:!0,show_select_ncol:!0,show_button_load_sl:!0,show_button_save_sl:!0,show_text_input:!0,show_button_update_pl:!0,show_select_plot:!0,show_select_layer:!0});tab_tools.appendChild(ul_all),tab_tools.appendChild(createWameiSpan());</script> </div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <script>var tab_all=document.getElementById("tab_all");tab_all.appendChild(updateAllInputsTablesButton());</script> <br> <span id="plot_all"></span> <span id="occ_all"></span> <table id="comp_table"></table> </div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
+}</script> <script>function getAllPlotOccDataAsJSON(){var t=getTableData(document.getElementById("plot_all_tb")),e=getTableData(document.getElementById("occ_all_tb")),a={plot:Object.assign({},t.biss_inputs),occ:Object.assign({},e.biss_inputs)};return JSON.stringify(a)}function autoSave(){var t=getAllPlotOccDataAsJSON(),e=new Uint8Array([239,187,191]),a=new Blob([e,t],{type:"text/tsv"});const n=URL.createObjectURL(a),c=document.createElement("a");document.body.appendChild(c),c.download="temp.txt",c.href=n,c.click(),c.remove(),URL.revokeObjectURL(n),delete t}function setAutoSave(t){setInterval(autoSave,6e4*t)}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b,span,div{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> <span>Biodiversity Investigation Support System (BiSS)</span> <input id="switch_screen_show" type="button" value="FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools"),ul_all=createSpecieUlModule({species:"",ns:"all",show_select_button:!0,show_button_update_sl:!0,show_button_add_comp:!0,show_select_ncol:!0,show_button_load_sl:!0,show_button_save_sl:!0,show_text_input:!0,show_button_update_pl:!0,show_select_plot:!0,show_select_layer:!0});tab_tools.appendChild(ul_all),tab_tools.appendChild(createWameiSpan());</script> </div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <script>var tab_all=document.getElementById("tab_all");tab_all.appendChild(updateAllInputsTablesButton());</script> <br> <span id="plot_all"></span> <span id="occ_all"></span> <table id="comp_table"></table> </div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
