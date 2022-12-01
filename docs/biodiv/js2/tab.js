@@ -37,28 +37,17 @@ function updateTab(){
 function updateInputsPlotLayerSpecies(){
     // All plots
   updateAllInputsTables();
-
     // PLOT and Layer select in Tools
   updatePlotLayer({});
 
-
-
-  //   var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])";
-  //   var select_buttons = document.querySelectorAll(selector);
-  // select_buttons[1].value;
-
     // species list
-  var selector =  "input[id^='sp_list_update-']:not([id$='-wamei'])";
-  var update_buttons = document.querySelectorAll(selector);
-  for(let button of update_buttons){  button.click(); }
-  // update_buttons[0]
-
-    // add species form composition
-  //   var selector = "input[id^='sp_list_add_comp-']:not([id$='-wamei'])";
-  //   var add_comp_buttons = document.querySelectorAll(selector);
-  //   for(let button of add_comp_buttons){  button.click(); }
-
-
+  var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])";
+  var sp_sl_selects = document.querySelectorAll(selector);
+  for(let select of sp_sl_selects){
+    var id = select.id.replace('select', 'sp_list');
+    var sl = select.value;
+    replaceSpeciesList(sl, id);
+  }
 }
 
 function addPlotId(plot_data, id){
@@ -179,7 +168,8 @@ function createAllInputsTable(table_name){
   var tables = document.querySelectorAll("table[id^='" + table_name + "']");
   if(0 === tables.length){ return void 0; }  // return void 0, when no input tables
   var c_names = getUniqeColNames(tables);
-  var removals = ['DATE', 'DATE', "LOC_LAT","LOC_LON","LOC_ACC","DELETE","UPDATE_TIME_GPS"];
+  var removals = ["DELETE","UPDATE_TIME_GPS"];
+  //   var removals = ['DATE', "LOC_LAT","LOC_LON","LOC_ACC","DELETE","UPDATE_TIME_GPS"];
   var c_names = c_names.filter(item => ! removals.includes(item));
 
   var inputs = getMultiTableInputs(tables, c_names);

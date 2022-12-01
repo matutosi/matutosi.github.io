@@ -4,7 +4,7 @@
 //    @return     An array of species in composition table.
 function getSpeciesInComposition(sp = 'Species'){
   var comp = document.getElementById('comp_table_tb');
-  if(comp === null){ return ''; } // return, when no inputs
+  if(comp === null){ return []; } // return, when no inputs
   var species = getColData(comp, sp);
   return species;
 }
@@ -289,7 +289,7 @@ function addSpeciesList(id, add_sp){
   var old_sp_list = document.getElementById(id);
   // console.log(id);
   var old_sp = getGrandChildrenValues( old_sp_list );
-  if(old_sp === void 0) var old_sp = '';
+  if(old_sp === void 0) var old_sp = [];
   var new_sp = uniq(old_sp.concat(add_sp)).sort();
   if(new_sp.indexOf('') >= 0){ new_sp.splice(new_sp.indexOf(''), 1); }  // remove ''
   var new_sp_list = createSpecieList(id, new_sp);
