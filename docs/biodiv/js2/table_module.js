@@ -37,6 +37,18 @@ function addSettingPartButton(category){
   return main;
 }
 
+function createAutoSaveIntervalSelect(){
+  var main = crEl({ el:'span' });
+  main.appendChild( crEl({ el: 'span', ih: 'Auto save interval (min): ' }) );
+  var settings = ['no save', '1', '3', '5', '10', '15', '30', '60'];
+  var selects = createSelectOpt(settings, selected_no = 0, id = 'select_auto_save_interval');
+  selects.setAttribute('onChange', 'changeAutoSaveSttting(this)');
+  main.appendChild(selects);
+  main.appendChild( crEl({ 'el': 'br' }) );
+  return main;
+}
+
+
 function createSettingSelect(){
   var main = crEl({ el:'span' });
   main.appendChild( crEl({ el: 'span', ih: 'Choose <b>main</b> setting: ' }) );

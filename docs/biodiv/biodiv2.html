@@ -101,12 +101,13 @@
     <div id="tab_settings">
       <script>
         var tab_setting = document.getElementById("tab_settings");
-        tab_setting.appendChild( createSettingSelect() );
-        tab_setting.appendChild( addSettingPartButton('plot') );
-        tab_setting.appendChild( addSettingPartButton('occ')  );
-        tab_setting.appendChild( crEl({ 'el': 'hr' }) );
-        tab_setting.appendChild( crEl({ 'el': 'span' }) );
-        tab_setting.appendChild( crEl({ 'el': 'span' }) );
+        tab_setting.appendChild( createAutoSaveIntervalSelect() );
+        tab_setting.appendChild( createSettingSelect()          );
+        tab_setting.appendChild( addSettingPartButton('plot')   );
+        tab_setting.appendChild( addSettingPartButton('occ')    );
+        tab_setting.appendChild( crEl({ 'el': 'hr' })           );
+        tab_setting.appendChild( crEl({ 'el': 'span' })         );
+        tab_setting.appendChild( crEl({ 'el': 'span' })         );
         changeSettingsByName('empty');
       </script>
     </div>
