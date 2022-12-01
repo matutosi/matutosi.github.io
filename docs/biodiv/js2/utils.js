@@ -84,7 +84,7 @@ function searchParentTable(obj, index = 0){
 function getColData(table, col_name, list_with_index = false){
   const col_no   = getColNames(table).indexOf(col_name);
   var group_value = [];
-  var table = table.querySelectorAll("tr:not([class=hide_button]");
+  var table = table.querySelectorAll("tr:not([class=hide_button])");
   for(Ri = 1; Ri < table.length; Ri++){    // except th (rows[0])
     group_value[Ri - 1] = getCellData(table[Ri].cells[col_no], list_with_index)
   }
@@ -193,8 +193,8 @@ function splitByGroup(array, group){
 // Helper for getDataType()
 function getDataTypes(table){
   var types = [];
-  var table = table.querySelectorAll("tr:not([class=hide_button]"); // remove tr with hide buttons
-  for(let cell of table[1].cells){                                  // 1: first data row (0: colnames)
+  var table = table.querySelectorAll("tr:not([class=hide_button])"); // remove tr with hide buttons
+  for(let cell of table[1].cells){                                   // 1: first data row (0: colnames)
     types.push(getDataTypeCell(cell));
   }
   return types;

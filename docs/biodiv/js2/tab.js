@@ -1,7 +1,7 @@
 function changeTab(){
   var ref = decodeURI(this.href);  // For multibyte character
   var targetid = ref.substring(ref.indexOf('#')+1, ref.length);
-// console.log([ref,targetid]);
+  // console.log([ref,targetid]);
   // show delected tab
   for(var i = 0; i < pages.length; i++) {
     if( pages[i].id != targetid ) {
@@ -16,10 +16,13 @@ function changeTab(){
     tabs[i].style.zIndex = "0";
   }
   this.style.zIndex = "10";
+  // Updates
+  updateInputsPlotLayerSpecies();
 
   // needs not to move tab
   return false;
 }
+
 
 function updateTab(){
   // get elements
@@ -29,6 +32,33 @@ function updateTab(){
   for(var i = 0; i < tabs.length; i++) {
     tabs[i].onclick = changeTab;
   }
+}
+
+function updateInputsPlotLayerSpecies(){
+    // All plots
+  updateAllInputsTables();
+
+    // PLOT and Layer select in Tools
+  updatePlotLayer({});
+
+
+
+  //   var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])";
+  //   var select_buttons = document.querySelectorAll(selector);
+  // select_buttons[1].value;
+
+    // species list
+  var selector =  "input[id^='sp_list_update-']:not([id$='-wamei'])";
+  var update_buttons = document.querySelectorAll(selector);
+  for(let button of update_buttons){  button.click(); }
+  // update_buttons[0]
+
+    // add species form composition
+  //   var selector = "input[id^='sp_list_add_comp-']:not([id$='-wamei'])";
+  //   var add_comp_buttons = document.querySelectorAll(selector);
+  //   for(let button of add_comp_buttons){  button.click(); }
+
+
 }
 
 function addPlotId(plot_data, id){
@@ -121,15 +151,18 @@ function addInputTab({ obj, id }){
     var show_select_layer = true;
   }
   var ul_module = createSpecieUlModule({ species: '', ns: id,
-                  show_select_button   : true, show_button_update_sl: true, show_button_add_comp: true, 
+                  show_select_button   : true, 
                   show_text_input      : true, 
                   show_select_layer    : show_select_layer   });
   div.appendChild( ul_module );
+  // all update
+  updateInputsPlotLayerSpecies()
 }
 
-function updateAllInputsTables(obj){
+function updateAllInputsTables(){
   var pl_table = createAllInputsTable('input_plot')
   var oc_table = createAllInputsTable('input_occ' )
+  if(pl_table === void 0){ return void 0; }
   document.getElementById('plot_all').replaceWith(pl_table);
   document.getElementById('occ_all' ).replaceWith(oc_table);
   setSortable( searchParentTable(pl_table).id );
@@ -144,7 +177,7 @@ function updateAllInputsTables(obj){
 function createAllInputsTable(table_name){
   // var table_name = "input_occ"; var table_name = "input_plot";
   var tables = document.querySelectorAll("table[id^='" + table_name + "']");
-
+  if(0 === tables.length){ return void 0; }  // return void 0, when no input tables
   var c_names = getUniqeColNames(tables);
   var removals = ['DATE', 'DATE', "LOC_LAT","LOC_LON","LOC_ACC","DELETE","UPDATE_TIME_GPS"];
   var c_names = c_names.filter(item => ! removals.includes(item));

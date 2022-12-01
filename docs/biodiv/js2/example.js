@@ -20,7 +20,7 @@ function showExample(obj){
   for(let i = 1; i < 5; i++){ tb_2.rows[2].cells[1].firstChild.click(); }
 
   // update "all inputs tables" and "input species list"
-  document.getElementById('update_all_inputs_tables_button').click();
+  //   document.getElementById('update_all_inputs_tables_button').click();
   // add species list
   var sp_nara   = grepArray(wamei, /ナラ/);
   var sp_buna   = grepArray(wamei, /ブナ/);
@@ -41,8 +41,8 @@ function showExample(obj){
   addSpeciesList(base_name + 'biss01', getSLinLS());
   addSpeciesList(base_name + 'biss02', getSLinLS());
 
-  //   document.getElementById('sp_list_update-all').click();
-  document.getElementById('sp_list_update_pl-all').click();
+  // all update
+  updateInputsPlotLayerSpecies()
 
   obj.remove();
 }

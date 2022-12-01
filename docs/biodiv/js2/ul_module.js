@@ -1,12 +1,22 @@
+// Get species list in compotition table
+//    @param  sp  A string to specify a species column.
+//                Usually and in default, use 'Species'.
+//    @return     An array of species in composition table.
+function getSpeciesInComposition(sp = 'Species'){
+  var comp = document.getElementById('comp_table_tb');
+  if(comp === null){ return ''; } // return, when no inputs
+  var species = getColData(comp, sp);
+  return species;
+}
 function addComp(obj, sp = 'Species'){
   // var sp = 'Species';
   var ns = obj.id.split('-')[1];
   var id = 'sp_list_sp_list-'+ ns;
-  var comp = document.getElementById('comp_table_tb');
-  var sp_list = getColData(comp, sp);
+  var species = getSpeciesInComposition();
   // console.log(sp_list);
-  addSpeciesList(id, sp_list);
+  addSpeciesList(id, species);
 }
+
 function createAddCompButton(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Add from Composition', onclick: 'addComp(this)'} });
 }
@@ -79,7 +89,7 @@ function createUpdateSLButoon(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update select list', onclick: 'updateSelectSL(this)'} });
 }
 function createSelectSL(id){
-  var span = crEl({ el:'span', ih: '<b>Select pecies list:</b>' });
+  var span = crEl({ el:'span', ih: '<b>Select species list:</b>' });
   var ns = id.split('-')[1];
   var select = createSL(id);
   span.appendChild(select);
@@ -89,22 +99,24 @@ function updateSelectSL(obj){
   //   var id = this.id;
   // console.log(id);
   var id = obj.id.replace('update', 'select');
+  // var id = 'sp_list_select-all';
   var old_select = document.getElementById(id);
-  var new_select = createSL(id);
+  var selected_index = old_select.selectedIndex;
+  var new_select = createSL(id, selected_index);
   old_select.replaceWith(new_select);
 }
-function createSL(id){
+function createSL(id, selected_index = 0){
   var species_list = replaceArrayAll(getKeysOfSLinLS(), 'biss_sl-', '');
   species_list.unshift('NEW');
-  var select = createSelectOpt(species_list, 0, id);
+  var select = createSelectOpt(species_list, selected_index, id);
   select.setAttribute('onchange', 'changeSL(this)');
   return select
 }
 function changeSL(obj){
   var id = 'sp_list_sp_list-' + obj.id.split('-')[1];
-  var ns = obj.value;
+  var sl = obj.value;
   // console.log(id);
-  replaceSpeciesList(ns, id);
+  replaceSpeciesList(sl, id);
 }
 
 // Load 
@@ -193,12 +205,16 @@ function createSpecieList(id, species){
   }
   return ul;
 }
-function replaceSpeciesList(ns, id){
-  if(ns === 'NEW'){
-    var new_sp_list = createSpecieList(id, '');
-  }else{
-    var new_sp_list = createSpecieList(id, getSLinLS(ns));
-  }
+// 
+//    @param  sl   A string of a species list.
+//    @param  id   A string of a namespace: plot name, 'all', or 'wamei'.
+// 
+function replaceSpeciesList(sl, id){
+  // var sl = 'tabu';
+  var new_sp  = (sl === 'NEW') ? [] : getSLinLS(sl);
+  var comp_sp = getSpeciesInComposition();
+  var new_sp  = new_sp.concat(comp_sp).sort();
+  var new_sp_list = createSpecieList(id, new_sp);
   var old_sp_list = document.getElementById(id);
   old_sp_list.replaceWith(new_sp_list);
 }
@@ -219,7 +235,7 @@ function createSLInput(id){
 
 // Plot and Layer
 function createUpdatePLButton(id){
-  return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update plot and layer', onclick: 'updatePlotLayer(this)'} });
+  return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update plot and layer', onclick: 'updatePlotLayer({ obj:this })'} });
 }
 function createSelectPlot(id){
   var span = crEl({ el:'span', ih: 'PLOT:' });
@@ -245,12 +261,10 @@ function createSelectLayer(id){
   span.appendChild(layer_select)
   return span;
 }
-function updatePlotLayer(obj){
-  var ns = obj.id.split('-')[1];
-  // console.log(ns);
+function updatePlotLayer({ obj }){
+  var ns = (obj === void 0) ?
+           'all' : obj.id.split('-')[1];
   var base_name = 'sp_list_';
-  //   var list_id  = base_name + 'sp_list-'+ ns;
-  //   addSpeciesList(list_id, '');
   var plot_id  = base_name + 'plot-'   + ns;
   var layer_id = base_name + 'layer-'  + ns;
   replaceSelectPlot (    plot_id);

@@ -87,11 +87,11 @@
       <script>
         var tab_tools = document.getElementById("tab_tools");
         var ul_all    = createSpecieUlModule({ species: '', ns: 'all',
-                        show_select_button   : true, show_button_update_sl: true, show_button_add_comp: true , 
+                        show_select_button   : true, 
                         show_select_ncol     : true, 
                         show_button_load_sl  : true, show_button_save_sl  : true, 
                         show_text_input      : true, 
-                        show_button_update_pl: true, show_select_plot     : true, show_select_layer   : true });
+                        show_select_plot     : true, show_select_layer   : true });
         tab_tools.appendChild( ul_all );
         tab_tools.appendChild( createWameiSpan() );
 //        tab_tools.appendChild( generateSearchTable("wamei", generateTable(wamei)) );
@@ -113,14 +113,11 @@
     </div>
 
     <div id="tab_all">
-      <script>
-        var tab_all = document.getElementById("tab_all");
-        tab_all.appendChild( updateAllInputsTablesButton() );
-      </script>
-      <br>
       <span id='plot_all'></span>
       <span id='occ_all' ></span>
-      <table id='comp_table' ></table>
+      <span id='comp_table' ></table>
+      <script>
+      </script>
     </div>
 
   </div>
