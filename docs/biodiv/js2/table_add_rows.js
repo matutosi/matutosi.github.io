@@ -50,7 +50,8 @@ function addRows(obj){
   // console.log(obj);
   //   var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
   var n_row = obj.previousElementSibling.value;
-  var table = searchParentTable(obj);
+  var table_id = obj.id.replace('add_rows', 'tb');
+  var table = document.getElementById(table_id);
   for(let i = 0; i < n_row; i++){ addRow(table); }
 }
 
