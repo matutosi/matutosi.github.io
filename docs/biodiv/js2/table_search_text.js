@@ -32,37 +32,3 @@ function searchTableText(obj){
   }
 }
 
-// Search text input tags in a table and show only matching rows
-//    Results are shown after button is pushed.
-//    Using in Wamei saerch. 
-//    Clear input text, NO rows will be shown.
-//    Regular expression can be used.
-//    Spaces means match all text. 
-//        ex.) "aaa bbb" matches texts including both "aaa" and "bbb".
-//    @param obj  A input element.
-//                  Normally use "this". 
-function searchTableTextShow(obj){
-  var input = obj.previousElementSibling.value;
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var trs    = table.rows;
-  if(input === ""){
-    for(let Rj = 1; Rj < trs.length; Rj++){
-      trs[Rj].style.display = "none";
-    }
-    return void 0;
-  }
-  var reg_ex = makeLookAheadReg(input);
-  var matches = 0;
-  for(let Rj = 1; Rj < trs.length; Rj++){ trs[Rj].style.display = "none"; }
-  for(let Rj = 1; Rj < trs.length; Rj++){
-    if(matches > 101){
-      alert("Over 100 matches, showing 100 matches")
-      return void 0;
-    }
-    var text = trs[Rj].cells[0].innerText;
-    if(reg_ex.test(text)){
-      trs[Rj].style.display = "";
-      matches++;
-    }
-  }
-}

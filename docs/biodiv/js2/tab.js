@@ -281,16 +281,3 @@ function createCompTable(tables, pl = "PLOT", sp = "Species", ab = "Cover", id =
                               hide_button: true})
   return comp_table;
 }
-
-function changePlotName(obj){
-  var new_name = obj.previousElementSibling.value;
- // var old_name = obj.parentNode.
-  // change tab name
-  //   document.getElementById('tabcontrol').insertBefore(a, obj);
-  //   document.getElementById('tabbody').appendChild(div);
-  // 
-
-  //   var document.
-  
-}
-

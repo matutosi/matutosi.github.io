@@ -13,9 +13,6 @@ function createInput( ...args ){
   return input;
 }
 
-function updateAllInputsTablesButton(){
-  return crEl({ el:'input', ats:{type:'button', id:'update_all_inputs_tables_button', value:'Update all inputs tables', onclick: 'updateAllInputsTables()'} });
-}
 function createDelButton(){
   return createInput({ type: "button", value: "DELETE", onclick: "delRow(this)" });
 }
@@ -34,26 +31,11 @@ function createFitTable(id){
 function createWideTable(){
   return createInput({ type:"button", value: "Extend width", onclick: "wideTable(this)" });
 }
-function createHideRowButton(row = "row"){
-  return createInput({ type:"button", value: "Hide " + row, onclick: "hideRow(this)" });
-}
-function createShowRowButton(row = "row"){
-  return createInput({ type:"button", value: "Show " + row, onclick: "showRow(this)" });
-}
-function createMakePlotButton(){
-  return createInput({ type:"button", value: "Make plot table", onclick: "makePlotInputModule(this)" });
-}
 function createFileButton(){
   return createInput({ type: "file", accept: ".conf", onchange: "replaceTable(this)" });
 }
-function createSaveSettingButton(){
-  return createInput({ type: "button", value: "Save settings", onclick: "saveSettings(this)" });
-}
 function createSaveButton(){
   return createInput({ type: "button", value: "Save", onclick: "saveSettings(this)" });
-}
-function createSaveInputButton(){
-  return createInput({ type: "button", value: "Save inputs", onclick: "saveInputs(this)" });
 }
 function createShowColButton(c_name){
   return createInput({ type: "Button", value: c_name, onclick: "showCol(this)" });
@@ -66,9 +48,6 @@ function createSearchInput(){
 }
 function createSearchShowInput(id=''){
   return crEl({ el:'input', ats:{type:'text', id: id, placeholder: "Input text"} });
-}
-function createSearchShowButton(){
-  return createInput({ type: "button", value: "Search text", onclick: "searchTableTextShow(this)" });
 }
 function createNrowInput(id){
   return createInput({ type: "number", value: "1", step: "1", min: "1", max:"20", id: id });

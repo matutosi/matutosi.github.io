@@ -138,110 +138,8 @@ function tableModule({ table_data, ns,
 }
 
 
-// Create occurrence table module
-//   @param obj  A input element.
-//                 Normally use "this". 
-//   @retrun  A span including a table and other elements.
-function makeNewOccTableModule(obj){
-  var table = makeNewOccTable(obj);
-  if(table === null){ return void 0 ;}  // no table
-  var module = inputTableModule(table.id, table = table);
-  var tab_inputs = document.getElementById("tab_inputs");
-  tab_inputs.appendChild(module);
-  setSortable(table.id);
-  obj.setAttribute("disabled", true)
-}
-
-// Helper for makeNewOccTableModule()
-//   @param obj  A input element.
-//                 Normally use "this". 
-//   @retrun  A table element.
-function makeNewOccTable(obj){
-  // var obj = temp1;
-  var tr = obj.parentElement.parentElement;
-  var table = obj.parentElement.parentElement.parentElement;
-  var c_no = getColNames(table).indexOf("PLOT");
-  var plot = tr.cells[c_no].firstChild.value;
-  if(plot === ""){
-    alert("Input PLOT!");
-    return null;
-  }
-  if(hasDupPlot(plot)){ return null;}
-  // create new input table for occurrence and appendChild()
-  var tab_settings = document.getElementById("tab_settings");
-  var setting_table = tab_settings.querySelectorAll("table")[1];
-  var table = makeOccTable(setting_table, plot);
-  return table;
-}
-
-// Make plot input module
-//   @param obj  A input element.
-//                 Normally use "this". 
-//   @retrun  A plot input module and change input tab.
-function makePlotInputModule(obj){
-  var table = makePlotTable(obj);
-  var module = inputTableModule(table.id, table);
-  var tab_inputs = document.getElementById("tab_inputs");
-  tab_inputs.appendChild(module);
-  setSortable(table.id);  // Should setSortable() after appendChild()
-  shortTable(table.previousElementSibling.children[3])  // Short table
-  tabs[1].click();        // move to tab_inputs
-}
-
-
-// Helper for makeOccTable() and makePlotTable()
-//   td is basic element, createInputTd() create 
-//   from data type, column name, and  optional.
-//   @param dat_type  A string to specify data type.
-//   @param col_name  A string to specify column name.
-//   @param optional  A string to specify optional.
-//   @return  A td element
-function createInputTd(dat_type, col_name, optional){
-  // console.log(dat_type);
-  // console.log(col_name);
-  // console.log(optional);
-  var td = document.createElement('td');
-  //   var col_name = col_name.toLowerCase();
-  switch(dat_type){
-    case "auto": // date, no, GPS
-      if(col_name === "DATE")    td.innerHTML = getNow();
-      if(col_name === "LOC_LAT") td.innerHTML = getLat();
-      if(col_name === "LOC_LON") td.innerHTML = getLon();
-      if(col_name === "LOC_ACC") td.innerHTML = getAcc();
-      if(col_name === "NO")      td.innerHTML = 1;
-      if(col_name === "SameAs")  td.innerHTML = '';
-      break;
-    case "button": // DELETE, update button
-      if(col_name === "DELETE")   { td.appendChild( createDelButton() );    };
-      if(col_name === "UPDATE_TIME_GPS"){ td.appendChild( createUpdateButton() ); };
-      break;
-    case "fixed":
-      if(optional === ""){ 
-//        alert("Fixed columns should be input!");
-        var optional = "NO INPUT";
-      }
-      td.innerHTML = optional;
-      break;
-    case "checkbox":
-      td.appendChild(createInput({ type: dat_type }));
-      td.firstChild.checked = !!optional;
-      break;
-    case "text":
-      td.appendChild(createInput({ type: dat_type }));
-      break;
-    case "number":
-      td.appendChild(createInput({ type: dat_type, inputmode: "numeric", min: "0"} ));
-      break;
-    case "list":
-      arry_list = optional.split(':').concat(Array(""));
-      td.appendChild(createSelectOpt(arry_list, arry_list.length - 1));
-      break;
-  }
-  return td;
-}
-
 // DONE: update date GPS
-
+// 
 // Update "DATE", "LOC_LAT", "LOC_LON", "LOC_ACC"
 //    When "Update" bottun clicked, update informations in the row.
 //    @param obj Clicked row.
@@ -337,23 +235,6 @@ function createTdWithChild(child){
   return td;
 }
 
-// Check if the same plot has already existed. 
-//   @param plot A string to specify plot.
-//   @return  A logical.
-function hasDupPlot(plot){
-  var tab_inputs = document.getElementById("tab_inputs");
-  var input_tables = tab_inputs.querySelectorAll("table");
-  for(let table of input_tables){
-    if(table.id.split("_")[1] === "occ"){
-      if(table.id.split("_")[2] === plot){
-        alert("Duplicated PLOT!");
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
 
 // DONE: Save and load Settings 
 
@@ -394,41 +275,3 @@ function saveSettings(obj){
   downloadStrings(strings = table_json, file_name = f_name + ".conf")
 }
 
-// Save inputs of a table
-//   @param obj  A input element.
-//                 Normally use "this". 
-function saveInputs(obj){
-  var table = obj.parentNode.parentNode.querySelectorAll("table")[0];
-  var table_data = getTableDataPlus(table);
-  var f_name = table.id + "_" + getNow() + ".txt"
-  downloadStrings(strings = table_data, file_name = f_name)
-}
-
-// Load example data
-//   Using in example.html, run like as click buttons in html.
-//   @param obj  A input element.
-//                 Normally use "this". 
-function loadExample(obj){
-  // PLOT
-  var make_plot_button = document.getElementById("dn_setting_plot_default").children[2];
-  make_plot_button.click();
-  var table = document.getElementById("input_plot_default");
-  table.rows[2].cells[1].firstChild.value = "exam01";
-  table.rows[2].cells[0].firstChild.click()
-  // occ
-  var main = obj.parentNode;
-  var main = document.getElementById("tab_inputs");
-  var occ_example = "input_occ_exam01";
-  var new_module = inputTableModule(occ_example);
-  main.children[4].replaceWith(new_module);
-  setSortable(occ_example); // Can not set sortable in a function
-
-  obj.nextElementSibling.remove(); // <br>
-  obj.remove();
-}
-
-// dn.appendChild( createSelectOpt( colByType(table, "number") ) );
-// dn.appendChild( createSelectOpt( colByType(table, "list") ) );
-// dn.appendChild( createSumButton() );
-// table = document.getElementById("input_occ_a_tb");
-// colByType(table, "number")

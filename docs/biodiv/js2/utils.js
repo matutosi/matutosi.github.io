@@ -271,3 +271,8 @@ function saveHTML(obj){
   var doc = document.documentElement.outerHTML;
   downloadStrings(strings = doc, file_name = "biodiv.html")
 }
+
+// Unique array
+function uniq(array){
+  return Array.from(new Set(array));
+}
