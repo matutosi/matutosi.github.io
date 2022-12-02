@@ -14,13 +14,17 @@ function addRowWithValues({ table, values }){
   // console.log(td);
   // console.log(values);
   // console.log(key);
-    if(td.firstChild === null){
+    if(td.firstChild === null){                // fixed with no input
       td.innerHTML = value;
     }else{
-      if(td.firstChild.value === void 0){
+      if(td.firstChild.value === void 0){      // fixed with input
         td.innerHTML = value;
       }else{
-        td.firstChild.value = value;
+        if(td.firstChild.type === 'checkbox'){ // checkbox
+          td.firstChild.checked = value;
+        }else{
+          td.firstChild.value = value;         // text/number/select input
+        }
       }
     }
   }

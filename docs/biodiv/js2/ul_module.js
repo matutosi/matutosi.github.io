@@ -326,9 +326,14 @@ function addSpecies(obj){
   var table = document.getElementById('input_occ_' + plot + '_tb');
   for(let spec of species){
     var [sp, sa] = spec.split('_');
-    if(sa === void 0) var sa = '';
+    if(sa === void 0){
+      var sa = ''; 
+      var iden = true;
+    }else{
+      var iden = false;
+    }
   // console.log(layer);
-    addRowWithValues({ table: table, values: {Layer: layer, Species: sp, SameAs: sa} });
+    addRowWithValues({ table: table, values: {Layer: layer, Species: sp, SameAs: sa, Identified: iden} });
   }
 
   // clear inputs
