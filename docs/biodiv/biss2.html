@@ -2,28 +2,33 @@
 //    @param   n         A number of sample. 
 //    @param   array     An array to be sampled. 
 //    @param   only_once A logical. true: each element will be sampled only once. 
-//    @return  randInt() returns integer, randSample() returns an array. 
+//    @return  An array. 
 //    @examples 
+//    console.log(randInt(3, 100)); 
 //    var array = ['a','b','c','d','e']; 
-//    console.log(randSample(array, 3, true )); 
-//    console.log(randSample(array, 6, true )); 
-//    console.log(randSample(array, 3, false)); 
-//    console.log(randSample(array, 6, false)); 
-function randInt(n){  
-  return Math.floor(Math.random() * n);  
+//    console.log(randSample(3, array, true )); 
+//    console.log(randSample(6, array, true )); 
+//    console.log(randSample(3, array, false)); 
+//    console.log(randSample(6, array, false)); 
+function randInt(n, max){  
+  var sample = []; 
+  for(let i=0; i<n; i++){ 
+    sample.push(Math.floor(Math.random() * max)); 
+  } 
+  return sample 
 } 
-function randSample(array, n, only_once = false){ 
+function randSample(n, array, only_once = false){ 
   var sample = []; 
   if(only_once){ 
     var array_copy = Object.assign([], array); 
     var m = Math.min(n, array_copy.length); 
     for(let i=0; i<m; i++){ 
-      var index = randInt(array_copy.length); 
+      var index = randInt(1, array_copy.length); 
       sample.push(array_copy.splice(index, 1)[0]); 
     } 
   }else{ 
     for(let i=0; i<n; i++){ 
-      var index = randInt(array.length); 
+      var index = randInt(1, array.length); 
       sample.push(array[index]); 
     } 
   } 
@@ -2035,19 +2040,22 @@ function convertTableData(table_data){
  
   // select settings: '_5_layers' 
   changeSettingsByName('_5_layers'); 
+  // delete 'rank' and 'abundance' 
+  document.querySelector("#_5_layers_occ_tb > tr:nth-child(7) > td:nth-child(4) > input[type=button]").click() 
+  document.querySelector("#_5_layers_occ_tb > tr:nth-child(7) > td:nth-child(4) > input[type=button]").click() 
  
   // add plots 
   addInputTab({ obj:document.getElementById('add_tab'), id:'biss01' }); 
   addInputTab({ obj:document.getElementById('add_tab'), id:'biss02' }); 
  
-  // input data 
+  // sample occ 
   var tb_1 = document.getElementById('input_occ_biss01_tb'); 
   var tb_2 = document.getElementById('input_occ_biss02_tb'); 
-  var ly = ['T1' ,  'T2',    'H',   'H',   'H']; 
-  var sp = ['sp1', 'sp2',  'sp3', 'sp4', 'sp5']; 
-  var cv = [  80 ,    40,       ,   1.5,   0.5]; 
-  for(let i = 0; i < 3; i++){ addRowWithValues({ table: tb_1, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } }); } 
-  for(let i = 2; i < 5; i++){ addRowWithValues({ table: tb_2, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } }); } 
+  layers  = ['T1','T2','S1','S2','H']; 
+  species = ['sp1','sp2', 'sp3','sp4','sp5','sp7','sp8','sp9']; 
+  addSampleOcc(tb_1, 5, layers, species) 
+  addSampleOcc(tb_2, 5, layers, species) 
+ 
   // delete default data 
   for(let i = 1; i < 5; i++){ tb_1.rows[2].cells[1].firstChild.click(); } 
   for(let i = 1; i < 5; i++){ tb_2.rows[2].cells[1].firstChild.click(); } 
@@ -2068,14 +2076,18 @@ function convertTableData(table_data){
   addSLinLS(sp_kaya  , 'kaya'); 
   addSLinLS(sp_susuki, 'susuki'); 
  
-  var base_name = 'sp_list_sp_list-'; 
-  // console.log(getSLinLS()); 
-  addSpeciesList(base_name + 'all'   , getSLinLS()); 
-  addSpeciesList(base_name + 'biss01', getSLinLS()); 
-  addSpeciesList(base_name + 'biss02', getSLinLS()); 
- 
   // all update 
   updateInputsPlotLayerSpecies() 
  
   obj.remove(); 
+} 
+ 
+function addSampleOcc(plot, n ,layers, species){ 
+  var n = 6; 
+  var ly = randSample(n, layers,  false); 
+  var sp = randSample(n, species, false); 
+  var cv = randInt(n-1, 100).concat(['']); 
+  for(let i = 0; i<n; i++){ 
+    addRowWithValues({ table: plot, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } });  
+  } 
 }</script> <script>function getAllPlotOccDataAsJSON(){var e=getTableData(document.getElementById("plot_all_tb")),t=getTableData(document.getElementById("occ_all_tb")),a={plot:Object.assign({},e.biss_inputs),occ:Object.assign({},t.biss_inputs)};return JSON.stringify(a)}function autoSave(){var e=getAllPlotOccDataAsJSON(),t="biss_"+getNow()+".json",a=new Uint8Array([239,187,191]),n=new Blob([a,e],{type:"text/json"});const o=URL.createObjectURL(n),c=document.createElement("a");document.body.appendChild(c),c.download=t,c.href=o,c.click(),c.remove(),URL.revokeObjectURL(o),delete e}function changeAutoSaveSttting(e){var t=e.value;if("undefined"==typeof timerId)setAutoSave(Number(t));else{if(clearInterval(timerId),"no save"===t)return;setAutoSave(Number(t))}}function setAutoSave(e){timerId=setInterval(autoSave,6e4*e)}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b,span,div{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> <span>Biodiversity Investigation Support System (BiSS)</span> <input id="switch_screen_show" type="button" value="FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools"),ul_all=createSpecieUlModule({species:"",ns:"all",show_select_button:!0,show_select_ncol:!0,show_button_load_sl:!0,show_button_save_sl:!0,show_text_input:!0,show_select_plot:!0,show_select_layer:!0});tab_tools.appendChild(ul_all),tab_tools.appendChild(createWameiSpan());</script> </div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createAutoSaveIntervalSelect()),tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <span id="plot_all"></span> <span id="occ_all"></span> <span id="comp_table"> <script></script> </span></div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 

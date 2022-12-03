@@ -2,28 +2,33 @@
 //    @param   n         A number of sample.
 //    @param   array     An array to be sampled.
 //    @param   only_once A logical. true: each element will be sampled only once.
-//    @return  randInt() returns integer, randSample() returns an array.
+//    @return  An array.
 //    @examples
+//    console.log(randInt(3, 100));
 //    var array = ['a','b','c','d','e'];
-//    console.log(randSample(array, 3, true ));
-//    console.log(randSample(array, 6, true ));
-//    console.log(randSample(array, 3, false));
-//    console.log(randSample(array, 6, false));
-function randInt(n){ 
-  return Math.floor(Math.random() * n); 
+//    console.log(randSample(3, array, true ));
+//    console.log(randSample(6, array, true ));
+//    console.log(randSample(3, array, false));
+//    console.log(randSample(6, array, false));
+function randInt(n, max){ 
+  var sample = [];
+  for(let i=0; i<n; i++){
+    sample.push(Math.floor(Math.random() * max));
+  }
+  return sample
 }
-function randSample(array, n, only_once = false){
+function randSample(n, array, only_once = false){
   var sample = [];
   if(only_once){
     var array_copy = Object.assign([], array);
     var m = Math.min(n, array_copy.length);
     for(let i=0; i<m; i++){
-      var index = randInt(array_copy.length);
+      var index = randInt(1, array_copy.length);
       sample.push(array_copy.splice(index, 1)[0]);
     }
   }else{
     for(let i=0; i<n; i++){
-      var index = randInt(array.length);
+      var index = randInt(1, array.length);
       sample.push(array[index]);
     }
   }

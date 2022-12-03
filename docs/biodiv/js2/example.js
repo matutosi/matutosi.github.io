@@ -2,19 +2,22 @@ function showExample(obj){
 
   // select settings: '_5_layers'
   changeSettingsByName('_5_layers');
+  // delete 'rank' and 'abundance'
+  document.querySelector("#_5_layers_occ_tb > tr:nth-child(7) > td:nth-child(4) > input[type=button]").click()
+  document.querySelector("#_5_layers_occ_tb > tr:nth-child(7) > td:nth-child(4) > input[type=button]").click()
 
   // add plots
   addInputTab({ obj:document.getElementById('add_tab'), id:'biss01' });
   addInputTab({ obj:document.getElementById('add_tab'), id:'biss02' });
 
-  // input data
+  // sample occ
   var tb_1 = document.getElementById('input_occ_biss01_tb');
   var tb_2 = document.getElementById('input_occ_biss02_tb');
-  var ly = ['T1' ,  'T2',    'H',   'H',   'H'];
-  var sp = ['sp1', 'sp2',  'sp3', 'sp4', 'sp5'];
-  var cv = [  80 ,    40,       ,   1.5,   0.5];
-  for(let i = 0; i < 3; i++){ addRowWithValues({ table: tb_1, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } }); }
-  for(let i = 2; i < 5; i++){ addRowWithValues({ table: tb_2, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } }); }
+  layers  = ['T1','T2','S1','S2','H'];
+  species = ['sp1','sp2', 'sp3','sp4','sp5','sp7','sp8','sp9'];
+  addSampleOcc(tb_1, 5, layers, species)
+  addSampleOcc(tb_2, 5, layers, species)
+
   // delete default data
   for(let i = 1; i < 5; i++){ tb_1.rows[2].cells[1].firstChild.click(); }
   for(let i = 1; i < 5; i++){ tb_2.rows[2].cells[1].firstChild.click(); }
@@ -35,14 +38,18 @@ function showExample(obj){
   addSLinLS(sp_kaya  , 'kaya');
   addSLinLS(sp_susuki, 'susuki');
 
-  var base_name = 'sp_list_sp_list-';
-  // console.log(getSLinLS());
-  addSpeciesList(base_name + 'all'   , getSLinLS());
-  addSpeciesList(base_name + 'biss01', getSLinLS());
-  addSpeciesList(base_name + 'biss02', getSLinLS());
-
   // all update
   updateInputsPlotLayerSpecies()
 
   obj.remove();
+}
+
+function addSampleOcc(plot, n ,layers, species){
+  var n = 6;
+  var ly = randSample(n, layers,  false);
+  var sp = randSample(n, species, false);
+  var cv = randInt(n-1, 100).concat(['']);
+  for(let i = 0; i<n; i++){
+    addRowWithValues({ table: plot, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } }); 
+  }
 }
