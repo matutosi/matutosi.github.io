@@ -106,6 +106,13 @@ function updateSelectSL(obj){
   var new_select = createSL(id, selected_index);
   old_select.replaceWith(new_select);
 }
+function updateSelectSLById(id){
+  var old_select = document.getElementById(id);
+  var selected_index = old_select.selectedIndex;
+  var new_select = createSL(id, selected_index);
+  old_select.replaceWith(new_select);
+}
+
 function createSL(id, selected_index = 0){
   var species_list = replaceArrayAll(getKeysOfSLinLS(), 'biss_sl-', '');
   species_list.unshift('NEW');
@@ -164,9 +171,9 @@ function createSaveSLButoon(id){
 function saveSL(obj){
   var id      = obj.id;
   var ns      = id.split('-')[1];
-  var f_name  = document.getElementById('sp_list_save-' + ns).value;
-  var which   = document.getElementById('sp_list_which-' + ns).value;
-  var ul      = document.getElementById('sp_list_sp_list-' + ns);
+  var f_name  = document.getElementById('sp_list_save-'    + ns).value;
+  var which   = document.getElementById('sp_list_which-'   + ns).value;
+  var ul      = document.getElementById('sp_list_sp_list-' + ns)      ;
   var sp_list = getGrandChildrenValues(ul);
   if(f_name === ""){ 
     alert('Input file name!');
@@ -175,7 +182,10 @@ function saveSL(obj){
   // console.log(name   );
   // console.log(which  );
   // console.log(sp_list);
-  if(which === 'browser'){ addSLinLS(sp_list, f_name); }
+  if(which === 'browser'){ 
+    addSLinLS(sp_list, f_name);
+    updateSelectSLById(id.replace('save', 'select'));
+  }
   if(which === 'file'   ){ downloadStrings(strings = sp_list, file_name = f_name + '.txt'); }
   document.getElementById('sp_list_save-' + ns).value = '';  // clear file name
 }

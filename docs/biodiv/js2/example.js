@@ -13,10 +13,11 @@ function showExample(obj){
   // sample occ
   var tb_1 = document.getElementById('input_occ_biss01_tb');
   var tb_2 = document.getElementById('input_occ_biss02_tb');
-  layers  = ['T1','T2','S1','S2','H'];
-  species = ['sp1','sp2', 'sp3','sp4','sp5','sp7','sp8','sp9'];
-  addSampleOcc(tb_1, 5, layers, species)
-  addSampleOcc(tb_2, 5, layers, species)
+  layers     = ['T1','T2','S1','S2','H'];
+  species    = ['sp1','sp2', 'sp3','sp4','sp5','sp7','sp8','sp9'];
+  identified = ['checked'];
+  addSampleOcc(tb_1, 6, layers, species, identified)
+  addSampleOcc(tb_2, 5, layers, species, identified)
 
   // delete default data
   for(let i = 1; i < 5; i++){ tb_1.rows[2].cells[1].firstChild.click(); }
@@ -44,12 +45,14 @@ function showExample(obj){
   obj.remove();
 }
 
-function addSampleOcc(plot, n ,layers, species){
-  var n = 6;
+function addSampleOcc(plot, n ,layers, species, identified){
   var ly = randSample(n, layers,  false);
   var sp = randSample(n, species, false);
   var cv = randInt(n-1, 100).concat(['']);
+  var cv = randSort(cv);
+  var id = randSample(n-1, identified, false).concat(['']);
+  var id = randSort(id);
   for(let i = 0; i<n; i++){
-    addRowWithValues({ table: plot, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } }); 
+    addRowWithValues({ table: plot, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i], Identified: id[i] } }); 
   }
 }

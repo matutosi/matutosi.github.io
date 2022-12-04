@@ -34,6 +34,10 @@ function randSample(n, array, only_once = false){
   } 
   return sample; 
 } 
+function randSort(array){ 
+  return randSample(array.length, array, true); 
+} 
+ 
  
 // Make look ahead regular expression 
 //    @param   A string. 
@@ -1150,13 +1154,14 @@ function searchTableText(obj){
   var input = obj.value; 
   var reg_ex = new RegExp(input, 'i');  // i: case-insensitive 
   var table = obj.parentNode.parentNode.querySelectorAll("table")[0]; 
+  // var table = document.getElementById('occ_all_tb'); 
   var trs   = table.rows; 
-  //   var data_types = getDataType(table); 
-  var data_types = getDataTypes(table); 
-  var display_flag = [1];                // 1: show first row (th) 
-  for(let Rj = 1; Rj < trs.length; Rj++){ display_flag[Rj] = 0; } 
+  var data_types   = getDataTypes(table); 
+  var is_shown_col = isShownCol(table); 
+  var display_flag = [1,2];                // [1,2]: show th and hide button 
+  for(let Rj = 2; Rj < trs.length; Rj++){ display_flag[Rj] = 0; } 
   for(let Ci = 0; Ci < data_types.length; Ci++){ 
-    if(data_types[Ci] === "text"){ 
+    if((data_types[Ci] === "text" || data_types[Ci] === "fixed") && is_shown_col[Ci]){ 
       for(let Rj = 1; Rj < trs.length; Rj++){ 
         var text = getCellData(trs[Rj].cells[Ci]); 
         if(reg_ex.test(text)){ display_flag[Rj]++; } 
@@ -1168,6 +1173,18 @@ function searchTableText(obj){
     else                    { trs[k].style.display = "none"; } 
     if(input === "")        { trs[k].style.display = ""; } 
   } 
+} 
+ 
+// Helper for searchTableText(). 
+//    @param table  A table element. 
+//    @return       An array of logical, which has length of columns. 
+function isShownCol(table){ 
+  var display_style_none = []; 
+  var ths = table.rows[0].cells; 
+  for(let i=0; i<ths.length; i++){ 
+    display_style_none.push(!!!ths[i].getAttribute('style')); 
+  } 
+  return display_style_none; 
 }</script> <script>function changeTab(){ 
   var ref = decodeURI(this.href);  // For multibyte character 
   var targetid = ref.substring(ref.indexOf('#')+1, ref.length); 
@@ -1207,13 +1224,17 @@ function updateTab(){
 function updateInputsPlotLayerSpecies(){ 
     // All plots 
   updateAllInputsTables(); 
+ 
     // PLOT and Layer select in Tools 
   updatePlotLayer({}); 
+ 
+  var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])"; 
  
     // species list 
   var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])"; 
   var sp_sl_selects = document.querySelectorAll(selector); 
   for(let select of sp_sl_selects){ 
+    updateSelectSLById(select.id); 
     var id = select.id.replace('select', 'sp_list'); 
     var sl = select.value; 
     replaceSpeciesList(sl, id); 
@@ -1356,7 +1377,7 @@ function createAllInputsTable(table_name){
   var all_table_name = table_name.split("_")[1] + '_all'; 
   //   var all_table = makeTableJO(all_data, all_table_name); 
   var all_table = tableModule({table_data: all_data, ns: all_table_name, 
-                              id_text: true, search_input: true, 
+                              search_input: true, 
                               hide_button: true}); 
   return all_table; 
 } 
@@ -1558,6 +1579,13 @@ function updateSelectSL(obj){
   var new_select = createSL(id, selected_index); 
   old_select.replaceWith(new_select); 
 } 
+function updateSelectSLById(id){ 
+  var old_select = document.getElementById(id); 
+  var selected_index = old_select.selectedIndex; 
+  var new_select = createSL(id, selected_index); 
+  old_select.replaceWith(new_select); 
+} 
+ 
 function createSL(id, selected_index = 0){ 
   var species_list = replaceArrayAll(getKeysOfSLinLS(), 'biss_sl-', ''); 
   species_list.unshift('NEW'); 
@@ -1616,9 +1644,9 @@ function createSaveSLButoon(id){
 function saveSL(obj){ 
   var id      = obj.id; 
   var ns      = id.split('-')[1]; 
-  var f_name  = document.getElementById('sp_list_save-' + ns).value; 
-  var which   = document.getElementById('sp_list_which-' + ns).value; 
-  var ul      = document.getElementById('sp_list_sp_list-' + ns); 
+  var f_name  = document.getElementById('sp_list_save-'    + ns).value; 
+  var which   = document.getElementById('sp_list_which-'   + ns).value; 
+  var ul      = document.getElementById('sp_list_sp_list-' + ns)      ; 
   var sp_list = getGrandChildrenValues(ul); 
   if(f_name === ""){  
     alert('Input file name!'); 
@@ -1627,7 +1655,10 @@ function saveSL(obj){
   // console.log(name   ); 
   // console.log(which  ); 
   // console.log(sp_list); 
-  if(which === 'browser'){ addSLinLS(sp_list, f_name); } 
+  if(which === 'browser'){  
+    addSLinLS(sp_list, f_name); 
+    updateSelectSLById(id.replace('save', 'select')); 
+  } 
   if(which === 'file'   ){ downloadStrings(strings = sp_list, file_name = f_name + '.txt'); } 
   document.getElementById('sp_list_save-' + ns).value = '';  // clear file name 
 } 
@@ -2051,10 +2082,11 @@ function convertTableData(table_data){
   // sample occ 
   var tb_1 = document.getElementById('input_occ_biss01_tb'); 
   var tb_2 = document.getElementById('input_occ_biss02_tb'); 
-  layers  = ['T1','T2','S1','S2','H']; 
-  species = ['sp1','sp2', 'sp3','sp4','sp5','sp7','sp8','sp9']; 
-  addSampleOcc(tb_1, 5, layers, species) 
-  addSampleOcc(tb_2, 5, layers, species) 
+  layers     = ['T1','T2','S1','S2','H']; 
+  species    = ['sp1','sp2', 'sp3','sp4','sp5','sp7','sp8','sp9']; 
+  identified = ['checked']; 
+  addSampleOcc(tb_1, 6, layers, species, identified) 
+  addSampleOcc(tb_2, 5, layers, species, identified) 
  
   // delete default data 
   for(let i = 1; i < 5; i++){ tb_1.rows[2].cells[1].firstChild.click(); } 
@@ -2082,12 +2114,14 @@ function convertTableData(table_data){
   obj.remove(); 
 } 
  
-function addSampleOcc(plot, n ,layers, species){ 
-  var n = 6; 
+function addSampleOcc(plot, n ,layers, species, identified){ 
   var ly = randSample(n, layers,  false); 
   var sp = randSample(n, species, false); 
   var cv = randInt(n-1, 100).concat(['']); 
+  var cv = randSort(cv); 
+  var id = randSample(n-1, identified, false).concat(['']); 
+  var id = randSort(id); 
   for(let i = 0; i<n; i++){ 
-    addRowWithValues({ table: plot, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i] } });  
+    addRowWithValues({ table: plot, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i], Identified: id[i] } });  
   } 
 }</script> <script>function getAllPlotOccDataAsJSON(){var e=getTableData(document.getElementById("plot_all_tb")),t=getTableData(document.getElementById("occ_all_tb")),a={plot:Object.assign({},e.biss_inputs),occ:Object.assign({},t.biss_inputs)};return JSON.stringify(a)}function autoSave(){var e=getAllPlotOccDataAsJSON(),t="biss_"+getNow()+".json",a=new Uint8Array([239,187,191]),n=new Blob([a,e],{type:"text/json"});const o=URL.createObjectURL(n),c=document.createElement("a");document.body.appendChild(c),c.download=t,c.href=o,c.click(),c.remove(),URL.revokeObjectURL(o),delete e}function changeAutoSaveSttting(e){var t=e.value;if("undefined"==typeof timerId)setAutoSave(Number(t));else{if(clearInterval(timerId),"no save"===t)return;setAutoSave(Number(t))}}function setAutoSave(e){timerId=setInterval(autoSave,6e4*e)}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b,span,div{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="smaller" onclick="smaller()"> <input type="button" value="LARGER" onclick="larger()"> <span>Biodiversity Investigation Support System (BiSS)</span> <input id="switch_screen_show" type="button" value="FULL SCREEN" onclick="switchScreenShow(this.id)"> <input type="button" value="Start GPS" onclick="startGPS(this)"> <input type="button" value="Launch mailer" onclick="launchMailer()"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools"),ul_all=createSpecieUlModule({species:"",ns:"all",show_select_button:!0,show_select_ncol:!0,show_button_load_sl:!0,show_button_save_sl:!0,show_text_input:!0,show_select_plot:!0,show_select_layer:!0});tab_tools.appendChild(ul_all),tab_tools.appendChild(createWameiSpan());</script> </div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createAutoSaveIntervalSelect()),tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <span id="plot_all"></span> <span id="occ_all"></span> <span id="comp_table"> <script></script> </span></div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 

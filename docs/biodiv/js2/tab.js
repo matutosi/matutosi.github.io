@@ -37,13 +37,17 @@ function updateTab(){
 function updateInputsPlotLayerSpecies(){
     // All plots
   updateAllInputsTables();
+
     // PLOT and Layer select in Tools
   updatePlotLayer({});
+
+  var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])";
 
     // species list
   var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])";
   var sp_sl_selects = document.querySelectorAll(selector);
   for(let select of sp_sl_selects){
+    updateSelectSLById(select.id);
     var id = select.id.replace('select', 'sp_list');
     var sl = select.value;
     replaceSpeciesList(sl, id);
@@ -186,7 +190,7 @@ function createAllInputsTable(table_name){
   var all_table_name = table_name.split("_")[1] + '_all';
   //   var all_table = makeTableJO(all_data, all_table_name);
   var all_table = tableModule({table_data: all_data, ns: all_table_name,
-                              id_text: true, search_input: true,
+                              search_input: true,
                               hide_button: true});
   return all_table;
 }

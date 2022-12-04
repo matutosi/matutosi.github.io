@@ -34,6 +34,10 @@ function randSample(n, array, only_once = false){
   }
   return sample;
 }
+function randSort(array){
+  return randSample(array.length, array, true);
+}
+
 
 // Make look ahead regular expression
 //    @param   A string.
