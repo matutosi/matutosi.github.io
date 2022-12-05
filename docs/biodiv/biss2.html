@@ -122,9 +122,14 @@ function searchParentTable(obj, index = 0){
 //    for(let name of getColNames(table)){ console.log(getColData(table, name, true)) } 
 //    for(let td of tds                 ){ console.log(getCellData(td, true)) } 
 //    for(let td of tds                 ){ console.log(getCellData(td)) } 
-function getColData(table, col_name, list_with_index = false){ 
-  const col_no   = getColNames(table).indexOf(col_name); 
+function getColData(table, c_name, list_with_index = false){ 
+  const col_no = getColNames(table).indexOf(c_name); 
   var group_value = []; 
+  var n_row = nRow(table) - 2; // 2: th and hide row 
+  if(col_no < 0){ 
+    for(let i=0; i<n_row; i++){ group_value.push(''); } 
+    return group_value; 
+  } 
   var table = table.querySelectorAll("tr:not([class=hide_button])"); 
   for(Ri = 1; Ri < table.length; Ri++){    // except th (rows[0]) 
     group_value[Ri - 1] = getCellData(table[Ri].cells[col_no], list_with_index) 
