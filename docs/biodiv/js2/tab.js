@@ -191,7 +191,7 @@ function createAllInputsTable(table_name){
   //   var all_table = makeTableJO(all_data, all_table_name);
   var all_table = tableModule({table_data: all_data, ns: all_table_name,
                               search_input: true,
-                              hide_button: true});
+                              fit_button: true, hide_button: true});
   return all_table;
 }
 function getUniqeColNames(tables){

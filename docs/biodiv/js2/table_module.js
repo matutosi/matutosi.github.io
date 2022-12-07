@@ -244,7 +244,7 @@ function createTdWithChild(child){
 async function replaceTable(obj){
   var json = await readFile(obj.files[0]);
   var table_data = JSON.parse(json);
-  var ns = obj.value.split("\\").slice(-1)[0].replace("\.conf", "")
+  var ns = obj.value.split("\\").slice(-1)[0].replace("\.json", "")
   var new_module = tableModule({ table_data: table_data, ns: ns,
                                       id_text: true, load_button: true, save_button: true, hide_button: true, 
                                       add_button: true });
@@ -272,6 +272,6 @@ function saveSettings(obj){
   var table_json = JSON.stringify(table_data);
   var f_name = obj.nextElementSibling.value;
   if(f_name === ""){ f_name = table.id.replace(/_tb$/, ''); }
-  downloadStrings(strings = table_json, file_name = f_name + ".conf")
+  downloadStrings(strings = table_json, file_name = f_name + ".json")
 }
 

@@ -24,8 +24,6 @@ function showExample(obj){
   for(let i = 1; i < 5; i++){ tb_2.rows[2].cells[1].firstChild.click(); }
 
   // update "all inputs tables" and "input species list"
-  //   document.getElementById('update_all_inputs_tables_button').click();
-  // add species list
   var sp_nara   = grepArray(wamei, /ナラ/);
   var sp_buna   = grepArray(wamei, /ブナ/);
   var sp_kusu   = grepArray(wamei, /クス/);
@@ -41,6 +39,8 @@ function showExample(obj){
 
   // all update
   updateInputsPlotLayerSpecies()
+
+  tabs[tabs.length - 2].onclick();  // move tab
 
   obj.remove();
 }
