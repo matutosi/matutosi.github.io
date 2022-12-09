@@ -4,10 +4,10 @@ function switchScreenShow(id){
   var button = document.getElementById(id);
   if( checkFullScreen() ) {
     document.exitFullscreen(); 
-    button.setAttribute("value", "FULL SCREEN");
+  //     button.setAttribute("value", "FULL SCREEN");
   } else {
     document.body.requestFullscreen(); 
-    button.setAttribute("value", "normal show");
+  //     button.setAttribute("value", "normal show");
   }
 }
 function checkFullScreen(){

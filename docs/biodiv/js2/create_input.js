@@ -19,12 +19,6 @@ function createDelButton(){
 function createUpdateButton(){
   return createInput({ type: "button", value: "UPDATE_TIME_GPS", onclick: "updateTimeGPS(this)" });
 }
-function createStartGPSButton(){
-  return createInput({ type: "button", value: "Start GPS", onclick: "startGPS(this)" });
-}
-function createStopGPSButton(){
-  return createInput({ type: "button", value: "Stop GPS", onclick: "stopGPS(this)" });
-}
 function createFitTable(id){
   return createInput({ type:"button", value: "Fit width", onclick: "shortTable(this)", id: id});
 }

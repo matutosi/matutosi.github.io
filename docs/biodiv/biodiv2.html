@@ -63,13 +63,10 @@
 <input type="button" value="LARGER"  onclick="larger()"  />
 <span>Biodiversity Investigation Support System (BiSS)</span>
 <!--            Switch full screen           -->
-<input id="switch_screen_show" type="button" value="FULL SCREEN"  onclick="switchScreenShow(this.id)" />
+<input id="switch_screen_show" type="button" value="FULL SCREEN <=> windowed"  onclick="switchScreenShow(this.id)" />
 <!--      
 <input type="button" value="saveHTML"  onclick="saveHTML()" />
 -->
-<!--      TODO: Use different background color or something CLEAR for users in switching on / off       -->
-<input type="button" value="Start GPS"     onclick="startGPS(this)"    />
-<input type='button' value="Launch mailer" onclick="launchMailer()"    />
 <input type='button' value="Show example"  onclick="showExample(this)" />
 </p>
 
@@ -100,6 +97,10 @@
     <div id="tab_settings">
       <script>
         var tab_setting = document.getElementById("tab_settings");
+        tab_setting.appendChild( createStartGPSButton()         );
+        tab_setting.appendChild( crEl({ 'el': 'hr' })           );
+        tab_setting.appendChild( createMailerSpan()     );
+        tab_setting.appendChild( crEl({ 'el': 'hr' })           );
         tab_setting.appendChild( createAutoSaveIntervalSelect() );
         tab_setting.appendChild( createSettingSelect()          );
         tab_setting.appendChild( addSettingPartButton('plot')   );

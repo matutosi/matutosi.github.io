@@ -48,3 +48,10 @@ function startGPS(obj) {
   watchId = navigator.geolocation.watchPosition(successCallback, errorCallback, positionOptions);
   obj.replaceWith( createStopGPSButton() );
 }
+
+function createStartGPSButton(){
+  return createInput({ type: "button", value: "Start GPS", onclick: "startGPS(this)" });
+}
+function createStopGPSButton(){
+  return createInput({ type: "button", value: "Stop GPS", onclick: "stopGPS(this)" });
+}
