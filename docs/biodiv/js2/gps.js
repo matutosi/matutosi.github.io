@@ -50,7 +50,7 @@ function startGPS(obj) {
 }
 
 function createStartGPSButton(){
-  return createInput({ type: "button", value: "Start GPS", onclick: "startGPS(this)" });
+  return createInput({ type: "button", value: "Use GPS", onclick: "startGPS(this)" });
 }
 function createStopGPSButton(){
   return createInput({ type: "button", value: "Stop GPS", onclick: "stopGPS(this)" });
