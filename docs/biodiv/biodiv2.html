@@ -59,11 +59,11 @@
 
 
 <p>
-<input type="button" value="smaller" onclick="smaller()" />
-<input type="button" value="LARGER"  onclick="larger()"  />
+<input type="button" value="small" onclick="smaller()" />
+<input type="button" value="LARGE"  onclick="larger()"  />
 <span>Biodiversity Investigation Support System (BiSS)</span>
 <!--            Switch full screen           -->
-<input id="switch_screen_show" type="button" value="FULL SCREEN <=> windowed"  onclick="switchScreenShow(this.id)" />
+<input id="switch_screen_show" type="button" value="FULL SC <=> windowed"  onclick="switchScreenShow(this.id)" />
 <!--      
 <input type="button" value="saveHTML"  onclick="saveHTML()" />
 -->
@@ -85,6 +85,7 @@
         var tab_tools = document.getElementById("tab_tools");
         var ul_all    = createSpecieUlModule({ species: '', ns: 'all',
                         show_select_button   : true, 
+                        show_comp_checkbox   : true, 
                         show_select_ncol     : true, 
                         show_button_load_sl  : true, show_button_save_sl  : true, 
                         show_text_input      : true, 

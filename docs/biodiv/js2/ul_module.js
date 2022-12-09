@@ -23,7 +23,8 @@ function createAddCompButton(id){
 }
 
 function createSpecieUlModule({ species, ns,
-                                show_select_button   , show_button_update_sl, show_button_add_comp, 
+                                show_select_button   , show_comp_checkbox, 
+                                show_button_update_sl, show_button_add_comp, 
                                 show_select_ncol     , 
                                 show_button_load_sl  , show_button_save_sl  , 
                                 show_text_input      , 
@@ -32,6 +33,7 @@ function createSpecieUlModule({ species, ns,
   var base_name = 'sp_list_';
   var main             = createSpanWithId    ( base_name + 'module-'    + ns          );
   var select_button    = createSelectSL      ( base_name + 'select-'    + ns          );
+  var comp_checkbox    = createCompCheckbox  ( base_name + 'checkbox-'  + ns          );
   var button_update_sl = createUpdateSLButoon( base_name + 'update-'    + ns          );
   var button_add_comp  = createAddCompButton ( base_name + 'add_comp-'  + ns          );
   var select_ncol      = createSelectNumber  ( base_name + 'ncols-'     + ns          );
@@ -48,6 +50,7 @@ function createSpecieUlModule({ species, ns,
   var sp_list          = createSpecieList    ( base_name + 'sp_list-'   + ns, species );
 
   main.appendChild( select_button       );
+  main.appendChild( comp_checkbox       );
   main.appendChild( button_update_sl    );
   main.appendChild( button_add_comp     );
   main.appendChild( select_ncol         );
@@ -67,6 +70,7 @@ function createSpecieUlModule({ species, ns,
   main.appendChild( crEl({el:'hr'})     );
 
   if( show_select_button    === void 0){ select_button      .style.display = "none"; }
+  if( show_comp_checkbox    === void 0){ comp_checkbox      .style.display = "none"; }
   if( show_button_update_sl === void 0){ button_update_sl   .style.display = "none"; }
   if( show_button_add_comp  === void 0){ button_add_comp    .style.display = "none"; }
   if( show_select_ncol      === void 0){ select_ncol        .style.display = "none"; }
@@ -90,12 +94,18 @@ function createUpdateSLButoon(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update select list', onclick: 'updateSelectSL(this)'} });
 }
 function createSelectSL(id){
-  var span = crEl({ el:'span', ih: '<b>Select species list:</b>' });
-  var ns = id.split('-')[1];
+  var span   = crEl({ el:'span', ih: '<b>Select species list:</b>' });
   var select = createSL(id);
   span.appendChild(select);
   return span;
 }
+function createCompCheckbox(id){
+  var span     = crEl({ el:'span', ih: '<b>Include composition</b>' });
+  var checkbox = crEl({ el:'input', ats:{id: id, type: 'checkbox', onchange: 'changeSL(this)'} });
+  span.appendChild(checkbox);
+  return span;
+}
+
 function updateSelectSL(obj){
   //   var id = this.id;
   // console.log(id);
@@ -121,10 +131,12 @@ function createSL(id, selected_index = 0){
   return select
 }
 function changeSL(obj){
-  var id = 'sp_list_sp_list-' + obj.id.split('-')[1];
-  var sl = obj.value;
-  // console.log(id);
-  replaceSpeciesList(sl, id);
+  var ns = obj.id.split('-')[1];
+  var id = 'sp_list_sp_list-' + ns;
+  var sl = document.getElementById('sp_list_select-' + ns).value;
+  // console.log('id:' + id + ', sl:' + sl);
+  var is_checked = document.getElementById('sp_list_checkbox-' + ns).checked;
+  replaceSpeciesList(sl, id, is_checked);
 }
 
 // Load 
@@ -220,10 +232,10 @@ function createSpecieList(id, species){
 //    @param  sl   A string of a species list.
 //    @param  id   A string of a namespace: plot name, 'all', or 'wamei'.
 // 
-function replaceSpeciesList(sl, id){
+function replaceSpeciesList(sl, id, add_comp = true){
   // var sl = 'tabu';
   var new_sp  = (sl === 'NEW') ? [] : getSLinLS(sl);
-  var comp_sp = getSpeciesInComposition();
+  var comp_sp = add_comp ? getSpeciesInComposition() : [];
   var new_sp  = new_sp.concat(comp_sp).sort();
   var new_sp_list = createSpecieList(id, new_sp);
   var old_sp_list = document.getElementById(id);

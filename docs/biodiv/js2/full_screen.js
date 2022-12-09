@@ -4,7 +4,7 @@ function switchScreenShow(id){
   var button = document.getElementById(id);
   if( checkFullScreen() ) {
     document.exitFullscreen(); 
-  //     button.setAttribute("value", "FULL SCREEN");
+  //     button.setAttribute("value", "FULL-SCRN");
   } else {
     document.body.requestFullscreen(); 
   //     button.setAttribute("value", "normal show");

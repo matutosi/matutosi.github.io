@@ -48,9 +48,12 @@ function updateInputsPlotLayerSpecies(){
   var sp_sl_selects = document.querySelectorAll(selector);
   for(let select of sp_sl_selects){
     updateSelectSLById(select.id);
-    var id = select.id.replace('select', 'sp_list');
+//    var id = select.id.replace('select', 'sp_list');
+    var ns = select.id.split('-')[1];
+    var id = 'sp_list_sp_list-' + ns;
     var sl = select.value;
-    replaceSpeciesList(sl, id);
+    var is_checked = document.getElementById('sp_list_checkbox-' + ns).checked;
+    replaceSpeciesList(sl, id, is_checked);
   }
 }
 
@@ -145,6 +148,7 @@ function addInputTab({ obj, id }){
   }
   var ul_module = createSpecieUlModule({ species: '', ns: id,
                   show_select_button   : true, 
+                  show_comp_checkbox   : true, 
                   show_text_input      : true, 
                   show_select_layer    : show_select_layer   });
   div.appendChild( ul_module );
