@@ -329,3 +329,13 @@ function removeEmptyInArray(array){
   }
   return array;
 }
+
+function multiIndexOf(array, element){
+  var indices = [];
+  let idx = array.indexOf(element);
+  while (idx !== -1) {
+    indices.push(idx);
+    idx = array.indexOf(element, idx + 1);
+  }
+  return indices;
+}

@@ -41,8 +41,6 @@ function updateInputsPlotLayerSpecies(){
     // PLOT and Layer select in Tools
   updatePlotLayer({});
 
-  var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])";
-
     // species list
   var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])";
   var sp_sl_selects = document.querySelectorAll(selector);
@@ -218,6 +216,19 @@ function getMultiTableInputs(tables, c_names){
   return inputs;
 }
 
+function getMultiTableSelects(tables){
+  var selects = [];
+  for(let table of tables){
+    var d_types = getDataTypes(table);
+    var c_names = getColNames(table);
+    var indices = multiIndexOf(d_types, 'list');
+    for(i of indices){
+      selects.push(c_names[i]);
+    }
+  }
+  return uniq(selects);
+}
+
 function getMultiTableOptions(tables, c_names){
   var options = [];
   for(let c_name of c_names){
@@ -226,7 +237,6 @@ function getMultiTableOptions(tables, c_names){
       options[c_name] = options[c_name].concat(getSelectOne(tb, c_name));
     }
   }
-  options
   return options;
 }
 

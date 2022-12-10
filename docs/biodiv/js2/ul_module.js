@@ -44,9 +44,10 @@ function createSpecieUlModule({ species, ns,
   var staged           = createSpanWithId    ( base_name + 'staged-'    + ns          );
   var text_input       = createSLInput       ( base_name + 'input-'     + ns          );
   var button_update_pl = createUpdatePLButton( base_name + 'update_pl-' + ns          );
-  var select_plot      = createSelectPlot    ( base_name + 'plot-'      + ns          );
-  var select_layer     = createSelectLayer   ( base_name + 'layer-'     + ns          );
   var button_add       = createSLAdd         ( base_name + 'add-'       + ns          );
+  var select_plot      = createSelectPlot    ( base_name + 'plot-'      + ns          );
+  var select_options   = createOptionsSelect ( base_name + 'select-'    + ns          );
+  var select_layer     = createSelectLayer   ( base_name + 'layer-'     + ns          );
   var sp_list          = createSpecieList    ( base_name + 'sp_list-'   + ns, species );
 
   main.appendChild( select_button       );
@@ -63,9 +64,10 @@ function createSpecieUlModule({ species, ns,
   main.appendChild( text_input          );
   main.appendChild( crEl({ el: 'br' })  );
   main.appendChild( button_update_pl    );
+  main.appendChild( button_add          );
   main.appendChild( select_plot         );
   main.appendChild( select_layer        );
-  main.appendChild( button_add          );
+  main.appendChild( select_options      );
   main.appendChild( sp_list             );
   main.appendChild( crEl({el:'hr'})     );
 
@@ -80,6 +82,7 @@ function createSpecieUlModule({ species, ns,
   if( show_button_update_pl === void 0){ button_update_pl   .style.display = "none"; }
   if( show_select_plot      === void 0){ select_plot        .style.display = "none"; }
   if( show_select_layer     === void 0){ select_layer       .style.display = "none"; }
+  if( show_select_layer     === void 0){ select_options     .style.display = "none"; }
 
   return main;
 }
@@ -94,7 +97,7 @@ function createUpdateSLButoon(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update select list', onclick: 'updateSelectSL(this)'} });
 }
 function createSelectSL(id){
-  var span   = crEl({ el:'span', ih: '<b>Select species list:</b>' });
+  var span   = crEl({ el:'span', ih: '<b>Species list:</b>' });
   var select = createSL(id);
   span.appendChild(select);
   return span;
@@ -204,7 +207,7 @@ function saveSL(obj){
 
 // No. of columns
 function createSelectNumber(id){
-  var span = crEl({el:'span', ih: "<b>No. of Column:</b>" });
+  var span = crEl({el:'span', ih: "<b>No. of cols:</b>" });
   var select = createSelectOpt([1,2,3,4,5,6,7,8,9], 5, id);
   select.setAttribute('onchange', 'changeUlColumns(this)');
   span.appendChild(select);
@@ -306,7 +309,7 @@ function replaceSelectLayer(id){
 
 // Add species
 function createSLAdd(id){
-  return crEl({ el:'input', ats:{type: 'button', id: id, value: 'Add species to PLOT', onclick: 'addSpecies(this)' } });
+  return crEl({ el:'input', ats:{type: 'button', id: id, value: 'Add species to', onclick: 'addSpecies(this)' } });
 }
 function addSpeciesList(id, add_sp){
   var old_sp_list = document.getElementById(id);
@@ -383,4 +386,22 @@ function getGrandChildrenValues(element){
     }
   }
   return values;
+}
+
+function createOptionsSelect(id){
+  var ns = id.split('-')[1];
+  var selector =  "table[id^='input_occ_']";
+  var tables = document.querySelectorAll(selector);
+  var selects = getMultiTableSelects(tables);
+  var options = getMultiTableOptions(tables, selects);
+  var opt_keys = Object.keys(options);
+  var span = crEl({ el: 'span', id: id });
+  for(key of opt_keys){
+    span.appendChild( crEl({ el: 'span', ih: key}) );
+    var select = uniq(options[key]);
+    select.unshift('');
+    var select = createSelectOpt(uniq(select), 0, 'sp_list_' + key + '_select-' + ns);
+    span.appendChild( select );
+  }
+  return span;
 }
