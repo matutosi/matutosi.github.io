@@ -122,9 +122,9 @@ function tableModule({ table_data, ns,
                                 dn.appendChild( createAddRowButton( ns + '_add_rows') );
   }
   if(calc_button != void 0){    dn.appendChild( crEl({ el: 'br' }) );
-                                dn.appendChild( crEl({ el: 'span', ih: "<b>Value: </b>" }) );
+                                dn.appendChild( crEl({ el: 'span', ih: "<b>Value</b>" }) );
                                 dn.appendChild( createSelectOpt( colByType(table, "number") ) );
-                                dn.appendChild( crEl({ el: 'span', ih: "; <b>Group: </b>" }) );
+                                dn.appendChild( crEl({ el: 'span', ih: "<b>Group</b>" }) );
                                 dn.appendChild( createSelectOpt( colByType(table, "list") ) );
                                 dn.appendChild( createSumButton() );
   }

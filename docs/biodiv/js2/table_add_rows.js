@@ -9,8 +9,10 @@ function addRowWithValues({ table, values }){
   var row_no   = table.rows.length - 1;
   for(let key of keys){
     var col_no = c_names.indexOf(key);
+    if(col_no < 0) continue;
     var td = table.rows[row_no].cells[col_no];
     var value = (values[key] === void 0) ? '' : values[key];
+  // console.log(c_names);
   // console.log(td);
   // console.log(values);
   // console.log(key);

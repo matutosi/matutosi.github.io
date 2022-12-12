@@ -32,11 +32,12 @@ function createSpecieUlModule({ species, ns,
   // var ns = 'all'; var species = sp_list;
   var base_name = 'sp_list_';
   var main             = createSpanWithId    ( base_name + 'module-'    + ns          );
+
   var select_button    = createSelectSL      ( base_name + 'select-'    + ns          );
-  var comp_checkbox    = createCompCheckbox  ( base_name + 'checkbox-'  + ns          );
-  var button_update_sl = createUpdateSLButoon( base_name + 'update-'    + ns          );
-  var button_add_comp  = createAddCompButton ( base_name + 'add_comp-'  + ns          );
   var select_ncol      = createSelectNumber  ( base_name + 'ncols-'     + ns          );
+  //   var button_update_sl = createUpdateSLButoon( base_name + 'update-'    + ns          );
+  //   var button_add_comp  = createAddCompButton ( base_name + 'add_comp-'  + ns          );
+  var comp_checkbox    = createCompCheckbox  ( base_name + 'checkbox-'  + ns          );
 
   var button_load_sl   = createLoadSLButton  ( base_name + 'load-'      + ns          );
   var button_save_sl   = createSaveSLButoon  ( base_name + 'save-'      + ns          );
@@ -51,11 +52,12 @@ function createSpecieUlModule({ species, ns,
   // console.log(select_options);
   var sp_list          = createSpecieList    ( base_name + 'sp_list-'   + ns, species );
 
+  main.appendChild( select_ncol         );
   main.appendChild( select_button       );
   main.appendChild( comp_checkbox       );
-  main.appendChild( button_update_sl    );
-  main.appendChild( button_add_comp     );
-  main.appendChild( select_ncol         );
+  //   main.appendChild( button_update_sl    );
+  //   main.appendChild( button_add_comp     );
+
   main.appendChild( crEl({ el: 'br' })  );
   main.appendChild( button_load_sl      );
   main.appendChild( button_save_sl      );
@@ -72,11 +74,12 @@ function createSpecieUlModule({ species, ns,
   main.appendChild( sp_list             );
   main.appendChild( crEl({el:'hr'})     );
 
-  if( show_select_button    === void 0){ select_button      .style.display = "none"; }
-  if( show_comp_checkbox    === void 0){ comp_checkbox      .style.display = "none"; }
-  if( show_button_update_sl === void 0){ button_update_sl   .style.display = "none"; }
-  if( show_button_add_comp  === void 0){ button_add_comp    .style.display = "none"; }
   if( show_select_ncol      === void 0){ select_ncol        .style.display = "none"; }
+  if( show_select_button    === void 0){ select_button      .style.display = "none"; }
+  //   if( show_button_update_sl === void 0){ button_update_sl   .style.display = "none"; }
+  //   if( show_button_add_comp  === void 0){ button_add_comp    .style.display = "none"; }
+  if( show_comp_checkbox    === void 0){ comp_checkbox      .style.display = "none"; }
+
   if( show_button_load_sl   === void 0){ button_load_sl     .style.display = "none"; }
   if( show_button_save_sl   === void 0){ button_save_sl     .style.display = "none"; }
   if( show_text_input       === void 0){ text_input         .style.display = "none"; }
@@ -98,7 +101,7 @@ function createUpdateSLButoon(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update select list', onclick: 'updateSelectSL(this)'} });
 }
 function createSelectSL(id){
-  var span   = crEl({ el:'span', ih: '<b>Species list:</b>' });
+  var span   = crEl({ el:'span', ih: '<b>Species list</b>' });
   var select = createSL(id);
   span.appendChild(select);
   return span;
@@ -166,7 +169,7 @@ function readFile(file){
   })
 }
 function createLoadSLButton(id){
-  var span = crEl({el:'span', ih: "<b>Add species to list:</b>" });
+  var span = crEl({el:'span', ih: "<b>Add species to list</b>" });
   var file_input = crEl({ el:'input', ats:{ type: "file", id: id, onchange: "loadSL(this)" } });
   span.appendChild(file_input);
   return span;
@@ -208,7 +211,7 @@ function saveSL(obj){
 
 // No. of columns
 function createSelectNumber(id){
-  var span = crEl({el:'span', ih: "<b>No. of cols:</b>" });
+  var span = crEl({el:'span', ih: "<b>No. of cols</b>" });
   var select = createSelectOpt([1,2,3,4,5,6,7,8,9], 5, id);
   select.setAttribute('onchange', 'changeUlColumns(this)');
   span.appendChild(select);
@@ -265,7 +268,7 @@ function createUpdatePLButton(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update plot and layer', onclick: 'updatePlotLayer({ obj:this })'} });
 }
 function createSelectPlot(id){
-  var span = crEl({ el:'span', ih: 'PLOT:' });
+  var span = crEl({ el:'span', ih: 'PLOT' });
   var ns = id.split('-')[1];
   if(ns === 'all' || ns === 'wamei'){
     var tables = document.querySelectorAll("table[id^='input_occ']");
@@ -274,7 +277,7 @@ function createSelectPlot(id){
   }else{
     var plot_list = [ns];
   }
-  var plot_select = createSelectOpt(plot_list, 0, id);
+  var plot_select = createSelectOpt(plot_list.reverse(), 0, id);  // up: new plot, down: old plot
   span.appendChild(plot_select)
   return span;
 }

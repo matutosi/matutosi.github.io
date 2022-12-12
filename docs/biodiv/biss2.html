@@ -765,9 +765,9 @@ function tableModule({ table_data, ns,
                                 dn.appendChild( createAddRowButton( ns + '_add_rows') ); 
   } 
   if(calc_button != void 0){    dn.appendChild( crEl({ el: 'br' }) ); 
-                                dn.appendChild( crEl({ el: 'span', ih: "<b>Value: </b>" }) ); 
+                                dn.appendChild( crEl({ el: 'span', ih: "<b>Value</b>" }) ); 
                                 dn.appendChild( createSelectOpt( colByType(table, "number") ) ); 
-                                dn.appendChild( crEl({ el: 'span', ih: "; <b>Group: </b>" }) ); 
+                                dn.appendChild( crEl({ el: 'span', ih: "<b>Group</b>" }) ); 
                                 dn.appendChild( createSelectOpt( colByType(table, "list") ) ); 
                                 dn.appendChild( createSumButton() ); 
   } 
@@ -926,8 +926,10 @@ function addRowWithValues({ table, values }){
   var row_no   = table.rows.length - 1; 
   for(let key of keys){ 
     var col_no = c_names.indexOf(key); 
+    if(col_no < 0) continue; 
     var td = table.rows[row_no].cells[col_no]; 
     var value = (values[key] === void 0) ? '' : values[key]; 
+  // console.log(c_names); 
   // console.log(td); 
   // console.log(values); 
   // console.log(key); 
@@ -1528,11 +1530,12 @@ function createSpecieUlModule({ species, ns,
   // var ns = 'all'; var species = sp_list; 
   var base_name = 'sp_list_'; 
   var main             = createSpanWithId    ( base_name + 'module-'    + ns          ); 
+ 
   var select_button    = createSelectSL      ( base_name + 'select-'    + ns          ); 
-  var comp_checkbox    = createCompCheckbox  ( base_name + 'checkbox-'  + ns          ); 
-  var button_update_sl = createUpdateSLButoon( base_name + 'update-'    + ns          ); 
-  var button_add_comp  = createAddCompButton ( base_name + 'add_comp-'  + ns          ); 
   var select_ncol      = createSelectNumber  ( base_name + 'ncols-'     + ns          ); 
+  //   var button_update_sl = createUpdateSLButoon( base_name + 'update-'    + ns          ); 
+  //   var button_add_comp  = createAddCompButton ( base_name + 'add_comp-'  + ns          ); 
+  var comp_checkbox    = createCompCheckbox  ( base_name + 'checkbox-'  + ns          ); 
  
   var button_load_sl   = createLoadSLButton  ( base_name + 'load-'      + ns          ); 
   var button_save_sl   = createSaveSLButoon  ( base_name + 'save-'      + ns          ); 
@@ -1547,11 +1550,12 @@ function createSpecieUlModule({ species, ns,
   // console.log(select_options); 
   var sp_list          = createSpecieList    ( base_name + 'sp_list-'   + ns, species ); 
  
+  main.appendChild( select_ncol         ); 
   main.appendChild( select_button       ); 
   main.appendChild( comp_checkbox       ); 
-  main.appendChild( button_update_sl    ); 
-  main.appendChild( button_add_comp     ); 
-  main.appendChild( select_ncol         ); 
+  //   main.appendChild( button_update_sl    ); 
+  //   main.appendChild( button_add_comp     ); 
+ 
   main.appendChild( crEl({ el: 'br' })  ); 
   main.appendChild( button_load_sl      ); 
   main.appendChild( button_save_sl      ); 
@@ -1568,11 +1572,12 @@ function createSpecieUlModule({ species, ns,
   main.appendChild( sp_list             ); 
   main.appendChild( crEl({el:'hr'})     ); 
  
-  if( show_select_button    === void 0){ select_button      .style.display = "none"; } 
-  if( show_comp_checkbox    === void 0){ comp_checkbox      .style.display = "none"; } 
-  if( show_button_update_sl === void 0){ button_update_sl   .style.display = "none"; } 
-  if( show_button_add_comp  === void 0){ button_add_comp    .style.display = "none"; } 
   if( show_select_ncol      === void 0){ select_ncol        .style.display = "none"; } 
+  if( show_select_button    === void 0){ select_button      .style.display = "none"; } 
+  //   if( show_button_update_sl === void 0){ button_update_sl   .style.display = "none"; } 
+  //   if( show_button_add_comp  === void 0){ button_add_comp    .style.display = "none"; } 
+  if( show_comp_checkbox    === void 0){ comp_checkbox      .style.display = "none"; } 
+ 
   if( show_button_load_sl   === void 0){ button_load_sl     .style.display = "none"; } 
   if( show_button_save_sl   === void 0){ button_save_sl     .style.display = "none"; } 
   if( show_text_input       === void 0){ text_input         .style.display = "none"; } 
@@ -1594,7 +1599,7 @@ function createUpdateSLButoon(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update select list', onclick: 'updateSelectSL(this)'} }); 
 } 
 function createSelectSL(id){ 
-  var span   = crEl({ el:'span', ih: '<b>Species list:</b>' }); 
+  var span   = crEl({ el:'span', ih: '<b>Species list</b>' }); 
   var select = createSL(id); 
   span.appendChild(select); 
   return span; 
@@ -1662,7 +1667,7 @@ function readFile(file){
   }) 
 } 
 function createLoadSLButton(id){ 
-  var span = crEl({el:'span', ih: "<b>Add species to list:</b>" }); 
+  var span = crEl({el:'span', ih: "<b>Add species to list</b>" }); 
   var file_input = crEl({ el:'input', ats:{ type: "file", id: id, onchange: "loadSL(this)" } }); 
   span.appendChild(file_input); 
   return span; 
@@ -1704,7 +1709,7 @@ function saveSL(obj){
  
 // No. of columns 
 function createSelectNumber(id){ 
-  var span = crEl({el:'span', ih: "<b>No. of cols:</b>" }); 
+  var span = crEl({el:'span', ih: "<b>No. of cols</b>" }); 
   var select = createSelectOpt([1,2,3,4,5,6,7,8,9], 5, id); 
   select.setAttribute('onchange', 'changeUlColumns(this)'); 
   span.appendChild(select); 
@@ -1761,7 +1766,7 @@ function createUpdatePLButton(id){
   return crEl({ el:'input', ats:{type:'button', id: id, value: 'Update plot and layer', onclick: 'updatePlotLayer({ obj:this })'} }); 
 } 
 function createSelectPlot(id){ 
-  var span = crEl({ el:'span', ih: 'PLOT:' }); 
+  var span = crEl({ el:'span', ih: 'PLOT' }); 
   var ns = id.split('-')[1]; 
   if(ns === 'all' || ns === 'wamei'){ 
     var tables = document.querySelectorAll("table[id^='input_occ']"); 
@@ -1770,7 +1775,7 @@ function createSelectPlot(id){
   }else{ 
     var plot_list = [ns]; 
   } 
-  var plot_select = createSelectOpt(plot_list, 0, id); 
+  var plot_select = createSelectOpt(plot_list.reverse(), 0, id);  // up: new plot, down: old plot 
   span.appendChild(plot_select) 
   return span; 
 } 
@@ -2208,4 +2213,4 @@ function addSampleOcc(plot, n ,layers, species, identified){
   for(let i = 0; i<n; i++){ 
     addRowWithValues({ table: plot, values:{ Layer: ly[i], Species:sp[i], Cover:cv[i], Identified: id[i] } });  
   } 
-}</script> <script>function getAllPlotOccDataAsJSON(){var e=getTableData(document.getElementById("plot_all_tb")),t=getTableData(document.getElementById("occ_all_tb")),a={plot:Object.assign({},e.biss_inputs),occ:Object.assign({},t.biss_inputs)};return JSON.stringify(a)}function autoSave(){var e=getAllPlotOccDataAsJSON(),t="biss_"+getNow()+".json",a=new Uint8Array([239,187,191]),n=new Blob([a,e],{type:"text/json"});const o=URL.createObjectURL(n),c=document.createElement("a");document.body.appendChild(c),c.download=t,c.href=o,c.click(),c.remove(),URL.revokeObjectURL(o),delete e}function changeAutoSaveSttting(e){var t=e.value;if("undefined"==typeof timerId)setAutoSave(Number(t));else{if(clearInterval(timerId),"no save"===t)return;setAutoSave(Number(t))}}function setAutoSave(e){timerId=setInterval(autoSave,6e4*e)}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}input,select,chkbox,b,span,div{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="small" onclick="smaller()"> <input type="button" value="LARGE" onclick="larger()"> <span>Biodiversity Investigation Support System (BiSS)</span> <input id="switch_screen_show" type="button" value="FULL SC <=> windowed" onclick="switchScreenShow(this.id)"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools"),ul_all=createSpecieUlModule({species:"",ns:"all",show_select_button:!0,show_comp_checkbox:!0,show_select_ncol:!0,show_button_load_sl:!0,show_button_save_sl:!0,show_text_input:!0,show_select_plot:!0,show_select_layer:!0});tab_tools.appendChild(ul_all),tab_tools.appendChild(createWameiSpan());</script> </div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createStartGPSButton()),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(createMailerSpan()),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(createAutoSaveIntervalSelect()),tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <span id="plot_all"></span> <span id="occ_all"></span> <span id="comp_table"> <script></script> </span></div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
+}</script> <script>function getAllPlotOccDataAsJSON(){var e=getTableData(document.getElementById("plot_all_tb")),t=getTableData(document.getElementById("occ_all_tb")),a={plot:Object.assign({},e.biss_inputs),occ:Object.assign({},t.biss_inputs)};return JSON.stringify(a)}function autoSave(){var e=getAllPlotOccDataAsJSON(),t="biss_"+getNow()+".json",a=new Uint8Array([239,187,191]),n=new Blob([a,e],{type:"text/json"});const o=URL.createObjectURL(n),c=document.createElement("a");document.body.appendChild(c),c.download=t,c.href=o,c.click(),c.remove(),URL.revokeObjectURL(o),delete e}function changeAutoSaveSttting(e){var t=e.value;if("undefined"==typeof timerId)setAutoSave(Number(t));else{if(clearInterval(timerId),"no save"===t)return;setAutoSave(Number(t))}}function setAutoSave(e){timerId=setInterval(autoSave,6e4*e)}</script> <style> #tabcontrol{ margin:0;} #tabcontrol a{ display:inline-block;border-width:1px 1px 0px 1px; border-style:solid;border-color:black;border-radius:0.75em 0.75em 0px 0px; padding:0.75em 1em;text-decoration:none; color:black;background-color:white;font-weight:bold;position:relative; } #tabbody div{ border:1px solid black;margin-top:-1px; padding:1em;background-color:white;position:relative; z-index:0; min-height:5em; } #tabcontrol a:nth-child(1), #tabbody div:nth-child(1){ background-color:#FFFFE0;}#tabcontrol a:nth-child(2), #tabbody div:nth-child(2){ background-color:#efefff;}#tabcontrol a:nth-child(n+3), #tabbody div:nth-child(n+3){ background-color:#efffef;} </style> <style>:root{ --font-size:16px;}table{ border-collapse:collapse;}input[type="number"]{ width :5em;}select{ margin-right:20px;}input,select,b,span,div{ font-size :var(--font-size);}input{ }table td,th{ font-size :var(--font-size);border-style:solid; padding :0.3em 1em; text-align :center; }table th{ color:white;background-color:#00552e;cursor:pointer;}table td{ border-width:0px 0px; border-color:#00552e; }table tr:nth-child(odd){ background:#AEFFBD;}table td:before{ content:attr(th-lab);}table tr{ border-width:0.5px 0.5px;border-color:#00552e; border-style:solid; }#tab_tools table tr{ background:#FFFFFF;}#tab_tools table th{ color:white;background-color:#FF6E00;}#tab_settings table th{ color:white;background-color:#0033CC;}#tab_settings table td{ border-width:1px 0px; border-color:#0033CC; }#tab_settings table tr:nth-child(odd){ background:#BAD3FF;}#tab_tools td{ text-align :left;vertical-align:top;background:#FFFFF0;} td #sp_staged{ background:#FF6E00;}</style> <style>:not(:root):fullscreen::backdrop{ background-color:white;}</style> <style>:root{ --cc:5;}ul{ column-count :var(--cc);list-style-type:none;padding-left :1px;padding-right :1px;}</style> <script></script> </head> <body> <p> <input type="button" value="small" onclick="smaller()"> <input type="button" value="LARGE" onclick="larger()"> <span>Biodiversity Investigation Support System (BiSS)</span> <input id="switch_screen_show" type="button" value="FULL SC <=> windowed" onclick="switchScreenShow(this.id)"> <input type="button" value="Show example" onclick="showExample(this)"> </p> <div class="Biodiversity Investigation System (BIS)"> <p id="tabcontrol"> <a href="#tab_tools">Tools </a> <a href="#tab_settings">Settings </a> <a href="#tab_all">All plots</a> <input id="add_tab" type="button" value="+ PLOT" onclick="addInputTab({ obj:this })"> </p> <div id="tabbody"> <div id="tab_tools"> <script>var tab_tools=document.getElementById("tab_tools"),ul_all=createSpecieUlModule({species:"",ns:"all",show_select_button:!0,show_comp_checkbox:!0,show_select_ncol:!0,show_button_load_sl:!0,show_button_save_sl:!0,show_text_input:!0,show_select_plot:!0,show_select_layer:!0});tab_tools.appendChild(ul_all),tab_tools.appendChild(createWameiSpan());</script> </div> <div id="tab_settings"> <script>var tab_setting=document.getElementById("tab_settings");tab_setting.appendChild(createStartGPSButton()),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(createMailerSpan()),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(createAutoSaveIntervalSelect()),tab_setting.appendChild(createSettingSelect()),tab_setting.appendChild(addSettingPartButton("plot")),tab_setting.appendChild(addSettingPartButton("occ")),tab_setting.appendChild(crEl({el:"hr"})),tab_setting.appendChild(crEl({el:"span"})),tab_setting.appendChild(crEl({el:"span"})),changeSettingsByName("empty");</script> </div> <div id="tab_all"> <span id="plot_all"></span> <span id="occ_all"></span> <span id="comp_table"> <script></script> </span></div> </div> </div> <div> <script>var column_no=0,column_no_prev=0,dir="asc",tabs=document.getElementById("tabcontrol").getElementsByTagName("a"),pages=document.getElementById("tabbody").getElementsByTagName("div");updateTab(),tabs[1].onclick();</script> <div> </div></div></body> </html> 
