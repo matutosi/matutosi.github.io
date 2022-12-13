@@ -1,3 +1,7 @@
+select,.margin_right{
+  margin-right:  20px;
+}
+
 :root{
   --font-size: 16px;
 }
@@ -10,13 +14,11 @@ input[type="number"]{
   width       : 5em;
 }
 
-select{
-  margin-right:  20px;
-}
-
-
 input,select,b,span,div{
   font-size   : var(--font-size);
+}
+input[type=checkbox]{
+  transform: scale(1.2);
 }
 input{
 /*

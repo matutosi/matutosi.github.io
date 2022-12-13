@@ -2,7 +2,7 @@ function changeTab(){
   var ref = decodeURI(this.href);  // For multibyte character
   var targetid = ref.substring(ref.indexOf('#')+1, ref.length);
   // console.log([ref,targetid]);
-  // show delected tab
+  // show selected tab
   for(var i = 0; i < pages.length; i++) {
     if( pages[i].id != targetid ) {
       pages[i].style.display = "none";
@@ -35,18 +35,16 @@ function updateTab(){
 }
 
 function updateInputsPlotLayerSpecies(){
-    // All plots
-  updateAllInputsTables();
+  updateAllInputsTables();  // All plots
+  updatePlotLayer({});      // PLOT and Layer select in Tools
+  updateSpeciesList()       // species list
+}
 
-    // PLOT and Layer select in Tools
-  updatePlotLayer({});
-
-    // species list
+function updateSpeciesList(){
   var selector =  "select[id^='sp_list_select-']:not([id$='-wamei'])";
   var sp_sl_selects = document.querySelectorAll(selector);
   for(let select of sp_sl_selects){
     updateSelectSLById(select.id);
-//    var id = select.id.replace('select', 'sp_list');
     var ns = select.id.split('-')[1];
     var id = 'sp_list_sp_list-' + ns;
     var sl = select.value;
@@ -140,15 +138,15 @@ function addInputTab({ obj, id }){
   setSortable(table.id);  // Should setSortable() after appendChild()
 
   if(occ_setting.biss_c_names.indexOf('Layer') < 0){ 
-    var show_select_layer = void 0;
+    var show_select_options = void 0;
   }else{
-    var show_select_layer = true;
+    var show_select_options = true;
   }
   var ul_module = createSpecieUlModule({ species: '', ns: id,
                   show_select_button   : true, 
                   show_comp_checkbox   : true, 
                   show_text_input      : true, 
-                  show_select_layer    : show_select_layer   });
+                  show_select_options  : show_select_options   });
   div.appendChild( ul_module );
   // all update
   updateInputsPlotLayerSpecies()

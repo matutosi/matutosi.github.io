@@ -30,7 +30,7 @@ function getTableDataPlus(table){
   var inputs = Object.assign({}, inputs)
   var selects = [];
   for(var i = 0; i < d_types.length; i++){ 
-    selects.push( (d_types[i] === "list") ? getSelectOne(table, c_names[i]): null) 
+    selects.push( (d_types[i] === "list") ? getSelectOne(table, c_names[i]) : null) 
   }
   var biss_data = { biss_c_names: c_names,
                     biss_d_types: d_types,
@@ -44,7 +44,7 @@ function getTableDataPlus(table){
 //    @param c_names  A string of column name to get options in select element.
 //    @return            An array of select options.
 function getSelectOne(table, col_name){
-  // var col_name = "Layer";
+  // var table = document.getElementById('flora_plot_tb'); var col_name = "value";
   const col_no = getColNames(table).indexOf(col_name);
   if(col_no < 0){ return []; }  // no col_name
   var options = table.rows[2].cells[col_no].firstChild.options;
@@ -54,4 +54,3 @@ function getSelectOne(table, col_name){
   }
   return sel_opt;
 }
-

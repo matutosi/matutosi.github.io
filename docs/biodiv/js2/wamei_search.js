@@ -33,7 +33,7 @@ function searchWamei(obj){
     species.splice(limits);
   }
   var new_wamei  = createSpecieUlModule({ species: species, ns: 'wamei',
-                                          show_select_plot     : true, show_select_layer   : true });
+                                          show_select_plot     : true, show_select_options   : true });
   var old_wamei = document.getElementById('sp_list_module-wamei');
   old_wamei.replaceWith(new_wamei);
 }

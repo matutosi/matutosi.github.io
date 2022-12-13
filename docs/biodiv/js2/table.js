@@ -13,7 +13,7 @@ function createTd(col_name, data_type, select, table_data){
       break;
     case "number":
       var td = createTdWithChild( 
-        crEl({ el:'input', ats:{type: data_type, value: table_data, inputmode: "numeric", min: "0"} }) );
+        crEl({ el:'input', ats:{type: data_type, value: "", inputmode: "numeric", min: "0", step: table_data} }) );
       break;
     case "checkbox":
   // console.log([table_data, !!table_data]);
@@ -158,7 +158,9 @@ function convertTableData(table_data){
   var inputs  = [];
   for(var i = 0; i < d_types.length; i++){
     selects.push( (d_types[i] === 'list' ) ? table_data['biss_inputs']['value'][i].split(':') : '' );
-    inputs[c_names[i]] = [(d_types[i] === 'fixed' || d_types[i] === 'checkbox') ? table_data['biss_inputs']['value'][i]: ''];
+    inputs[c_names[i]] = [(d_types[i] === 'fixed' || d_types[i] === 'checkbox'|| d_types[i] === 'number') ?
+      table_data['biss_inputs']['value'][i] : 
+      '' ];
   //     inputs[c_names[i]] = table_data['biss_inputs']['value'][i];
   }
   return {

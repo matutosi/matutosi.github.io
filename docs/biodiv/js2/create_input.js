@@ -26,7 +26,7 @@ function createWideTable(){
   return createInput({ type:"button", value: "Extend width", onclick: "wideTable(this)" });
 }
 function createFileButton(){
-  return createInput({ type: "file", accept: ".conf", onchange: "replaceTable(this)" });
+  return createInput({ type: "file", accept: ".json", onchange: "replaceTable(this)" });
 }
 function createSaveButton(){
   return createInput({ type: "button", value: "Save", onclick: "saveSettings(this)" });
