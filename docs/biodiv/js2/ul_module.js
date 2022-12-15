@@ -145,7 +145,7 @@ function setSelectOption(select, value){
 
 
 function createCompCheckbox(id){
-  var span     = crEl({ el:'span', ih: '<b>Include composition</b>' , ats:{class: 'margin_right'} });
+  var span     = crEl({ el:'span', ih: 'Include composition' , ats:{class: 'margin_right'} });
   var checkbox = crEl({ el:'input', ats:{id: id, type: 'checkbox', onchange: 'changeSL(this)'} });
   span.appendChild(checkbox);
   return span;
@@ -183,7 +183,7 @@ function readFile(file){
   })
 }
 function createLoadSLButton(id){
-  var span = crEl({el:'span', ih: "<b>Add species to list</b>" });
+  var span = crEl({el:'span', ih: "<b>Load</b>" });
   var file_input = crEl({ el:'input', ats:{ type: "file", id: id, onchange: "loadSL(this)" } });
   span.appendChild(file_input);
   return span;
@@ -228,7 +228,7 @@ function saveSL(obj){
 
 // No. of columns
 function createSelectNumber(id){
-  var span = crEl({el:'span', ih: "<b>No. of cols</b>" });
+  var span = crEl({el:'span', ih: "<b>No.</b> of cols" });
   var select = createSelectOpt([1,2,3,4,5,6,7,8,9], 5, id);
   select.setAttribute('onchange', 'changeUlColumns(this)');
   span.appendChild(select);

@@ -28,7 +28,7 @@ function addSettingPart(category, obj){
 function addSettingPartButton(category){
   var keys = Object.keys(data_settings_part[category]);
   var main = crEl({ el:'span'});
-  main.appendChild( crEl({ el: 'span', ih: 'Add items to <b>' + category + '</b>: ' }) );
+  main.appendChild( crEl({ el: 'span', ih: 'Add to <b>' + category + '</b>: ' }) );
   for(let key of keys){
     var input = crEl({ el:'input', ats:{ type:'button', value: key, onclick: 'addSettingPart("' + category + '", this)'} });
     main.appendChild(input);
@@ -50,7 +50,7 @@ function createAutoSaveIntervalSelect(){
 
 function createSettingSelect(){
   var main = crEl({ el:'span' });
-  main.appendChild( crEl({ el: 'span', ih: 'Choose <b>main</b> setting: ' }) );
+  main.appendChild( crEl({ el: 'span', ih: '<b>Base</b> setting: ' }) );
   var settings = Object.keys(data_settings);
   var selects = createSelectOpt(settings, selected_no = 0, id = 'select_settings');
   selects.setAttribute('onChange', 'changeSettings(this)');
