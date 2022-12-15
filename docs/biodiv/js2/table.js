@@ -9,11 +9,11 @@ function createTd(col_name, data_type, select, table_data){
       if(col_name === "SameAs" ) td = crEl({ el: 'td', ih: ''       });
       break;
     case "text":
-      var td = createTdWithChild( crEl({ el:'input', ats:{type: data_type, value: table_data} }) );
+      var td = createTdWithChild( crEl({ el:'input', ats:{type: data_type, value: table_data, size: select} }) );
       break;
     case "number":
       var td = createTdWithChild( 
-        crEl({ el:'input', ats:{type: data_type, value: "", inputmode: "numeric", min: "0", step: table_data} }) );
+        crEl({ el:'input', ats:{type: data_type, value: "", inputmode: "numeric", min: "0", step: select} }) );
       break;
     case "checkbox":
   // console.log([table_data, !!table_data]);
@@ -142,7 +142,7 @@ function addTableData(table, col_names, dat_types, selects, inputs){
     var tr = document.createElement('tr');
     for(let Cj = 0; Cj < nCol(table); Cj++){
       if(col_names[Cj] !== ""){
-        tr.appendChild( createTd(col_names[Cj], dat_types[Cj], selects[Cj], inputs[col_names[Cj]][Ri]) );
+        tr.appendChild( createTd(col_names[Cj], dat_types[Cj], uniq(selects[Cj]), inputs[col_names[Cj]][Ri]) );
       }
     }
     table.appendChild(tr);
@@ -157,11 +157,9 @@ function convertTableData(table_data){
   var selects = [];
   var inputs  = [];
   for(var i = 0; i < d_types.length; i++){
-    selects.push( (d_types[i] === 'list' ) ? table_data['biss_inputs']['value'][i].split(':') : '' );
-    inputs[c_names[i]] = [(d_types[i] === 'fixed' || d_types[i] === 'checkbox'|| d_types[i] === 'number') ?
-      table_data['biss_inputs']['value'][i] : 
-      '' ];
-  //     inputs[c_names[i]] = table_data['biss_inputs']['value'][i];
+    var inputs_value = table_data['biss_inputs']['value'][i];
+    selects.push( (d_types[i] === 'list' ) ? inputs_value.split(':') : inputs_value );
+    inputs[c_names[i]] = [ /fixed|checkbox/.test(d_types[i]) ? inputs_value : '' ];
   }
   return {
     biss_c_names: c_names,
