@@ -120,7 +120,7 @@ function tableModule({ table_data, ns,
   if(add_button  != void 0){    dn.appendChild( createNrowInput( ns + '_nrow') );
                                 dn.appendChild( createAddRowButton( ns + '_add_rows') );
   }
-  if(calc_button != void 0){    dn.appendChild( crEl({ el: 'br' }) );
+  if(calc_button != void 0){    dn.appendChild( crEl({ el: 'hr' }) );
                                 dn.appendChild( crEl({ el: 'span', ih: "<b>Value</b>" }) );
                                 dn.appendChild( createSelectOpt( colByType(table, "number") ) );
                                 dn.appendChild( crEl({ el: 'span', ih: "<b>Group</b>" }) );

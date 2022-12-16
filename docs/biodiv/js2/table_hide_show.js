@@ -41,7 +41,7 @@ function showCol(obj){
       table.rows[Rj].cells[c_no].style.display = '';
   }
   // remove
-  if(obj.parentNode.children.length === 1){ obj.parentNode.textContent = ""; }
+  if(obj.parentNode.children.length === 2){ obj.parentNode.textContent = ""; } // 2: All cols + this col
   obj.remove();
 }
 function hideShowNext(obj){
