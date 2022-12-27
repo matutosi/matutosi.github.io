@@ -26,7 +26,10 @@
     <script src="js2/table_search_text.js">           </script>
     <script src="js2/tab.js">                         </script>
     <script src="js2/ul_module.js">                   </script>
+<!-- 
     <script src="js2/wamei_data.js"   charset="utf-8"></script>
+-->
+    <script src="js2/wamei.js"        charset="utf-8"></script>
     <script src="js2/wamei_search.js" charset="utf-8"></script>
 
     <script src="js2/table.js">                        </script>
@@ -84,13 +87,13 @@
       <script>
         var tab_tools = document.getElementById("tab_tools");
         var ul_all    = createSpecieUlModule({ species: '', ns: 'all',
-                        show_select_button   : true, show_comp_checkbox   : true, 
-                        show_select_ncol     : true, show_delete_list     : true, 
-                        show_button_load_sl  : true, show_button_save_sl  : true, 
-                        show_text_input      : true, 
-                        show_select_plot     : true, show_select_layer   : true });
+                        show_select_button       : true, show_comp_checkbox   : true, 
+                        show_select_ncol         : true, show_delete_list     : true, 
+                        show_button_register_sl  : true, 
+                        show_text_input          : true, 
+                        show_select_plot         : true, show_select_layer   : true });
         tab_tools.appendChild( ul_all );
-        tab_tools.appendChild( createWameiSpan() );
+        tab_tools.appendChild( createSearchFloraSpan() );
       </script>
     </div>
 
