@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 ggplot2の勧め | Rのパッケージの活用</title>
-  <meta name="description" content="Chapter 1 ggplot2の勧め | Rのパッケージの活用" />
+  <title>Chapter 4 Rselenium | Rのパッケージの活用</title>
+  <meta name="description" content="Chapter 4 Rselenium | Rのパッケージの活用" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 ggplot2の勧め | Rのパッケージの活用" />
+  <meta property="og:title" content="Chapter 4 Rselenium | Rのパッケージの活用" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 ggplot2の勧め | Rのパッケージの活用" />
+  <meta name="twitter:title" content="Chapter 4 Rselenium | Rのパッケージの活用" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="magrittr.html"/>
+<link rel="prev" href="rvest.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -212,66 +212,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ggplot2" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> ggplot2の勧め<a href="ggplot2.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="rの作図環境の概要" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Rの作図環境の概要<a href="ggplot2.html#rの作図環境の概要" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rselenium" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Rselenium<a href="rselenium.html#rselenium" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="準備-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> 準備<a href="rselenium.html#準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>base(graphics)</li>
-<li>lattice</li>
-<li>grid</li>
-<li>ggplot2</li>
+<li>RSelenium: CRANからインストール<br />
+</li>
+<li>Selenium: 本家サイトからインストール
+<ul>
+<li>注意: ver3.xxx をインストールする<br />
+ver4.0 以上はRSeleniumuが対応していない(Pythonなら可)<br />
+</li>
+</ul></li>
+<li>ChromeDriver
+<ul>
+<li>注意: 自身の利用しているブラウザのドライバが必要(バージョンも合致する必要あり)
+GoogleChromeは自動的にupdateされるので，バージョンをよく確認する
+通常は，安定版の最新版で大丈夫である</li>
+<li>Seleniumと同じフォルダに保存する</li>
+</ul></li>
 </ul>
 </div>
-<div id="ggplot2とは" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> ggplot2とは<a href="ggplot2.html#ggplot2とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>ggplot2は，tidy dataにしておけば，使いやすい</p>
+<div id="ブラウザの自動化" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> ブラウザの自動化<a href="rselenium.html#ブラウザの自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="ggplot2の利点" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> ggplot2の利点<a href="ggplot2.html#ggplot2の利点" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>1つのデータをもとに，ちょっとの変更で棒グラフ，散布図，などなど各種のplotが可能
-図が綺麗で，テーマの変更も簡単
-facetによるグループ分けも便利</p>
-<p>magrittrとの相性も良い．
-特にファイル名を設定するときの<code>%$%</code>や<code>%T%</code>など</p>
-<p>ggplot2をサポートするライブラリも豊富</p>
-<p>凡例の自動的な位置決めや配置など
-ggpubrなども</p>
+<div id="section-2" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> </h2>
+<div id="使い方-5" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> 使い方<a href="rselenium.html#使い方-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="ggplot2の基本" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> ggplot2の基本<a href="ggplot2.html#ggplot2の基本" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>irisを例にするが，できれば，veganとかdaveのデータを使う
-tidy dataへの変換が必要
-コードのみか，詳しくは松村や比嘉の解説を参考に</p>
-<p>aesthetics</p>
-<p>geom_point()
-geom_bar()
-aes()
-colour
-group
-size</p>
+<div id="注意点-5" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> 注意点<a href="rselenium.html#注意点-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="facetを使おう" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> facetを使おう<a href="ggplot2.html#facetを使おう" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>forループやsubset，あるいはdplyr::filterを使っていたものが，一気にできて便利
-コードも簡単で見やすい</p>
 </div>
-<div id="ggsave" class="section level2 hasAnchor" number="1.6">
-<h2><span class="header-section-number">1.6</span> ggsave<a href="ggplot2.html#ggsave" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="要素の取得" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> 要素の取得<a href="rselenium.html#要素の取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>idがわかるとき
+document.getElementByID()</p>
+<p>xpath
+document.selectQueryAll()[]
+動的にサイトが作られているときには，変化する可能性があるので注意</p>
+<p>使用されているJavaScriptの関数がわかる
+script &lt;- “”
+rem$excute(script)</p>
+<p>例
+BiSSの文字サイズの変更
+主命リストの列数の変更</p>
+<p>スクレイピングの実行時には，適切な時間間隔を空ける
+- 通常は5秒以上を求めていることが多い</p>
+<p>ページ遷移の命令を送信後，十分な間隔がないとHTMLの要素を取得しきれていないことがある
+極端な場合，サーバーからの情報がほとんど何も送られていない，つまりページの内容がほとんど何もないことにある．
+この状況は，通常のマウス操作では何も表示されていないところをクリックするのと同じ状態である．
+サーバからの情報を待つ意味でも適度な間隔を空けるのが望ましい</p>
+<p>動的なサイトの場合は，HTMLの構成中の可能性もある
+ログイン等のページでも，遷移途中のことがある．</p>
 </div>
-<div id="文字化けへの対処windows" class="section level2 hasAnchor" number="1.7">
-<h2><span class="header-section-number">1.7</span> 文字化けへの対処(windows)<a href="ggplot2.html#文字化けへの対処windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="themeを少しだけ説明" class="section level2 hasAnchor" number="1.8">
-<h2><span class="header-section-number">1.8</span> themeを少しだけ説明<a href="ggplot2.html#themeを少しだけ説明" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="参考書" class="section level2 hasAnchor" number="1.9">
-<h2><span class="header-section-number">1.9</span> 参考書<a href="ggplot2.html#参考書" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="その他" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> その他<a href="rselenium.html#その他" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>ggplot2</li>
-<li>ggplot2のレシピ</li>
-<li>unwin GDA</li>
-<li>チートシート</li>
+<li>Rからシェルのコマンドを使う
+<ul>
+<li>pngからPDFへ変換<br />
+</li>
+<li>ファイルの移動<br />
+</li>
+<li>Seleniumuの起動・終了<br />
+</li>
+<li>MeCabやGINZAの実行</li>
+</ul></li>
 </ul>
 
 </div>
@@ -281,8 +290,8 @@ size</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="magrittr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rvest.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

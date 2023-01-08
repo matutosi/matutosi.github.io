@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 ggplot2の勧め | Rのパッケージの活用</title>
-  <meta name="description" content="Chapter 1 ggplot2の勧め | Rのパッケージの活用" />
+  <title>Chapter 3 rvestでスクレイピング | Rのパッケージの活用</title>
+  <meta name="description" content="Chapter 3 rvestでスクレイピング | Rのパッケージの活用" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 ggplot2の勧め | Rのパッケージの活用" />
+  <meta property="og:title" content="Chapter 3 rvestでスクレイピング | Rのパッケージの活用" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 ggplot2の勧め | Rのパッケージの活用" />
+  <meta name="twitter:title" content="Chapter 3 rvestでスクレイピング | Rのパッケージの活用" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="magrittr.html"/>
+<link rel="prev" href="magrittr.html"/>
+<link rel="next" href="rselenium.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -212,68 +212,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ggplot2" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> ggplot2の勧め<a href="ggplot2.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="rの作図環境の概要" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Rの作図環境の概要<a href="ggplot2.html#rの作図環境の概要" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>base(graphics)</li>
-<li>lattice</li>
-<li>grid</li>
-<li>ggplot2</li>
-</ul>
+<div id="rvest" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> rvestでスクレイピング<a href="rvest.html#rvest" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="スクレイピング" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> スクレイピング<a href="rvest.html#スクレイピング" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ここでのスクレイピングとは，ウェブスクレイピングの省略のことで，ウェブサイトにある情報を収集することである．
+ウェブサイトから植生調査データを収集することはほとんどないものの，関連データの収集は可能である．
+例えば，気象庁のページから気象データが収集可能である．
+もちろん，気象データは手動でも収集可能ではあるが，多大な手間と長い時間が必要である．</p>
+<p>ここでは，ウェブでの情報収集の方法とRのパッケージ作成の方法を紹介することを目的とする．
+ウェブでの情報収集にはRのパッケージであるrvestを用いる．
+さらに，rvestを用いて気象庁のページから世界の気象データを入手して，気候ダイアグラムを描画する．
+Rのパッケージ作成では，rvestを用いて作成した関数と収集したデータをまとめたパッケージの作成方法を紹介する．
+著者自身，他人のためにパッケージをつくることは考えておらず，基本的には自分の研究や作業のための関数をまとめることを目的としてパッケージをいくつか作成した．
+作成したら，ついでに他人にも使ってもらえれば嬉しいという程度である．</p>
+<p>過去に作成した関数は，しばらくすると関数の引数や返り値がどのようなものであったのか忘れてしまいがちである．
+パッケージをつくる(特にCRANに登録する)には，引数，返り値，使用例などをまとめる必要がある．
+きっちりまとめなくても良いのではあるが，決まった形式の方がむしろまとめやすい．
+また，RStudioとusethis, testthat, devtoolsなどのパッケージを使ってパッケージ開発すると，各種チェックやテストが可能である．
+各種チェックやテストでたくさんのエラーを見ると，チェックやテストは正直なところ煩わしいと感じる．
+特に，パケージ開発に慣れていないと特にそうである．
+しかし，チェックやテストをすることで，関数の完成度を確実に高めることができるため，パッケージとしてまとめる利点である．</p>
 </div>
-<div id="ggplot2とは" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> ggplot2とは<a href="ggplot2.html#ggplot2とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>ggplot2は，tidy dataにしておけば，使いやすい</p>
-</div>
-<div id="ggplot2の利点" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> ggplot2の利点<a href="ggplot2.html#ggplot2の利点" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>1つのデータをもとに，ちょっとの変更で棒グラフ，散布図，などなど各種のplotが可能
-図が綺麗で，テーマの変更も簡単
-facetによるグループ分けも便利</p>
-<p>magrittrとの相性も良い．
-特にファイル名を設定するときの<code>%$%</code>や<code>%T%</code>など</p>
-<p>ggplot2をサポートするライブラリも豊富</p>
-<p>凡例の自動的な位置決めや配置など
-ggpubrなども</p>
-</div>
-<div id="ggplot2の基本" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> ggplot2の基本<a href="ggplot2.html#ggplot2の基本" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>irisを例にするが，できれば，veganとかdaveのデータを使う
-tidy dataへの変換が必要
-コードのみか，詳しくは松村や比嘉の解説を参考に</p>
-<p>aesthetics</p>
-<p>geom_point()
-geom_bar()
-aes()
-colour
-group
-size</p>
-</div>
-<div id="facetを使おう" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> facetを使おう<a href="ggplot2.html#facetを使おう" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>forループやsubset，あるいはdplyr::filterを使っていたものが，一気にできて便利
-コードも簡単で見やすい</p>
-</div>
-<div id="ggsave" class="section level2 hasAnchor" number="1.6">
-<h2><span class="header-section-number">1.6</span> ggsave<a href="ggplot2.html#ggsave" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="文字化けへの対処windows" class="section level2 hasAnchor" number="1.7">
-<h2><span class="header-section-number">1.7</span> 文字化けへの対処(windows)<a href="ggplot2.html#文字化けへの対処windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="themeを少しだけ説明" class="section level2 hasAnchor" number="1.8">
-<h2><span class="header-section-number">1.8</span> themeを少しだけ説明<a href="ggplot2.html#themeを少しだけ説明" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="参考書" class="section level2 hasAnchor" number="1.9">
-<h2><span class="header-section-number">1.9</span> 参考書<a href="ggplot2.html#参考書" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>ggplot2</li>
-<li>ggplot2のレシピ</li>
-<li>unwin GDA</li>
-<li>チートシート</li>
-</ul>
+<div id="rvest-と-rselenium" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> rvest と RSelenium<a href="rvest.html#rvest-と-rselenium" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>スクレイピングをするために使われる主なRのパッケージとしては，rvestとRSeleniumがある．
+rvestは，静的なサイトを対象とするときに役立つ．
+つまり，URLを指定すれば対象のサイトのページが決まるときである．
+気象庁での気象データを提供しているページがこれに当たる．
+一方，RSeleniumは動的なサイトを対象とするときに役立つ．
+例えば，テキストボックスへのデータ入力やプルダウンメニューの選択あるいはその後のマウス操作でページが遷移する場合である．
+このような動的なサイトでは，Seleniumだけでなく，Javascriptを部分的に用いるのも効果的である．
+なお，rvestでもユーザ名とパスワードを用いた一般的なログインは可能である．
+また，politeパッケージと組み合わせることである程度の動的なサイトのスクレイピングは可能である．</p>
+<!--
+CRANには，植生データの取得のためのパッケージがある．
+  # 本当?
+  # 海外のもの
+しかし，自分のもとめるデータがあるとは限らない．
+特に日本のデータの取得は少ない．
 
+-->
+</div>
+<div id="rvestのできること" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> rvestのできること<a href="rvest.html#rvestのできること" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>HTMLの取得<br />
+</li>
+<li>DOMの取得: id, class, tagNameなどを用いる<br />
+</li>
+<li>tableの取得
+<ul>
+<li>HTML内の取得したいデータはtableにあることが多いため，非常に便利
+そもそも，tableでないデータを取得するのは非常に不便</li>
+</ul></li>
+<li>リンクの取得<br />
+ページ遷移に使用する<br />
+</li>
+<li>stringrと組み合わせて使うと良い<br />
+</li>
+<li>文字コードの変換にはstringiを用いる</li>
+</ul>
+</div>
+<div id="準備" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> 準備<a href="rvest.html#準備" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="rvest.html#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># install.packages(&quot;rvest&quot;)</span></span>
+<span id="cb17-2"><a href="rvest.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(rvest)</span></span></code></pre></div>
+</div>
+<div id="htmlの取得" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> HTMLの取得<a href="rvest.html#htmlの取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="使い方-3" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> 使い方<a href="rvest.html#使い方-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="注意点-3" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> 注意点<a href="rvest.html#注意点-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="domの取得" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> DOMの取得<a href="rvest.html#domの取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="使い方-4" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> 使い方<a href="rvest.html#使い方-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="注意点-4" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> 注意点<a href="rvest.html#注意点-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
 </div>
 </div>
             </section>
@@ -281,8 +304,8 @@ size</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="magrittr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="magrittr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rselenium.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
