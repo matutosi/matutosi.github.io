@@ -384,12 +384,13 @@ function addSpecies(obj){
     var values = options.replace(/\}$/, '') + ', '  +
                  '"Species": "'    + sp   + '", ' +
                  '"SameAs": "'     + sa   + '", ' +
-                 '"Identified": "' + iden + '"}' ;
+                 '"Identified": ' +  iden + '}' ;
+  // console.log(values);
+  // console.log(table);
     var values = JSON.parse(values);
     addRowWithValues({ table: table, values: values });
   //     addRowWithValues({ table: table, values: {Layer: layer, Species: sp, SameAs: sa, Identified: iden} });
   }
-
   // clear inputs
   input.value = '';
     // Delete from the front, elements will be shifted and don't work well

@@ -251,7 +251,7 @@ function checkSameAs(inputs, pl, sp, id, sa){
   return inputs;
 }
 function createCompTable(tables, pl = "PLOT", sp = "Species", ab = "Cover", id = "Identified", sa = "SameAs"){
-  // var pl = "PLOT";var sp = "Species"; var ab = "Cover"; var tables = document.querySelectorAll("table[id^='input_occ']");
+  // var pl = "PLOT"; var sp = "Species"; var ab = "Cover"; id = "Identified"; sa = "SameAs"; var tables = document.querySelectorAll("table[id^='input_occ']");
   var inputs = getMultiTableInputs(tables, [pl, sp, ab, id, sa]);
   // console.log(inputs);
   var inputs = checkSameAs(inputs, pl, sp, id, sa)
