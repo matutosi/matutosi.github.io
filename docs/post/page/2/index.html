@@ -74,6 +74,41 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220727/" rel="bookmark">
+			sessionStorage
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-27T00:00:00Z">July 27, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		正規のHTML内に書かれた操作ではなく，デベロッパーツールのConsoleにJavaScriptを打ち込んでウェブページを色々と操作しようとしている． ページが移動すると，関数がクリアされるのが難点だ． sessionStorageを使って，関数やその他のデータを保存しておけば，なんとかなりそうだ． ただし，すごくトリッキーな使い方で，本来の使い方ではなさそう．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20220726/" rel="bookmark">
+			プログラミングと文章の構造化
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-26T00:00:00Z">July 26, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		プログラムを書いていると文章を構造的に書くのに役立つと思う． 関数が1つの段落だとすると，関数のトピックセンテンスは返り値である． 何を出力したいかが明確でないと，関数は書けない．
+ある関数から次の関数につなぐのは，引数や返り値である． これによってプログラムがつながっていく． 文章もキーワードなどによってつながっていく．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220720/" rel="bookmark">
 			手作業とスクリプト
 			</a>
@@ -215,42 +250,6 @@ https://gist.github.com/matutosi/01bbc564ba3ae249f121965dc725b649
 	<div class="content list__excerpt post__content clearfix">
 		JavaScriptはブラウザさえあれば，実行できるのが良い． GoogleChromeであれば，F12でコンソールなどが出てきて，テストやデバッグができる． オブジェクトの中身もブラウザの中身と対比して見ながら，チェックできる． コンソールの補完機能も便利だ．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220620/" rel="bookmark">
-			JavaScript
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-20T00:00:00Z">June 20, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		昔は，JavaScriptを「Webページを飾り付けるだけのもの」のように考えていた． 自分自身もそんな感じで使っていたときがあった． でも，JavaScriptでコードを書いていると，結構色々なことができることがわかってきた．
-jQueryとかReactとかいろんなフレームワークもあるけど，とりあえずはvanilla JavaScript(フレームワークを使わない基本的なものだけ)でやっている．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220617/" rel="bookmark">
-			植生調査アプリ(大枠)
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-17T00:00:00Z">June 17, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		植生調査アプリをHTMLとJavaScriptで作っている． JavaScriptにも徐々になれてきて，大体の大枠ができた(ような気がする)． ネットの情報や書籍を参考にしたが，JavaScriptのお作法をちゃんとは理解できていない． そのため，JavaScriptらしくない我流のコードになっている(はず)． mapとかapplyを使えば，もっと単純に書けそうだと思う部分がある． でも使い方が分からないので，forループを回しまくった．
-それでも，他のコードを参考にしつつもだいたい理解して，ほとんどのコードを自分で書くことができた． コードを書いている途中で，たくさん関数を作ったが，結果的に使っていない関数も色々とある． とりあえずは整理して，必要なものだけに絞らなければ．
-	</div>
 </article>
 </main>
 
@@ -267,6 +266,8 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20230103/">テスト駆動開発</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20221123/">BiSS</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20221107/">BiSS</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220929/">clidatajp</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220926/">clidatajp</a></li>
@@ -275,8 +276,6 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 			<li class="widget__item"><a class="widget__link" href="/post/20220905/">MacでSelenium</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220821/">RSelenium</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20220801/">datar</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20220727/">sessionStorage</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20220726/">プログラミングと文章の構造化</a></li>
 		</ul>
 	</div>
 </div>
@@ -310,7 +309,7 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2022 matutosi.
+			&copy; 2023 matutosi.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

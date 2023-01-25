@@ -6,7 +6,26 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 07 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>テスト駆動開発</title>
+      <link>https://matutosi.github.io/post/20230103/</link>
+      <pubDate>Tue, 03 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230103/</guid>
+      <description>テスト駆動開発というのは知っていたが，正直なところ面倒くさい感じがして，ちゃんと使っていなかった． ちょっとしたことだが，作ってみたいプログラムがあって，テスト駆動形で試してみた． 入力と出力が頭の中で整理されているのであれば(そうあるべきだが)，テストを先に作っておいてプログラムを書くのはすごく楽だとわかった．</description>
+    </item>
+    
+    <item>
+      <title>BiSS</title>
+      <link>https://matutosi.github.io/post/20221123/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20221123/</guid>
+      <description>生物多様性調査支援システムを大幅に見直し中． https://matutosi.github.io/biodiv/biodiv2.html
+せっかくPCやタブレットを使うのだから，よく出てくる種名は手入力せずとも選ぶだけにできるようにした． その他，地点ごとの出現種の表示(組成表みたいなもの)なども表示するようにした．</description>
+    </item>
+    
     <item>
       <title>BiSS</title>
       <link>https://matutosi.github.io/post/20221107/</link>

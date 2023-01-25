@@ -6,7 +6,17 @@
     <description>Recent content in biodiv on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 07 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/biodiv/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/biodiv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BiSS</title>
+      <link>https://matutosi.github.io/post/20221123/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20221123/</guid>
+      <description>生物多様性調査支援システムを大幅に見直し中． https://matutosi.github.io/biodiv/biodiv2.html
+せっかくPCやタブレットを使うのだから，よく出てくる種名は手入力せずとも選ぶだけにできるようにした． その他，地点ごとの出現種の表示(組成表みたいなもの)なども表示するようにした．</description>
+    </item>
+    
     <item>
       <title>BiSS</title>
       <link>https://matutosi.github.io/post/20221107/</link>
