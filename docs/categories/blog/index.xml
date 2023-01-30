@@ -6,7 +6,17 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 25 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ドンピシャな検索結果</title>
+      <link>https://matutosi.github.io/post/20230131/</link>
+      <pubDate>Mon, 30 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230131/</guid>
+      <description>web茶まめという形態素解析ができるページがある． このページは非常に便利で，テキストを貼り付けるかファイルをアップロードすれば形態素解析の結果を得ることができる． ただし，APIが整備されておらず，このページを使うには手作業での作業が必要である． そこで，Rとrvestを使って作業を自動化することにした． 自動化のための関数が一応できた． 関数のコードはまだまだ改善の余地はあるだろうが，とりあえずは動く． 本来ならば関数の作成前に検索すべきだったが，完成作成後にweb茶まめをRで使うツールが既にあるかもしれないと思った． &amp;ldquo;chamame in r&amp;quot;で検索したところ，&amp;ldquo;Analyzed data of neko by chamame - R&amp;quot;となんともドンピシャな検索結果が出てきた． あまりにドンピシャ過ぎるのでちょっとびっくりしたが，恐る恐るリンクをクリックすると，自分のページだった． そりゃそうだな． ちなみに，このページの説明は手作業で取得したデータについてである．
+ web茶まめ https://chamame.ninjal.ac.jp/index.html https://github.com/matutosi/moranajp/blob/develop/R/moranajp.R https://github.com/matutosi/moranajp/blob/develop/man/web_chamame.Rd  </description>
+    </item>
+    
     <item>
       <title>バグ</title>
       <link>https://matutosi.github.io/post/20230125/</link>

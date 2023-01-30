@@ -6,75 +6,15 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>DeepL API</title>
-      <link>https://matutosi.github.io/post/20220623/</link>
-      <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
+      <title>ドンピシャな検索結果</title>
+      <link>https://matutosi.github.io/post/20230131/</link>
+      <pubDate>Mon, 30 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://matutosi.github.io/post/20220623/</guid>
-      <description>Google翻訳も良いが，DeepLの翻訳は結構自然で良い． APIが使えるのはしばらく前から知っていたが，手を出していなかった． ちょっと調べると簡単に使えそう．
-https://qiita.com/yaju/items/bf4613393cd4ee402d17
-上のページのものをちょっと改変してJavaScript版で作ってみた． APIは自分で取得して，それを入力する必要がある(16行目)．
-https://gist.github.com/matutosi/01bbc564ba3ae249f121965dc725b649</description>
-    </item>
-    
-    <item>
-      <title>JavaScript</title>
-      <link>https://matutosi.github.io/post/20220622/</link>
-      <pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/post/20220622/</guid>
-      <description>JavaScriptはブラウザさえあれば，実行できるのが良い． GoogleChromeであれば，F12でコンソールなどが出てきて，テストやデバッグができる． オブジェクトの中身もブラウザの中身と対比して見ながら，チェックできる． コンソールの補完機能も便利だ．</description>
-    </item>
-    
-    <item>
-      <title>JavaScript</title>
-      <link>https://matutosi.github.io/post/20220620/</link>
-      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/post/20220620/</guid>
-      <description>昔は，JavaScriptを「Webページを飾り付けるだけのもの」のように考えていた． 自分自身もそんな感じで使っていたときがあった． でも，JavaScriptでコードを書いていると，結構色々なことができることがわかってきた．
-jQueryとかReactとかいろんなフレームワークもあるけど，とりあえずはvanilla JavaScript(フレームワークを使わない基本的なものだけ)でやっている．</description>
-    </item>
-    
-    <item>
-      <title>植生調査アプリ(大枠)</title>
-      <link>https://matutosi.github.io/post/20220617/</link>
-      <pubDate>Fri, 17 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/post/20220617/</guid>
-      <description>植生調査アプリをHTMLとJavaScriptで作っている． JavaScriptにも徐々になれてきて，大体の大枠ができた(ような気がする)． ネットの情報や書籍を参考にしたが，JavaScriptのお作法をちゃんとは理解できていない． そのため，JavaScriptらしくない我流のコードになっている(はず)． mapとかapplyを使えば，もっと単純に書けそうだと思う部分がある． でも使い方が分からないので，forループを回しまくった．
-それでも，他のコードを参考にしつつもだいたい理解して，ほとんどのコードを自分で書くことができた． コードを書いている途中で，たくさん関数を作ったが，結果的に使っていない関数も色々とある． とりあえずは整理して，必要なものだけに絞らなければ．</description>
-    </item>
-    
-    <item>
-      <title>植生調査アプリ</title>
-      <link>https://matutosi.github.io/post/20220611/</link>
-      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/post/20220611/</guid>
-      <description>しばらく前にSwiftでiOS用の植生調査アプリを作りかけていた． そこそこのところまではできてきたが，ちょっと行き詰まっていた．
-JavaScriptでいちから作り直しているが，こっちのほうが簡単にできそう． iOSだけでなくAndroidやWindowsでも使えるはず． HTML, JavaScript, cssだけで作っている． これらのファイルをローカル環境にダウンロードすれば簡単に使えるようになるはずだ． AppStoreとかGooglePlayに登録せずとも，GitHubからダウンロードできるようにすれば良いので管理も簡単だ． HTML, JavaScript, cssをちょっと勉強すれば，カスタマイズもできるだろう．</description>
-    </item>
-    
-    <item>
-      <title>JavaScriptの勉強</title>
-      <link>https://matutosi.github.io/post/20220609/</link>
-      <pubDate>Thu, 09 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/post/20220609/</guid>
-      <description>植生調査アプリを作成するのに，JavaScriptを勉強中． そういえば，学生のときにホームページを作ってJavaScriptを作っていた． 嬉しがって，ページを移動するたびに「本当に良いですか」のようなポップアップを出すスクリプトを書いていた． 知人から「鬱陶しいからやめて」と言われたのを思い出す．</description>
-    </item>
-    
-    <item>
-      <title>ひっそりと</title>
-      <link>https://matutosi.github.io/post/20220608/</link>
-      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/post/20220608/</guid>
-      <description>ひっそりとブログを再開，というか適当にメモを書く予定．
-とりあえず，HugoでthemeはMainraodで開始した． themeは変更の可能性あり．</description>
+      <guid>https://matutosi.github.io/post/20230131/</guid>
+      <description>web茶まめという形態素解析ができるページがある． このページは非常に便利で，テキストを貼り付けるかファイルをアップロードすれば形態素解析の結果を得ることができる． ただし，APIが整備されておらず，このページを使うには手作業での作業が必要である． そこで，Rとrvestを使って作業を自動化することにした． 自動化のための関数が一応できた． 関数のコードはまだまだ改善の余地はあるだろうが，とりあえずは動く． 本来ならば関数の作成前に検索すべきだったが，完成作成後にweb茶まめをRで使うツールが既にあるかもしれないと思った． &amp;ldquo;chamame in r&amp;quot;で検索したところ，&amp;ldquo;Analyzed data of neko by chamame - R&amp;quot;となんともドンピシャな検索結果が出てきた． あまりにドンピシャ過ぎるのでちょっとびっくりしたが，恐る恐るリンクをクリックすると，自分のページだった． そりゃそうだな． ちなみに，このページの説明は手作業で取得したデータについてである．
+ web茶まめ https://chamame.ninjal.ac.jp/index.html https://github.com/matutosi/moranajp/blob/develop/R/moranajp.R https://github.com/matutosi/moranajp/blob/develop/man/web_chamame.Rd  </description>
     </item>
     
   </channel>
