@@ -1,3 +1,7 @@
+function showManual(){
+  window.open("https://github.com/matutosi/biodiv/blob/main/man/01-howtouse.md");
+}
+
 function showExample(obj){
 
   // select settings: '_5_layers'

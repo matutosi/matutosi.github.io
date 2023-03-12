@@ -1,3 +1,19 @@
+function getAllPlotAsCSV(){
+  var plot = getTableData( document.getElementById('plot_all_tb') );
+  console.log(plot);
+  var data = { plot: Object.assign({}, plot.biss_inputs) }
+  console.log(data);
+}
+
+function getAllPlotAsCSV(){
+  var occ  = getTableData( document.getElementById('occ_all_tb' ) );
+  occ
+  var data = { occ: Object.assign({}, occ.biss_inputs) }
+  
+  return csv;
+}
+
+
 function getAllPlotOccDataAsJSON(){
   var plot = getTableData( document.getElementById('plot_all_tb') );
   var occ  = getTableData( document.getElementById('occ_all_tb' ) );

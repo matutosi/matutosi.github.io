@@ -1,3 +1,66 @@
+// convert table into array
+//    @param   id_table  A string. A table id.
+//    @param   header    A logical. true: add header.
+//    @return  An array.
+//    @examples
+//    var id_table = 'table-1';
+//    var header = true;
+//    var array = table2array(id_table, header);
+function table2array(id_table, header = true){
+  var table = document.getElementById(id_table);
+  var array = [];
+  for(let i=0; i<table.rows.length; i++){
+    var row = table.rows[i];
+    var array_row = [];
+    for(let j=0; j<row.cells.length; j++){
+      array_row.push(row.cells[j].innerHTML);
+    }
+    array.push(array_row);
+  }
+  if(header){
+    var header = [];
+    for(let i=0; i<table.rows[0].cells.length; i++){
+      header.push(table.rows[0].cells[i].innerHTML);
+    }
+    array.unshift(header);
+  }
+  return array
+}
+
+
+
+
+
+// save array to csv file
+//    @param   array     An array to be saved.
+//    @param   filename  A string. A file name.
+//    @param   sep       A string. A separator.
+//    @param   header    A logical. true: add header.
+//    @return  A string.
+//    @examples
+//    var array = [['a','b','c'],[1,2,3],[4,5,6]];
+//    var filename = 'test.csv';
+//    var sep = ',';
+//    var header = true;
+//    saveArrayToCsv(array, filename, sep, header);
+function saveArrayToCsv(array, filename, sep = ',', header = true){
+  var csv = ''; 
+  if(header){
+    csv += array[0].join(sep) + '\n';
+    array = array.slice(1);
+  }
+  for(let i=0; i<array.length; i++){
+    csv += array[i].join(sep) + '\n';
+  }
+  var blob = new Blob([csv], {type: 'text/csv'});
+  var url = window.URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
+
 // Random sampling
 //    @param   n         A number of sample.
 //    @param   array     An array to be sampled.
