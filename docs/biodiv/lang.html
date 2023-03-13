@@ -1,0 +1,126 @@
+<html>
+<head>
+
+<script>
+// Get Language
+var currentLanguage = window.navigator.language.split('-')[0];
+
+// Massage contents in each language
+var msgs = {
+  title         :{ ja: 'タイトル'                            ,en: "Title"},
+  description   :{ ja: 'こんにちは'                          ,en: "Hello"},
+
+  small         :{ ja: '文字：小'                            ,en: "small"},
+  large         :{ ja: '文字：大'                            ,en: "LARGE"},
+  biss          :{ ja: '生物多様性調査支援システム(BiSS)'    ,en: "Biodiversity Investigation Support System (BiSS)"},
+  screen        :{ ja: 'フルスクリーン <=> 通常表示'         ,en: "FULL SC <=> windowed"},
+  show_example  :{ ja: '例を表示'                            ,en: "Show example"},
+  show_manual   :{ ja: '使い方'                              ,en: "Show manual"},
+  tool          :{ ja: 'ツール'                              ,en: "Tool"},
+  n_cols        :{ ja: '表示列数'                            ,en: "No. of cols"},            // <b>あり
+  s_list        :{ ja: '種一覧'                              ,en: "Species list"},           // <b>あり
+  include_comp  :{ ja: '組成を含める'                        ,en: "Include composition"},    // <b>あり
+  rgister       :{ ja: '登録'                                ,en: "Register"},
+  delete        :{ ja: '削除'                                ,en: "DELETE"},
+  input_sp      :{ ja: '種名を入力(「,」区切り)'           ,en: "Input species (separate with ',')"},
+  add_sp        :{ ja: '種を追加'                            ,en: "Add speces to"},
+  replace_flora :{ ja: '植物相の入替'                        ,en: "Replace flora "},            // <b>あり
+  input_text    :{ ja: '種名を入力'                          ,en: "Input text"},
+  search_wamei  :{ ja: '和名検索'                            ,en: "Search wamei"},
+  search_dscrpt :{ ja: ''                                    ,en: "aaa bbb ..."},                      // 未完成
+  wamei_dscrpt  :{ ja: ''                                    ,en: "Wamei (Japanese plant names) ..."}, // 未完成
+  settings      :{ ja: '設定'                                ,en: "Settings"},
+  interval      :{ ja: '自動保存間隔(分)'                    ,en: "Auto save interval (min)"},
+  no_save       :{ ja: 'なし'                                ,en: "no save"},
+  use_gps       :{ ja: 'GPS起動'                             ,en: "Use GPS"},
+  mailer        :{ ja: 'メールソフト起動'                    ,en: "Launch mailer"},
+  base_setting  :{ ja: '基本設定'                            ,en: "Base setting <b>あり"},
+  set_empty     :{ ja: '設定なし'                            ,en: "empty"},
+  set_full      :{ ja: '全部'                                ,en: "full"},
+  set_5lyrs     :{ ja: '5階層'                               ,en: "_5_layers"},
+  set_3yrs      :{ ja: '3階層'                               ,en: "_3_layers"},
+  set_0yrs      :{ ja: '階層なし'                            ,en: "no_layers"},
+  set_flora     :{ ja: '植物相'                              ,en: "flora"},
+  add_plot      :{ ja: '地点に追加'                          ,en: "Add to plot  <b>あり"}, //  
+  add_occ       :{ ja: ''                                    ,en: "Add to occ  <b>あり"},
+  date_gps      :{ ja: '日付・GPS'                           ,en: "date_GPS"},
+  altitude      :{ ja: '標高等'                              ,en: "altitude_etc"},
+  memo          :{ ja: 'メモ'                                ,en: "memo"},
+  species       :{ ja: '種名'                                ,en: "species"},
+  cover_rank    :{ ja: '被度'                                ,en: "cover_rank"},
+  sampled       :{ ja: '標本・同定'                          ,en: "sampled_identified"},
+  load          :{ ja: '読込'                                ,en: "Load"},
+  save          :{ ja: '保存'                                ,en: "Save"},
+  add_rows      :{ ja: '列追加'                              ,en: "Add row(s)"},
+  item          :{ ja: '項目'                                ,en: "item"},
+  type          :{ ja: 'タイプ'                              ,en: "type"},
+  value         :{ ja: '値'                                  ,en: "value"},
+  hide          :{ ja: '非表示'                              ,en: "Hide"},
+  all_plots     :{ ja: '全地点'                              ,en: "All plots"},
+  show          :{ ja: '表示'                                ,en: "Show"},
+  search_text   :{ ja: '文字列検索'                          ,en: "Search text"},
+  hide_table    :{ ja: 表を非表示''                          ,en: "Hide table"},
+  show_table    :{ ja: '表を表示'                            ,en: "Show table"},
+  extend_width  :{ ja: '横長に'                              ,en: "Extend width"},
+  fit_width     :{ ja: '幅を狭く'                            ,en: "Fit width"},
+  plot          :{ ja: 'プロット'                            ,en: "PLOT"},
+  no            :{ ja: '番号'                                ,en: "NO"},
+  investigator  :{ ja: '調査者'                              ,en: "Investigator"},
+  location      :{ ja: '地点'                                ,en: "Location"},
+  plus_plot     :{ ja: '新規地点'                            ,en: "+ PLOT"}, 
+//                 :{ ja: ''                                    ,en: ""},
+//                 :{ ja: ''                                    ,en: ""},
+//                 :{ ja: ''                                    ,en: ""},
+//                 :{ ja: ''                                    ,en: ""},
+//                 :{ ja: ''                                    ,en: ""},
+};
+
+
+// Update language
+function updateLanguage(obj){
+  var idx = obj.selectedIndex;
+  var currentLanguage = obj.options[idx].value;
+  var msg = document.getElementsByClassName('msg');
+  for(m of msg){
+    m.innerText = msgs[m.id][currentLanguage];
+  }
+};
+</script>
+
+
+</head>
+<body>
+  <select id='select' onchange="updateLanguage(this)">
+    <option value='en'>EN</option>
+    <option value='ja'>JP</option>
+  </select>
+
+<hr>
+
+  <span class='msg' id='title'>       </span>
+  <span class='msg' id='description'> </span>
+  <span class='msg' id='small'>       </span>
+  <span class='msg' id='large'>       </span>
+  <span class='msg' id='biss'>        </span>
+  <span class='msg' id='screen'>      </span>
+  <span class='msg' id='show_example'></span>
+  <span class='msg' id='show_manual'></span>
+
+<!--
+  <span class='msg' id=''>      </span>
+  <span class='msg' id=''>      </span>
+  <span class='msg' id=''>      </span>
+  <span class='msg' id=''>      </span>
+-->
+
+<script>
+// set dom
+var msg = document.getElementsByClassName('msg');
+for(m of msg){
+  m.innerText = msgs[m.id][currentLanguage] || msgs[m.id].en;
+}
+</script>
+
+
+</body>
+</html>

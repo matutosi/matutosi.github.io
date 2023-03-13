@@ -1,18 +1,20 @@
-function getAllPlotAsCSV(){
-  var plot = getTableData( document.getElementById('plot_all_tb') );
-  console.log(plot);
-  var data = { plot: Object.assign({}, plot.biss_inputs) }
-  console.log(data);
+function getTableDataAsArray(id_table){
+  var data = table2array(id_table, false);
+  var data_array =[];
+  for(let i=0; i<data.length; i++){
+    if(i !== 1){ // skip delete button
+      data_array.push(data[i]);
+    }
+  }
+  return data_array;
 }
 
-function getAllPlotAsCSV(){
-  var occ  = getTableData( document.getElementById('occ_all_tb' ) );
-  occ
-  var data = { occ: Object.assign({}, occ.biss_inputs) }
-  
-  return csv;
+function saveAllTableDataAsCSV(){
+  var occ  = getTableDataAsArray('occ_all_tb');
+  var plot = getTableDataAsArray('plot_all_tb');
+  saveArrayToCsv(occ,  "biss_" + getNow() + "_occ.csv");
+  saveArrayToCsv(plot, "biss_" + getNow() + "_plot.csv");
 }
-
 
 function getAllPlotOccDataAsJSON(){
   var plot = getTableData( document.getElementById('plot_all_tb') );

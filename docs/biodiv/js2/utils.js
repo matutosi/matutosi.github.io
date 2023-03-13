@@ -27,10 +27,6 @@ function table2array(id_table, header = true){
   return array
 }
 
-
-
-
-
 // save array to csv file
 //    @param   array     An array to be saved.
 //    @param   filename  A string. A file name.
