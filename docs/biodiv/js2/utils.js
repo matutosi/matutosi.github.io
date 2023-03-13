@@ -39,7 +39,7 @@ function table2array(id_table, header = true){
 //    var sep = ',';
 //    var header = true;
 //    saveArrayToCsv(array, filename, sep, header);
-function saveArrayToCsv(array, filename, sep = ',', header = true){
+function saveArrayToTsv(array, filename, sep = '\t', header = true){
   var csv = ''; 
   if(header){
     csv += array[0].join(sep) + '\n';

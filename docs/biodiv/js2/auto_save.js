@@ -12,8 +12,8 @@ function getTableDataAsArray(id_table){
 function saveAllTableDataAsCSV(){
   var occ  = getTableDataAsArray('occ_all_tb');
   var plot = getTableDataAsArray('plot_all_tb');
-  saveArrayToCsv(occ,  "biss_" + getNow() + "_occ.csv");
-  saveArrayToCsv(plot, "biss_" + getNow() + "_plot.csv");
+  saveArrayToTsv(occ,  "biss_" + getNow() +  "_occ.tsv");
+  saveArrayToTsv(plot, "biss_" + getNow() + "_plot.tsv");
 }
 
 function getAllPlotOccDataAsJSON(){
