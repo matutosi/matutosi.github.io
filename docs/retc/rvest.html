@@ -195,6 +195,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>4.4</b> 要素の取得</a></li>
 <li class="chapter" data-level="4.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>4.5</b> その他</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="how-to-use-biodiversity-investigation-support-system-biss.html"><a href="how-to-use-biodiversity-investigation-support-system-biss.html"><i class="fa fa-check"></i><b>5</b> How to use Biodiversity Investigation Support System (BiSS)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="how-to-use-biodiversity-investigation-support-system-biss.html"><a href="how-to-use-biodiversity-investigation-support-system-biss.html#初期画面"><i class="fa fa-check"></i><b>5.1</b> 初期画面</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -219,11 +223,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>ここでのスクレイピングとは，ウェブスクレイピングの省略のことで，ウェブサイトにある情報を収集することである．
 ウェブサイトから植生調査データを収集することはほとんどないものの，関連データの収集は可能である．
 例えば，気象庁のページから気象データが収集可能である．
-もちろん，気象データは手動でも収集可能ではあるが，多大な手間と長い時間が必要である．</p>
-<p>ここでは，ウェブでの情報収集の方法とRのパッケージ作成の方法を紹介することを目的とする．
-ウェブでの情報収集にはRのパッケージであるrvestを用いる．
-さらに，rvestを用いて気象庁のページから世界の気象データを入手して，気候ダイアグラムを描画する．
-Rのパッケージ作成では，rvestを用いて作成した関数と収集したデータをまとめたパッケージの作成方法を紹介する．
+もちろん，気象データは手動でも収集可能ではあるが，多大な手間と長い時間が必要である．
+研究に必要なデータを自動で取得できれば，手間と時間の節約が可能である．</p>
+<p>そこで，本稿ではウェブでの情報収集の方法を紹介することを目的とする．
+世界の各地点の気象データをプロット
+情報収集にはRのパッケージであるrvestを用いる．
+rvestを用いて気象庁のページから世界の気象データを入手して，気候ダイアグラムを描画する．</p>
+<p>Rのパッケージ作成では，rvestを用いて作成した関数と収集したデータをまとめたパッケージの作成方法を紹介する．
 著者自身，他人のためにパッケージをつくることは考えておらず，基本的には自分の研究や作業のための関数をまとめることを目的としてパッケージをいくつか作成した．
 作成したら，ついでに他人にも使ってもらえれば嬉しいという程度である．</p>
 <p>過去に作成した関数は，しばらくすると関数の引数や返り値がどのようなものであったのか忘れてしまいがちである．

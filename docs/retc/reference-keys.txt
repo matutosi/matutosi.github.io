@@ -39,3 +39,12 @@ section-2
 注意点-5
 要素の取得
 その他
+how-to-use-biodiversity-investigation-support-system-biss
+初期画面
+install
+shiny
+shell
+準備-2
+ダウンロード
+インストーラの起動
+インストール完了

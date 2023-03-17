@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Rのパッケージの活用</title>
-  <meta name="description" content="Page not found | Rのパッケージの活用" />
+  <title>Chapter 1 Rのインストール | Rのパッケージの活用</title>
+  <meta name="description" content="Chapter 1 Rのインストール | Rのパッケージの活用" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Rのパッケージの活用" />
+  <meta property="og:title" content="Chapter 1 Rのインストール | Rのパッケージの活用" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Rのパッケージの活用" />
+  <meta name="twitter:title" content="Chapter 1 Rのインストール | Rのパッケージの活用" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ggplot2.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -223,19 +223,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="install" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Rのインストール<a href="install.html#install" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ダウンロード" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> ダウンロード<a href="install.html#ダウンロード" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>OSに合わせたインストーラをダウンロードする．
+Windowsの場合は，「Download R-4.x.x for Windows」(xはバージョンで異なる)をダウンロード．</p>
+<p><a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p>
+<p><img src="img/install_01.png" width="70%"></p>
+</div>
+<div id="インストーラの起動" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> インストーラの起動<a href="install.html#インストーラの起動" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ダウンロードしたファイルをクリック．</p>
+<p><img src="img/install_02.png" width="70%">
+<img src="img/install_03.png" width="70%">
+<img src="img/install_03j.png" width="70%"></p>
+<ul>
+<li>インストール中に使用する言語<br />
+何でも大丈夫なので，好きなものを選ぶ．</li>
+</ul>
+<p><img src="img/install_04.png" width="70%">
+<img src="img/install_04j.png" width="70%">
+<img src="img/install_04je.png" width="70%"></p>
+<ul>
+<li>インストールの確認<br />
+「Next」「次へ」をクリック．</li>
+</ul>
+<p><img src="img/install_05.png" width="70%"></p>
+<ul>
+<li>インストール先のフォルダ<br />
+そのままでOK．好みがあれば変更する．</li>
+</ul>
+<p><img src="img/install_06.png" width="70%"></p>
+<ul>
+<li>インストールするもの</li>
+</ul>
+<p><img src="img/install_07.png" width="70%">
+<img src="img/install_07c.png" width="70%"></p>
+<p>とりあえず，すべてチェックしておくくと良いです．
+Message translationは，Rからのメッセージを日本語に翻訳するかどうかです．
+チェックを入れないと，英語のみの表示です．</p>
+<p>結論としえは，とりあえずチェックを入れておき，必要に応じて英語で表示させるという方法が良いかもしれません．
+チェックを入れておくと，エラーメッセージなどを日本語で表示させることができます．
+「そら日本語のほうが良いやん」と思うかもしれません．
+ただでもよくわからないエラーメッセージが英語で表示されたら，わけがわからないからです．
+ただ，プログラミングの世界では，英語でのエラーメッセージのほうが便利なことが結構あります．
+それは，エラーメッセージをそのままネットで検索するときです．
+日本語でのエラーメッセージだとネット上の情報が限られています．
+一方，英語でのエラーメッセージで検索すると，原因や対処方法をかなりの確率で知ることができます．</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="install.html#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://cell-innovation.nig.ac.jp/SurfWiki/R_errormes_lang.html</span></span>
+<span id="cb1-2"><a href="install.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.getenv</span>(<span class="st">&quot;LANGUAGE&quot;</span>) <span class="co"># 設定の確認</span></span>
+<span id="cb1-3"><a href="install.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 設定の変更方法</span></span>
+<span id="cb1-4"><a href="install.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE=</span><span class="st">&quot;en&quot;</span>) <span class="co"># 英語に変更</span></span>
+<span id="cb1-5"><a href="install.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE=</span><span class="st">&quot;jp&quot;</span>) <span class="co"># 日本語に変更</span></span></code></pre></div>
+<ul>
+<li>オプションの選択</li>
+</ul>
+<p><img src="img/install_08.png" width="70%"></p>
+<p>とりあえず「Yes」を選択．
+以下のオプションを選択するかどうか．</p>
+<ul>
+<li>ウィンドウの表示方法(MDI / SDI)の選択</li>
+</ul>
+<p><img src="img/install_09.png" width="70%"></p>
+<p>個人的な好みはSDIですが，好みの問題ですので正直どちらでも大丈夫．
+MDIは大きな1つのWindowの中に，コンソール(プログラムの入力部分)，グラフ，ヘルプなどが表示される．
+SDIはコンソール，グラフ，ヘルプが別々のWindowとして表示される．
+どちらかといえば，自由度が高い．</p>
+<p><img src="img/install_mdi.png" width="70%">
+<img src="img/install_sdi.png" width="70%"></p>
+<ul>
+<li>ヘルプの表示方法(Plain text / HTML help)の選択</li>
+</ul>
+<p><img src="img/install_10.png" width="70%"></p>
+<p>個人的な好みはPlain textだが，好みの問題ですので正直どちらでも構わない．
+Plain textはテキストファイルで表示されるシンプルな作り．
+HTML helpはヘルプがブラウザ(GoogleChrome等)で表示される．
+関連する関数などへのリンクが表示されるので，それらを参照するのは便利．</p>
+<ul>
+<li>その後の設定</li>
+</ul>
+<p>その他は，既定値(そのまま)でOK．</p>
+<p><img src="img/install_11.png" width="70%">
+<img src="img/install_12.png" width="70%">
+<img src="img/install_13.png" width="70%">
+<img src="img/install_14.png" width="70%"></p>
+</div>
+<div id="インストール完了" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> インストール完了<a href="install.html#インストール完了" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>インストールが完了すると，アイコンがデスクトップに表示される．</p>
+<p><img src="img/install_15.png" width="70%"></p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
