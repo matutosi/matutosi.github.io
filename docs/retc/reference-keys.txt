@@ -1,3 +1,7 @@
+install
+ダウンロード
+インストーラの起動
+インストール完了
 ggplot2
 rの作図環境の概要
 ggplot2とは
@@ -7,6 +11,7 @@ facetを使おう
 ggsave
 文字化けへの対処windows
 themeを少しだけ説明
+shiny
 参考書
 magrittr
 tidyverseとmagrittr
@@ -39,12 +44,5 @@ section-2
 注意点-5
 要素の取得
 その他
-how-to-use-biodiversity-investigation-support-system-biss
-初期画面
-install
-shiny
 shell
 準備-2
-ダウンロード
-インストーラの起動
-インストール完了
