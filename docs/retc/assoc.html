@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Rのパッケージの活用</title>
-  <meta name="description" content="Page not found | Rのパッケージの活用" />
+  <title>Chapter 3 スクリプトの関連付け | Rのパッケージの活用</title>
+  <meta name="description" content="Chapter 3 スクリプトの関連付け | Rのパッケージの活用" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Rのパッケージの活用" />
+  <meta property="og:title" content="Chapter 3 スクリプトの関連付け | Rのパッケージの活用" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Rのパッケージの活用" />
+  <meta name="twitter:title" content="Chapter 3 スクリプトの関連付け | Rのパッケージの活用" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="package.html"/>
+<link rel="next" href="ggplot2.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -236,19 +236,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="assoc" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> スクリプトの関連付け<a href="assoc.html#assoc" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Rのプログラムのファイルは拡張子「script.R」のように「R」という拡張子を付けて保存することが多い．
+「<em>.docx」をワードで，「</em>.xlsx」をエクセルで開くのと同様に，私は「*．R」をテキストエディタで開くするように設定している．
+その後，開いたファイルをRのコンソールに貼り付けて，プログラムを実行する．</p>
+<p>このような使い方でもちろん良いのだが，内容を変更しないのであれば面倒臭い．
+つまり，ファイルをクリックするだけで，プログラムが実行されれば便利である．
+プログラムをRに関連付けれることで，これが実現できる．</p>
+<ol style="list-style-type: decimal">
+<li>プログラムのファイル名を「<em>.R」から「</em>.scr」に変更する(「scr」は大文字小文字は関係なく，「Rsc」や「RSC」などでもOK)．<br />
+<img src="img/assoc_01.png" style="width:70.0%" /></li>
+<li>拡張子が表示されていない場合は，エクスプローラの表示のオプションで，「登録されている拡張子は表示しない」のチェックを外して(チェックしないで)，「OK」を選択してから，上記の内容を実行．<br />
+<img src="img/assoc_00_01.png" style="width:70.0%" />
+<img src="img/assoc_00_02.png" style="width:70.0%" /></li>
+<li>ファイルを右クリックして，「プロパティ」を選択．<br />
+<img src="img/assoc_02.png" style="width:70.0%" /></li>
+<li>「全般」タブのプログラムの「変更」を選択．<br />
+<img src="img/assoc_03.png" style="width:70.0%" /></li>
+<li>「PCでアプリを選択する」をクリック．<br />
+<img src="img/assoc_04.png" style="width:70.0%" /></li>
+<li>ファイル選択画面で，Rをインストールしたフォルダまで辿っていき(「c:files.3」など)，「Rscript.exe」を選択する．<br />
+<img src="img/assoc_05.png" style="width:70.0%" /></li>
+<li>「.rscファイルの既定のアプリを選択する」で「R for windows front-end」が表示されるので，「既定値を設定する」を選択．
+<img src="img/assoc_06.png" style="width:70.0%" /></li>
+<li>全般タブのプログラムが「R for windows front-end」になっていることを確認して．「OK」を選択．
+<img src="img/assoc_07.png" style="width:70.0%" /></li>
+<li>ファイルのアイコンがRのアイコンになっていたらOK．
+<img src="img/assoc_08.png" style="width:70.0%" /></li>
+</ol>
+<p>ダブルクリックすると，ファイルの内容が実行される(はず)．</p>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

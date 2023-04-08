@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Rのインストール | Rのパッケージの活用</title>
   <meta name="description" content="Chapter 1 Rのインストール | Rのパッケージの活用" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Rのインストール | Rのパッケージの活用" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-03-18" />
+<meta name="date" content="2023-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="ggplot2.html"/>
+<link rel="next" href="package.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -140,71 +140,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="install.html"><a href="install.html#インストーラの起動"><i class="fa fa-check"></i><b>1.2</b> インストーラの起動</a></li>
 <li class="chapter" data-level="1.3" data-path="install.html"><a href="install.html#インストール完了"><i class="fa fa-check"></i><b>1.3</b> インストール完了</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>2</b> ggplot2の勧め</a>
+<li class="chapter" data-level="2" data-path="package.html"><a href="package.html"><i class="fa fa-check"></i><b>2</b> パッケージのインストール</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>2.1</b> Rの作図環境の概要</a></li>
-<li class="chapter" data-level="2.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>2.2</b> ggplot2とは</a></li>
-<li class="chapter" data-level="2.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>2.3</b> ggplot2の利点</a></li>
-<li class="chapter" data-level="2.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>2.4</b> ggplot2の基本</a></li>
-<li class="chapter" data-level="2.5" data-path="ggplot2.html"><a href="ggplot2.html#facetを使おう"><i class="fa fa-check"></i><b>2.5</b> facetを使おう</a></li>
-<li class="chapter" data-level="2.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>2.6</b> ggsave</a></li>
-<li class="chapter" data-level="2.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>2.7</b> 文字化けへの対処(windows)</a></li>
-<li class="chapter" data-level="2.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>2.8</b> themeを少しだけ説明</a></li>
-<li class="chapter" data-level="2.9" data-path="ggplot2.html"><a href="ggplot2.html#shiny"><i class="fa fa-check"></i><b>2.9</b> shiny</a></li>
-<li class="chapter" data-level="2.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>2.10</b> 参考書</a></li>
+<li class="chapter" data-level="2.1" data-path="package.html"><a href="package.html#cran"><i class="fa fa-check"></i><b>2.1</b> CRANから</a></li>
+<li class="chapter" data-level="2.2" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>2.2</b> GitHubから</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>3</b> magrritrの勧め</a>
+<li class="chapter" data-level="3" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>3</b> スクリプトの関連付け</a></li>
+<li class="chapter" data-level="4" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>4</b> ggplot2の勧め</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="magrittr.html"><a href="magrittr.html#tidyverseとmagrittr"><i class="fa fa-check"></i><b>3.1</b> tidyverseとmagrittr</a></li>
-<li class="chapter" data-level="3.2" data-path="magrittr.html"><a href="magrittr.html#とその仲間"><i class="fa fa-check"></i><b>3.2</b> <code>%&gt;%</code>とその仲間</a></li>
-<li class="chapter" data-level="3.3" data-path="magrittr.html"><a href="magrittr.html#section"><i class="fa fa-check"></i><b>3.3</b> <code>%&lt;&gt;%</code></a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="magrittr.html"><a href="magrittr.html#使い方"><i class="fa fa-check"></i><b>3.3.1</b> 使い方</a></li>
-<li class="chapter" data-level="3.3.2" data-path="magrittr.html"><a href="magrittr.html#注意点"><i class="fa fa-check"></i><b>3.3.2</b> 注意点</a></li>
+<li class="chapter" data-level="4.1" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>4.1</b> Rの作図環境の概要</a></li>
+<li class="chapter" data-level="4.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>4.2</b> ggplot2とは</a></li>
+<li class="chapter" data-level="4.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>4.3</b> ggplot2の利点</a></li>
+<li class="chapter" data-level="4.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>4.4</b> ggplot2の基本</a></li>
+<li class="chapter" data-level="4.5" data-path="ggplot2.html"><a href="ggplot2.html#facetを使おう"><i class="fa fa-check"></i><b>4.5</b> facetを使おう</a></li>
+<li class="chapter" data-level="4.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>4.6</b> ggsave</a></li>
+<li class="chapter" data-level="4.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>4.7</b> 文字化けへの対処(windows)</a></li>
+<li class="chapter" data-level="4.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>4.8</b> themeを少しだけ説明</a></li>
+<li class="chapter" data-level="4.9" data-path="ggplot2.html"><a href="ggplot2.html#shiny"><i class="fa fa-check"></i><b>4.9</b> shiny</a></li>
+<li class="chapter" data-level="4.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>4.10</b> 参考書</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="magrittr.html"><a href="magrittr.html#t"><i class="fa fa-check"></i><b>3.4</b> <code>%T&gt;%</code></a>
+<li class="chapter" data-level="5" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>5</b> magrritrの勧め</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="magrittr.html"><a href="magrittr.html#使い方-1"><i class="fa fa-check"></i><b>3.4.1</b> 使い方</a></li>
-<li class="chapter" data-level="3.4.2" data-path="magrittr.html"><a href="magrittr.html#注意点-1"><i class="fa fa-check"></i><b>3.4.2</b> 注意点</a></li>
+<li class="chapter" data-level="5.1" data-path="magrittr.html"><a href="magrittr.html#tidyverseとmagrittr"><i class="fa fa-check"></i><b>5.1</b> tidyverseとmagrittr</a></li>
+<li class="chapter" data-level="5.2" data-path="magrittr.html"><a href="magrittr.html#とその仲間"><i class="fa fa-check"></i><b>5.2</b> <code>%&gt;%</code>とその仲間</a></li>
+<li class="chapter" data-level="5.3" data-path="magrittr.html"><a href="magrittr.html#section"><i class="fa fa-check"></i><b>5.3</b> <code>%&lt;&gt;%</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="magrittr.html"><a href="magrittr.html#使い方"><i class="fa fa-check"></i><b>5.3.1</b> 使い方</a></li>
+<li class="chapter" data-level="5.3.2" data-path="magrittr.html"><a href="magrittr.html#注意点"><i class="fa fa-check"></i><b>5.3.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="magrittr.html"><a href="magrittr.html#section-1"><i class="fa fa-check"></i><b>3.5</b> <code>%$%</code></a>
+<li class="chapter" data-level="5.4" data-path="magrittr.html"><a href="magrittr.html#t"><i class="fa fa-check"></i><b>5.4</b> <code>%T&gt;%</code></a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="magrittr.html"><a href="magrittr.html#使い方-2"><i class="fa fa-check"></i><b>3.5.1</b> 使い方</a></li>
-<li class="chapter" data-level="3.5.2" data-path="magrittr.html"><a href="magrittr.html#注意点-2"><i class="fa fa-check"></i><b>3.5.2</b> 注意点</a></li>
+<li class="chapter" data-level="5.4.1" data-path="magrittr.html"><a href="magrittr.html#使い方-1"><i class="fa fa-check"></i><b>5.4.1</b> 使い方</a></li>
+<li class="chapter" data-level="5.4.2" data-path="magrittr.html"><a href="magrittr.html#注意点-1"><i class="fa fa-check"></i><b>5.4.2</b> 注意点</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>4</b> rvestでスクレイピング</a>
+<li class="chapter" data-level="5.5" data-path="magrittr.html"><a href="magrittr.html#section-1"><i class="fa fa-check"></i><b>5.5</b> <code>%$%</code></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>4.1</b> スクレイピング</a></li>
-<li class="chapter" data-level="4.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>4.2</b> rvest と RSelenium</a></li>
-<li class="chapter" data-level="4.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>4.3</b> rvestのできること</a></li>
-<li class="chapter" data-level="4.4" data-path="rvest.html"><a href="rvest.html#準備"><i class="fa fa-check"></i><b>4.4</b> 準備</a></li>
-<li class="chapter" data-level="4.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>4.5</b> HTMLの取得</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="rvest.html"><a href="rvest.html#使い方-3"><i class="fa fa-check"></i><b>4.5.1</b> 使い方</a></li>
-<li class="chapter" data-level="4.5.2" data-path="rvest.html"><a href="rvest.html#注意点-3"><i class="fa fa-check"></i><b>4.5.2</b> 注意点</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="rvest.html"><a href="rvest.html#domの取得"><i class="fa fa-check"></i><b>4.6</b> DOMの取得</a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="rvest.html"><a href="rvest.html#使い方-4"><i class="fa fa-check"></i><b>4.6.1</b> 使い方</a></li>
-<li class="chapter" data-level="4.6.2" data-path="rvest.html"><a href="rvest.html#注意点-4"><i class="fa fa-check"></i><b>4.6.2</b> 注意点</a></li>
+<li class="chapter" data-level="5.5.1" data-path="magrittr.html"><a href="magrittr.html#使い方-2"><i class="fa fa-check"></i><b>5.5.1</b> 使い方</a></li>
+<li class="chapter" data-level="5.5.2" data-path="magrittr.html"><a href="magrittr.html#注意点-2"><i class="fa fa-check"></i><b>5.5.2</b> 注意点</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>5</b> Rselenium</a>
+<li class="chapter" data-level="6" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>6</b> rvestでスクレイピング</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="rselenium.html"><a href="rselenium.html#準備-1"><i class="fa fa-check"></i><b>5.1</b> 準備</a></li>
-<li class="chapter" data-level="5.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>5.2</b> ブラウザの自動化</a></li>
-<li class="chapter" data-level="5.3" data-path="rselenium.html"><a href="rselenium.html#section-2"><i class="fa fa-check"></i><b>5.3</b> </a>
+<li class="chapter" data-level="6.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>6.1</b> スクレイピング</a></li>
+<li class="chapter" data-level="6.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>6.2</b> rvest と RSelenium</a></li>
+<li class="chapter" data-level="6.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>6.3</b> rvestのできること</a></li>
+<li class="chapter" data-level="6.4" data-path="rvest.html"><a href="rvest.html#準備"><i class="fa fa-check"></i><b>6.4</b> 準備</a></li>
+<li class="chapter" data-level="6.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>6.5</b> HTMLの取得</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方-5"><i class="fa fa-check"></i><b>5.3.1</b> 使い方</a></li>
-<li class="chapter" data-level="5.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点-5"><i class="fa fa-check"></i><b>5.3.2</b> 注意点</a></li>
+<li class="chapter" data-level="6.5.1" data-path="rvest.html"><a href="rvest.html#使い方-3"><i class="fa fa-check"></i><b>6.5.1</b> 使い方</a></li>
+<li class="chapter" data-level="6.5.2" data-path="rvest.html"><a href="rvest.html#注意点-3"><i class="fa fa-check"></i><b>6.5.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>5.4</b> 要素の取得</a></li>
-<li class="chapter" data-level="5.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>5.5</b> その他</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>6</b> shell</a>
+<li class="chapter" data-level="6.6" data-path="rvest.html"><a href="rvest.html#domの取得"><i class="fa fa-check"></i><b>6.6</b> DOMの取得</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="shell.html"><a href="shell.html#準備-2"><i class="fa fa-check"></i><b>6.1</b> 準備</a></li>
+<li class="chapter" data-level="6.6.1" data-path="rvest.html"><a href="rvest.html#使い方-4"><i class="fa fa-check"></i><b>6.6.1</b> 使い方</a></li>
+<li class="chapter" data-level="6.6.2" data-path="rvest.html"><a href="rvest.html#注意点-4"><i class="fa fa-check"></i><b>6.6.2</b> 注意点</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>7</b> Rselenium</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="rselenium.html"><a href="rselenium.html#準備-1"><i class="fa fa-check"></i><b>7.1</b> 準備</a></li>
+<li class="chapter" data-level="7.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>7.2</b> ブラウザの自動化</a></li>
+<li class="chapter" data-level="7.3" data-path="rselenium.html"><a href="rselenium.html#section-2"><i class="fa fa-check"></i><b>7.3</b> </a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方-5"><i class="fa fa-check"></i><b>7.3.1</b> 使い方</a></li>
+<li class="chapter" data-level="7.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点-5"><i class="fa fa-check"></i><b>7.3.2</b> 注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>7.4</b> 要素の取得</a></li>
+<li class="chapter" data-level="7.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>7.5</b> その他</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>8</b> shell</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="shell.html"><a href="shell.html#準備-2"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dbi.html"><a href="dbi.html"><i class="fa fa-check"></i><b>9</b> DBIでデータ取得</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="dbi.html"><a href="dbi.html#データベースとの連携"><i class="fa fa-check"></i><b>9.1</b> データベースとの連携</a></li>
+<li class="chapter" data-level="9.2" data-path="dbi.html"><a href="dbi.html#dbiでできること"><i class="fa fa-check"></i><b>9.2</b> DBIでできること</a></li>
+<li class="chapter" data-level="9.3" data-path="dbi.html"><a href="dbi.html#準備-3"><i class="fa fa-check"></i><b>9.3</b> 準備</a></li>
+<li class="chapter" data-level="9.4" data-path="dbi.html"><a href="dbi.html#使い方-6"><i class="fa fa-check"></i><b>9.4</b> 使い方</a></li>
 </ul></li>
 </ul>
 
@@ -324,7 +337,7 @@ HTML helpはヘルプがブラウザ(GoogleChrome等)で表示される．
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

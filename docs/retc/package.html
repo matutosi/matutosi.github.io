@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Rのパッケージの活用</title>
-  <meta name="description" content="Page not found | Rのパッケージの活用" />
+  <title>Chapter 2 パッケージのインストール | Rのパッケージの活用</title>
+  <meta name="description" content="Chapter 2 パッケージのインストール | Rのパッケージの活用" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Rのパッケージの活用" />
+  <meta property="og:title" content="Chapter 2 パッケージのインストール | Rのパッケージの活用" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Rのパッケージの活用" />
+  <meta name="twitter:title" content="Chapter 2 パッケージのインストール | Rのパッケージの活用" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="install.html"/>
+<link rel="next" href="assoc.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -236,19 +236,100 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="package" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> パッケージのインストール<a href="package.html#package" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>R単体でも多くの機能があるものの，実際には各種パッケージを利用することが多い．
+パッケージのインストールするには，Rで簡単なコマンドを実行するだけである．</p>
+<div id="cran" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> CRANから<a href="package.html#cran" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>CRANは，Rの総本山である．</p>
+<p><a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></p>
+<p>R本体だけでなく，各種パッケージが公開されている．</p>
+<p><a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" class="uri">https://cran.r-project.org/web/packages/available_packages_by_name.html</a></p>
+<p>CRANに掲載されており，パッケージの名前がわかっていたら，以下のようにすればインストールできる．</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="package.html#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ミラーサイト(ダウンロード元)の設定</span></span>
+<span id="cb2-2"><a href="package.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>)</span>
+<span id="cb2-3"><a href="package.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1つの場合</span></span>
+<span id="cb2-4"><a href="package.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<pre><code>## package &#39;tidyverse&#39; successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\matu\AppData\Local\Temp\RtmpyQHVrW\downloaded_packages</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="package.html#cb4-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 複数の場合</span></span>
+<span id="cb4-2"><a href="package.html#cb4-2" aria-hidden="true" tabindex="-1"></a>pkg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;xlsx&quot;</span>, <span class="st">&quot;magrittr&quot;</span>, <span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb4-3"><a href="package.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(pkg)</span></code></pre></div>
+<pre><code>## package &#39;xlsx&#39; successfully unpacked and MD5 sums checked
+## package &#39;magrittr&#39; successfully unpacked and MD5 sums checked
+## package &#39;devtools&#39; successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\matu\AppData\Local\Temp\RtmpyQHVrW\downloaded_packages</code></pre>
+<p>実行すると，ファイルをダウンロードし，成功(あるいは失敗)したことが表示される．</p>
+</div>
+<div id="github" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> GitHubから<a href="package.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>たいていはCRANに登録されているが，GitHubにしかないパッケージもある．
+その場合には，以下のようにする．</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="package.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span></code></pre></div>
+<pre><code>## package &#39;devtools&#39; successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\matu\AppData\Local\Temp\RtmpyQHVrW\downloaded_packages</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="package.html#cb8-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/ecan&quot;</span>)</span></code></pre></div>
+<pre><code>## WARNING: Rtools is required to build R packages, but no version of Rtools compatible with R 4.2.2 was found. (Only the following incompatible version(s) of Rtools were found: 4.3.5550)
+## 
+## Please download and install Rtools 4.2 from https://cran.r-project.org/bin/windows/Rtools/ or https://www.r-project.org/nosvn/winutf8/ucrt3/.</code></pre>
+<pre><code>## Downloading GitHub repo matutosi/ecan@HEAD</code></pre>
+<pre><code>## vctrs      (0.6.0  -&gt; 0.6.1 ) [CRAN]
+## cli        (3.6.0  -&gt; 3.6.1 ) [CRAN]
+## pillar     (1.8.1  -&gt; 1.9.0 ) [CRAN]
+## gtable     (0.3.2  -&gt; 0.3.3 ) [CRAN]
+## ggplot2    (3.4.1  -&gt; 3.4.2 ) [CRAN]
+## dplyr      (1.1.0  -&gt; 1.1.1 ) [CRAN]
+## dendextend (1.16.0 -&gt; 1.17.1) [CRAN]</code></pre>
+<pre><code>## Installing 7 packages: vctrs, cli, pillar, gtable, ggplot2, dplyr, dendextend</code></pre>
+<pre><code>## package &#39;vctrs&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>## Warning: cannot remove prior installation of package &#39;vctrs&#39;</code></pre>
+<pre><code>## Warning in file.copy(savedcopy, lib, recursive = TRUE): problem copying
+## D:\pf\R\R-4.2.2\library\00LOCK\vctrs\libs\x64\vctrs.dll to
+## D:\pf\R\R-4.2.2\library\vctrs\libs\x64\vctrs.dll: Permission denied</code></pre>
+<pre><code>## Warning: restored &#39;vctrs&#39;</code></pre>
+<pre><code>## package &#39;cli&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>## Warning: cannot remove prior installation of package &#39;cli&#39;</code></pre>
+<pre><code>## Warning in file.copy(savedcopy, lib, recursive = TRUE): problem copying
+## D:\pf\R\R-4.2.2\library\00LOCK\cli\libs\x64\cli.dll to
+## D:\pf\R\R-4.2.2\library\cli\libs\x64\cli.dll: Permission denied</code></pre>
+<pre><code>## Warning: restored &#39;cli&#39;</code></pre>
+<pre><code>## package &#39;pillar&#39; successfully unpacked and MD5 sums checked
+## package &#39;gtable&#39; successfully unpacked and MD5 sums checked
+## package &#39;ggplot2&#39; successfully unpacked and MD5 sums checked
+## package &#39;dplyr&#39; successfully unpacked and MD5 sums checked
+## package &#39;dendextend&#39; successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\matu\AppData\Local\Temp\RtmpyQHVrW\downloaded_packages
+## ── R CMD build ─────────────────────────────────────────────────────────────────</code></pre>
+<pre><code>## WARNING: Rtools is required to build R packages, but no version of Rtools compatible with R 4.2.2 was found. (Only the following incompatible version(s) of Rtools were found: 4.3.5550)
+## 
+## Please download and install Rtools 4.2 from https://cran.r-project.org/bin/windows/Rtools/ or https://www.r-project.org/nosvn/winutf8/ucrt3/.</code></pre>
+<pre><code>## * checking for file &#39;C:\Users\matu\AppData\Local\Temp\RtmpyQHVrW\remotes3360756028a2\matutosi-ecan-6e837a5/DESCRIPTION&#39; ... OK
+## * preparing &#39;ecan&#39;:
+## * checking DESCRIPTION meta-information ... OK
+## * checking for LF line-endings in source and make files and shell scripts
+## * checking for empty or unneeded directories
+## Omitted &#39;LazyData&#39; from DESCRIPTION
+## * building &#39;ecan_0.2.0.tar.gz&#39;
+## </code></pre>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="install.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="assoc.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

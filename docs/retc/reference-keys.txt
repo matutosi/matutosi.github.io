@@ -2,6 +2,10 @@ install
 ダウンロード
 インストーラの起動
 インストール完了
+package
+cran
+github
+assoc
 ggplot2
 rの作図環境の概要
 ggplot2とは
@@ -46,3 +50,8 @@ section-2
 その他
 shell
 準備-2
+dbi
+データベースとの連携
+dbiでできること
+準備-3
+使い方-6
