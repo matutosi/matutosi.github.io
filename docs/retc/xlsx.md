@@ -1,26 +1,26 @@
-# xlsxでエクセルの操作 {#xlsx}
+# xlsxでエクセル操作 {#xlsx}
 
 xlsxパッケージを使うと，エクセルのファイルの読み込み・書き込みをはじめ，
 オートフィルタの設定やウィンドウ枠の固定などの各種操作が可能である．
 
 
-## オートフィルタの設定やウィンドウ枠の固定の自動化スクリプト
+## オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト
 
 xlsxの使用例として，オートフィルタを設定して・ウィンドウ枠を固定する自動化スクリプトを作成した．
 
-- 使用方法   
-  - 準備：<a href="https://matutosi.github.io/retc/install.html">Rのインストール</a>   
-  - <a href="https://gist.githubusercontent.com/matutosi/fe217c7ed934dd242d6798aca846d902/raw/c7b93586db398f801d469bd98a9e764a04a4a8e2/set_autofilter_freezepanel.rsc">set_autofilter_freezepanel.rsc</a>
-  をダウンロードして，任意の場所に保存．   
-  - set_autofilter_freezepanel.rsc と同じ場所に，処理したいエクセルのファイルを保存．   
-  - <a href="https://matutosi.github.io/retc/assoc.html">スクリプトの関連付け</a>を参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．Macの場合は，<a href="https://pc-karuma.net/mac-extension-related-app-change/">Mac - 拡張子に関連付けられているアプリを変更する方法</a>などを参考にしてほしい．  
-  - set_autofilter_freezepanel.rsc をダブルクリックして実行すると，黒い画面が表示されてプログラムが実行される．
-  プログラムが自動的にエクセルのファイルの1行目のA列からZ列までにオートフィルタを設定し，1行目と1列目でウィンドウ枠を固定する．
-  複数ファイル・複数シートにも対応している．   
-  なお，初回実行時は，xlsxパケージのダウンロードのため，少し時間がかかるかもしれない．
-  2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．   
+### 使用方法   
+- 準備：<a href="https://matutosi.github.io/retc/install.html">Rのインストール</a>   
+- <a href="https://gist.githubusercontent.com/matutosi/fe217c7ed934dd242d6798aca846d902/raw/c7b93586db398f801d469bd98a9e764a04a4a8e2/set_autofilter_freezepanel.rsc">set_autofilter_freezepanel.rsc</a>
+をダウンロードして，任意のフォルダに保存．   
+- set_autofilter_freezepanel.rsc と同じフォルダに，処理したいエクセルのファイルを保存．   
+- <a href="https://matutosi.github.io/retc/assoc.html">スクリプトの関連付け</a>を参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．Macの場合は，<a href="https://pc-karuma.net/mac-extension-related-app-change/">Mac - 拡張子に関連付けられているアプリを変更する方法</a>などを参考にしてほしい．  
+- set_autofilter_freezepanel.rsc をダブルクリックして実行すると，黒い画面が表示されてプログラムが実行される．
+プログラムが自動的にエクセルのファイルの1行目のA列からZ列までにオートフィルタを設定し，1行目と1列目でウィンドウ枠を固定する．
+複数ファイル・複数シートにも対応している．   
+なお，初回実行時は，xlsxパケージのダウンロードのため，少し時間がかかるかもしれない．
+2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．   
 
-- スクリプトの内容説明   
+### スクリプトの内容説明   
 
 
 ```r

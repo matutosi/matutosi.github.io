@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 10 xlsxでエクセルの操作 | Rのパッケージの活用</title>
-  <meta name="description" content="Chap. 10 xlsxでエクセルの操作 | Rのパッケージの活用" />
+  <title>Chap. 10 xlsxでエクセル操作 | Rのパッケージの活用</title>
+  <meta name="description" content="Chap. 10 xlsxでエクセル操作 | Rのパッケージの活用" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 10 xlsxでエクセルの操作 | Rのパッケージの活用" />
+  <meta property="og:title" content="Chap. 10 xlsxでエクセル操作 | Rのパッケージの活用" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 10 xlsxでエクセルの操作 | Rのパッケージの活用" />
+  <meta name="twitter:title" content="Chap. 10 xlsxでエクセル操作 | Rのパッケージの活用" />
   
   
   
@@ -219,9 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="dbi.html"><a href="dbi.html#準備-3"><i class="fa fa-check"></i><b>9.3</b> 準備</a></li>
 <li class="chapter" data-level="9.4" data-path="dbi.html"><a href="dbi.html#使い方-6"><i class="fa fa-check"></i><b>9.4</b> 使い方</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>10</b> xlsxでエクセルの操作</a>
+<li class="chapter" data-level="10" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>10</b> xlsxでエクセル操作</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定やウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>10.1</b> オートフィルタの設定やウィンドウ枠の固定の自動化スクリプト</a></li>
+<li class="chapter" data-level="10.1" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>10.1</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>10.1.1</b> 使用方法</a></li>
+<li class="chapter" data-level="10.1.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>10.1.2</b> スクリプトの内容説明</a></li>
+</ul></li>
 <li class="chapter" data-level="10.2" data-path="xlsx.html"><a href="xlsx.html#その他の操作未作成"><i class="fa fa-check"></i><b>10.2</b> その他の操作(未作成)</a></li>
 </ul></li>
 </ul>
@@ -242,21 +246,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="xlsx" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chap. 10</span> xlsxでエクセルの操作<a href="xlsx.html#xlsx" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Chap. 10</span> xlsxでエクセル操作<a href="xlsx.html#xlsx" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>xlsxパッケージを使うと，エクセルのファイルの読み込み・書き込みをはじめ，
 オートフィルタの設定やウィンドウ枠の固定などの各種操作が可能である．</p>
-<div id="オートフィルタの設定やウィンドウ枠の固定の自動化スクリプト" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> オートフィルタの設定やウィンドウ枠の固定の自動化スクリプト<a href="xlsx.html#オートフィルタの設定やウィンドウ枠の固定の自動化スクリプト" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト<a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>xlsxの使用例として，オートフィルタを設定して・ウィンドウ枠を固定する自動化スクリプトを作成した．</p>
-<ul>
-<li>使用方法
+<div id="使用方法" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> 使用方法<a href="xlsx.html#使用方法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>準備：<a href="https://matutosi.github.io/retc/install.html">Rのインストール</a><br />
 </li>
 <li><a href="https://gist.githubusercontent.com/matutosi/fe217c7ed934dd242d6798aca846d902/raw/c7b93586db398f801d469bd98a9e764a04a4a8e2/set_autofilter_freezepanel.rsc">set_autofilter_freezepanel.rsc</a>
-をダウンロードして，任意の場所に保存．<br />
+をダウンロードして，任意のフォルダに保存．<br />
 </li>
-<li>set_autofilter_freezepanel.rsc と同じ場所に，処理したいエクセルのファイルを保存．<br />
+<li>set_autofilter_freezepanel.rsc と同じフォルダに，処理したいエクセルのファイルを保存．<br />
 </li>
 <li><a href="https://matutosi.github.io/retc/assoc.html">スクリプトの関連付け</a>を参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．Macの場合は，<a href="https://pc-karuma.net/mac-extension-related-app-change/">Mac - 拡張子に関連付けられているアプリを変更する方法</a>などを参考にしてほしい．<br />
 </li>
@@ -265,9 +269,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 複数ファイル・複数シートにも対応している．<br />
 なお，初回実行時は，xlsxパケージのダウンロードのため，少し時間がかかるかもしれない．
 2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．</li>
-</ul></li>
-<li>スクリプトの内容説明</li>
 </ul>
+</div>
+<div id="スクリプトの内容説明" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> スクリプトの内容説明<a href="xlsx.html#スクリプトの内容説明" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="xlsx.html#cb28-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Package, 準備</span></span>
 <span id="cb28-2"><a href="xlsx.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span> <span class="st">&quot;xlsx&quot;</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]){  <span class="co"># xlsxパッケージ有無の確認</span></span>
 <span id="cb28-3"><a href="xlsx.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージが無い場合</span></span>
@@ -302,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-32"><a href="xlsx.html#cb28-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> files){                  <span class="co"># ファイルの数だけ繰り返し</span></span>
 <span id="cb28-33"><a href="xlsx.html#cb28-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_af_fp</span>(file)                    <span class="co"># set_af_fp()の実行</span></span>
 <span id="cb28-34"><a href="xlsx.html#cb28-34" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
 </div>
 <div id="その他の操作未作成" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> その他の操作(未作成)<a href="xlsx.html#その他の操作未作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -343,7 +349,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub", "_main.mobi"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null
@@ -351,7 +357,8 @@ gitbook.start({
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
-}
+},
+"toc_depth": 3
 });
 });
 </script>
