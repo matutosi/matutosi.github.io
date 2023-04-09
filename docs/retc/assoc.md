@@ -9,23 +9,23 @@ Rのプログラムのファイルは拡張子「script.R」のように「R」�
 プログラムをRに関連付けれることで，これが実現できる．
 
 1. プログラムのファイル名を「*.R」から「*.scr」に変更する(「scr」は大文字小文字は関係なく，「Rsc」や「RSC」などでもOK)．   
-![](img/assoc_01.png){ width=70% }
-0. 拡張子が表示されていない場合は，エクスプローラの表示のオプションで，「登録されている拡張子は表示しない」のチェックを外して(チェックしないで)，「OK」を選択してから，上記の内容を実行．   
-![](img/assoc_00_01.png){ width=70% }
-![](img/assoc_00_02.png){ width=70% }
+![](img/assoc_01.png){ width=30% }
+0. 拡張子が表示されていない場合は，エクスプローラの表示のオプションで，「登録されている拡張子は表示しない」のチェックを外して(チェックしないで)，「OK」を選択してから，名前を変更する．   
+![](img/assoc_00_01.png){ width=40% }
+![](img/assoc_00_02.png){ width=40% }
 2. ファイルを右クリックして，「プロパティ」を選択．   
-![](img/assoc_02.png){ width=70% }
-3. 「全般」タブのプログラムの「変更」を選択．   
-![](img/assoc_03.png){ width=70% }
+![](img/assoc_02.png){ width=30% }
+3. 「全般」タブのやや上にあるプログラムの「変更」を選択．   
+![](img/assoc_03.png){ width=50% }
 4. 「PCでアプリを選択する」をクリック．   
-![](img/assoc_04.png){ width=70% }
-5. ファイル選択画面で，Rをインストールしたフォルダまで辿っていき(「c:\Program files\R\R-4.2.3\bin\x64」など)，「Rscript.exe」を選択する．   
-![](img/assoc_05.png){ width=70% }
-6. 「.rscファイルの既定のアプリを選択する」で「R for windows front-end」が表示されるので，「既定値を設定する」を選択．
-![](img/assoc_06.png){ width=70% }
-7. 全般タブのプログラムが「R for windows front-end」になっていることを確認して．「OK」を選択．
-![](img/assoc_07.png){ width=70% }
-8. ファイルのアイコンがRのアイコンになっていたらOK．
-![](img/assoc_08.png){ width=70% }
+![](img/assoc_04.png){ width=50% }
+5. ファイル選択画面で，Rをインストールしたフォルダまで辿っていき(「c:\\Program files\\R\\R-4.2.3\\bin\\x64」など)，「Rscript.exe」を選択する．   
+![](img/assoc_05.png){ width=50% }
+6. 「.rscファイルの既定のアプリを選択する」で「R for windows front-end」が表示されるので，「既定値を設定する」を選択．   
+![](img/assoc_06.png){ width=50% }
+7. 全般タブのプログラムが「R for windows front-end」になっていることを確認して．「OK」を選択．   
+![](img/assoc_07.png){ width=50% }
+8. ファイルのアイコンがRのアイコンになっていたらOK．   
+![](img/assoc_08.png){ width=30% }
 
 ダブルクリックすると，ファイルの内容が実行される(はず)．

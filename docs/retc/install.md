@@ -10,25 +10,30 @@ Windowsの場合は，「Download R-4.x.x for Windows」(xはバージョンで�
 
 https://cran.r-project.org/bin/windows/base/
 
-<img src="img/install_01.png" width="70%">
+<img src="img/install_01.png" width="50%">
 
 ## インストーラの起動
 
 ダウンロードしたファイルをクリック．
+「…許可しますか?」に対して，「はい」を選択．
 
 <img src="img/install_02.png"  width="20%">
+<!--
 <img src="img/install_03.png"  width="50%">
-<img src="img/install_03j.png" width="50%">
+-->
+<img src="img/install_03j.png" width="30%">
 
 - インストール中に使用する言語   
 何でも大丈夫なので，好きなものを選ぶ．
 
+<img src="img/install_04j.png"  width="30%">
+<!--
 <img src="img/install_04.png"   width="50%">
-<img src="img/install_04j.png"  width="50%">
 <img src="img/install_04je.png" width="50%">
+-->
 
 - インストールの確認   
-「Next」「次へ」をクリック．
+「次へ」をクリック．
 
 <img src="img/install_05.png" width="50%">
 
@@ -37,23 +42,25 @@ https://cran.r-project.org/bin/windows/base/
 
 <img src="img/install_06.png" width="50%">
 
-- インストールするもの
+- インストールするもの   
 
-<img src="img/install_07.png"  width="50%">
+<!--
 <img src="img/install_07c.png" width="50%">
+-->
+<img src="img/install_07.png"  width="50%">
 
-とりあえず，すべてチェックしておくくと良いです．
-Message translationは，Rからのメッセージを日本語に翻訳するかどうかです．
-チェックを入れないと，英語のみの表示です．
+とりあえず，すべてチェックしておくくと良い．
+Message translationは，Rからのメッセージを日本語に翻訳するかどうか．
+チェックを入れないと，英語のみの表示．
 
-結論としえは，とりあえずチェックを入れておき，必要に応じて英語で表示させるという方法が良いかもしれません．
-チェックを入れておくと，エラーメッセージなどを日本語で表示させることができます．
-「そら日本語のほうが良いやん」と思うかもしれません．
-ただでもよくわからないエラーメッセージが英語で表示されたら，わけがわからないからです．
-ただ，プログラミングの世界では，英語でのエラーメッセージのほうが便利なことが結構あります．
-それは，エラーメッセージをそのままネットで検索するときです．
-日本語でのエラーメッセージだとネット上の情報が限られています．
-一方，英語でのエラーメッセージで検索すると，原因や対処方法をかなりの確率で知ることができます．
+結論としえは，とりあえずチェックを入れておき，必要に応じて英語で表示させるという方法が良いかもしれない．
+チェックを入れておくと，エラーメッセージなどを日本語で表示させることができる．
+「そら日本語のほうが良いやん」と思うかもしれない．
+よくわからないエラーメッセージがしかも英語で表示されたら，わけがわからないからです．
+ただ，プログラミングの世界では，英語でのエラーメッセージのほうが便利なことが結構ある．
+それは，エラーメッセージをそのままネットで検索するときである．
+日本語でのエラーメッセージだとネット上の情報が限られる．
+一方，英語でのエラーメッセージで検索すると，原因や対処方法をかなりの確率で知ることができる．
 
 
 ```r
@@ -77,30 +84,30 @@ Message translationは，Rからのメッセージを日本語に翻訳するか
 <img src="img/install_09.png" width="50%">
 
 個人的な好みはSDIですが，好みの問題ですので正直どちらでも大丈夫．
-MDIは大きな1つのWindowの中に，コンソール(プログラムの入力部分)，グラフ，ヘルプなどが表示される．
-SDIはコンソール，グラフ，ヘルプが別々のWindowとして表示される．
+MDI(左)は大きな1つのWindowの中に，コンソール(プログラムの入力部分)，グラフ，ヘルプなどが表示される．
+SDI(右)はコンソール，グラフ，ヘルプが別々のWindowとして表示される．
 どちらかといえば，自由度が高い．
 
-<img src="img/install_mdi.png" width="70%">
-<img src="img/install_sdi.png" width="70%">
+<img src="img/install_mdi.png" width="45%">
+<img src="img/install_sdi.png" width="50%">
 
 - ヘルプの表示方法(Plain text / HTML help)の選択   
 
 <img src="img/install_10.png" width="50%">
 
-個人的な好みはPlain textだが，好みの問題ですので正直どちらでも構わない．
+個人的な好みはPlain textだが，好みの問題で正直どちらでも構わない．
 Plain textはテキストファイルで表示されるシンプルな作り．
 HTML helpはヘルプがブラウザ(GoogleChrome等)で表示される．
 関連する関数などへのリンクが表示されるので，それらを参照するのは便利．
 
-- その後の設定
+- その後の設定   
 
 その他は，既定値(そのまま)でOK．
 
-<img src="img/install_11.png" width="50%">
-<img src="img/install_12.png" width="50%">
-<img src="img/install_13.png" width="50%">
-<img src="img/install_14.png" width="50%">
+<img src="img/install_11.png" width="45%">
+<img src="img/install_12.png" width="45%">
+<img src="img/install_13.png" width="45%">
+<img src="img/install_14.png" width="45%">
 
 
 ## インストール完了
@@ -108,3 +115,5 @@ HTML helpはヘルプがブラウザ(GoogleChrome等)で表示される．
 インストールが完了すると，アイコンがデスクトップに表示される．
 
 <img src="img/install_15.png" width="20%">
+
+アイコンをクリックすると，Rが起動する．
