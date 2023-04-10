@@ -9,21 +9,20 @@ xlsxパッケージを使うと，エクセルのファイルの読み込み・�
 xlsxの使用例として，オートフィルタを設定して・ウィンドウ枠を固定する自動化スクリプトを作成した．
 
 ### 使用方法   
-- 準備：<a href="https://matutosi.github.io/retc/install.html">Rのインストール</a>   
-- <a href="https://gist.githubusercontent.com/matutosi/fe217c7ed934dd242d6798aca846d902/raw/c7b93586db398f801d469bd98a9e764a04a4a8e2/set_autofilter_freezepanel.rsc" download>set_autofilter_freezepanel.rsc</a>
+- 準備：<a href="https://matutosi.github.io/retc/install.html">Rのインストール</a>    
+- 準備：<a href="https://gist.githubusercontent.com/matutosi/fe217c7ed934dd242d6798aca846d902/raw/c7b93586db398f801d469bd98a9e764a04a4a8e2/set_autofilter_freezepanel.rsc" download>set_autofilter_freezepanel.rsc</a>
 をダウンロード(右クリックして「名前を付けてリンク先を保存」)して，任意のフォルダに保存．   
+- 準備：<a href="https://matutosi.github.io/retc/assoc.html">スクリプトの関連付け</a>を参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．Macの場合は，<a href="https://pc-karuma.net/mac-extension-related-app-change/">Mac - 拡張子に関連付けられているアプリを変更する方法</a>などを参考にしてほしい．   
 - set_autofilter_freezepanel.rsc と同じフォルダに，処理したいエクセルのファイルを保存．   
 ![](img/set_autofilter_freezepanel01.png){ width=80% }    
 - 実行前のエクセルのファイル   
-![](img/set_autofilter_freezepanel02.png){ width=40% }   
-- <a href="https://matutosi.github.io/retc/assoc.html">スクリプトの関連付け</a>を参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．Macの場合は，<a href="https://pc-karuma.net/mac-extension-related-app-change/">Mac - 拡張子に関連付けられているアプリを変更する方法</a>などを参考にしてほしい．  
+![](img/set_autofilter_freezepanel02.png){ width=40% }    
 - set_autofilter_freezepanel.rsc をダブルクリックして実行すると，黒い画面が表示されてプログラムが実行される．   
 ![](img/set_autofilter_freezepanel03.png){ width=40% }   
 プログラムが自動的にエクセルのファイルの1行目のA列からZ列までにオートフィルタを設定し，1行目と1列目でウィンドウ枠を固定する．
 複数ファイル・複数シートにも対応している．   
 なお，初回実行時は，xlsxパケージのダウンロードのため，少し時間がかかるかもしれない．
 2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．   
-
 実行後のエクセルのファイル   
 ![](img/set_autofilter_freezepanel04.png){ width=40% }   
 

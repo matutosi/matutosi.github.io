@@ -1137,8 +1137,10 @@ xlsxの使用例として，オートフィルタを設定して・ウィンド�
 \item
   準備：Rのインストール\\
 \item
-  set\_autofilter\_freezepanel.rsc
+  準備：set\_autofilter\_freezepanel.rsc
   をダウンロード(右クリックして「名前を付けてリンク先を保存」)して，任意のフォルダに保存．\\
+\item
+  準備：スクリプトの関連付けを参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．Macの場合は，Mac - 拡張子に関連付けられているアプリを変更する方法などを参考にしてほしい．\\
 \item
   set\_autofilter\_freezepanel.rsc と同じフォルダに，処理したいエクセルのファイルを保存．\\
   \includegraphics[width=0.8\textwidth,height=\textheight]{img/set_autofilter_freezepanel01.png}\\
@@ -1146,18 +1148,15 @@ xlsxの使用例として，オートフィルタを設定して・ウィンド�
   実行前のエクセルのファイル\\
   \includegraphics[width=0.4\textwidth,height=\textheight]{img/set_autofilter_freezepanel02.png}\\
 \item
-  スクリプトの関連付けを参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．Macの場合は，Mac - 拡張子に関連付けられているアプリを変更する方法などを参考にしてほしい．\\
-\item
   set\_autofilter\_freezepanel.rsc をダブルクリックして実行すると，黒い画面が表示されてプログラムが実行される．\\
   \includegraphics[width=0.4\textwidth,height=\textheight]{img/set_autofilter_freezepanel03.png}\\
   プログラムが自動的にエクセルのファイルの1行目のA列からZ列までにオートフィルタを設定し，1行目と1列目でウィンドウ枠を固定する．
   複数ファイル・複数シートにも対応している．\\
   なお，初回実行時は，xlsxパケージのダウンロードのため，少し時間がかかるかもしれない．
-  2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．
+  2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．\\
+  実行後のエクセルのファイル\\
+  \includegraphics[width=0.4\textwidth,height=\textheight]{img/set_autofilter_freezepanel04.png}
 \end{itemize}
-
-実行後のエクセルのファイル\\
-\includegraphics[width=0.4\textwidth,height=\textheight]{img/set_autofilter_freezepanel04.png}
 
 \hypertarget{ux30b9ux30afux30eaux30d7ux30c8ux306eux5185ux5bb9ux8aacux660e}{%
 \subsubsection{スクリプトの内容説明}\label{ux30b9ux30afux30eaux30d7ux30c8ux306eux5185ux5bb9ux8aacux660e}}
