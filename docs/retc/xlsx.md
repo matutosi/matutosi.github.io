@@ -11,7 +11,7 @@ xlsxの使用例として，オートフィルタを設定して・ウィンド�
 ### 使用方法   
 - 準備：<a href="https://matutosi.github.io/retc/install.html">Rのインストール</a>   
 - <a href="https://gist.githubusercontent.com/matutosi/fe217c7ed934dd242d6798aca846d902/raw/c7b93586db398f801d469bd98a9e764a04a4a8e2/set_autofilter_freezepanel.rsc" download>set_autofilter_freezepanel.rsc</a>
-をダウンロードして，任意のフォルダに保存．   
+をダウンロード(右クリックして「名前を付けてリンク先を保存」)して，任意のフォルダに保存．   
 - set_autofilter_freezepanel.rsc と同じフォルダに，処理したいエクセルのファイルを保存．   
 ![](img/set_autofilter_freezepanel01.png){ width=80% }    
 - 実行前のエクセルのファイル   
