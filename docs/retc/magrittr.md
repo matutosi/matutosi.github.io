@@ -1,7 +1,6 @@
 # magrritrの勧め {#magrittr}
 
 
-
 ## tidyverseとmagrittr
 
 tidyverseは，Rでのデータ解析には欠かせないものになっている．
@@ -11,52 +10,6 @@ tidyverseは，Rでのデータ解析には欠かせないものになってい�
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'dplyr' was built under R version 4.2.3
-```
-
-```
-## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.1     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors
-```
-
-```r
-library(magrittr)
-```
-
-```
-## Warning: package 'magrittr' was built under R version 4.2.3
-```
-
-```
-## 
-## Attaching package: 'magrittr'
-## 
-## The following object is masked from 'package:purrr':
-## 
-##     set_names
-## 
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
 ```
 
 これらのライブラリの多く(forcats，tibble，stringr，dplyr，tidyr，purrr)で，`%>%` (パイプ)を使うことができる．
@@ -87,6 +40,23 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 library(magrittr)
 ```
 
+```
+## 
+## Attaching package: 'magrittr'
+```
+
+```
+## The following object is masked from 'package:purrr':
+## 
+##     set_names
+```
+
+```
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+```
+
 
 
 
@@ -103,20 +73,20 @@ mpg # 燃費データ
 ```
 
 ```
-## # A tibble: 234 × 11
+## # A tibble: 234 x 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
-##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
-##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
-##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
-##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
-##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
-##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
-##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
-##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
-## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
-## # ℹ 224 more rows
+##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
+##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
+##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
+##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
+##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
+##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
+##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
+##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
+##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
+## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
+## # ... with 224 more rows
 ```
 
 ```r
@@ -129,21 +99,20 @@ tmp <-
 ```
 
 ```
-## # A tibble: 117 × 12
-##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
-##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
-##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
-##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
-##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
-##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
-##  5 audi         a4 quat…   1.8  1999     4 manual m5     4        18    26 p    
-##  6 audi         a4 quat…   1.8  1999     4 auto   l5     4        16    25 p    
-##  7 audi         a4 quat…   2.8  1999     6 auto   l5     4        15    25 p    
-##  8 audi         a4 quat…   2.8  1999     6 manual m5     4        17    25 p    
-##  9 audi         a6 quat…   2.8  1999     6 auto   l5     4        15    24 p    
-## 10 chevrolet    c1500 s…   5.7  1999     8 auto   l4     r        13    17 r    
-## # ℹ 107 more rows
-## # ℹ 1 more variable: class <chr>
+## # A tibble: 117 x 12
+##    manufac~1 model displ  year   cyl trans1 trans2 drv     cty   hwy fl    class
+##    <chr>     <chr> <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr> <chr>
+##  1 audi      a4      1.8  1999     4 auto   l5     f        18    29 p     comp~
+##  2 audi      a4      1.8  1999     4 manual m5     f        21    29 p     comp~
+##  3 audi      a4      2.8  1999     6 auto   l5     f        16    26 p     comp~
+##  4 audi      a4      2.8  1999     6 manual m5     f        18    26 p     comp~
+##  5 audi      a4 q~   1.8  1999     4 manual m5     4        18    26 p     comp~
+##  6 audi      a4 q~   1.8  1999     4 auto   l5     4        16    25 p     comp~
+##  7 audi      a4 q~   2.8  1999     6 auto   l5     4        15    25 p     comp~
+##  8 audi      a4 q~   2.8  1999     6 manual m5     4        17    25 p     comp~
+##  9 audi      a6 q~   2.8  1999     6 auto   l5     4        15    24 p     mids~
+## 10 chevrolet c150~   5.7  1999     8 auto   l4     r        13    17 r     suv  
+## # ... with 107 more rows, and abbreviated variable name 1: manufacturer
 ```
 
 ```r
@@ -155,21 +124,20 @@ tmp %<>%
 ```
 
 ```
-## # A tibble: 117 × 12
-##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
-##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
-##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
-##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
-##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
-##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
-##  5 audi         a4 quat…   1.8  1999     4 manual m5     4        18    26 p    
-##  6 audi         a4 quat…   1.8  1999     4 auto   l5     4        16    25 p    
-##  7 audi         a4 quat…   2.8  1999     6 auto   l5     4        15    25 p    
-##  8 audi         a4 quat…   2.8  1999     6 manual m5     4        17    25 p    
-##  9 audi         a6 quat…   2.8  1999     6 auto   l5     4        15    24 p    
-## 10 chevrolet    c1500 s…   5.7  1999     8 auto   l4     r        13    17 r    
-## # ℹ 107 more rows
-## # ℹ 1 more variable: class <chr>
+## # A tibble: 117 x 12
+##    manufac~1 model displ  year   cyl trans1 trans2 drv     cty   hwy fl    class
+##    <chr>     <chr> <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr> <chr>
+##  1 audi      a4      1.8  1999     4 auto   l5     f        18    29 p     comp~
+##  2 audi      a4      1.8  1999     4 manual m5     f        21    29 p     comp~
+##  3 audi      a4      2.8  1999     6 auto   l5     f        16    26 p     comp~
+##  4 audi      a4      2.8  1999     6 manual m5     f        18    26 p     comp~
+##  5 audi      a4 q~   1.8  1999     4 manual m5     4        18    26 p     comp~
+##  6 audi      a4 q~   1.8  1999     4 auto   l5     4        16    25 p     comp~
+##  7 audi      a4 q~   2.8  1999     6 auto   l5     4        15    25 p     comp~
+##  8 audi      a4 q~   2.8  1999     6 manual m5     4        17    25 p     comp~
+##  9 audi      a6 q~   2.8  1999     6 auto   l5     4        15    24 p     mids~
+## 10 chevrolet c150~   5.7  1999     8 auto   l4     r        13    17 r     suv  
+## # ... with 107 more rows, and abbreviated variable name 1: manufacturer
 ```
 
 ### 注意点
@@ -194,20 +162,20 @@ mpg # 燃費データ
 ```
 
 ```
-## # A tibble: 234 × 11
+## # A tibble: 234 x 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
-##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
-##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
-##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
-##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
-##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
-##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
-##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
-##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
-## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
-## # ℹ 224 more rows
+##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
+##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
+##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
+##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
+##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
+##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
+##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
+##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
+##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
+## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
+## # ... with 224 more rows
 ```
 
 ### 注意点
