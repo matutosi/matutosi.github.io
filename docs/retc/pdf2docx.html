@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-04-24" />
+<meta name="date" content="2023-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -289,58 +289,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 CRANにはないが，</p>
 <div id="インストール" class="section level3 hasAnchor" number="14.1.1">
 <h3><span class="header-section-number">14.1.1</span> インストール<a href="pdf2docx.html#インストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="pdf2docx.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RDCOMClient&quot;</span>, </span>
-<span id="cb52-2"><a href="pdf2docx.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">&quot;http://www.omegahat.net/R&quot;</span>, </span>
-<span id="cb52-3"><a href="pdf2docx.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;win.binary&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="pdf2docx.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RDCOMClient&quot;</span>, </span>
+<span id="cb49-2"><a href="pdf2docx.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">&quot;http://www.omegahat.net/R&quot;</span>, </span>
+<span id="cb49-3"><a href="pdf2docx.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;win.binary&quot;</span>)</span></code></pre></div>
 </div>
 <div id="変換実行" class="section level3 hasAnchor" number="14.1.2">
 <h3><span class="header-section-number">14.1.2</span> 変換実行<a href="pdf2docx.html#変換実行" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><a href="https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411" class="uri">https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411</a></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="pdf2docx.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
-<span id="cb53-2"><a href="pdf2docx.html#cb53-2" aria-hidden="true" tabindex="-1"></a>wordApp <span class="ot">&lt;-</span> <span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
-<span id="cb53-3"><a href="pdf2docx.html#cb53-3" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb53-4"><a href="pdf2docx.html#cb53-4" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb53-5"><a href="pdf2docx.html#cb53-5" aria-hidden="true" tabindex="-1"></a>path_To_PDF_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.pdf&quot;</span></span>
-<span id="cb53-6"><a href="pdf2docx.html#cb53-6" aria-hidden="true" tabindex="-1"></a>path_To_Word_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.docx&quot;</span></span>
-<span id="cb53-7"><a href="pdf2docx.html#cb53-7" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> </span>
-<span id="cb53-8"><a href="pdf2docx.html#cb53-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(path_To_PDF_File), </span>
-<span id="cb53-9"><a href="pdf2docx.html#cb53-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb53-10"><a href="pdf2docx.html#cb53-10" aria-hidden="true" tabindex="-1"></a>doc<span class="sc">$</span><span class="fu">SaveAs2</span>(path_To_Word_File)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="pdf2docx.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
+<span id="cb50-2"><a href="pdf2docx.html#cb50-2" aria-hidden="true" tabindex="-1"></a>wordApp <span class="ot">&lt;-</span> <span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
+<span id="cb50-3"><a href="pdf2docx.html#cb50-3" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb50-4"><a href="pdf2docx.html#cb50-4" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb50-5"><a href="pdf2docx.html#cb50-5" aria-hidden="true" tabindex="-1"></a>path_To_PDF_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.pdf&quot;</span></span>
+<span id="cb50-6"><a href="pdf2docx.html#cb50-6" aria-hidden="true" tabindex="-1"></a>path_To_Word_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.docx&quot;</span></span>
+<span id="cb50-7"><a href="pdf2docx.html#cb50-7" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> </span>
+<span id="cb50-8"><a href="pdf2docx.html#cb50-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(path_To_PDF_File), </span>
+<span id="cb50-9"><a href="pdf2docx.html#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb50-10"><a href="pdf2docx.html#cb50-10" aria-hidden="true" tabindex="-1"></a>doc<span class="sc">$</span><span class="fu">SaveAs2</span>(path_To_Word_File)</span></code></pre></div>
 </div>
 <div id="ラッパー関数" class="section level3 hasAnchor" number="14.1.3">
 <h3><span class="header-section-number">14.1.3</span> ラッパー関数<a href="pdf2docx.html#ラッパー関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="pdf2docx.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
-<span id="cb54-2"><a href="pdf2docx.html#cb54-2" aria-hidden="true" tabindex="-1"></a>pdf2docx <span class="ot">&lt;-</span> <span class="cf">function</span>(pdf, <span class="at">docx =</span> <span class="cn">NULL</span>){</span>
-<span id="cb54-3"><a href="pdf2docx.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(docx)){</span>
-<span id="cb54-4"><a href="pdf2docx.html#cb54-4" aria-hidden="true" tabindex="-1"></a>    docx <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, pdf))</span>
-<span id="cb54-5"><a href="pdf2docx.html#cb54-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb54-6"><a href="pdf2docx.html#cb54-6" aria-hidden="true" tabindex="-1"></a>  wordApp <span class="ot">&lt;-</span> RDCOMClient<span class="sc">::</span><span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
-<span id="cb54-7"><a href="pdf2docx.html#cb54-7" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb54-8"><a href="pdf2docx.html#cb54-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb54-9"><a href="pdf2docx.html#cb54-9" aria-hidden="true" tabindex="-1"></a>  doc <span class="ot">&lt;-</span> </span>
-<span id="cb54-10"><a href="pdf2docx.html#cb54-10" aria-hidden="true" tabindex="-1"></a>    wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(pdf), <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb54-11"><a href="pdf2docx.html#cb54-11" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">SaveAs2</span>(docx)</span>
-<span id="cb54-12"><a href="pdf2docx.html#cb54-12" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">close</span>()</span>
-<span id="cb54-13"><a href="pdf2docx.html#cb54-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb54-14"><a href="pdf2docx.html#cb54-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-15"><a href="pdf2docx.html#cb54-15" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/matu/work/tmp/&quot;</span></span>
-<span id="cb54-16"><a href="pdf2docx.html#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb54-17"><a href="pdf2docx.html#cb54-17" aria-hidden="true" tabindex="-1"></a>path_docx <span class="ot">&lt;-</span> <span class="cf">function</span>(path_pdf){</span>
-<span id="cb54-18"><a href="pdf2docx.html#cb54-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">grepl</span>(<span class="st">&quot;[A-z]:&quot;</span>, path_pdf)){</span>
-<span id="cb54-19"><a href="pdf2docx.html#cb54-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
-<span id="cb54-20"><a href="pdf2docx.html#cb54-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb54-21"><a href="pdf2docx.html#cb54-21" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
-<span id="cb54-22"><a href="pdf2docx.html#cb54-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;//&quot;</span>, <span class="st">&quot;/&quot;</span>, path))</span>
-<span id="cb54-23"><a href="pdf2docx.html#cb54-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb54-24"><a href="pdf2docx.html#cb54-24" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;a.pdf&quot;</span>                 ), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
-<span id="cb54-25"><a href="pdf2docx.html#cb54-25" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;d:/matu/work/tmp/a.pdf&quot;</span>), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
-<span id="cb54-26"><a href="pdf2docx.html#cb54-26" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;test/a.pdf&quot;</span>            ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
-<span id="cb54-27"><a href="pdf2docx.html#cb54-27" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;/test/a.pdf&quot;</span>           ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
-<span id="cb54-28"><a href="pdf2docx.html#cb54-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-29"><a href="pdf2docx.html#cb54-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-30"><a href="pdf2docx.html#cb54-30" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/&quot;</span></span>
-<span id="cb54-31"><a href="pdf2docx.html#cb54-31" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb54-32"><a href="pdf2docx.html#cb54-32" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf2docx</span>(<span class="st">&quot;a.pdf&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="pdf2docx.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
+<span id="cb51-2"><a href="pdf2docx.html#cb51-2" aria-hidden="true" tabindex="-1"></a>pdf2docx <span class="ot">&lt;-</span> <span class="cf">function</span>(pdf, <span class="at">docx =</span> <span class="cn">NULL</span>){</span>
+<span id="cb51-3"><a href="pdf2docx.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(docx)){</span>
+<span id="cb51-4"><a href="pdf2docx.html#cb51-4" aria-hidden="true" tabindex="-1"></a>    docx <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, pdf))</span>
+<span id="cb51-5"><a href="pdf2docx.html#cb51-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb51-6"><a href="pdf2docx.html#cb51-6" aria-hidden="true" tabindex="-1"></a>  wordApp <span class="ot">&lt;-</span> RDCOMClient<span class="sc">::</span><span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
+<span id="cb51-7"><a href="pdf2docx.html#cb51-7" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb51-8"><a href="pdf2docx.html#cb51-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb51-9"><a href="pdf2docx.html#cb51-9" aria-hidden="true" tabindex="-1"></a>  doc <span class="ot">&lt;-</span> </span>
+<span id="cb51-10"><a href="pdf2docx.html#cb51-10" aria-hidden="true" tabindex="-1"></a>    wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(pdf), <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb51-11"><a href="pdf2docx.html#cb51-11" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">SaveAs2</span>(docx)</span>
+<span id="cb51-12"><a href="pdf2docx.html#cb51-12" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">close</span>()</span>
+<span id="cb51-13"><a href="pdf2docx.html#cb51-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-14"><a href="pdf2docx.html#cb51-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-15"><a href="pdf2docx.html#cb51-15" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/matu/work/tmp/&quot;</span></span>
+<span id="cb51-16"><a href="pdf2docx.html#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb51-17"><a href="pdf2docx.html#cb51-17" aria-hidden="true" tabindex="-1"></a>path_docx <span class="ot">&lt;-</span> <span class="cf">function</span>(path_pdf){</span>
+<span id="cb51-18"><a href="pdf2docx.html#cb51-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">grepl</span>(<span class="st">&quot;[A-z]:&quot;</span>, path_pdf)){</span>
+<span id="cb51-19"><a href="pdf2docx.html#cb51-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
+<span id="cb51-20"><a href="pdf2docx.html#cb51-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb51-21"><a href="pdf2docx.html#cb51-21" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
+<span id="cb51-22"><a href="pdf2docx.html#cb51-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;//&quot;</span>, <span class="st">&quot;/&quot;</span>, path))</span>
+<span id="cb51-23"><a href="pdf2docx.html#cb51-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-24"><a href="pdf2docx.html#cb51-24" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;a.pdf&quot;</span>                 ), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
+<span id="cb51-25"><a href="pdf2docx.html#cb51-25" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;d:/matu/work/tmp/a.pdf&quot;</span>), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
+<span id="cb51-26"><a href="pdf2docx.html#cb51-26" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;test/a.pdf&quot;</span>            ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
+<span id="cb51-27"><a href="pdf2docx.html#cb51-27" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;/test/a.pdf&quot;</span>           ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
+<span id="cb51-28"><a href="pdf2docx.html#cb51-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-29"><a href="pdf2docx.html#cb51-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-30"><a href="pdf2docx.html#cb51-30" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/&quot;</span></span>
+<span id="cb51-31"><a href="pdf2docx.html#cb51-31" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb51-32"><a href="pdf2docx.html#cb51-32" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf2docx</span>(<span class="st">&quot;a.pdf&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="pdf2docx-1" class="section level2 hasAnchor" number="14.2">

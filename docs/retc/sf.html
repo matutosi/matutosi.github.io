@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-04-24" />
+<meta name="date" content="2023-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -339,18 +339,11 @@ fsパッケージの関数は，ファイル操作はfile_</em>，ディレク�
 <div id="準備" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> 準備<a href="sf.html#準備" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sf.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span></code></pre></div>
-<pre><code>## also installing the dependencies &#39;proxy&#39;, &#39;e1071&#39;, &#39;wk&#39;, &#39;classInt&#39;, &#39;s2&#39;, &#39;units&#39;</code></pre>
-<pre><code>## package &#39;proxy&#39; successfully unpacked and MD5 sums checked
-## package &#39;e1071&#39; successfully unpacked and MD5 sums checked
-## package &#39;wk&#39; successfully unpacked and MD5 sums checked
-## package &#39;classInt&#39; successfully unpacked and MD5 sums checked
-## package &#39;s2&#39; successfully unpacked and MD5 sums checked
-## package &#39;units&#39; successfully unpacked and MD5 sums checked
-## package &#39;sf&#39; successfully unpacked and MD5 sums checked
+<pre><code>## package &#39;sf&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\matu\AppData\Local\Temp\Rtmps387qM\downloaded_packages</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="sf.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+##  C:\Users\matu\AppData\Local\Temp\RtmpcFNuJG\downloaded_packages</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="sf.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
 <pre><code>## Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE</code></pre>
 </div>
 <div id="sfの関数群-wip" class="section level2 hasAnchor" number="3.4">
@@ -360,11 +353,85 @@ TODO: 以下のページを参考にして，関数の概要を書く
   https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html
 -->
 <ul>
-<li>ディレクトリ操作(一覧，移動，複製，削除など)<br />
+<li>ディレクトリ操作(一覧，移動，複製，削除など)
+<ul>
+<li>dir_ls(“path”)<br />
 </li>
-<li>ファイル操作(移動，複製，削除など)<br />
+<li>dir_info(“path”)<br />
 </li>
-<li>パス操作</li>
+<li>dir_copy(“path”, “new-path”)<br />
+</li>
+<li>dir_create(“path”)<br />
+</li>
+<li>dir_delete(“path”)<br />
+</li>
+<li>dir_exists(“path”)<br />
+</li>
+<li>dir_move() (see file_move)<br />
+</li>
+<li>dir_map(“path”, fun)<br />
+</li>
+<li>dir_tree(“path”)<br />
+</li>
+<li>File functions</li>
+</ul></li>
+<li>ファイル操作(移動，複製，削除など)
+<ul>
+<li>file_chmod(“path”, “mode”)<br />
+</li>
+<li>file_chown(“path”, “user_id”, “group_id”)<br />
+</li>
+<li>file_copy(“path”, “new-path”)<br />
+</li>
+<li>file_create(“new-path”)<br />
+</li>
+<li>file_delete(“path”)<br />
+</li>
+<li>file_exists(“path”)<br />
+</li>
+<li>file_info(“path”)<br />
+</li>
+<li>file_move(“path”, “new-path”)<br />
+</li>
+<li>file_show(“path”)<br />
+</li>
+<li>file_touch()<br />
+</li>
+<li>file_temp()<br />
+</li>
+<li>file_test()<br />
+</li>
+</ul></li>
+<li>パス操作
+<ul>
+<li>path(“top_dir”, “nested_dir”, “file”, ext = “ext”)<br />
+</li>
+<li>path_temp(), path_temp(“path”)<br />
+</li>
+<li>path_expand(“~/path”)<br />
+</li>
+<li>path_dir(“path”)<br />
+</li>
+<li>path_file(“path”)<br />
+</li>
+<li>path_home()<br />
+</li>
+<li>path_package(“pkgname”, “dir”, “file”)<br />
+</li>
+<li>path_norm(“path”)<br />
+</li>
+<li>path_real(“path”)<br />
+</li>
+<li>path_rel(“path/foo”, “path/bar”)<br />
+</li>
+<li>path_common(c(“path/foo”, “path/bar”, “path/baz”))<br />
+</li>
+<li>path_ext_remove(“path”)<br />
+</li>
+<li>path_ext_set(“path”, “new_ext”)<br />
+</li>
+<li>path_sanitize(“path”)</li>
+</ul></li>
 </ul>
 </div>
 <div id="sfを使ったファイル操作例" class="section level2 hasAnchor" number="3.5">
@@ -375,20 +442,20 @@ TODO: 以下のページを参考にして，関数の概要を書く
 ただ，Rパッケージの開発をしていると，開発中のパッケージが依存しているパッケージが最新版のRで開発されている旨の警告がでることが結構ある．
 ごく最近までは，手作業でファイルをコピーしていたが，よく考えたらこういった作業は自動化するべきだと気づいた．
 そこで，sfパッケージ(とstringr)を使ってファイルをコピーするスクリプトを作成した．</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="sf.html#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Script to copy Rconsole for updating R</span></span>
-<span id="cb12-2"><a href="sf.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># RをバージョンアップしたときのRconsoleの複製スクリプト</span></span>
-<span id="cb12-3"><a href="sf.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   https://gist.github.com/matutosi/6dab3918402662f081be5c17cc7f9ce2</span></span>
-<span id="cb12-4"><a href="sf.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
-<span id="cb12-5"><a href="sf.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb12-6"><a href="sf.html#cb12-6" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(<span class="fu">R.home</span>(), <span class="st">&quot;R-([0-9]</span><span class="sc">\\</span><span class="st">.*){3}&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
-<span id="cb12-7"><a href="sf.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb12-8"><a href="sf.html#cb12-8" aria-hidden="true" tabindex="-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">dir_ls</span>()</span>
-<span id="cb12-9"><a href="sf.html#cb12-9" aria-hidden="true" tabindex="-1"></a>d_old <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb12-10"><a href="sf.html#cb12-10" aria-hidden="true" tabindex="-1"></a>d_new <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)]</span>
-<span id="cb12-11"><a href="sf.html#cb12-11" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rconsole&quot;</span>, <span class="st">&quot;Rprofile.site&quot;</span>)</span>
-<span id="cb12-12"><a href="sf.html#cb12-12" aria-hidden="true" tabindex="-1"></a>f_old <span class="ot">&lt;-</span> <span class="fu">path</span>(d_old, <span class="st">&quot;etc&quot;</span>, files)</span>
-<span id="cb12-13"><a href="sf.html#cb12-13" aria-hidden="true" tabindex="-1"></a>f_new <span class="ot">&lt;-</span> <span class="fu">path</span>(d_new, <span class="st">&quot;etc&quot;</span>)</span>
-<span id="cb12-14"><a href="sf.html#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">file_copy</span>(f_old, f_new, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="sf.html#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Script to copy Rconsole for updating R</span></span>
+<span id="cb11-2"><a href="sf.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># RをバージョンアップしたときのRconsoleの複製スクリプト</span></span>
+<span id="cb11-3"><a href="sf.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   https://gist.github.com/matutosi/6dab3918402662f081be5c17cc7f9ce2</span></span>
+<span id="cb11-4"><a href="sf.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb11-5"><a href="sf.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb11-6"><a href="sf.html#cb11-6" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(<span class="fu">R.home</span>(), <span class="st">&quot;R-([0-9]</span><span class="sc">\\</span><span class="st">.*){3}&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb11-7"><a href="sf.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb11-8"><a href="sf.html#cb11-8" aria-hidden="true" tabindex="-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">dir_ls</span>()</span>
+<span id="cb11-9"><a href="sf.html#cb11-9" aria-hidden="true" tabindex="-1"></a>d_old <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb11-10"><a href="sf.html#cb11-10" aria-hidden="true" tabindex="-1"></a>d_new <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)]</span>
+<span id="cb11-11"><a href="sf.html#cb11-11" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rconsole&quot;</span>, <span class="st">&quot;Rprofile.site&quot;</span>)</span>
+<span id="cb11-12"><a href="sf.html#cb11-12" aria-hidden="true" tabindex="-1"></a>f_old <span class="ot">&lt;-</span> <span class="fu">path</span>(d_old, <span class="st">&quot;etc&quot;</span>, files)</span>
+<span id="cb11-13"><a href="sf.html#cb11-13" aria-hidden="true" tabindex="-1"></a>f_new <span class="ot">&lt;-</span> <span class="fu">path</span>(d_new, <span class="st">&quot;etc&quot;</span>)</span>
+<span id="cb11-14"><a href="sf.html#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">file_copy</span>(f_old, f_new, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>このように，定期的あるいはバージョンアップなどに伴うファイルのコピーや移動はそれなりにあるように思う．
 そのような場合は，fsとstringrを組み合わせて，作業を自動化するとよいだろう．</p>
 

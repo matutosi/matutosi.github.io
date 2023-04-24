@@ -76,20 +76,10 @@ install.packages("sf")
 ```
 
 ```
-## also installing the dependencies 'proxy', 'e1071', 'wk', 'classInt', 's2', 'units'
-```
-
-```
-## package 'proxy' successfully unpacked and MD5 sums checked
-## package 'e1071' successfully unpacked and MD5 sums checked
-## package 'wk' successfully unpacked and MD5 sums checked
-## package 'classInt' successfully unpacked and MD5 sums checked
-## package 's2' successfully unpacked and MD5 sums checked
-## package 'units' successfully unpacked and MD5 sums checked
 ## package 'sf' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\matu\AppData\Local\Temp\Rtmps387qM\downloaded_packages
+## 	C:\Users\matu\AppData\Local\Temp\RtmpcFNuJG\downloaded_packages
 ```
 
 ```r
@@ -108,8 +98,44 @@ TODO: 以下のページを参考にして，関数の概要を書く
 -->
 
 - ディレクトリ操作(一覧，移動，複製，削除など)    
+  - dir_ls("path")   
+  - dir_info("path")   
+  - dir_copy("path", "new-path")   
+  - dir_create("path")   
+  - dir_delete("path")   
+  - dir_exists("path")   
+  - dir_move() (see file_move)   
+  - dir_map("path", fun)   
+  - dir_tree("path")   
+  - File functions
 - ファイル操作(移動，複製，削除など)    
+  - file_chmod("path", "mode")   
+  - file_chown("path", "user_id", "group_id")   
+  - file_copy("path", "new-path")   
+  - file_create("new-path")   
+  - file_delete("path")   
+  - file_exists("path")   
+  - file_info("path")   
+  - file_move("path", "new-path")   
+  - file_show("path")   
+  - file_touch()   
+  - file_temp()   
+  - file_test()   
 - パス操作   
+  - path("top_dir", "nested_dir", "file", ext = "ext")   
+  - path_temp(), path_temp("path")   
+  - path_expand("~/path")   
+  - path_dir("path")   
+  - path_file("path")   
+  - path_home()   
+  - path_package("pkgname", "dir", "file")   
+  - path_norm("path")   
+  - path_real("path")   
+  - path_rel("path/foo", "path/bar")   
+  - path_common(c("path/foo", "path/bar", "path/baz"))   
+  - path_ext_remove("path")   
+  - path_ext_set("path", "new_ext")   
+  - path_sanitize("path")   
 
 ## sfを使ったファイル操作例
 

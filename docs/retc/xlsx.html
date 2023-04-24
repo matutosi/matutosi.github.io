@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-04-24" />
+<meta name="date" content="2023-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -316,50 +316,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="スクリプトの内容説明" class="section level3 hasAnchor" number="12.1.2">
 <h3><span class="header-section-number">12.1.2</span> スクリプトの内容説明<a href="xlsx.html#スクリプトの内容説明" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="xlsx.html#cb49-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Package, 準備</span></span>
-<span id="cb49-2"><a href="xlsx.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span> <span class="st">&quot;xlsx&quot;</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]){  <span class="co"># xlsxパッケージ有無の確認</span></span>
-<span id="cb49-3"><a href="xlsx.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージが無い場合</span></span>
-<span id="cb49-4"><a href="xlsx.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>) <span class="co"># ミラーサイトの設定</span></span>
-<span id="cb49-5"><a href="xlsx.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;xlsx&quot;</span>)                   <span class="co"># パッケージのインストール</span></span>
-<span id="cb49-6"><a href="xlsx.html#cb49-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-7"><a href="xlsx.html#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="xlsx.html#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Functions, 関数</span></span>
-<span id="cb49-9"><a href="xlsx.html#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   註：xlsxパッケージの関数は返り値の代入がない</span></span>
-<span id="cb49-10"><a href="xlsx.html#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         副作用でシートなどを操作するため?</span></span>
-<span id="cb49-11"><a href="xlsx.html#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         参照型を使っているため?</span></span>
-<span id="cb49-12"><a href="xlsx.html#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   参考：通常のRの関数は，返り値の代入をすることが多いの</span></span>
-<span id="cb49-13"><a href="xlsx.html#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-14"><a href="xlsx.html#cb49-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># オートフィルタの設定</span></span>
-<span id="cb49-15"><a href="xlsx.html#cb49-15" aria-hidden="true" tabindex="-1"></a>set_auto_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
-<span id="cb49-16"><a href="xlsx.html#cb49-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A1からZ1までを設定</span></span>
-<span id="cb49-17"><a href="xlsx.html#cb49-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   もっと多くの列で設定したければ，&quot;A1:Z1&quot;のところを修正する</span></span>
-<span id="cb49-18"><a href="xlsx.html#cb49-18" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">addAutoFilter</span>(sh, <span class="st">&quot;A1:Z1&quot;</span>)</span>
-<span id="cb49-19"><a href="xlsx.html#cb49-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-20"><a href="xlsx.html#cb49-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-21"><a href="xlsx.html#cb49-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ウィンドウ枠の固定</span></span>
-<span id="cb49-22"><a href="xlsx.html#cb49-22" aria-hidden="true" tabindex="-1"></a>set_freeze_panel <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
-<span id="cb49-23"><a href="xlsx.html#cb49-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1列目と1行目のウィンドウ枠を固定</span></span>
-<span id="cb49-24"><a href="xlsx.html#cb49-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   固定する場所の変更方法</span></span>
-<span id="cb49-25"><a href="xlsx.html#cb49-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     2行目までを固定したい場合は，引数の2つ目と4つ目を，3にする</span></span>
-<span id="cb49-26"><a href="xlsx.html#cb49-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     3列目までを固定したい場合は，引数の3つ目と5つ目を，4にする</span></span>
-<span id="cb49-27"><a href="xlsx.html#cb49-27" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">createFreezePane</span>(sh, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb49-28"><a href="xlsx.html#cb49-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-29"><a href="xlsx.html#cb49-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-30"><a href="xlsx.html#cb49-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ワークブックごとで設定</span></span>
-<span id="cb49-31"><a href="xlsx.html#cb49-31" aria-hidden="true" tabindex="-1"></a>set_af_fp <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
-<span id="cb49-32"><a href="xlsx.html#cb49-32" aria-hidden="true" tabindex="-1"></a>  wb <span class="ot">&lt;-</span> xlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(file)   <span class="co"># ワークブックの読み込み</span></span>
-<span id="cb49-33"><a href="xlsx.html#cb49-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(sh <span class="cf">in</span> xlsx<span class="sc">::</span><span class="fu">getSheets</span>(wb)){  <span class="co"># シートの数だけ繰り返し</span></span>
-<span id="cb49-34"><a href="xlsx.html#cb49-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_auto_filter</span>(sh)            <span class="co">#   オートフィルタの設定</span></span>
-<span id="cb49-35"><a href="xlsx.html#cb49-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_freeze_panel</span>(sh)           <span class="co">#   ウィンドウ枠の固定</span></span>
-<span id="cb49-36"><a href="xlsx.html#cb49-36" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb49-37"><a href="xlsx.html#cb49-37" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, file)     <span class="co"># ワークブクの保存</span></span>
-<span id="cb49-38"><a href="xlsx.html#cb49-38" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-39"><a href="xlsx.html#cb49-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-40"><a href="xlsx.html#cb49-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Main, 本体</span></span>
-<span id="cb49-41"><a href="xlsx.html#cb49-41" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&quot;xls&quot;</span>) <span class="co"># &quot;.xls&quot;と&quot;xlsx&quot;の一覧取得</span></span>
-<span id="cb49-42"><a href="xlsx.html#cb49-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> files){                  <span class="co"># ファイルの数だけ繰り返し</span></span>
-<span id="cb49-43"><a href="xlsx.html#cb49-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_af_fp</span>(file)                    <span class="co"># set_af_fp()の実行</span></span>
-<span id="cb49-44"><a href="xlsx.html#cb49-44" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="xlsx.html#cb46-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Package, 準備</span></span>
+<span id="cb46-2"><a href="xlsx.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span> <span class="st">&quot;xlsx&quot;</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]){  <span class="co"># xlsxパッケージ有無の確認</span></span>
+<span id="cb46-3"><a href="xlsx.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージが無い場合</span></span>
+<span id="cb46-4"><a href="xlsx.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>) <span class="co"># ミラーサイトの設定</span></span>
+<span id="cb46-5"><a href="xlsx.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;xlsx&quot;</span>)                   <span class="co"># パッケージのインストール</span></span>
+<span id="cb46-6"><a href="xlsx.html#cb46-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-7"><a href="xlsx.html#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="xlsx.html#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Functions, 関数</span></span>
+<span id="cb46-9"><a href="xlsx.html#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   註：xlsxパッケージの関数は返り値の代入がない</span></span>
+<span id="cb46-10"><a href="xlsx.html#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         副作用でシートなどを操作するため?</span></span>
+<span id="cb46-11"><a href="xlsx.html#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         参照型を使っているため?</span></span>
+<span id="cb46-12"><a href="xlsx.html#cb46-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   参考：通常のRの関数は，返り値の代入をすることが多いの</span></span>
+<span id="cb46-13"><a href="xlsx.html#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="xlsx.html#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># オートフィルタの設定</span></span>
+<span id="cb46-15"><a href="xlsx.html#cb46-15" aria-hidden="true" tabindex="-1"></a>set_auto_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
+<span id="cb46-16"><a href="xlsx.html#cb46-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A1からZ1までを設定</span></span>
+<span id="cb46-17"><a href="xlsx.html#cb46-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   もっと多くの列で設定したければ，&quot;A1:Z1&quot;のところを修正する</span></span>
+<span id="cb46-18"><a href="xlsx.html#cb46-18" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">addAutoFilter</span>(sh, <span class="st">&quot;A1:Z1&quot;</span>)</span>
+<span id="cb46-19"><a href="xlsx.html#cb46-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-20"><a href="xlsx.html#cb46-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-21"><a href="xlsx.html#cb46-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ウィンドウ枠の固定</span></span>
+<span id="cb46-22"><a href="xlsx.html#cb46-22" aria-hidden="true" tabindex="-1"></a>set_freeze_panel <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
+<span id="cb46-23"><a href="xlsx.html#cb46-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1列目と1行目のウィンドウ枠を固定</span></span>
+<span id="cb46-24"><a href="xlsx.html#cb46-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   固定する場所の変更方法</span></span>
+<span id="cb46-25"><a href="xlsx.html#cb46-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     2行目までを固定したい場合は，引数の2つ目と4つ目を，3にする</span></span>
+<span id="cb46-26"><a href="xlsx.html#cb46-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     3列目までを固定したい場合は，引数の3つ目と5つ目を，4にする</span></span>
+<span id="cb46-27"><a href="xlsx.html#cb46-27" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">createFreezePane</span>(sh, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb46-28"><a href="xlsx.html#cb46-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-29"><a href="xlsx.html#cb46-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-30"><a href="xlsx.html#cb46-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ワークブックごとで設定</span></span>
+<span id="cb46-31"><a href="xlsx.html#cb46-31" aria-hidden="true" tabindex="-1"></a>set_af_fp <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
+<span id="cb46-32"><a href="xlsx.html#cb46-32" aria-hidden="true" tabindex="-1"></a>  wb <span class="ot">&lt;-</span> xlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(file)   <span class="co"># ワークブックの読み込み</span></span>
+<span id="cb46-33"><a href="xlsx.html#cb46-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(sh <span class="cf">in</span> xlsx<span class="sc">::</span><span class="fu">getSheets</span>(wb)){  <span class="co"># シートの数だけ繰り返し</span></span>
+<span id="cb46-34"><a href="xlsx.html#cb46-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_auto_filter</span>(sh)            <span class="co">#   オートフィルタの設定</span></span>
+<span id="cb46-35"><a href="xlsx.html#cb46-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_freeze_panel</span>(sh)           <span class="co">#   ウィンドウ枠の固定</span></span>
+<span id="cb46-36"><a href="xlsx.html#cb46-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb46-37"><a href="xlsx.html#cb46-37" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, file)     <span class="co"># ワークブクの保存</span></span>
+<span id="cb46-38"><a href="xlsx.html#cb46-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-39"><a href="xlsx.html#cb46-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-40"><a href="xlsx.html#cb46-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Main, 本体</span></span>
+<span id="cb46-41"><a href="xlsx.html#cb46-41" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&quot;xls&quot;</span>) <span class="co"># &quot;.xls&quot;と&quot;xlsx&quot;の一覧取得</span></span>
+<span id="cb46-42"><a href="xlsx.html#cb46-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> files){                  <span class="co"># ファイルの数だけ繰り返し</span></span>
+<span id="cb46-43"><a href="xlsx.html#cb46-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_af_fp</span>(file)                    <span class="co"># set_af_fp()の実行</span></span>
+<span id="cb46-44"><a href="xlsx.html#cb46-44" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="その他の操作未作成" class="section level2 hasAnchor" number="12.2">

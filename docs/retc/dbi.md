@@ -29,16 +29,11 @@ install.packages(c("DBI", "RSQLite"))
 ```
 
 ```
-## also installing the dependency 'plogr'
-```
-
-```
-## package 'plogr' successfully unpacked and MD5 sums checked
 ## package 'DBI' successfully unpacked and MD5 sums checked
 ## package 'RSQLite' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\matu\AppData\Local\Temp\RtmpQLtXl4\downloaded_packages
+## 	C:\Users\matu\AppData\Local\Temp\RtmpABo479\downloaded_packages
 ```
 
 ```r
@@ -53,10 +48,7 @@ library(tidyverse)
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ## ✔ ggplot2   3.4.1     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1
-```
-
-```
+## ✔ purrr     1.0.1     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
