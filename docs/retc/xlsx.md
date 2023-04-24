@@ -38,11 +38,19 @@ if(! "xlsx" %in% installed.packages()[,1]){  # xlsxパッケージ有無の確�
 }
 
   # Functions, 関数
+  #   註：xlsxパッケージの関数は返り値の代入がない
+  #         副作用でシートなどを操作するため?
+  #         参照型を使っているため?
+  #   参考：通常のRの関数は，返り値の代入をすることが多いの
+
+  # オートフィルタの設定
 set_auto_filter <- function(sh){
-  # A1からZ1までにオートフィルタを設定
+  # A1からZ1までを設定
   #   もっと多くの列で設定したければ，"A1:Z1"のところを修正する
   xlsx::addAutoFilter(sh, "A1:Z1")
 }
+
+  # ウィンドウ枠の固定
 set_freeze_panel <- function(sh){
   # 1列目と1行目のウィンドウ枠を固定
   #   固定する場所の変更方法
@@ -50,6 +58,8 @@ set_freeze_panel <- function(sh){
   #     3列目までを固定したい場合は，引数の3つ目と5つ目を，4にする
   xlsx::createFreezePane(sh, 2, 2, 2, 2)
 }
+
+  # ワークブックごとで設定
 set_af_fp <- function(file){
   wb <- xlsx::loadWorkbook(file)   # ワークブックの読み込み
   for(sh in xlsx::getSheets(wb)){  # シートの数だけ繰り返し

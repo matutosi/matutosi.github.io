@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 1 Rのインストール | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
-  <meta name="description" content="Chap. 1 Rのインストール | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <title>Chap. 3 sfでファイル操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
+  <meta name="description" content="Chap. 3 sfでファイル操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 1 Rのインストール | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta property="og:title" content="Chap. 3 sfでファイル操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 1 Rのインストール | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta name="twitter:title" content="Chap. 3 sfでファイル操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="package.html"/>
+<link rel="prev" href="package.html"/>
+<link rel="next" href="assoc.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -281,106 +281,116 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="install" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chap. 1</span> Rのインストール<a href="install.html#install" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Rのインストール方法は，ネットでも多く掲載されている．
-ここでは，オプションの個人的な好みを強調しつつ説明する．</p>
-<div id="ダウンロード" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> ダウンロード<a href="install.html#ダウンロード" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>OSに合わせたインストーラをダウンロードする．
-Windowsの場合は，「Download R-4.x.x for Windows」(xはバージョンで異なる)をダウンロード．</p>
-<p><a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p>
-<p><img src="img/install_01.png" width="50%"></p>
+<div id="sf" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chap. 3</span> sfでファイル操作<a href="sf.html#sf" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="はじめに-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> はじめに<a href="sf.html#はじめに-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Windowsならコマンドプロンプト(古い言い方なら，いわゆるdos窓)，MacならTerminal，Linuxならシェルを使えば，各種ファイル操作をコマンドラインで実行できる．
+もちろん，マウスを使った操作でも構わないが，多くのファイルでの名前の変更やファイル名によるフォルダの振り分けなら，マウス操作よりもコマンドを使った操作が早いし確実である．
+なお，Windowsの場合は [Win] + [R] で「ファイル名を指定して実行」で「cmd」と入力すれば，</p>
+<p>コマンドプロンプトやバッチファイル(あるいはシェルスクリプト)などでの操作に慣れていれば，それが便利である．
+ただ，dosコマンドの変数の扱いは，慣れていないと結構難しい(慣れていても?)．
+そんなときは，Rの関数(shell()，system())を使って，dosコマンドを駆使して，ファイル名を取得・名前の変更をすることができる．
+既にdosコマンドを書いていれば，shell()などを使うのは良い方法である．</p>
+<p>また，Rのbaseパッケージにはファイル操作のための関数が多くある．
+例えば，list.files()でファイル名一覧を取得でき，file.rename()でファイル名の変更ができる．
+しかし，baseの関数群の中には名前が分かりにくい点や引数の一貫性が無い点などの難点がある．
+これは，Rが発展していく中で徐々に関数が追加されたことによるようだ．</p>
+<p>sfパッケージでは，baseの関数群を整理するとともに，新たな有用な関数が追加されている．
+そのため，命名規則が一貫しており，ベクトル化した引数を受け付けるため，非常に使いやすい．</p>
+<p>なお，fs，base，shellの詳細な比較が，以下のURLにあるので，参照してほしい．<br />
+<a href="https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html" class="uri">https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html</a></p>
 </div>
-<div id="インストーラの起動" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> インストーラの起動<a href="install.html#インストーラの起動" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>ダウンロードしたファイルをクリック．
-「…許可しますか?」に対して，「はい」を選択．</p>
-<p><img src="img/install_02.png"  width="20%">
-<!--
-<img src="img/install_03.png"  width="50%">
--->
-<img src="img/install_03j.png" width="30%"></p>
-<ul>
-<li>インストール中に使用する言語<br />
-何でも大丈夫なので，好きなものを選ぶ．</li>
-</ul>
-<p><img src="img/install_04j.png"  width="30%">
-<!--
-<img src="img/install_04.png"   width="50%">
-<img src="img/install_04je.png" width="50%">
---></p>
-<ul>
-<li>インストールの確認<br />
-「次へ」をクリック．</li>
-</ul>
-<p><img src="img/install_05.png" width="50%"></p>
-<ul>
-<li>インストール先のフォルダ<br />
-そのままでOK．好みがあれば変更する．</li>
-</ul>
-<p><img src="img/install_06.png" width="50%"></p>
-<ul>
-<li>インストールするもの</li>
-</ul>
-<!--
-<img src="img/install_07c.png" width="50%">
--->
-<p><img src="img/install_07.png"  width="50%"></p>
-<p>とりあえず，すべてチェックしておくくと良い．
-Message translationは，Rからのメッセージを日本語に翻訳するかどうか．
-チェックを入れないと，英語のみの表示．</p>
-<p>結論としえは，とりあえずチェックを入れておき，必要に応じて英語で表示させるという方法が良いかもしれない．
-チェックを入れておくと，エラーメッセージなどを日本語で表示させることができる．
-「そら日本語のほうが良いやん」と思うかもしれない．
-よくわからないエラーメッセージがしかも英語で表示されたら，わけがわからないからです．
-ただ，プログラミングの世界では，英語でのエラーメッセージのほうが便利なことが結構ある．
-それは，エラーメッセージをそのままネットで検索するときである．
-日本語でのエラーメッセージだとネット上の情報が限られる．
-一方，英語でのエラーメッセージで検索すると，原因や対処方法をかなりの確率で知ることができる．</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="install.html#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://cell-innovation.nig.ac.jp/SurfWiki/R_errormes_lang.html</span></span>
-<span id="cb1-2"><a href="install.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.getenv</span>(<span class="st">&quot;LANGUAGE&quot;</span>) <span class="co"># 設定の確認</span></span>
-<span id="cb1-3"><a href="install.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 設定の変更方法</span></span>
-<span id="cb1-4"><a href="install.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE=</span><span class="st">&quot;en&quot;</span>) <span class="co"># 英語に変更</span></span>
-<span id="cb1-5"><a href="install.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE=</span><span class="st">&quot;jp&quot;</span>) <span class="co"># 日本語に変更</span></span></code></pre></div>
-<ul>
-<li>オプションの選択</li>
-</ul>
-<p><img src="img/install_08.png" width="50%"></p>
-<p>とりあえず「Yes」を選択．
-以下のオプションを選択するかどうか．</p>
-<ul>
-<li>ウィンドウの表示方法(MDI / SDI)の選択</li>
-</ul>
-<p><img src="img/install_09.png" width="50%"></p>
-<p>個人的な好みはSDIですが，好みの問題ですので正直どちらでも大丈夫．
-MDI(左)は大きな1つのWindowの中に，コンソール(プログラムの入力部分)，グラフ，ヘルプなどが表示される．
-SDI(右)はコンソール，グラフ，ヘルプが別々のWindowとして表示される．
-どちらかといえば，自由度が高い．</p>
-<p><img src="img/install_mdi.png" width="45%">
-<img src="img/install_sdi.png" width="50%"></p>
-<ul>
-<li>ヘルプの表示方法(Plain text / HTML help)の選択</li>
-</ul>
-<p><img src="img/install_10.png" width="50%"></p>
-<p>個人的な好みはPlain textだが，好みの問題で正直どちらでも構わない．
-Plain textはテキストファイルで表示されるシンプルな作り．
-HTML helpはヘルプがブラウザ(GoogleChrome等)で表示される．
-関連する関数などへのリンクが表示されるので，それらを参照するのは便利．</p>
-<ul>
-<li>その後の設定</li>
-</ul>
-<p>その他は，既定値(そのまま)でOK．</p>
-<p><img src="img/install_11.png" width="45%">
-<img src="img/install_12.png" width="45%">
-<img src="img/install_13.png" width="45%">
-<img src="img/install_14.png" width="45%"></p>
+<div id="shell-baseパッケージ-fsパッケージ" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> shell, baseパッケージ, fsパッケージ<a href="sf.html#shell-baseパッケージ-fsパッケージ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ファイル名を変更したいとする．
+a.pdfを01.pdfに，b.pdfを02.pdfにのように10個のファイル名を変更する．</p>
+<div id="shell" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> shell<a href="sf.html#shell" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>shellなら，以下のようなコマンドだ．
+dosコマンドの変数やループなどを駆使すると，もっと短く書けるのかもしれないが，残念ながらそのような知識がない．
+テキストファイルで書いてもそれほど時間がからないだろうが，ファイル数が多くなれば大変だ．</p>
+<pre><code>rename a.pdf 01.pdf
+rename b.pdf 02.pdf
+rename c.pdf 03.pdf
+...
+rename j.pdf 10.pdf</code></pre>
 </div>
-<div id="インストール完了" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> インストール完了<a href="install.html#インストール完了" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>インストールが完了すると，アイコンがデスクトップに表示される．</p>
-<p><img src="img/install_15.png" width="20%"></p>
-<p>アイコンをクリックすると，Rが起動する．</p>
+<div id="baseパッケージ" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> baseパッケージ<a href="sf.html#baseパッケージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>基本的にtidyverseの関数群を使わず，できるだけRの標準の関数を使った例を示す．
+sprintf()は使い慣れていないと，どのように指定するべきか分かりにくい．</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="sf.html#cb5-1" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">paste0</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb5-2"><a href="sf.html#cb5-2" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">sprintf</span>(<span class="st">&quot;%02.f&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb5-3"><a href="sf.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">file.rename</span>(old, new)</span></code></pre></div>
+</div>
+<div id="fsパッケージ" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> fsパッケージ<a href="sf.html#fsパッケージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>fsパッケージとともに，stringrを使った例を示す．
+ファイル操作をする際には，文字列の置換・検索などをすることが多いので，stringrが役立つ．
+stringrパッケージの関数は，str_<em>の名前になっているため，覚えやすい．
+fsパッケージの関数は，ファイル操作はfile_</em>，ディレクトリ操作はdir_<em>，パス操作はpath_</em>という名前がついている．</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="sf.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb6-2"><a href="sf.html#cb6-2" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">str_c</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb6-3"><a href="sf.html#cb6-3" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="fu">str_pad</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">width =</span> <span class="dv">2</span>, <span class="at">side =</span> <span class="st">&quot;left&quot;</span>, <span class="at">pad =</span> <span class="st">&quot;0&quot;</span>), <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb6-4"><a href="sf.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">file_move</span>(old, new)</span></code></pre></div>
+</div>
+</div>
+<div id="準備" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> 準備<a href="sf.html#準備" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sf.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span></code></pre></div>
+<pre><code>## also installing the dependencies &#39;proxy&#39;, &#39;e1071&#39;, &#39;wk&#39;, &#39;classInt&#39;, &#39;s2&#39;, &#39;units&#39;</code></pre>
+<pre><code>## package &#39;proxy&#39; successfully unpacked and MD5 sums checked
+## package &#39;e1071&#39; successfully unpacked and MD5 sums checked
+## package &#39;wk&#39; successfully unpacked and MD5 sums checked
+## package &#39;classInt&#39; successfully unpacked and MD5 sums checked
+## package &#39;s2&#39; successfully unpacked and MD5 sums checked
+## package &#39;units&#39; successfully unpacked and MD5 sums checked
+## package &#39;sf&#39; successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\matu\AppData\Local\Temp\Rtmps387qM\downloaded_packages</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="sf.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>## Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE</code></pre>
+</div>
+<div id="sfの関数群-wip" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> sfの関数群 (WIP)<a href="sf.html#sfの関数群-wip" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<!--
+TODO: 以下のページを参考にして，関数の概要を書く
+  https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html
+-->
+<ul>
+<li>ディレクトリ操作(一覧，移動，複製，削除など)<br />
+</li>
+<li>ファイル操作(移動，複製，削除など)<br />
+</li>
+<li>パス操作</li>
+</ul>
+</div>
+<div id="sfを使ったファイル操作例" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> sfを使ったファイル操作例<a href="sf.html#sfを使ったファイル操作例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ごく個人的なことだが，Rのバージョンアップ時にはRconsoleとRProfile.siteを古いバージョンから複製して，カスタマイズした設定を引き継いでいる．
+バージョンアップをそれほど頻繁にしないのであれば，手作業でコピーしてもそれほど問題はない．
+普通のRユーザなら常に最新版を使わなくても良い．
+ただ，Rパッケージの開発をしていると，開発中のパッケージが依存しているパッケージが最新版のRで開発されている旨の警告がでることが結構ある．
+ごく最近までは，手作業でファイルをコピーしていたが，よく考えたらこういった作業は自動化するべきだと気づいた．
+そこで，sfパッケージ(とstringr)を使ってファイルをコピーするスクリプトを作成した．</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="sf.html#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Script to copy Rconsole for updating R</span></span>
+<span id="cb12-2"><a href="sf.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># RをバージョンアップしたときのRconsoleの複製スクリプト</span></span>
+<span id="cb12-3"><a href="sf.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   https://gist.github.com/matutosi/6dab3918402662f081be5c17cc7f9ce2</span></span>
+<span id="cb12-4"><a href="sf.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb12-5"><a href="sf.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb12-6"><a href="sf.html#cb12-6" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(<span class="fu">R.home</span>(), <span class="st">&quot;R-([0-9]</span><span class="sc">\\</span><span class="st">.*){3}&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb12-7"><a href="sf.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb12-8"><a href="sf.html#cb12-8" aria-hidden="true" tabindex="-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">dir_ls</span>()</span>
+<span id="cb12-9"><a href="sf.html#cb12-9" aria-hidden="true" tabindex="-1"></a>d_old <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-10"><a href="sf.html#cb12-10" aria-hidden="true" tabindex="-1"></a>d_new <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)]</span>
+<span id="cb12-11"><a href="sf.html#cb12-11" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rconsole&quot;</span>, <span class="st">&quot;Rprofile.site&quot;</span>)</span>
+<span id="cb12-12"><a href="sf.html#cb12-12" aria-hidden="true" tabindex="-1"></a>f_old <span class="ot">&lt;-</span> <span class="fu">path</span>(d_old, <span class="st">&quot;etc&quot;</span>, files)</span>
+<span id="cb12-13"><a href="sf.html#cb12-13" aria-hidden="true" tabindex="-1"></a>f_new <span class="ot">&lt;-</span> <span class="fu">path</span>(d_new, <span class="st">&quot;etc&quot;</span>)</span>
+<span id="cb12-14"><a href="sf.html#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">file_copy</span>(f_old, f_new, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>このように，定期的あるいはバージョンアップなどに伴うファイルのコピーや移動はそれなりにあるように思う．
+そのような場合は，fsとstringrを組み合わせて，作業を自動化するとよいだろう．</p>
 
 </div>
 </div>
@@ -389,8 +399,8 @@ HTML helpはヘルプがブラウザ(GoogleChrome等)で表示される．
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="assoc.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

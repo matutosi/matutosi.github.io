@@ -64,3 +64,12 @@ ImageMagick
 
 
 
+
+## Pythonのスクリプト実行
+
+```
+wd <- "D:/matu/work/tmp"
+setwd(wd)
+system("c:/windows/py.exe pdf.py", intern = TRUE)
+shell("pdf.py")
+```
