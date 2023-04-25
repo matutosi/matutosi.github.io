@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
-  <meta name="description" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <title>Chap. 4 stringrで文字列操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
+  <meta name="description" content="Chap. 4 stringrで文字列操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta property="og:title" content="Chap. 4 stringrで文字列操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta name="twitter:title" content="Chap. 4 stringrで文字列操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="shell.html"/>
-<link rel="next" href="xlsx.html"/>
+<link rel="prev" href="sf.html"/>
+<link rel="next" href="assoc.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -307,119 +307,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dbi" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chap. 12</span> DBIでデータ取得<a href="dbi.html#dbi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="データベースとの連携" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> データベースとの連携<a href="dbi.html#データベースとの連携" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>リレーショナル・データベースと接続してデータを取得するためのパッケージには色々とある．</p>
-<p>CRAN Task View: Databases with R には多くのパッケージが掲載されている．
-<a href="https://cran.r-project.org/web/views/Databases.html" class="uri">https://cran.r-project.org/web/views/Databases.html</a></p>
-<p>どれを使っても良いが，よく使われているのはDBIのようだ．
-<a href="https://cran.r-project.org/web/packages/DBI/index.html" class="uri">https://cran.r-project.org/web/packages/DBI/index.html</a></p>
+<div id="stringr" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chap. 4</span> stringrで文字列操作<a href="stringr.html#stringr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="はじめに-2" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> はじめに<a href="stringr.html#はじめに-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>stringrはstringiパッケージのラッパー関数群である．
+stringiは文字列操作の関数群で，文字コードの変換なども含む多様な関数を含んでいる．
+通常のユーザの文字列操作なら，stringrで大丈夫なことが多い．
+万が一，込み入った文字列操作が必要なときは，stringiの関数を探してみると良いかもしれない．</p>
+<p>stringrには，</p>
 </div>
-<div id="dbiでできること" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> DBIでできること<a href="dbi.html#dbiでできること" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>各種データベースとの接続<br />
-</li>
-<li>SQLによるデータ操作</li>
-</ul>
-<p>SQLを使い慣れていれば，SQLで各種の操作をするのが良いだろう．
-一方，Rでのデータフレームの操作に慣れていれば，取得したデータをRで操作するのが良い．
-つまり，データ取得だけにDBIを利用して，その後はdplyrやtidyverseの各種パッケージの関数を駆使してデータを処理する．
-さらに，その結果を図示したい場合は，ggplot2を使うと良い．</p>
+<div id="stringrとbase" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> stringrとbase<a href="stringr.html#stringrとbase" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="baseパッケージ-1" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> baseパッケージ<a href="stringr.html#baseパッケージ-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="準備-5" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> 準備<a href="dbi.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="dbi.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
-<pre><code>## package &#39;DBI&#39; successfully unpacked and MD5 sums checked
-## package &#39;RSQLite&#39; successfully unpacked and MD5 sums checked
+<div id="stringrパッケージ" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> stringrパッケージ<a href="stringr.html#stringrパッケージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="準備-1" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> 準備<a href="stringr.html#準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="stringr.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span></code></pre></div>
+<pre><code>## package &#39;stringr&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\matutosi\AppData\Local\Temp\RtmpETzBEL\downloaded_packages</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="dbi.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb43-2"><a href="dbi.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
-<span id="cb43-3"><a href="dbi.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="dbi.html#cb45-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
-<span id="cb45-2"><a href="dbi.html#cb45-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
-<span id="cb45-3"><a href="dbi.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
-<span id="cb45-4"><a href="dbi.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
-<pre><code>## [1] &quot;mpg&quot;</code></pre>
+##  C:\Users\matutosi\AppData\Local\Temp\RtmpcB6tQN\downloaded_packages</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="stringr.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
 </div>
-<div id="使い方-6" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> 使い方<a href="dbi.html#使い方-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="dbi.html#cb47-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
-<span id="cb47-2"><a href="dbi.html#cb47-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
-<span id="cb47-3"><a href="dbi.html#cb47-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb47-4"><a href="dbi.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb47-5"><a href="dbi.html#cb47-5" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(df)</span></code></pre></div>
-<pre><code>## # A tibble: 81 × 4
-##     year model      displ   cyl
-##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
-##  1  1999 a4           1.8     4
-##  2  1999 a4           1.8     4
-##  3  2008 a4           2       4
-##  4  2008 a4           2       4
-##  5  1999 a4 quattro   1.8     4
-##  6  1999 a4 quattro   1.8     4
-##  7  2008 a4 quattro   2       4
-##  8  2008 a4 quattro   2       4
-##  9  1999 malibu       2.4     4
-## 10  2008 malibu       2.4     4
-## # ℹ 71 more rows</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dbi.html#cb49-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
-<span id="cb49-2"><a href="dbi.html#cb49-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
-<span id="cb49-3"><a href="dbi.html#cb49-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb49-4"><a href="dbi.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb49-5"><a href="dbi.html#cb49-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb49-6"><a href="dbi.html#cb49-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb49-7"><a href="dbi.html#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb49-8"><a href="dbi.html#cb49-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb49-9"><a href="dbi.html#cb49-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 234 × 11
-##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
-##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
-##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
-##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
-##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
-##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
-##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
-##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
-##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
-##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
-## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
-## # ℹ 224 more rows</code></pre>
-<pre><code>## # A tibble: 81 × 4
-##     year model      displ   cyl
-##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
-##  1  1999 a4           1.8     4
-##  2  1999 a4           1.8     4
-##  3  2008 a4           2       4
-##  4  2008 a4           2       4
-##  5  1999 a4 quattro   1.8     4
-##  6  1999 a4 quattro   1.8     4
-##  7  2008 a4 quattro   2       4
-##  8  2008 a4 quattro   2       4
-##  9  1999 malibu       2.4     4
-## 10  2008 malibu       2.4     4
-## # ℹ 71 more rows</code></pre>
-<p>SQL使いの方は，「SQLではじめるデータ分析 ―クエリで行う前処理、時系列解析、コホート分析、テキスト分析、異常検知」を参考にしてSQLでデータ処理をするのも良いだろう．
-しかし，R使いにとってはdplyrやggplot2を使って処理するほうが楽だと思われる．
-dplyrやggplot2を使ったデータ分析には，「Rではじめるデータサイエンス」が参考になる．
-<a href="https://r4ds.hadley.nz/" class="uri">https://r4ds.hadley.nz/</a></p>
-<p>その他，DBIパッケージの詳細は以下を参照．</p>
-<p><a href="https://cran.r-project.org/web/packages/DBI/vignettes/DBI-1.html" class="uri">https://cran.r-project.org/web/packages/DBI/vignettes/DBI-1.html</a></p>
+<div id="stringrの関数" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> stringrの関数<a href="stringr.html#stringrの関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="stringrの利点" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> stringrの利点<a href="stringr.html#stringrの利点" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>少なくとも自分の経験では，stringrだけで操作が完結することはほとんどない．
+逆に，パッケージ開発をしていてstringr(やdplyr)を使わずに一日が終わることもあまりない．
+つまり，stringrはかなり便利で必要不可欠なツールである．
+もちろん，baseパッケージの同様の関数を使っても機能上は問題ないことが多い．
+でも，引数の指定方法に一貫性があると，コードを綺麗に書くことができる．
+綺麗なコードは，汚いコードよりも書きやすいし，見た目も良いし，何よりもバグが入りにくい(入らないわけではない)．</p>
 
 </div>
 </div>
@@ -428,8 +354,8 @@ dplyrやggplot2を使ったデータ分析には，「Rではじめるデータ�
           </div>
         </div>
       </div>
-<a href="shell.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="xlsx.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sf.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="assoc.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

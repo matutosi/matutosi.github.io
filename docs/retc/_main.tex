@@ -111,14 +111,14 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Rのパッケージの活用},
+  pdftitle={Rにる作業の自動化・効率化 -各種パッケージの活用方法-},
   pdfauthor={Toshikazu Masumura},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Rのパッケージの活用}
+\title{Rにる作業の自動化・効率化 -各種パッケージの活用方法-}
 \author{Toshikazu Masumura}
-\date{2023-04-10}
+\date{2023-04-25}
 
 \begin{document}
 \maketitle
@@ -130,6 +130,23 @@
 \hypertarget{ux306fux3058ux3081ux306b}{%
 \section*{はじめに}\label{ux306fux3058ux3081ux306b}}
 \addcontentsline{toc}{section}{はじめに}
+
+誰でもそうだろうが，面倒くさい仕事はしたくない．
+というか，したくないことが面倒くさいのだろう．
+ニワトリかタマゴのような話は別として，できることなら，面倒な作業は自動化したい．
+もちろんすべての仕事を自動化できるわけでもないし，文章執筆のように作業内容によっては自動化すべきでないこともある．
+
+作業の自動化には，プログラミング言語を使うことが多い．
+自動化でよく使われる言語としては，Pythonがある．
+Pythonは比較的習得しやすい言語らしく，多くの人が使っている．
+自分自身も多少はPythonを使えるものの，それよりもRの方が慣れている．
+できることなら(ほぼ)全ての作業をRでやってしまいたい．
+そんなわけで，この文章ではRを使った作業の自動化や効率化方法を紹介する．
+
+基本的に独学でここまで来たので，我流のスクリプトや汚いコードが多くあると思われるがご容赦頂きたい．
+また，改善案をご教示いただければありがたい．
+
+\href{mailto:matutosi@gmail.com}{\nolinkurl{matutosi@gmail.com}}
 
 \hypertarget{install}{%
 \section{Rのインストール}\label{install}}
@@ -292,6 +309,291 @@ CRANに掲載されており，パッケージの名前がわかっていたら�
 \NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"matutosi/ecan"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{sf}{%
+\section{sfでファイル操作}\label{sf}}
+
+\hypertarget{ux306fux3058ux3081ux306b-1}{%
+\subsection{はじめに}\label{ux306fux3058ux3081ux306b-1}}
+
+Windowsならコマンドプロンプト(古い言い方なら，いわゆるdos窓)，MacならTerminal，Linuxならシェルを使えば，各種ファイル操作をコマンドラインで実行できる．
+もちろん，マウスを使った操作でも構わないが，多くのファイルでの名前の変更やファイル名によるフォルダの振り分けなら，マウス操作よりもコマンドを使った操作が早いし確実である．
+なお，Windowsの場合は {[}Win{]} + {[}R{]} で「ファイル名を指定して実行」で「cmd」と入力すれば，
+
+コマンドプロンプトやバッチファイル(あるいはシェルスクリプト)などでの操作に慣れていれば，それが便利である．
+ただ，dosコマンドの変数の扱いは，慣れていないと結構難しい(慣れていても?)．
+そんなときは，Rの関数(shell()，system())を使って，dosコマンドを駆使して，ファイル名を取得・名前の変更をすることができる．
+既にdosコマンドを書いていれば，shell()などを使うのは良い方法である．
+
+また，Rのbaseパッケージにはファイル操作のための関数が多くある．
+例えば，list.files()でファイル名一覧を取得でき，file.rename()でファイル名の変更ができる．
+しかし，baseの関数群の中には名前が分かりにくい点や引数の一貫性が無い点などの難点がある．
+これは，Rが発展していく中で徐々に関数が追加されたことによるようだ．
+
+sfパッケージでは，baseの関数群を整理するとともに，新たな有用な関数が追加されている．
+そのため，命名規則が一貫しており，ベクトル化した引数を受け付けるため，非常に使いやすい．
+
+複数のOSを使う場合は，コマンドが異なるためそれぞれでコマンドを覚えなければならない．
+いちいち個別のものを覚えるよりも，fsパッケージの関数を覚えておけば，どのOSであろうが同じように動作してくれて楽ができる．
+
+なお，fs，base，shellの詳細な比較が，以下のURLにあるので，参照してほしい．\\
+\url{https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html}
+
+\hypertarget{shellbaseux30d1ux30c3ux30b1ux30fcux30b8-fsux30d1ux30c3ux30b1ux30fcux30b8}{%
+\subsection{shell，baseパッケージ, fsパッケージ}\label{shellbaseux30d1ux30c3ux30b1ux30fcux30b8-fsux30d1ux30c3ux30b1ux30fcux30b8}}
+
+a.pdf, b.pdf, \ldots, j.pdfを01.pdf, 02.pdf, \ldots, 10.pdfのように10個のファイル名を変更したいとする．
+
+\hypertarget{shellux3092ux4f7fux3046}{%
+\subsubsection{shellを使う}\label{shellux3092ux4f7fux3046}}
+
+shellなら，以下のようなコマンドだ．
+dosコマンドの変数やループなどを駆使すると，もっと短く書けるのかもしれないが，残念ながらそのような知識がない．
+テキストファイルで書いてもそれほど時間がからないだろうが，ファイル数が多くなれば大変だ．
+
+\begin{verbatim}
+rename a.pdf 01.pdf
+rename b.pdf 02.pdf
+rename c.pdf 03.pdf
+...
+rename j.pdf 10.pdf
+\end{verbatim}
+
+\hypertarget{baseux30d1ux30c3ux30b1ux30fcux30b8}{%
+\subsubsection{baseパッケージ}\label{baseux30d1ux30c3ux30b1ux30fcux30b8}}
+
+基本的にtidyverseの関数群を使わず，できるだけRの標準の関数を使った例を示す．
+sprintf()は使い慣れていないと，どのように指定するべきか分かりにくい．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{old }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{], }\StringTok{".pdf"}\NormalTok{)}
+\NormalTok{new }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%02.f"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{), }\StringTok{".pdf"}\NormalTok{)}
+\FunctionTok{file.rename}\NormalTok{(old, new)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fsux30d1ux30c3ux30b1ux30fcux30b8}{%
+\subsubsection{fsパッケージ}\label{fsux30d1ux30c3ux30b1ux30fcux30b8}}
+
+fsパッケージとともに，stringrを使った例を示す．
+ファイル操作をする際には，文字列の置換・検索などをすることが多いので，stringrが役立つ．
+stringrパッケージの関数は，str\_\emph{の名前になっているため，覚えやすい．
+fsパッケージの関数は，パス操作はpath\_}，ディレクトリ操作はdir\_\emph{，ファイル操作はfile\_}という名前がついている．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stringr)}
+\NormalTok{old }\OtherTok{\textless{}{-}} \FunctionTok{str\_c}\NormalTok{(letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{], }\StringTok{".pdf"}\NormalTok{)}
+\NormalTok{new }\OtherTok{\textless{}{-}} \FunctionTok{str\_c}\NormalTok{(}\FunctionTok{str\_pad}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\AttributeTok{width =} \DecValTok{2}\NormalTok{, }\AttributeTok{side =} \StringTok{"left"}\NormalTok{, }\AttributeTok{pad =} \StringTok{"0"}\NormalTok{), }\StringTok{".pdf"}\NormalTok{)}
+\FunctionTok{file\_move}\NormalTok{(old, new)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux6e96ux5099}{%
+\subsection{準備}\label{ux6e96ux5099}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"sf"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## package 'sf' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\matutosi\AppData\Local\Temp\RtmpCADyDj\downloaded_packages
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(sf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linking to GEOS 3.11.1, GDAL 3.6.2, PROJ 9.1.1; sf_use_s2() is TRUE
+\end{verbatim}
+
+\hypertarget{sfux306eux95a2ux6570ux7fa4}{%
+\subsection{sfの関数群}\label{sfux306eux95a2ux6570ux7fa4}}
+
+パス操作(path\_\emph{)，ディレクトリ操作(dir\_})，ファイル操作(file\_*)の関数群に分けることができる．
+パス操作には，baseやshellにはない機能が多くあって，使いやすい．
+拡張子を取り除くた関数を自作したことがあるが，同じような関数(しかもおそらく，fsのほうがしっかりしている)があることを見つけたときには，
+下位機能の車輪を再発明してしまったと後悔した．
+
+fs，base，shellの比較は次のURLを参照して欲しい．
+
+\url{https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html}
+
+\hypertarget{ux30d1ux30b9ux64cdux4f5c}{%
+\subsubsection{パス操作}\label{ux30d1ux30b9ux64cdux4f5c}}
+
+パス操作では，stringrを駆使して自作しないといけないような関数が多くある．
+特に，パスからディレクトリ名，ファイル名，拡張子を抽出してくれる関数は便利だ．
+自作してもそれほど難しくはないが，(少なくとも自分の)自作した関数にはバグが入っている可能性がある．
+予想外のパスを指定した場合には，予想外の結果になることがあるだろう．
+そのような不具合を防ぐためにも，fsパッケージのパス関数を使うほうが良さそうである．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{path}\NormalTok{(}\StringTok{"top\_dir"}\NormalTok{, }\StringTok{"nested\_dir"}\NormalTok{, }\StringTok{"file"}\NormalTok{, }\AttributeTok{ext =} \StringTok{"ext"}\NormalTok{) }\CommentTok{\# パス作成   }
+\FunctionTok{path\_temp}\NormalTok{(), }\FunctionTok{path\_temp}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 一時パス名の作成   }
+\FunctionTok{path\_expand}\NormalTok{(}\StringTok{"\textasciitilde{}/path"}\NormalTok{) }\CommentTok{\# "\textasciitilde{}"をユーザのホームディレクトリに変換したパス   }
+\FunctionTok{path\_dir}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# パスからディレクトリ名抽出   }
+\FunctionTok{path\_file}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# パスからファイル名抽出   }
+\FunctionTok{path\_ext}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# パスから拡張子抽出   }
+\FunctionTok{path\_ext\_remove}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# パスから拡張子を削除   }
+\FunctionTok{path\_home}\NormalTok{() }\CommentTok{\# ホームディレクトリ   }
+\FunctionTok{path\_package}\NormalTok{(}\StringTok{"pkgname"}\NormalTok{, }\StringTok{"dir"}\NormalTok{, }\StringTok{"file"}\NormalTok{) }\CommentTok{\# パッケージのパス名   }
+\FunctionTok{path\_norm}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 参照や".."の削除   }
+\FunctionTok{path\_real}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 実体パス(シンボリックリンクを実体パスに)   }
+\FunctionTok{path\_abs}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 絶対パス}
+\FunctionTok{path\_rel}\NormalTok{(}\StringTok{"path/foo"}\NormalTok{, }\StringTok{"path/bar"}\NormalTok{) }\CommentTok{\#  相対パス  }
+\FunctionTok{path\_common}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"path/foo"}\NormalTok{, }\StringTok{"path/bar"}\NormalTok{, }\StringTok{"path/baz"}\NormalTok{)) }\CommentTok{\# パスの共通部分   }
+\FunctionTok{path\_ext\_set}\NormalTok{(}\StringTok{"path"}\NormalTok{, }\StringTok{"new\_ext"}\NormalTok{) }\CommentTok{\# 拡張子変更   }
+\FunctionTok{path\_sanitize}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 無効な文字を削除   }
+\FunctionTok{path\_join}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 結合}
+\FunctionTok{path\_split}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 分割}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux30c7ux30a3ux30ecux30afux30c8ux30eaux64cdux4f5c}{%
+\subsubsection{ディレクトリ操作}\label{ux30c7ux30a3ux30ecux30afux30c8ux30eaux64cdux4f5c}}
+
+shellやbaseでも同様の機能があるが，複数処理のdir\_map()やツリー表示のdir\_tree()は単純に嬉しい．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dir\_ls}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 一覧   }
+\FunctionTok{dir\_info}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 情報   }
+\FunctionTok{dir\_copy}\NormalTok{(}\StringTok{"path"}\NormalTok{, }\StringTok{"new{-}path"}\NormalTok{) }\CommentTok{\# 複写   }
+\FunctionTok{dir\_create}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 作成   }
+\FunctionTok{dir\_delete}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 削除   }
+\FunctionTok{dir\_exists}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 有無確認   }
+\FunctionTok{dir\_move}\NormalTok{() (see file\_move) }\CommentTok{\# 移動   }
+\FunctionTok{dir\_map}\NormalTok{(}\StringTok{"path"}\NormalTok{, fun) }\CommentTok{\# 複数処理   }
+\FunctionTok{dir\_tree}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# ツリー表示   }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux30d5ux30a1ux30a4ux30ebux64cdux4f5c}{%
+\subsubsection{ファイル操作}\label{ux30d5ux30a1ux30a4ux30ebux64cdux4f5c}}
+
+ファイル操作はshellやbaseとそれほど変わらない感じがする．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{file\_chmod}\NormalTok{(}\StringTok{"path"}\NormalTok{, }\StringTok{"mode"}\NormalTok{) }\CommentTok{\# 権限変更   }
+\FunctionTok{file\_chown}\NormalTok{(}\StringTok{"path"}\NormalTok{, }\StringTok{"user\_id"}\NormalTok{, }\StringTok{"group\_id"}\NormalTok{) }\CommentTok{\# 所有者変更   }
+\FunctionTok{file\_copy}\NormalTok{(}\StringTok{"path"}\NormalTok{, }\StringTok{"new{-}path"}\NormalTok{) }\CommentTok{\# 複写   }
+\FunctionTok{file\_create}\NormalTok{(}\StringTok{"new{-}path"}\NormalTok{) }\CommentTok{\# 作成   }
+\FunctionTok{file\_delete}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 削除   }
+\FunctionTok{file\_exists}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 有無確認   }
+\FunctionTok{file\_info}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 情報   }
+\FunctionTok{file\_move}\NormalTok{(}\StringTok{"path"}\NormalTok{, }\StringTok{"new{-}path"}\NormalTok{) }\CommentTok{\# 移動   }
+\FunctionTok{file\_show}\NormalTok{(}\StringTok{"path"}\NormalTok{) }\CommentTok{\# 開く   }
+\FunctionTok{file\_touch}\NormalTok{() }\CommentTok{\# アクセス時間等の変更   }
+\FunctionTok{file\_temp}\NormalTok{() }\CommentTok{\# 一時ファイル名の作成   }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sfux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux64cdux4f5cux4f8b}{%
+\subsection{sfを使ったファイル操作例}\label{sfux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux64cdux4f5cux4f8b}}
+
+ごく個人的なことだが，Rのバージョンアップ時にはRconsoleとRProfile.siteを古いバージョンから複製して，カスタマイズした設定を引き継いでいる．
+バージョンアップをそれほど頻繁にしないのであれば，手作業でコピーしてもそれほど問題はない．
+普通のRユーザなら常に最新版を使わなくても良い．
+ただ，Rパッケージの開発をしていると，開発中のパッケージが依存しているパッケージが最新版のRで開発されている旨の警告がでることが結構ある．
+ごく最近までは，手作業でファイルをコピーしていたが，よく考えたらこういった作業は自動化するべきだと気づいた．
+そこで，sfパッケージを使ってファイルをコピーするスクリプトを作成した．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{\# Script to copy Rconsole for updating R}
+  \CommentTok{\# RをバージョンアップしたときのRconsoleの複製スクリプト}
+  \CommentTok{\#   https://gist.github.com/matutosi/6dab3918402662f081be5c17cc7f9ce2}
+\FunctionTok{library}\NormalTok{(fs)}
+\FunctionTok{library}\NormalTok{(magrittr)}
+\NormalTok{wd }\OtherTok{\textless{}{-}} 
+  \FunctionTok{path\_package}\NormalTok{(}\StringTok{"base"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{path\_split}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unlist}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  .[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{((}\FunctionTok{length}\NormalTok{(.) }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(.))] }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{path\_join}\NormalTok{()  }
+\FunctionTok{setwd}\NormalTok{(wd)}
+\NormalTok{dir }\OtherTok{\textless{}{-}} \FunctionTok{dir\_ls}\NormalTok{()}
+\NormalTok{d\_old }\OtherTok{\textless{}{-}}\NormalTok{ dir[}\FunctionTok{length}\NormalTok{(dir)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]}
+\NormalTok{d\_new }\OtherTok{\textless{}{-}}\NormalTok{ dir[}\FunctionTok{length}\NormalTok{(dir)]}
+\NormalTok{files }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Rconsole"}\NormalTok{, }\StringTok{"Rprofile.site"}\NormalTok{)}
+\NormalTok{f\_old }\OtherTok{\textless{}{-}} \FunctionTok{path}\NormalTok{(d\_old, }\StringTok{"etc"}\NormalTok{, files)}
+\NormalTok{f\_new }\OtherTok{\textless{}{-}} \FunctionTok{path}\NormalTok{(d\_new, }\StringTok{"etc"}\NormalTok{)}
+\FunctionTok{file\_copy}\NormalTok{(f\_old, f\_new, }\AttributeTok{overwrite =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+このように，定期的あるいはバージョンアップなどに伴うファイルのコピーや移動はそれなりにあるように思う．
+そのような場合は，fsを活用して作業を自動化するとよいだろう．
+なお，fsで対応していない部分の文字列操作には，stringrを使うと便利である．
+
+\hypertarget{stringr}{%
+\section{stringrで文字列操作}\label{stringr}}
+
+\hypertarget{ux306fux3058ux3081ux306b-2}{%
+\subsection{はじめに}\label{ux306fux3058ux3081ux306b-2}}
+
+stringrはstringiパッケージのラッパー関数群である．
+stringiは文字列操作の関数群で，文字コードの変換なども含む多様な関数を含んでいる．
+通常のユーザの文字列操作なら，stringrで大丈夫なことが多い．
+万が一，込み入った文字列操作が必要なときは，stringiの関数を探してみると良いかもしれない．
+
+stringrには，
+
+\hypertarget{stringrux3068base}{%
+\subsection{stringrとbase}\label{stringrux3068base}}
+
+\hypertarget{baseux30d1ux30c3ux30b1ux30fcux30b8-1}{%
+\subsubsection{baseパッケージ}\label{baseux30d1ux30c3ux30b1ux30fcux30b8-1}}
+
+\hypertarget{stringrux30d1ux30c3ux30b1ux30fcux30b8}{%
+\subsubsection{stringrパッケージ}\label{stringrux30d1ux30c3ux30b1ux30fcux30b8}}
+
+\hypertarget{ux6e96ux5099-1}{%
+\subsection{準備}\label{ux6e96ux5099-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"stringr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## package 'stringr' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\matutosi\AppData\Local\Temp\RtmpIT70hi\downloaded_packages
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stringr)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{stringrux306eux95a2ux6570}{%
+\subsection{stringrの関数}\label{stringrux306eux95a2ux6570}}
+
+\hypertarget{stringrux306eux5229ux70b9}{%
+\subsection{stringrの利点}\label{stringrux306eux5229ux70b9}}
+
+少なくとも自分の経験では，stringrだけで操作が完結することはほとんどない．
+逆に，パッケージ開発をしていてstringr(やdplyr)を使わずに一日が終わることもあまりない．
+つまり，stringrはかなり便利で必要不可欠なツールである．
+もちろん，baseパッケージの同様の関数を使っても機能上は問題ないことが多い．
+でも，引数の指定方法に一貫性があると，コードを綺麗に書くことができる．
+綺麗なコードは，汚いコードよりも書きやすいし，見た目も良いし，何よりもバグが入りにくい(入らないわけではない)．
 
 \hypertarget{assoc}{%
 \section{スクリプトの関連付け}\label{assoc}}
@@ -550,7 +852,7 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 ##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
 ##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
 ## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
-## # ... with 224 more rows
+## # i 224 more rows
 \end{verbatim}
 
 \begin{Shaded}
@@ -566,19 +868,20 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 
 \begin{verbatim}
 ## # A tibble: 117 x 12
-##    manufac~1 model displ  year   cyl trans1 trans2 drv     cty   hwy fl    class
-##    <chr>     <chr> <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr> <chr>
-##  1 audi      a4      1.8  1999     4 auto   l5     f        18    29 p     comp~
-##  2 audi      a4      1.8  1999     4 manual m5     f        21    29 p     comp~
-##  3 audi      a4      2.8  1999     6 auto   l5     f        16    26 p     comp~
-##  4 audi      a4      2.8  1999     6 manual m5     f        18    26 p     comp~
-##  5 audi      a4 q~   1.8  1999     4 manual m5     4        18    26 p     comp~
-##  6 audi      a4 q~   1.8  1999     4 auto   l5     4        16    25 p     comp~
-##  7 audi      a4 q~   2.8  1999     6 auto   l5     4        15    25 p     comp~
-##  8 audi      a4 q~   2.8  1999     6 manual m5     4        17    25 p     comp~
-##  9 audi      a6 q~   2.8  1999     6 auto   l5     4        15    24 p     mids~
-## 10 chevrolet c150~   5.7  1999     8 auto   l4     r        13    17 r     suv  
-## # ... with 107 more rows, and abbreviated variable name 1: manufacturer
+##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
+##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
+##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
+##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
+##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
+##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
+##  5 audi         a4 quat~   1.8  1999     4 manual m5     4        18    26 p    
+##  6 audi         a4 quat~   1.8  1999     4 auto   l5     4        16    25 p    
+##  7 audi         a4 quat~   2.8  1999     6 auto   l5     4        15    25 p    
+##  8 audi         a4 quat~   2.8  1999     6 manual m5     4        17    25 p    
+##  9 audi         a6 quat~   2.8  1999     6 auto   l5     4        15    24 p    
+## 10 chevrolet    c1500 s~   5.7  1999     8 auto   l4     r        13    17 r    
+## # i 107 more rows
+## # i 1 more variable: class <chr>
 \end{verbatim}
 
 \begin{Shaded}
@@ -593,19 +896,20 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 
 \begin{verbatim}
 ## # A tibble: 117 x 12
-##    manufac~1 model displ  year   cyl trans1 trans2 drv     cty   hwy fl    class
-##    <chr>     <chr> <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr> <chr>
-##  1 audi      a4      1.8  1999     4 auto   l5     f        18    29 p     comp~
-##  2 audi      a4      1.8  1999     4 manual m5     f        21    29 p     comp~
-##  3 audi      a4      2.8  1999     6 auto   l5     f        16    26 p     comp~
-##  4 audi      a4      2.8  1999     6 manual m5     f        18    26 p     comp~
-##  5 audi      a4 q~   1.8  1999     4 manual m5     4        18    26 p     comp~
-##  6 audi      a4 q~   1.8  1999     4 auto   l5     4        16    25 p     comp~
-##  7 audi      a4 q~   2.8  1999     6 auto   l5     4        15    25 p     comp~
-##  8 audi      a4 q~   2.8  1999     6 manual m5     4        17    25 p     comp~
-##  9 audi      a6 q~   2.8  1999     6 auto   l5     4        15    24 p     mids~
-## 10 chevrolet c150~   5.7  1999     8 auto   l4     r        13    17 r     suv  
-## # ... with 107 more rows, and abbreviated variable name 1: manufacturer
+##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
+##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
+##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
+##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
+##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
+##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
+##  5 audi         a4 quat~   1.8  1999     4 manual m5     4        18    26 p    
+##  6 audi         a4 quat~   1.8  1999     4 auto   l5     4        16    25 p    
+##  7 audi         a4 quat~   2.8  1999     6 auto   l5     4        15    25 p    
+##  8 audi         a4 quat~   2.8  1999     6 manual m5     4        17    25 p    
+##  9 audi         a6 quat~   2.8  1999     6 auto   l5     4        15    24 p    
+## 10 chevrolet    c1500 s~   5.7  1999     8 auto   l4     r        13    17 r    
+## # i 107 more rows
+## # i 1 more variable: class <chr>
 \end{verbatim}
 
 \hypertarget{ux6ce8ux610fux70b9}{%
@@ -645,7 +949,7 @@ imapと組み合わせると便利かも
 ##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
 ##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
 ## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
-## # ... with 224 more rows
+## # i 224 more rows
 \end{verbatim}
 
 \hypertarget{ux6ce8ux610fux70b9-1}{%
@@ -868,8 +1172,8 @@ rvestは，静的なサイトを対象とするときに役立つ．
   politeパッケージとの連携
 \end{itemize}
 
-\hypertarget{ux6e96ux5099}{%
-\subsection{準備}\label{ux6e96ux5099}}
+\hypertarget{ux6e96ux5099-2}{%
+\subsection{準備}\label{ux6e96ux5099-2}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -904,8 +1208,8 @@ Seleniumは，ブラウザを使って動的に巡回しつつ，スクレイピ
 JavascriptやPHPなどを使って，動的に作成されるサイトでは，URLだけではページを特定することはできない．
 そのため，rvestだけではデータを取得するのが困難である．
 
-\hypertarget{ux6e96ux5099-1}{%
-\subsection{準備}\label{ux6e96ux5099-1}}
+\hypertarget{ux6e96ux5099-3}{%
+\subsection{準備}\label{ux6e96ux5099-3}}
 
 \begin{itemize}
 \tightlist
@@ -996,6 +1300,76 @@ BiSSの文字サイズの変更
   \end{itemize}
 \end{itemize}
 
+\hypertarget{reticulate}{%
+\section{reticulate}\label{reticulate}}
+
+RとPythonのパッケージは，相互に移植されていることが多い．
+例えば，Pythonのlogging(とRのfutile.logger)をもとにRのパッケージloggerは開発されている．
+\url{https://cran.r-project.org/web/packages/logger/index.html}
+また，Rのggplot2やdplyrはPythonにも移植されている．
+
+ただし，どちらか片方でしか利用できなかったり，使用方法が難しいことがある．
+そんなとき，ちょっとだけ使うのであれば，Rのパッケージreticulateが便利である．
+もちろん，Pythonをちゃんと勉強するのも良いだろう．
+さらに，reticulateを使うとRとPythonとの変数のやり取りが簡単にできるので，本格的にPythonを使うのにも良さそう．
+
+\hypertarget{ux6e96ux5099pythonux306eux30a4ux30f3ux30b9ux30c8ux30fcux30eb}{%
+\subsection{準備：Pythonのインストール}\label{ux6e96ux5099pythonux306eux30a4ux30f3ux30b9ux30c8ux30fcux30eb}}
+
+\hypertarget{ux6e96ux5099pythonux3067ux306eux30e2ux30b8ux30e5ux30fcux30ebux30d1ux30c3ux30b1ux30fcux30b8ux306eux30a4ux30f3ux30b9ux30c8ux30fcux30eb}{%
+\subsection{準備：Pythonでのモジュール(パッケージ)のインストール}\label{ux6e96ux5099pythonux3067ux306eux30e2ux30b8ux30e5ux30fcux30ebux30d1ux30c3ux30b1ux30fcux30b8ux306eux30a4ux30f3ux30b9ux30c8ux30fcux30eb}}
+
+Rstudioでpythonを書く (reticulate)
+\url{https://qiita.com/Wa__a/items/42129e529cfb6c38e046}
+
+py\_install()やconda\_install()でパッケージがインストールできないとき
+- pip でパッケージをインストール\\
+- pipでインストールできたpythonをreticulate::use\_python()で指定
+
+\hypertarget{section-3}{%
+\subsection{}\label{section-3}}
+
+準備
+- Pythonのインストール\\
+- pdf2docxのインストール
+
+\begin{verbatim}
+pip install pdf2docx
+\end{verbatim}
+
+\hypertarget{ux5b9fux884c}{%
+\subsection{実行}\label{ux5b9fux884c}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{\# pdf2docxの読み込みでエラーになるとき}
+  \CommentTok{\#   reticulate::use\_python()でpythonを指定}
+  \CommentTok{\#   pipでpdf2docxがインストールできたpythonを使う}
+\FunctionTok{library}\NormalTok{(reticulate)}
+  \CommentTok{\# reticulate::py\_install("pdf2docx") エラー}
+  \CommentTok{\# https://anaconda.org/conda{-}forge/python{-}docx}
+  \CommentTok{\# reticulate::conda\_install(channel = "conda{-}forge", packages = "python{-}docx")  \# できたけど，pdf2docxは読み込めず}
+\NormalTok{reticulate}\SpecialCharTok{::}\FunctionTok{use\_python}\NormalTok{(}\StringTok{"C:/Python/Python39/python.exe"}\NormalTok{)}
+\NormalTok{reticulate}\SpecialCharTok{::}\FunctionTok{py\_run\_string}\NormalTok{(}\StringTok{"from pdf2docx import parse"}\NormalTok{)}
+\NormalTok{reticulate}\SpecialCharTok{::}\FunctionTok{py\_run\_string}\NormalTok{(}\StringTok{"pdf\_file = \textquotesingle{}D:/a.pdf\textquotesingle{}"}\NormalTok{)}
+\NormalTok{reticulate}\SpecialCharTok{::}\FunctionTok{py\_run\_string}\NormalTok{(}\StringTok{"docx\_file = \textquotesingle{}D:/a.docx\textquotesingle{}"}\NormalTok{)}
+\NormalTok{reticulate}\SpecialCharTok{::}\FunctionTok{py\_run\_string}\NormalTok{(}\StringTok{"parse(pdf\_file, docx\_file)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pythoux3068rux3068ux306eux5909ux6570ux306eux3084ux308aux53d6ux308a}{%
+\subsection{PythoとRとの変数のやり取り}\label{pythoux3068rux3068ux306eux5909ux6570ux306eux3084ux308aux53d6ux308a}}
+
+variableは変数名
+
+\begin{verbatim}
+  # RからPythonへ(Pythonで取り出し)
+r.variable
+
+  # PythonからRへ(Rで取り出し)
+py$variable
+\end{verbatim}
+
 \hypertarget{shell}{%
 \section{shell}\label{shell}}
 
@@ -1068,8 +1442,18 @@ pdftk File1.pdf File2.pdf File3.pdf cat output Merged.pdf
 ImageMagick
 画像変換など
 
-\hypertarget{ux6e96ux5099-2}{%
-\subsection{準備}\label{ux6e96ux5099-2}}
+\hypertarget{ux6e96ux5099-4}{%
+\subsection{準備}\label{ux6e96ux5099-4}}
+
+\hypertarget{pythonux306eux30b9ux30afux30eaux30d7ux30c8ux5b9fux884c}{%
+\subsection{Pythonのスクリプト実行}\label{pythonux306eux30b9ux30afux30eaux30d7ux30c8ux5b9fux884c}}
+
+\begin{verbatim}
+wd <- "D:/matu/work/tmp"
+setwd(wd)
+system("c:/windows/py.exe pdf.py", intern = TRUE)
+shell("pdf.py")
+\end{verbatim}
 
 \hypertarget{dbi}{%
 \section{DBIでデータ取得}\label{dbi}}
@@ -1101,20 +1485,141 @@ SQLを使い慣れていれば，SQLで各種の操作をするのが良いだ�
 つまり，データ取得だけにDBIを利用して，その後はdplyrやtidyverseの各種パッケージの関数を駆使してデータを処理する．
 さらに，その結果を図示したい場合は，ggplot2を使うと良い．
 
-\hypertarget{ux6e96ux5099-3}{%
-\subsection{準備}\label{ux6e96ux5099-3}}
+\hypertarget{ux6e96ux5099-5}{%
+\subsection{準備}\label{ux6e96ux5099-5}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"DBI"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(DBI)}
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"DBI"}\NormalTok{, }\StringTok{"RSQLite"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## package 'DBI' successfully unpacked and MD5 sums checked
+## package 'RSQLite' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\matutosi\AppData\Local\Temp\RtmpwH5dsJ\downloaded_packages
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(DBI)}
+\FunctionTok{library}\NormalTok{(RSQLite)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.2     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v ggplot2   3.4.2     v tibble    3.2.1
+## v lubridate 1.9.2     v tidyr     1.3.0
+## v purrr     1.0.1     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{\# 一時的データの準備}
+\NormalTok{con }\OtherTok{\textless{}{-}} \FunctionTok{dbConnect}\NormalTok{(RSQLite}\SpecialCharTok{::}\FunctionTok{SQLite}\NormalTok{(), }\AttributeTok{dbname =} \StringTok{":memory:"}\NormalTok{)}
+\FunctionTok{dbWriteTable}\NormalTok{(con, }\StringTok{"mpg"}\NormalTok{, mpg)}
+\FunctionTok{dbListTables}\NormalTok{(con)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mpg"
+\end{verbatim}
 
 \hypertarget{ux4f7fux3044ux65b9-6}{%
 \subsection{使い方}\label{ux4f7fux3044ux65b9-6}}
 
-詳細は以下を参照．
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{\# SQLで選択・フィルタ}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{dbSendQuery}\NormalTok{(con, }\StringTok{"SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4"}\NormalTok{)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{dbFetch}\NormalTok{(res)}
+\FunctionTok{dbClearResult}\NormalTok{(res)}
+\NormalTok{tibble}\SpecialCharTok{::}\FunctionTok{tibble}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 81 x 4
+##     year model      displ   cyl
+##    <int> <chr>      <dbl> <int>
+##  1  1999 a4           1.8     4
+##  2  1999 a4           1.8     4
+##  3  2008 a4           2       4
+##  4  2008 a4           2       4
+##  5  1999 a4 quattro   1.8     4
+##  6  1999 a4 quattro   1.8     4
+##  7  2008 a4 quattro   2       4
+##  8  2008 a4 quattro   2       4
+##  9  1999 malibu       2.4     4
+## 10  2008 malibu       2.4     4
+## # i 71 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{\# とりあえず全部取得してから，dplyrで選択・フィルタ}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{dbSendQuery}\NormalTok{(con, }\StringTok{"SELECT * FROM mpg"}\NormalTok{)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{dbFetch}\NormalTok{(res)}
+\FunctionTok{dbClearResult}\NormalTok{(res)}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  tibble}\SpecialCharTok{::}\FunctionTok{as\_tibble}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(year, model, displ, cyl) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(cyl }\SpecialCharTok{==} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 234 x 11
+##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
+##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
+##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
+##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
+##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
+##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
+##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
+##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
+##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
+##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
+## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
+## # i 224 more rows
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 81 x 4
+##     year model      displ   cyl
+##    <int> <chr>      <dbl> <int>
+##  1  1999 a4           1.8     4
+##  2  1999 a4           1.8     4
+##  3  2008 a4           2       4
+##  4  2008 a4           2       4
+##  5  1999 a4 quattro   1.8     4
+##  6  1999 a4 quattro   1.8     4
+##  7  2008 a4 quattro   2       4
+##  8  2008 a4 quattro   2       4
+##  9  1999 malibu       2.4     4
+## 10  2008 malibu       2.4     4
+## # i 71 more rows
+\end{verbatim}
+
+SQL使いの方は，「SQLではじめるデータ分析 ―クエリで行う前処理、時系列解析、コホート分析、テキスト分析、異常検知」を参考にしてSQLでデータ処理をするのも良いだろう．
+しかし，R使いにとってはdplyrやggplot2を使って処理するほうが楽だと思われる．
+dplyrやggplot2を使ったデータ分析には，「Rではじめるデータサイエンス」が参考になる．
+\url{https://r4ds.hadley.nz/}
+
+その他，DBIパッケージの詳細は以下を参照．
 
 \url{https://cran.r-project.org/web/packages/DBI/vignettes/DBI-1.html}
 
@@ -1171,11 +1676,19 @@ xlsxの使用例として，オートフィルタを設定して・ウィンド�
 \NormalTok{\}}
 
   \CommentTok{\# Functions, 関数}
+  \CommentTok{\#   註：xlsxパッケージの関数は返り値の代入がない}
+  \CommentTok{\#         副作用でシートなどを操作するため?}
+  \CommentTok{\#         参照型を使っているため?}
+  \CommentTok{\#   参考：通常のRの関数は，返り値の代入をすることが多いの}
+
+  \CommentTok{\# オートフィルタの設定}
 \NormalTok{set\_auto\_filter }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(sh)\{}
-  \CommentTok{\# A1からZ1までにオートフィルタを設定}
+  \CommentTok{\# A1からZ1までを設定}
   \CommentTok{\#   もっと多くの列で設定したければ，"A1:Z1"のところを修正する}
 \NormalTok{  xlsx}\SpecialCharTok{::}\FunctionTok{addAutoFilter}\NormalTok{(sh, }\StringTok{"A1:Z1"}\NormalTok{)}
 \NormalTok{\}}
+
+  \CommentTok{\# ウィンドウ枠の固定}
 \NormalTok{set\_freeze\_panel }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(sh)\{}
   \CommentTok{\# 1列目と1行目のウィンドウ枠を固定}
   \CommentTok{\#   固定する場所の変更方法}
@@ -1183,6 +1696,8 @@ xlsxの使用例として，オートフィルタを設定して・ウィンド�
   \CommentTok{\#     3列目までを固定したい場合は，引数の3つ目と5つ目を，4にする}
 \NormalTok{  xlsx}\SpecialCharTok{::}\FunctionTok{createFreezePane}\NormalTok{(sh, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)}
 \NormalTok{\}}
+
+  \CommentTok{\# ワークブックごとで設定}
 \NormalTok{set\_af\_fp }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(file)\{}
 \NormalTok{  wb }\OtherTok{\textless{}{-}}\NormalTok{ xlsx}\SpecialCharTok{::}\FunctionTok{loadWorkbook}\NormalTok{(file)   }\CommentTok{\# ワークブックの読み込み}
   \ControlFlowTok{for}\NormalTok{(sh }\ControlFlowTok{in}\NormalTok{ xlsx}\SpecialCharTok{::}\FunctionTok{getSheets}\NormalTok{(wb))\{  }\CommentTok{\# シートの数だけ繰り返し}
@@ -1202,5 +1717,256 @@ xlsxの使用例として，オートフィルタを設定して・ウィンド�
 
 \hypertarget{ux305dux306eux4ed6ux306eux64cdux4f5cux672aux4f5cux6210}{%
 \subsection{その他の操作(未作成)}\label{ux305dux306eux4ed6ux306eux64cdux4f5cux672aux4f5cux6210}}
+
+\hypertarget{qpdf}{%
+\section{qpdfでPDF操作}\label{qpdf}}
+
+\hypertarget{ux95a2ux6570ux4e00ux89a7}{%
+\subsection{関数一覧}\label{ux95a2ux6570ux4e00ux89a7}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(qpdf)}
+  \CommentTok{\# ページ数取得，show the number of pages in a pdf}
+\FunctionTok{pdf\_length}\NormalTok{(input, }\AttributeTok{password =} \StringTok{""}\NormalTok{)}
+  \CommentTok{\# 1ページごとに分割，split a single pdf into separate files, one for each page}
+\FunctionTok{pdf\_split}\NormalTok{(input, }\AttributeTok{output =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{password =} \StringTok{""}\NormalTok{)}
+  \CommentTok{\# 指定ページを抽出，create a new pdf with a subset of the input pages}
+\FunctionTok{pdf\_subset}\NormalTok{(input, }\AttributeTok{pages =} \DecValTok{1}\NormalTok{, }\AttributeTok{output =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{password =} \StringTok{""}\NormalTok{)}
+  \CommentTok{\# 結合，join several pdf files into one}
+\FunctionTok{pdf\_combine}\NormalTok{(input, }\AttributeTok{output =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{password =} \StringTok{""}\NormalTok{)}
+  \CommentTok{\# 圧縮，compress or linearize a pdf file}
+\FunctionTok{pdf\_compress}\NormalTok{(input, }\AttributeTok{output =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{linearize =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{password =} \StringTok{""}\NormalTok{)}
+  \CommentTok{\# ページ回転，rotate selected pages}
+\FunctionTok{pdf\_rotate\_pages}\NormalTok{(input, pages, }\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{relative =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{output =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{password =} \StringTok{""}\NormalTok{)}
+  \CommentTok{\# 重ね合わせ}
+\FunctionTok{pdf\_overlay\_stamp}\NormalTok{(input, stamp, }\AttributeTok{output =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{password =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{input }\OtherTok{\textless{}{-}} \StringTok{""}
+\FunctionTok{pdf\_split}\NormalTok{(input, }\AttributeTok{output =} \StringTok{"d:/"}\NormalTok{, }\AttributeTok{password =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pdf2docx}{%
+\section{pdfをdocxに変換}\label{pdf2docx}}
+
+\hypertarget{rdcomclient}{%
+\subsection{RDCOMClient}\label{rdcomclient}}
+
+\url{https://github.com/omegahat/RDCOMClient}
+CRANにはないが，
+
+\hypertarget{ux30a4ux30f3ux30b9ux30c8ux30fcux30eb}{%
+\subsubsection{インストール}\label{ux30a4ux30f3ux30b9ux30c8ux30fcux30eb}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"RDCOMClient"}\NormalTok{, }
+  \AttributeTok{repos =} \StringTok{"http://www.omegahat.net/R"}\NormalTok{, }
+  \AttributeTok{type =} \StringTok{"win.binary"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux5909ux63dbux5b9fux884c}{%
+\subsubsection{変換実行}\label{ux5909ux63dbux5b9fux884c}}
+
+\url{https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411\#73720411}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(RDCOMClient)}
+\NormalTok{wordApp }\OtherTok{\textless{}{-}} \FunctionTok{COMCreate}\NormalTok{(}\StringTok{"Word.Application"}\NormalTok{)}
+\NormalTok{wordApp[[}\StringTok{"Visible"}\NormalTok{]] }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+\NormalTok{wordApp[[}\StringTok{"DisplayAlerts"}\NormalTok{]] }\OtherTok{\textless{}{-}} \ConstantTok{FALSE}
+\NormalTok{path\_To\_PDF\_File }\OtherTok{\textless{}{-}} \StringTok{"xxx.pdf"}
+\NormalTok{path\_To\_Word\_File }\OtherTok{\textless{}{-}} \StringTok{"xxx.docx"}
+\NormalTok{doc }\OtherTok{\textless{}{-}} 
+\NormalTok{  wordApp[[}\StringTok{"Documents"}\NormalTok{]]}\SpecialCharTok{$}\FunctionTok{Open}\NormalTok{(}\FunctionTok{normalizePath}\NormalTok{(path\_To\_PDF\_File), }
+    \AttributeTok{ConfirmConversions =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{doc}\SpecialCharTok{$}\FunctionTok{SaveAs2}\NormalTok{(path\_To\_Word\_File)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux30e9ux30c3ux30d1ux30fcux95a2ux6570}{%
+\subsubsection{ラッパー関数}\label{ux30e9ux30c3ux30d1ux30fcux95a2ux6570}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(RDCOMClient)}
+\NormalTok{pdf2docx }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(pdf, }\AttributeTok{docx =} \ConstantTok{NULL}\NormalTok{)\{}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{is.null}\NormalTok{(docx))\{}
+\NormalTok{    docx }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{getwd}\NormalTok{(), }\FunctionTok{sub}\NormalTok{(}\StringTok{"pdf"}\NormalTok{, }\StringTok{"docx"}\NormalTok{, pdf))}
+\NormalTok{  \}}
+\NormalTok{  wordApp }\OtherTok{\textless{}{-}}\NormalTok{ RDCOMClient}\SpecialCharTok{::}\FunctionTok{COMCreate}\NormalTok{(}\StringTok{"Word.Application"}\NormalTok{)}
+\NormalTok{  wordApp[[}\StringTok{"Visible"}\NormalTok{]] }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+\NormalTok{  wordApp[[}\StringTok{"DisplayAlerts"}\NormalTok{]] }\OtherTok{\textless{}{-}} \ConstantTok{FALSE}
+\NormalTok{  doc }\OtherTok{\textless{}{-}} 
+\NormalTok{    wordApp[[}\StringTok{"Documents"}\NormalTok{]]}\SpecialCharTok{$}\FunctionTok{Open}\NormalTok{(}\FunctionTok{normalizePath}\NormalTok{(pdf), }\AttributeTok{ConfirmConversions =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{  doc}\SpecialCharTok{$}\FunctionTok{SaveAs2}\NormalTok{(docx)}
+\NormalTok{  doc}\SpecialCharTok{$}\FunctionTok{close}\NormalTok{()}
+\NormalTok{\}}
+
+\NormalTok{wd }\OtherTok{\textless{}{-}} \StringTok{"d:/matu/work/tmp/"}
+\FunctionTok{setwd}\NormalTok{(wd)}
+\NormalTok{path\_docx }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(path\_pdf)\{}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{grepl}\NormalTok{(}\StringTok{"[A{-}z]:"}\NormalTok{, path\_pdf))\{}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{sub}\NormalTok{(}\StringTok{"pdf"}\NormalTok{, }\StringTok{"docx"}\NormalTok{, path\_pdf))}
+\NormalTok{  \}}
+\NormalTok{  path }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(}\FunctionTok{getwd}\NormalTok{(), }\FunctionTok{sub}\NormalTok{(}\StringTok{"pdf"}\NormalTok{, }\StringTok{"docx"}\NormalTok{, path\_pdf))}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{sub}\NormalTok{(}\StringTok{"//"}\NormalTok{, }\StringTok{"/"}\NormalTok{, path))}
+\NormalTok{\}}
+\NormalTok{testthat}\SpecialCharTok{::}\FunctionTok{expect\_equal}\NormalTok{(}\FunctionTok{path\_docx}\NormalTok{(}\StringTok{"a.pdf"}\NormalTok{                 ), }\StringTok{"d:/matu/work/tmp/a.docx"}\NormalTok{     )}
+\NormalTok{testthat}\SpecialCharTok{::}\FunctionTok{expect\_equal}\NormalTok{(}\FunctionTok{path\_docx}\NormalTok{(}\StringTok{"d:/matu/work/tmp/a.pdf"}\NormalTok{), }\StringTok{"d:/matu/work/tmp/a.docx"}\NormalTok{     )}
+\NormalTok{testthat}\SpecialCharTok{::}\FunctionTok{expect\_equal}\NormalTok{(}\FunctionTok{path\_docx}\NormalTok{(}\StringTok{"test/a.pdf"}\NormalTok{            ), }\StringTok{"d:/matu/work/tmp/test/a.docx"}\NormalTok{)}
+\NormalTok{testthat}\SpecialCharTok{::}\FunctionTok{expect\_equal}\NormalTok{(}\FunctionTok{path\_docx}\NormalTok{(}\StringTok{"/test/a.pdf"}\NormalTok{           ), }\StringTok{"d:/matu/work/tmp/test/a.docx"}\NormalTok{)}
+
+
+\NormalTok{wd }\OtherTok{\textless{}{-}} \StringTok{"d:/"}
+\FunctionTok{setwd}\NormalTok{(wd)}
+\FunctionTok{pdf2docx}\NormalTok{(}\StringTok{"a.pdf"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pdf2docx-1}{%
+\subsection{pdf2docx}\label{pdf2docx-1}}
+
+\hypertarget{ux30d1ux30c3ux30b1ux30fcux30b8-microsoft365r}{%
+\section{パッケージ Microsoft365R}\label{ux30d1ux30c3ux30b1ux30fcux30b8-microsoft365r}}
+
+\# \url{https://cran.r-project.org/web/packages/Microsoft365R}
+\# Outlookの使い方
+\# \url{https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html}
+
+\hypertarget{outlookux3067ux8907ux6570ux30e1ux30fcux30ebux9001ux4fe1ux3092ux4e00ux6589ux9001ux4fe1}{%
+\subsection{Outlookで複数メール送信を一斉送信}\label{outlookux3067ux8907ux6570ux30e1ux30fcux30ebux9001ux4fe1ux3092ux4e00ux6589ux9001ux4fe1}}
+
+複数人に全く同じメールを送る場合は，TOやCCに複数の電子メールアドレスを入力すれば良い．
+また，宛先を知られるのがよろしくないときは，BCCに送信先のアドレスを，TOに自分のアドレスを入れておけば問題ない．
+このとき，送り先の全員に全く同じ内容，同じ添付ファイルであればメールは1つ作成すれば問題ない．
+
+でも，個々の人に対して少しだけ違う内容のメールを送りたいときとか，添付ファイルを別々のものにしたいときがある．
+また，単純なことだが，宛先が「みなさま」よりは，「○○様」のように宛先だけでも変更したいというときもある．
+何かお願いをするときには，「みなさま」よりも直接名前を書いたほうが結構効果が高い．
+例えば，学会での投票のお願いなどは，MLに流すより個別メールの方が確実だ．
+
+そのようなとき，いちいちメールを作成・編集していると面倒だし，間違いのもとになる．
+名前を中途半端に修正して，3箇所のうち1箇所だけ別の人の名前にしてしまっていたり，日付と曜日があっていないなどの間違いは日常茶飯事だ．
+このような間違いをなくすには，個別に変更する部分と全体で統一するところを分けておき，あとはパソコンを使ってうまくつなぎ合わせる．
+でも，このように作成したメールの本文や宛先をいちいちコピー\&ペーストするのは，手間がかかるし，個々にも作業のミスが入り込む余地が大きい．
+
+\hypertarget{ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3068ux521dux671fux8a2dux5b9a}{%
+\subsubsection{インストールと初期設定}\label{ux30a4ux30f3ux30b9ux30c8ux30fcux30ebux3068ux521dux671fux8a2dux5b9a}}
+
+この操作は，最初に1回だけ実行すればOK.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{\# インストール}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"Microsoft365R"}\NormalTok{)}
+  \CommentTok{\# パッケージの読み込み}
+\FunctionTok{library}\NormalTok{(Microsoft365R)}
+ \CommentTok{\# 会社など組織で契約している場合}
+\NormalTok{Microsoft365R}\SpecialCharTok{::}\FunctionTok{get\_business\_outlook}\NormalTok{()}
+ \CommentTok{\# 個人利用の場合}
+  \CommentTok{\# Microsoft365R::get\_personal\_outlook()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux3068ux308aux3042ux3048ux305aux4f7fux3046}{%
+\subsubsection{とりあえず使う}\label{ux3068ux308aux3042ux3048ux305aux4f7fux3046}}
+
+まずは，試しにメールを作って送ってみる．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \CommentTok{\# 会社などで組織で契約している場合}
+\NormalTok{outlook }\OtherTok{\textless{}{-}}\NormalTok{ Microsoft365R}\SpecialCharTok{::}\FunctionTok{get\_business\_outlook}\NormalTok{()}
+ \CommentTok{\# 個人利用の場合}
+  \CommentTok{\# outlook \textless{}{-} Microsoft365R::get\_personal\_outlook()}
+
+  \CommentTok{\# 個別にemailを送る場合}
+  \CommentTok{\# メール作成のみ}
+  \CommentTok{\# メールはoutlookの下書きフォルダにも保存されている}
+\NormalTok{em }\OtherTok{\textless{}{-}} 
+\NormalTok{  outlook}\SpecialCharTok{$}\FunctionTok{create\_email}\NormalTok{(}
+    \AttributeTok{body =} \StringTok{"Hello from R}\SpecialCharTok{\textbackslash{}n}\StringTok{Hello from R}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }
+    \AttributeTok{subject =} \StringTok{"Hello"}\NormalTok{,}
+    \AttributeTok{to =} \StringTok{"matutosi@gmail.com"}\NormalTok{, }
+    \AttributeTok{cc =} \StringTok{"matutosi@konan{-}wu.ac.jp"}
+\NormalTok{  )}
+
+  \CommentTok{\# メール送信}
+\NormalTok{em}\SpecialCharTok{$}\FunctionTok{send}\NormalTok{()}
+
+  \CommentTok{\# outlookの下書きフォルダからメールを取り出す}
+\NormalTok{drafts }\OtherTok{\textless{}{-}}\NormalTok{ outlook}\SpecialCharTok{$}\FunctionTok{get\_drafts}\NormalTok{()}\SpecialCharTok{$}\FunctionTok{list\_emails}\NormalTok{()}
+  \CommentTok{\# 下書きフォルダのメール一覧}
+\NormalTok{drafts}
+  \CommentTok{\# 下書きフォルダのメールの1つ目を送信}
+\NormalTok{drafts[[}\DecValTok{1}\NormalTok{]]}\SpecialCharTok{$}\FunctionTok{send}\NormalTok{()}
+
+  \CommentTok{\# 受信トレイのメール一覧}
+\NormalTok{inbox }\OtherTok{\textless{}{-}}\NormalTok{ outlook}\SpecialCharTok{$}\FunctionTok{get\_inbox}\NormalTok{()}\SpecialCharTok{$}\FunctionTok{list\_emails}\NormalTok{()}
+  \CommentTok{\# 受信トレイの1つ目の内容}
+\NormalTok{inbox[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux30e1ux30fcux30ebux306eux4e00ux6589ux9001ux4fe1}{%
+\subsubsection{メールの一斉送信}\label{ux30e1ux30fcux30ebux306eux4e00ux6589ux9001ux4fe1}}
+
+宛先や本文をエクセルに入力しておき，そこからデータを抽出して一斉にメールを送信できる．
+
+\begin{itemize}
+\tightlist
+\item
+  送信: send(必須) 1: 送信する，0: 下書きに保存
+\item
+  宛先: to(必須)\\
+\item
+  CC: cc(任意)\\
+\item
+  BCC: bcc(任意)\\
+\item
+  件名: subject(必須でないが，入力推奨)\\
+\item
+  本文: body(必須でないが，入力推奨)\\
+\item
+  添付ファイル: attachment(任意)
+\end{itemize}
+
+宛先が入力されていないとメールは送信できない．
+CCとBCCは任意．\\
+件名と本文はなくても送信できるが，両方とも何もないとメールの意味がない．\\
+添付ファイルがあれば，ファイル名を指定．
+複数ファイルを添付するときは，カンマでpath(ファイル名)を区切る．
+絶対pathで指定すると間違いは少ない．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{\# 宛先や本文をエクセルで作成しておき}
+  \CommentTok{\#   一斉にメールを作成・送信する場合}
+
+  \CommentTok{\# 関数の読み込み}
+\FunctionTok{source}\NormalTok{(}\StringTok{"https://gist.githubusercontent.com/matutosi/bed00135698c8e3d2c49ef08d12eef9c/raw/6acc2de844eeeab03aaf36f2391e223d621b36a8/outlook.R"}\NormalTok{)}
+
+\NormalTok{outlook }\OtherTok{\textless{}{-}}\NormalTok{ Microsoft365R}\SpecialCharTok{::}\FunctionTok{get\_business\_outlook}\NormalTok{()}
+  \CommentTok{\# エクセルファイルの内容}
+  \CommentTok{\#   working directoryにファイルがない場合は，}
+  \CommentTok{\#   絶対パス("c:/user/documents/outlook.xlsx"など)で指定}
+\NormalTok{path }\OtherTok{\textless{}{-}} \StringTok{"outlook.xlsx"}
+  \CommentTok{\# メール作成・送信}
+\FunctionTok{create\_email}\NormalTok{(path, outlook, }\AttributeTok{send =} \ConstantTok{TRUE}\NormalTok{)}
+
+  \CommentTok{\# メール作成のみ}
+  \CommentTok{\#   "send = FALSE" にすれば，メールを作成して下書きに保存}
+\FunctionTok{create\_email}\NormalTok{(path, outlook, }\AttributeTok{send =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 
 \end{document}

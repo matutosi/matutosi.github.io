@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
-  <meta name="description" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <title>Chap. 16 パッケージ Microsoft365R | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
+  <meta name="description" content="Chap. 16 パッケージ Microsoft365R | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta property="og:title" content="Chap. 16 パッケージ Microsoft365R | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta name="twitter:title" content="Chap. 16 パッケージ Microsoft365R | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="shell.html"/>
-<link rel="next" href="xlsx.html"/>
+<link rel="prev" href="pdf2docx.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -307,120 +307,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dbi" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chap. 12</span> DBIでデータ取得<a href="dbi.html#dbi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="データベースとの連携" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> データベースとの連携<a href="dbi.html#データベースとの連携" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>リレーショナル・データベースと接続してデータを取得するためのパッケージには色々とある．</p>
-<p>CRAN Task View: Databases with R には多くのパッケージが掲載されている．
-<a href="https://cran.r-project.org/web/views/Databases.html" class="uri">https://cran.r-project.org/web/views/Databases.html</a></p>
-<p>どれを使っても良いが，よく使われているのはDBIのようだ．
-<a href="https://cran.r-project.org/web/packages/DBI/index.html" class="uri">https://cran.r-project.org/web/packages/DBI/index.html</a></p>
+<div id="パッケージ-microsoft365r" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chap. 16</span> パッケージ Microsoft365R<a href="パッケージ-microsoft365r.html#パッケージ-microsoft365r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p># <a href="https://cran.r-project.org/web/packages/Microsoft365R" class="uri">https://cran.r-project.org/web/packages/Microsoft365R</a>
+# Outlookの使い方
+# <a href="https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html" class="uri">https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html</a></p>
+<div id="outlookで複数メール送信を一斉送信" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Outlookで複数メール送信を一斉送信<a href="パッケージ-microsoft365r.html#outlookで複数メール送信を一斉送信" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>複数人に全く同じメールを送る場合は，TOやCCに複数の電子メールアドレスを入力すれば良い．
+また，宛先を知られるのがよろしくないときは，BCCに送信先のアドレスを，TOに自分のアドレスを入れておけば問題ない．
+このとき，送り先の全員に全く同じ内容，同じ添付ファイルであればメールは1つ作成すれば問題ない．</p>
+<p>でも，個々の人に対して少しだけ違う内容のメールを送りたいときとか，添付ファイルを別々のものにしたいときがある．
+また，単純なことだが，宛先が「みなさま」よりは，「○○様」のように宛先だけでも変更したいというときもある．
+何かお願いをするときには，「みなさま」よりも直接名前を書いたほうが結構効果が高い．
+例えば，学会での投票のお願いなどは，MLに流すより個別メールの方が確実だ．</p>
+<p>そのようなとき，いちいちメールを作成・編集していると面倒だし，間違いのもとになる．
+名前を中途半端に修正して，3箇所のうち1箇所だけ別の人の名前にしてしまっていたり，日付と曜日があっていないなどの間違いは日常茶飯事だ．
+このような間違いをなくすには，個別に変更する部分と全体で統一するところを分けておき，あとはパソコンを使ってうまくつなぎ合わせる．
+でも，このように作成したメールの本文や宛先をいちいちコピー&amp;ペーストするのは，手間がかかるし，個々にも作業のミスが入り込む余地が大きい．</p>
+<div id="インストールと初期設定" class="section level3 hasAnchor" number="16.1.1">
+<h3><span class="header-section-number">16.1.1</span> インストールと初期設定<a href="パッケージ-microsoft365r.html#インストールと初期設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>この操作は，最初に1回だけ実行すればOK.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="パッケージ-microsoft365r.html#cb58-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># インストール</span></span>
+<span id="cb58-2"><a href="パッケージ-microsoft365r.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;Microsoft365R&quot;</span>)</span>
+<span id="cb58-3"><a href="パッケージ-microsoft365r.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージの読み込み</span></span>
+<span id="cb58-4"><a href="パッケージ-microsoft365r.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
+<span id="cb58-5"><a href="パッケージ-microsoft365r.html#cb58-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># 会社など組織で契約している場合</span></span>
+<span id="cb58-6"><a href="パッケージ-microsoft365r.html#cb58-6" aria-hidden="true" tabindex="-1"></a>Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb58-7"><a href="パッケージ-microsoft365r.html#cb58-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># 個人利用の場合</span></span>
+<span id="cb58-8"><a href="パッケージ-microsoft365r.html#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Microsoft365R::get_personal_outlook()</span></span></code></pre></div>
 </div>
-<div id="dbiでできること" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> DBIでできること<a href="dbi.html#dbiでできること" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="とりあえず使う" class="section level3 hasAnchor" number="16.1.2">
+<h3><span class="header-section-number">16.1.2</span> とりあえず使う<a href="パッケージ-microsoft365r.html#とりあえず使う" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>まずは，試しにメールを作って送ってみる．</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="パッケージ-microsoft365r.html#cb59-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># 会社などで組織で契約している場合</span></span>
+<span id="cb59-2"><a href="パッケージ-microsoft365r.html#cb59-2" aria-hidden="true" tabindex="-1"></a>outlook <span class="ot">&lt;-</span> Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb59-3"><a href="パッケージ-microsoft365r.html#cb59-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># 個人利用の場合</span></span>
+<span id="cb59-4"><a href="パッケージ-microsoft365r.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># outlook &lt;- Microsoft365R::get_personal_outlook()</span></span>
+<span id="cb59-5"><a href="パッケージ-microsoft365r.html#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="パッケージ-microsoft365r.html#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 個別にemailを送る場合</span></span>
+<span id="cb59-7"><a href="パッケージ-microsoft365r.html#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
+<span id="cb59-8"><a href="パッケージ-microsoft365r.html#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メールはoutlookの下書きフォルダにも保存されている</span></span>
+<span id="cb59-9"><a href="パッケージ-microsoft365r.html#cb59-9" aria-hidden="true" tabindex="-1"></a>em <span class="ot">&lt;-</span> </span>
+<span id="cb59-10"><a href="パッケージ-microsoft365r.html#cb59-10" aria-hidden="true" tabindex="-1"></a>  outlook<span class="sc">$</span><span class="fu">create_email</span>(</span>
+<span id="cb59-11"><a href="パッケージ-microsoft365r.html#cb59-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="st">&quot;Hello from R</span><span class="sc">\n</span><span class="st">Hello from R</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb59-12"><a href="パッケージ-microsoft365r.html#cb59-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">&quot;Hello&quot;</span>,</span>
+<span id="cb59-13"><a href="パッケージ-microsoft365r.html#cb59-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">&quot;matutosi@gmail.com&quot;</span>, </span>
+<span id="cb59-14"><a href="パッケージ-microsoft365r.html#cb59-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">cc =</span> <span class="st">&quot;matutosi@konan-wu.ac.jp&quot;</span></span>
+<span id="cb59-15"><a href="パッケージ-microsoft365r.html#cb59-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-16"><a href="パッケージ-microsoft365r.html#cb59-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-17"><a href="パッケージ-microsoft365r.html#cb59-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール送信</span></span>
+<span id="cb59-18"><a href="パッケージ-microsoft365r.html#cb59-18" aria-hidden="true" tabindex="-1"></a>em<span class="sc">$</span><span class="fu">send</span>()</span>
+<span id="cb59-19"><a href="パッケージ-microsoft365r.html#cb59-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-20"><a href="パッケージ-microsoft365r.html#cb59-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># outlookの下書きフォルダからメールを取り出す</span></span>
+<span id="cb59-21"><a href="パッケージ-microsoft365r.html#cb59-21" aria-hidden="true" tabindex="-1"></a>drafts <span class="ot">&lt;-</span> outlook<span class="sc">$</span><span class="fu">get_drafts</span>()<span class="sc">$</span><span class="fu">list_emails</span>()</span>
+<span id="cb59-22"><a href="パッケージ-microsoft365r.html#cb59-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 下書きフォルダのメール一覧</span></span>
+<span id="cb59-23"><a href="パッケージ-microsoft365r.html#cb59-23" aria-hidden="true" tabindex="-1"></a>drafts</span>
+<span id="cb59-24"><a href="パッケージ-microsoft365r.html#cb59-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 下書きフォルダのメールの1つ目を送信</span></span>
+<span id="cb59-25"><a href="パッケージ-microsoft365r.html#cb59-25" aria-hidden="true" tabindex="-1"></a>drafts[[<span class="dv">1</span>]]<span class="sc">$</span><span class="fu">send</span>()</span>
+<span id="cb59-26"><a href="パッケージ-microsoft365r.html#cb59-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-27"><a href="パッケージ-microsoft365r.html#cb59-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 受信トレイのメール一覧</span></span>
+<span id="cb59-28"><a href="パッケージ-microsoft365r.html#cb59-28" aria-hidden="true" tabindex="-1"></a>inbox <span class="ot">&lt;-</span> outlook<span class="sc">$</span><span class="fu">get_inbox</span>()<span class="sc">$</span><span class="fu">list_emails</span>()</span>
+<span id="cb59-29"><a href="パッケージ-microsoft365r.html#cb59-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 受信トレイの1つ目の内容</span></span>
+<span id="cb59-30"><a href="パッケージ-microsoft365r.html#cb59-30" aria-hidden="true" tabindex="-1"></a>inbox[[<span class="dv">1</span>]]</span></code></pre></div>
+</div>
+<div id="メールの一斉送信" class="section level3 hasAnchor" number="16.1.3">
+<h3><span class="header-section-number">16.1.3</span> メールの一斉送信<a href="パッケージ-microsoft365r.html#メールの一斉送信" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>宛先や本文をエクセルに入力しておき，そこからデータを抽出して一斉にメールを送信できる．</p>
 <ul>
-<li>各種データベースとの接続<br />
+<li>送信: send(必須) 1: 送信する，0: 下書きに保存</li>
+<li>宛先: to(必須)<br />
 </li>
-<li>SQLによるデータ操作</li>
+<li>CC: cc(任意)<br />
+</li>
+<li>BCC: bcc(任意)<br />
+</li>
+<li>件名: subject(必須でないが，入力推奨)<br />
+</li>
+<li>本文: body(必須でないが，入力推奨)<br />
+</li>
+<li>添付ファイル: attachment(任意)</li>
 </ul>
-<p>SQLを使い慣れていれば，SQLで各種の操作をするのが良いだろう．
-一方，Rでのデータフレームの操作に慣れていれば，取得したデータをRで操作するのが良い．
-つまり，データ取得だけにDBIを利用して，その後はdplyrやtidyverseの各種パッケージの関数を駆使してデータを処理する．
-さらに，その結果を図示したい場合は，ggplot2を使うと良い．</p>
-</div>
-<div id="準備-5" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> 準備<a href="dbi.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="dbi.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
-<pre><code>## package &#39;DBI&#39; successfully unpacked and MD5 sums checked
-## package &#39;RSQLite&#39; successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\matutosi\AppData\Local\Temp\RtmpETzBEL\downloaded_packages</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="dbi.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb43-2"><a href="dbi.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
-<span id="cb43-3"><a href="dbi.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="dbi.html#cb45-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
-<span id="cb45-2"><a href="dbi.html#cb45-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
-<span id="cb45-3"><a href="dbi.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
-<span id="cb45-4"><a href="dbi.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
-<pre><code>## [1] &quot;mpg&quot;</code></pre>
-</div>
-<div id="使い方-6" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> 使い方<a href="dbi.html#使い方-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="dbi.html#cb47-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
-<span id="cb47-2"><a href="dbi.html#cb47-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
-<span id="cb47-3"><a href="dbi.html#cb47-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb47-4"><a href="dbi.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb47-5"><a href="dbi.html#cb47-5" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(df)</span></code></pre></div>
-<pre><code>## # A tibble: 81 × 4
-##     year model      displ   cyl
-##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
-##  1  1999 a4           1.8     4
-##  2  1999 a4           1.8     4
-##  3  2008 a4           2       4
-##  4  2008 a4           2       4
-##  5  1999 a4 quattro   1.8     4
-##  6  1999 a4 quattro   1.8     4
-##  7  2008 a4 quattro   2       4
-##  8  2008 a4 quattro   2       4
-##  9  1999 malibu       2.4     4
-## 10  2008 malibu       2.4     4
-## # ℹ 71 more rows</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dbi.html#cb49-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
-<span id="cb49-2"><a href="dbi.html#cb49-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
-<span id="cb49-3"><a href="dbi.html#cb49-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb49-4"><a href="dbi.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb49-5"><a href="dbi.html#cb49-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb49-6"><a href="dbi.html#cb49-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb49-7"><a href="dbi.html#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb49-8"><a href="dbi.html#cb49-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb49-9"><a href="dbi.html#cb49-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 234 × 11
-##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
-##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
-##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
-##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
-##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
-##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
-##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
-##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
-##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
-##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
-## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
-## # ℹ 224 more rows</code></pre>
-<pre><code>## # A tibble: 81 × 4
-##     year model      displ   cyl
-##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
-##  1  1999 a4           1.8     4
-##  2  1999 a4           1.8     4
-##  3  2008 a4           2       4
-##  4  2008 a4           2       4
-##  5  1999 a4 quattro   1.8     4
-##  6  1999 a4 quattro   1.8     4
-##  7  2008 a4 quattro   2       4
-##  8  2008 a4 quattro   2       4
-##  9  1999 malibu       2.4     4
-## 10  2008 malibu       2.4     4
-## # ℹ 71 more rows</code></pre>
-<p>SQL使いの方は，「SQLではじめるデータ分析 ―クエリで行う前処理、時系列解析、コホート分析、テキスト分析、異常検知」を参考にしてSQLでデータ処理をするのも良いだろう．
-しかし，R使いにとってはdplyrやggplot2を使って処理するほうが楽だと思われる．
-dplyrやggplot2を使ったデータ分析には，「Rではじめるデータサイエンス」が参考になる．
-<a href="https://r4ds.hadley.nz/" class="uri">https://r4ds.hadley.nz/</a></p>
-<p>その他，DBIパッケージの詳細は以下を参照．</p>
-<p><a href="https://cran.r-project.org/web/packages/DBI/vignettes/DBI-1.html" class="uri">https://cran.r-project.org/web/packages/DBI/vignettes/DBI-1.html</a></p>
+<p>宛先が入力されていないとメールは送信できない．
+CCとBCCは任意．<br />
+件名と本文はなくても送信できるが，両方とも何もないとメールの意味がない．<br />
+添付ファイルがあれば，ファイル名を指定．
+複数ファイルを添付するときは，カンマでpath(ファイル名)を区切る．
+絶対pathで指定すると間違いは少ない．</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="パッケージ-microsoft365r.html#cb60-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 宛先や本文をエクセルで作成しておき</span></span>
+<span id="cb60-2"><a href="パッケージ-microsoft365r.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   一斉にメールを作成・送信する場合</span></span>
+<span id="cb60-3"><a href="パッケージ-microsoft365r.html#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="パッケージ-microsoft365r.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 関数の読み込み</span></span>
+<span id="cb60-5"><a href="パッケージ-microsoft365r.html#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://gist.githubusercontent.com/matutosi/bed00135698c8e3d2c49ef08d12eef9c/raw/6acc2de844eeeab03aaf36f2391e223d621b36a8/outlook.R&quot;</span>)</span>
+<span id="cb60-6"><a href="パッケージ-microsoft365r.html#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="パッケージ-microsoft365r.html#cb60-7" aria-hidden="true" tabindex="-1"></a>outlook <span class="ot">&lt;-</span> Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb60-8"><a href="パッケージ-microsoft365r.html#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># エクセルファイルの内容</span></span>
+<span id="cb60-9"><a href="パッケージ-microsoft365r.html#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   working directoryにファイルがない場合は，</span></span>
+<span id="cb60-10"><a href="パッケージ-microsoft365r.html#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   絶対パス(&quot;c:/user/documents/outlook.xlsx&quot;など)で指定</span></span>
+<span id="cb60-11"><a href="パッケージ-microsoft365r.html#cb60-11" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;outlook.xlsx&quot;</span></span>
+<span id="cb60-12"><a href="パッケージ-microsoft365r.html#cb60-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成・送信</span></span>
+<span id="cb60-13"><a href="パッケージ-microsoft365r.html#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb60-14"><a href="パッケージ-microsoft365r.html#cb60-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-15"><a href="パッケージ-microsoft365r.html#cb60-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
+<span id="cb60-16"><a href="パッケージ-microsoft365r.html#cb60-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   &quot;send = FALSE&quot; にすれば，メールを作成して下書きに保存</span></span>
+<span id="cb60-17"><a href="パッケージ-microsoft365r.html#cb60-17" aria-hidden="true" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 
+</div>
 </div>
 </div>
             </section>
@@ -428,8 +420,8 @@ dplyrやggplot2を使ったデータ分析には，「Rではじめるデータ�
           </div>
         </div>
       </div>
-<a href="shell.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="xlsx.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pdf2docx.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -19,15 +19,17 @@ Windowsならコマンドプロンプト(古い言い方なら，いわゆるdos
 sfパッケージでは，baseの関数群を整理するとともに，新たな有用な関数が追加されている．
 そのため，命名規則が一貫しており，ベクトル化した引数を受け付けるため，非常に使いやすい．
 
+複数のOSを使う場合は，コマンドが異なるためそれぞれでコマンドを覚えなければならない．
+いちいち個別のものを覚えるよりも，fsパッケージの関数を覚えておけば，どのOSであろうが同じように動作してくれて楽ができる．
+
 なお，fs，base，shellの詳細な比較が，以下のURLにあるので，参照してほしい．   
 https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html
 
-## shell, baseパッケージ, fsパッケージ
+## shell，baseパッケージ, fsパッケージ
 
-ファイル名を変更したいとする．
-a.pdfを01.pdfに，b.pdfを02.pdfにのように10個のファイル名を変更する．
+a.pdf, b.pdf, ..., j.pdfを01.pdf, 02.pdf, ..., 10.pdfのように10個のファイル名を変更したいとする．
 
-### shell
+### shellを使う
 
 shellなら，以下のようなコマンドだ．
 dosコマンドの変数やループなどを駆使すると，もっと短く書けるのかもしれないが，残念ながらそのような知識がない．
@@ -58,7 +60,7 @@ file.rename(old, new)
 fsパッケージとともに，stringrを使った例を示す．
 ファイル操作をする際には，文字列の置換・検索などをすることが多いので，stringrが役立つ．
 stringrパッケージの関数は，str_*の名前になっているため，覚えやすい．
-fsパッケージの関数は，ファイル操作はfile_*，ディレクトリ操作はdir_*，パス操作はpath_*という名前がついている．
+fsパッケージの関数は，パス操作はpath_*，ディレクトリ操作はdir_*，ファイル操作はfile_*という名前がついている．
 
 
 ```r
@@ -79,7 +81,7 @@ install.packages("sf")
 ## package 'sf' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\matu\AppData\Local\Temp\RtmpcFNuJG\downloaded_packages
+## 	C:\Users\matutosi\AppData\Local\Temp\RtmpCADyDj\downloaded_packages
 ```
 
 ```r
@@ -87,55 +89,89 @@ library(sf)
 ```
 
 ```
-## Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE
+## Linking to GEOS 3.11.1, GDAL 3.6.2, PROJ 9.1.1; sf_use_s2() is TRUE
 ```
 
-## sfの関数群 (WIP)
+## sfの関数群
 
-<!--
-TODO: 以下のページを参考にして，関数の概要を書く
-  https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html
--->
+パス操作(path_*)，ディレクトリ操作(dir_*)，ファイル操作(file_*)の関数群に分けることができる．
+パス操作には，baseやshellにはない機能が多くあって，使いやすい．
+拡張子を取り除くた関数を自作したことがあるが，同じような関数(しかもおそらく，fsのほうがしっかりしている)があることを見つけたときには，
+下位機能の車輪を再発明してしまったと後悔した．
 
-- ディレクトリ操作(一覧，移動，複製，削除など)    
-  - dir_ls("path")   
-  - dir_info("path")   
-  - dir_copy("path", "new-path")   
-  - dir_create("path")   
-  - dir_delete("path")   
-  - dir_exists("path")   
-  - dir_move() (see file_move)   
-  - dir_map("path", fun)   
-  - dir_tree("path")   
-  - File functions
-- ファイル操作(移動，複製，削除など)    
-  - file_chmod("path", "mode")   
-  - file_chown("path", "user_id", "group_id")   
-  - file_copy("path", "new-path")   
-  - file_create("new-path")   
-  - file_delete("path")   
-  - file_exists("path")   
-  - file_info("path")   
-  - file_move("path", "new-path")   
-  - file_show("path")   
-  - file_touch()   
-  - file_temp()   
-  - file_test()   
-- パス操作   
-  - path("top_dir", "nested_dir", "file", ext = "ext")   
-  - path_temp(), path_temp("path")   
-  - path_expand("~/path")   
-  - path_dir("path")   
-  - path_file("path")   
-  - path_home()   
-  - path_package("pkgname", "dir", "file")   
-  - path_norm("path")   
-  - path_real("path")   
-  - path_rel("path/foo", "path/bar")   
-  - path_common(c("path/foo", "path/bar", "path/baz"))   
-  - path_ext_remove("path")   
-  - path_ext_set("path", "new_ext")   
-  - path_sanitize("path")   
+fs，base，shellの比較は次のURLを参照して欲しい．
+
+https://cran.r-project.org/web/packages/fs/vignettes/function-comparisons.html
+
+
+### パス操作    
+
+パス操作では，stringrを駆使して自作しないといけないような関数が多くある．
+特に，パスからディレクトリ名，ファイル名，拡張子を抽出してくれる関数は便利だ．
+自作してもそれほど難しくはないが，(少なくとも自分の)自作した関数にはバグが入っている可能性がある．
+予想外のパスを指定した場合には，予想外の結果になることがあるだろう．
+そのような不具合を防ぐためにも，fsパッケージのパス関数を使うほうが良さそうである．
+
+
+```r
+path("top_dir", "nested_dir", "file", ext = "ext") # パス作成   
+path_temp(), path_temp("path") # 一時パス名の作成   
+path_expand("~/path") # "~"をユーザのホームディレクトリに変換したパス   
+path_dir("path") # パスからディレクトリ名抽出   
+path_file("path") # パスからファイル名抽出   
+path_ext("path") # パスから拡張子抽出   
+path_ext_remove("path") # パスから拡張子を削除   
+path_home() # ホームディレクトリ   
+path_package("pkgname", "dir", "file") # パッケージのパス名   
+path_norm("path") # 参照や".."の削除   
+path_real("path") # 実体パス(シンボリックリンクを実体パスに)   
+path_abs("path") # 絶対パス
+path_rel("path/foo", "path/bar") #  相対パス  
+path_common(c("path/foo", "path/bar", "path/baz")) # パスの共通部分   
+path_ext_set("path", "new_ext") # 拡張子変更   
+path_sanitize("path") # 無効な文字を削除   
+path_join("path") # 結合
+path_split("path") # 分割
+```
+
+### ディレクトリ操作    
+
+shellやbaseでも同様の機能があるが，複数処理のdir_map()やツリー表示のdir_tree()は単純に嬉しい．
+
+
+```r
+dir_ls("path") # 一覧   
+dir_info("path") # 情報   
+dir_copy("path", "new-path") # 複写   
+dir_create("path") # 作成   
+dir_delete("path") # 削除   
+dir_exists("path") # 有無確認   
+dir_move() (see file_move) # 移動   
+dir_map("path", fun) # 複数処理   
+dir_tree("path") # ツリー表示   
+```
+
+
+
+### ファイル操作   
+
+ファイル操作はshellやbaseとそれほど変わらない感じがする．
+
+
+```r
+file_chmod("path", "mode") # 権限変更   
+file_chown("path", "user_id", "group_id") # 所有者変更   
+file_copy("path", "new-path") # 複写   
+file_create("new-path") # 作成   
+file_delete("path") # 削除   
+file_exists("path") # 有無確認   
+file_info("path") # 情報   
+file_move("path", "new-path") # 移動   
+file_show("path") # 開く   
+file_touch() # アクセス時間等の変更   
+file_temp() # 一時ファイル名の作成   
+```
+
 
 ## sfを使ったファイル操作例
 
@@ -144,7 +180,7 @@ TODO: 以下のページを参考にして，関数の概要を書く
 普通のRユーザなら常に最新版を使わなくても良い．
 ただ，Rパッケージの開発をしていると，開発中のパッケージが依存しているパッケージが最新版のRで開発されている旨の警告がでることが結構ある．
 ごく最近までは，手作業でファイルをコピーしていたが，よく考えたらこういった作業は自動化するべきだと気づいた．
-そこで，sfパッケージ(とstringr)を使ってファイルをコピーするスクリプトを作成した．
+そこで，sfパッケージを使ってファイルをコピーするスクリプトを作成した．
 
 
 ```r
@@ -152,8 +188,13 @@ TODO: 以下のページを参考にして，関数の概要を書く
   # RをバージョンアップしたときのRconsoleの複製スクリプト
   #   https://gist.github.com/matutosi/6dab3918402662f081be5c17cc7f9ce2
 library(fs)
-library(stringr)
-wd <- str_replace(R.home(), "R-([0-9]\\.*){3}", "")
+library(magrittr)
+wd <- 
+  path_package("base") %>%
+  path_split() %>%
+  unlist() %>%
+  .[-c((length(.) - 2):length(.))] %>%
+  path_join()  
 setwd(wd)
 dir <- dir_ls()
 d_old <- dir[length(dir)-1]
@@ -165,5 +206,6 @@ file_copy(f_old, f_new, overwrite = TRUE)
 ```
 
 このように，定期的あるいはバージョンアップなどに伴うファイルのコピーや移動はそれなりにあるように思う．
-そのような場合は，fsとstringrを組み合わせて，作業を自動化するとよいだろう．
+そのような場合は，fsを活用して作業を自動化するとよいだろう．
+なお，fsで対応していない部分の文字列操作には，stringrを使うと便利である．
 
