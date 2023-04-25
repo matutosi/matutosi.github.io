@@ -70,7 +70,7 @@ dbListTables(con)
 res <- dbSendQuery(con, "SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4")
 df <- dbFetch(res)
 dbClearResult(res)
-tibble::tibble(df)
+tibble::as_tibble(df)
 ```
 
 ```
@@ -99,7 +99,8 @@ df %>%
   tibble::as_tibble() %>%
   print() %>%
   dplyr::select(year, model, displ, cyl) %>%
-  dplyr::filter(cyl == 4)
+  dplyr::filter(cyl == 4) %>%
+  head()
 ```
 
 ```
@@ -120,20 +121,15 @@ df %>%
 ```
 
 ```
-## # A tibble: 81 × 4
-##     year model      displ   cyl
-##    <int> <chr>      <dbl> <int>
-##  1  1999 a4           1.8     4
-##  2  1999 a4           1.8     4
-##  3  2008 a4           2       4
-##  4  2008 a4           2       4
-##  5  1999 a4 quattro   1.8     4
-##  6  1999 a4 quattro   1.8     4
-##  7  2008 a4 quattro   2       4
-##  8  2008 a4 quattro   2       4
-##  9  1999 malibu       2.4     4
-## 10  2008 malibu       2.4     4
-## # ℹ 71 more rows
+## # A tibble: 6 × 4
+##    year model      displ   cyl
+##   <int> <chr>      <dbl> <int>
+## 1  1999 a4           1.8     4
+## 2  1999 a4           1.8     4
+## 3  2008 a4           2       4
+## 4  2008 a4           2       4
+## 5  1999 a4 quattro   1.8     4
+## 6  1999 a4 quattro   1.8     4
 ```
 
 

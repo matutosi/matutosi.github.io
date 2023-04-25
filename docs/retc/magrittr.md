@@ -1,20 +1,58 @@
-# magrritrの勧め {#magrittr}
+# magrritrでコードを簡潔に {#magrittr}
+
+パッケージmagrittrはちょっと変わっている．
+
+そもそも名前が変わっていて何と読んで良いのか分からない．
+公式ページには「magrittr (to be pronounced with a sophisticated french accent) 」と書かれている．
+フランス語は，大学の第2外国語で習ったが，すでに記憶の彼方に沈んでしまっている．
+
+主な関数がパイプ(`%>%`)である点もちょっと変わっている．
+ただし，パイプ以外にもパイプとともに使うと便利な関数も含まれている．
+例えば，set_colnames()はデータフレームの列名を変更する時に便利だ．
+パイプを使ったコードの途中で列名を変更するために，`<- colnames()`でコードを区切るのは面倒である．
+  # <- colnames でできる?
+  # `[<-` 
+また，set_colnames()以外にも，dplyrのrename()やselect()で列名を変更する方法もある．
+
+
+```r
+hoge <- colnames(c("foo", "bar"))
+hoge  %>%
+  magrittr::set_colnames(c("foo", "bar")) %>%
+  dplyr::filter(...)
+```
+
+
+magrittrに含まれる関数たちで，どんな内容か気になるものの一覧
+
+
+```r
+export("n'est pas")
+export(add)
+export(and)
+export(equals)
+export(not)
+export(or)
+export(pipe_nested)
+export(set_colnames)
+export(use_series)
+```
 
 
 ## tidyverseとmagrittr
 
 tidyverseは，Rでのデータ解析には欠かせないものになっている．
 そこで，Rを起動時にtidyverseを読み込む人は多いだろう．
-なお，tidyverseは1つのライブラリではなく，複数のライブラリからなる．
+なお，tidyverseは1つのパッケージではなく，複数のパッケージからなるパッケージ群である．
 
 
 ```r
 library(tidyverse)
 ```
 
-これらのライブラリの多く(forcats，tibble，stringr，dplyr，tidyr，purrr)で，`%>%` (パイプ)を使うことができる．
-私は`%>%`がtidyverse独自のものだと勘違いをしていた．
-しかし，`%>%`はもとはライブラリmagrittrの関数であり，そこからインポートされている．
+tidyverseのパッケージ群を読み込んだときや，そのうちの個別のパッケージ(forcats，tibble，stringr，dplyr，tidyr，purrrなど)を読み込むと，`%>%` (パイプ)を使うことができる．
+私は`%>%`がtidyverseの独自のものだと勘違いをしていた．
+しかし，`%>%`はもとはパッケージmagrittrの関数であり，そこからインポートされている．
 そのため，tidyverseを読み込むと使うことができる．
 `%>%`は，慣れるまでは何が便利なのか分からないが，慣れると欠かせなくなる．
 さらに使っていると，癖なってしまって無駄にパイプを繋ぐこともある．
@@ -23,7 +61,6 @@ library(tidyverse)
 tidyverseの関数では，引数とするオブジェクトが統一されている．
 具体的には，第1引数のオブジェクトがデータフレームやtibbleになっていることが多い．
 そのため，パイプと相性が特に良い．
-
 
 ## `%>%`とその仲間
 
@@ -34,6 +71,7 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 - `%$%`
 
 これらの関数は，tidyverseには含まれていないため，使用するにはmagrittrを読み込む必要がある．
+`%>%`と同じように使うことができるが，役割がそれぞれ違う．
 
 
 ```r
@@ -58,35 +96,26 @@ library(magrittr)
 ```
 
 
-
-
-## `%<>%`
-
-### 使い方
+### `%<>%`
 
 `%<>%`は，パイプを使って処理した内容を，最初のオブジェクトに再度代入するときに使う．
 ほんの少しだけ，コードを短くできる．
 
 
 ```r
-mpg # 燃費データ
+head(mpg) # 燃費データ
 ```
 
 ```
-## # A tibble: 234 × 11
-##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
-##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
-##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
-##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
-##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
-##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
-##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
-##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
-##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
-##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
-## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
-## # ℹ 224 more rows
+## # A tibble: 6 × 11
+##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
+##   <chr>        <chr> <dbl> <int> <int> <chr>      <chr> <int> <int> <chr> <chr> 
+## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
+## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa…
+## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa…
+## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
+## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
+## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…
 ```
 
 ```r
@@ -95,24 +124,20 @@ tmp <-
   tmp %>%
   dplyr::filter(year==1999) %>%
   tidyr::separate(trans, into=c("trans1", "trans2", NA)) %>%
+  head() %>%
   print()
 ```
 
 ```
-## # A tibble: 117 × 12
-##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
-##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
-##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
-##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
-##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
-##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
-##  5 audi         a4 quat…   1.8  1999     4 manual m5     4        18    26 p    
-##  6 audi         a4 quat…   1.8  1999     4 auto   l5     4        16    25 p    
-##  7 audi         a4 quat…   2.8  1999     6 auto   l5     4        15    25 p    
-##  8 audi         a4 quat…   2.8  1999     6 manual m5     4        17    25 p    
-##  9 audi         a6 quat…   2.8  1999     6 auto   l5     4        15    24 p    
-## 10 chevrolet    c1500 s…   5.7  1999     8 auto   l4     r        13    17 r    
-## # ℹ 107 more rows
+## # A tibble: 6 × 12
+##   manufacturer model     displ  year   cyl trans1 trans2 drv     cty   hwy fl   
+##   <chr>        <chr>     <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
+## 1 audi         a4          1.8  1999     4 auto   l5     f        18    29 p    
+## 2 audi         a4          1.8  1999     4 manual m5     f        21    29 p    
+## 3 audi         a4          2.8  1999     6 auto   l5     f        16    26 p    
+## 4 audi         a4          2.8  1999     6 manual m5     f        18    26 p    
+## 5 audi         a4 quatt…   1.8  1999     4 manual m5     4        18    26 p    
+## 6 audi         a4 quatt…   1.8  1999     4 auto   l5     4        16    25 p    
 ## # ℹ 1 more variable: class <chr>
 ```
 
@@ -121,200 +146,158 @@ tmp <- mpg
 tmp %<>%
   dplyr::filter(year==1999) %>%
   tidyr::separate(trans, into=c("trans1", "trans2", NA)) %>%
+  head() %>%
   print()
 ```
 
 ```
-## # A tibble: 117 × 12
-##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
-##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
-##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
-##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
-##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
-##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
-##  5 audi         a4 quat…   1.8  1999     4 manual m5     4        18    26 p    
-##  6 audi         a4 quat…   1.8  1999     4 auto   l5     4        16    25 p    
-##  7 audi         a4 quat…   2.8  1999     6 auto   l5     4        15    25 p    
-##  8 audi         a4 quat…   2.8  1999     6 manual m5     4        17    25 p    
-##  9 audi         a6 quat…   2.8  1999     6 auto   l5     4        15    24 p    
-## 10 chevrolet    c1500 s…   5.7  1999     8 auto   l4     r        13    17 r    
-## # ℹ 107 more rows
+## # A tibble: 6 × 12
+##   manufacturer model     displ  year   cyl trans1 trans2 drv     cty   hwy fl   
+##   <chr>        <chr>     <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
+## 1 audi         a4          1.8  1999     4 auto   l5     f        18    29 p    
+## 2 audi         a4          1.8  1999     4 manual m5     f        21    29 p    
+## 3 audi         a4          2.8  1999     6 auto   l5     f        16    26 p    
+## 4 audi         a4          2.8  1999     6 manual m5     f        18    26 p    
+## 5 audi         a4 quatt…   1.8  1999     4 manual m5     4        18    26 p    
+## 6 audi         a4 quatt…   1.8  1999     4 auto   l5     4        16    25 p    
 ## # ℹ 1 more variable: class <chr>
 ```
 
-### 注意点
+注意点としては，試行錯誤でコードを書いている途中は，あまり使わないほうが良いだろう．
+もとのオブジェクトが置き換わるので，処理結果が求めるものでないときに，もとに戻れなくなってしまう．
+コードを短くできるのは1行だけで，可読性が特に高くなるというわけでもない．
+便利なことは便利で，私も一時期はよく使用していた．
+しかし，上記の理由もあって，最近はほとんど使用していない．
 
-試行錯誤でコードを書いている途中は，あまり使わないほうが良いだろう．
-もとのオブジェクトが置き換わるので，処理結果が求めるものでないときに，もとに戻れないためである．
-
-
-## `%T>%`
-
-### 使い方
+### `%T>%`
 
 処理途中に分岐をして別の処理をさせたいときに使う．
-ちょっとだけ処理して，変数に保存するとき
-imapと組み合わせると便利かも
-画像を保存するファイル名の設定とか
+例えば，ちょっとだけ処理して，変数に保存するときに使う．
+imapと組み合わせて，保存する画像のファイル名を設定する時に使うと便利である．
 
 
+`%T>%`は便利ではあるが，以下の点で注意が必要である．
+- 分岐途中の結果をオブジェクトに代入するときには，`<-`ではなく，`<<-`を使う
+- 明示的に「.」を使う
+- 複数処理があれば，「{}」で囲う
+- 処理終了後に「%>%」が必要
 
-```r
-mpg # 燃費データ
-```
-
-```
-## # A tibble: 234 × 11
-##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
-##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
-##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
-##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
-##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
-##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
-##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
-##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
-##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
-##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
-## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
-## # ℹ 224 more rows
-```
-
-### 注意点
-
-分岐途中の結果をオブジェクトに代入するときには，`<-`ではなく，`<<-`を使用する．
-明示的に「.」を使う
-複数処理があれば，「{}」で囲う
-処理終了後に「%>%」が必要
-  例のコードを示す
+例のコードを示す
 
 
 ```r
-#  mpg %T>%
-#    {
-#      tmp <<- dplyr::select(., ) 
-#    } %>%
+  #  mpg %T>%
+  #    {
+  #      tmp <<- dplyr::select(., ) 
+  #    } %>%
 ```
 
-## `%$%`
+`%T>%`を使うとコードの途中に，ちょっとだけ枝分かれしたコードを挿入できる．
+有用な機能ではあるが，トリッキーなコードになる可能性があるため，使いすぎには気をつけたい．
 
 
-### 使い方
+### `%$%`
 
+`%$%`は，`%>%`と`.$`の組み合わせのショートカットである．
 
 
 ```r
-mpg %>%
-  .$manufacturer
+mpg %>% .$manufacturer %>% head()
 ```
 
 ```
-##   [1] "audi"       "audi"       "audi"       "audi"       "audi"      
-##   [6] "audi"       "audi"       "audi"       "audi"       "audi"      
-##  [11] "audi"       "audi"       "audi"       "audi"       "audi"      
-##  [16] "audi"       "audi"       "audi"       "chevrolet"  "chevrolet" 
-##  [21] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [26] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [31] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [36] "chevrolet"  "chevrolet"  "dodge"      "dodge"      "dodge"     
-##  [41] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [46] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [51] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [56] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [61] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [66] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [71] "dodge"      "dodge"      "dodge"      "dodge"      "ford"      
-##  [76] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [81] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [86] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [91] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [96] "ford"       "ford"       "ford"       "ford"       "honda"     
-## [101] "honda"      "honda"      "honda"      "honda"      "honda"     
-## [106] "honda"      "honda"      "honda"      "hyundai"    "hyundai"   
-## [111] "hyundai"    "hyundai"    "hyundai"    "hyundai"    "hyundai"   
-## [116] "hyundai"    "hyundai"    "hyundai"    "hyundai"    "hyundai"   
-## [121] "hyundai"    "hyundai"    "jeep"       "jeep"       "jeep"      
-## [126] "jeep"       "jeep"       "jeep"       "jeep"       "jeep"      
-## [131] "land rover" "land rover" "land rover" "land rover" "lincoln"   
-## [136] "lincoln"    "lincoln"    "mercury"    "mercury"    "mercury"   
-## [141] "mercury"    "nissan"     "nissan"     "nissan"     "nissan"    
-## [146] "nissan"     "nissan"     "nissan"     "nissan"     "nissan"    
-## [151] "nissan"     "nissan"     "nissan"     "nissan"     "pontiac"   
-## [156] "pontiac"    "pontiac"    "pontiac"    "pontiac"    "subaru"    
-## [161] "subaru"     "subaru"     "subaru"     "subaru"     "subaru"    
-## [166] "subaru"     "subaru"     "subaru"     "subaru"     "subaru"    
-## [171] "subaru"     "subaru"     "subaru"     "toyota"     "toyota"    
-## [176] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [181] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [186] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [191] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [196] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [201] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [206] "toyota"     "toyota"     "volkswagen" "volkswagen" "volkswagen"
-## [211] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [216] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [221] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [226] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [231] "volkswagen" "volkswagen" "volkswagen" "volkswagen"
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
 ```
 
 ```r
-mpg %$%
-  manufacturer
+mpg %$%   manufacturer %>% head()
 ```
 
 ```
-##   [1] "audi"       "audi"       "audi"       "audi"       "audi"      
-##   [6] "audi"       "audi"       "audi"       "audi"       "audi"      
-##  [11] "audi"       "audi"       "audi"       "audi"       "audi"      
-##  [16] "audi"       "audi"       "audi"       "chevrolet"  "chevrolet" 
-##  [21] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [26] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [31] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [36] "chevrolet"  "chevrolet"  "dodge"      "dodge"      "dodge"     
-##  [41] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [46] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [51] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [56] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [61] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [66] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [71] "dodge"      "dodge"      "dodge"      "dodge"      "ford"      
-##  [76] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [81] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [86] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [91] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [96] "ford"       "ford"       "ford"       "ford"       "honda"     
-## [101] "honda"      "honda"      "honda"      "honda"      "honda"     
-## [106] "honda"      "honda"      "honda"      "hyundai"    "hyundai"   
-## [111] "hyundai"    "hyundai"    "hyundai"    "hyundai"    "hyundai"   
-## [116] "hyundai"    "hyundai"    "hyundai"    "hyundai"    "hyundai"   
-## [121] "hyundai"    "hyundai"    "jeep"       "jeep"       "jeep"      
-## [126] "jeep"       "jeep"       "jeep"       "jeep"       "jeep"      
-## [131] "land rover" "land rover" "land rover" "land rover" "lincoln"   
-## [136] "lincoln"    "lincoln"    "mercury"    "mercury"    "mercury"   
-## [141] "mercury"    "nissan"     "nissan"     "nissan"     "nissan"    
-## [146] "nissan"     "nissan"     "nissan"     "nissan"     "nissan"    
-## [151] "nissan"     "nissan"     "nissan"     "nissan"     "pontiac"   
-## [156] "pontiac"    "pontiac"    "pontiac"    "pontiac"    "subaru"    
-## [161] "subaru"     "subaru"     "subaru"     "subaru"     "subaru"    
-## [166] "subaru"     "subaru"     "subaru"     "subaru"     "subaru"    
-## [171] "subaru"     "subaru"     "subaru"     "toyota"     "toyota"    
-## [176] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [181] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [186] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [191] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [196] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [201] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [206] "toyota"     "toyota"     "volkswagen" "volkswagen" "volkswagen"
-## [211] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [216] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [221] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [226] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [231] "volkswagen" "volkswagen" "volkswagen" "volkswagen"
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
 ```
 
+パッケージ開発ではパイプを使った場合の`.`が推奨されていない．
+R CMD CHECK(???)のpossible problemでWarningが出力され，そのままではCRANでは受け付けてもらえない(たぶん)．
+automaterのようにGithubでパッケージを公開するならそれでも問題はないが，Checkで毎回Warningが出力されるのは，心理的に嬉しくない．
 
-### 注意点
+そこで，DESCRIPTIONで次のように`%$%`や`%>%`をインポートしておくと，パッケージの中でこれらを使える．
+`%>%`だけなら，usethis::use_pipe()とすれば，開発パッケージのDESCRIPTIONに，importFrom(magrittr,"%>%")を書いてくれる．
 
 
+```r
+importFrom(magrittr,"%>%")
+importFrom(magrittr,"%$%")
+```
 
+なお余談ではあるが，この場合は`$`の代わりに`[[`と`]]`を使っても同じ結果が得られる．
+`[`と`]`ではデータフレームの1列をそのまま取り出すので，結果が異なる．
+
+
+```r
+mpg %>% .$manufacturer      %>% head()
+```
+
+```
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
+```
+
+```r
+mpg %>% .[["manufacturer"]] %>% head()
+```
+
+```
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
+```
+
+```r
+mpg %>% .["manufacturer"]   %>% head()
+```
+
+```
+## # A tibble: 6 × 1
+##   manufacturer
+##   <chr>       
+## 1 audi        
+## 2 audi        
+## 3 audi        
+## 4 audi        
+## 5 audi        
+## 6 audi
+```
+
+`[[ ]]`と`[ ]`は，それぞれ`[[`と`[`という関数であるため，以下のように書くことができる．
+この場合，第1引数がパイプの前から引き継がれるため，`.`を明示する必要がない．
+
+
+```r
+mpg %>% `$`(manufacturer)    %>% head()
+```
+
+```
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
+```
+
+```r
+mpg %>% `[[`("manufacturer") %>% head() # mpg %>% `[[`(., "manufacturer") と同じ
+```
+
+```
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
+```
+
+```r
+mpg %>% `[`("manufacturer")  %>% head()
+```
+
+```
+## # A tibble: 6 × 1
+##   manufacturer
+##   <chr>       
+## 1 audi        
+## 2 audi        
+## 3 audi        
+## 4 audi        
+## 5 audi        
+## 6 audi
+```
