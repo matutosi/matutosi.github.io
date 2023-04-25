@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 14 xlsxでエクセル操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
-  <meta name="description" content="Chap. 14 xlsxでエクセル操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <title>Chap. 1 Rとは {R} | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
+  <meta name="description" content="Chap. 1 Rとは {R} | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 14 xlsxでエクセル操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta property="og:title" content="Chap. 1 Rとは {R} | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 14 xlsxでエクセル操作 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta name="twitter:title" content="Chap. 1 Rとは {R} | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dbi.html"/>
-<link rel="next" href="qpdf.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="install.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -134,11 +134,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a></li>
-<li class="chapter" data-level="1" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>1</b> Rとは</a>
+<li class="chapter" data-level="1" data-path="rとは-r.html"><a href="rとは-r.html"><i class="fa fa-check"></i><b>1</b> Rとは {R}</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#rの特徴"><i class="fa fa-check"></i><b>1.1</b> Rの特徴</a></li>
-<li class="chapter" data-level="1.2" data-path="R.html"><a href="R.html#rを極める"><i class="fa fa-check"></i><b>1.2</b> Rを極める</a></li>
-<li class="chapter" data-level="1.3" data-path="R.html"><a href="R.html#ヘルプドキュメント"><i class="fa fa-check"></i><b>1.3</b> ヘルプドキュメント</a></li>
+<li class="chapter" data-level="1.1" data-path="rとは-r.html"><a href="rとは-r.html#rの特徴"><i class="fa fa-check"></i><b>1.1</b> Rの特徴</a></li>
+<li class="chapter" data-level="1.2" data-path="rとは-r.html"><a href="rとは-r.html#rを極める"><i class="fa fa-check"></i><b>1.2</b> Rを極める</a></li>
+<li class="chapter" data-level="1.3" data-path="rとは-r.html"><a href="rとは-r.html#ヘルプドキュメント"><i class="fa fa-check"></i><b>1.3</b> ヘルプドキュメント</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Rのインストール</a>
 <ul>
@@ -313,89 +313,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="xlsx" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chap. 14</span> xlsxでエクセル操作<a href="xlsx.html#xlsx" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>xlsxパッケージを使うと，エクセルのファイルの読み込み・書き込みをはじめ，
-オートフィルタの設定やウィンドウ枠の固定などの各種操作が可能である．</p>
-<div id="オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト<a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>xlsxの使用例として，オートフィルタを設定して・ウィンドウ枠を固定する自動化スクリプトを作成した．</p>
-<div id="使用方法" class="section level3 hasAnchor" number="14.1.1">
-<h3><span class="header-section-number">14.1.1</span> 使用方法<a href="xlsx.html#使用方法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>準備：<a href="https://matutosi.github.io/retc/install.html">Rのインストール</a><br />
-</li>
-<li>準備：<a href="https://gist.githubusercontent.com/matutosi/fe217c7ed934dd242d6798aca846d902/raw/c7b93586db398f801d469bd98a9e764a04a4a8e2/set_autofilter_freezepanel.rsc" download>set_autofilter_freezepanel.rsc</a>
-をダウンロード(右クリックして「名前を付けてリンク先を保存」)して，任意のフォルダに保存．<br />
-</li>
-<li>準備：<a href="https://matutosi.github.io/retc/assoc.html">スクリプトの関連付け</a>を参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．Macの場合は，<a href="https://pc-karuma.net/mac-extension-related-app-change/">Mac - 拡張子に関連付けられているアプリを変更する方法</a>などを参考にしてほしい．<br />
-</li>
-<li>set_autofilter_freezepanel.rsc と同じフォルダに，処理したいエクセルのファイルを保存．<br />
-<img src="img/set_autofilter_freezepanel01.png" style="width:80.0%" /><br />
-</li>
-<li>実行前のエクセルのファイル<br />
-<img src="img/set_autofilter_freezepanel02.png" style="width:40.0%" /><br />
-</li>
-<li>set_autofilter_freezepanel.rsc をダブルクリックして実行すると，黒い画面が表示されてプログラムが実行される．<br />
-<img src="img/set_autofilter_freezepanel03.png" style="width:40.0%" /><br />
-プログラムが自動的にエクセルのファイルの1行目のA列からZ列までにオートフィルタを設定し，1行目と1列目でウィンドウ枠を固定する．
-複数ファイル・複数シートにも対応している．<br />
-なお，初回実行時は，xlsxパケージのダウンロードのため，少し時間がかかるかもしれない．
-2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．<br />
-実行後のエクセルのファイル<br />
-<img src="img/set_autofilter_freezepanel04.png" style="width:40.0%" /></li>
-</ul>
+<div id="rとは-r" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chap. 1</span> Rとは {R}<a href="rとは-r.html#rとは-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Rは，統計解析環境であるとともに，プログラミング言語である．
+プログラミング言語としては，やや特殊な文法をもっている．
+そのため，他の言語よりも好き嫌いが激しいと思われる．</p>
+<div id="rの特徴" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Rの特徴<a href="rとは-r.html#rの特徴" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>文法的に特殊な点では，代入での「&lt;-」使用やパイプ(「%&gt;%」や「|&gt;」(R-4.1以降))を多様することが挙げられる．</p>
+<p>他の多くのプログラミング言語では，代入には「=」を使用する．
+Rでも「=」を使えるが，「&lt;-」を好んで使う人が多いと思われる．
+少なくとも私はそうしている．
+理由を問われても特には思いつかないが，慣れていることや，コードを見た時にすぐにRだとわかるぐらいだろうか．
+実用的には，「=」を入力するよりも手間がかかるし面倒なはずであるが，すでに手が慣れてしまっている．</p>
+<p>パイプを最初に見たときには違和感を覚えたが，使い始めるとクセになる．
+クセになるだけではなく，同じ変数名を何度も使ったり，中間の変数名を考えなくて良い点で優れている．
+第1引数を省略できるため，入力の手間が少ない．
+パイプだけの恩恵ではなく，tidyverseの利用も大きいが，コードが簡潔になって，コードの使い回しもし易い．
+パイプにはこのような多くの利点がある．</p>
+<p>他にも「::」がやたらと出てくることや，実行速度が遅いなど欠点もそれなりにある．
+そもそも完璧なプログラミング言語などそ存在せず，それぞれが利点・欠点を持っている．
+それぞれの得意な分野でうまく使うことが重要である．
+とはいいながら，多くのプログラミング言語を習得するのは困難である．
+私はこれまでちょっとだけでもかじったことのある言語としては，
+FORTRAN，Perl，Ruby，C，C++，VBA，Java，Python，JavaScript，Rなどがある．
+それぞれなんとなく読むことはできるが，実際によく使うのはRだけである．
+JavaScriptはその次に使っているが，頻度は非常に低い．
+Pythonは勉強中である．</p>
 </div>
-<div id="スクリプトの内容説明" class="section level3 hasAnchor" number="14.1.2">
-<h3><span class="header-section-number">14.1.2</span> スクリプトの内容説明<a href="xlsx.html#スクリプトの内容説明" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="xlsx.html#cb49-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Package, 準備</span></span>
-<span id="cb49-2"><a href="xlsx.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span> <span class="st">&quot;xlsx&quot;</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]){  <span class="co"># xlsxパッケージ有無の確認</span></span>
-<span id="cb49-3"><a href="xlsx.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージが無い場合</span></span>
-<span id="cb49-4"><a href="xlsx.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>) <span class="co"># ミラーサイトの設定</span></span>
-<span id="cb49-5"><a href="xlsx.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;xlsx&quot;</span>)                   <span class="co"># パッケージのインストール</span></span>
-<span id="cb49-6"><a href="xlsx.html#cb49-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-7"><a href="xlsx.html#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="xlsx.html#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Functions, 関数</span></span>
-<span id="cb49-9"><a href="xlsx.html#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   註：xlsxパッケージの関数は返り値の代入がない</span></span>
-<span id="cb49-10"><a href="xlsx.html#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         副作用でシートなどを操作するため?</span></span>
-<span id="cb49-11"><a href="xlsx.html#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         参照型を使っているため?</span></span>
-<span id="cb49-12"><a href="xlsx.html#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   参考：通常のRの関数は，返り値の代入をすることが多いの</span></span>
-<span id="cb49-13"><a href="xlsx.html#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-14"><a href="xlsx.html#cb49-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># オートフィルタの設定</span></span>
-<span id="cb49-15"><a href="xlsx.html#cb49-15" aria-hidden="true" tabindex="-1"></a>set_auto_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
-<span id="cb49-16"><a href="xlsx.html#cb49-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A1からZ1までを設定</span></span>
-<span id="cb49-17"><a href="xlsx.html#cb49-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   もっと多くの列で設定したければ，&quot;A1:Z1&quot;のところを修正する</span></span>
-<span id="cb49-18"><a href="xlsx.html#cb49-18" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">addAutoFilter</span>(sh, <span class="st">&quot;A1:Z1&quot;</span>)</span>
-<span id="cb49-19"><a href="xlsx.html#cb49-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-20"><a href="xlsx.html#cb49-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-21"><a href="xlsx.html#cb49-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ウィンドウ枠の固定</span></span>
-<span id="cb49-22"><a href="xlsx.html#cb49-22" aria-hidden="true" tabindex="-1"></a>set_freeze_panel <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
-<span id="cb49-23"><a href="xlsx.html#cb49-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1列目と1行目のウィンドウ枠を固定</span></span>
-<span id="cb49-24"><a href="xlsx.html#cb49-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   固定する場所の変更方法</span></span>
-<span id="cb49-25"><a href="xlsx.html#cb49-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     2行目までを固定したい場合は，引数の2つ目と4つ目を，3にする</span></span>
-<span id="cb49-26"><a href="xlsx.html#cb49-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     3列目までを固定したい場合は，引数の3つ目と5つ目を，4にする</span></span>
-<span id="cb49-27"><a href="xlsx.html#cb49-27" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">createFreezePane</span>(sh, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb49-28"><a href="xlsx.html#cb49-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-29"><a href="xlsx.html#cb49-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-30"><a href="xlsx.html#cb49-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ワークブックごとで設定</span></span>
-<span id="cb49-31"><a href="xlsx.html#cb49-31" aria-hidden="true" tabindex="-1"></a>set_af_fp <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
-<span id="cb49-32"><a href="xlsx.html#cb49-32" aria-hidden="true" tabindex="-1"></a>  wb <span class="ot">&lt;-</span> xlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(file)   <span class="co"># ワークブックの読み込み</span></span>
-<span id="cb49-33"><a href="xlsx.html#cb49-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(sh <span class="cf">in</span> xlsx<span class="sc">::</span><span class="fu">getSheets</span>(wb)){  <span class="co"># シートの数だけ繰り返し</span></span>
-<span id="cb49-34"><a href="xlsx.html#cb49-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_auto_filter</span>(sh)            <span class="co">#   オートフィルタの設定</span></span>
-<span id="cb49-35"><a href="xlsx.html#cb49-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_freeze_panel</span>(sh)           <span class="co">#   ウィンドウ枠の固定</span></span>
-<span id="cb49-36"><a href="xlsx.html#cb49-36" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb49-37"><a href="xlsx.html#cb49-37" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, file)     <span class="co"># ワークブクの保存</span></span>
-<span id="cb49-38"><a href="xlsx.html#cb49-38" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-39"><a href="xlsx.html#cb49-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-40"><a href="xlsx.html#cb49-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Main, 本体</span></span>
-<span id="cb49-41"><a href="xlsx.html#cb49-41" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&quot;xls&quot;</span>) <span class="co"># &quot;.xls&quot;と&quot;xlsx&quot;の一覧取得</span></span>
-<span id="cb49-42"><a href="xlsx.html#cb49-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> files){                  <span class="co"># ファイルの数だけ繰り返し</span></span>
-<span id="cb49-43"><a href="xlsx.html#cb49-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_af_fp</span>(file)                    <span class="co"># set_af_fp()の実行</span></span>
-<span id="cb49-44"><a href="xlsx.html#cb49-44" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div id="rを極める" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Rを極める<a href="rとは-r.html#rを極める" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>プログラミング言語にはそれぞれ得意分野があることは確かだが，垣根を超えて使うことはできる．
+例えば，RからPythonを使うパッケージとしてreticulateがあり，PythonからRを使うパッケージとしてrpy2がある．
+つまり，1つのプログラミング言語でしかできないということは，あまりなく使いたい言語を使って，勉強したい言語を勉強すれば良い．</p>
+<p>Rの総本山であるCRANには，他にも様々なパッケージがあり，いろいろな道具が揃っている．
+多くの言語を習得するのも良いが，いっそのこと1つの言語をある程度極めて，そこから使えるものは使うのも良い方法と言えるだろう．
+そこで，Rのパッケージを使って，各種操作をすることを目的にこの文章を執筆した(している)．</p>
 </div>
-</div>
-<div id="その他の操作未作成" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> その他の操作(未作成)<a href="xlsx.html#その他の操作未作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ヘルプドキュメント" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> ヘルプドキュメント<a href="rとは-r.html#ヘルプドキュメント" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ところで，Rにはヘルプ・ドキュメントがしっかりしているというのも非常に良い．
+ヘルプは，「?関数名」としてRから直接呼び出すことができ，関数の引数，返り値，使用例などが詳しく解説されていることが多い．
+ユーザーとしてはいちいちネットや書籍で調べなくても良いのが心強い．
+パッケージの開発者としては，既存のパッケージのドキュメントがしっかりしているため，それに合わせるべくしっかりとしたドキュメントを書かなければならないという圧力はあることは事実である．
+ただ，ドキュメントをしっかり作っておかないと，開発者も関数の使い方を忘れてしまうことになりかねないため，結局は「他人のためならず」と言えるだろう．</p>
 
 </div>
 </div>
@@ -404,8 +365,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="dbi.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="qpdf.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="install.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

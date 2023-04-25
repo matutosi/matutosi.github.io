@@ -32,7 +32,7 @@ install.packages("stringr")
 ## package 'stringr' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\matutosi\AppData\Local\Temp\RtmpIT70hi\downloaded_packages
+## 	C:\Users\matu\AppData\Local\Temp\Rtmpa4WCHK\downloaded_packages
 ```
 
 ```r

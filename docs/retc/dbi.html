@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
-  <meta name="description" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <title>Chap. 13 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
+  <meta name="description" content="Chap. 13 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta property="og:title" content="Chap. 13 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 12 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta name="twitter:title" content="Chap. 13 DBIでデータ取得 | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   
   
   
@@ -134,160 +134,166 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a></li>
-<li class="chapter" data-level="1" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>1</b> Rのインストール</a>
+<li class="chapter" data-level="1" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>1</b> Rとは</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="install.html"><a href="install.html#ダウンロード"><i class="fa fa-check"></i><b>1.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="1.2" data-path="install.html"><a href="install.html#インストーラの起動"><i class="fa fa-check"></i><b>1.2</b> インストーラの起動</a></li>
-<li class="chapter" data-level="1.3" data-path="install.html"><a href="install.html#インストール完了"><i class="fa fa-check"></i><b>1.3</b> インストール完了</a></li>
+<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#rの特徴"><i class="fa fa-check"></i><b>1.1</b> Rの特徴</a></li>
+<li class="chapter" data-level="1.2" data-path="R.html"><a href="R.html#rを極める"><i class="fa fa-check"></i><b>1.2</b> Rを極める</a></li>
+<li class="chapter" data-level="1.3" data-path="R.html"><a href="R.html#ヘルプドキュメント"><i class="fa fa-check"></i><b>1.3</b> ヘルプドキュメント</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="package.html"><a href="package.html"><i class="fa fa-check"></i><b>2</b> パッケージのインストール</a>
+<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Rのインストール</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="package.html"><a href="package.html#cran"><i class="fa fa-check"></i><b>2.1</b> CRANから</a></li>
-<li class="chapter" data-level="2.2" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>2.2</b> GitHubから</a></li>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html#ダウンロード"><i class="fa fa-check"></i><b>2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="2.2" data-path="install.html"><a href="install.html#インストーラの起動"><i class="fa fa-check"></i><b>2.2</b> インストーラの起動</a></li>
+<li class="chapter" data-level="2.3" data-path="install.html"><a href="install.html#インストール完了"><i class="fa fa-check"></i><b>2.3</b> インストール完了</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="sf.html"><a href="sf.html"><i class="fa fa-check"></i><b>3</b> sfでファイル操作</a>
+<li class="chapter" data-level="3" data-path="package.html"><a href="package.html"><i class="fa fa-check"></i><b>3</b> パッケージのインストール</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="sf.html"><a href="sf.html#はじめに-1"><i class="fa fa-check"></i><b>3.1</b> はじめに</a></li>
-<li class="chapter" data-level="3.2" data-path="sf.html"><a href="sf.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>3.2</b> shell，baseパッケージ, fsパッケージ</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="sf.html"><a href="sf.html#shellを使う"><i class="fa fa-check"></i><b>3.2.1</b> shellを使う</a></li>
-<li class="chapter" data-level="3.2.2" data-path="sf.html"><a href="sf.html#baseパッケージ"><i class="fa fa-check"></i><b>3.2.2</b> baseパッケージ</a></li>
-<li class="chapter" data-level="3.2.3" data-path="sf.html"><a href="sf.html#fsパッケージ"><i class="fa fa-check"></i><b>3.2.3</b> fsパッケージ</a></li>
+<li class="chapter" data-level="3.1" data-path="package.html"><a href="package.html#cran"><i class="fa fa-check"></i><b>3.1</b> CRANから</a></li>
+<li class="chapter" data-level="3.2" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.2</b> GitHubから</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="sf.html"><a href="sf.html#準備"><i class="fa fa-check"></i><b>3.3</b> 準備</a></li>
-<li class="chapter" data-level="3.4" data-path="sf.html"><a href="sf.html#sfの関数群"><i class="fa fa-check"></i><b>3.4</b> sfの関数群</a>
+<li class="chapter" data-level="4" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>4</b> fsでファイル操作</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="sf.html"><a href="sf.html#パス操作"><i class="fa fa-check"></i><b>3.4.1</b> パス操作</a></li>
-<li class="chapter" data-level="3.4.2" data-path="sf.html"><a href="sf.html#ディレクトリ操作"><i class="fa fa-check"></i><b>3.4.2</b> ディレクトリ操作</a></li>
-<li class="chapter" data-level="3.4.3" data-path="sf.html"><a href="sf.html#ファイル操作"><i class="fa fa-check"></i><b>3.4.3</b> ファイル操作</a></li>
+<li class="chapter" data-level="4.1" data-path="fs.html"><a href="fs.html#はじめに-1"><i class="fa fa-check"></i><b>4.1</b> はじめに</a></li>
+<li class="chapter" data-level="4.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>4.2</b> shell，baseパッケージ, fsパッケージ</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>4.2.1</b> shellを使う</a></li>
+<li class="chapter" data-level="4.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ"><i class="fa fa-check"></i><b>4.2.2</b> baseパッケージ</a></li>
+<li class="chapter" data-level="4.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>4.2.3</b> fsパッケージ</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="sf.html"><a href="sf.html#sfを使ったファイル操作例"><i class="fa fa-check"></i><b>3.5</b> sfを使ったファイル操作例</a></li>
+<li class="chapter" data-level="4.3" data-path="fs.html"><a href="fs.html#準備"><i class="fa fa-check"></i><b>4.3</b> 準備</a></li>
+<li class="chapter" data-level="4.4" data-path="fs.html"><a href="fs.html#fsの関数群"><i class="fa fa-check"></i><b>4.4</b> fsの関数群</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>4.4.1</b> パス操作</a></li>
+<li class="chapter" data-level="4.4.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>4.4.2</b> ディレクトリ操作</a></li>
+<li class="chapter" data-level="4.4.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>4.4.3</b> ファイル操作</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>4</b> stringrで文字列操作</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="stringr.html"><a href="stringr.html#はじめに-2"><i class="fa fa-check"></i><b>4.1</b> はじめに</a></li>
-<li class="chapter" data-level="4.2" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>4.2</b> stringrとbase</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ-1"><i class="fa fa-check"></i><b>4.2.1</b> baseパッケージ</a></li>
-<li class="chapter" data-level="4.2.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>4.2.2</b> stringrパッケージ</a></li>
+<li class="chapter" data-level="4.5" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>4.5</b> fsを使ったファイル操作例</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="stringr.html"><a href="stringr.html#準備-1"><i class="fa fa-check"></i><b>4.3</b> 準備</a></li>
-<li class="chapter" data-level="4.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>4.4</b> stringrの関数</a></li>
-<li class="chapter" data-level="4.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>4.5</b> stringrの利点</a></li>
+<li class="chapter" data-level="5" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>5</b> stringrで文字列操作</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="stringr.html"><a href="stringr.html#はじめに-2"><i class="fa fa-check"></i><b>5.1</b> はじめに</a></li>
+<li class="chapter" data-level="5.2" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>5.2</b> stringrとbase</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ-1"><i class="fa fa-check"></i><b>5.2.1</b> baseパッケージ</a></li>
+<li class="chapter" data-level="5.2.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>5.2.2</b> stringrパッケージ</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>5</b> スクリプトの関連付け</a></li>
-<li class="chapter" data-level="6" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>6</b> ggplot2の勧め</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>6.1</b> Rの作図環境の概要</a></li>
-<li class="chapter" data-level="6.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>6.2</b> ggplot2とは</a></li>
-<li class="chapter" data-level="6.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>6.3</b> ggplot2の利点</a></li>
-<li class="chapter" data-level="6.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>6.4</b> ggplot2の基本</a></li>
-<li class="chapter" data-level="6.5" data-path="ggplot2.html"><a href="ggplot2.html#facetを使おう"><i class="fa fa-check"></i><b>6.5</b> facetを使おう</a></li>
-<li class="chapter" data-level="6.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>6.6</b> ggsave</a></li>
-<li class="chapter" data-level="6.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>6.7</b> 文字化けへの対処(windows)</a></li>
-<li class="chapter" data-level="6.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>6.8</b> themeを少しだけ説明</a></li>
-<li class="chapter" data-level="6.9" data-path="ggplot2.html"><a href="ggplot2.html#shiny"><i class="fa fa-check"></i><b>6.9</b> shiny</a></li>
-<li class="chapter" data-level="6.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>6.10</b> 参考書</a></li>
+<li class="chapter" data-level="5.3" data-path="stringr.html"><a href="stringr.html#準備-1"><i class="fa fa-check"></i><b>5.3</b> 準備</a></li>
+<li class="chapter" data-level="5.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>5.4</b> stringrの関数</a></li>
+<li class="chapter" data-level="5.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>5.5</b> stringrの利点</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>7</b> magrritrの勧め</a>
+<li class="chapter" data-level="6" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>6</b> スクリプトの関連付け</a></li>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2の勧め</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="magrittr.html"><a href="magrittr.html#tidyverseとmagrittr"><i class="fa fa-check"></i><b>7.1</b> tidyverseとmagrittr</a></li>
-<li class="chapter" data-level="7.2" data-path="magrittr.html"><a href="magrittr.html#とその仲間"><i class="fa fa-check"></i><b>7.2</b> <code>%&gt;%</code>とその仲間</a></li>
-<li class="chapter" data-level="7.3" data-path="magrittr.html"><a href="magrittr.html#section"><i class="fa fa-check"></i><b>7.3</b> <code>%&lt;&gt;%</code></a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="magrittr.html"><a href="magrittr.html#使い方"><i class="fa fa-check"></i><b>7.3.1</b> 使い方</a></li>
-<li class="chapter" data-level="7.3.2" data-path="magrittr.html"><a href="magrittr.html#注意点"><i class="fa fa-check"></i><b>7.3.2</b> 注意点</a></li>
+<li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>7.1</b> Rの作図環境の概要</a></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>7.2</b> ggplot2とは</a></li>
+<li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>7.3</b> ggplot2の利点</a></li>
+<li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>7.4</b> ggplot2の基本</a></li>
+<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#facetを使おう"><i class="fa fa-check"></i><b>7.5</b> facetを使おう</a></li>
+<li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>7.6</b> ggsave</a></li>
+<li class="chapter" data-level="7.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>7.7</b> 文字化けへの対処(windows)</a></li>
+<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>7.8</b> themeを少しだけ説明</a></li>
+<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#shiny"><i class="fa fa-check"></i><b>7.9</b> shiny</a></li>
+<li class="chapter" data-level="7.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>7.10</b> 参考書</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="magrittr.html"><a href="magrittr.html#t"><i class="fa fa-check"></i><b>7.4</b> <code>%T&gt;%</code></a>
+<li class="chapter" data-level="8" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>8</b> magrritrの勧め</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="magrittr.html"><a href="magrittr.html#使い方-1"><i class="fa fa-check"></i><b>7.4.1</b> 使い方</a></li>
-<li class="chapter" data-level="7.4.2" data-path="magrittr.html"><a href="magrittr.html#注意点-1"><i class="fa fa-check"></i><b>7.4.2</b> 注意点</a></li>
+<li class="chapter" data-level="8.1" data-path="magrittr.html"><a href="magrittr.html#tidyverseとmagrittr"><i class="fa fa-check"></i><b>8.1</b> tidyverseとmagrittr</a></li>
+<li class="chapter" data-level="8.2" data-path="magrittr.html"><a href="magrittr.html#とその仲間"><i class="fa fa-check"></i><b>8.2</b> <code>%&gt;%</code>とその仲間</a></li>
+<li class="chapter" data-level="8.3" data-path="magrittr.html"><a href="magrittr.html#section"><i class="fa fa-check"></i><b>8.3</b> <code>%&lt;&gt;%</code></a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="magrittr.html"><a href="magrittr.html#使い方"><i class="fa fa-check"></i><b>8.3.1</b> 使い方</a></li>
+<li class="chapter" data-level="8.3.2" data-path="magrittr.html"><a href="magrittr.html#注意点"><i class="fa fa-check"></i><b>8.3.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="magrittr.html"><a href="magrittr.html#section-1"><i class="fa fa-check"></i><b>7.5</b> <code>%$%</code></a>
+<li class="chapter" data-level="8.4" data-path="magrittr.html"><a href="magrittr.html#t"><i class="fa fa-check"></i><b>8.4</b> <code>%T&gt;%</code></a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="magrittr.html"><a href="magrittr.html#使い方-2"><i class="fa fa-check"></i><b>7.5.1</b> 使い方</a></li>
-<li class="chapter" data-level="7.5.2" data-path="magrittr.html"><a href="magrittr.html#注意点-2"><i class="fa fa-check"></i><b>7.5.2</b> 注意点</a></li>
+<li class="chapter" data-level="8.4.1" data-path="magrittr.html"><a href="magrittr.html#使い方-1"><i class="fa fa-check"></i><b>8.4.1</b> 使い方</a></li>
+<li class="chapter" data-level="8.4.2" data-path="magrittr.html"><a href="magrittr.html#注意点-1"><i class="fa fa-check"></i><b>8.4.2</b> 注意点</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>8</b> rvestでスクレイピング</a>
+<li class="chapter" data-level="8.5" data-path="magrittr.html"><a href="magrittr.html#section-1"><i class="fa fa-check"></i><b>8.5</b> <code>%$%</code></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>8.1</b> スクレイピング</a></li>
-<li class="chapter" data-level="8.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>8.2</b> rvest と RSelenium</a></li>
-<li class="chapter" data-level="8.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>8.3</b> rvestのできること</a></li>
-<li class="chapter" data-level="8.4" data-path="rvest.html"><a href="rvest.html#準備-2"><i class="fa fa-check"></i><b>8.4</b> 準備</a></li>
-<li class="chapter" data-level="8.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>8.5</b> HTMLの取得</a>
-<ul>
-<li class="chapter" data-level="8.5.1" data-path="rvest.html"><a href="rvest.html#使い方-3"><i class="fa fa-check"></i><b>8.5.1</b> 使い方</a></li>
-<li class="chapter" data-level="8.5.2" data-path="rvest.html"><a href="rvest.html#注意点-3"><i class="fa fa-check"></i><b>8.5.2</b> 注意点</a></li>
-</ul></li>
-<li class="chapter" data-level="8.6" data-path="rvest.html"><a href="rvest.html#domの取得"><i class="fa fa-check"></i><b>8.6</b> DOMの取得</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="rvest.html"><a href="rvest.html#使い方-4"><i class="fa fa-check"></i><b>8.6.1</b> 使い方</a></li>
-<li class="chapter" data-level="8.6.2" data-path="rvest.html"><a href="rvest.html#注意点-4"><i class="fa fa-check"></i><b>8.6.2</b> 注意点</a></li>
+<li class="chapter" data-level="8.5.1" data-path="magrittr.html"><a href="magrittr.html#使い方-2"><i class="fa fa-check"></i><b>8.5.1</b> 使い方</a></li>
+<li class="chapter" data-level="8.5.2" data-path="magrittr.html"><a href="magrittr.html#注意点-2"><i class="fa fa-check"></i><b>8.5.2</b> 注意点</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>9</b> Rselenium</a>
+<li class="chapter" data-level="9" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>9</b> rvestでスクレイピング</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="rselenium.html"><a href="rselenium.html#準備-3"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
-<li class="chapter" data-level="9.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>9.2</b> ブラウザの自動化</a></li>
-<li class="chapter" data-level="9.3" data-path="rselenium.html"><a href="rselenium.html#section-2"><i class="fa fa-check"></i><b>9.3</b> </a>
+<li class="chapter" data-level="9.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>9.1</b> スクレイピング</a></li>
+<li class="chapter" data-level="9.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>9.2</b> rvest と RSelenium</a></li>
+<li class="chapter" data-level="9.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>9.3</b> rvestのできること</a></li>
+<li class="chapter" data-level="9.4" data-path="rvest.html"><a href="rvest.html#準備-2"><i class="fa fa-check"></i><b>9.4</b> 準備</a></li>
+<li class="chapter" data-level="9.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>9.5</b> HTMLの取得</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方-5"><i class="fa fa-check"></i><b>9.3.1</b> 使い方</a></li>
-<li class="chapter" data-level="9.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点-5"><i class="fa fa-check"></i><b>9.3.2</b> 注意点</a></li>
+<li class="chapter" data-level="9.5.1" data-path="rvest.html"><a href="rvest.html#使い方-3"><i class="fa fa-check"></i><b>9.5.1</b> 使い方</a></li>
+<li class="chapter" data-level="9.5.2" data-path="rvest.html"><a href="rvest.html#注意点-3"><i class="fa fa-check"></i><b>9.5.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>9.4</b> 要素の取得</a></li>
-<li class="chapter" data-level="9.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>9.5</b> その他</a></li>
+<li class="chapter" data-level="9.6" data-path="rvest.html"><a href="rvest.html#domの取得"><i class="fa fa-check"></i><b>9.6</b> DOMの取得</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="rvest.html"><a href="rvest.html#使い方-4"><i class="fa fa-check"></i><b>9.6.1</b> 使い方</a></li>
+<li class="chapter" data-level="9.6.2" data-path="rvest.html"><a href="rvest.html#注意点-4"><i class="fa fa-check"></i><b>9.6.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>10</b> reticulate</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="reticulate.html"><a href="reticulate.html#準備pythonのインストール"><i class="fa fa-check"></i><b>10.1</b> 準備：Pythonのインストール</a></li>
-<li class="chapter" data-level="10.2" data-path="reticulate.html"><a href="reticulate.html#準備pythonでのモジュールパッケージのインストール"><i class="fa fa-check"></i><b>10.2</b> 準備：Pythonでのモジュール(パッケージ)のインストール</a></li>
-<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#section-3"><i class="fa fa-check"></i><b>10.3</b> </a></li>
-<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#実行"><i class="fa fa-check"></i><b>10.4</b> 実行</a></li>
-<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.5</b> PythoとRとの変数のやり取り</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>11</b> shell</a>
+<li class="chapter" data-level="10" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>10</b> Rselenium</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="shell.html"><a href="shell.html#準備-4"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
-<li class="chapter" data-level="11.2" data-path="shell.html"><a href="shell.html#pythonのスクリプト実行"><i class="fa fa-check"></i><b>11.2</b> Pythonのスクリプト実行</a></li>
+<li class="chapter" data-level="10.1" data-path="rselenium.html"><a href="rselenium.html#準備-3"><i class="fa fa-check"></i><b>10.1</b> 準備</a></li>
+<li class="chapter" data-level="10.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>10.2</b> ブラウザの自動化</a></li>
+<li class="chapter" data-level="10.3" data-path="rselenium.html"><a href="rselenium.html#section-2"><i class="fa fa-check"></i><b>10.3</b> </a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方-5"><i class="fa fa-check"></i><b>10.3.1</b> 使い方</a></li>
+<li class="chapter" data-level="10.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点-5"><i class="fa fa-check"></i><b>10.3.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="dbi.html"><a href="dbi.html"><i class="fa fa-check"></i><b>12</b> DBIでデータ取得</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="dbi.html"><a href="dbi.html#データベースとの連携"><i class="fa fa-check"></i><b>12.1</b> データベースとの連携</a></li>
-<li class="chapter" data-level="12.2" data-path="dbi.html"><a href="dbi.html#dbiでできること"><i class="fa fa-check"></i><b>12.2</b> DBIでできること</a></li>
-<li class="chapter" data-level="12.3" data-path="dbi.html"><a href="dbi.html#準備-5"><i class="fa fa-check"></i><b>12.3</b> 準備</a></li>
-<li class="chapter" data-level="12.4" data-path="dbi.html"><a href="dbi.html#使い方-6"><i class="fa fa-check"></i><b>12.4</b> 使い方</a></li>
+<li class="chapter" data-level="10.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>10.4</b> 要素の取得</a></li>
+<li class="chapter" data-level="10.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>10.5</b> その他</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>13</b> xlsxでエクセル操作</a>
+<li class="chapter" data-level="11" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>11</b> reticulate</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>13.1</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
-<ul>
-<li class="chapter" data-level="13.1.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>13.1.1</b> 使用方法</a></li>
-<li class="chapter" data-level="13.1.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>13.1.2</b> スクリプトの内容説明</a></li>
+<li class="chapter" data-level="11.1" data-path="reticulate.html"><a href="reticulate.html#準備pythonのインストール"><i class="fa fa-check"></i><b>11.1</b> 準備：Pythonのインストール</a></li>
+<li class="chapter" data-level="11.2" data-path="reticulate.html"><a href="reticulate.html#準備pythonでのモジュールパッケージのインストール"><i class="fa fa-check"></i><b>11.2</b> 準備：Pythonでのモジュール(パッケージ)のインストール</a></li>
+<li class="chapter" data-level="11.3" data-path="reticulate.html"><a href="reticulate.html#section-3"><i class="fa fa-check"></i><b>11.3</b> </a></li>
+<li class="chapter" data-level="11.4" data-path="reticulate.html"><a href="reticulate.html#実行"><i class="fa fa-check"></i><b>11.4</b> 実行</a></li>
+<li class="chapter" data-level="11.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>11.5</b> PythoとRとの変数のやり取り</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="xlsx.html"><a href="xlsx.html#その他の操作未作成"><i class="fa fa-check"></i><b>13.2</b> その他の操作(未作成)</a></li>
+<li class="chapter" data-level="12" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>12</b> shell</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="shell.html"><a href="shell.html#準備-4"><i class="fa fa-check"></i><b>12.1</b> 準備</a></li>
+<li class="chapter" data-level="12.2" data-path="shell.html"><a href="shell.html#pythonのスクリプト実行"><i class="fa fa-check"></i><b>12.2</b> Pythonのスクリプト実行</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>14</b> qpdfでPDF操作</a>
+<li class="chapter" data-level="13" data-path="dbi.html"><a href="dbi.html"><i class="fa fa-check"></i><b>13</b> DBIでデータ取得</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>14.1</b> 関数一覧</a></li>
+<li class="chapter" data-level="13.1" data-path="dbi.html"><a href="dbi.html#データベースとの連携"><i class="fa fa-check"></i><b>13.1</b> データベースとの連携</a></li>
+<li class="chapter" data-level="13.2" data-path="dbi.html"><a href="dbi.html#dbiでできること"><i class="fa fa-check"></i><b>13.2</b> DBIでできること</a></li>
+<li class="chapter" data-level="13.3" data-path="dbi.html"><a href="dbi.html#準備-5"><i class="fa fa-check"></i><b>13.3</b> 準備</a></li>
+<li class="chapter" data-level="13.4" data-path="dbi.html"><a href="dbi.html#使い方-6"><i class="fa fa-check"></i><b>13.4</b> 使い方</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>15</b> pdfをdocxに変換</a>
+<li class="chapter" data-level="14" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>14</b> xlsxでエクセル操作</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="pdf2docx.html"><a href="pdf2docx.html#rdcomclient"><i class="fa fa-check"></i><b>15.1</b> RDCOMClient</a>
+<li class="chapter" data-level="14.1" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>14.1</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
 <ul>
-<li class="chapter" data-level="15.1.1" data-path="pdf2docx.html"><a href="pdf2docx.html#インストール"><i class="fa fa-check"></i><b>15.1.1</b> インストール</a></li>
-<li class="chapter" data-level="15.1.2" data-path="pdf2docx.html"><a href="pdf2docx.html#変換実行"><i class="fa fa-check"></i><b>15.1.2</b> 変換実行</a></li>
-<li class="chapter" data-level="15.1.3" data-path="pdf2docx.html"><a href="pdf2docx.html#ラッパー関数"><i class="fa fa-check"></i><b>15.1.3</b> ラッパー関数</a></li>
+<li class="chapter" data-level="14.1.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>14.1.1</b> 使用方法</a></li>
+<li class="chapter" data-level="14.1.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>14.1.2</b> スクリプトの内容説明</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="pdf2docx.html"><a href="pdf2docx.html#pdf2docx-1"><i class="fa fa-check"></i><b>15.2</b> pdf2docx</a></li>
+<li class="chapter" data-level="14.2" data-path="xlsx.html"><a href="xlsx.html#その他の操作未作成"><i class="fa fa-check"></i><b>14.2</b> その他の操作(未作成)</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html"><i class="fa fa-check"></i><b>16</b> パッケージ Microsoft365R</a>
+<li class="chapter" data-level="15" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>15</b> qpdfでPDF操作</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html#outlookで複数メール送信を一斉送信"><i class="fa fa-check"></i><b>16.1</b> Outlookで複数メール送信を一斉送信</a>
+<li class="chapter" data-level="15.1" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>15.1</b> 関数一覧</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>16</b> pdfをdocxに変換</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html#インストールと初期設定"><i class="fa fa-check"></i><b>16.1.1</b> インストールと初期設定</a></li>
-<li class="chapter" data-level="16.1.2" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html#とりあえず使う"><i class="fa fa-check"></i><b>16.1.2</b> とりあえず使う</a></li>
-<li class="chapter" data-level="16.1.3" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html#メールの一斉送信"><i class="fa fa-check"></i><b>16.1.3</b> メールの一斉送信</a></li>
+<li class="chapter" data-level="16.1" data-path="pdf2docx.html"><a href="pdf2docx.html#rdcomclient"><i class="fa fa-check"></i><b>16.1</b> RDCOMClient</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="pdf2docx.html"><a href="pdf2docx.html#インストール"><i class="fa fa-check"></i><b>16.1.1</b> インストール</a></li>
+<li class="chapter" data-level="16.1.2" data-path="pdf2docx.html"><a href="pdf2docx.html#変換実行"><i class="fa fa-check"></i><b>16.1.2</b> 変換実行</a></li>
+<li class="chapter" data-level="16.1.3" data-path="pdf2docx.html"><a href="pdf2docx.html#ラッパー関数"><i class="fa fa-check"></i><b>16.1.3</b> ラッパー関数</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="pdf2docx.html"><a href="pdf2docx.html#pdf2docx-1"><i class="fa fa-check"></i><b>16.2</b> pdf2docx</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html"><i class="fa fa-check"></i><b>17</b> パッケージ Microsoft365R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html#outlookで複数メール送信を一斉送信"><i class="fa fa-check"></i><b>17.1</b> Outlookで複数メール送信を一斉送信</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html#インストールと初期設定"><i class="fa fa-check"></i><b>17.1.1</b> インストールと初期設定</a></li>
+<li class="chapter" data-level="17.1.2" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html#とりあえず使う"><i class="fa fa-check"></i><b>17.1.2</b> とりあえず使う</a></li>
+<li class="chapter" data-level="17.1.3" data-path="パッケージ-microsoft365r.html"><a href="パッケージ-microsoft365r.html#メールの一斉送信"><i class="fa fa-check"></i><b>17.1.3</b> メールの一斉送信</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -307,18 +313,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dbi" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chap. 12</span> DBIでデータ取得<a href="dbi.html#dbi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="データベースとの連携" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> データベースとの連携<a href="dbi.html#データベースとの連携" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dbi" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chap. 13</span> DBIでデータ取得<a href="dbi.html#dbi" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="データベースとの連携" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> データベースとの連携<a href="dbi.html#データベースとの連携" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>リレーショナル・データベースと接続してデータを取得するためのパッケージには色々とある．</p>
 <p>CRAN Task View: Databases with R には多くのパッケージが掲載されている．
 <a href="https://cran.r-project.org/web/views/Databases.html" class="uri">https://cran.r-project.org/web/views/Databases.html</a></p>
 <p>どれを使っても良いが，よく使われているのはDBIのようだ．
 <a href="https://cran.r-project.org/web/packages/DBI/index.html" class="uri">https://cran.r-project.org/web/packages/DBI/index.html</a></p>
 </div>
-<div id="dbiでできること" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> DBIでできること<a href="dbi.html#dbiでできること" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dbiでできること" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> DBIでできること<a href="dbi.html#dbiでできること" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>各種データベースとの接続<br />
 </li>
@@ -329,40 +335,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 つまり，データ取得だけにDBIを利用して，その後はdplyrやtidyverseの各種パッケージの関数を駆使してデータを処理する．
 さらに，その結果を図示したい場合は，ggplot2を使うと良い．</p>
 </div>
-<div id="準備-5" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> 準備<a href="dbi.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="dbi.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
-<pre><code>## package &#39;DBI&#39; successfully unpacked and MD5 sums checked
-## package &#39;RSQLite&#39; successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\matutosi\AppData\Local\Temp\RtmpETzBEL\downloaded_packages</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="dbi.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb43-2"><a href="dbi.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
-<span id="cb43-3"><a href="dbi.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div id="準備-5" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> 準備<a href="dbi.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="dbi.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="dbi.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb40-2"><a href="dbi.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb40-3"><a href="dbi.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ dplyr     1.1.1     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.1     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ## ✔ purrr     1.0.1     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="dbi.html#cb45-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
-<span id="cb45-2"><a href="dbi.html#cb45-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
-<span id="cb45-3"><a href="dbi.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
-<span id="cb45-4"><a href="dbi.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="dbi.html#cb42-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
+<span id="cb42-2"><a href="dbi.html#cb42-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
+<span id="cb42-3"><a href="dbi.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
+<span id="cb42-4"><a href="dbi.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
 <pre><code>## [1] &quot;mpg&quot;</code></pre>
 </div>
-<div id="使い方-6" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> 使い方<a href="dbi.html#使い方-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="dbi.html#cb47-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
-<span id="cb47-2"><a href="dbi.html#cb47-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
-<span id="cb47-3"><a href="dbi.html#cb47-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb47-4"><a href="dbi.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb47-5"><a href="dbi.html#cb47-5" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(df)</span></code></pre></div>
+<div id="使い方-6" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> 使い方<a href="dbi.html#使い方-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="dbi.html#cb44-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
+<span id="cb44-2"><a href="dbi.html#cb44-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
+<span id="cb44-3"><a href="dbi.html#cb44-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
+<span id="cb44-4"><a href="dbi.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
+<span id="cb44-5"><a href="dbi.html#cb44-5" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 81 × 4
 ##     year model      displ   cyl
 ##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
@@ -377,15 +378,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  1999 malibu       2.4     4
 ## 10  2008 malibu       2.4     4
 ## # ℹ 71 more rows</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dbi.html#cb49-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
-<span id="cb49-2"><a href="dbi.html#cb49-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
-<span id="cb49-3"><a href="dbi.html#cb49-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb49-4"><a href="dbi.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb49-5"><a href="dbi.html#cb49-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb49-6"><a href="dbi.html#cb49-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb49-7"><a href="dbi.html#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb49-8"><a href="dbi.html#cb49-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb49-9"><a href="dbi.html#cb49-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="dbi.html#cb46-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
+<span id="cb46-2"><a href="dbi.html#cb46-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
+<span id="cb46-3"><a href="dbi.html#cb46-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
+<span id="cb46-4"><a href="dbi.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
+<span id="cb46-5"><a href="dbi.html#cb46-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb46-6"><a href="dbi.html#cb46-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb46-7"><a href="dbi.html#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb46-8"><a href="dbi.html#cb46-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb46-9"><a href="dbi.html#cb46-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 234 × 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;

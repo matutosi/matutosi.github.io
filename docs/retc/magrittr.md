@@ -73,20 +73,20 @@ mpg # 燃費データ
 ```
 
 ```
-## # A tibble: 234 x 11
+## # A tibble: 234 × 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
-##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
-##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
-##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
-##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
-##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
-##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
-##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
-##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
-## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
-## # i 224 more rows
+##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+## # ℹ 224 more rows
 ```
 
 ```r
@@ -99,21 +99,21 @@ tmp <-
 ```
 
 ```
-## # A tibble: 117 x 12
+## # A tibble: 117 × 12
 ##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
 ##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
 ##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
 ##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
 ##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
 ##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
-##  5 audi         a4 quat~   1.8  1999     4 manual m5     4        18    26 p    
-##  6 audi         a4 quat~   1.8  1999     4 auto   l5     4        16    25 p    
-##  7 audi         a4 quat~   2.8  1999     6 auto   l5     4        15    25 p    
-##  8 audi         a4 quat~   2.8  1999     6 manual m5     4        17    25 p    
-##  9 audi         a6 quat~   2.8  1999     6 auto   l5     4        15    24 p    
-## 10 chevrolet    c1500 s~   5.7  1999     8 auto   l4     r        13    17 r    
-## # i 107 more rows
-## # i 1 more variable: class <chr>
+##  5 audi         a4 quat…   1.8  1999     4 manual m5     4        18    26 p    
+##  6 audi         a4 quat…   1.8  1999     4 auto   l5     4        16    25 p    
+##  7 audi         a4 quat…   2.8  1999     6 auto   l5     4        15    25 p    
+##  8 audi         a4 quat…   2.8  1999     6 manual m5     4        17    25 p    
+##  9 audi         a6 quat…   2.8  1999     6 auto   l5     4        15    24 p    
+## 10 chevrolet    c1500 s…   5.7  1999     8 auto   l4     r        13    17 r    
+## # ℹ 107 more rows
+## # ℹ 1 more variable: class <chr>
 ```
 
 ```r
@@ -125,21 +125,21 @@ tmp %<>%
 ```
 
 ```
-## # A tibble: 117 x 12
+## # A tibble: 117 × 12
 ##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
 ##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
 ##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
 ##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
 ##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
 ##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
-##  5 audi         a4 quat~   1.8  1999     4 manual m5     4        18    26 p    
-##  6 audi         a4 quat~   1.8  1999     4 auto   l5     4        16    25 p    
-##  7 audi         a4 quat~   2.8  1999     6 auto   l5     4        15    25 p    
-##  8 audi         a4 quat~   2.8  1999     6 manual m5     4        17    25 p    
-##  9 audi         a6 quat~   2.8  1999     6 auto   l5     4        15    24 p    
-## 10 chevrolet    c1500 s~   5.7  1999     8 auto   l4     r        13    17 r    
-## # i 107 more rows
-## # i 1 more variable: class <chr>
+##  5 audi         a4 quat…   1.8  1999     4 manual m5     4        18    26 p    
+##  6 audi         a4 quat…   1.8  1999     4 auto   l5     4        16    25 p    
+##  7 audi         a4 quat…   2.8  1999     6 auto   l5     4        15    25 p    
+##  8 audi         a4 quat…   2.8  1999     6 manual m5     4        17    25 p    
+##  9 audi         a6 quat…   2.8  1999     6 auto   l5     4        15    24 p    
+## 10 chevrolet    c1500 s…   5.7  1999     8 auto   l4     r        13    17 r    
+## # ℹ 107 more rows
+## # ℹ 1 more variable: class <chr>
 ```
 
 ### 注意点
@@ -164,20 +164,20 @@ mpg # 燃費データ
 ```
 
 ```
-## # A tibble: 234 x 11
+## # A tibble: 234 × 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
-##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
-##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
-##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
-##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
-##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
-##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
-##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
-##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
-## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
-## # i 224 more rows
+##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+## # ℹ 224 more rows
 ```
 
 ### 注意点
