@@ -1,4 +1,4 @@
-# stringrで文字列操作{#stringr}
+# stringrで文字列操作 {#stringr}
 
 ## はじめに
 

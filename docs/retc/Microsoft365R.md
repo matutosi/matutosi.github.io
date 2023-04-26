@@ -1,4 +1,4 @@
-# Microsoft365R
+# Microsoft365R {#Microsoft365R}
   #   https://cran.r-project.org/web/packages/Microsoft365R
   # Outlookの使い方
   #   https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html

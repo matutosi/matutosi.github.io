@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 8 magrritrでコードを簡潔に | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
-  <meta name="description" content="Chap. 8 magrritrでコードを簡潔に | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <title>Chap. 5 magrritrでコードを簡潔に | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
+  <meta name="description" content="Chap. 5 magrritrでコードを簡潔に | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 8 magrritrでコードを簡潔に | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta property="og:title" content="Chap. 5 magrritrでコードを簡潔に | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 8 magrritrでコードを簡潔に | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta name="twitter:title" content="Chap. 5 magrritrでコードを簡潔に | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   
   
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-04-26" />
+<meta name="date" content="2023-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ggplot2.html"/>
-<link rel="next" href="rvest.html"/>
+<link rel="prev" href="assoc.html"/>
+<link rel="next" href="stringr.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,9 +136,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a></li>
 <li class="chapter" data-level="1" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>1</b> Rとは</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#rの特徴"><i class="fa fa-check"></i><b>1.1</b> Rの特徴</a></li>
-<li class="chapter" data-level="1.2" data-path="R.html"><a href="R.html#rを極める"><i class="fa fa-check"></i><b>1.2</b> Rを極める</a></li>
-<li class="chapter" data-level="1.3" data-path="R.html"><a href="R.html#ヘルプドキュメント"><i class="fa fa-check"></i><b>1.3</b> ヘルプドキュメント</a></li>
+<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#特徴"><i class="fa fa-check"></i><b>1.1</b> 特徴</a></li>
+<li class="chapter" data-level="1.2" data-path="R.html"><a href="R.html#点突破"><i class="fa fa-check"></i><b>1.2</b> 1点突破</a></li>
+<li class="chapter" data-level="1.3" data-path="R.html"><a href="R.html#充実したヘルプドキュメント"><i class="fa fa-check"></i><b>1.3</b> 充実したヘルプ・ドキュメント</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Rのインストール</a>
 <ul>
@@ -151,101 +151,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="package.html"><a href="package.html#cran"><i class="fa fa-check"></i><b>3.1</b> CRANから</a></li>
 <li class="chapter" data-level="3.2" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.2</b> GitHubから</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>4</b> fsでファイル操作</a>
+<li class="chapter" data-level="4" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>4</b> スクリプトの関連付け</a></li>
+<li class="chapter" data-level="5" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>5</b> magrritrでコードを簡潔に</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="fs.html"><a href="fs.html#はじめに-1"><i class="fa fa-check"></i><b>4.1</b> はじめに</a></li>
-<li class="chapter" data-level="4.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>4.2</b> shell，baseパッケージ, fsパッケージ</a>
+<li class="chapter" data-level="5.1" data-path="magrittr.html"><a href="magrittr.html#tidyverseとmagrittr"><i class="fa fa-check"></i><b>5.1</b> tidyverseとmagrittr</a></li>
+<li class="chapter" data-level="5.2" data-path="magrittr.html"><a href="magrittr.html#とその仲間"><i class="fa fa-check"></i><b>5.2</b> <code>%&gt;%</code>とその仲間</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>4.2.1</b> shellを使う</a></li>
-<li class="chapter" data-level="4.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ"><i class="fa fa-check"></i><b>4.2.2</b> baseパッケージ</a></li>
-<li class="chapter" data-level="4.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>4.2.3</b> fsパッケージ</a></li>
+<li class="chapter" data-level="5.2.1" data-path="magrittr.html"><a href="magrittr.html#section"><i class="fa fa-check"></i><b>5.2.1</b> <code>%&lt;&gt;%</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="magrittr.html"><a href="magrittr.html#t"><i class="fa fa-check"></i><b>5.2.2</b> <code>%T&gt;%</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="magrittr.html"><a href="magrittr.html#section-1"><i class="fa fa-check"></i><b>5.2.3</b> <code>%$%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="fs.html"><a href="fs.html#準備"><i class="fa fa-check"></i><b>4.3</b> 準備</a></li>
-<li class="chapter" data-level="4.4" data-path="fs.html"><a href="fs.html#fsの関数群"><i class="fa fa-check"></i><b>4.4</b> fsの関数群</a>
+</ul></li>
+<li class="chapter" data-level="6" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>6</b> stringrで文字列操作</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>4.4.1</b> パス操作</a></li>
-<li class="chapter" data-level="4.4.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>4.4.2</b> ディレクトリ操作</a></li>
-<li class="chapter" data-level="4.4.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>4.4.3</b> ファイル操作</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>4.5</b> fsを使ったファイル操作例</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>5</b> stringrで文字列操作</a>
+<li class="chapter" data-level="6.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>6.1</b> はじめに</a></li>
+<li class="chapter" data-level="6.2" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>6.2</b> stringrとbase</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="stringr.html"><a href="stringr.html#はじめに-2"><i class="fa fa-check"></i><b>5.1</b> はじめに</a></li>
-<li class="chapter" data-level="5.2" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>5.2</b> stringrとbase</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ-1"><i class="fa fa-check"></i><b>5.2.1</b> baseパッケージ</a></li>
-<li class="chapter" data-level="5.2.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>5.2.2</b> stringrパッケージ</a></li>
+<li class="chapter" data-level="6.2.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ"><i class="fa fa-check"></i><b>6.2.1</b> baseパッケージ</a></li>
+<li class="chapter" data-level="6.2.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>6.2.2</b> stringrパッケージ</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="stringr.html"><a href="stringr.html#準備-1"><i class="fa fa-check"></i><b>5.3</b> 準備</a></li>
-<li class="chapter" data-level="5.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>5.4</b> stringrの関数</a></li>
-<li class="chapter" data-level="5.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>5.5</b> stringrの利点</a></li>
+<li class="chapter" data-level="6.3" data-path="stringr.html"><a href="stringr.html#準備"><i class="fa fa-check"></i><b>6.3</b> 準備</a></li>
+<li class="chapter" data-level="6.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>6.4</b> stringrの関数</a></li>
+<li class="chapter" data-level="6.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>6.5</b> stringrの利点</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>6</b> スクリプトの関連付け</a></li>
-<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2の勧め</a>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2で楽に綺麗に作図</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>7.1</b> Rの作図環境の概要</a></li>
-<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>7.2</b> ggplot2とは</a></li>
-<li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>7.3</b> ggplot2の利点</a></li>
-<li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>7.4</b> ggplot2の基本</a></li>
-<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#facetを使おう"><i class="fa fa-check"></i><b>7.5</b> facetを使おう</a></li>
-<li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>7.6</b> ggsave</a></li>
-<li class="chapter" data-level="7.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>7.7</b> 文字化けへの対処(windows)</a></li>
-<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>7.8</b> themeを少しだけ説明</a></li>
-<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#shiny"><i class="fa fa-check"></i><b>7.9</b> shiny</a></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>7.2</b> ggplot2とは</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>7.2.1</b> ggplot2の利点</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>7.3</b> ggplot2の基本</a></li>
+<li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#facetを使おう"><i class="fa fa-check"></i><b>7.4</b> facetを使おう</a></li>
+<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>7.5</b> ggsave</a></li>
+<li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>7.6</b> 文字化けへの対処(windows)</a></li>
+<li class="chapter" data-level="7.7" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>7.7</b> themeを少しだけ説明</a></li>
+<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#shiny"><i class="fa fa-check"></i><b>7.8</b> shiny</a></li>
+<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#作図の自動化"><i class="fa fa-check"></i><b>7.9</b> 作図の自動化</a></li>
 <li class="chapter" data-level="7.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>7.10</b> 参考書</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>8</b> magrritrでコードを簡潔に</a>
+<li class="chapter" data-level="8" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>8</b> fsでファイル操作</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="magrittr.html"><a href="magrittr.html#tidyverseとmagrittr"><i class="fa fa-check"></i><b>8.1</b> tidyverseとmagrittr</a></li>
-<li class="chapter" data-level="8.2" data-path="magrittr.html"><a href="magrittr.html#とその仲間"><i class="fa fa-check"></i><b>8.2</b> <code>%&gt;%</code>とその仲間</a>
+<li class="chapter" data-level="8.1" data-path="fs.html"><a href="fs.html#はじめに-2"><i class="fa fa-check"></i><b>8.1</b> はじめに</a></li>
+<li class="chapter" data-level="8.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>8.2</b> shell，baseパッケージ, fsパッケージ</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="magrittr.html"><a href="magrittr.html#section"><i class="fa fa-check"></i><b>8.2.1</b> <code>%&lt;&gt;%</code></a></li>
-<li class="chapter" data-level="8.2.2" data-path="magrittr.html"><a href="magrittr.html#t"><i class="fa fa-check"></i><b>8.2.2</b> <code>%T&gt;%</code></a></li>
-<li class="chapter" data-level="8.2.3" data-path="magrittr.html"><a href="magrittr.html#section-1"><i class="fa fa-check"></i><b>8.2.3</b> <code>%$%</code></a></li>
+<li class="chapter" data-level="8.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>8.2.1</b> shellを使う</a></li>
+<li class="chapter" data-level="8.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ-1"><i class="fa fa-check"></i><b>8.2.2</b> baseパッケージ</a></li>
+<li class="chapter" data-level="8.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>8.2.3</b> fsパッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="fs.html"><a href="fs.html#準備-1"><i class="fa fa-check"></i><b>8.3</b> 準備</a></li>
+<li class="chapter" data-level="8.4" data-path="fs.html"><a href="fs.html#fsの関数群"><i class="fa fa-check"></i><b>8.4</b> fsの関数群</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>8.4.1</b> パス操作</a></li>
+<li class="chapter" data-level="8.4.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>8.4.2</b> ディレクトリ操作</a></li>
+<li class="chapter" data-level="8.4.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>8.4.3</b> ファイル操作</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>8.5</b> fsを使ったファイル操作例</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>9</b> shell</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="shell.html"><a href="shell.html#準備-2"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
+<li class="chapter" data-level="9.2" data-path="shell.html"><a href="shell.html#pythonのスクリプト実行"><i class="fa fa-check"></i><b>9.2</b> Pythonのスクリプト実行</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>10</b> rvestでスクレイピング</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>10.1</b> スクレイピング</a></li>
+<li class="chapter" data-level="10.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>10.2</b> rvest と RSelenium</a></li>
+<li class="chapter" data-level="10.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>10.3</b> rvestのできること</a></li>
+<li class="chapter" data-level="10.4" data-path="rvest.html"><a href="rvest.html#準備-3"><i class="fa fa-check"></i><b>10.4</b> 準備</a></li>
+<li class="chapter" data-level="10.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>10.5</b> HTMLの取得</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="rvest.html"><a href="rvest.html#使い方"><i class="fa fa-check"></i><b>10.5.1</b> 使い方</a></li>
+<li class="chapter" data-level="10.5.2" data-path="rvest.html"><a href="rvest.html#注意点"><i class="fa fa-check"></i><b>10.5.2</b> 注意点</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="rvest.html"><a href="rvest.html#domの取得"><i class="fa fa-check"></i><b>10.6</b> DOMの取得</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="rvest.html"><a href="rvest.html#使い方-1"><i class="fa fa-check"></i><b>10.6.1</b> 使い方</a></li>
+<li class="chapter" data-level="10.6.2" data-path="rvest.html"><a href="rvest.html#注意点-1"><i class="fa fa-check"></i><b>10.6.2</b> 注意点</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>9</b> rvestでスクレイピング</a>
+<li class="chapter" data-level="11" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>11</b> Rselenium</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>9.1</b> スクレイピング</a></li>
-<li class="chapter" data-level="9.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>9.2</b> rvest と RSelenium</a></li>
-<li class="chapter" data-level="9.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>9.3</b> rvestのできること</a></li>
-<li class="chapter" data-level="9.4" data-path="rvest.html"><a href="rvest.html#準備-2"><i class="fa fa-check"></i><b>9.4</b> 準備</a></li>
-<li class="chapter" data-level="9.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>9.5</b> HTMLの取得</a>
+<li class="chapter" data-level="11.1" data-path="rselenium.html"><a href="rselenium.html#準備-4"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
+<li class="chapter" data-level="11.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>11.2</b> ブラウザの自動化</a></li>
+<li class="chapter" data-level="11.3" data-path="rselenium.html"><a href="rselenium.html#section-2"><i class="fa fa-check"></i><b>11.3</b> </a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="rvest.html"><a href="rvest.html#使い方"><i class="fa fa-check"></i><b>9.5.1</b> 使い方</a></li>
-<li class="chapter" data-level="9.5.2" data-path="rvest.html"><a href="rvest.html#注意点"><i class="fa fa-check"></i><b>9.5.2</b> 注意点</a></li>
+<li class="chapter" data-level="11.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方-2"><i class="fa fa-check"></i><b>11.3.1</b> 使い方</a></li>
+<li class="chapter" data-level="11.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点-2"><i class="fa fa-check"></i><b>11.3.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="rvest.html"><a href="rvest.html#domの取得"><i class="fa fa-check"></i><b>9.6</b> DOMの取得</a>
-<ul>
-<li class="chapter" data-level="9.6.1" data-path="rvest.html"><a href="rvest.html#使い方-1"><i class="fa fa-check"></i><b>9.6.1</b> 使い方</a></li>
-<li class="chapter" data-level="9.6.2" data-path="rvest.html"><a href="rvest.html#注意点-1"><i class="fa fa-check"></i><b>9.6.2</b> 注意点</a></li>
+<li class="chapter" data-level="11.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>11.4</b> 要素の取得</a></li>
+<li class="chapter" data-level="11.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>11.5</b> その他</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>10</b> Rselenium</a>
+<li class="chapter" data-level="12" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>12</b> reticulate</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="rselenium.html"><a href="rselenium.html#準備-3"><i class="fa fa-check"></i><b>10.1</b> 準備</a></li>
-<li class="chapter" data-level="10.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>10.2</b> ブラウザの自動化</a></li>
-<li class="chapter" data-level="10.3" data-path="rselenium.html"><a href="rselenium.html#section-2"><i class="fa fa-check"></i><b>10.3</b> </a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方-2"><i class="fa fa-check"></i><b>10.3.1</b> 使い方</a></li>
-<li class="chapter" data-level="10.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点-2"><i class="fa fa-check"></i><b>10.3.2</b> 注意点</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>10.4</b> 要素の取得</a></li>
-<li class="chapter" data-level="10.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>10.5</b> その他</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>11</b> reticulate</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="reticulate.html"><a href="reticulate.html#準備pythonのインストール"><i class="fa fa-check"></i><b>11.1</b> 準備：Pythonのインストール</a></li>
-<li class="chapter" data-level="11.2" data-path="reticulate.html"><a href="reticulate.html#準備pythonでのモジュールパッケージのインストール"><i class="fa fa-check"></i><b>11.2</b> 準備：Pythonでのモジュール(パッケージ)のインストール</a></li>
-<li class="chapter" data-level="11.3" data-path="reticulate.html"><a href="reticulate.html#section-3"><i class="fa fa-check"></i><b>11.3</b> </a></li>
-<li class="chapter" data-level="11.4" data-path="reticulate.html"><a href="reticulate.html#実行"><i class="fa fa-check"></i><b>11.4</b> 実行</a></li>
-<li class="chapter" data-level="11.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>11.5</b> PythoとRとの変数のやり取り</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>12</b> shell</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="shell.html"><a href="shell.html#準備-4"><i class="fa fa-check"></i><b>12.1</b> 準備</a></li>
-<li class="chapter" data-level="12.2" data-path="shell.html"><a href="shell.html#pythonのスクリプト実行"><i class="fa fa-check"></i><b>12.2</b> Pythonのスクリプト実行</a></li>
+<li class="chapter" data-level="12.1" data-path="reticulate.html"><a href="reticulate.html#準備pythonのインストール"><i class="fa fa-check"></i><b>12.1</b> 準備：Pythonのインストール</a></li>
+<li class="chapter" data-level="12.2" data-path="reticulate.html"><a href="reticulate.html#準備pythonでのモジュールパッケージのインストール"><i class="fa fa-check"></i><b>12.2</b> 準備：Pythonでのモジュール(パッケージ)のインストール</a></li>
+<li class="chapter" data-level="12.3" data-path="reticulate.html"><a href="reticulate.html#section-3"><i class="fa fa-check"></i><b>12.3</b> </a></li>
+<li class="chapter" data-level="12.4" data-path="reticulate.html"><a href="reticulate.html#実行"><i class="fa fa-check"></i><b>12.4</b> 実行</a></li>
+<li class="chapter" data-level="12.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>12.5</b> PythoとRとの変数のやり取り</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="dbi.html"><a href="dbi.html"><i class="fa fa-check"></i><b>13</b> DBIでデータ取得</a>
 <ul>
@@ -277,13 +280,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="16.2" data-path="pdf2docx.html"><a href="pdf2docx.html#pdf2docx-1"><i class="fa fa-check"></i><b>16.2</b> pdf2docx</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>17</b> Microsoft365R</a>
+<li class="chapter" data-level="17" data-path="Microsoft365R.html"><a href="Microsoft365R.html"><i class="fa fa-check"></i><b>17</b> Microsoft365R</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="microsoft365r.html"><a href="microsoft365r.html#outlookで複数メール送信を一斉送信"><i class="fa fa-check"></i><b>17.1</b> Outlookで複数メール送信を一斉送信</a>
+<li class="chapter" data-level="17.1" data-path="Microsoft365R.html"><a href="Microsoft365R.html#outlookで複数メール送信を一斉送信"><i class="fa fa-check"></i><b>17.1</b> Outlookで複数メール送信を一斉送信</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="microsoft365r.html"><a href="microsoft365r.html#インストールと初期設定"><i class="fa fa-check"></i><b>17.1.1</b> インストールと初期設定</a></li>
-<li class="chapter" data-level="17.1.2" data-path="microsoft365r.html"><a href="microsoft365r.html#とりあえず使う"><i class="fa fa-check"></i><b>17.1.2</b> とりあえず使う</a></li>
-<li class="chapter" data-level="17.1.3" data-path="microsoft365r.html"><a href="microsoft365r.html#メールの一斉送信"><i class="fa fa-check"></i><b>17.1.3</b> メールの一斉送信</a></li>
+<li class="chapter" data-level="17.1.1" data-path="Microsoft365R.html"><a href="Microsoft365R.html#インストールと初期設定"><i class="fa fa-check"></i><b>17.1.1</b> インストールと初期設定</a></li>
+<li class="chapter" data-level="17.1.2" data-path="Microsoft365R.html"><a href="Microsoft365R.html#とりあえず使う"><i class="fa fa-check"></i><b>17.1.2</b> とりあえず使う</a></li>
+<li class="chapter" data-level="17.1.3" data-path="Microsoft365R.html"><a href="Microsoft365R.html#メールの一斉送信"><i class="fa fa-check"></i><b>17.1.3</b> メールの一斉送信</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -303,8 +306,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="magrittr" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chap. 8</span> magrritrでコードを簡潔に<a href="magrittr.html#magrittr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="magrittr" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chap. 5</span> magrritrでコードを簡潔に<a href="magrittr.html#magrittr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>パッケージmagrittrはちょっと変わっている．</p>
 <p>そもそも名前が変わっていて何と読んで良いのか分からない．
 公式ページには「magrittr (to be pronounced with a sophisticated french accent) 」と書かれている．
@@ -316,26 +319,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # &lt;- colnames でできる?
 # <code>[&lt;-</code>
 また，set_colnames()以外にも，dplyrのrename()やselect()で列名を変更する方法もある．</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="magrittr.html#cb15-1" aria-hidden="true" tabindex="-1"></a>hoge <span class="ot">&lt;-</span> <span class="fu">colnames</span>(<span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>))</span>
-<span id="cb15-2"><a href="magrittr.html#cb15-2" aria-hidden="true" tabindex="-1"></a>hoge  <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="magrittr.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">set_colnames</span>(<span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="magrittr.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(...)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="magrittr.html#cb4-1" aria-hidden="true" tabindex="-1"></a>hoge <span class="ot">&lt;-</span> <span class="fu">colnames</span>(<span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>))</span>
+<span id="cb4-2"><a href="magrittr.html#cb4-2" aria-hidden="true" tabindex="-1"></a>hoge  <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="magrittr.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">set_colnames</span>(<span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="magrittr.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(...)</span></code></pre></div>
 <p>magrittrに含まれる関数たちで，どんな内容か気になるものの一覧</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="magrittr.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(<span class="st">&quot;n&#39;est pas&quot;</span>)</span>
-<span id="cb16-2"><a href="magrittr.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(add)</span>
-<span id="cb16-3"><a href="magrittr.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(and)</span>
-<span id="cb16-4"><a href="magrittr.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(equals)</span>
-<span id="cb16-5"><a href="magrittr.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(not)</span>
-<span id="cb16-6"><a href="magrittr.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(or)</span>
-<span id="cb16-7"><a href="magrittr.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(pipe_nested)</span>
-<span id="cb16-8"><a href="magrittr.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(set_colnames)</span>
-<span id="cb16-9"><a href="magrittr.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(use_series)</span></code></pre></div>
-<div id="tidyverseとmagrittr" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> tidyverseとmagrittr<a href="magrittr.html#tidyverseとmagrittr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="magrittr.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(<span class="st">&quot;n&#39;est pas&quot;</span>)</span>
+<span id="cb5-2"><a href="magrittr.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(add)</span>
+<span id="cb5-3"><a href="magrittr.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(and)</span>
+<span id="cb5-4"><a href="magrittr.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(equals)</span>
+<span id="cb5-5"><a href="magrittr.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(not)</span>
+<span id="cb5-6"><a href="magrittr.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(or)</span>
+<span id="cb5-7"><a href="magrittr.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(pipe_nested)</span>
+<span id="cb5-8"><a href="magrittr.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(set_colnames)</span>
+<span id="cb5-9"><a href="magrittr.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(use_series)</span></code></pre></div>
+<div id="tidyverseとmagrittr" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> tidyverseとmagrittr<a href="magrittr.html#tidyverseとmagrittr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>tidyverseは，Rでのデータ解析には欠かせないものになっている．
 そこで，Rを起動時にtidyverseを読み込む人は多いだろう．
 なお，tidyverseは1つのパッケージではなく，複数のパッケージからなるパッケージ群である．</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="magrittr.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="magrittr.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>tidyverseのパッケージ群を読み込んだときや，そのうちの個別のパッケージ(forcats，tibble，stringr，dplyr，tidyr，purrrなど)を読み込むと，<code>%&gt;%</code> (パイプ)を使うことができる．
 私は<code>%&gt;%</code>がtidyverseの独自のものだと勘違いをしていた．
 しかし，<code>%&gt;%</code>はもとはパッケージmagrittrの関数であり，そこからインポートされている．
@@ -347,8 +350,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 具体的には，第1引数のオブジェクトがデータフレームやtibbleになっていることが多い．
 そのため，パイプと相性が特に良い．</p>
 </div>
-<div id="とその仲間" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> <code>%&gt;%</code>とその仲間<a href="magrittr.html#とその仲間" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="とその仲間" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> <code>%&gt;%</code>とその仲間<a href="magrittr.html#とその仲間" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>%&gt;%</code>の仲間としては，以下の関数もある．</p>
 <ul>
 <li><code>%&lt;&gt;%</code></li>
@@ -357,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>これらの関数は，tidyverseには含まれていないため，使用するにはmagrittrを読み込む必要がある．
 <code>%&gt;%</code>と同じように使うことができるが，役割がそれぞれ違う．</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="magrittr.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="magrittr.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;magrittr&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:purrr&#39;:
@@ -366,11 +369,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:tidyr&#39;:
 ## 
 ##     extract</code></pre>
-<div id="section" class="section level3 hasAnchor" number="8.2.1">
-<h3><span class="header-section-number">8.2.1</span> <code>%&lt;&gt;%</code><a href="magrittr.html#section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="section" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> <code>%&lt;&gt;%</code><a href="magrittr.html#section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>%&lt;&gt;%</code>は，パイプを使って処理した内容を，最初のオブジェクトに再度代入するときに使う．
 ほんの少しだけ，コードを短くできる．</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="magrittr.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mpg) <span class="co"># 燃費データ</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="magrittr.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mpg) <span class="co"># 燃費データ</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
 ##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -380,13 +383,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
 ## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
 ## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="magrittr.html#cb24-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
-<span id="cb24-2"><a href="magrittr.html#cb24-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span></span>
-<span id="cb24-3"><a href="magrittr.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  tmp <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="magrittr.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="magrittr.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-6"><a href="magrittr.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb24-7"><a href="magrittr.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="magrittr.html#cb13-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
+<span id="cb13-2"><a href="magrittr.html#cb13-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span></span>
+<span id="cb13-3"><a href="magrittr.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  tmp <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="magrittr.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="magrittr.html#cb13-5" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="magrittr.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="magrittr.html#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 12
 ##   manufacturer model     displ  year   cyl trans1 trans2 drv     cty   hwy fl   
 ##   &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;
@@ -397,12 +400,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 audi         a4 quatt…   1.8  1999     4 manual m5     4        18    26 p    
 ## 6 audi         a4 quatt…   1.8  1999     4 auto   l5     4        16    25 p    
 ## # ℹ 1 more variable: class &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="magrittr.html#cb26-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
-<span id="cb26-2"><a href="magrittr.html#cb26-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="sc">%&lt;&gt;%</span></span>
-<span id="cb26-3"><a href="magrittr.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="magrittr.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb26-5"><a href="magrittr.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb26-6"><a href="magrittr.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="magrittr.html#cb15-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
+<span id="cb15-2"><a href="magrittr.html#cb15-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb15-3"><a href="magrittr.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="magrittr.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="magrittr.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="magrittr.html#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 12
 ##   manufacturer model     displ  year   cyl trans1 trans2 drv     cty   hwy fl   
 ##   &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;
@@ -419,8 +422,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 便利なことは便利で，私も一時期はよく使用していた．
 しかし，上記の理由もあって，最近はほとんど使用していない．</p>
 </div>
-<div id="t" class="section level3 hasAnchor" number="8.2.2">
-<h3><span class="header-section-number">8.2.2</span> <code>%T&gt;%</code><a href="magrittr.html#t" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="t" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> <code>%T&gt;%</code><a href="magrittr.html#t" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>処理途中に分岐をして別の処理をさせたいときに使う．
 例えば，ちょっとだけ処理して，変数に保存するときに使う．
 imapと組み合わせて，保存する画像のファイル名を設定する時に使うと便利である．</p>
@@ -430,34 +433,34 @@ imapと組み合わせて，保存する画像のファイル名を設定する�
 - 複数処理があれば，「{}」で囲う
 - 処理終了後に「%&gt;%」が必要</p>
 <p>例のコードを示す</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="magrittr.html#cb28-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  mpg %T&gt;%</span></span>
-<span id="cb28-2"><a href="magrittr.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#    {</span></span>
-<span id="cb28-3"><a href="magrittr.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#      tmp &lt;&lt;- dplyr::select(., ) </span></span>
-<span id="cb28-4"><a href="magrittr.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#    } %&gt;%</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="magrittr.html#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  mpg %T&gt;%</span></span>
+<span id="cb17-2"><a href="magrittr.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#    {</span></span>
+<span id="cb17-3"><a href="magrittr.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#      tmp &lt;&lt;- dplyr::select(., ) </span></span>
+<span id="cb17-4"><a href="magrittr.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#    } %&gt;%</span></span></code></pre></div>
 <p><code>%T&gt;%</code>を使うとコードの途中に，ちょっとだけ枝分かれしたコードを挿入できる．
 有用な機能ではあるが，トリッキーなコードになる可能性があるため，使いすぎには気をつけたい．</p>
 </div>
-<div id="section-1" class="section level3 hasAnchor" number="8.2.3">
-<h3><span class="header-section-number">8.2.3</span> <code>%$%</code><a href="magrittr.html#section-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="section-1" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> <code>%$%</code><a href="magrittr.html#section-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>%$%</code>は，<code>%&gt;%</code>と<code>.$</code>の組み合わせのショートカットである．</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="magrittr.html#cb29-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="magrittr.html#cb18-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="magrittr.html#cb31-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%$%</span>   manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="magrittr.html#cb20-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%$%</span>   manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
 <p>パッケージ開発ではパイプを使った場合の<code>.</code>が推奨されていない．
 R CMD CHECK(???)のpossible problemでWarningが出力され，そのままではCRANでは受け付けてもらえない(たぶん)．
 automaterのようにGithubでパッケージを公開するならそれでも問題はないが，Checkで毎回Warningが出力されるのは，心理的に嬉しくない．</p>
 <p>そこで，DESCRIPTIONで次のように<code>%$%</code>や<code>%&gt;%</code>をインポートしておくと，パッケージの中でこれらを使える．
 <code>%&gt;%</code>だけなら，usethis::use_pipe()とすれば，開発パッケージのDESCRIPTIONに，importFrom(magrittr,“%&gt;%”)を書いてくれる．</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="magrittr.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">importFrom</span>(magrittr,<span class="st">&quot;%&gt;%&quot;</span>)</span>
-<span id="cb33-2"><a href="magrittr.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">importFrom</span>(magrittr,<span class="st">&quot;%$%&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="magrittr.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">importFrom</span>(magrittr,<span class="st">&quot;%&gt;%&quot;</span>)</span>
+<span id="cb22-2"><a href="magrittr.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">importFrom</span>(magrittr,<span class="st">&quot;%$%&quot;</span>)</span></code></pre></div>
 <p>なお余談ではあるが，この場合は<code>$</code>の代わりに<code>[[</code>と<code>]]</code>を使っても同じ結果が得られる．
 <code>[</code>と<code>]</code>ではデータフレームの1列をそのまま取り出すので，結果が異なる．</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="magrittr.html#cb34-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer      <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="magrittr.html#cb23-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer      <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="magrittr.html#cb36-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[[<span class="st">&quot;manufacturer&quot;</span>]] <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="magrittr.html#cb25-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[[<span class="st">&quot;manufacturer&quot;</span>]] <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="magrittr.html#cb38-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[<span class="st">&quot;manufacturer&quot;</span>]   <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="magrittr.html#cb27-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[<span class="st">&quot;manufacturer&quot;</span>]   <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 1
 ##   manufacturer
 ##   &lt;chr&gt;       
@@ -469,11 +472,11 @@ automaterのようにGithubでパッケージを公開するならそれでも�
 ## 6 audi</code></pre>
 <p><code>[[ ]]</code>と<code>[ ]</code>は，それぞれ<code>[[</code>と<code>[</code>という関数であるため，以下のように書くことができる．
 この場合，第1引数がパイプの前から引き継がれるため，<code>.</code>を明示する必要がない．</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="magrittr.html#cb40-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">$</span><span class="st">`</span>(manufacturer)    <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="magrittr.html#cb29-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">$</span><span class="st">`</span>(manufacturer)    <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="magrittr.html#cb42-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="co"># mpg %&gt;% `[[`(., &quot;manufacturer&quot;) と同じ</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="magrittr.html#cb31-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="co"># mpg %&gt;% `[[`(., &quot;manufacturer&quot;) と同じ</span></span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="magrittr.html#cb44-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>)  <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="magrittr.html#cb33-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>)  <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 1
 ##   manufacturer
 ##   &lt;chr&gt;       
@@ -492,8 +495,8 @@ automaterのようにGithubでパッケージを公開するならそれでも�
           </div>
         </div>
       </div>
-<a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rvest.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="assoc.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="stringr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -522,7 +525,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["_main.epub", "_main.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
