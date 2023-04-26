@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 10 Rselenium | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
-  <meta name="description" content="Chap. 10 Rselenium | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <title>Chap. 17 Microsoft365R | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
+  <meta name="description" content="Chap. 17 Microsoft365R | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 10 Rselenium | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta property="og:title" content="Chap. 17 Microsoft365R | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 10 Rselenium | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta name="twitter:title" content="Chap. 17 Microsoft365R | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rvest.html"/>
-<link rel="next" href="reticulate.html"/>
+<link rel="prev" href="pdf2docx.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -303,80 +303,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rselenium" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chap. 10</span> Rselenium<a href="rselenium.html#rselenium" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Seleniumは，ブラウザを使って動的に巡回しつつ，スクレイピングをするのに適している．</p>
-<p>JavascriptやPHPなどを使って，動的に作成されるサイトでは，URLだけではページを特定することはできない．
-そのため，rvestだけではデータを取得するのが困難である．</p>
-<div id="準備-3" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> 準備<a href="rselenium.html#準備-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="microsoft365r" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">Chap. 17</span> Microsoft365R<a href="microsoft365r.html#microsoft365r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p># <a href="https://cran.r-project.org/web/packages/Microsoft365R" class="uri">https://cran.r-project.org/web/packages/Microsoft365R</a>
+# Outlookの使い方
+# <a href="https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html" class="uri">https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html</a></p>
+<div id="outlookで複数メール送信を一斉送信" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Outlookで複数メール送信を一斉送信<a href="microsoft365r.html#outlookで複数メール送信を一斉送信" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>複数人に全く同じメールを送る場合は，TOやCCに複数の電子メールアドレスを入力すれば良い．
+また，宛先を知られるのがよろしくないときは，BCCに送信先のアドレスを，TOに自分のアドレスを入れておけば問題ない．
+このとき，送り先の全員に全く同じ内容，同じ添付ファイルであればメールは1つ作成すれば問題ない．</p>
+<p>でも，個々の人に対して少しだけ違う内容のメールを送りたいときとか，添付ファイルを別々のものにしたいときがある．
+また，単純なことだが，宛先が「みなさま」よりは，「○○様」のように宛先だけでも変更したいというときもある．
+何かお願いをするときには，「みなさま」よりも直接名前を書いたほうが結構効果が高い．
+例えば，学会での投票のお願いなどは，MLに流すより個別メールの方が確実だ．</p>
+<p>そのようなとき，いちいちメールを作成・編集していると面倒だし，間違いのもとになる．
+名前を中途半端に修正して，3箇所のうち1箇所だけ別の人の名前にしてしまっていたり，日付と曜日があっていないなどの間違いは日常茶飯事だ．
+このような間違いをなくすには，個別に変更する部分と全体で統一するところを分けておき，あとはパソコンを使ってうまくつなぎ合わせる．
+でも，このように作成したメールの本文や宛先をいちいちコピー&amp;ペーストするのは，手間がかかるし，個々にも作業のミスが入り込む余地が大きい．</p>
+<div id="インストールと初期設定" class="section level3 hasAnchor" number="17.1.1">
+<h3><span class="header-section-number">17.1.1</span> インストールと初期設定<a href="microsoft365r.html#インストールと初期設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>この操作は，最初に1回だけ実行すればOK.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="microsoft365r.html#cb67-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># インストール</span></span>
+<span id="cb67-2"><a href="microsoft365r.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;Microsoft365R&quot;</span>)</span>
+<span id="cb67-3"><a href="microsoft365r.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージの読み込み</span></span>
+<span id="cb67-4"><a href="microsoft365r.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
+<span id="cb67-5"><a href="microsoft365r.html#cb67-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># 会社など組織で契約している場合</span></span>
+<span id="cb67-6"><a href="microsoft365r.html#cb67-6" aria-hidden="true" tabindex="-1"></a>Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb67-7"><a href="microsoft365r.html#cb67-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># 個人利用の場合</span></span>
+<span id="cb67-8"><a href="microsoft365r.html#cb67-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Microsoft365R::get_personal_outlook()</span></span></code></pre></div>
+</div>
+<div id="とりあえず使う" class="section level3 hasAnchor" number="17.1.2">
+<h3><span class="header-section-number">17.1.2</span> とりあえず使う<a href="microsoft365r.html#とりあえず使う" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>まずは，試しにメールを作って送ってみる．</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="microsoft365r.html#cb68-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># 会社などで組織で契約している場合</span></span>
+<span id="cb68-2"><a href="microsoft365r.html#cb68-2" aria-hidden="true" tabindex="-1"></a>outlook <span class="ot">&lt;-</span> Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb68-3"><a href="microsoft365r.html#cb68-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># 個人利用の場合</span></span>
+<span id="cb68-4"><a href="microsoft365r.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># outlook &lt;- Microsoft365R::get_personal_outlook()</span></span>
+<span id="cb68-5"><a href="microsoft365r.html#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="microsoft365r.html#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 個別にemailを送る場合</span></span>
+<span id="cb68-7"><a href="microsoft365r.html#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
+<span id="cb68-8"><a href="microsoft365r.html#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メールはoutlookの下書きフォルダにも保存されている</span></span>
+<span id="cb68-9"><a href="microsoft365r.html#cb68-9" aria-hidden="true" tabindex="-1"></a>em <span class="ot">&lt;-</span> </span>
+<span id="cb68-10"><a href="microsoft365r.html#cb68-10" aria-hidden="true" tabindex="-1"></a>  outlook<span class="sc">$</span><span class="fu">create_email</span>(</span>
+<span id="cb68-11"><a href="microsoft365r.html#cb68-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="st">&quot;Hello from R</span><span class="sc">\n</span><span class="st">Hello from R</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb68-12"><a href="microsoft365r.html#cb68-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">&quot;Hello&quot;</span>,</span>
+<span id="cb68-13"><a href="microsoft365r.html#cb68-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">&quot;matutosi@gmail.com&quot;</span>, </span>
+<span id="cb68-14"><a href="microsoft365r.html#cb68-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">cc =</span> <span class="st">&quot;matutosi@konan-wu.ac.jp&quot;</span></span>
+<span id="cb68-15"><a href="microsoft365r.html#cb68-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb68-16"><a href="microsoft365r.html#cb68-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-17"><a href="microsoft365r.html#cb68-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール送信</span></span>
+<span id="cb68-18"><a href="microsoft365r.html#cb68-18" aria-hidden="true" tabindex="-1"></a>em<span class="sc">$</span><span class="fu">send</span>()</span>
+<span id="cb68-19"><a href="microsoft365r.html#cb68-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-20"><a href="microsoft365r.html#cb68-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># outlookの下書きフォルダからメールを取り出す</span></span>
+<span id="cb68-21"><a href="microsoft365r.html#cb68-21" aria-hidden="true" tabindex="-1"></a>drafts <span class="ot">&lt;-</span> outlook<span class="sc">$</span><span class="fu">get_drafts</span>()<span class="sc">$</span><span class="fu">list_emails</span>()</span>
+<span id="cb68-22"><a href="microsoft365r.html#cb68-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 下書きフォルダのメール一覧</span></span>
+<span id="cb68-23"><a href="microsoft365r.html#cb68-23" aria-hidden="true" tabindex="-1"></a>drafts</span>
+<span id="cb68-24"><a href="microsoft365r.html#cb68-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 下書きフォルダのメールの1つ目を送信</span></span>
+<span id="cb68-25"><a href="microsoft365r.html#cb68-25" aria-hidden="true" tabindex="-1"></a>drafts[[<span class="dv">1</span>]]<span class="sc">$</span><span class="fu">send</span>()</span>
+<span id="cb68-26"><a href="microsoft365r.html#cb68-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-27"><a href="microsoft365r.html#cb68-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 受信トレイのメール一覧</span></span>
+<span id="cb68-28"><a href="microsoft365r.html#cb68-28" aria-hidden="true" tabindex="-1"></a>inbox <span class="ot">&lt;-</span> outlook<span class="sc">$</span><span class="fu">get_inbox</span>()<span class="sc">$</span><span class="fu">list_emails</span>()</span>
+<span id="cb68-29"><a href="microsoft365r.html#cb68-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 受信トレイの1つ目の内容</span></span>
+<span id="cb68-30"><a href="microsoft365r.html#cb68-30" aria-hidden="true" tabindex="-1"></a>inbox[[<span class="dv">1</span>]]</span></code></pre></div>
+</div>
+<div id="メールの一斉送信" class="section level3 hasAnchor" number="17.1.3">
+<h3><span class="header-section-number">17.1.3</span> メールの一斉送信<a href="microsoft365r.html#メールの一斉送信" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>宛先や本文をエクセルに入力しておき，そこからデータを抽出して一斉にメールを送信できる．</p>
 <ul>
-<li>RSelenium: CRANからインストール<br />
+<li>送信: send(必須) 1: 送信する，0: 下書きに保存</li>
+<li>宛先: to(必須)<br />
 </li>
-<li>Selenium: 本家サイトからインストール
-<ul>
-<li>注意: ver3.xxx をインストールする<br />
-ver4.0 以上はRSeleniumuが対応していない(Pythonなら可)<br />
+<li>CC: cc(任意)<br />
 </li>
-</ul></li>
-<li>ChromeDriver
-<ul>
-<li>注意: 自身の利用しているブラウザのドライバが必要(バージョンも合致する必要あり)
-GoogleChromeは自動的にupdateされるので，バージョンをよく確認する
-通常は，安定版の最新版で大丈夫である</li>
-<li>Seleniumと同じフォルダに保存する</li>
-</ul></li>
+<li>BCC: bcc(任意)<br />
+</li>
+<li>件名: subject(必須でないが，入力推奨)<br />
+</li>
+<li>本文: body(必須でないが，入力推奨)<br />
+</li>
+<li>添付ファイル: attachment(任意)</li>
 </ul>
-</div>
-<div id="ブラウザの自動化" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> ブラウザの自動化<a href="rselenium.html#ブラウザの自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="section-2" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> </h2>
-<div id="使い方-2" class="section level3 hasAnchor" number="10.3.1">
-<h3><span class="header-section-number">10.3.1</span> 使い方<a href="rselenium.html#使い方-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="注意点-2" class="section level3 hasAnchor" number="10.3.2">
-<h3><span class="header-section-number">10.3.2</span> 注意点<a href="rselenium.html#注意点-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-<div id="要素の取得" class="section level2 hasAnchor" number="10.4">
-<h2><span class="header-section-number">10.4</span> 要素の取得<a href="rselenium.html#要素の取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>idがわかるとき
-document.getElementByID()</p>
-<p>xpath
-document.selectQueryAll()[]
-動的にサイトが作られているときには，変化する可能性があるので注意</p>
-<p>使用されているJavaScriptの関数がわかる
-script &lt;- “”
-rem$excute(script)</p>
-<p>例
-BiSSの文字サイズの変更
-主命リストの列数の変更</p>
-<p>スクレイピングの実行時には，適切な時間間隔を空ける
-- 通常は5秒以上を求めていることが多い</p>
-<p>ページ遷移の命令を送信後，十分な間隔がないとHTMLの要素を取得しきれていないことがある
-極端な場合，サーバーからの情報がほとんど何も送られていない，つまりページの内容がほとんど何もないことにある．
-この状況は，通常のマウス操作では何も表示されていないところをクリックするのと同じ状態である．
-サーバからの情報を待つ意味でも適度な間隔を空けるのが望ましい</p>
-<p>動的なサイトの場合は，HTMLの構成中の可能性もある
-ログイン等のページでも，遷移途中のことがある．</p>
-</div>
-<div id="その他" class="section level2 hasAnchor" number="10.5">
-<h2><span class="header-section-number">10.5</span> その他<a href="rselenium.html#その他" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Rからシェルのコマンドを使う
-<ul>
-<li>pngからPDFへ変換<br />
-</li>
-<li>ファイルの移動<br />
-</li>
-<li>Seleniumuの起動・終了<br />
-</li>
-<li>MeCabやGINZAの実行</li>
-</ul></li>
-</ul>
+<p>宛先が入力されていないとメールは送信できない．
+CCとBCCは任意．<br />
+件名と本文はなくても送信できるが，両方とも何もないとメールの意味がない．<br />
+添付ファイルがあれば，ファイル名を指定．
+複数ファイルを添付するときは，カンマでpath(ファイル名)を区切る．
+絶対pathで指定すると間違いは少ない．</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="microsoft365r.html#cb69-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 宛先や本文をエクセルで作成しておき</span></span>
+<span id="cb69-2"><a href="microsoft365r.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   一斉にメールを作成・送信する場合</span></span>
+<span id="cb69-3"><a href="microsoft365r.html#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="microsoft365r.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 関数の読み込み</span></span>
+<span id="cb69-5"><a href="microsoft365r.html#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://gist.githubusercontent.com/matutosi/bed00135698c8e3d2c49ef08d12eef9c/raw/6acc2de844eeeab03aaf36f2391e223d621b36a8/outlook.R&quot;</span>)</span>
+<span id="cb69-6"><a href="microsoft365r.html#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-7"><a href="microsoft365r.html#cb69-7" aria-hidden="true" tabindex="-1"></a>outlook <span class="ot">&lt;-</span> Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb69-8"><a href="microsoft365r.html#cb69-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># エクセルファイルの内容</span></span>
+<span id="cb69-9"><a href="microsoft365r.html#cb69-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   working directoryにファイルがない場合は，</span></span>
+<span id="cb69-10"><a href="microsoft365r.html#cb69-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   絶対パス(&quot;c:/user/documents/outlook.xlsx&quot;など)で指定</span></span>
+<span id="cb69-11"><a href="microsoft365r.html#cb69-11" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;outlook.xlsx&quot;</span></span>
+<span id="cb69-12"><a href="microsoft365r.html#cb69-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成・送信</span></span>
+<span id="cb69-13"><a href="microsoft365r.html#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb69-14"><a href="microsoft365r.html#cb69-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-15"><a href="microsoft365r.html#cb69-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
+<span id="cb69-16"><a href="microsoft365r.html#cb69-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   &quot;send = FALSE&quot; にすれば，メールを作成して下書きに保存</span></span>
+<span id="cb69-17"><a href="microsoft365r.html#cb69-17" aria-hidden="true" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 
+</div>
 </div>
 </div>
             </section>
@@ -384,8 +416,8 @@ BiSSの文字サイズの変更
           </div>
         </div>
       </div>
-<a href="rvest.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reticulate.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pdf2docx.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

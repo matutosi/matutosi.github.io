@@ -107,15 +107,15 @@ head(mpg) # 燃費データ
 ```
 
 ```
-## # A tibble: 6 × 11
+## # A tibble: 6 x 11
 ##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
 ##   <chr>        <chr> <dbl> <int> <int> <chr>      <chr> <int> <int> <chr> <chr> 
-## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
-## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa…
-## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa…
-## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
-## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
-## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…
+## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa~
+## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa~
+## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa~
+## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa~
+## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa~
+## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa~
 ```
 
 ```r
@@ -129,16 +129,16 @@ tmp <-
 ```
 
 ```
-## # A tibble: 6 × 12
+## # A tibble: 6 x 12
 ##   manufacturer model     displ  year   cyl trans1 trans2 drv     cty   hwy fl   
 ##   <chr>        <chr>     <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
 ## 1 audi         a4          1.8  1999     4 auto   l5     f        18    29 p    
 ## 2 audi         a4          1.8  1999     4 manual m5     f        21    29 p    
 ## 3 audi         a4          2.8  1999     6 auto   l5     f        16    26 p    
 ## 4 audi         a4          2.8  1999     6 manual m5     f        18    26 p    
-## 5 audi         a4 quatt…   1.8  1999     4 manual m5     4        18    26 p    
-## 6 audi         a4 quatt…   1.8  1999     4 auto   l5     4        16    25 p    
-## # ℹ 1 more variable: class <chr>
+## 5 audi         a4 quatt~   1.8  1999     4 manual m5     4        18    26 p    
+## 6 audi         a4 quatt~   1.8  1999     4 auto   l5     4        16    25 p    
+## # i 1 more variable: class <chr>
 ```
 
 ```r
@@ -151,16 +151,16 @@ tmp %<>%
 ```
 
 ```
-## # A tibble: 6 × 12
+## # A tibble: 6 x 12
 ##   manufacturer model     displ  year   cyl trans1 trans2 drv     cty   hwy fl   
 ##   <chr>        <chr>     <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
 ## 1 audi         a4          1.8  1999     4 auto   l5     f        18    29 p    
 ## 2 audi         a4          1.8  1999     4 manual m5     f        21    29 p    
 ## 3 audi         a4          2.8  1999     6 auto   l5     f        16    26 p    
 ## 4 audi         a4          2.8  1999     6 manual m5     f        18    26 p    
-## 5 audi         a4 quatt…   1.8  1999     4 manual m5     4        18    26 p    
-## 6 audi         a4 quatt…   1.8  1999     4 auto   l5     4        16    25 p    
-## # ℹ 1 more variable: class <chr>
+## 5 audi         a4 quatt~   1.8  1999     4 manual m5     4        18    26 p    
+## 6 audi         a4 quatt~   1.8  1999     4 auto   l5     4        16    25 p    
+## # i 1 more variable: class <chr>
 ```
 
 注意点としては，試行錯誤でコードを書いている途中は，あまり使わないほうが良いだろう．
@@ -255,7 +255,7 @@ mpg %>% .["manufacturer"]   %>% head()
 ```
 
 ```
-## # A tibble: 6 × 1
+## # A tibble: 6 x 1
 ##   manufacturer
 ##   <chr>       
 ## 1 audi        
@@ -291,7 +291,7 @@ mpg %>% `[`("manufacturer")  %>% head()
 ```
 
 ```
-## # A tibble: 6 × 1
+## # A tibble: 6 x 1
 ##   manufacturer
 ##   <chr>       
 ## 1 audi        

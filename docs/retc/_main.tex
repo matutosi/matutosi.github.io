@@ -118,7 +118,7 @@
 
 \title{Rにる作業の自動化・効率化 -各種パッケージの活用方法-}
 \author{Toshikazu Masumura}
-\date{2023-04-25}
+\date{2023-04-26}
 
 \begin{document}
 \maketitle
@@ -147,6 +147,60 @@ Pythonは比較的習得しやすい言語らしく，多くの人が使って�
 また，改善案をご教示いただければありがたい．
 
 \href{mailto:matutosi@gmail.com}{\nolinkurl{matutosi@gmail.com}}
+
+\hypertarget{R}{%
+\section{Rとは}\label{R}}
+
+Rは，統計解析環境であるとともに，プログラミング言語である．
+プログラミング言語としては，やや特殊な文法をもっている．
+そのため，他の言語よりも好き嫌いが激しいと思われる．
+
+\hypertarget{rux306eux7279ux5fb4}{%
+\subsection{Rの特徴}\label{rux306eux7279ux5fb4}}
+
+文法的に特殊な点では，代入での「\textless-」使用やパイプ(「\%\textgreater\%」や「\textbar\textgreater」(R-4.1以降))を多様することが挙げられる．
+
+他の多くのプログラミング言語では，代入には「=」を使用する．
+Rでも「=」を使えるが，「\textless-」を好んで使う人が多いと思われる．
+少なくとも私はそうしている．
+理由を問われても特には思いつかないが，慣れていることや，コードを見た時にすぐにRだとわかるぐらいだろうか．
+実用的には，「=」を入力するよりも手間がかかるし面倒なはずであるが，すでに手が慣れてしまっている．
+
+パイプを最初に見たときには違和感を覚えたが，使い始めるとクセになる．
+クセになるだけではなく，同じ変数名を何度も使ったり，中間の変数名を考えなくて良い点で優れている．
+第1引数を省略できるため，入力の手間が少ない．
+パイプだけの恩恵ではなく，tidyverseの利用も大きいが，コードが簡潔になって，コードの使い回しもし易い．
+パイプにはこのような多くの利点がある．
+
+他にも「::」がやたらと出てくることや，実行速度が遅いなど欠点もそれなりにある．
+そもそも完璧なプログラミング言語などそ存在せず，それぞれが利点・欠点を持っている．
+それぞれの得意な分野でうまく使うことが重要である．
+とはいいながら，多くのプログラミング言語を習得するのは困難である．
+私はこれまでちょっとだけでもかじったことのある言語としては，
+FORTRAN，Perl，Ruby，C，C++，VBA，Java，Python，JavaScript，Rなどがある．
+それぞれなんとなく読むことはできるが，実際によく使うのはRだけである．
+JavaScriptはその次に使っているが，頻度は非常に低い．
+Pythonは勉強中である．
+
+\hypertarget{rux3092ux6975ux3081ux308b}{%
+\subsection{Rを極める}\label{rux3092ux6975ux3081ux308b}}
+
+プログラミング言語にはそれぞれ得意分野があることは確かだが，垣根を超えて使うことはできる．
+例えば，RからPythonを使うパッケージとしてreticulateがあり，PythonからRを使うパッケージとしてrpy2がある．
+つまり，1つのプログラミング言語でしかできないということは，あまりなく使いたい言語を使って，勉強したい言語を勉強すれば良い．
+
+Rの総本山であるCRANには，他にも様々なパッケージがあり，いろいろな道具が揃っている．
+多くの言語を習得するのも良いが，いっそのこと1つの言語をある程度極めて，そこから使えるものは使うのも良い方法と言えるだろう．
+そこで，Rのパッケージを使って，各種操作をすることを目的にこの文章を執筆した(している)．
+
+\hypertarget{ux30d8ux30ebux30d7ux30c9ux30adux30e5ux30e1ux30f3ux30c8}{%
+\subsection{ヘルプドキュメント}\label{ux30d8ux30ebux30d7ux30c9ux30adux30e5ux30e1ux30f3ux30c8}}
+
+ところで，Rにはヘルプ・ドキュメントがしっかりしているというのも非常に良い．
+ヘルプは，「?関数名」としてRから直接呼び出すことができ，関数の引数，返り値，使用例などが詳しく解説されていることが多い．
+ユーザーとしてはいちいちネットや書籍で調べなくても良いのが心強い．
+パッケージの開発者としては，既存のパッケージのドキュメントがしっかりしているため，それに合わせるべくしっかりとしたドキュメントを書かなければならないという圧力はあることは事実である．
+ただ，ドキュメントをしっかり作っておかないと，開発者も関数の使い方を忘れてしまうことになりかねないため，結局は「他人のためならず」と言えるだろう．
 
 \hypertarget{install}{%
 \section{Rのインストール}\label{install}}
@@ -310,8 +364,8 @@ CRANに掲載されており，パッケージの名前がわかっていたら�
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{sf}{%
-\section{sfでファイル操作}\label{sf}}
+\hypertarget{fs}{%
+\section{fsでファイル操作}\label{fs}}
 
 \hypertarget{ux306fux3058ux3081ux306b-1}{%
 \subsection{はじめに}\label{ux306fux3058ux3081ux306b-1}}
@@ -330,7 +384,7 @@ Windowsならコマンドプロンプト(古い言い方なら，いわゆるdos
 しかし，baseの関数群の中には名前が分かりにくい点や引数の一貫性が無い点などの難点がある．
 これは，Rが発展していく中で徐々に関数が追加されたことによるようだ．
 
-sfパッケージでは，baseの関数群を整理するとともに，新たな有用な関数が追加されている．
+fsパッケージでは，baseの関数群を整理するとともに，新たな有用な関数が追加されている．
 そのため，命名規則が一貫しており，ベクトル化した引数を受け付けるため，非常に使いやすい．
 
 複数のOSを使う場合は，コマンドが異なるためそれぞれでコマンドを覚えなければならない．
@@ -395,29 +449,18 @@ fsパッケージの関数は，パス操作はpath\_}，ディレクトリ操�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"sf"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"fs"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## package 'sf' successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\matutosi\AppData\Local\Temp\RtmpCADyDj\downloaded_packages
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(fs)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Linking to GEOS 3.11.1, GDAL 3.6.2, PROJ 9.1.1; sf_use_s2() is TRUE
-\end{verbatim}
-
-\hypertarget{sfux306eux95a2ux6570ux7fa4}{%
-\subsection{sfの関数群}\label{sfux306eux95a2ux6570ux7fa4}}
+\hypertarget{fsux306eux95a2ux6570ux7fa4}{%
+\subsection{fsの関数群}\label{fsux306eux95a2ux6570ux7fa4}}
 
 パス操作(path\_\emph{)，ディレクトリ操作(dir\_})，ファイル操作(file\_*)の関数群に分けることができる．
 パス操作には，baseやshellにはない機能が多くあって，使いやすい．
@@ -500,15 +543,15 @@ shellやbaseでも同様の機能があるが，複数処理のdir\_map()やツ�
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{sfux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux64cdux4f5cux4f8b}{%
-\subsection{sfを使ったファイル操作例}\label{sfux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux64cdux4f5cux4f8b}}
+\hypertarget{fsux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux64cdux4f5cux4f8b}{%
+\subsection{fsを使ったファイル操作例}\label{fsux3092ux4f7fux3063ux305fux30d5ux30a1ux30a4ux30ebux64cdux4f5cux4f8b}}
 
 ごく個人的なことだが，Rのバージョンアップ時にはRconsoleとRProfile.siteを古いバージョンから複製して，カスタマイズした設定を引き継いでいる．
 バージョンアップをそれほど頻繁にしないのであれば，手作業でコピーしてもそれほど問題はない．
 普通のRユーザなら常に最新版を使わなくても良い．
 ただ，Rパッケージの開発をしていると，開発中のパッケージが依存しているパッケージが最新版のRで開発されている旨の警告がでることが結構ある．
 ごく最近までは，手作業でファイルをコピーしていたが，よく考えたらこういった作業は自動化するべきだと気づいた．
-そこで，sfパッケージを使ってファイルをコピーするスクリプトを作成した．
+そこで，fsパッケージを使ってファイルをコピーするスクリプトを作成した．
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -568,13 +611,6 @@ stringrには，
 \FunctionTok{install.packages}\NormalTok{(}\StringTok{"stringr"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## package 'stringr' successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\matutosi\AppData\Local\Temp\RtmpIT70hi\downloaded_packages
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -674,7 +710,7 @@ facetによるグループ分けも便利
 magrittrとの相性も良い．
 特にファイル名を設定するときの\texttt{\%\$\%}や\texttt{\%T\%}など
 
-ggplot2をサポートするライブラリも豊富
+ggplot2をサポートするパッケージも豊富
 
 凡例の自動的な位置決めや配置など
 ggpubrなども
@@ -756,14 +792,53 @@ reactiveの考え方を覚える必要あり
 \end{itemize}
 
 \hypertarget{magrittr}{%
-\section{magrritrの勧め}\label{magrittr}}
+\section{magrritrでコードを簡潔に}\label{magrittr}}
+
+パッケージmagrittrはちょっと変わっている．
+
+そもそも名前が変わっていて何と読んで良いのか分からない．
+公式ページには「magrittr (to be pronounced with a sophisticated french accent) 」と書かれている．
+フランス語は，大学の第2外国語で習ったが，すでに記憶の彼方に沈んでしまっている．
+
+主な関数がパイプ(\texttt{\%\textgreater{}\%})である点もちょっと変わっている．
+ただし，パイプ以外にもパイプとともに使うと便利な関数も含まれている．
+例えば，set\_colnames()はデータフレームの列名を変更する時に便利だ．
+パイプを使ったコードの途中で列名を変更するために，\texttt{\textless{}-\ colnames()}でコードを区切るのは面倒である．
+\# \textless- colnames でできる?
+\# \texttt{{[}\textless{}-}
+また，set\_colnames()以外にも，dplyrのrename()やselect()で列名を変更する方法もある．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hoge }\OtherTok{\textless{}{-}} \FunctionTok{colnames}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"foo"}\NormalTok{, }\StringTok{"bar"}\NormalTok{))}
+\NormalTok{hoge  }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  magrittr}\SpecialCharTok{::}\FunctionTok{set\_colnames}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"foo"}\NormalTok{, }\StringTok{"bar"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(...)}
+\end{Highlighting}
+\end{Shaded}
+
+magrittrに含まれる関数たちで，どんな内容か気になるものの一覧
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{export}\NormalTok{(}\StringTok{"n\textquotesingle{}est pas"}\NormalTok{)}
+\FunctionTok{export}\NormalTok{(add)}
+\FunctionTok{export}\NormalTok{(and)}
+\FunctionTok{export}\NormalTok{(equals)}
+\FunctionTok{export}\NormalTok{(not)}
+\FunctionTok{export}\NormalTok{(or)}
+\FunctionTok{export}\NormalTok{(pipe\_nested)}
+\FunctionTok{export}\NormalTok{(set\_colnames)}
+\FunctionTok{export}\NormalTok{(use\_series)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{tidyverseux3068magrittr}{%
 \subsection{tidyverseとmagrittr}\label{tidyverseux3068magrittr}}
 
 tidyverseは，Rでのデータ解析には欠かせないものになっている．
 そこで，Rを起動時にtidyverseを読み込む人は多いだろう．
-なお，tidyverseは1つのライブラリではなく，複数のライブラリからなる．
+なお，tidyverseは1つのパッケージではなく，複数のパッケージからなるパッケージ群である．
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -771,9 +846,9 @@ tidyverseは，Rでのデータ解析には欠かせないものになってい�
 \end{Highlighting}
 \end{Shaded}
 
-これらのライブラリの多く(forcats，tibble，stringr，dplyr，tidyr，purrr)で，\texttt{\%\textgreater{}\%} (パイプ)を使うことができる．
-私は\texttt{\%\textgreater{}\%}がtidyverse独自のものだと勘違いをしていた．
-しかし，\texttt{\%\textgreater{}\%}はもとはライブラリmagrittrの関数であり，そこからインポートされている．
+tidyverseのパッケージ群を読み込んだときや，そのうちの個別のパッケージ(forcats，tibble，stringr，dplyr，tidyr，purrrなど)を読み込むと，\texttt{\%\textgreater{}\%} (パイプ)を使うことができる．
+私は\texttt{\%\textgreater{}\%}がtidyverseの独自のものだと勘違いをしていた．
+しかし，\texttt{\%\textgreater{}\%}はもとはパッケージmagrittrの関数であり，そこからインポートされている．
 そのため，tidyverseを読み込むと使うことができる．
 \texttt{\%\textgreater{}\%}は，慣れるまでは何が便利なのか分からないが，慣れると欠かせなくなる．
 さらに使っていると，癖なってしまって無駄にパイプを繋ぐこともある．
@@ -799,6 +874,7 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 \end{itemize}
 
 これらの関数は，tidyverseには含まれていないため，使用するにはmagrittrを読み込む必要がある．
+\texttt{\%\textgreater{}\%}と同じように使うことができるが，役割がそれぞれ違う．
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -824,35 +900,27 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 \end{verbatim}
 
 \hypertarget{section}{%
-\subsection{\texorpdfstring{\texttt{\%\textless{}\textgreater{}\%}}{\%\textless\textgreater\%}}\label{section}}
-
-\hypertarget{ux4f7fux3044ux65b9}{%
-\subsubsection{使い方}\label{ux4f7fux3044ux65b9}}
+\subsubsection{\texorpdfstring{\texttt{\%\textless{}\textgreater{}\%}}{\%\textless\textgreater\%}}\label{section}}
 
 \texttt{\%\textless{}\textgreater{}\%}は，パイプを使って処理した内容を，最初のオブジェクトに再度代入するときに使う．
 ほんの少しだけ，コードを短くできる．
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mpg }\CommentTok{\# 燃費データ}
+\FunctionTok{head}\NormalTok{(mpg) }\CommentTok{\# 燃費データ}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 234 x 11
-##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
-##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
-##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
-##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
-##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
-##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
-##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
-##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
-##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
-##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
-## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
-## # i 224 more rows
+## # A tibble: 6 x 11
+##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
+##   <chr>        <chr> <dbl> <int> <int> <chr>      <chr> <int> <int> <chr> <chr> 
+## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa~
+## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa~
+## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa~
+## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa~
+## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa~
+## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa~
 \end{verbatim}
 
 \begin{Shaded}
@@ -862,25 +930,21 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 \NormalTok{  tmp }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(year}\SpecialCharTok{==}\DecValTok{1999}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{separate}\NormalTok{(trans, }\AttributeTok{into=}\FunctionTok{c}\NormalTok{(}\StringTok{"trans1"}\NormalTok{, }\StringTok{"trans2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{print}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 117 x 12
-##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
-##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
-##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
-##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
-##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
-##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
-##  5 audi         a4 quat~   1.8  1999     4 manual m5     4        18    26 p    
-##  6 audi         a4 quat~   1.8  1999     4 auto   l5     4        16    25 p    
-##  7 audi         a4 quat~   2.8  1999     6 auto   l5     4        15    25 p    
-##  8 audi         a4 quat~   2.8  1999     6 manual m5     4        17    25 p    
-##  9 audi         a6 quat~   2.8  1999     6 auto   l5     4        15    24 p    
-## 10 chevrolet    c1500 s~   5.7  1999     8 auto   l4     r        13    17 r    
-## # i 107 more rows
+## # A tibble: 6 x 12
+##   manufacturer model     displ  year   cyl trans1 trans2 drv     cty   hwy fl   
+##   <chr>        <chr>     <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
+## 1 audi         a4          1.8  1999     4 auto   l5     f        18    29 p    
+## 2 audi         a4          1.8  1999     4 manual m5     f        21    29 p    
+## 3 audi         a4          2.8  1999     6 auto   l5     f        16    26 p    
+## 4 audi         a4          2.8  1999     6 manual m5     f        18    26 p    
+## 5 audi         a4 quatt~   1.8  1999     4 manual m5     4        18    26 p    
+## 6 audi         a4 quatt~   1.8  1999     4 auto   l5     4        16    25 p    
 ## # i 1 more variable: class <chr>
 \end{verbatim}
 
@@ -890,208 +954,177 @@ tidyverseの関数では，引数とするオブジェクトが統一されて�
 \NormalTok{tmp }\SpecialCharTok{\%\textless{}\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(year}\SpecialCharTok{==}\DecValTok{1999}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{separate}\NormalTok{(trans, }\AttributeTok{into=}\FunctionTok{c}\NormalTok{(}\StringTok{"trans1"}\NormalTok{, }\StringTok{"trans2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{print}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 117 x 12
-##    manufacturer model    displ  year   cyl trans1 trans2 drv     cty   hwy fl   
-##    <chr>        <chr>    <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
-##  1 audi         a4         1.8  1999     4 auto   l5     f        18    29 p    
-##  2 audi         a4         1.8  1999     4 manual m5     f        21    29 p    
-##  3 audi         a4         2.8  1999     6 auto   l5     f        16    26 p    
-##  4 audi         a4         2.8  1999     6 manual m5     f        18    26 p    
-##  5 audi         a4 quat~   1.8  1999     4 manual m5     4        18    26 p    
-##  6 audi         a4 quat~   1.8  1999     4 auto   l5     4        16    25 p    
-##  7 audi         a4 quat~   2.8  1999     6 auto   l5     4        15    25 p    
-##  8 audi         a4 quat~   2.8  1999     6 manual m5     4        17    25 p    
-##  9 audi         a6 quat~   2.8  1999     6 auto   l5     4        15    24 p    
-## 10 chevrolet    c1500 s~   5.7  1999     8 auto   l4     r        13    17 r    
-## # i 107 more rows
+## # A tibble: 6 x 12
+##   manufacturer model     displ  year   cyl trans1 trans2 drv     cty   hwy fl   
+##   <chr>        <chr>     <dbl> <int> <int> <chr>  <chr>  <chr> <int> <int> <chr>
+## 1 audi         a4          1.8  1999     4 auto   l5     f        18    29 p    
+## 2 audi         a4          1.8  1999     4 manual m5     f        21    29 p    
+## 3 audi         a4          2.8  1999     6 auto   l5     f        16    26 p    
+## 4 audi         a4          2.8  1999     6 manual m5     f        18    26 p    
+## 5 audi         a4 quatt~   1.8  1999     4 manual m5     4        18    26 p    
+## 6 audi         a4 quatt~   1.8  1999     4 auto   l5     4        16    25 p    
 ## # i 1 more variable: class <chr>
 \end{verbatim}
 
-\hypertarget{ux6ce8ux610fux70b9}{%
-\subsubsection{注意点}\label{ux6ce8ux610fux70b9}}
-
-試行錯誤でコードを書いている途中は，あまり使わないほうが良いだろう．
-もとのオブジェクトが置き換わるので，処理結果が求めるものでないときに，もとに戻れないためである．
+注意点としては，試行錯誤でコードを書いている途中は，あまり使わないほうが良いだろう．
+もとのオブジェクトが置き換わるので，処理結果が求めるものでないときに，もとに戻れなくなってしまう．
+コードを短くできるのは1行だけで，可読性が特に高くなるというわけでもない．
+便利なことは便利で，私も一時期はよく使用していた．
+しかし，上記の理由もあって，最近はほとんど使用していない．
 
 \hypertarget{t}{%
-\subsection{\texorpdfstring{\texttt{\%T\textgreater{}\%}}{\%T\textgreater\%}}\label{t}}
-
-\hypertarget{ux4f7fux3044ux65b9-1}{%
-\subsubsection{使い方}\label{ux4f7fux3044ux65b9-1}}
+\subsubsection{\texorpdfstring{\texttt{\%T\textgreater{}\%}}{\%T\textgreater\%}}\label{t}}
 
 処理途中に分岐をして別の処理をさせたいときに使う．
-ちょっとだけ処理して，変数に保存するとき
-imapと組み合わせると便利かも
-画像を保存するファイル名の設定とか
+例えば，ちょっとだけ処理して，変数に保存するときに使う．
+imapと組み合わせて，保存する画像のファイル名を設定する時に使うと便利である．
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mpg }\CommentTok{\# 燃費データ}
-\end{Highlighting}
-\end{Shaded}
+\texttt{\%T\textgreater{}\%}は便利ではあるが，以下の点で注意が必要である．
+- 分岐途中の結果をオブジェクトに代入するときには，\texttt{\textless{}-}ではなく，\texttt{\textless{}\textless{}-}を使う
+- 明示的に「.」を使う
+- 複数処理があれば，「\{\}」で囲う
+- 処理終了後に「\%\textgreater\%」が必要
 
-\begin{verbatim}
-## # A tibble: 234 x 11
-##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
-##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
-##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
-##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
-##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
-##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
-##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
-##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
-##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
-##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
-## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
-## # i 224 more rows
-\end{verbatim}
-
-\hypertarget{ux6ce8ux610fux70b9-1}{%
-\subsubsection{注意点}\label{ux6ce8ux610fux70b9-1}}
-
-分岐途中の結果をオブジェクトに代入するときには，\texttt{\textless{}-}ではなく，\texttt{\textless{}\textless{}-}を使用する．
-明示的に「.」を使う
-複数処理があれば，「\{\}」で囲う
-処理終了後に「\%\textgreater\%」が必要
 例のコードを示す
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#  mpg \%T\textgreater{}\%}
-\CommentTok{\#    \{}
-\CommentTok{\#      tmp \textless{}\textless{}{-} dplyr::select(., ) }
-\CommentTok{\#    \} \%\textgreater{}\%}
+  \CommentTok{\#  mpg \%T\textgreater{}\%}
+  \CommentTok{\#    \{}
+  \CommentTok{\#      tmp \textless{}\textless{}{-} dplyr::select(., ) }
+  \CommentTok{\#    \} \%\textgreater{}\%}
 \end{Highlighting}
 \end{Shaded}
+
+\texttt{\%T\textgreater{}\%}を使うとコードの途中に，ちょっとだけ枝分かれしたコードを挿入できる．
+有用な機能ではあるが，トリッキーなコードになる可能性があるため，使いすぎには気をつけたい．
 
 \hypertarget{section-1}{%
-\subsection{\texorpdfstring{\texttt{\%\$\%}}{\%\$\%}}\label{section-1}}
+\subsubsection{\texorpdfstring{\texttt{\%\$\%}}{\%\$\%}}\label{section-1}}
 
-\hypertarget{ux4f7fux3044ux65b9-2}{%
-\subsubsection{使い方}\label{ux4f7fux3044ux65b9-2}}
+\texttt{\%\$\%}は，\texttt{\%\textgreater{}\%}と\texttt{.\$}の組み合わせのショートカットである．
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  .}\SpecialCharTok{$}\NormalTok{manufacturer}
+\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ .}\SpecialCharTok{$}\NormalTok{manufacturer }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] "audi"       "audi"       "audi"       "audi"       "audi"      
-##   [6] "audi"       "audi"       "audi"       "audi"       "audi"      
-##  [11] "audi"       "audi"       "audi"       "audi"       "audi"      
-##  [16] "audi"       "audi"       "audi"       "chevrolet"  "chevrolet" 
-##  [21] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [26] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [31] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [36] "chevrolet"  "chevrolet"  "dodge"      "dodge"      "dodge"     
-##  [41] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [46] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [51] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [56] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [61] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [66] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [71] "dodge"      "dodge"      "dodge"      "dodge"      "ford"      
-##  [76] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [81] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [86] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [91] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [96] "ford"       "ford"       "ford"       "ford"       "honda"     
-## [101] "honda"      "honda"      "honda"      "honda"      "honda"     
-## [106] "honda"      "honda"      "honda"      "hyundai"    "hyundai"   
-## [111] "hyundai"    "hyundai"    "hyundai"    "hyundai"    "hyundai"   
-## [116] "hyundai"    "hyundai"    "hyundai"    "hyundai"    "hyundai"   
-## [121] "hyundai"    "hyundai"    "jeep"       "jeep"       "jeep"      
-## [126] "jeep"       "jeep"       "jeep"       "jeep"       "jeep"      
-## [131] "land rover" "land rover" "land rover" "land rover" "lincoln"   
-## [136] "lincoln"    "lincoln"    "mercury"    "mercury"    "mercury"   
-## [141] "mercury"    "nissan"     "nissan"     "nissan"     "nissan"    
-## [146] "nissan"     "nissan"     "nissan"     "nissan"     "nissan"    
-## [151] "nissan"     "nissan"     "nissan"     "nissan"     "pontiac"   
-## [156] "pontiac"    "pontiac"    "pontiac"    "pontiac"    "subaru"    
-## [161] "subaru"     "subaru"     "subaru"     "subaru"     "subaru"    
-## [166] "subaru"     "subaru"     "subaru"     "subaru"     "subaru"    
-## [171] "subaru"     "subaru"     "subaru"     "toyota"     "toyota"    
-## [176] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [181] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [186] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [191] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [196] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [201] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [206] "toyota"     "toyota"     "volkswagen" "volkswagen" "volkswagen"
-## [211] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [216] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [221] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [226] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [231] "volkswagen" "volkswagen" "volkswagen" "volkswagen"
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mpg }\SpecialCharTok{\%$\%}
-\NormalTok{  manufacturer}
+\NormalTok{mpg }\SpecialCharTok{\%$\%}\NormalTok{   manufacturer }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] "audi"       "audi"       "audi"       "audi"       "audi"      
-##   [6] "audi"       "audi"       "audi"       "audi"       "audi"      
-##  [11] "audi"       "audi"       "audi"       "audi"       "audi"      
-##  [16] "audi"       "audi"       "audi"       "chevrolet"  "chevrolet" 
-##  [21] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [26] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [31] "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet"  "chevrolet" 
-##  [36] "chevrolet"  "chevrolet"  "dodge"      "dodge"      "dodge"     
-##  [41] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [46] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [51] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [56] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [61] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [66] "dodge"      "dodge"      "dodge"      "dodge"      "dodge"     
-##  [71] "dodge"      "dodge"      "dodge"      "dodge"      "ford"      
-##  [76] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [81] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [86] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [91] "ford"       "ford"       "ford"       "ford"       "ford"      
-##  [96] "ford"       "ford"       "ford"       "ford"       "honda"     
-## [101] "honda"      "honda"      "honda"      "honda"      "honda"     
-## [106] "honda"      "honda"      "honda"      "hyundai"    "hyundai"   
-## [111] "hyundai"    "hyundai"    "hyundai"    "hyundai"    "hyundai"   
-## [116] "hyundai"    "hyundai"    "hyundai"    "hyundai"    "hyundai"   
-## [121] "hyundai"    "hyundai"    "jeep"       "jeep"       "jeep"      
-## [126] "jeep"       "jeep"       "jeep"       "jeep"       "jeep"      
-## [131] "land rover" "land rover" "land rover" "land rover" "lincoln"   
-## [136] "lincoln"    "lincoln"    "mercury"    "mercury"    "mercury"   
-## [141] "mercury"    "nissan"     "nissan"     "nissan"     "nissan"    
-## [146] "nissan"     "nissan"     "nissan"     "nissan"     "nissan"    
-## [151] "nissan"     "nissan"     "nissan"     "nissan"     "pontiac"   
-## [156] "pontiac"    "pontiac"    "pontiac"    "pontiac"    "subaru"    
-## [161] "subaru"     "subaru"     "subaru"     "subaru"     "subaru"    
-## [166] "subaru"     "subaru"     "subaru"     "subaru"     "subaru"    
-## [171] "subaru"     "subaru"     "subaru"     "toyota"     "toyota"    
-## [176] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [181] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [186] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [191] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [196] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [201] "toyota"     "toyota"     "toyota"     "toyota"     "toyota"    
-## [206] "toyota"     "toyota"     "volkswagen" "volkswagen" "volkswagen"
-## [211] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [216] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [221] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [226] "volkswagen" "volkswagen" "volkswagen" "volkswagen" "volkswagen"
-## [231] "volkswagen" "volkswagen" "volkswagen" "volkswagen"
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
 \end{verbatim}
 
-\hypertarget{ux6ce8ux610fux70b9-2}{%
-\subsubsection{注意点}\label{ux6ce8ux610fux70b9-2}}
+パッケージ開発ではパイプを使った場合の\texttt{.}が推奨されていない．
+R CMD CHECK(???)のpossible problemでWarningが出力され，そのままではCRANでは受け付けてもらえない(たぶん)．
+automaterのようにGithubでパッケージを公開するならそれでも問題はないが，Checkで毎回Warningが出力されるのは，心理的に嬉しくない．
+
+そこで，DESCRIPTIONで次のように\texttt{\%\$\%}や\texttt{\%\textgreater{}\%}をインポートしておくと，パッケージの中でこれらを使える．
+\texttt{\%\textgreater{}\%}だけなら，usethis::use\_pipe()とすれば，開発パッケージのDESCRIPTIONに，importFrom(magrittr,``\%\textgreater\%'')を書いてくれる．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{importFrom}\NormalTok{(magrittr,}\StringTok{"\%\textgreater{}\%"}\NormalTok{)}
+\FunctionTok{importFrom}\NormalTok{(magrittr,}\StringTok{"\%$\%"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+なお余談ではあるが，この場合は\texttt{\$}の代わりに\texttt{{[}{[}}と\texttt{{]}{]}}を使っても同じ結果が得られる．
+\texttt{{[}}と\texttt{{]}}ではデータフレームの1列をそのまま取り出すので，結果が異なる．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ .}\SpecialCharTok{$}\NormalTok{manufacturer      }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ .[[}\StringTok{"manufacturer"}\NormalTok{]] }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ .[}\StringTok{"manufacturer"}\NormalTok{]   }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 1
+##   manufacturer
+##   <chr>       
+## 1 audi        
+## 2 audi        
+## 3 audi        
+## 4 audi        
+## 5 audi        
+## 6 audi
+\end{verbatim}
+
+\texttt{{[}{[}\ {]}{]}}と\texttt{{[}\ {]}}は，それぞれ\texttt{{[}{[}}と\texttt{{[}}という関数であるため，以下のように書くことができる．
+この場合，第1引数がパイプの前から引き継がれるため，\texttt{.}を明示する必要がない．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%} \StringTok{\textasciigrave{}}\AttributeTok{$}\StringTok{\textasciigrave{}}\NormalTok{(manufacturer)    }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%} \StringTok{\textasciigrave{}}\AttributeTok{[[}\StringTok{\textasciigrave{}}\NormalTok{(}\StringTok{"manufacturer"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{() }\CommentTok{\# mpg \%\textgreater{}\% \textasciigrave{}[[\textasciigrave{}(., "manufacturer") と同じ}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "audi" "audi" "audi" "audi" "audi" "audi"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg }\SpecialCharTok{\%\textgreater{}\%} \StringTok{\textasciigrave{}}\AttributeTok{[}\StringTok{\textasciigrave{}}\NormalTok{(}\StringTok{"manufacturer"}\NormalTok{)  }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 1
+##   manufacturer
+##   <chr>       
+## 1 audi        
+## 2 audi        
+## 3 audi        
+## 4 audi        
+## 5 audi        
+## 6 audi
+\end{verbatim}
 
 \hypertarget{rvest}{%
 \section{rvestでスクレイピング}\label{rvest}}
@@ -1185,20 +1218,20 @@ rvestは，静的なサイトを対象とするときに役立つ．
 \hypertarget{htmlux306eux53d6ux5f97}{%
 \subsection{HTMLの取得}\label{htmlux306eux53d6ux5f97}}
 
-\hypertarget{ux4f7fux3044ux65b9-3}{%
-\subsubsection{使い方}\label{ux4f7fux3044ux65b9-3}}
+\hypertarget{ux4f7fux3044ux65b9}{%
+\subsubsection{使い方}\label{ux4f7fux3044ux65b9}}
 
-\hypertarget{ux6ce8ux610fux70b9-3}{%
-\subsubsection{注意点}\label{ux6ce8ux610fux70b9-3}}
+\hypertarget{ux6ce8ux610fux70b9}{%
+\subsubsection{注意点}\label{ux6ce8ux610fux70b9}}
 
 \hypertarget{domux306eux53d6ux5f97}{%
 \subsection{DOMの取得}\label{domux306eux53d6ux5f97}}
 
-\hypertarget{ux4f7fux3044ux65b9-4}{%
-\subsubsection{使い方}\label{ux4f7fux3044ux65b9-4}}
+\hypertarget{ux4f7fux3044ux65b9-1}{%
+\subsubsection{使い方}\label{ux4f7fux3044ux65b9-1}}
 
-\hypertarget{ux6ce8ux610fux70b9-4}{%
-\subsubsection{注意点}\label{ux6ce8ux610fux70b9-4}}
+\hypertarget{ux6ce8ux610fux70b9-1}{%
+\subsubsection{注意点}\label{ux6ce8ux610fux70b9-1}}
 
 \hypertarget{rselenium}{%
 \section{Rselenium}\label{rselenium}}
@@ -1244,11 +1277,11 @@ JavascriptやPHPなどを使って，動的に作成されるサイトでは，U
 \hypertarget{section-2}{%
 \subsection{}\label{section-2}}
 
-\hypertarget{ux4f7fux3044ux65b9-5}{%
-\subsubsection{使い方}\label{ux4f7fux3044ux65b9-5}}
+\hypertarget{ux4f7fux3044ux65b9-2}{%
+\subsubsection{使い方}\label{ux4f7fux3044ux65b9-2}}
 
-\hypertarget{ux6ce8ux610fux70b9-5}{%
-\subsubsection{注意点}\label{ux6ce8ux610fux70b9-5}}
+\hypertarget{ux6ce8ux610fux70b9-2}{%
+\subsubsection{注意点}\label{ux6ce8ux610fux70b9-2}}
 
 \hypertarget{ux8981ux7d20ux306eux53d6ux5f97}{%
 \subsection{要素の取得}\label{ux8981ux7d20ux306eux53d6ux5f97}}
@@ -1494,14 +1527,6 @@ SQLを使い慣れていれば，SQLで各種の操作をするのが良いだ�
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## package 'DBI' successfully unpacked and MD5 sums checked
-## package 'RSQLite' successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\matutosi\AppData\Local\Temp\RtmpwH5dsJ\downloaded_packages
-\end{verbatim}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(DBI)}
@@ -1536,8 +1561,8 @@ SQLを使い慣れていれば，SQLで各種の操作をするのが良いだ�
 ## [1] "mpg"
 \end{verbatim}
 
-\hypertarget{ux4f7fux3044ux65b9-6}{%
-\subsection{使い方}\label{ux4f7fux3044ux65b9-6}}
+\hypertarget{ux4f7fux3044ux65b9-3}{%
+\subsection{使い方}\label{ux4f7fux3044ux65b9-3}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1545,7 +1570,7 @@ SQLを使い慣れていれば，SQLで各種の操作をするのが良いだ�
 \NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{dbSendQuery}\NormalTok{(con, }\StringTok{"SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4"}\NormalTok{)}
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{dbFetch}\NormalTok{(res)}
 \FunctionTok{dbClearResult}\NormalTok{(res)}
-\NormalTok{tibble}\SpecialCharTok{::}\FunctionTok{tibble}\NormalTok{(df)}
+\NormalTok{tibble}\SpecialCharTok{::}\FunctionTok{as\_tibble}\NormalTok{(df)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1576,7 +1601,8 @@ SQLを使い慣れていれば，SQLで各種の操作をするのが良いだ�
 \NormalTok{  tibble}\SpecialCharTok{::}\FunctionTok{as\_tibble}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{print}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(year, model, displ, cyl) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(cyl }\SpecialCharTok{==} \DecValTok{4}\NormalTok{)}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(cyl }\SpecialCharTok{==} \DecValTok{4}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1598,20 +1624,15 @@ SQLを使い慣れていれば，SQLで各種の操作をするのが良いだ�
 \end{verbatim}
 
 \begin{verbatim}
-## # A tibble: 81 x 4
-##     year model      displ   cyl
-##    <int> <chr>      <dbl> <int>
-##  1  1999 a4           1.8     4
-##  2  1999 a4           1.8     4
-##  3  2008 a4           2       4
-##  4  2008 a4           2       4
-##  5  1999 a4 quattro   1.8     4
-##  6  1999 a4 quattro   1.8     4
-##  7  2008 a4 quattro   2       4
-##  8  2008 a4 quattro   2       4
-##  9  1999 malibu       2.4     4
-## 10  2008 malibu       2.4     4
-## # i 71 more rows
+## # A tibble: 6 x 4
+##    year model      displ   cyl
+##   <int> <chr>      <dbl> <int>
+## 1  1999 a4           1.8     4
+## 2  1999 a4           1.8     4
+## 3  2008 a4           2       4
+## 4  2008 a4           2       4
+## 5  1999 a4 quattro   1.8     4
+## 6  1999 a4 quattro   1.8     4
 \end{verbatim}
 
 SQL使いの方は，「SQLではじめるデータ分析 ―クエリで行う前処理、時系列解析、コホート分析、テキスト分析、異常検知」を参考にしてSQLでデータ処理をするのも良いだろう．
@@ -1834,8 +1855,8 @@ CRANにはないが，
 \hypertarget{pdf2docx-1}{%
 \subsection{pdf2docx}\label{pdf2docx-1}}
 
-\hypertarget{ux30d1ux30c3ux30b1ux30fcux30b8-microsoft365r}{%
-\section{パッケージ Microsoft365R}\label{ux30d1ux30c3ux30b1ux30fcux30b8-microsoft365r}}
+\hypertarget{microsoft365r}{%
+\section{Microsoft365R}\label{microsoft365r}}
 
 \# \url{https://cran.r-project.org/web/packages/Microsoft365R}
 \# Outlookの使い方
