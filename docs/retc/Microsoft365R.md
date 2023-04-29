@@ -1,4 +1,4 @@
-# Microsoft365R {#Microsoft365R}
+# Microsoft365R {#microsoft365r}
 
 <!--
   #   https://cran.r-project.org/web/packages/Microsoft365R
@@ -226,6 +226,14 @@ lubridateは，tidyverseに含まれているパッケージの1つである．
 
 日本語の表記でよく出てくる年月日の順の日付表記は，lubridateの関数ymd()でDateクラスに変換する．
 Dateクラスでは，日付(や時刻)の計算が簡単にできるので便利である．
+
+例えば，1月後や1年後の同一日付を得たいとする．
+これは単純なようで実はややこしい問題を含んでいる．
+月には大の月・小の月があるし，年には閏年があるためだ．
+
+lubridateを使えば，簡単に計算できる．
+「+ months(1)」「+ years(1)」とすれば良い．
+
 
 
 ```r
