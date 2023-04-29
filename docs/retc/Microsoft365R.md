@@ -220,9 +220,12 @@ lubridateは，tidyverseに含まれているパッケージの1つである．
 これらは，正規表現によって対応可能である．
 もちろん，日付っぽい表記のすべてを含むことはできないが，よく使う日付表記は網羅できるだろう．
 年表記が2桁の場合，半角や全角のスペースを途中に含んだり，「()」の半角・全角の違いなどの表現揺れもあり得る．
-このあたりは，stringr(あるいはbase)の関数で対応できる．
+表記揺れを修正するための置換や削除などは，stringr(あるいはbase)の関数で対応できる．
 
 
+
+日本語の表記でよく出てくる年月日の順の日付表記は，lubridateの関数ymd()でDateクラスに変換する．
+Dateクラスでは，日付(や時刻)の計算が簡単にできるので便利である．
 
 
 ```r
@@ -241,11 +244,944 @@ library(lubridate)
 ```
 
 ```r
-ymd("2023-4-10")
+x <- ymd("2023-4-10")
+class(x)
 ```
 
 ```
-## [1] "2023-04-10"
+## [1] "Date"
+```
+
+```r
+wday(x, label = TRUE) # week of the day
+```
+
+```
+## [1] 月
+## Levels: 日 < 月 < 火 < 水 < 木 < 金 < 土
+```
+
+```r
+today()
+```
+
+```
+## [1] "2023-04-30"
+```
+
+```r
+today() + years(1)
+```
+
+```
+## [1] "2024-04-30"
+```
+
+```r
+today() + years(2)
+```
+
+```
+## [1] "2025-04-30"
+```
+
+```r
+today() + days(365*1)
+```
+
+```
+## [1] "2024-04-29"
+```
+
+```r
+today() + days(365*2)
+```
+
+```
+## [1] "2025-04-29"
+```
+
+```r
+ymd("2024-1-31") + months(1)
+```
+
+```
+## [1] NA
 ```
 
 
+
+```r
+library(tidyverse)
+```
+
+```
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr   1.1.2     v readr   2.1.4
+## v forcats 1.0.0     v stringr 1.5.0
+## v ggplot2 3.4.2     v tibble  3.2.1
+## v purrr   1.0.1     v tidyr   1.3.0
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+```r
+library(patchwork)
+mweek <- function(x){
+  (mday(x) - 1) %/% 7 + 1
+}
+re <- seq(as.POSIXct("2020-10-1"), as.POSIXct("2020-10-31"), by="day") %>% mweek()
+ex <- rep(1:5, each=7)[1:31]
+testthat::expect_equal(re, ex)
+
+same_pos_next_yr <- function(x){
+  yr <- year(x)
+  mn <- month(x)
+  base <- ymd(paste0(yr + 1, "-", mn, "-", 1))
+  diff <- wday(x) - wday(base)
+  for(i in seq_along(diff)){
+    if(diff[i] < 0){ diff[i] <- diff[i] + 7 }
+  }
+  same_pos <- base + (mweek(x) - 1) * 7 + diff
+  for(i in seq_along(same_pos)){
+    if(month(same_pos[i]) != mn[i]){
+      same_pos[i] <- NA
+      warning("No same position day with ", x[i], "!")
+    }
+  }
+  return(same_pos)
+}
+days <- 
+  as.POSIXct("2023-5-1") %>%
+  ymd() %>%
+  `+`(0:30)
+days_n <- 
+  days %>%
+  same_pos_next_yr()
+```
+
+```
+## Warning in same_pos_next_yr(.): No same position day with 2023-05-29!
+```
+
+```
+## Warning in same_pos_next_yr(.): No same position day with 2023-05-30!
+```
+
+```r
+calendR::calendR(2023,5) / calendR::calendR(2024,5)
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <e7>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <81>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <ab>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <b0>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <b4>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <a8>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <e9>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <87>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <91>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <e5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <9f>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2023' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '日曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '月曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <e7>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <81>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <ab>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '火曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <b0>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <b4>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '水曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <a8>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '木曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <e9>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <87>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <91>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '金曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <e5>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <9f>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <9b>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <97>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '土曜日' in 'mbcsToSbcs': dot substituted for <a5>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <e6>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <9c>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <88>
+```
+
+![](Microsoft365R_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
