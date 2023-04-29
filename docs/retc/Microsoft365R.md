@@ -1192,4 +1192,4 @@ calendR::calendR(2023,5) / calendR::calendR(2024,5)
 ## conversion failure on '5月 2024' in 'mbcsToSbcs': dot substituted for <88>
 ```
 
-![](Microsoft365R_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+![](microsoft365r_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
