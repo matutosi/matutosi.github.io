@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-04-27" />
+<meta name="date" content="2023-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -288,6 +288,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.1.2" data-path="Microsoft365R.html"><a href="Microsoft365R.html#とりあえず使う"><i class="fa fa-check"></i><b>17.1.2</b> とりあえず使う</a></li>
 <li class="chapter" data-level="17.1.3" data-path="Microsoft365R.html"><a href="Microsoft365R.html#メールの一斉送信"><i class="fa fa-check"></i><b>17.1.3</b> メールの一斉送信</a></li>
 </ul></li>
+<li class="chapter" data-level="17.2" data-path="Microsoft365R.html"><a href="Microsoft365R.html#複数のワード文書の文字列を一括置換"><i class="fa fa-check"></i><b>17.2</b> 複数のワード文書の文字列を一括置換</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="Microsoft365R.html"><a href="Microsoft365R.html#置換のコードの例"><i class="fa fa-check"></i><b>17.2.1</b> 置換のコードの例</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="Microsoft365R.html"><a href="Microsoft365R.html#年月日の更新"><i class="fa fa-check"></i><b>17.3</b> 年月日の更新</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="Microsoft365R.html"><a href="Microsoft365R.html#lubridate"><i class="fa fa-check"></i><b>17.3.1</b> lubridate</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -308,9 +316,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="Microsoft365R" class="section level1 hasAnchor" number="17">
 <h1><span class="header-section-number">Chap. 17</span> Microsoft365R<a href="Microsoft365R.html#Microsoft365R" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p># <a href="https://cran.r-project.org/web/packages/Microsoft365R" class="uri">https://cran.r-project.org/web/packages/Microsoft365R</a>
-# Outlookの使い方
-# <a href="https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html" class="uri">https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html</a></p>
+<!--
+  #   https://cran.r-project.org/web/packages/Microsoft365R
+  # Outlookの使い方
+  #   https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html
+-->
+<!--
+-->
 <div id="outlookで複数メール送信を一斉送信" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> Outlookで複数メール送信を一斉送信<a href="Microsoft365R.html#outlookで複数メール送信を一斉送信" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>複数人に全く同じメールを送る場合は，TOやCCに複数の電子メールアドレスを入力すれば良い．
@@ -410,6 +422,110 @@ CCとBCCは任意．<br />
 <span id="cb69-15"><a href="Microsoft365R.html#cb69-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
 <span id="cb69-16"><a href="Microsoft365R.html#cb69-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   &quot;send = FALSE&quot; にすれば，メールを作成して下書きに保存</span></span>
 <span id="cb69-17"><a href="Microsoft365R.html#cb69-17" aria-hidden="true" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="複数のワード文書の文字列を一括置換" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> 複数のワード文書の文字列を一括置換<a href="Microsoft365R.html#複数のワード文書の文字列を一括置換" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>多くのプログラマは，普段はそれぞれの好みのテキストエディタを使っていいるだろう．
+私はWindowsでは古典的なエディタである秀丸エディタを長らく使っている．
+キー割り当てのカスタマイズや自分用の細かなマクロがあるので，今さらエディタを変更できない．
+ートパソコンではThinkPadをずっと使っているので，キーボード自体も変更できない．
+これを変更すると作業効率が悪くなってしまう．
+そのため，デスクトップパソコンでもThinkPadキーボードを愛用している．</p>
+<p>このようにエディタとキーボードだけでパソコンの作業が完了すれば良いのだが，仕事上ワードで文書を作成しなければならないことがある．
+ワードは余計なおせっかいをたくさんしてくれるので，不要なことはしないように設定している．
+それでも，できればワードでの作業は最小限にしたいのが本音である．
+起動に時間はかかるし，置換で使える正規表現がちょっと変だからである．</p>
+<p>Rからワード文書内の文字列を置換すれば，ワードを起動する手間が省略できる．
+また，正規表現を使った置換や複数の組み合わせの置換もできる．
+さらに，「AをB」に「BをA」にという入れ替えも，プログラムで途中に別の文字列への置き換えで実現できる．
+このとき途中で使う文字列が元の文書内にないことは必須条件であるが，これもプログラムで確認可能である．
+もちろん，複数ファイルでの置換やファイル名を正規表現で指定することもできる．</p>
+<!--
+  # なお，VBAでマクロを使えば，複数ファイルの文字列置ができる．
+  # その場合，1つの組み合わせだけでなく，複数の組み合わせの置換もできるだろう．
+  # VBAのマクロと同様のことをRから実行してみる．
+-->
+<div id="置換のコードの例" class="section level3 hasAnchor" number="17.2.1">
+<h3><span class="header-section-number">17.2.1</span> 置換のコードの例<a href="Microsoft365R.html#置換のコードの例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="Microsoft365R.html#cb70-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://ardata-fr.github.io/officeverse/index.html</span></span>
+<span id="cb70-2"><a href="Microsoft365R.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://github.com/omegahat/RDCOMClient</span></span>
+<span id="cb70-3"><a href="Microsoft365R.html#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="Microsoft365R.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># install.packages(&quot;officer&quot;)</span></span>
+<span id="cb70-5"><a href="Microsoft365R.html#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="Microsoft365R.html#cb70-6" aria-hidden="true" tabindex="-1"></a>pkg <span class="ot">&lt;-</span> <span class="st">&quot;D:/matu/work/ToDo/automater/R&quot;</span></span>
+<span id="cb70-7"><a href="Microsoft365R.html#cb70-7" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>(pkg)</span>
+<span id="cb70-8"><a href="Microsoft365R.html#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(officer)</span>
+<span id="cb70-9"><a href="Microsoft365R.html#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb70-10"><a href="Microsoft365R.html#cb70-10" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/&quot;</span></span>
+<span id="cb70-11"><a href="Microsoft365R.html#cb70-11" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb70-12"><a href="Microsoft365R.html#cb70-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-13"><a href="Microsoft365R.html#cb70-13" aria-hidden="true" tabindex="-1"></a>replacement <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;replacement.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb70-14"><a href="Microsoft365R.html#cb70-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-15"><a href="Microsoft365R.html#cb70-15" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> </span>
+<span id="cb70-16"><a href="Microsoft365R.html#cb70-16" aria-hidden="true" tabindex="-1"></a>  replacement[[<span class="st">&quot;file&quot;</span>]] <span class="sc">%&gt;%</span></span>
+<span id="cb70-17"><a href="Microsoft365R.html#cb70-17" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb70-18"><a href="Microsoft365R.html#cb70-18" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regexp =</span> .) <span class="sc">%&gt;%</span></span>
+<span id="cb70-19"><a href="Microsoft365R.html#cb70-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exclude</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(., <span class="st">&quot;^replaced</span><span class="sc">\\</span><span class="st">_&quot;</span>))</span>
+<span id="cb70-20"><a href="Microsoft365R.html#cb70-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-21"><a href="Microsoft365R.html#cb70-21" aria-hidden="true" tabindex="-1"></a>replacement <span class="ot">&lt;-</span> <span class="fu">expand_file</span>(replacement, files)</span>
+<span id="cb70-22"><a href="Microsoft365R.html#cb70-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-23"><a href="Microsoft365R.html#cb70-23" aria-hidden="true" tabindex="-1"></a>files <span class="sc">%&gt;%</span></span>
+<span id="cb70-24"><a href="Microsoft365R.html#cb70-24" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">walk</span>(replace_docs, replacement)</span></code></pre></div>
+</div>
+</div>
+<div id="年月日の更新" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">17.3</span> 年月日の更新<a href="Microsoft365R.html#年月日の更新" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>毎年同じような文書を作成しているが，年だけを更新しなければならないことは多いだろう．
+手作業で日付を更新すると，どうしても間違いが混入する．
+単純な見間違いや入力間違いもあれば，日付を変更して曜日を変更し忘れる，あるいは日付を変更し忘れることをやってしまいがちだ．
+このような更新作業も，Wordの検索・置換の機能で可能だし，Rから特定の日付を別の日付に変換できる．</p>
+<p>いっそのことなら，日付を文書内で自動的に取得して日付あるいは曜日を更新できれば楽ができる．
+例えば，「2023年4月10日(月)」を2024年に変更することを考えよう．
+何番目の何曜日かで日付が決まっているなら，2023年4月10日は第2月曜日である．
+この場合は，2024年4月の第2月曜日は「2024年4月8日(月)」なので，「2023年4月10日(月)」を「2024年4月8日(月)」に置換する．
+一方，日付固定なら「2024年4月10日(水)」に置換する．</p>
+<!--
+日付(月日)を固定したい場合であれば，曜日のみ変更すれば良いので分かりやすい．
+曜日を固定したい場合は「10月の第2日曜日」のように法則がきっちりとしていれば，プログラムは簡単である．
+-->
+<p>さらに，求めた日が日曜日の場合は前日の土曜日あるいは月曜日にずらすとか，10月1日の前後3日以内の火曜日のような法則でも可能である．
+祝日との関連で日付を決定することもあるだろう．
+そのようなときは，祝日データをあわせてコードに入れれば良い．
+とにかく，決め方が明確であり，それによって1つに日付を決めることができれば，プログラムを使って自動化できる．</p>
+<div id="lubridate" class="section level3 hasAnchor" number="17.3.1">
+<h3><span class="header-section-number">17.3.1</span> lubridate<a href="Microsoft365R.html#lubridate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>年月日や曜日を扱う場合，パッケージlubridateを利用するのが便利である．
+lubridateは，tidyverseに含まれているパッケージの1つである．
+日付っぽい文字列を，Dateクラスのオブジェクトに変換できる．</p>
+<p>ワード文書内の日付は，正規表現を用いて入手できる．</p>
+<ul>
+<li>2023年4月10日(月)<br />
+</li>
+<li>4月10日(月)<br />
+</li>
+<li>2023-4-10(月)<br />
+</li>
+<li>2023_4_10(月)<br />
+</li>
+<li>20230410(月)<br />
+</li>
+<li>2023/4/10(月)<br />
+-4/10(月)</li>
+</ul>
+<p>それぞれの曜日なし版が考えられ，月と日が1桁の時に「04」のようにパディング(桁合わせ)されていることもあるだろう．
+これらは，正規表現によって対応可能である．
+もちろん，日付っぽい表記のすべてを含むことはできないが，よく使う日付表記は網羅できるだろう．
+年表記が2桁の場合，半角や全角のスペースを途中に含んだり，「()」の半角・全角の違いなどの表現揺れもあり得る．
+このあたりは，stringr(あるいはbase)の関数で対応できる．</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="Microsoft365R.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Microsoft365R.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">&quot;2023-4-10&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2023-04-10&quot;</code></pre>
 
 </div>
 </div>
