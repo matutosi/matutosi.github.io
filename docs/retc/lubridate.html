@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
-  <meta name="description" content="Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <title>Chap. 7 lubridate | Rにる作業の自動化・効率化 -各種パッケージの活用方法-</title>
+  <meta name="description" content="Chap. 7 lubridate | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta property="og:title" content="Chap. 7 lubridate | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
+  <meta name="twitter:title" content="Chap. 7 lubridate | Rにる作業の自動化・効率化 -各種パッケージの活用方法-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="R.html"/>
+<link rel="prev" href="stringr.html"/>
+<link rel="next" href="ggplot2.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -321,35 +321,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Rにる作業の自動化・効率化 -各種パッケージの活用方法-</h1>
-<p class="author"><em>Toshikazu Masumura</em></p>
-<p class="date"><em>2023-04-30</em></p>
+<div id="lubridate" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chap. 7</span> lubridate<a href="lubridate.html#lubridate" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>年月日や曜日を扱う場合，パッケージlubridateを利用するのが便利である．
+lubridateは，tidyverseに含まれているパッケージの1つで，日付や時刻・時間データを扱う際には必須と言っても過言ではない．</p>
+<div id="月後1年後の同一日付" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> 1月後・1年後の同一日付<a href="lubridate.html#月後1年後の同一日付" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>例えば，1月後や1年後の同一の日付を得たいとする．
+これは単純なようで実はややこしい問題を含んでいる．
+月には大の月・小の月があるし，年には閏年がある．
+そのため，自分で関数を作成しようとするとややこしい．
+そこで，lubridateを活用して，簡単に計算する．</p>
+<p>1年後の同一の日付を得るに日「+ years(1)」とすれば良い．
+単純に365日加えるのとは結果が異なる．
+1月後の場合には「months(1)」を使う</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="lubridate.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># tidyverseに含まれており本来不要，説明用に明示</span></span>
+<span id="cb37-2"><a href="lubridate.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="lubridate.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2023-04-30&quot; &quot;2024-04-30&quot; &quot;2025-04-30&quot; &quot;2026-04-30&quot; &quot;2027-04-30&quot;</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="lubridate.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">365</span> <span class="sc">*</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2023-04-30&quot; &quot;2024-04-29&quot; &quot;2025-04-29&quot; &quot;2026-04-29&quot; &quot;2027-04-29&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="lubridate.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">11</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;2023-04-30&quot; &quot;2023-05-30&quot; &quot;2023-06-30&quot; &quot;2023-07-30&quot; &quot;2023-08-30&quot;
+##  [6] &quot;2023-09-30&quot; &quot;2023-10-30&quot; &quot;2023-11-30&quot; &quot;2023-12-30&quot; &quot;2024-01-30&quot;
+## [11] NA           &quot;2024-03-30&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="lubridate.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">11</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;2023-04-30&quot; &quot;2023-05-30&quot; &quot;2023-06-30&quot; &quot;2023-07-30&quot; &quot;2023-08-30&quot;
+##  [6] &quot;2023-09-30&quot; &quot;2023-10-30&quot; &quot;2023-11-30&quot; &quot;2023-12-30&quot; &quot;2024-01-30&quot;
+## [11] NA           &quot;2024-03-30&quot;</code></pre>
 </div>
-<div id="はじめに" class="section level1 unnumbered hasAnchor">
-<h1>はじめに<a href="index.html#はじめに" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>誰でもそうだろうが，面倒くさい仕事はしたくない．
-というか，したくないことが面倒くさいのだろう．
-ニワトリかタマゴのような話は別として，できることなら，面倒な作業は自動化したい．
-もちろんすべての仕事を自動化できるわけでもないし，文章執筆のように作業内容によっては自動化すべきでないこともある．</p>
-<p>作業の自動化には，プログラミング言語を使うことが多い．
-自動化でよく使われる言語としては，Pythonがある．
-Pythonは比較的習得しやすい言語らしく，多くの人が使っている．
-自分自身も多少はPythonを使えるものの，それよりもRの方が慣れている．
-できることなら(ほぼ)全ての作業をRでやってしまいたい．
-そんなわけで，この文章ではRを使った作業の自動化や効率化方法を紹介する．</p>
-<p>基本的に独学でここまで来たので，我流のスクリプトや汚いコードが多くあると思われるがご容赦頂きたい．
-また，改善案をご教示いただければありがたい．</p>
-<p><a href="mailto:matutosi@gmail.com" class="email">matutosi@gmail.com</a></p>
+<div id="文字列からdateクラスへの変換" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> 文字列からDateクラスへの変換<a href="lubridate.html#文字列からdateクラスへの変換" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>日本語の表記でよく出てくる年・月・日の順の日付表記は，関数ymd()でDateクラスに変換できる．
+ymd()は，日付っぽい文字列などをDateクラスにしてくれる．
+ふつうに使うような以下の文字列は，普通に変換してくれる．
+ちなみに，日付の後ろに「(月)」のような曜日が入っていても問題ない(曜日は無視される)．</p>
+<ul>
+<li>2023年4月10日<br />
+</li>
+<li>2023-4-10<br />
+</li>
+<li>2023_4_10<br />
+</li>
+<li>20230410<br />
+</li>
+<li>2023/4/10</li>
+</ul>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="lubridate.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;2023年4月10日&quot;</span>, <span class="st">&quot;2023-4-10&quot;</span>, <span class="st">&quot;2023_4_10&quot;</span>, <span class="st">&quot;20230410&quot;</span>, <span class="st">&quot;2023/4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="lubridate.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot;</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="lubridate.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;2023年4月10日(月)&quot;</span>, <span class="st">&quot;2023-4-10(月)&quot;</span>, <span class="st">&quot;2023_4_10(月)&quot;</span>, <span class="st">&quot;20230410(月)&quot;</span>, <span class="st">&quot;2023/4/10(月)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="lubridate.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot;</code></pre>
+<p>年が入っていない場合はうまくいかないので，年を追加する必要がある．</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="lubridate.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;4月10日&quot;</span>, <span class="st">&quot;4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="lubridate.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
+<pre><code>## Warning: All formats failed to parse. No formats found.</code></pre>
+<pre><code>## [1] NA NA</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="lubridate.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;4月10日&quot;</span>, <span class="st">&quot;4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="lubridate.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;2023-&quot;</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb53-3"><a href="lubridate.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2023-04-10&quot; &quot;2023-04-10&quot;</code></pre>
+</div>
+<div id="曜日を求める" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> 曜日を求める<a href="lubridate.html#曜日を求める" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>日付をもとにwday()を用いて曜日を求めることができる．
+ただし，デフォルトでは日曜日を「1」，月曜日を「2」のように日曜始まりの場合での曜日番号を示す．
+「label = TRUE」とすると，factorとしての曜日を返してくれる．</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="lubridate.html#cb55-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">today</span>()</span>
+<span id="cb55-2"><a href="lubridate.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(x) <span class="co"># week of the day</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="lubridate.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(x, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 日
+## Levels: 日 &lt; 月 &lt; 火 &lt; 水 &lt; 木 &lt; 金 &lt; 土</code></pre>
+</div>
+<div id="活用例" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> 活用例<a href="lubridate.html#活用例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="lubridate.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb59-2"><a href="lubridate.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(calendR)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="lubridate.html#cb60-1" aria-hidden="true" tabindex="-1"></a>mweek <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb60-2"><a href="lubridate.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">mday</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%/%</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb60-3"><a href="lubridate.html#cb60-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb60-4"><a href="lubridate.html#cb60-4" aria-hidden="true" tabindex="-1"></a>re <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2020-10-1&quot;</span>), <span class="fu">as.POSIXct</span>(<span class="st">&quot;2020-10-31&quot;</span>), <span class="at">by=</span><span class="st">&quot;day&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">mweek</span>()</span>
+<span id="cb60-5"><a href="lubridate.html#cb60-5" aria-hidden="true" tabindex="-1"></a>ex <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each=</span><span class="dv">7</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>]</span>
+<span id="cb60-6"><a href="lubridate.html#cb60-6" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(re, ex)</span>
+<span id="cb60-7"><a href="lubridate.html#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="lubridate.html#cb60-8" aria-hidden="true" tabindex="-1"></a>same_pos_next_yr <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb60-9"><a href="lubridate.html#cb60-9" aria-hidden="true" tabindex="-1"></a>  yr <span class="ot">&lt;-</span> <span class="fu">year</span>(x)</span>
+<span id="cb60-10"><a href="lubridate.html#cb60-10" aria-hidden="true" tabindex="-1"></a>  mn <span class="ot">&lt;-</span> <span class="fu">month</span>(x)</span>
+<span id="cb60-11"><a href="lubridate.html#cb60-11" aria-hidden="true" tabindex="-1"></a>  base <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(yr <span class="sc">+</span> <span class="dv">1</span>, <span class="st">&quot;-&quot;</span>, mn, <span class="st">&quot;-&quot;</span>, <span class="dv">1</span>))</span>
+<span id="cb60-12"><a href="lubridate.html#cb60-12" aria-hidden="true" tabindex="-1"></a>  diff <span class="ot">&lt;-</span> <span class="fu">wday</span>(x) <span class="sc">-</span> <span class="fu">wday</span>(base)</span>
+<span id="cb60-13"><a href="lubridate.html#cb60-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(diff)){</span>
+<span id="cb60-14"><a href="lubridate.html#cb60-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(diff[i] <span class="sc">&lt;</span> <span class="dv">0</span>){ diff[i] <span class="ot">&lt;-</span> diff[i] <span class="sc">+</span> <span class="dv">7</span> }</span>
+<span id="cb60-15"><a href="lubridate.html#cb60-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb60-16"><a href="lubridate.html#cb60-16" aria-hidden="true" tabindex="-1"></a>  same_pos <span class="ot">&lt;-</span> base <span class="sc">+</span> (<span class="fu">mweek</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">7</span> <span class="sc">+</span> diff</span>
+<span id="cb60-17"><a href="lubridate.html#cb60-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(same_pos)){</span>
+<span id="cb60-18"><a href="lubridate.html#cb60-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">month</span>(same_pos[i]) <span class="sc">!=</span> mn[i]){</span>
+<span id="cb60-19"><a href="lubridate.html#cb60-19" aria-hidden="true" tabindex="-1"></a>      same_pos[i] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb60-20"><a href="lubridate.html#cb60-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;No same position day with &quot;</span>, x[i], <span class="st">&quot;!&quot;</span>)</span>
+<span id="cb60-21"><a href="lubridate.html#cb60-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb60-22"><a href="lubridate.html#cb60-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb60-23"><a href="lubridate.html#cb60-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(same_pos)</span>
+<span id="cb60-24"><a href="lubridate.html#cb60-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb60-25"><a href="lubridate.html#cb60-25" aria-hidden="true" tabindex="-1"></a>days <span class="ot">&lt;-</span> </span>
+<span id="cb60-26"><a href="lubridate.html#cb60-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.POSIXct</span>(<span class="st">&quot;2023-5-1&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb60-27"><a href="lubridate.html#cb60-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb60-28"><a href="lubridate.html#cb60-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">30</span>)</span>
+<span id="cb60-29"><a href="lubridate.html#cb60-29" aria-hidden="true" tabindex="-1"></a>days_n <span class="ot">&lt;-</span> </span>
+<span id="cb60-30"><a href="lubridate.html#cb60-30" aria-hidden="true" tabindex="-1"></a>  days <span class="sc">%&gt;%</span></span>
+<span id="cb60-31"><a href="lubridate.html#cb60-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">same_pos_next_yr</span>()</span></code></pre></div>
+<pre><code>## Warning in same_pos_next_yr(.): No same position day with 2023-05-29!</code></pre>
+<pre><code>## Warning in same_pos_next_yr(.): No same position day with 2023-05-30!</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="lubridate.html#cb63-1" aria-hidden="true" tabindex="-1"></a>calendR<span class="sc">::</span><span class="fu">calendR</span>(<span class="dv">2023</span>,<span class="dv">5</span>)</span></code></pre></div>
+<p><img src="lubridate_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="lubridate.html#cb64-1" aria-hidden="true" tabindex="-1"></a>calendR<span class="sc">::</span><span class="fu">calendR</span>(<span class="dv">2024</span>,<span class="dv">5</span>)</span></code></pre></div>
+<p><img src="lubridate_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="R.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="stringr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
