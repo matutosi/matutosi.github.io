@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-04-30" />
+<meta name="date" content="2023-05-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -361,9 +361,9 @@ rename j.pdf 10.pdf</code></pre>
 <h3><span class="header-section-number">9.2.2</span> baseパッケージ<a href="fs.html#baseパッケージ-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>基本的にtidyverseの関数群を使わず，できるだけRの標準の関数を使った例を示す．
 sprintf()は使い慣れていないと，どのように指定するべきか分かりにくい．</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="fs.html#cb66-1" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">paste0</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="st">&quot;.pdf&quot;</span>)</span>
-<span id="cb66-2"><a href="fs.html#cb66-2" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">sprintf</span>(<span class="st">&quot;%02.f&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">&quot;.pdf&quot;</span>)</span>
-<span id="cb66-3"><a href="fs.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">file.rename</span>(old, new)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="fs.html#cb90-1" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">paste0</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb90-2"><a href="fs.html#cb90-2" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">sprintf</span>(<span class="st">&quot;%02.f&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb90-3"><a href="fs.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="fu">file.rename</span>(old, new)</span></code></pre></div>
 </div>
 <div id="fsパッケージ" class="section level3 hasAnchor" number="9.2.3">
 <h3><span class="header-section-number">9.2.3</span> fsパッケージ<a href="fs.html#fsパッケージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -371,16 +371,16 @@ sprintf()は使い慣れていないと，どのように指定するべきか�
 ファイル操作をする際には，文字列の置換・検索などをすることが多いので，stringrが役立つ．
 stringrパッケージの関数は，str_<em>の名前になっているため，覚えやすい．
 fsパッケージの関数は，パス操作はpath_</em>，ディレクトリ操作はdir_<em>，ファイル操作はfile_</em>という名前がついている．</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="fs.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb67-2"><a href="fs.html#cb67-2" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">str_c</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="st">&quot;.pdf&quot;</span>)</span>
-<span id="cb67-3"><a href="fs.html#cb67-3" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="fu">str_pad</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">width =</span> <span class="dv">2</span>, <span class="at">side =</span> <span class="st">&quot;left&quot;</span>, <span class="at">pad =</span> <span class="st">&quot;0&quot;</span>), <span class="st">&quot;.pdf&quot;</span>)</span>
-<span id="cb67-4"><a href="fs.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">file_move</span>(old, new)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="fs.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb91-2"><a href="fs.html#cb91-2" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">str_c</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb91-3"><a href="fs.html#cb91-3" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="fu">str_pad</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">width =</span> <span class="dv">2</span>, <span class="at">side =</span> <span class="st">&quot;left&quot;</span>, <span class="at">pad =</span> <span class="st">&quot;0&quot;</span>), <span class="st">&quot;.pdf&quot;</span>)</span>
+<span id="cb91-4"><a href="fs.html#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="fu">file_move</span>(old, new)</span></code></pre></div>
 </div>
 </div>
 <div id="準備-1" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> 準備<a href="fs.html#準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="fs.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;fs&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="fs.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="fs.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;fs&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="fs.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span></code></pre></div>
 </div>
 <div id="fsの関数群" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> fsの関数群<a href="fs.html#fsの関数群" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -397,52 +397,52 @@ fsパッケージの関数は，パス操作はpath_</em>，ディレクトリ�
 自作してもそれほど難しくはないが，(少なくとも自分の)自作した関数にはバグが入っている可能性がある．
 予想外のパスを指定した場合には，予想外の結果になることがあるだろう．
 そのような不具合を防ぐためにも，fsパッケージのパス関数を使うほうが良さそうである．</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="fs.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">path</span>(<span class="st">&quot;top_dir&quot;</span>, <span class="st">&quot;nested_dir&quot;</span>, <span class="st">&quot;file&quot;</span>, <span class="at">ext =</span> <span class="st">&quot;ext&quot;</span>) <span class="co"># パス作成   </span></span>
-<span id="cb70-2"><a href="fs.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">path_temp</span>(), <span class="fu">path_temp</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 一時パス名の作成   </span></span>
-<span id="cb70-3"><a href="fs.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">path_expand</span>(<span class="st">&quot;~/path&quot;</span>) <span class="co"># &quot;~&quot;をユーザのホームディレクトリに変換したパス   </span></span>
-<span id="cb70-4"><a href="fs.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">path_dir</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># パスからディレクトリ名抽出   </span></span>
-<span id="cb70-5"><a href="fs.html#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">path_file</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># パスからファイル名抽出   </span></span>
-<span id="cb70-6"><a href="fs.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="fu">path_ext</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># パスから拡張子抽出   </span></span>
-<span id="cb70-7"><a href="fs.html#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="fu">path_ext_remove</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># パスから拡張子を削除   </span></span>
-<span id="cb70-8"><a href="fs.html#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="fu">path_home</span>() <span class="co"># ホームディレクトリ   </span></span>
-<span id="cb70-9"><a href="fs.html#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="fu">path_package</span>(<span class="st">&quot;pkgname&quot;</span>, <span class="st">&quot;dir&quot;</span>, <span class="st">&quot;file&quot;</span>) <span class="co"># パッケージのパス名   </span></span>
-<span id="cb70-10"><a href="fs.html#cb70-10" aria-hidden="true" tabindex="-1"></a><span class="fu">path_norm</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 参照や&quot;..&quot;の削除   </span></span>
-<span id="cb70-11"><a href="fs.html#cb70-11" aria-hidden="true" tabindex="-1"></a><span class="fu">path_real</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 実体パス(シンボリックリンクを実体パスに)   </span></span>
-<span id="cb70-12"><a href="fs.html#cb70-12" aria-hidden="true" tabindex="-1"></a><span class="fu">path_abs</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 絶対パス</span></span>
-<span id="cb70-13"><a href="fs.html#cb70-13" aria-hidden="true" tabindex="-1"></a><span class="fu">path_rel</span>(<span class="st">&quot;path/foo&quot;</span>, <span class="st">&quot;path/bar&quot;</span>) <span class="co">#  相対パス  </span></span>
-<span id="cb70-14"><a href="fs.html#cb70-14" aria-hidden="true" tabindex="-1"></a><span class="fu">path_common</span>(<span class="fu">c</span>(<span class="st">&quot;path/foo&quot;</span>, <span class="st">&quot;path/bar&quot;</span>, <span class="st">&quot;path/baz&quot;</span>)) <span class="co"># パスの共通部分   </span></span>
-<span id="cb70-15"><a href="fs.html#cb70-15" aria-hidden="true" tabindex="-1"></a><span class="fu">path_ext_set</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new_ext&quot;</span>) <span class="co"># 拡張子変更   </span></span>
-<span id="cb70-16"><a href="fs.html#cb70-16" aria-hidden="true" tabindex="-1"></a><span class="fu">path_sanitize</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 無効な文字を削除   </span></span>
-<span id="cb70-17"><a href="fs.html#cb70-17" aria-hidden="true" tabindex="-1"></a><span class="fu">path_join</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 結合</span></span>
-<span id="cb70-18"><a href="fs.html#cb70-18" aria-hidden="true" tabindex="-1"></a><span class="fu">path_split</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 分割</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="fs.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">path</span>(<span class="st">&quot;top_dir&quot;</span>, <span class="st">&quot;nested_dir&quot;</span>, <span class="st">&quot;file&quot;</span>, <span class="at">ext =</span> <span class="st">&quot;ext&quot;</span>) <span class="co"># パス作成   </span></span>
+<span id="cb94-2"><a href="fs.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">path_temp</span>(), <span class="fu">path_temp</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 一時パス名の作成   </span></span>
+<span id="cb94-3"><a href="fs.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">path_expand</span>(<span class="st">&quot;~/path&quot;</span>) <span class="co"># &quot;~&quot;をユーザのホームディレクトリに変換したパス   </span></span>
+<span id="cb94-4"><a href="fs.html#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="fu">path_dir</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># パスからディレクトリ名抽出   </span></span>
+<span id="cb94-5"><a href="fs.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="fu">path_file</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># パスからファイル名抽出   </span></span>
+<span id="cb94-6"><a href="fs.html#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="fu">path_ext</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># パスから拡張子抽出   </span></span>
+<span id="cb94-7"><a href="fs.html#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="fu">path_ext_remove</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># パスから拡張子を削除   </span></span>
+<span id="cb94-8"><a href="fs.html#cb94-8" aria-hidden="true" tabindex="-1"></a><span class="fu">path_home</span>() <span class="co"># ホームディレクトリ   </span></span>
+<span id="cb94-9"><a href="fs.html#cb94-9" aria-hidden="true" tabindex="-1"></a><span class="fu">path_package</span>(<span class="st">&quot;pkgname&quot;</span>, <span class="st">&quot;dir&quot;</span>, <span class="st">&quot;file&quot;</span>) <span class="co"># パッケージのパス名   </span></span>
+<span id="cb94-10"><a href="fs.html#cb94-10" aria-hidden="true" tabindex="-1"></a><span class="fu">path_norm</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 参照や&quot;..&quot;の削除   </span></span>
+<span id="cb94-11"><a href="fs.html#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="fu">path_real</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 実体パス(シンボリックリンクを実体パスに)   </span></span>
+<span id="cb94-12"><a href="fs.html#cb94-12" aria-hidden="true" tabindex="-1"></a><span class="fu">path_abs</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 絶対パス</span></span>
+<span id="cb94-13"><a href="fs.html#cb94-13" aria-hidden="true" tabindex="-1"></a><span class="fu">path_rel</span>(<span class="st">&quot;path/foo&quot;</span>, <span class="st">&quot;path/bar&quot;</span>) <span class="co">#  相対パス  </span></span>
+<span id="cb94-14"><a href="fs.html#cb94-14" aria-hidden="true" tabindex="-1"></a><span class="fu">path_common</span>(<span class="fu">c</span>(<span class="st">&quot;path/foo&quot;</span>, <span class="st">&quot;path/bar&quot;</span>, <span class="st">&quot;path/baz&quot;</span>)) <span class="co"># パスの共通部分   </span></span>
+<span id="cb94-15"><a href="fs.html#cb94-15" aria-hidden="true" tabindex="-1"></a><span class="fu">path_ext_set</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new_ext&quot;</span>) <span class="co"># 拡張子変更   </span></span>
+<span id="cb94-16"><a href="fs.html#cb94-16" aria-hidden="true" tabindex="-1"></a><span class="fu">path_sanitize</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 無効な文字を削除   </span></span>
+<span id="cb94-17"><a href="fs.html#cb94-17" aria-hidden="true" tabindex="-1"></a><span class="fu">path_join</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 結合</span></span>
+<span id="cb94-18"><a href="fs.html#cb94-18" aria-hidden="true" tabindex="-1"></a><span class="fu">path_split</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 分割</span></span></code></pre></div>
 </div>
 <div id="ディレクトリ操作" class="section level3 hasAnchor" number="9.4.2">
 <h3><span class="header-section-number">9.4.2</span> ディレクトリ操作<a href="fs.html#ディレクトリ操作" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>shellやbaseでも同様の機能があるが，複数処理のdir_map()やツリー表示のdir_tree()は単純に嬉しい．</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="fs.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_ls</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 一覧   </span></span>
-<span id="cb71-2"><a href="fs.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_info</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 情報   </span></span>
-<span id="cb71-3"><a href="fs.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_copy</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new-path&quot;</span>) <span class="co"># 複写   </span></span>
-<span id="cb71-4"><a href="fs.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_create</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 作成   </span></span>
-<span id="cb71-5"><a href="fs.html#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_delete</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 削除   </span></span>
-<span id="cb71-6"><a href="fs.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_exists</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 有無確認   </span></span>
-<span id="cb71-7"><a href="fs.html#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_move</span>() (see file_move) <span class="co"># 移動   </span></span>
-<span id="cb71-8"><a href="fs.html#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_map</span>(<span class="st">&quot;path&quot;</span>, fun) <span class="co"># 複数処理   </span></span>
-<span id="cb71-9"><a href="fs.html#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_tree</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># ツリー表示   </span></span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="fs.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_ls</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 一覧   </span></span>
+<span id="cb95-2"><a href="fs.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_info</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 情報   </span></span>
+<span id="cb95-3"><a href="fs.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_copy</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new-path&quot;</span>) <span class="co"># 複写   </span></span>
+<span id="cb95-4"><a href="fs.html#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_create</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 作成   </span></span>
+<span id="cb95-5"><a href="fs.html#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_delete</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 削除   </span></span>
+<span id="cb95-6"><a href="fs.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_exists</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 有無確認   </span></span>
+<span id="cb95-7"><a href="fs.html#cb95-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_move</span>() (see file_move) <span class="co"># 移動   </span></span>
+<span id="cb95-8"><a href="fs.html#cb95-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_map</span>(<span class="st">&quot;path&quot;</span>, fun) <span class="co"># 複数処理   </span></span>
+<span id="cb95-9"><a href="fs.html#cb95-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_tree</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># ツリー表示   </span></span></code></pre></div>
 </div>
 <div id="ファイル操作" class="section level3 hasAnchor" number="9.4.3">
 <h3><span class="header-section-number">9.4.3</span> ファイル操作<a href="fs.html#ファイル操作" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>ファイル操作はshellやbaseとそれほど変わらない感じがする．</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="fs.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file_chmod</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;mode&quot;</span>) <span class="co"># 権限変更   </span></span>
-<span id="cb72-2"><a href="fs.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">file_chown</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;user_id&quot;</span>, <span class="st">&quot;group_id&quot;</span>) <span class="co"># 所有者変更   </span></span>
-<span id="cb72-3"><a href="fs.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">file_copy</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new-path&quot;</span>) <span class="co"># 複写   </span></span>
-<span id="cb72-4"><a href="fs.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="fu">file_create</span>(<span class="st">&quot;new-path&quot;</span>) <span class="co"># 作成   </span></span>
-<span id="cb72-5"><a href="fs.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="fu">file_delete</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 削除   </span></span>
-<span id="cb72-6"><a href="fs.html#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file_exists</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 有無確認   </span></span>
-<span id="cb72-7"><a href="fs.html#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="fu">file_info</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 情報   </span></span>
-<span id="cb72-8"><a href="fs.html#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="fu">file_move</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new-path&quot;</span>) <span class="co"># 移動   </span></span>
-<span id="cb72-9"><a href="fs.html#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="fu">file_show</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 開く   </span></span>
-<span id="cb72-10"><a href="fs.html#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="fu">file_touch</span>() <span class="co"># アクセス時間等の変更   </span></span>
-<span id="cb72-11"><a href="fs.html#cb72-11" aria-hidden="true" tabindex="-1"></a><span class="fu">file_temp</span>() <span class="co"># 一時ファイル名の作成   </span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="fs.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file_chmod</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;mode&quot;</span>) <span class="co"># 権限変更   </span></span>
+<span id="cb96-2"><a href="fs.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">file_chown</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;user_id&quot;</span>, <span class="st">&quot;group_id&quot;</span>) <span class="co"># 所有者変更   </span></span>
+<span id="cb96-3"><a href="fs.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">file_copy</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new-path&quot;</span>) <span class="co"># 複写   </span></span>
+<span id="cb96-4"><a href="fs.html#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">file_create</span>(<span class="st">&quot;new-path&quot;</span>) <span class="co"># 作成   </span></span>
+<span id="cb96-5"><a href="fs.html#cb96-5" aria-hidden="true" tabindex="-1"></a><span class="fu">file_delete</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 削除   </span></span>
+<span id="cb96-6"><a href="fs.html#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file_exists</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 有無確認   </span></span>
+<span id="cb96-7"><a href="fs.html#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="fu">file_info</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 情報   </span></span>
+<span id="cb96-8"><a href="fs.html#cb96-8" aria-hidden="true" tabindex="-1"></a><span class="fu">file_move</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new-path&quot;</span>) <span class="co"># 移動   </span></span>
+<span id="cb96-9"><a href="fs.html#cb96-9" aria-hidden="true" tabindex="-1"></a><span class="fu">file_show</span>(<span class="st">&quot;path&quot;</span>) <span class="co"># 開く   </span></span>
+<span id="cb96-10"><a href="fs.html#cb96-10" aria-hidden="true" tabindex="-1"></a><span class="fu">file_touch</span>() <span class="co"># アクセス時間等の変更   </span></span>
+<span id="cb96-11"><a href="fs.html#cb96-11" aria-hidden="true" tabindex="-1"></a><span class="fu">file_temp</span>() <span class="co"># 一時ファイル名の作成   </span></span></code></pre></div>
 </div>
 </div>
 <div id="fsを使ったファイル操作例" class="section level2 hasAnchor" number="9.5">
@@ -453,25 +453,25 @@ fsパッケージの関数は，パス操作はpath_</em>，ディレクトリ�
 ただ，Rパッケージの開発をしていると，開発中のパッケージが依存しているパッケージが最新版のRで開発されている旨の警告がでることが結構ある．
 ごく最近までは，手作業でファイルをコピーしていたが，よく考えたらこういった作業は自動化するべきだと気づいた．
 そこで，fsパッケージを使ってファイルをコピーするスクリプトを作成した．</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="fs.html#cb73-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Script to copy Rconsole for updating R</span></span>
-<span id="cb73-2"><a href="fs.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># RをバージョンアップしたときのRconsoleの複製スクリプト</span></span>
-<span id="cb73-3"><a href="fs.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   https://gist.github.com/matutosi/6dab3918402662f081be5c17cc7f9ce2</span></span>
-<span id="cb73-4"><a href="fs.html#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
-<span id="cb73-5"><a href="fs.html#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb73-6"><a href="fs.html#cb73-6" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> </span>
-<span id="cb73-7"><a href="fs.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">path_package</span>(<span class="st">&quot;base&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb73-8"><a href="fs.html#cb73-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">path_split</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb73-9"><a href="fs.html#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb73-10"><a href="fs.html#cb73-10" aria-hidden="true" tabindex="-1"></a>  .[<span class="sc">-</span><span class="fu">c</span>((<span class="fu">length</span>(.) <span class="sc">-</span> <span class="dv">2</span>)<span class="sc">:</span><span class="fu">length</span>(.))] <span class="sc">%&gt;%</span></span>
-<span id="cb73-11"><a href="fs.html#cb73-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">path_join</span>()  </span>
-<span id="cb73-12"><a href="fs.html#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb73-13"><a href="fs.html#cb73-13" aria-hidden="true" tabindex="-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">dir_ls</span>()</span>
-<span id="cb73-14"><a href="fs.html#cb73-14" aria-hidden="true" tabindex="-1"></a>d_old <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb73-15"><a href="fs.html#cb73-15" aria-hidden="true" tabindex="-1"></a>d_new <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)]</span>
-<span id="cb73-16"><a href="fs.html#cb73-16" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rconsole&quot;</span>, <span class="st">&quot;Rprofile.site&quot;</span>)</span>
-<span id="cb73-17"><a href="fs.html#cb73-17" aria-hidden="true" tabindex="-1"></a>f_old <span class="ot">&lt;-</span> <span class="fu">path</span>(d_old, <span class="st">&quot;etc&quot;</span>, files)</span>
-<span id="cb73-18"><a href="fs.html#cb73-18" aria-hidden="true" tabindex="-1"></a>f_new <span class="ot">&lt;-</span> <span class="fu">path</span>(d_new, <span class="st">&quot;etc&quot;</span>)</span>
-<span id="cb73-19"><a href="fs.html#cb73-19" aria-hidden="true" tabindex="-1"></a><span class="fu">file_copy</span>(f_old, f_new, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="fs.html#cb97-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Script to copy Rconsole for updating R</span></span>
+<span id="cb97-2"><a href="fs.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># RをバージョンアップしたときのRconsoleの複製スクリプト</span></span>
+<span id="cb97-3"><a href="fs.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   https://gist.github.com/matutosi/6dab3918402662f081be5c17cc7f9ce2</span></span>
+<span id="cb97-4"><a href="fs.html#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb97-5"><a href="fs.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb97-6"><a href="fs.html#cb97-6" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> </span>
+<span id="cb97-7"><a href="fs.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">path_package</span>(<span class="st">&quot;base&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb97-8"><a href="fs.html#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">path_split</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb97-9"><a href="fs.html#cb97-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb97-10"><a href="fs.html#cb97-10" aria-hidden="true" tabindex="-1"></a>  .[<span class="sc">-</span><span class="fu">c</span>((<span class="fu">length</span>(.) <span class="sc">-</span> <span class="dv">2</span>)<span class="sc">:</span><span class="fu">length</span>(.))] <span class="sc">%&gt;%</span></span>
+<span id="cb97-11"><a href="fs.html#cb97-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">path_join</span>()  </span>
+<span id="cb97-12"><a href="fs.html#cb97-12" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb97-13"><a href="fs.html#cb97-13" aria-hidden="true" tabindex="-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">dir_ls</span>()</span>
+<span id="cb97-14"><a href="fs.html#cb97-14" aria-hidden="true" tabindex="-1"></a>d_old <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb97-15"><a href="fs.html#cb97-15" aria-hidden="true" tabindex="-1"></a>d_new <span class="ot">&lt;-</span> dir[<span class="fu">length</span>(dir)]</span>
+<span id="cb97-16"><a href="fs.html#cb97-16" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rconsole&quot;</span>, <span class="st">&quot;Rprofile.site&quot;</span>)</span>
+<span id="cb97-17"><a href="fs.html#cb97-17" aria-hidden="true" tabindex="-1"></a>f_old <span class="ot">&lt;-</span> <span class="fu">path</span>(d_old, <span class="st">&quot;etc&quot;</span>, files)</span>
+<span id="cb97-18"><a href="fs.html#cb97-18" aria-hidden="true" tabindex="-1"></a>f_new <span class="ot">&lt;-</span> <span class="fu">path</span>(d_new, <span class="st">&quot;etc&quot;</span>)</span>
+<span id="cb97-19"><a href="fs.html#cb97-19" aria-hidden="true" tabindex="-1"></a><span class="fu">file_copy</span>(f_old, f_new, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>このように，定期的あるいはバージョンアップなどに伴うファイルのコピーや移動はそれなりにあるように思う．
 そのような場合は，fsを活用して作業を自動化するとよいだろう．
 なお，fsで対応していない部分の文字列操作には，stringrを使うと便利である．</p>
