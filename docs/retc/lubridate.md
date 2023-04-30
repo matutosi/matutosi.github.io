@@ -175,7 +175,7 @@ mday()で月の中で何日目か計算し(つまりday()と同じ)，そこか�
 ```r
 real    <- seq(as.POSIXct("2020-10-1"), as.POSIXct("2020-10-31"), by="day") %>% mweek()
 expect <- rep(1:5, each=7)[1:31]
-sum(real != expect)
+sum(real != expect, na.rm = TRUE)
 ```
 
 ```
@@ -300,11 +300,11 @@ mweek(days_n)
 ```
 
 ```r
-sum(mweek(days) != mweek(days_n))
+sum(mweek(days) != mweek(days_n), na.rm = TRUE)
 ```
 
 ```
-## [1] NA
+## [1] 0
 ```
 
 ```r
@@ -327,11 +327,11 @@ wday(days_n)
 ```
 
 ```r
-sum(wday(days) != wday(days_n))
+sum(wday(days) != wday(days_n), na.rm = TRUE)
 ```
 
 ```
-## [1] NA
+## [1] 0
 ```
 
 ```r

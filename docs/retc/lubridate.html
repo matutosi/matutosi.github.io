@@ -413,7 +413,7 @@ ymd()は，日付っぽい文字列などをDateクラスにしてくれる．
 これで第何の曜日かがわかる．</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="lubridate.html#cb62-1" aria-hidden="true" tabindex="-1"></a>real    <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2020-10-1&quot;</span>), <span class="fu">as.POSIXct</span>(<span class="st">&quot;2020-10-31&quot;</span>), <span class="at">by=</span><span class="st">&quot;day&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">mweek</span>()</span>
 <span id="cb62-2"><a href="lubridate.html#cb62-2" aria-hidden="true" tabindex="-1"></a>expect <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each=</span><span class="dv">7</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>]</span>
-<span id="cb62-3"><a href="lubridate.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(real <span class="sc">!=</span> expect)</span></code></pre></div>
+<span id="cb62-3"><a href="lubridate.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(real <span class="sc">!=</span> expect, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="lubridate.html#cb64-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># testthat::expect_equal(real, expect)</span></span></code></pre></div>
 <p>念のため，パッケージtestthatで確認する．
@@ -484,8 +484,8 @@ x <- today()
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="lubridate.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mweek</span>(days_n)</span></code></pre></div>
 <pre><code>##  [1]  1  1  1  1  1  1  1  2  2  2  2  2  2  2  3  3  3  3  3  3  3  4  4  4  4
 ## [26]  4  4  4 NA NA  5</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="lubridate.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">mweek</span>(days) <span class="sc">!=</span> <span class="fu">mweek</span>(days_n))</span></code></pre></div>
-<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="lubridate.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">mweek</span>(days) <span class="sc">!=</span> <span class="fu">mweek</span>(days_n), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="lubridate.html#cb79-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># testthat::expect_equal(mweek(days), mweek(days_n))</span></span>
 <span id="cb79-2"><a href="lubridate.html#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb79-3"><a href="lubridate.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(days)</span></code></pre></div>
@@ -493,8 +493,8 @@ x <- today()
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="lubridate.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(days_n)</span></code></pre></div>
 <pre><code>##  [1]  2  3  4  5  6  7  1  2  3  4  5  6  7  1  2  3  4  5  6  7  1  2  3  4  5
 ## [26]  6  7  1 NA NA  4</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="lubridate.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">wday</span>(days) <span class="sc">!=</span> <span class="fu">wday</span>(days_n))</span></code></pre></div>
-<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="lubridate.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">wday</span>(days) <span class="sc">!=</span> <span class="fu">wday</span>(days_n), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="lubridate.html#cb85-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># testthat::expect_equal(wday(days), wday(days_n))</span></span></code></pre></div>
 <p>計算できているはずだが，日付だけを見てもよくわからない．
 何回目の何曜日も求めて，確認すると最後の方でエラーが出ている．
