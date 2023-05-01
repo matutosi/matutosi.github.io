@@ -174,12 +174,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>6.4</b> stringrの関数</a></li>
 <li class="chapter" data-level="6.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>6.5</b> stringrの利点</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>7</b> lubridate</a>
+<li class="chapter" data-level="7" data-path="lubridateで日付時刻を扱う.html"><a href="lubridateで日付時刻を扱う.html"><i class="fa fa-check"></i><b>7</b> lubridateで日付・時刻を扱う</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日付"><i class="fa fa-check"></i><b>7.1</b> 1月後・1年後の同一日付</a></li>
-<li class="chapter" data-level="7.2" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>7.2</b> 文字列からDateクラスへの変換</a></li>
-<li class="chapter" data-level="7.3" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>7.3</b> 曜日を求める</a></li>
-<li class="chapter" data-level="7.4" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>7.4</b> 活用例</a></li>
+<li class="chapter" data-level="7.1" data-path="lubridateで日付時刻を扱う.html"><a href="lubridateで日付時刻を扱う.html#月後1年後の同一日付"><i class="fa fa-check"></i><b>7.1</b> 1月後・1年後の同一日付</a></li>
+<li class="chapter" data-level="7.2" data-path="lubridateで日付時刻を扱う.html"><a href="lubridateで日付時刻を扱う.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>7.2</b> 文字列からDateクラスへの変換</a></li>
+<li class="chapter" data-level="7.3" data-path="lubridateで日付時刻を扱う.html"><a href="lubridateで日付時刻を扱う.html#曜日を求める"><i class="fa fa-check"></i><b>7.3</b> 曜日を求める</a></li>
+<li class="chapter" data-level="7.4" data-path="lubridateで日付時刻を扱う.html"><a href="lubridateで日付時刻を扱う.html#活用例"><i class="fa fa-check"></i><b>7.4</b> 活用例</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>8</b> ggplot2で楽に綺麗に作図</a>
 <ul>
@@ -345,10 +345,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="準備-5" class="section level2 hasAnchor" number="14.3">
 <h2><span class="header-section-number">14.3</span> 準備<a href="dbi.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dbi.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="dbi.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb104-2"><a href="dbi.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
-<span id="cb104-3"><a href="dbi.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="dbi.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="dbi.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb107-2"><a href="dbi.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb107-3"><a href="dbi.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -359,19 +359,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="dbi.html#cb106-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
-<span id="cb106-2"><a href="dbi.html#cb106-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
-<span id="cb106-3"><a href="dbi.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
-<span id="cb106-4"><a href="dbi.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="dbi.html#cb109-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
+<span id="cb109-2"><a href="dbi.html#cb109-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
+<span id="cb109-3"><a href="dbi.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
+<span id="cb109-4"><a href="dbi.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
 <pre><code>## [1] &quot;mpg&quot;</code></pre>
 </div>
 <div id="使い方-3" class="section level2 hasAnchor" number="14.4">
 <h2><span class="header-section-number">14.4</span> 使い方<a href="dbi.html#使い方-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="dbi.html#cb108-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
-<span id="cb108-2"><a href="dbi.html#cb108-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
-<span id="cb108-3"><a href="dbi.html#cb108-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb108-4"><a href="dbi.html#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb108-5"><a href="dbi.html#cb108-5" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="dbi.html#cb111-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
+<span id="cb111-2"><a href="dbi.html#cb111-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
+<span id="cb111-3"><a href="dbi.html#cb111-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
+<span id="cb111-4"><a href="dbi.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
+<span id="cb111-5"><a href="dbi.html#cb111-5" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 81 × 4
 ##     year model      displ   cyl
 ##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
@@ -386,16 +386,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  1999 malibu       2.4     4
 ## 10  2008 malibu       2.4     4
 ## # ℹ 71 more rows</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dbi.html#cb110-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
-<span id="cb110-2"><a href="dbi.html#cb110-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
-<span id="cb110-3"><a href="dbi.html#cb110-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb110-4"><a href="dbi.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb110-5"><a href="dbi.html#cb110-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb110-6"><a href="dbi.html#cb110-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb110-7"><a href="dbi.html#cb110-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb110-8"><a href="dbi.html#cb110-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb110-9"><a href="dbi.html#cb110-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb110-10"><a href="dbi.html#cb110-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="dbi.html#cb113-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
+<span id="cb113-2"><a href="dbi.html#cb113-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
+<span id="cb113-3"><a href="dbi.html#cb113-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
+<span id="cb113-4"><a href="dbi.html#cb113-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
+<span id="cb113-5"><a href="dbi.html#cb113-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb113-6"><a href="dbi.html#cb113-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb113-7"><a href="dbi.html#cb113-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb113-8"><a href="dbi.html#cb113-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb113-9"><a href="dbi.html#cb113-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb113-10"><a href="dbi.html#cb113-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 234 × 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
