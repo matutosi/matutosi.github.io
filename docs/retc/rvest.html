@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-02" />
+<meta name="date" content="2023-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -397,25 +397,138 @@ politeパッケージとの連携</li>
 </div>
 <div id="準備-3" class="section level2 hasAnchor" number="11.4">
 <h2><span class="header-section-number">11.4</span> 準備<a href="rvest.html#準備-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="rvest.html#cb102-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># install.packages(&quot;rvest&quot;)</span></span>
-<span id="cb102-2"><a href="rvest.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(rvest)</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="rvest.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rvest&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="rvest.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb103-2"><a href="rvest.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="htmlの取得" class="section level2 hasAnchor" number="11.5">
 <h2><span class="header-section-number">11.5</span> HTMLの取得<a href="rvest.html#htmlの取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="使い方" class="section level3 hasAnchor" number="11.5.1">
 <h3><span class="header-section-number">11.5.1</span> 使い方<a href="rvest.html#使い方" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="rvest.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="st">&quot;LC_TIME&quot;</span>, <span class="st">&quot;en_US.UTF-8&quot;</span>) <span class="co"># アメリカ英語に設定</span></span></code></pre></div>
+<pre><code>## [1] &quot;en_US.UTF-8&quot;</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="rvest.html#cb106-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># date &lt;- lubridate::today()</span></span>
+<span id="cb106-2"><a href="rvest.html#cb106-2" aria-hidden="true" tabindex="-1"></a>date <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">ymd</span>(<span class="st">&quot;2022-5-1&quot;</span>)</span>
+<span id="cb106-3"><a href="rvest.html#cb106-3" aria-hidden="true" tabindex="-1"></a>ym <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;^&quot;</span>, <span class="fu">year</span>(date), <span class="st">&quot;年&quot;</span>, <span class="fu">month</span>(date) , <span class="st">&quot;月&quot;</span>)</span>
+<span id="cb106-4"><a href="rvest.html#cb106-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-5"><a href="rvest.html#cb106-5" aria-hidden="true" tabindex="-1"></a>main <span class="ot">&lt;-</span> <span class="st">&quot;https://www.aboutamazon.jp/news/entertainment/amazon-prime-video-new-content-&quot;</span></span>
+<span id="cb106-6"><a href="rvest.html#cb106-6" aria-hidden="true" tabindex="-1"></a>url_amz <span class="ot">&lt;-</span> </span>
+<span id="cb106-7"><a href="rvest.html#cb106-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb106-8"><a href="rvest.html#cb106-8" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_to_lower</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb106-9"><a href="rvest.html#cb106-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(main, ., <span class="st">&quot;-&quot;</span>, <span class="fu">year</span>(date))</span>
+<span id="cb106-10"><a href="rvest.html#cb106-10" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> rvest<span class="sc">::</span><span class="fu">read_html</span>(url_amz)</span></code></pre></div>
 </div>
 <div id="注意点" class="section level3 hasAnchor" number="11.5.2">
 <h3><span class="header-section-number">11.5.2</span> 注意点<a href="rvest.html#注意点" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>URLの生成規則は，変更されることがある．
+read_html()でHTMLが取得できない場合は，URLが正しいか確認する必要がある．</p>
+<p>上記のコードは1ページだけの取得であったが，複数ページのデータを取得する場合は一般的には5秒程度の間隔を置く必要がある．
+ただし，サイトによってはそれ以上の間隔を求めているときがある．
+その内容はドメインのトップに置かれた「robots.txt」で確認できる．
+例えば，「<a href="https://www.aboutamazon.jp/robots.txt」の記載は以下のとおりである" class="uri">https://www.aboutamazon.jp/robots.txt」の記載は以下のとおりである</a>．</p>
+<blockquote>
+<p>User-agent: *
+Crawl-delay: 10
+Sitemap: <a href="https://www.aboutamazon.jp/sitemap.xml" class="uri">https://www.aboutamazon.jp/sitemap.xml</a>
+Sitemap: <a href="https://www.aboutamazon.jp/news-sitemap.xml" class="uri">https://www.aboutamazon.jp/news-sitemap.xml</a></p>
+</blockquote>
+<p>「Crawl-delay: 10」とあるため，10秒間隔を求めていることが分かる．
+これ未満の間隔でデータを頻繁に求めると，「攻撃」と見なされて接続できな状態になる可能性がある．
+さらに，悪質なときには法的手段を取られることもありえるので，注意が必要である．</p>
+<p>robots.txtの内容は，URLを生成してrvestで取得可能だが，politeパッケージのbow()を使うと楽である．</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="rvest.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;polite&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="rvest.html#cb108-1" aria-hidden="true" tabindex="-1"></a>polite<span class="sc">::</span><span class="fu">bow</span>(<span class="st">&quot;https://www.aboutamazon.jp/&quot;</span>)</span></code></pre></div>
+<pre><code>## &lt;polite session&gt; https://www.aboutamazon.jp/
+##     User-agent: polite R package
+##     robots.txt: 0 rules are defined for 1 bots
+##    Crawl delay: 10 sec
+##   The path is scrapable for this user-agent</code></pre>
 </div>
 </div>
 <div id="domの取得" class="section level2 hasAnchor" number="11.6">
 <h2><span class="header-section-number">11.6</span> DOMの取得<a href="rvest.html#domの取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>DOMとはドキュメントオブジェクトモデルのことで，</p>
 <div id="使い方-1" class="section level3 hasAnchor" number="11.6.1">
 <h3><span class="header-section-number">11.6.1</span> 使い方<a href="rvest.html#使い方-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ブラウザでウエブページを開いて，F12で開発者ツールを使用する．</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="rvest.html#cb110-1" aria-hidden="true" tabindex="-1"></a>contents <span class="ot">&lt;-</span> </span>
+<span id="cb110-2"><a href="rvest.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  html <span class="sc">%&gt;%</span></span>
+<span id="cb110-3"><a href="rvest.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_elements</span>(<span class="st">&quot;body&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb110-4"><a href="rvest.html#cb110-4" aria-hidden="true" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_elements</span>(<span class="st">&quot;div.RichTextArticleBody-body li,p,h3.cms-headings-h3&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb110-5"><a href="rvest.html#cb110-5" aria-hidden="true" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb110-6"><a href="rvest.html#cb110-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb110-7"><a href="rvest.html#cb110-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(value <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb110-8"><a href="rvest.html#cb110-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-9"><a href="rvest.html#cb110-9" aria-hidden="true" tabindex="-1"></a>contents <span class="sc">%&gt;%</span></span>
+<span id="cb110-10"><a href="rvest.html#cb110-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb110-11"><a href="rvest.html#cb110-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">div =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb110-12"><a href="rvest.html#cb110-12" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;^洋画|邦画|アニメ|海外|国内|韓国&quot;</span>) <span class="sc">&amp;</span> stringr<span class="sc">::</span><span class="fu">str_length</span>(value) <span class="sc">&lt;</span> <span class="dv">20</span> <span class="sc">~</span> value,</span>
+<span id="cb110-13"><a href="rvest.html#cb110-13" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>    )) <span class="sc">%&gt;%</span></span>
+<span id="cb110-14"><a href="rvest.html#cb110-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb110-15"><a href="rvest.html#cb110-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb110-16"><a href="rvest.html#cb110-16" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, ym) <span class="sc">~</span> value,</span>
+<span id="cb110-17"><a href="rvest.html#cb110-17" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>    )) <span class="sc">%&gt;%</span></span>
+<span id="cb110-18"><a href="rvest.html#cb110-18" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">fill</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">&quot;div&quot;</span>, <span class="st">&quot;date&quot;</span>)), <span class="at">.direction =</span> <span class="st">&quot;down&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb110-19"><a href="rvest.html#cb110-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">value =</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(value, <span class="st">&quot;^Amazon Original&quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb110-20"><a href="rvest.html#cb110-20" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">value =</span> stringr<span class="sc">::</span><span class="fu">str_replace_all</span>(value, <span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb110-21"><a href="rvest.html#cb110-21" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">value =</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(value, <span class="st">&quot;※.+&quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb110-22"><a href="rvest.html#cb110-22" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;^『&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb110-23"><a href="rvest.html#cb110-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n=</span><span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 38 × 3
+##    value                                                             div   date 
+##    &lt;chr&gt;                                                             &lt;chr&gt; &lt;chr&gt;
+##  1 『ズーム／見えない参加者』                                        洋画  2022…
+##  2 『テスラエジソンが恐れた天才』                                    洋画  2022…
+##  3 『17歳の瞳に映る世界』                                            洋画  2022…
+##  4 『すべてが変わった日』                                            洋画  2022…
+##  5 『プロミシング・ヤング・ウーマン』                                洋画  2022…
+##  6 『ライトハウス』                                                  洋画  2022…
+##  7 『007／ノー・タイム・トゥ・ダイ』                                 洋画  2022…
+##  8 『ガンズ・アキンボ』                                              洋画  2022…
+##  9 『友情にSOS』                                                     洋画  2022…
+## 10 『AWAKE』                                                         邦画  2022…
+## 11 『おと・な・り』                                                  邦画  2022…
+## 12 『朝が来る』                                                      邦画  2022…
+## 13 『真夜中乙女戦争』                                                邦画  2022…
+## 14 『劇場版シグナル長期未解決事件捜査班』                            邦画  2022…
+## 15 『ホテルローヤル』                                                邦画  2022…
+## 16 『先生、私の隣に座っていただけませんか？』                        邦画  2022…
+## 17 『さがす』                                                        邦画  2022…
+## 18 『天外者』                                                        邦画  2022…
+## 19 『整形水』                                                        アニ… 2022…
+## 20 『ボッシュ:受け継がれるもの』                                     海外… 2022…
+## 21 『ザ・ワイルズ～孤島に残された少女たち～」シーズン2               海外… 2022…
+## 22 『アリーチェの物語』パート2                                       海外… 2022…
+## 23 『天空の旅人』                                                    海外… 2022…
+## 24 『ドクターホワイト』                                              国内… 2022…
+## 25 『名探偵コナン本庁刑事恋物語～結婚前夜～』                        国内… 2022…
+## 26 『ちいかわ』                                                      国内… 2022…
+## 27 『君のハートをつかまえろ』                                        韓国… 2022…
+## 28 『ウラチャチャ！？～男女6人恋のバトル～』                         韓国… 2022…
+## 29 『おかえり～ただいまのキスは屋根の上で！？～』                    韓国… 2022…
+## 30 『LOL:HITOSHIMATSUMOTOPresentsドキュメンタル～メキシコ版～』シー… 海外… 2022…
+## 31 『リゾのビッグスター発掘』                                        海外… 2022…
+## 32 『キッズ・イン・ザ・ホール～ギャグの殿堂～』                      海外… 2022…
+## 33 『恋愛ハイスクール』                                              海外… 2022…
+## 34 『LOL:HITOSHIMATSUMOTOPresentsドキュメンタル～スペイン版～』シー… 海外… 2022…
+## 35 『イアン・スターリング～前向きな失敗～』                          海外… 2022…
+## 36 『LOL:HITOSHIMATSUMOTOPresentsドキュメンタル～ドイツ版～』シーズ… 海外… 2022…
+## 37 『ビバリー・スミス殺害事件の謎』                                  海外… 2022…
+## 38 『キッズ・イン・ザ・ホール～コメディの反逆児～』                  海外… 2022…</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="rvest.html#cb112-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   html_elements(&quot;h3.cms-headings-h3&quot;) %&gt;%</span></span>
+<span id="cb112-2"><a href="rvest.html#cb112-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-3"><a href="rvest.html#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># id         rvest::html_elements(&quot;#content&quot;) %&gt;%</span></span>
+<span id="cb112-4"><a href="rvest.html#cb112-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># class      rvest::html_elements(&quot;.next&quot;) %&gt;%</span></span>
+<span id="cb112-5"><a href="rvest.html#cb112-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tag        rvest::html_elements(&quot;a&quot;) %&gt;%</span></span>
+<span id="cb112-6"><a href="rvest.html#cb112-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 属性       rvest::html_attr(&quot;href&quot;)</span></span></code></pre></div>
 </div>
 <div id="注意点-1" class="section level3 hasAnchor" number="11.6.2">
 <h3><span class="header-section-number">11.6.2</span> 注意点<a href="rvest.html#注意点-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>動的なサイトでは，idが固定ではない可能性がある．
+サイトの仕様変更によって，タグ，クラス，その他の構造が変更されることがある．</p>
+<p>また，綺麗な構造をしていると思っているサイトの内容であっても，手作業が混入していたり，
+例えば，括弧が正しく対応しているはずだと思っていても，開く側が”『“で閉じる側が”」“になっていることがあった．
+その場合に正規表現”『.+』“ではうまく鉤括弧内の文字列を取得できないことになる．</p>
 
 </div>
 </div>
