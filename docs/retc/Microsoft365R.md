@@ -6,6 +6,8 @@
   #   https://cran.r-project.org/web/packages/Microsoft365R/vignettes/outlook.html
 -->
 <!--
+<a href=""></a>
+[Preface](#)
 -->
 
 ## Outlookで複数メール送信を一斉送信
@@ -201,10 +203,12 @@ files %>%
 そのようなときは，祝日データをあわせてコードに入れれば良い．
 とにかく，決め方が明確であり，それによって1つに日付を決めることができれば，プログラムを使って自動化できる．
 
-ここではlubridateを活用して，日付固定あるいは位置固定のときでの翌年の年月日を求めて，ワード文書に反映させることをしてみる．
-lubridateについては，以下を参考にして欲しい
 
-lubridate.html
+ここではlubridateを活用して，ワード文書の日付を更新する方法を扱う．
+lubridateで日付固定あるいは位置固定のときでの翌年の年月日を求める方法は以下を参考にして欲しい．
+
+[lubridateで日付・時刻を扱う](#lubridate)
+
 
 ### 活用例
 
