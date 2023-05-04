@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-04" />
+<meta name="date" content="2023-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,8 +273,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.1" data-path="qpdf.html"><a href="qpdf.html#準備-6"><i class="fa fa-check"></i><b>16.1</b> 準備</a></li>
 <li class="chapter" data-level="16.2" data-path="qpdf.html"><a href="qpdf.html#qpdfでできること"><i class="fa fa-check"></i><b>16.2</b> qpdfでできること</a></li>
 <li class="chapter" data-level="16.3" data-path="qpdf.html"><a href="qpdf.html#pdfの分割"><i class="fa fa-check"></i><b>16.3</b> PDFの分割</a></li>
-<li class="chapter" data-level="16.4" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>16.4</b> PDFへのページ番号付加</a></li>
-<li class="chapter" data-level="16.5" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.5</b> 関数一覧</a></li>
+<li class="chapter" data-level="16.4" data-path="qpdf.html"><a href="qpdf.html#pdfの結合"><i class="fa fa-check"></i><b>16.4</b> PDFの結合</a></li>
+<li class="chapter" data-level="16.5" data-path="qpdf.html"><a href="qpdf.html#pdfの圧縮最適化"><i class="fa fa-check"></i><b>16.5</b> PDFの圧縮・最適化</a></li>
+<li class="chapter" data-level="16.6" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>16.6</b> PDFへのページ番号付加</a></li>
+<li class="chapter" data-level="16.7" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.7</b> 関数一覧</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>17</b> pdfをdocxに変換</a>
 <ul>
@@ -389,8 +391,7 @@ CRANには，植生データの取得のためのパッケージがある．
 <li>Formの入力・選択
 <ul>
 <li>radioボタンはちょっと工夫が必要<br />
-</li>
-<li>moranajp::html_radio_set()<br />
+-<code>moranajp::html_radio_set()</code><br />
 無理やりな感じではあるが，同一名称のradioボタンを全て同じ値に変更する<br />
 本来なら，不要なradioボタンのフォームを削除<br />
 可能だが，インデクスがずれるので結構厄介<br />
@@ -430,10 +431,10 @@ http://jpnrdb.com/search.php?mode=key&q=%E3%83%8B%E3%83%83%E3%82%B3%E3%82%A6%E3%
 -->
 これはURLエンコードによってコード変換された結果であるが安心して欲しい．
 rvestを使ってHTMLを取得するときには，日本語をそのまま使用することができる．
-上記のURLのうち「<a href="http://jpnrdb.com/search.php?mode=」まではここで使用するページに共通する部分であるため，mainとしておく" class="uri">http://jpnrdb.com/search.php?mode=」まではここで使用するページに共通する部分であるため，mainとしておく</a>．
+上記のURLのうち「 <a href="http://jpnrdb.com/search.php?mode=" class="uri">http://jpnrdb.com/search.php?mode=</a> 」まではここで使用するページに共通する部分であるため，mainとしておく．
 検索したい種名は変更する部分で，とりあえずspに入れておく．
 キーワード検索の命令(phpによるクエリ)と種名の文字列を結合し，さらにmainと結合する．
-これで得たURLをread_html()に与えると，ページのHTMLを得ることができる．</p>
+これで得たURLを<code>read_html()</code>に与えると，ページのHTMLを得ることができる．</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="rvest.html#cb104-1" aria-hidden="true" tabindex="-1"></a>main <span class="ot">&lt;-</span> <span class="st">&quot;http://jpnrdb.com/search.php?mode=&quot;</span></span>
 <span id="cb104-2"><a href="rvest.html#cb104-2" aria-hidden="true" tabindex="-1"></a>sp <span class="ot">&lt;-</span> <span class="st">&quot;ニッコウキスゲ&quot;</span></span>
 <span id="cb104-3"><a href="rvest.html#cb104-3" aria-hidden="true" tabindex="-1"></a>find_sp <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;key&amp;q=&quot;</span>, sp)</span>
@@ -455,62 +456,39 @@ rvestを使ってHTMLを取得するときには，日本語をそのまま使�
 ニッコウキスゲを検索した結果のページとその後のページの内容とURLを見ると次のような規則性があることに気づく．
 検索結果のページには表(table)としてデータが含まれており，その表の中の目録Noである「5259」が指定状況や地図のページのURLに含まれている．
 つまり，目録Noを入手すれば指定状況や地図ページのURLを生成できる．</p>
-<p>HTMLのtableを取得するには，html_table()を使う．
-ここでは，6個目のtableが目録Noを含んでいる．</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="rvest.html#cb108-1" aria-hidden="true" tabindex="-1"></a>rvest<span class="sc">::</span><span class="fu">html_table</span>(html)</span></code></pre></div>
+<p>HTMLのtableを取得するには，<code>html_table()</code>を使う．
+ここでは，6個目のtableが目録Noを含んでいる．
+なお，以下ではスペースの節約のため<code>purrr::map(colnames)</code>として列名だけ表示しており，<code>rvest::html_table(html)</code>とだけするとtable全体を表示できる．</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="rvest.html#cb108-1" aria-hidden="true" tabindex="-1"></a>rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
+<span id="cb108-2"><a href="rvest.html#cb108-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(colnames) <span class="co"># とりあえず，colnamesだけ表示</span></span></code></pre></div>
 <pre><code>## [[1]]
-## # A tibble: 1 × 1
-##   X1   
-##   &lt;lgl&gt;
-## 1 NA   
+## [1] &quot;X1&quot;
 ## 
 ## [[2]]
-## # A tibble: 1 × 1
-##   X1                                                               
-##   &lt;chr&gt;                                                            
-## 1 &quot;ホーム | キーワード検索\r\n &gt;&gt; ニッコウキスゲ\r\n &gt;&gt; 維管束植物&quot;
+## [1] &quot;X1&quot;
 ## 
 ## [[3]]
-## # A tibble: 1 × 6
-##   X1    X2    X3    X4    X5    X6   
-##   &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;
-## 1 NA    NA    NA    NA    NA    NA   
+## [1] &quot;X1&quot; &quot;X2&quot; &quot;X3&quot; &quot;X4&quot; &quot;X5&quot; &quot;X6&quot;
 ## 
 ## [[4]]
-## # A tibble: 3 × 12
-##   X1           X2    X3    X4    X5    X6    X7    X8    X9    X10   X11   X12  
-##   &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 &quot;&quot;           （0） &quot;&quot;    （0） &quot;&quot;    （0） &quot;&quot;    （0） &quot;&quot;    （0） &quot;&quot;    （2）
-## 2 &quot;&quot;           （0） &quot;&quot;    （0） &quot;&quot;    （0） &quot;&quot;    （0） &quot;&quot;    （0） &quot;&quot;    （0）
-## 3 &quot;()内は検索… ()内… &quot;()…  ()内… &quot;()…  ()内… &quot;()…  ()内… &quot;()…  ()内… &quot;()…  ()内…
+##  [1] &quot;X1&quot;  &quot;X2&quot;  &quot;X3&quot;  &quot;X4&quot;  &quot;X5&quot;  &quot;X6&quot;  &quot;X7&quot;  &quot;X8&quot;  &quot;X9&quot;  &quot;X10&quot; &quot;X11&quot; &quot;X12&quot;
 ## 
 ## [[5]]
-## # A tibble: 2 × 2
-##   X1                                   X2                         
-##   &lt;chr&gt;                                &lt;chr&gt;                      
-## 1 [維管束植物] 2件該当データがあります &quot;&quot;                         
-## 2 リスト形式 | 地図表示形式            &quot;リスト形式 | 地図表示形式&quot;
+## [1] &quot;X1&quot; &quot;X2&quot;
 ## 
 ## [[6]]
-## # A tibble: 2 × 6
-##   `目録No▲▼` `上位分類群▲▼` `科名▲▼` 和名▲▼／学名\r\n\t\t…¹   `指定都道府県数▲▼`
-##        &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;                                 &lt;int&gt;
-## 1       5266 単子葉類       ユリ     ゼンテイカ  Hemerocalli…                  6
-## 2       5259 単子葉類       ユリ     ニッコウキスゲ  Hemeroc…                  3
-## # ℹ abbreviated name: ¹​`和名▲▼／学名\r\n\t\t                             ▲▼`
-## # ℹ 1 more variable: `環境省▲▼` &lt;chr&gt;
+## [1] &quot;目録No▲▼&quot;                                             
+## [2] &quot;上位分類群▲▼&quot;                                         
+## [3] &quot;科名▲▼&quot;                                               
+## [4] &quot;和名▲▼／学名\r\n\t\t                             ▲▼&quot;
+## [5] &quot;指定都道府県数▲▼&quot;                                     
+## [6] &quot;環境省▲▼&quot;                                             
 ## 
 ## [[7]]
-## # A tibble: 1 × 2
-##   X1                                                 X2                         
-##   &lt;chr&gt;                                              &lt;chr&gt;                      
-## 1 ゼンテイカHemerocallis middendorfii var. esculenta ニッコウキスゲHemerocallis…
+## [1] &quot;X1&quot; &quot;X2&quot;
 ## 
 ## [[8]]
-## # A tibble: 1 × 2
-##   X1    X2   
-##   &lt;lgl&gt; &lt;lgl&gt;
-## 1 NA    NA</code></pre>
+## [1] &quot;X1&quot; &quot;X2&quot;</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="rvest.html#cb110-1" aria-hidden="true" tabindex="-1"></a>rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
 <span id="cb110-2"><a href="rvest.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 6
@@ -529,12 +507,14 @@ rvestを使ってHTMLを取得するときには，日本語をそのまま使�
 selectは列名を指定する以外に列番号を指定できるので，それを使う．
 さらに，filter，stringr，stringiの関数の合せ技でspと同じ文字列のnoを取り出す．</p>
 <p>途中でちょっと面倒な点があるので補足する．
-separateのsep(区切り文字)としてstringi::stri_unescape_unicode(“\u00a0”)を指定している．
+<code>separate()</code>の<code>sep</code>(区切り文字)として<code>stringi::stri_unescape_unicode("\\u00a0")</code>を指定している．
 これは，普通の半角スペースに見えるが，No-Break Spaceと言われる改行を防ぐ特殊なスペースである．
 これをそのままコードに入力しても良いが，どう見ても普通のスペースと見分けがつかない．
 後からコードを書く時に普通のスペースを使ってしまうと，区分しようとしてもうまくいかない．
 そこで，これは普通のスペースではないことを明示的に示した．
-また，str_detectの引数で，paste0(“^”, sp, “<span class="math inline">\(&quot;)としたのは，「ニッコウキスゲ」以外にマッチさせないためである． 例えば，「ギンラン」を検索すると，「ギンラン」以外にも「エゾギンラン」と「ササバギンラン」も出てくる． この場合に正規表現の「^」(行頭の意味)「\)</span>」(行末の意味)を使うことで，「ギンラン」にしかマッチさせない．</p>
+また，<code>str_detect()</code>の引数で，<code>paste0("^", sp, "$")</code>としたのは，「ニッコウキスゲ」以外にマッチさせないためである．
+例えば，「ギンラン」を検索すると，「ギンラン」以外にも「エゾギンラン」と「ササバギンラン」も出てくる．
+この場合に正規表現の<code>^</code>(行頭の意味)<code>$</code>(行末の意味)を使うことで，「ギンラン」にしかマッチさせない．</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="rvest.html#cb112-1" aria-hidden="true" tabindex="-1"></a>no <span class="ot">&lt;-</span> </span>
 <span id="cb112-2"><a href="rvest.html#cb112-2" aria-hidden="true" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
 <span id="cb112-3"><a href="rvest.html#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
@@ -678,8 +658,8 @@ tagは，上記の<id>や<class>を含めたすべてのタグのことで，他
 ，
 <table>
 <p>など多くの物がある．
-html_table()はhtml_elements(“table”)と同等であるが，tableタグは入手したいデータを含むことが多いため個別の関数が作成されたのだろう．
-属性はtagの，「href = “index.html”」の部分で，html_attr(“href”)とすると，“index.html”を取り出すことができる．
+<code>html_table()</code>は<code>html_elements("table")</code>と同等であるが，tableタグは入手したいデータを含むことが多いため個別の関数が作成されたのだろう．
+属性はtagの，「href = “index.html”」の部分で，<code>html_attr("href")</code>とすると，“index.html”を取り出すことができる．
 hrefが複数ある場合は，すべてを含むベクトルが返り値になる．</p>
 <p>ただし実際には，上のようにブラウザでの右クリックか，以下の手順で実行するのが手っ取り早い．
 - ブラウザで地図ページを表示させる<br />
@@ -688,16 +668,16 @@ hrefが複数ある場合は，すべてを含むベクトルが返り値にな�
 - Elementsのところに出てきたURLが求めるURL<br />
 - タグを右クリックして[Copy] - [Copy element] や [Copy outerHTML] で内容をコピーできる</p>
 <p>画像のURLがわかれば，ファイルをダウンロードして保存するだけだ．
-これは，curlパッケージのcurl_download()で簡単にできる．
+これは，curlパッケージの<code>curl_download()</code>で簡単にできる．
 引数としてurlにはURLを，destfileにはダウンロード後のファイル名を指定する．
 ファイル名自体は指定が必要である．
-パスを指定しないと作業ディレクトリ(getwd()で取得可能)に保存されるが，作業ディレクトリ以外に保存したい場合は，相対パスや絶対パスを指定する．</p>
+パスを指定しないと作業ディレクトリ(<code>getwd()</code>で取得可能)に保存されるが，作業ディレクトリ以外に保存したい場合は，相対パスや絶対パスを指定する．</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="rvest.html#cb122-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;set_your_directory&quot;</span></span>
 <span id="cb122-2"><a href="rvest.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
 <span id="cb122-3"><a href="rvest.html#cb122-3" aria-hidden="true" tabindex="-1"></a>url_img <span class="ot">&lt;-</span> <span class="st">&quot;http://jpnrdb.com/png/06/06050095259.png&quot;</span></span>
 <span id="cb122-4"><a href="rvest.html#cb122-4" aria-hidden="true" tabindex="-1"></a>curl<span class="sc">::</span><span class="fu">curl_download</span>(<span class="at">url =</span> url_img, <span class="at">destfile =</span> <span class="fu">paste0</span>(sp, <span class="st">&quot;.png&quot;</span>))</span></code></pre></div>
 <p>このようにしてスクレイピングが可能ではあるが，URLの生成規則は，変更されることがある．
-read_html()でHTMLが取得できない場合は，URLが正しいか確認する必要がある．
+<code>read_html()</code>でHTMLが取得できない場合は，URLが正しいか確認する必要がある．
 また，動的なサイトでは，idが固定ではない可能性がある．
 サイトの仕様変更によって，タグ，クラス，その他の構造が変更されることがある点も注意しなければならない．</p>
 <p>綺麗な構造のサイトであっても，手作業が混入していることはある．
@@ -712,7 +692,7 @@ read_html()でHTMLが取得できない場合は，URLが正しいか確認す�
 <p>複数ページのデータを取得する場合は一般的には5秒程度の間隔を置く必要がある．
 ただし，サイトによってはそれ以上の間隔を求めているときがある．
 その内容はドメインのトップに置かれた「robots.txt」で確認できる．
-「<a href="http://jpnrdb.com/」には「robots.txt」が置かれていないが，politeパッケージの関数bow" class="uri">http://jpnrdb.com/」には「robots.txt」が置かれていないが，politeパッケージの関数bow</a>()でスクレイピングについて調べてみる．</p>
+「<a href="http://jpnrdb.com/」には「robots.txt」が置かれていないが，politeパッケージの関数%60bow" class="uri">http://jpnrdb.com/」には「robots.txt」が置かれていないが，politeパッケージの関数`bow</a>()`でスクレイピングについて調べてみる．</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="rvest.html#cb123-1" aria-hidden="true" tabindex="-1"></a>polite<span class="sc">::</span><span class="fu">bow</span>(<span class="st">&quot;http://jpnrdb.com/&quot;</span>)</span></code></pre></div>
 <pre><code>## &lt;polite session&gt; http://jpnrdb.com/
 ##     User-agent: polite R package
@@ -776,20 +756,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

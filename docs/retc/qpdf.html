@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-04" />
+<meta name="date" content="2023-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,8 +273,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.1" data-path="qpdf.html"><a href="qpdf.html#準備-6"><i class="fa fa-check"></i><b>16.1</b> 準備</a></li>
 <li class="chapter" data-level="16.2" data-path="qpdf.html"><a href="qpdf.html#qpdfでできること"><i class="fa fa-check"></i><b>16.2</b> qpdfでできること</a></li>
 <li class="chapter" data-level="16.3" data-path="qpdf.html"><a href="qpdf.html#pdfの分割"><i class="fa fa-check"></i><b>16.3</b> PDFの分割</a></li>
-<li class="chapter" data-level="16.4" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>16.4</b> PDFへのページ番号付加</a></li>
-<li class="chapter" data-level="16.5" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.5</b> 関数一覧</a></li>
+<li class="chapter" data-level="16.4" data-path="qpdf.html"><a href="qpdf.html#pdfの結合"><i class="fa fa-check"></i><b>16.4</b> PDFの結合</a></li>
+<li class="chapter" data-level="16.5" data-path="qpdf.html"><a href="qpdf.html#pdfの圧縮最適化"><i class="fa fa-check"></i><b>16.5</b> PDFの圧縮・最適化</a></li>
+<li class="chapter" data-level="16.6" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>16.6</b> PDFへのページ番号付加</a></li>
+<li class="chapter" data-level="16.7" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.7</b> 関数一覧</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>17</b> pdfをdocxに変換</a>
 <ul>
@@ -429,40 +431,84 @@ pdf_split()関数にinput引数として分割するファイルを，output引�
 出力ファイル名は以下のとおりである．
 - 入力：「original.pdf」(15ページ)
 - 出力: “original_01.pdf”, “original_02.pdf”, …, “original_15.pdf”</p>
+</div>
+<div id="pdfの結合" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> PDFの結合<a href="qpdf.html#pdfの結合" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>結合させる場合は，input引数に結合させたいファイル名を指定する．
+それ以外は，pdf_split()と同様である．</p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="qpdf.html#cb147-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 結合，join several pdf files into one</span></span>
 <span id="cb147-2"><a href="qpdf.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_combine</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p>ここではあるディレクトリにあるPDFファイルを1つのPDFファイルとして結合することを自動化するスクリプトを作成する．</p>
+<p>特定のディレクトリ内のPDFファイルを1つのPDFファイルとして結合することを自動化するスクリプトは以下のとおりである．</p>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="qpdf.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;rsc/combine_qpdf.rsc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;automater&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;D:/pf/R/R-4.3.0/library/automater/rsc/combine_qpdf.rsc&quot;</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="qpdf.html#cb150-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">readLines</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb150-2"><a href="qpdf.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb150-3"><a href="qpdf.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code></pre></div>
+<ul>
+<li>combine_qpdf.rsc をディレクトリに保存
+<ul>
+<li>以下のコードで、combine_qpdf.rsc をコピー可能</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="qpdf.html#cb151-1" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;combine_qpdf&quot;</span></span>
+<span id="cb151-2"><a href="qpdf.html#cb151-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;c:/&quot;</span> <span class="co"># set your path</span></span>
+<span id="cb151-3"><a href="qpdf.html#cb151-3" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">set_rsc</span>(file, path)</span></code></pre></div>
+<ul>
+<li>拡張子 .rsc を Rscript.exe に関連付ける<br />
+</li>
+<li>結合したいPDFファイルを combine_qpdf.rsc と同じディレクトリにコピーする<br />
+ファイルの結合順はファイル名の順序と同じ</li>
+<li>combine_qpdf.rsc をクリックする<br />
+</li>
+<li>黒いウィンドウが開くので，しばらく待つ<br />
+初めて実行するときは，パッケージのインストールに時間がかかることがある．<br />
+</li>
+<li>結合したファイル名は以下のとおりである．<br />
+出力: 「combined_“2020-11-27_12_00_00.pdf”」(結合した日付・時刻)</li>
+</ul>
+<p>PDFファイルの結合順はファイル名の順序と同じなので，<code>fs::dir_ls()</code>でファイル名一覧を取得し，<code>file_move()</code>で名前を変更する必要がある．
+さらに，このあたりも自動化するには，</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="qpdf.html#cb152-1" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;D:/matu/work/ToDo/automater/inst/pdf&quot;</span></span>
+<span id="cb152-2"><a href="qpdf.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb152-3"><a href="qpdf.html#cb152-3" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regexp =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.pdf&quot;</span>)</span>
+<span id="cb152-4"><a href="qpdf.html#cb152-4" aria-hidden="true" tabindex="-1"></a>files <span class="sc">%&gt;%</span></span>
+<span id="cb152-5"><a href="qpdf.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="fu">seq</span>(.), <span class="st">&quot;: &quot;</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb152-6"><a href="qpdf.html#cb152-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb152-7"><a href="qpdf.html#cb152-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">  結合するファイルを番号で指定してください(カンマ区切り)．</span><span class="sc">\n</span><span class="st">    例：3,1,2</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb152-8"><a href="qpdf.html#cb152-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span>
+<span id="cb152-9"><a href="qpdf.html#cb152-9" aria-hidden="true" tabindex="-1"></a>order <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="fu">stdin</span>(), <span class="at">n=</span><span class="dv">1</span>)</span></code></pre></div>
+</div>
+<div id="pdfの圧縮最適化" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> PDFの圧縮・最適化<a href="qpdf.html#pdfの圧縮最適化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>pdf_compress()は圧縮とともに，最適化(Linealize)してくれる．
 最適化されていないPDFはファイルを全部読み込まないと表示できないのに対して，
 最適化されたPDFは最後まで読み込みが完了しなくてもページ表示できる．
 ネット上にある重いPDFを表示させる場合に特に役立つ．</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="qpdf.html#cb150-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 圧縮，compress or linearize a pdf file</span></span>
-<span id="cb150-2"><a href="qpdf.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_compress</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">linearize =</span> <span class="cn">FALSE</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="qpdf.html#cb153-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 圧縮，compress or linearize a pdf file</span></span>
+<span id="cb153-2"><a href="qpdf.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_compress</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">linearize =</span> <span class="cn">FALSE</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 </div>
-<div id="pdfへのページ番号付加" class="section level2 hasAnchor" number="16.4">
-<h2><span class="header-section-number">16.4</span> PDFへのページ番号付加<a href="qpdf.html#pdfへのページ番号付加" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pdfへのページ番号付加" class="section level2 hasAnchor" number="16.6">
+<h2><span class="header-section-number">16.6</span> PDFへのページ番号付加<a href="qpdf.html#pdfへのページ番号付加" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>pdf_overlay_stamp</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="qpdf.html#cb151-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 重ね合わせ</span></span>
-<span id="cb151-2"><a href="qpdf.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="qpdf.html#cb154-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 重ね合わせ</span></span>
+<span id="cb154-2"><a href="qpdf.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 </div>
-<div id="関数一覧" class="section level2 hasAnchor" number="16.5">
-<h2><span class="header-section-number">16.5</span> 関数一覧<a href="qpdf.html#関数一覧" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="qpdf.html#cb152-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ページ数取得，show the number of pages in a pdf</span></span>
-<span id="cb152-2"><a href="qpdf.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_length</span>(input, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb152-3"><a href="qpdf.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1ページごとに分割，split a single pdf into separate files, one for each page</span></span>
-<span id="cb152-4"><a href="qpdf.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_split</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb152-5"><a href="qpdf.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 指定ページを抽出，create a new pdf with a subset of the input pages</span></span>
-<span id="cb152-6"><a href="qpdf.html#cb152-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(input, <span class="at">pages =</span> <span class="dv">1</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb152-7"><a href="qpdf.html#cb152-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 結合，join several pdf files into one</span></span>
-<span id="cb152-8"><a href="qpdf.html#cb152-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_combine</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb152-9"><a href="qpdf.html#cb152-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 圧縮，compress or linearize a pdf file</span></span>
-<span id="cb152-10"><a href="qpdf.html#cb152-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_compress</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">linearize =</span> <span class="cn">FALSE</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb152-11"><a href="qpdf.html#cb152-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ページ回転，rotate selected pages</span></span>
-<span id="cb152-12"><a href="qpdf.html#cb152-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_rotate_pages</span>(input, pages, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">relative =</span> <span class="cn">FALSE</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb152-13"><a href="qpdf.html#cb152-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 重ね合わせ</span></span>
-<span id="cb152-14"><a href="qpdf.html#cb152-14" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div id="関数一覧" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">16.7</span> 関数一覧<a href="qpdf.html#関数一覧" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="qpdf.html#cb155-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ページ数取得，show the number of pages in a pdf</span></span>
+<span id="cb155-2"><a href="qpdf.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_length</span>(input, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb155-3"><a href="qpdf.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1ページごとに分割，split a single pdf into separate files, one for each page</span></span>
+<span id="cb155-4"><a href="qpdf.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_split</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb155-5"><a href="qpdf.html#cb155-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 指定ページを抽出，create a new pdf with a subset of the input pages</span></span>
+<span id="cb155-6"><a href="qpdf.html#cb155-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(input, <span class="at">pages =</span> <span class="dv">1</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb155-7"><a href="qpdf.html#cb155-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 結合，join several pdf files into one</span></span>
+<span id="cb155-8"><a href="qpdf.html#cb155-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_combine</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb155-9"><a href="qpdf.html#cb155-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 圧縮，compress or linearize a pdf file</span></span>
+<span id="cb155-10"><a href="qpdf.html#cb155-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_compress</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">linearize =</span> <span class="cn">FALSE</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb155-11"><a href="qpdf.html#cb155-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ページ回転，rotate selected pages</span></span>
+<span id="cb155-12"><a href="qpdf.html#cb155-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_rotate_pages</span>(input, pages, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">relative =</span> <span class="cn">FALSE</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb155-13"><a href="qpdf.html#cb155-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 重ね合わせ</span></span>
+<span id="cb155-14"><a href="qpdf.html#cb155-14" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -515,20 +561,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
