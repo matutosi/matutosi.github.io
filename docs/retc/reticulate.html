@@ -231,7 +231,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.7" data-path="rvest.html"><a href="rvest.html#urlの生成データの取得"><i class="fa fa-check"></i><b>11.7</b> URLの生成・データの取得</a></li>
 <li class="chapter" data-level="11.8" data-path="rvest.html"><a href="rvest.html#地図画像の取得"><i class="fa fa-check"></i><b>11.8</b> 地図画像の取得</a></li>
 <li class="chapter" data-level="11.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>11.9</b> 複数種への対応</a></li>
-<li class="chapter" data-level="11.10" data-path="rvest.html"><a href="rvest.html#amazon-primeの新着情報の取得例"><i class="fa fa-check"></i><b>11.10</b> Amazon Primeの新着情報の取得例</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>12</b> Rselenium</a>
 <ul>
@@ -271,7 +270,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="16" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>16</b> qpdfでPDF操作</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.1</b> 関数一覧</a></li>
+<li class="chapter" data-level="16.1" data-path="qpdf.html"><a href="qpdf.html#準備-6"><i class="fa fa-check"></i><b>16.1</b> 準備</a></li>
+<li class="chapter" data-level="16.2" data-path="qpdf.html"><a href="qpdf.html#qpdfでできること"><i class="fa fa-check"></i><b>16.2</b> qpdfでできること</a></li>
+<li class="chapter" data-level="16.3" data-path="qpdf.html"><a href="qpdf.html#pdfの分割"><i class="fa fa-check"></i><b>16.3</b> PDFの分割</a></li>
+<li class="chapter" data-level="16.4" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>16.4</b> PDFへのページ番号付加</a></li>
+<li class="chapter" data-level="16.5" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.5</b> 関数一覧</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>17</b> pdfをdocxに変換</a>
 <ul>
@@ -347,18 +350,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="実行" class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">13.4</span> 実行<a href="reticulate.html#実行" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="reticulate.html#cb134-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pdf2docxの読み込みでエラーになるとき</span></span>
-<span id="cb134-2"><a href="reticulate.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   reticulate::use_python()でpythonを指定</span></span>
-<span id="cb134-3"><a href="reticulate.html#cb134-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   pipでpdf2docxがインストールできたpythonを使う</span></span>
-<span id="cb134-4"><a href="reticulate.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb134-5"><a href="reticulate.html#cb134-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reticulate::py_install(&quot;pdf2docx&quot;) エラー</span></span>
-<span id="cb134-6"><a href="reticulate.html#cb134-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://anaconda.org/conda-forge/python-docx</span></span>
-<span id="cb134-7"><a href="reticulate.html#cb134-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reticulate::conda_install(channel = &quot;conda-forge&quot;, packages = &quot;python-docx&quot;)  # できたけど，pdf2docxは読み込めず</span></span>
-<span id="cb134-8"><a href="reticulate.html#cb134-8" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">&quot;C:/Python/Python39/python.exe&quot;</span>)</span>
-<span id="cb134-9"><a href="reticulate.html#cb134-9" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;from pdf2docx import parse&quot;</span>)</span>
-<span id="cb134-10"><a href="reticulate.html#cb134-10" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;pdf_file = &#39;D:/a.pdf&#39;&quot;</span>)</span>
-<span id="cb134-11"><a href="reticulate.html#cb134-11" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;docx_file = &#39;D:/a.docx&#39;&quot;</span>)</span>
-<span id="cb134-12"><a href="reticulate.html#cb134-12" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;parse(pdf_file, docx_file)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="reticulate.html#cb126-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pdf2docxの読み込みでエラーになるとき</span></span>
+<span id="cb126-2"><a href="reticulate.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   reticulate::use_python()でpythonを指定</span></span>
+<span id="cb126-3"><a href="reticulate.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   pipでpdf2docxがインストールできたpythonを使う</span></span>
+<span id="cb126-4"><a href="reticulate.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb126-5"><a href="reticulate.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reticulate::py_install(&quot;pdf2docx&quot;) エラー</span></span>
+<span id="cb126-6"><a href="reticulate.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://anaconda.org/conda-forge/python-docx</span></span>
+<span id="cb126-7"><a href="reticulate.html#cb126-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reticulate::conda_install(channel = &quot;conda-forge&quot;, packages = &quot;python-docx&quot;)  # できたけど，pdf2docxは読み込めず</span></span>
+<span id="cb126-8"><a href="reticulate.html#cb126-8" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">&quot;C:/Python/Python39/python.exe&quot;</span>)</span>
+<span id="cb126-9"><a href="reticulate.html#cb126-9" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;from pdf2docx import parse&quot;</span>)</span>
+<span id="cb126-10"><a href="reticulate.html#cb126-10" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;pdf_file = &#39;D:/a.pdf&#39;&quot;</span>)</span>
+<span id="cb126-11"><a href="reticulate.html#cb126-11" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;docx_file = &#39;D:/a.docx&#39;&quot;</span>)</span>
+<span id="cb126-12"><a href="reticulate.html#cb126-12" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;parse(pdf_file, docx_file)&quot;</span>)</span></code></pre></div>
 </div>
 <div id="pythoとrとの変数のやり取り" class="section level2 hasAnchor" number="13.5">
 <h2><span class="header-section-number">13.5</span> PythoとRとの変数のやり取り<a href="reticulate.html#pythoとrとの変数のやり取り" class="anchor-section" aria-label="Anchor link to header"></a></h2>

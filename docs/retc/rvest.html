@@ -231,7 +231,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.7" data-path="rvest.html"><a href="rvest.html#urlの生成データの取得"><i class="fa fa-check"></i><b>11.7</b> URLの生成・データの取得</a></li>
 <li class="chapter" data-level="11.8" data-path="rvest.html"><a href="rvest.html#地図画像の取得"><i class="fa fa-check"></i><b>11.8</b> 地図画像の取得</a></li>
 <li class="chapter" data-level="11.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>11.9</b> 複数種への対応</a></li>
-<li class="chapter" data-level="11.10" data-path="rvest.html"><a href="rvest.html#amazon-primeの新着情報の取得例"><i class="fa fa-check"></i><b>11.10</b> Amazon Primeの新着情報の取得例</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>12</b> Rselenium</a>
 <ul>
@@ -271,7 +270,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="16" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>16</b> qpdfでPDF操作</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.1</b> 関数一覧</a></li>
+<li class="chapter" data-level="16.1" data-path="qpdf.html"><a href="qpdf.html#準備-6"><i class="fa fa-check"></i><b>16.1</b> 準備</a></li>
+<li class="chapter" data-level="16.2" data-path="qpdf.html"><a href="qpdf.html#qpdfでできること"><i class="fa fa-check"></i><b>16.2</b> qpdfでできること</a></li>
+<li class="chapter" data-level="16.3" data-path="qpdf.html"><a href="qpdf.html#pdfの分割"><i class="fa fa-check"></i><b>16.3</b> PDFの分割</a></li>
+<li class="chapter" data-level="16.4" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>16.4</b> PDFへのページ番号付加</a></li>
+<li class="chapter" data-level="16.5" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.5</b> 関数一覧</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>17</b> pdfをdocxに変換</a>
 <ul>
@@ -420,10 +423,12 @@ tidyverseは既にインストールしているはずだが，まだの場合�
 <p>まずはブラウザでページにアクセス，手作業で検索，指定状況とその地図情報の画像を入手してみる．
 上記URLで例として示されているニッコウキスゲをキーワード(種名)として入力すると，ページ遷移する．
 アドレスバーにはカタカナがそのまま表示されている．
-しかし，アドレスをコピーしてテキストエディタに貼り付けると文字化けしたようになる．</p>
-<p><a href="http://jpnrdb.com/search.php?mode=key&amp;q=ニッコウキスゲ" class="uri">http://jpnrdb.com/search.php?mode=key&amp;q=ニッコウキスゲ</a><br />
-<a href="http://jpnrdb.com/search.php?mode=key&amp;q=%E3%83%8B%E3%83%83%E3%82%B3%E3%82%A6%E3%82%AD%E3%82%B9%E3%82%B2" class="uri">http://jpnrdb.com/search.php?mode=key&amp;q=%E3%83%8B%E3%83%83%E3%82%B3%E3%82%A6%E3%82%AD%E3%82%B9%E3%82%B2</a></p>
-<p>これはURLエンコードによってコード変換された結果であるが安心して欲しい．
+しかし，アドレスをコピーしてテキストエディタに貼り付けると文字化けしたようになる．
+<!--
+http://jpnrdb.com/search.php?mode=key&q=ニッコウキスゲ   
+http://jpnrdb.com/search.php?mode=key&q=%E3%83%8B%E3%83%83%E3%82%B3%E3%82%A6%E3%82%AD%E3%82%B9%E3%82%B2
+-->
+これはURLエンコードによってコード変換された結果であるが安心して欲しい．
 rvestを使ってHTMLを取得するときには，日本語をそのまま使用することができる．
 上記のURLのうち「<a href="http://jpnrdb.com/search.php?mode=」まではここで使用するページに共通する部分であるため，mainとしておく" class="uri">http://jpnrdb.com/search.php?mode=」まではここで使用するページに共通する部分であるため，mainとしておく</a>．
 検索したい種名は変更する部分で，とりあえずspに入れておく．
@@ -719,97 +724,6 @@ read_html()でHTMLが取得できない場合は，URLが正しいか確認す�
 さらに悪質なときには法的手段を取られることもありえるので，注意が必要である．
 ただし，<a href="http://jpnrdb.com/にrobots.txtは設置されておらず，これらはpoliteパッケージが一般的な注意として示しているに過ぎない" class="uri">http://jpnrdb.com/にrobots.txtは設置されておらず，これらはpoliteパッケージが一般的な注意として示しているに過ぎない</a>．
 大量にデータを入手する必要がある場合は，あらかじめ管理者に連絡する方が無難である．</p>
-</div>
-<div id="amazon-primeの新着情報の取得例" class="section level2 hasAnchor" number="11.10">
-<h2><span class="header-section-number">11.10</span> Amazon Primeの新着情報の取得例<a href="rvest.html#amazon-primeの新着情報の取得例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="rvest.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="st">&quot;LC_TIME&quot;</span>, <span class="st">&quot;en_US.UTF-8&quot;</span>) <span class="co"># アメリカ英語に設定</span></span></code></pre></div>
-<pre><code>## [1] &quot;en_US.UTF-8&quot;</code></pre>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="rvest.html#cb127-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># date &lt;- lubridate::today()</span></span>
-<span id="cb127-2"><a href="rvest.html#cb127-2" aria-hidden="true" tabindex="-1"></a>date <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">ymd</span>(<span class="st">&quot;2022-5-1&quot;</span>)</span>
-<span id="cb127-3"><a href="rvest.html#cb127-3" aria-hidden="true" tabindex="-1"></a>ym <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;^&quot;</span>, <span class="fu">year</span>(date), <span class="st">&quot;年&quot;</span>, <span class="fu">month</span>(date) , <span class="st">&quot;月&quot;</span>)</span>
-<span id="cb127-4"><a href="rvest.html#cb127-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-5"><a href="rvest.html#cb127-5" aria-hidden="true" tabindex="-1"></a>main <span class="ot">&lt;-</span> <span class="st">&quot;https://www.aboutamazon.jp/news/entertainment/amazon-prime-video-new-content-&quot;</span></span>
-<span id="cb127-6"><a href="rvest.html#cb127-6" aria-hidden="true" tabindex="-1"></a>url_amz <span class="ot">&lt;-</span> </span>
-<span id="cb127-7"><a href="rvest.html#cb127-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb127-8"><a href="rvest.html#cb127-8" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_to_lower</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb127-9"><a href="rvest.html#cb127-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(main, ., <span class="st">&quot;-&quot;</span>, <span class="fu">year</span>(date))</span>
-<span id="cb127-10"><a href="rvest.html#cb127-10" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> rvest<span class="sc">::</span><span class="fu">read_html</span>(url_amz)</span></code></pre></div>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="rvest.html#cb128-1" aria-hidden="true" tabindex="-1"></a>polite<span class="sc">::</span><span class="fu">bow</span>(<span class="st">&quot;https://www.aboutamazon.jp/&quot;</span>)</span></code></pre></div>
-<pre><code>## &lt;polite session&gt; https://www.aboutamazon.jp/
-##     User-agent: polite R package
-##     robots.txt: 0 rules are defined for 1 bots
-##    Crawl delay: 10 sec
-##   The path is scrapable for this user-agent</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="rvest.html#cb130-1" aria-hidden="true" tabindex="-1"></a>contents <span class="ot">&lt;-</span> </span>
-<span id="cb130-2"><a href="rvest.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  html <span class="sc">%&gt;%</span></span>
-<span id="cb130-3"><a href="rvest.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_elements</span>(<span class="st">&quot;body&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb130-4"><a href="rvest.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_elements</span>(<span class="st">&quot;div.RichTextArticleBody-body li,p,h3.cms-headings-h3&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb130-5"><a href="rvest.html#cb130-5" aria-hidden="true" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb130-6"><a href="rvest.html#cb130-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb130-7"><a href="rvest.html#cb130-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(value <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb130-8"><a href="rvest.html#cb130-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-9"><a href="rvest.html#cb130-9" aria-hidden="true" tabindex="-1"></a>contents <span class="sc">%&gt;%</span></span>
-<span id="cb130-10"><a href="rvest.html#cb130-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb130-11"><a href="rvest.html#cb130-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">div =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
-<span id="cb130-12"><a href="rvest.html#cb130-12" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;^洋画|邦画|アニメ|海外|国内|韓国&quot;</span>) <span class="sc">&amp;</span> stringr<span class="sc">::</span><span class="fu">str_length</span>(value) <span class="sc">&lt;</span> <span class="dv">20</span> <span class="sc">~</span> value,</span>
-<span id="cb130-13"><a href="rvest.html#cb130-13" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>    )) <span class="sc">%&gt;%</span></span>
-<span id="cb130-14"><a href="rvest.html#cb130-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb130-15"><a href="rvest.html#cb130-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
-<span id="cb130-16"><a href="rvest.html#cb130-16" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, ym) <span class="sc">~</span> value,</span>
-<span id="cb130-17"><a href="rvest.html#cb130-17" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>    )) <span class="sc">%&gt;%</span></span>
-<span id="cb130-18"><a href="rvest.html#cb130-18" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">fill</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">&quot;div&quot;</span>, <span class="st">&quot;date&quot;</span>)), <span class="at">.direction =</span> <span class="st">&quot;down&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb130-19"><a href="rvest.html#cb130-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">value =</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(value, <span class="st">&quot;^Amazon Original&quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb130-20"><a href="rvest.html#cb130-20" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">value =</span> stringr<span class="sc">::</span><span class="fu">str_replace_all</span>(value, <span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb130-21"><a href="rvest.html#cb130-21" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">value =</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(value, <span class="st">&quot;※.+&quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb130-22"><a href="rvest.html#cb130-22" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;^『&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb130-23"><a href="rvest.html#cb130-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n=</span><span class="dv">100</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 38 × 3
-##    value                                                             div   date 
-##    &lt;chr&gt;                                                             &lt;chr&gt; &lt;chr&gt;
-##  1 『ズーム／見えない参加者』                                        洋画  2022…
-##  2 『テスラエジソンが恐れた天才』                                    洋画  2022…
-##  3 『17歳の瞳に映る世界』                                            洋画  2022…
-##  4 『すべてが変わった日』                                            洋画  2022…
-##  5 『プロミシング・ヤング・ウーマン』                                洋画  2022…
-##  6 『ライトハウス』                                                  洋画  2022…
-##  7 『007／ノー・タイム・トゥ・ダイ』                                 洋画  2022…
-##  8 『ガンズ・アキンボ』                                              洋画  2022…
-##  9 『友情にSOS』                                                     洋画  2022…
-## 10 『AWAKE』                                                         邦画  2022…
-## 11 『おと・な・り』                                                  邦画  2022…
-## 12 『朝が来る』                                                      邦画  2022…
-## 13 『真夜中乙女戦争』                                                邦画  2022…
-## 14 『劇場版シグナル長期未解決事件捜査班』                            邦画  2022…
-## 15 『ホテルローヤル』                                                邦画  2022…
-## 16 『先生、私の隣に座っていただけませんか？』                        邦画  2022…
-## 17 『さがす』                                                        邦画  2022…
-## 18 『天外者』                                                        邦画  2022…
-## 19 『整形水』                                                        アニ… 2022…
-## 20 『ボッシュ:受け継がれるもの』                                     海外… 2022…
-## 21 『ザ・ワイルズ～孤島に残された少女たち～」シーズン2               海外… 2022…
-## 22 『アリーチェの物語』パート2                                       海外… 2022…
-## 23 『天空の旅人』                                                    海外… 2022…
-## 24 『ドクターホワイト』                                              国内… 2022…
-## 25 『名探偵コナン本庁刑事恋物語～結婚前夜～』                        国内… 2022…
-## 26 『ちいかわ』                                                      国内… 2022…
-## 27 『君のハートをつかまえろ』                                        韓国… 2022…
-## 28 『ウラチャチャ！？～男女6人恋のバトル～』                         韓国… 2022…
-## 29 『おかえり～ただいまのキスは屋根の上で！？～』                    韓国… 2022…
-## 30 『LOL:HITOSHIMATSUMOTOPresentsドキュメンタル～メキシコ版～』シー… 海外… 2022…
-## 31 『リゾのビッグスター発掘』                                        海外… 2022…
-## 32 『キッズ・イン・ザ・ホール～ギャグの殿堂～』                      海外… 2022…
-## 33 『恋愛ハイスクール』                                              海外… 2022…
-## 34 『LOL:HITOSHIMATSUMOTOPresentsドキュメンタル～スペイン版～』シー… 海外… 2022…
-## 35 『イアン・スターリング～前向きな失敗～』                          海外… 2022…
-## 36 『LOL:HITOSHIMATSUMOTOPresentsドキュメンタル～ドイツ版～』シーズ… 海外… 2022…
-## 37 『ビバリー・スミス殺害事件の謎』                                  海外… 2022…
-## 38 『キッズ・イン・ザ・ホール～コメディの反逆児～』                  海外… 2022…</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="rvest.html#cb132-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   html_elements(&quot;h3.cms-headings-h3&quot;) %&gt;%</span></span>
-<span id="cb132-2"><a href="rvest.html#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-3"><a href="rvest.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># id         rvest::html_elements(&quot;#content&quot;) %&gt;%</span></span>
-<span id="cb132-4"><a href="rvest.html#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># class      rvest::html_elements(&quot;.next&quot;) %&gt;%</span></span>
-<span id="cb132-5"><a href="rvest.html#cb132-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tag        rvest::html_elements(&quot;a&quot;) %&gt;%</span></span>
-<span id="cb132-6"><a href="rvest.html#cb132-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 属性       rvest::html_attr(&quot;href&quot;)</span></span></code></pre></div>
 
 </div>
 </div>
