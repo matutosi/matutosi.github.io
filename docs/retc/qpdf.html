@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-05" />
+<meta name="date" content="2023-05-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -276,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="qpdf.html"><a href="qpdf.html#pdfの結合"><i class="fa fa-check"></i><b>16.4</b> PDFの結合</a></li>
 <li class="chapter" data-level="16.5" data-path="qpdf.html"><a href="qpdf.html#pdfの圧縮最適化"><i class="fa fa-check"></i><b>16.5</b> PDFの圧縮・最適化</a></li>
 <li class="chapter" data-level="16.6" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>16.6</b> PDFへのページ番号付加</a></li>
-<li class="chapter" data-level="16.7" data-path="qpdf.html"><a href="qpdf.html#関数一覧"><i class="fa fa-check"></i><b>16.7</b> 関数一覧</a></li>
+<li class="chapter" data-level="16.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数"><i class="fa fa-check"></i><b>16.7</b> その他の関数</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>17</b> pdfをdocxに変換</a>
 <ul>
@@ -467,48 +467,197 @@ pdf_split()関数にinput引数として分割するファイルを，output引�
 出力: 「combined_“2020-11-27_12_00_00.pdf”」(結合した日付・時刻)</li>
 </ul>
 <p>PDFファイルの結合順はファイル名の順序と同じなので，<code>fs::dir_ls()</code>でファイル名一覧を取得し，<code>file_move()</code>で名前を変更する必要がある．
-さらに，このあたりも自動化するには，</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="qpdf.html#cb152-1" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;D:/matu/work/ToDo/automater/inst/pdf&quot;</span></span>
-<span id="cb152-2"><a href="qpdf.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb152-3"><a href="qpdf.html#cb152-3" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regexp =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.pdf&quot;</span>)</span>
-<span id="cb152-4"><a href="qpdf.html#cb152-4" aria-hidden="true" tabindex="-1"></a>files <span class="sc">%&gt;%</span></span>
-<span id="cb152-5"><a href="qpdf.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="fu">seq</span>(.), <span class="st">&quot;: &quot;</span>, .) <span class="sc">%&gt;%</span></span>
-<span id="cb152-6"><a href="qpdf.html#cb152-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb152-7"><a href="qpdf.html#cb152-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">  結合するファイルを番号で指定してください(カンマ区切り)．</span><span class="sc">\n</span><span class="st">    例：3,1,2</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb152-8"><a href="qpdf.html#cb152-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span>
-<span id="cb152-9"><a href="qpdf.html#cb152-9" aria-hidden="true" tabindex="-1"></a>order <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="fu">stdin</span>(), <span class="at">n=</span><span class="dv">1</span>)</span></code></pre></div>
+さらに，このあたりも自動化するには，ユーザからの入力を受け取り，それをもとにファイル名の順序を決めれば良い．</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="qpdf.html#cb152-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;set_your_directory&quot;</span></span>
+<span id="cb152-2"><a href="qpdf.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
+<span id="cb152-3"><a href="qpdf.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb152-4"><a href="qpdf.html#cb152-4" aria-hidden="true" tabindex="-1"></a>input_files <span class="ot">&lt;-</span> <span class="cf">function</span>(files){</span>
+<span id="cb152-5"><a href="qpdf.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  len <span class="ot">&lt;-</span> <span class="fu">length</span>(files) <span class="sc">%&gt;%</span> <span class="fu">log10</span>() <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>()</span>
+<span id="cb152-6"><a href="qpdf.html#cb152-6" aria-hidden="true" tabindex="-1"></a>  no <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_pad</span>(<span class="fu">seq</span>(files), <span class="at">width =</span> len, <span class="at">side =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb152-7"><a href="qpdf.html#cb152-7" aria-hidden="true" tabindex="-1"></a>  prompt <span class="ot">&lt;-</span> </span>
+<span id="cb152-8"><a href="qpdf.html#cb152-8" aria-hidden="true" tabindex="-1"></a>    files <span class="sc">%&gt;%</span></span>
+<span id="cb152-9"><a href="qpdf.html#cb152-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(no, <span class="st">&quot;: &quot;</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb152-10"><a href="qpdf.html#cb152-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb152-11"><a href="qpdf.html#cb152-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">結合するファイルを番号で指定してください(カンマ区切り)．</span><span class="sc">\n</span><span class="st">  例：3,1,2</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb152-12"><a href="qpdf.html#cb152-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>()</span>
+<span id="cb152-13"><a href="qpdf.html#cb152-13" aria-hidden="true" tabindex="-1"></a>  input_order <span class="ot">&lt;-</span> </span>
+<span id="cb152-14"><a href="qpdf.html#cb152-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">user_input</span>(prompt) <span class="sc">%&gt;%</span></span>
+<span id="cb152-15"><a href="qpdf.html#cb152-15" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb152-16"><a href="qpdf.html#cb152-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb152-17"><a href="qpdf.html#cb152-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>()</span>
+<span id="cb152-18"><a href="qpdf.html#cb152-18" aria-hidden="true" tabindex="-1"></a>  files[input_order]</span>
+<span id="cb152-19"><a href="qpdf.html#cb152-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb152-20"><a href="qpdf.html#cb152-20" aria-hidden="true" tabindex="-1"></a>user_input <span class="ot">&lt;-</span> <span class="cf">function</span>(prompt){</span>
+<span id="cb152-21"><a href="qpdf.html#cb152-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
+<span id="cb152-22"><a href="qpdf.html#cb152-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">readline</span>(prompt))</span>
+<span id="cb152-23"><a href="qpdf.html#cb152-23" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb152-24"><a href="qpdf.html#cb152-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(prompt)</span>
+<span id="cb152-25"><a href="qpdf.html#cb152-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">readLines</span>(<span class="st">&quot;stdin&quot;</span>, <span class="at">n=</span><span class="dv">1</span>))</span>
+<span id="cb152-26"><a href="qpdf.html#cb152-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb152-27"><a href="qpdf.html#cb152-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb152-28"><a href="qpdf.html#cb152-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-29"><a href="qpdf.html#cb152-29" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regexp =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.pdf&quot;</span>)</span>
+<span id="cb152-30"><a href="qpdf.html#cb152-30" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">input_files</span>(files)</span>
+<span id="cb152-31"><a href="qpdf.html#cb152-31" aria-hidden="true" tabindex="-1"></a>input</span>
+<span id="cb152-32"><a href="qpdf.html#cb152-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-33"><a href="qpdf.html#cb152-33" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">message_to_continue</span>()</span></code></pre></div>
+<p>上のコードの<code>input_files()</code>では，ファイル名の一覧からファイル数を取り出し，ファイル番号を画面表示用に桁揃えしている．
+その後，ファイル番号とファイル名，さらにユーザへの註釈を結合して，プロンプトに表示するメッセージ文字列を生成する．
+メッセージを<code>user_input()</code>を用いて表示するとともに，ユーザからの入力を受け取る．
+入力された文字列を数値にして，ファイルの順序を決めている．</p>
+<p>このコードの<code>input</code>を<code>pdf_combine(input)</code>として使えば，ユーザ入力をもとにしてPDFファイルを結合するスクリプトができる．
+入力する番号が数個であれば，これでも良いがもっと多くのファイルになった場合は現実的には使いにくい．
+多くのファイルを結合する場合は，以下のような方法で実装すると良いだろう．</p>
+<ul>
+<li><code>fs::dir_ls(regexp = "\\.pdf")</code>でファイル名の一覧を入手<br />
+</li>
+<li>一覧をもとに1行ごとに1つのファイル名のテキストファイルとして保存<br />
+</li>
+<li>テキストファイルをユーザが並び替える(Rでは並び替えが終わるまで待機)<br />
+</li>
+<li>並び替えが終われば，RでEnter(他のキーでもOK)を入力<br />
+</li>
+<li>テキストファイルを読み込み，や<code>combine_qpdf()</code>(<code>pdf_combine()</code>でもOK)でPDFを結合</li>
+</ul>
 </div>
 <div id="pdfの圧縮最適化" class="section level2 hasAnchor" number="16.5">
 <h2><span class="header-section-number">16.5</span> PDFの圧縮・最適化<a href="qpdf.html#pdfの圧縮最適化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>pdf_compress()は圧縮とともに，最適化(Linealize)してくれる．
 最適化されていないPDFはファイルを全部読み込まないと表示できないのに対して，
 最適化されたPDFは最後まで読み込みが完了しなくてもページ表示できる．
-ネット上にある重いPDFを表示させる場合に特に役立つ．</p>
+ネット上にある重いPDFを表示させる場合に特に役立つ．
+使い方は次のとおりである．
+詳細な説明は不要だろう．</p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="qpdf.html#cb153-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 圧縮，compress or linearize a pdf file</span></span>
 <span id="cb153-2"><a href="qpdf.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_compress</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">linearize =</span> <span class="cn">FALSE</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 </div>
 <div id="pdfへのページ番号付加" class="section level2 hasAnchor" number="16.6">
 <h2><span class="header-section-number">16.6</span> PDFへのページ番号付加<a href="qpdf.html#pdfへのページ番号付加" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>pdf_overlay_stamp</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="qpdf.html#cb154-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 重ね合わせ</span></span>
-<span id="cb154-2"><a href="qpdf.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><code>pdf_overlay_stamp()</code>を使うと，PDFファイルに別のPDFファイルを重ね合わせることができる．</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="qpdf.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p>引数<code>input</code>にはベースとなるPDFファイルを，<code>stamp</code>には重ね合わせるPDFファイルを指定する．
+<code>stamp</code>として「部外秘」「資料1」などを記載したPDFファイルをあらかじめ準備しておく．
+<code>input</code>の各ページに<code>stamp</code>の1ページ目が重ね合わせられる．</p>
+<p>これだけでも十分便利な機能であるが，さらに便利に使いたい．
+例えば，ベースのPDFファイルの各ページにページ番号を入力したい．
+ページ番号でなくて別の通し番号を使いたいときもあるだろう．
+例えば，学会の発表要旨集で左上に「A01」「A02」のような会場番号と通し番号を使うことが多い．
+さらに欲をだして，重ね合わせの開始・終了ページを指定するようにしたい．</p>
+<p>これらの内容を実行するコードは次のとおりである．</p>
+<pre><code>#&#39; Wrapper functions to overlay page numbers and others using package qpdf.
+#&#39; 
+#&#39; pdf_overlay_stamps_each() overlay PDF for each page in pdf file. 
+#&#39; validate_page() is a helper function for pdf_overlay_stamps_each() 
+#&#39; to validate page consistency of among page no. of input, stamp, start and end.
+#&#39; pdf_overlay_page_num() and pdf_overlay_session_num() are wrapper functions to 
+#&#39; overlay page no. and session no. for accademic congress or symposium etc. 
+#&#39; pdf_overlay_page_num() can overlay up to 100 pages.
+#&#39; 
+#&#39; Package qpdf &lt;https://cran.r-project.org/web/packages/qpdf/index.html&gt;
+#&#39; includes useful functions as shown bellow.
+#&#39; pdf_length(), pdf_split(), pdf_subset(), pdf_combine(), 
+#&#39; pdf_compress(), pdf_rotate_pages(), pdf_overlay_stamp().
+#&#39; 
+#&#39; @name pdf_overlay
+#&#39; @param input,stamp  A string of file name or path of pdf file.
+#&#39;                     input is a base pdf and stamp will be overlayed.
+#&#39;                     No. of pages in stamp PDF should be equal to or over no. of pages in input PDF.
+#&#39;                     Pages in stamp exceeding pages over input pages will be ignored.
+#&#39; @param start,end    An integer of start and end page to be stamped.
+#&#39;                     negative integer can be used for end, which means
+#&#39;                     number from the last page.
+#&#39; @param session      A string of session name. Can use &quot;a&quot;, &quot;b&quot;, or &quot;p&quot;.
+#&#39;                     &#39;session = &quot;a&quot;&#39; uses &#39;pdf/00_sn_a.pdf&#39; as stamp. 
+#&#39;                     pdf directory include &#39;00_sn_a.pdf&#39;, &#39;00_sn_b.pdf&#39;, and &#39;00_sn_p.pdf&#39; 
+#&#39;                     by default, which invlude 50 pages (eg., A01, A02, ..., A50) respectively.
+#&#39; @examples
+#&#39; \dontrun{
+#&#39; input &lt;- system.file(&quot;pdf/00_sn_a.pdf&quot;, package = &quot;automater&quot;)
+#&#39; pdf_overlay_page_num(input, start = 11, end = -3)
+#&#39; pdf_overlay_session_num(input, session = &quot;b&quot;)
+#&#39; }
+#&#39; 
+#&#39; @return  A string of output pdf file.
+#&#39; @export
+pdf_overlay_stamps_each &lt;- function(input, stamp, start = 1, end = NULL){
+  len_input &lt;- qpdf::pdf_length(input)
+  len_stamp &lt;- qpdf::pdf_length(stamp)
+  if(is.null(end)){ end &lt;- len_input }
+  if(end &lt; 0     ){ end &lt;- len_input + end}
+  validate_page(len_input, len_stamp, start, end)
+  pages_inputs &lt;- seq(to = len_input)
+    # +1 means out of bounds, inputs[pages_pre]: NA
+  pages_pre    &lt;- if(start != 1      ){ seq(to = start - 1)                 } else { len_input + 1 }
+  pages_post   &lt;- if(end != len_input){ seq(from = end  + 1, to = len_input)} else { len_input + 1 }
+  pages_body   &lt;- pages_inputs[-c(pages_pre, pages_post)]
+  inputs &lt;- qpdf::pdf_split(input)
+  stamps &lt;- qpdf::pdf_split(stamp)
+  out &lt;- list()
+  for(i in seq_along(pages_body)){
+    out[[i]] &lt;- qpdf::pdf_overlay_stamp(inputs[pages_body[i]], stamps[i])
+  }
+  out &lt;- stats::na.omit(c(inputs[pages_pre], unlist(out), inputs[pages_post]))
+  outfile &lt;- qpdf::pdf_combine(out, &quot;out.pdf&quot;)
+  file.remove(inputs)
+  file.remove(stamps)
+  file.remove(out[pages_body])
+  return(outfile)
+}
+
+#&#39; @rdname pdf_overlay
+#&#39; @export
+validate_page &lt;- function(len_input, len_stamp, start, end){
+  if(end       &lt; start)    { stop(&quot;end must be larger than start!&quot;) }
+  if(len_input &lt; start)    { stop(&quot;input pages must be larger than start!&quot;) }
+  if(len_input &lt; end  )    { stop(&quot;input pages must be larger than end!&quot;) }
+  if(len_input &gt; len_stamp){ stop(&quot;stamp pages must be equal to or bigger than input!&quot;) }
+}
+
+#&#39; @rdname pdf_overlay
+#&#39; @export
+pdf_overlay_page_num &lt;- function(input, start = 1, end = NULL){
+  stamp &lt;- file.path(find.package(&quot;automater&quot;), &quot;pdf/00_page.pdf&quot;)
+  pdf_overlay_stamps_each(input, stamp, start, end)
+}
+
+#&#39; @rdname pdf_overlay
+#&#39; @export
+pdf_overlay_session_num &lt;- function(input, start = 1, end = NULL, session = &quot;a&quot;){
+  stamp &lt;- file.path(find.package(&quot;automater&quot;), &quot;pdf/00_sn_&quot;, session, &quot;.pdf&quot;)
+  pdf_overlay_stamps_each(input, stamp, start, end)
+}</code></pre>
+<p><code>pdf_overlay_stamps_each()</code>の引数には，<code>input</code>，<code>stamp</code>，<code>start</code>，<code>end</code>がある．
+input<code>と</code>stamp<code>はqpdfの他の関数と同様の引数で，ファイルのパスを文字列で指定する．</code>start<code>と</code>end<code>は，</code>input<code>での重ね合わせ対象とするページ数の開始・終了ページで，整数で指定する． 最後からのページ数とするには，</code>end`を負の数で指定する．</p>
+<p>関数の主な構成は以下のとおりである．
+- input<code>と</code>stamp<code>のページ数を取得    -</code>start<code>や</code>end<code>との整合性を</code>validate_page()<code>で確認    - 重ね合わせ対象よりも前(</code>pages_pre<code>)，後ろ(</code>pages_post<code>)，重ね合わせの対象のページ(</code>pages_body<code>)を取得   -</code>pdf_split()<code>で</code>input<code>と</code>stamp<code>を1ページごとに分割    -</code>pages_body<code>の部分のみ，</code>stamp<code>の各ページを重ね合わせ    - combine_pdf()で使うためのファイル名を結合(</code>pages_pre<code>，</code>pages_body<code>，</code>pages_post`)<br />
+- combine_pdf()でファイルの結合<br />
+- 使用後のファイルを削除<br />
+- 結合したファイル名を返す</p>
+<p>なお，ページ番号と学会でのセッション番号を付与するためのラッパー関数として，それぞれ<code>pdf_overlay_page_num()</code>と<code>pdf_overlay_session_num()</code>がある．
+<code>pdf_overlay_page_num()</code>は，<code>input</code>のPDFだけ指定すれば全ページに番号を付加し，<code>start</code>と<code>end</code>が指定可能である．
+ただし，最大ページ数は100ページである．
+<code>pdf_overlay_session_num()</code>は，さらに<code>session</code>を指定して「A01」のような番号を左上に付加する．</p>
+<p>pdf_overlay_page_num(input, start = 1, end = NULL)
+pdf_overlay_session_num(input, start = 1, end = NULL, session = “a”)</p>
+<p>パッケージautomaterのpdfフォルダには，ページ番号と学会でのセッション番号を付加するためのPDFファイル(すべてA4版)がある．
+- 00_page.pdf
+- 00_sn_a.pdf，00_sn_b.pdf，00_sn_p.pdf
+ページ番号は，下部に「-1-」などの表記があり100ページ分からなる．
+セッション番号は，左上に「A01」(A会場を想定)「B01」「P01」(ポスター会場を想定)などの表記があり，50番までが入っている．
+それぞれのtexソースファイルも保存されている．
+texを使うのが難しければ，ワードなどで同様の書式のファイルを作成したものをPDFとして保存すれば良い．</p>
 </div>
-<div id="関数一覧" class="section level2 hasAnchor" number="16.7">
-<h2><span class="header-section-number">16.7</span> 関数一覧<a href="qpdf.html#関数一覧" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="qpdf.html#cb155-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ページ数取得，show the number of pages in a pdf</span></span>
-<span id="cb155-2"><a href="qpdf.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_length</span>(input, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb155-3"><a href="qpdf.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1ページごとに分割，split a single pdf into separate files, one for each page</span></span>
-<span id="cb155-4"><a href="qpdf.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_split</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb155-5"><a href="qpdf.html#cb155-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 指定ページを抽出，create a new pdf with a subset of the input pages</span></span>
-<span id="cb155-6"><a href="qpdf.html#cb155-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(input, <span class="at">pages =</span> <span class="dv">1</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb155-7"><a href="qpdf.html#cb155-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 結合，join several pdf files into one</span></span>
-<span id="cb155-8"><a href="qpdf.html#cb155-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_combine</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb155-9"><a href="qpdf.html#cb155-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 圧縮，compress or linearize a pdf file</span></span>
-<span id="cb155-10"><a href="qpdf.html#cb155-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_compress</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">linearize =</span> <span class="cn">FALSE</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb155-11"><a href="qpdf.html#cb155-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ページ回転，rotate selected pages</span></span>
-<span id="cb155-12"><a href="qpdf.html#cb155-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_rotate_pages</span>(input, pages, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">relative =</span> <span class="cn">FALSE</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb155-13"><a href="qpdf.html#cb155-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 重ね合わせ</span></span>
-<span id="cb155-14"><a href="qpdf.html#cb155-14" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div id="その他の関数" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">16.7</span> その他の関数<a href="qpdf.html#その他の関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>qpdfには，上記で説明した以外に<code>pdf_length()</code>と<code>pdf_rotate_pages()</code>もある．
+<code>pdf_length()</code>は入力したPDFファイルのページ数を返す．
+<code>pdf_rotate_pages()</code>はPDFファイルのページを90度単位で回転できる．
+<code>angle</code>で時計回りの角度を指定する．
+<code>relative</code>が<code>TRUE</code>のときは入力時点での角度からの相対的な角度で回転し，<code>FALSE</code>のときは<code>angle = 0</code>のときは縦長で<code>angle = 90</code>のときは横長になる．</p>
+<ul>
+<li>pdf_length(input, password = ““)</li>
+<li>pdf_rotate_pages(input, pages, angle = 90, relative = FALSE, output = NULL, password = ““)</li>
+</ul>
 
 </div>
 </div>
