@@ -13,18 +13,22 @@ ImageMagick自体は，コマンドラインで使うことができるので，
 
 例によってまずはパッケージをインストールする．
 svg形式の画像を読み込む場合は，rsvgパッケージもインストールしておく．
+ウエブのスクリーンショットを使うので，webshotも必要だ．
 
 
 ```r
 install.packages("magick")
 install.packages("rsvg")
+install.packages("webshot")
 ```
 
 
-```
-## Linking to ImageMagick 6.9.12.3
-## Enabled features: cairo, freetype, fftw, ghostscript, heic, lcms, pango, raw, rsvg, webp
-## Disabled features: fontconfig, x11
+
+
+```r
+library(magick)
+library(tidyverse)
+library(webshot)
 ```
 
 ## 使い方
@@ -41,15 +45,16 @@ png，jpeg，gif形式の画像には`image_read()`，svg形式には`image_read
 
 
 ```r
-library("magick")
 frink <- magick::image_read("https://jeroen.github.io/images/frink.png")
 tiger <- magick::image_read_svg("http://jeroen.github.io/images/tiger.svg")
 image_info(frink)
 ```
 
 ```
+## # A tibble: 1 x 7
 ##   format width height colorspace matte filesize density
-## 1    PNG   220    445       sRGB  TRUE    73494   72x72
+##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
+## 1 PNG      220    445 sRGB       TRUE     73494 72x72
 ```
 
 ```r
@@ -57,8 +62,10 @@ image_info(tiger)
 ```
 
 ```
+## # A tibble: 1 x 7
 ##   format width height colorspace matte filesize density
-## 1    PNG   900    900       sRGB  TRUE        0   72x72
+##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
+## 1 PNG      900    900 sRGB       TRUE         0 72x72
 ```
 
 画像そのものを表示するには，`image_browse()`を用いる．
@@ -159,6 +166,9 @@ crop_2 <-
 crops <- c(crop_1[c(1,2)], crop_2[3])
 ```
 
+ここでは，`image_crop()`を使用したが，上下左右から変化がない部分を除去する`image_trim()`という関数がある．
+余白部分(色は白だけとは限らない)を単純に除去するだけでれば，`位置を指定する必要のない`image_trim()`の方が楽である．
+
 ### サイズの変更
 
 画像サイズを変更するには，`image_scale()`を使う．
@@ -190,37 +200,28 @@ boders_annotates <-
 
 ## その他の関数
 
+magickには，他にも有用な関数がたくさんある．
+
 
 ```r
-  # 並べて表示，stack = TRUEで縦並べ
-image_append(image, stack = FALSE)
-  # 背景の色付け
-image_background(image, color)
-  # 回転
-image_rotate(image, degrees)
-  # ぼかし処理
-  # radius，sigma：ぼかしの大きさ
-image_blur(image, radius, sigma)
-   # ノイズの追加
-image_noise(image, noisetype)
-  # 縁取り
-image_charcoal(image, radius, sigma)
-  # 油絵処理
-image_oilpaint(image, radius)
-  # エッジ処理
-image_edge(image, radius)
-  # ネガ処理
-image_negate(image)
- # 画像間を指定したframesで保管
-image_morph(image, frames)
-  # image_morphコマンドで作成したmagick imageオブジェクトをアニメ化，fps：frames per second，`loop = 1`で繰り返しなし
-image_animate(image, fps, loop)
+image_append(image, stack = FALSE)   # 並べて表示，stack = TRUEで縦並べ
+image_background(image, color)       # 背景の色付け
+image_rotate(image, degrees)         # 回転
+image_blur(image, radius, sigma)     # ぼかし処理．radius，sigma：ぼかしの大きさ
+image_noise(image, noisetype)        # ノイズの追加
+image_charcoal(image, radius, sigma) # 縁取り
+image_oilpaint(image, radius)        # 油絵
+image_edge(image, radius)            # エッジ
+image_negate(image)                  # ネガ
+image_morph(image, frames)           # 画像を指定したframes間隔
+image_animate(image, fps, loop)      # image_morph()画像のアニメ化，fps：frames/秒，`loop = 1`で繰り返しなし
 ```
 
 ## ウエブのスクリーンショットにURLを付加する関数
 
 これまでの内容をもとに，ウエブのスクリーンショットにURLを付加する関数を作成する．
 主な流れは次のとおりである．
+
 - 一時ファイル名を生成   
 - 一時ファイルにURLで指定したウエブのスクリーンショットを保存   
 - スクリーンショットを読み込み，一時ファイルの削除   
@@ -234,7 +235,9 @@ image_animate(image, fps, loop)
 
 
 ```r
+#' Donwload screenshot image from web based on URL and add text annotation of URL on the top of the image.
 #' 
+#' Needs 
 #' 
 #' @param url           A string of URL.
 #' @param trim          A logical if trim image by magick::image_trim().
@@ -246,9 +249,14 @@ image_animate(image, fps, loop)
 #'                      Will be passed like magick::image_convert(img, format = format)
 #' @param resize        A string for resize by magick::image_scale(). 
 #'                      Passed like magick::image_scale(geometry = resize).
-#' @return              An magick-image.
+#' @return              An magick-image object.
 #' @examples
-#' 
+#' # install.packages("magick")
+#' # install.packages("webshot")
+#' url <- "https://www.deepl.com/translator"
+#' tmp <- web_screenshot(url, format = "png")
+#' magick::image_browse(tmp)
+#' magick::image_write("deepl.png")
 #' 
 #' @export
 web_screenshot <- function(url, trim = TRUE, border_size = "x40", annotate_size = 20, format = "png", resize = FALSE){
@@ -257,20 +265,16 @@ web_screenshot <- function(url, trim = TRUE, border_size = "x40", annotate_size 
   img <- magick::image_read(png)
   file_delete(path)
   if(trim){ img <- magick::image_trim(img) }
+    # add top margin (removed bottom margin by image_crop)
   img <- magick::image_border(img, "white", geometry = border_size)
-  img <- magick::image_annotate(img, url, size = annotate_size)
-    # crop bottom margin
   crop_size <- stringr::str_split(border_size, pattern = "x", simplify = TRUE)[2]
   h <- magick::image_info(img)$height - as.numeric(crop_size)
   img <- magick::image_crop(img, geometry = paste0("x", h))
   img <- magick::image_convert(img, format = format)
+    # add annotation
+  img <- magick::image_annotate(img, url, size = annotate_size)
   if(resize != FALSE){ img <- magick::image_scale(geometry = risize) }
   return(img)
 }
-
-url <- "https://www.deepl.com/translator"
-tmp <- web_screenshot(url)
-magick::image_browse(tmp)
 ```
-
 
