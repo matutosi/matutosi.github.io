@@ -199,3 +199,18 @@ file_copy(f_old, f_new, overwrite = TRUE)
 そのような場合は，fsを活用して作業を自動化するとよいだろう．
 なお，fsで対応していない部分の文字列操作には，stringrを使うと便利である．
 
+## おまけ：GUIでの作業フォルダの指定
+
+GUI(Graphical User Interface)による作業フォルダを指定するには，tcltkパッケージを使うと良い．
+なお，`tkchooseDirectory()`で得たオブジェクトをそのまま`setwd()`で指定するとエラーになるので，`fs::path()`でパスに変換しておく．
+
+
+```r
+getwd()
+install.packages("tcltk")
+library(tcltk)
+wd <- tcltk::tkchooseDirectory()
+setwd(fs::path(wd))
+getwd()
+```
+

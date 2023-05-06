@@ -466,3 +466,46 @@ polite::bow("http://jpnrdb.com/")
 ただし，http://jpnrdb.com/にrobots.txtは設置されておらず，これらはpoliteパッケージが一般的な注意として示しているに過ぎない．
 大量にデータを入手する必要がある場合は，あらかじめ管理者に連絡する方が無難である．
 
+
+## おまけ：webshotでウエブページを画像に変換 {#webshot}
+
+rvestでスクレイピングしたウエブページを画像として残しておきたいことがある．
+つまり，ウエブのスクリーンショットを保存したい場合だ．
+まさにこの文章を書いているときがそうだが，データを入手してそのサイトについて他人に説明したいときがあるだろう．
+そのようなときはパッケージwebshotが便利だ．
+
+例によってまずはパッケージをインストールする．
+
+
+```r
+install.packages("webshot")
+```
+
+
+
+webshotは内部でPhantomjsというブラウザを使っているので，
+webshotからPhantomjsをインストールするための関数を実行する．
+なお，Phantomjsはヘッドレスブラウザの1つである．
+ヘッドレスブラウザは，画面を描画しないブラウザのことである．
+つまり，画面上でHTMLを表示させずにデータのやり取りだけをするもので，プログラムやスクレイピングでは重宝する．
+<!--
+画面表示がないため動作が早い．
+-->
+
+
+```r
+webshot::install_phantomjs()
+```
+
+イントールに若干時間がかかるが，終わればあとは簡単だ．
+関数webshotにURLと保存するファイル名を指定すれば，画像を作業フォルダに保存してくれる．
+
+
+```r
+webshot::webshot("http://jpnrdb.com/search.php?mode=spec", "rvest_1.png")
+webshot::webshot("http://jpnrdb.com/search.php?mode=key&q=ニッコウキスゲ", "rvest_2.png")
+webshot::webshot("http://jpnrdb.com/search.php?mode=map&q=06050095259", "rvest_3.png")
+```
+
+なお，パッケージmagickを使うと保存した画像に対してトリミングなどの加工ができる．
+[magickで画像編集](#magick)
