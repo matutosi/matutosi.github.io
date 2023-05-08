@@ -5,6 +5,13 @@
 <img src="images/tools_list01.png" width="30%">
 -->
 
+## 準備
+
+
+```r
+library(tidyverse)
+library(ggplot2)
+```
 
 ## Rの作図環境の概要
 

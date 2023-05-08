@@ -11,7 +11,7 @@ JavascriptやPHPなどを使って，動的に作成されるサイトでは，U
 - RSelenium: CRANからインストール   
 - Selenium: 本家サイトからインストール    
   - 注意: ver3.xxx をインストールする    
-  ver4.0 以上はRSeleniumuが対応していない(Pythonなら可)    
+  ver4.0 以上はRSeleniumが対応していない(Pythonなら可)    
 - ChromeDriver 
   - 注意: 自身の利用しているブラウザのドライバが必要(バージョンも合致する必要あり)
   GoogleChromeは自動的にupdateされるので，バージョンをよく確認する
@@ -20,6 +20,16 @@ JavascriptやPHPなどを使って，動的に作成されるサイトでは，U
 
 
 
+
+```r
+install.packages("RSelenium")
+```
+
+
+```r
+library(tidyverse)
+library(RSelenium)
+```
 
 
 

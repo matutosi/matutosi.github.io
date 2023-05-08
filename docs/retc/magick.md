@@ -26,8 +26,8 @@ install.packages("webshot")
 
 
 ```r
-library(magick)
 library(tidyverse)
+library(magick)
 library(webshot)
 ```
 

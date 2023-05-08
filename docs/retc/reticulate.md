@@ -10,10 +10,25 @@ https://cran.r-project.org/web/packages/logger/index.html
 もちろん，Pythonをちゃんと勉強するのも良いだろう．
 さらに，reticulateを使うとRとPythonとの変数のやり取りが簡単にできるので，本格的にPythonを使うのにも良さそう．
 
+## 準備
 
-## 準備：Pythonのインストール
 
-## 準備：Pythonでのモジュール(パッケージ)のインストール
+
+```r
+install.packages("reticulate")
+```
+
+
+```r
+library(tidyverse)
+library(reticulate)
+```
+
+
+### Pythonのインストール
+
+
+## Pythonでのモジュール(パッケージ)のインストール
 
 Rstudioでpythonを書く (reticulate)
 https://qiita.com/Wa__a/items/42129e529cfb6c38e046
@@ -21,9 +36,6 @@ https://qiita.com/Wa__a/items/42129e529cfb6c38e046
 py_install()やconda_install()でパッケージがインストールできないとき
 - pip でパッケージをインストール   
 - pipでインストールできたpythonをreticulate::use_python()で指定
-
-
-## 
 
 
 準備

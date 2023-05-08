@@ -1,6 +1,10 @@
 # pdfをdocxに変換 {#pdf2docx}
 
 
+```r
+library(tidyverse)
+```
+
 ## RDCOMClient
 
 https://github.com/omegahat/RDCOMClient

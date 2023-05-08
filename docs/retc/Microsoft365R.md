@@ -38,9 +38,29 @@
   # インストール
 install.packages("Microsoft365R")
   # パッケージの読み込み
+```
+
+
+
+```r
+library(tidyverse)
 library(Microsoft365R)
  # 会社など組織で契約している場合
 Microsoft365R::get_business_outlook()
+```
+
+```
+## <Outlook client for '松村 俊和'>
+##   email address: matutosi@konan-wu.ac.jp 
+## ---
+##   Methods:
+##     create_email, create_folder, delete, delete_folder,
+##     do_operation, get_deleted_items, get_drafts, get_folder,
+##     get_inbox, get_list_pager, get_sent_items, list_emails,
+##     list_folders, sync_fields, update
+```
+
+```r
  # 個人利用の場合
   # Microsoft365R::get_personal_outlook()
 ```
@@ -228,22 +248,7 @@ lubridateで日付固定あるいは位置固定のときでの翌年の年月�
   # /
 
 library(tidyverse)
-```
 
-```
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.2     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.2     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.0
-## v purrr     1.0.1     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-```r
 x <- "21年1月1日(月)，2021年1月1日(月)，2021年10月10日(月)，2月2日(月)，12月22日(月)，2021/1/1(月)，2021/10/10(月)，2/2(月)，12/22(月)，21年1月1日，2021年1月1日，2021年10月10日，2月2日，12月22日，2021/1/1，2021/10/10，2/2，12/22"
 regrep <- "((20)*[2-5]\\d+[年/_-]*)*\\d\\d*[月/_-]*\\d\\d*[日]*(\\([月火水木金土日]\\))*"
 
