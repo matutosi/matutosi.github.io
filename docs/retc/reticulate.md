@@ -25,7 +25,16 @@ library(reticulate)
 ```
 
 
+
 ### Pythonのインストール
+
+PyAutoGuiのインストール
+
+<!--
+PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする
+https://take-tech-engineer.com/pyautogui-image/
+pyautogui.click('button.png') # Find where button.png appears on the screen and click it.
+-->
 
 
 ## Pythonでのモジュール(パッケージ)のインストール
@@ -40,12 +49,33 @@ py_install()やconda_install()でパッケージがインストールできな�
 
 準備
 - Pythonのインストール   
-- pdf2docxのインストール   
 ```
-pip install pdf2docx
 ```
 
 ## 実行
+
+
+
+## PythoとRとの変数のやり取り
+
+variableは変数名
+
+```
+  # RからPythonへ(Pythonで取り出し)
+r.variable
+
+  # PythonからRへ(Rで取り出し)
+py$variable
+```
+
+<!--
+
+
+```
+## memo
+  # pdf2docxのインストール   
+pip install pdf2docx
+```
 
 
 ```r
@@ -62,16 +92,4 @@ reticulate::py_run_string("pdf_file = 'D:/a.pdf'")
 reticulate::py_run_string("docx_file = 'D:/a.docx'")
 reticulate::py_run_string("parse(pdf_file, docx_file)")
 ```
-
-## PythoとRとの変数のやり取り
-
-variableは変数名
-
-```
-  # RからPythonへ(Pythonで取り出し)
-r.variable
-
-  # PythonからRへ(Rで取り出し)
-py$variable
-```
-
+-->

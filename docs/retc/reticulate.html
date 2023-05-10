@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-09" />
+<meta name="date" content="2023-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,7 +151,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="package.html"><a href="package.html"><i class="fa fa-check"></i><b>3</b> パッケージのインストール</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="package.html"><a href="package.html#cran"><i class="fa fa-check"></i><b>3.1</b> CRANから</a></li>
-<li class="chapter" data-level="3.2" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.2</b> GitHubから</a></li>
+<li class="chapter" data-level="3.2" data-path="package.html"><a href="package.html#アーカイブされたパッケージ"><i class="fa fa-check"></i><b>3.2</b> アーカイブされたパッケージ</a></li>
+<li class="chapter" data-level="3.3" data-path="package.html"><a href="package.html#cranからpackage一覧を取得する"><i class="fa fa-check"></i><b>3.3</b> CRANからPackage一覧を取得する</a></li>
+<li class="chapter" data-level="3.4" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.4</b> GitHubから</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>4</b> スクリプトの関連付け</a></li>
 <li class="chapter" data-level="5" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>5</b> fsでファイル操作</a>
@@ -222,10 +224,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.9" data-path="ggplot2.html"><a href="ggplot2.html#作図の自動化"><i class="fa fa-check"></i><b>9.9</b> 作図の自動化</a></li>
 <li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>9.10</b> 参考書</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>10</b> shell</a>
+<li class="chapter" data-level="10" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>10</b> system()やshell()でOSコマンドの実行</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="shell.html"><a href="shell.html#準備-5"><i class="fa fa-check"></i><b>10.1</b> 準備</a></li>
-<li class="chapter" data-level="10.2" data-path="shell.html"><a href="shell.html#pythonのスクリプト実行"><i class="fa fa-check"></i><b>10.2</b> Pythonのスクリプト実行</a></li>
+<li class="chapter" data-level="10.2" data-path="shell.html"><a href="shell.html#活用例pythonとそのライブラリのインストール"><i class="fa fa-check"></i><b>10.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>10.2.1</b> Pythonのイントール</a></li>
+<li class="chapter" data-level="10.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>10.2.2</b> PyAutoGUIのインストール</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>11</b> rvestでスクレイピング</a>
 <ul>
@@ -359,11 +365,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 さらに，reticulateを使うとRとPythonとの変数のやり取りが簡単にできるので，本格的にPythonを使うのにも良さそう．</p>
 <div id="準備-9" class="section level2 hasAnchor" number="14.1">
 <h2><span class="header-section-number">14.1</span> 準備<a href="reticulate.html#準備-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="reticulate.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;reticulate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="reticulate.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb151-2"><a href="reticulate.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="reticulate.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;reticulate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="reticulate.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb173-2"><a href="reticulate.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span></code></pre></div>
 <div id="pythonのインストール" class="section level3 hasAnchor" number="14.1.1">
 <h3><span class="header-section-number">14.1.1</span> Pythonのインストール<a href="reticulate.html#pythonのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>PyAutoGuiのインストール</p>
+<!--
+PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする
+https://take-tech-engineer.com/pyautogui-image/
+pyautogui.click('button.png') # Find where button.png appears on the screen and click it.
+-->
 </div>
 </div>
 <div id="pythonでのモジュールパッケージのインストール" class="section level2 hasAnchor" number="14.2">
@@ -374,24 +386,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - pip でパッケージをインストール<br />
 - pipでインストールできたpythonをreticulate::use_python()で指定</p>
 <p>準備
-- Pythonのインストール<br />
-- pdf2docxのインストール</p>
-<pre><code>pip install pdf2docx</code></pre>
+- Pythonのインストール</p>
+<pre><code></code></pre>
 </div>
 <div id="実行" class="section level2 hasAnchor" number="14.3">
 <h2><span class="header-section-number">14.3</span> 実行<a href="reticulate.html#実行" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="reticulate.html#cb153-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pdf2docxの読み込みでエラーになるとき</span></span>
-<span id="cb153-2"><a href="reticulate.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   reticulate::use_python()でpythonを指定</span></span>
-<span id="cb153-3"><a href="reticulate.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   pipでpdf2docxがインストールできたpythonを使う</span></span>
-<span id="cb153-4"><a href="reticulate.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb153-5"><a href="reticulate.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reticulate::py_install(&quot;pdf2docx&quot;) エラー</span></span>
-<span id="cb153-6"><a href="reticulate.html#cb153-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://anaconda.org/conda-forge/python-docx</span></span>
-<span id="cb153-7"><a href="reticulate.html#cb153-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reticulate::conda_install(channel = &quot;conda-forge&quot;, packages = &quot;python-docx&quot;)  # できたけど，pdf2docxは読み込めず</span></span>
-<span id="cb153-8"><a href="reticulate.html#cb153-8" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">&quot;C:/Python/Python39/python.exe&quot;</span>)</span>
-<span id="cb153-9"><a href="reticulate.html#cb153-9" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;from pdf2docx import parse&quot;</span>)</span>
-<span id="cb153-10"><a href="reticulate.html#cb153-10" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;pdf_file = &#39;D:/a.pdf&#39;&quot;</span>)</span>
-<span id="cb153-11"><a href="reticulate.html#cb153-11" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;docx_file = &#39;D:/a.docx&#39;&quot;</span>)</span>
-<span id="cb153-12"><a href="reticulate.html#cb153-12" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;parse(pdf_file, docx_file)&quot;</span>)</span></code></pre></div>
 </div>
 <div id="pythoとrとの変数のやり取り" class="section level2 hasAnchor" number="14.4">
 <h2><span class="header-section-number">14.4</span> PythoとRとの変数のやり取り<a href="reticulate.html#pythoとrとの変数のやり取り" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -401,6 +400,31 @@ r.variable
 
   # PythonからRへ(Rで取り出し)
 py$variable</code></pre>
+<!--
+
+
+```
+## memo
+  # pdf2docxのインストール   
+pip install pdf2docx
+```
+
+
+```r
+  # pdf2docxの読み込みでエラーになるとき
+  #   reticulate::use_python()でpythonを指定
+  #   pipでpdf2docxがインストールできたpythonを使う
+library(reticulate)
+  # reticulate::py_install("pdf2docx") エラー
+  # https://anaconda.org/conda-forge/python-docx
+  # reticulate::conda_install(channel = "conda-forge", packages = "python-docx")  # できたけど，pdf2docxは読み込めず
+reticulate::use_python("C:/Python/Python39/python.exe")
+reticulate::py_run_string("from pdf2docx import parse")
+reticulate::py_run_string("pdf_file = 'D:/a.pdf'")
+reticulate::py_run_string("docx_file = 'D:/a.docx'")
+reticulate::py_run_string("parse(pdf_file, docx_file)")
+```
+-->
 
 </div>
 </div>

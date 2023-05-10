@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 10 shell | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 10 shell | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 10 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 10 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 10 shell | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 10 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 10 shell | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 10 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-09" />
+<meta name="date" content="2023-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,7 +151,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="package.html"><a href="package.html"><i class="fa fa-check"></i><b>3</b> パッケージのインストール</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="package.html"><a href="package.html#cran"><i class="fa fa-check"></i><b>3.1</b> CRANから</a></li>
-<li class="chapter" data-level="3.2" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.2</b> GitHubから</a></li>
+<li class="chapter" data-level="3.2" data-path="package.html"><a href="package.html#アーカイブされたパッケージ"><i class="fa fa-check"></i><b>3.2</b> アーカイブされたパッケージ</a></li>
+<li class="chapter" data-level="3.3" data-path="package.html"><a href="package.html#cranからpackage一覧を取得する"><i class="fa fa-check"></i><b>3.3</b> CRANからPackage一覧を取得する</a></li>
+<li class="chapter" data-level="3.4" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.4</b> GitHubから</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>4</b> スクリプトの関連付け</a></li>
 <li class="chapter" data-level="5" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>5</b> fsでファイル操作</a>
@@ -222,10 +224,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.9" data-path="ggplot2.html"><a href="ggplot2.html#作図の自動化"><i class="fa fa-check"></i><b>9.9</b> 作図の自動化</a></li>
 <li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>9.10</b> 参考書</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>10</b> shell</a>
+<li class="chapter" data-level="10" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>10</b> system()やshell()でOSコマンドの実行</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="shell.html"><a href="shell.html#準備-5"><i class="fa fa-check"></i><b>10.1</b> 準備</a></li>
-<li class="chapter" data-level="10.2" data-path="shell.html"><a href="shell.html#pythonのスクリプト実行"><i class="fa fa-check"></i><b>10.2</b> Pythonのスクリプト実行</a></li>
+<li class="chapter" data-level="10.2" data-path="shell.html"><a href="shell.html#活用例pythonとそのライブラリのインストール"><i class="fa fa-check"></i><b>10.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>10.2.1</b> Pythonのイントール</a></li>
+<li class="chapter" data-level="10.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>10.2.2</b> PyAutoGUIのインストール</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>11</b> rvestでスクレイピング</a>
 <ul>
@@ -348,72 +354,175 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="shell" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chap. 10</span> shell<a href="shell.html#shell" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<ul>
-<li>Rからシェルのコマンドを使う
+<h1><span class="header-section-number">Chap. 10</span> system()やshell()でOSコマンドの実行<a href="shell.html#shell" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!--
+-->
+<p>Rから<code>system()</code>や`shell()’でOSのコマンドを実行できる．
+例えば，以下のようなことだ．</p>
 <ul>
 <li>ファイルの移動<br />
 </li>
 <li>PDFファイルの結合<br />
 </li>
-<li>pngからPDFへ変換</li>
-</ul></li>
+<li>pngからPDFへ変換<br />
+</li>
+<li>Pythonスクリプトの実行</li>
 </ul>
-<p>手作業でも良いが，ファイル数が多かったり，作業回数が多かったりするなら，自動化するのが便利である．
+<p>見れば分かるように，これらはこの文書で紹介するRの各種パッケージで実行できることとほぼ同じである．
+この文書の執筆前は，便利なパッケージの存在自体を知らなかったため，<code>system()</code>や<code>shell()</code>を使っていたことが結構あった．
+しかし，便利なパッケージがあるのがわかれば，それを使わない手はない．
+わざわざコマンドを自分で書く必要は少ないだろう．
+実行するとすれば，自作のバッチファイル(Windows)やシェルスクリプト(MacやLinux)などだろうか．
+あるいは，自分で関数やパッケージを開発する際に使ってみることがあるかもしれない．
+一応，こんなこともできるんだという程度に知っておけばよいだろう．</p>
+<div id="準備-5" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> 準備<a href="shell.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>system()</code>や`shell()’などはRのbaseパッケージに含まれている．
+そのため，Rのインストール後はすぐに使えるため，本来は特に準備は不要である．
+ここでは，組み合わせで使用するその他のパッケージをインストールしておく．</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="shell.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;curl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="shell.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb115-2"><a href="shell.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(curl)</span></code></pre></div>
+</div>
+<div id="活用例pythonとそのライブラリのインストール" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> 活用例：Pythonとそのライブラリのインストール<a href="shell.html#活用例pythonとそのライブラリのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>わざわざRから実行する必要性はないが，PythonとそのライブラリのインストールをRから実行してみよう．
+Python自体を直接使わなくても，インストールしておいて損はない．
+Rからreticulateパッケージを用いてPythonを使うことができるし，RにはないライブラリがPythonにはあるためだ．
+また，Pythonと合わせて，キーボードとマウス操作の自動化で使用するPyAutoGUIというライブラリをインストールする．</p>
+<div id="pythonのイントール" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Pythonのイントール<a href="shell.html#pythonのイントール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>まずは，Pythonのインストーラをダウンロードする．
+Windowsの場合は，以下を実行するとデフォルトのブラウザでPythonのインストラのダウンロードページが開く．
+その他のOSの場合は，自分でブラウザを起動してURLを開く．
+なお，ここで利用している<code>shell.exec()</code>はWindowsで使える関数で，拡張子に関連付けられたファイルを実行するものである．</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="shell.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;https://pythonlinks.python.jp/ja/index.html&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb116-2"><a href="shell.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shell.exec</span>()</span></code></pre></div>
+<p>2023年5月現在での最新版は3.11なので，以下ではそのファイルのURLを入力している．
+最新版が異なる場合は，適宜URLを変更してほしい．
+curl_downloadで一時ファイルとしてインストーラをダウンロードする．
+なお，<code>py_installer</code>にはダウンロードした一時ファイル名を保存している．</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="shell.html#cb117-1" aria-hidden="true" tabindex="-1"></a>py_installer <span class="ot">&lt;-</span> </span>
+<span id="cb117-2"><a href="shell.html#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://www.python.org/ftp/python/3.11.1/python-3.11.1-amd64.exe&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb117-3"><a href="shell.html#cb117-3" aria-hidden="true" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;exe&quot;</span>))</span></code></pre></div>
+<!--
+## TODO
+tempfileの削除が必要
+-->
+<p>ダウンロードしたファイルを実行するために，再度<code>shell.exec()</code>を使う．
+これを実行すると，Pythonのインストーラが起動するので，その指示に従ってPythonをインストールする．
+最初の<code>Add python.exe to PATH</code>にチェックが入っていなければ，追加でチェックをすれば良いだろう．
+それ以外は，デフォルトのボタンをクリックしていけばOKである．</p>
+<p>内容がわかっていて，自分流でインストールしたい場合はカスタマイズすると良い．
+カスタマイズする場合でも，インストールする項目で<code>pip</code>のチェックは入れたままにしておく．
+ライブラリのPyAutoGUIのインストールに使用するからだ．</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="shell.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shell.exec</span>(py_installer)</span></code></pre></div>
+<p>これでPythonがインストールできたはずだが，念のため確認をしておく．
+インストールしたバージョンによって表示が若干ことなるが，バージョンが表示されていれば，インストールは成功である．</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="shell.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;python -V&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Python 3.9.13&quot;</code></pre>
+</div>
+<div id="pyautoguiのインストール" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> PyAutoGUIのインストール<a href="shell.html#pyautoguiのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>次に，PyAutoGUIをインストールする．
+インストールする前に，インストールされているライブラリを確認しておく．
+“pip list”は，pipというPythonのライブラリを管理ソフトで
+インストール済みライブラリの一覧を出力するコマンドである．
+その結果を取得して，“PyAutoGUI”という文字列があるか確認している．
+一覧に何も表示されなければ，PyAutoGUIはないので，インストールの必要がある．</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="shell.html#cb121-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip list&quot;</span></span>
+<span id="cb121-2"><a href="shell.html#cb121-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb121-3"><a href="shell.html#cb121-3" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(res) <span class="sc">%&gt;%</span></span>
+<span id="cb121-4"><a href="shell.html#cb121-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;PyAutoGUI&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 0 × 1
+## # ℹ 1 variable: value &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="shell.html#cb123-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip install PyAutoGUI&quot;</span></span>
+<span id="cb123-2"><a href="shell.html#cb123-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb123-3"><a href="shell.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(res)</span></code></pre></div>
+<pre><code>## [1] &quot;Requirement already satisfied: pygetwindow&gt;=0.0.5 in c:\\python\\python39\\lib\\site-packages (from PyAutoGUI) (0.0.9)&quot;        
+## [2] &quot;Requirement already satisfied: mouseinfo in c:\\python\\python39\\lib\\site-packages (from PyAutoGUI) (0.1.3)&quot;                 
+## [3] &quot;Requirement already satisfied: pyrect in c:\\python\\python39\\lib\\site-packages (from pygetwindow&gt;=0.0.5-&gt;PyAutoGUI) (0.2.0)&quot;
+## [4] &quot;Requirement already satisfied: pyperclip in c:\\python\\python39\\lib\\site-packages (from mouseinfo-&gt;PyAutoGUI) (1.8.2)&quot;      
+## [5] &quot;Installing collected packages: PyAutoGUI&quot;                                                                                      
+## [6] &quot;Successfully installed PyAutoGUI-0.9.53&quot;</code></pre>
+<p>最後に”Successfully installed PyAutoGUI-0.9.53”のような表示があればインストールができたはずだ．
+念のためpipで確認しておく．
+以下はわざと書き方を変えているが，やっていることはPyAutoGUIのインストール前とやっていることは同じである．</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="shell.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;pip list&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb125-2"><a href="shell.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb125-3"><a href="shell.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb125-4"><a href="shell.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;PyAutoGUI&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   value                           
+##   &lt;chr&gt;                           
+## 1 PyAutoGUI                 0.9.53</code></pre>
+<!--
+
+## Pythonのスクリプト実行
+
+```
+wd <- "D:/matu/work/tmp"
+setwd(wd)
+system("c:/windows/py.exe pdf.py", intern = TRUE)
+shell("pdf.py")
+```
+
+## その他の活用法
+setwd()
+  ワーキングディレクトリの設定
+paste0()
+  文字列の結合
+stringrの関数
+stringiの関数
+  多くの関数はstringrにラッパーがあるが，文字コードの変換などはstringiの関数が必要
+  日本語文字を使わなければ不要
+  ファイル名の命名規則を決めておき，お世話にならない方が幸せ
+purrr::map()
+  for loopの代わり
+  # ファイル名を取得する関数など
+
+
+手作業でも良いが，ファイル数が多かったり，作業回数が多かったりするなら，自動化するのが便利である．
 例えば，ファイルの操作やちょっとしたCUIアプリをコマンドでの動作をRでやってしまおうという邪道中の邪道である．
 上記の操作をする際は，LinuxやMacであればshellスクリプトとして，Windowsであればバッチファイルとしてコードを書くのが本来の方法である．
 しかし，shellスクリプトやバッチファイルのコマンドを体系的に勉強したことはない(その意味ではRの勉強もかなり怪しい)．
 ウェブの情報をもとにしつつ，なんとなくコードを書いたことはある．
 とはいえ変数の使い方などは特によくわからないので，ちょっとした操作にも時間がかかりそう．
-そこで，慣れたRを使って雑多な操作をやっつけてしまおうと考えた．</p>
-<p>以下のような操作を自動化する．
+そこで，慣れたRを使って雑多な操作をやっつけてしまおうと考えた．
+
+
+  ## 
+以下のような操作を自動化する．
 ・複数のフォルダに入ったPDFファイルを1つのPDFに結合
 ・結合後のファイルを指定場所に移動
-・元ファイルを削除</p>
-<p>なお，以下は基本的にwindowsでの操作を前提としているが，LinuxやMacでも同じあるいは類似のコマンドで代用できる可能性が高い．
-日本語文字が入っていると，操作に若干手間がかかることが多い．</p>
-<p>dosコマンド
-ls, dir
-ファイル，ディレクトリの一覧を取得
-move, copy, remove, rename
-ファイルの移動，コピー，削除, リネーム
-cd
-ディレクトリの移動</p>
-<p>Rの関数
-shell(), system()
-コマンドの実行
-setwd()
-ワーキングディレクトリの設定
-ディレクトリ名にスペースや日本語が入っていて，cdコマンドがうまくいかないときは，こっちのほうが便利
-paste0()
-文字列の結合
-stringrの関数
-stringiの関数
-多くの関数はstringrにラッパーがあるが，文字コードの変換などはstringiの関数が必要
-日本語文字を使わなければ不要
-ファイル名の命名規則を決めておき，お世話にならない方が幸せ
-purrr::map()
-for loopの代わり
-# ファイル名を取得する関数など</p>
-<p>その他ツール
-concatPDF
-PDFの結合など(win10 OK，win11 NG)
-# ConcatPDF /outfile Merged.pdf File1.pdf File2.pdf File3.pdf</p>
-<p>pdftk
-PDFの結合など(win11 OK)
-pdftk File1.pdf File2.pdf File3.pdf cat output Merged.pdf</p>
-<p>ImageMagick
-画像変換など</p>
-<div id="準備-5" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> 準備<a href="shell.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="pythonのスクリプト実行" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> Pythonのスクリプト実行<a href="shell.html#pythonのスクリプト実行" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>wd &lt;- &quot;D:/matu/work/tmp&quot;
-setwd(wd)
-system(&quot;c:/windows/py.exe pdf.py&quot;, intern = TRUE)
-shell(&quot;pdf.py&quot;)</code></pre>
+・元ファイルを削除
 
+なお，以下は基本的にwindowsでの操作を前提としているが，LinuxやMacでも同じあるいは類似のコマンドで代用できる可能性が高い．
+日本語文字が入っていると，操作に若干手間がかかることが多い．
+
+
+dosコマンド
+ls, dir
+  ファイル，ディレクトリの一覧を取得
+move, copy, remove, rename
+  ファイルの移動，コピー，削除, リネーム
+cd
+  ディレクトリの移動
+
+その他ツール
+concatPDF
+  PDFの結合など(win10 OK，win11 NG)
+  # ConcatPDF /outfile Merged.pdf File1.pdf File2.pdf File3.pdf
+ 
+pdftk
+  PDFの結合など(win11 OK)
+  pdftk File1.pdf File2.pdf File3.pdf cat output Merged.pdf
+
+ImageMagick
+  画像変換など
+-->
+
+</div>
 </div>
 </div>
             </section>

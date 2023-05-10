@@ -49,7 +49,11 @@ pdf_split()関数にinput引数として分割するファイルを，output引�
 ```r
   # wd <- "set_your_directory"
   # setwd(wd)
-review <- curl::curl_download("https://www.jstage.jst.go.jp/article/vegsci/31/2/31_193/_pdf/-char/ja", fs::file_temp())
+review <- 
+  curl::curl_download(
+    "https://www.jstage.jst.go.jp/article/vegsci/31/2/31_193/_pdf/-char/ja", 
+    fs::file_temp(ext = "pdf")
+    )
 split_pdf <- qpdf::pdf_split(review)
 head(split_pdf)
 ```
@@ -305,6 +309,7 @@ pdf_overlay_stamp(input, stamp, output = NULL, password = "")
 #' @param start,end    An integer of start and end page to be stamped.
 #'                     negative integer can be used for end, which means
 #'                     number from the last page.
+#' @param len_input,len_stamp    An integer to validate.
 #' @param session      A string of session name. Can use "a", "b", or "p".
 #'                     'session = "a"' uses 'pdf/00_sn_a.pdf' as stamp. 
 #'                     pdf directory include '00_sn_a.pdf', '00_sn_b.pdf', and '00_sn_p.pdf' 

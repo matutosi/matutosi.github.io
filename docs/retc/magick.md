@@ -260,7 +260,7 @@ image_animate(image, fps, loop)      # image_morph()画像のアニメ化，fps�
 #' 
 #' @export
 web_screenshot <- function(url, trim = TRUE, border_size = "x40", annotate_size = 20, format = "png", resize = FALSE){
-  png <- paste0(fs::file_temp(), ".png")
+  png <- fs::file_temp(ext = "png")
   webshot::webshot(url, png)
   img <- magick::image_read(png)
   file_delete(path)
