@@ -36,7 +36,7 @@ library(tidyverse)
 library(curl)
 ```
 
-## 活用例：Pythonとそのライブラリのインストール
+## 活用例：Pythonとそのライブラリのインストール {#install_python}
 
 わざわざRから実行する必要性はないが，PythonとそのライブラリのインストールをRから実行してみよう．
 Python自体を直接使わなくても，インストールしておいて損はない．
@@ -57,7 +57,7 @@ Windowsの場合は，以下を実行するとデフォルトのブラウザでP
 ```
 
 
-2023年5月現在での最新版は3.11なので，以下ではそのファイルのURLを入力している．
+2023年5月現在での最新版は3.11.1なので，以下ではそのファイルのURLを入力している．
 最新版が異なる場合は，適宜URLを変更してほしい．
 curl_downloadで一時ファイルとしてインストーラをダウンロードする．
 なお，`py_installer`にはダウンロードした一時ファイル名を保存している．
@@ -98,12 +98,18 @@ system("python -V", intern = TRUE)
 ```
 
 ```
-## [1] "Python 3.9.13"
+## [1] "Python 3.11.1"
 ```
+
+Pythonのインストールがうまくいかない場合は，以下を参考にして欲しい．
+
+https://www.python.jp/install/windows/install.html
 
 ### PyAutoGUIのインストール
 
+<!--
 
+-->
 
 次に，PyAutoGUIをインストールする．
 インストールする前に，インストールされているライブラリを確認しておく．
@@ -118,32 +124,31 @@ cmd <- "pip list"
 res <- system(cmd, intern = TRUE)
 tibble::as_tibble(res) %>%
   dplyr::filter(stringr::str_detect(value, "PyAutoGUI"))
-```
-
-```
-## # A tibble: 0 x 1
-## # i 1 variable: value <chr>
+## # A tibble: 0 × 1
+## ℹ 1 variable: value <chr>
+> 
 ```
 
 
 ```r
 cmd <- "pip install PyAutoGUI"
 res <- system(cmd, intern = TRUE)
+head(res)
+## [1] "Collecting PyAutoGUI"                                         "  Using cached PyAutoGUI-0.9.53.tar.gz (59 kB)"              
+## [3] "  Preparing metadata (setup.py): started"                     "  Preparing metadata (setup.py): finished with status 'done'"
+## [5] "Collecting pymsgbox"                                          "  Using cached PyMsgBox-1.0.9.tar.gz (18 kB)"    
 tail(res)
+## [1] "  Running setup.py install for PyAutoGUI: started"
+## [2] "  Running setup.py install for PyAutoGUI: finished with status 'done'"
+## [3] "Successfully installed PyAutoGUI-0.9.53 PyTweening-1.0.7 mouseinfo-0.1.3 pygetwindow-0.0.9 pymsgbox-1.0.9 pyperclip-1.8.2 pyrect-0.2.0 pyscreeze-0.1.28"
+## [4] ""
+## [5] "[notice] A new release of pip available: 22.3.1 -> 23.1.2"
+## [6] "[notice] To update, run: python.exe -m pip install --upgrade pip"
 ```
 
-```
-## [1] "Requirement already satisfied: pygetwindow>=0.0.5 in c:\\python\\python39\\lib\\site-packages (from PyAutoGUI) (0.0.9)"        
-## [2] "Requirement already satisfied: mouseinfo in c:\\python\\python39\\lib\\site-packages (from PyAutoGUI) (0.1.3)"                 
-## [3] "Requirement already satisfied: pyrect in c:\\python\\python39\\lib\\site-packages (from pygetwindow>=0.0.5->PyAutoGUI) (0.2.0)"
-## [4] "Requirement already satisfied: pyperclip in c:\\python\\python39\\lib\\site-packages (from mouseinfo->PyAutoGUI) (1.8.2)"      
-## [5] "Installing collected packages: PyAutoGUI"                                                                                      
-## [6] "Successfully installed PyAutoGUI-0.9.53"
-```
-
-最後に"Successfully installed PyAutoGUI-0.9.53"のような表示があればインストールができたはずだ．
-念のためpipで確認しておく．
-以下はわざと書き方を変えているが，やっていることはPyAutoGUIのインストール前とやっていることは同じである．
+最後の方に"Successfully installed PyAutoGUI-0.9.53"のような表示があればインストールができているはずだ．
+念のためpipで確認する．
+以下は書き方をわざと変えているが，PyAutoGUIインストール前と実行内容は同じである．
 
 
 ```r
@@ -151,19 +156,35 @@ tail(res)
   system(intern = TRUE) %>%
   tibble::as_tibble() %>%
   dplyr::filter(stringr::str_detect(value, "PyAutoGUI"))
+## # A tibble: 1 × 1
+##   value               
+##   <chr>               
+## 1 PyAutoGUI     0.9.53
 ```
 
-```
-## # A tibble: 1 x 1
-##   value                           
-##   <chr>                           
-## 1 PyAutoGUI                 0.9.53
-```
+ところで，2つ前のコードのところで，"[notice]"としてpipの最新版があるので，インストールしてはどうかという提案がされている．
+pipのバージョンアップをする場合は，以下を実行しておく．
 
 
+```r
+res <- system("python.exe -m pip install --upgrade pip", intern = TRUE)
+res
+##  [1] "Requirement already satisfied: pip in c:\\users\\matu\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (22.3.1)"
+##  [2] "Collecting pip"
+##  [3] "  Using cached pip-23.1.2-py3-none-any.whl (2.1 MB)"
+##  [4] "Installing collected packages: pip"
+##  [5] "  Attempting uninstall: pip"
+##  [6] "    Found existing installation: pip 22.3.1"
+##  [7] "    Uninstalling pip-22.3.1:"
+##  [8] "      Successfully uninstalled pip-22.3.1"
+##  [9] "  WARNING: The scripts pip.exe, pip3.11.exe and pip3.exe are installed in 'C:\\Users\\matu\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Scripts' which is not on PATH."
+## [10] "  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location."
+## [11] "Successfully installed pip-23.1.2"
+```
+
+とりあえず，これでPythonとPyAutoGUIのインストールが完了した．
 
 <!--
-
 ## Pythonのスクリプト実行
 
 ```

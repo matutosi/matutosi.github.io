@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 4 スクリプトの関連付け | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 4 スクリプトの関連付け | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 8 KeyboardSimulatorでマウス・キーボードの自動化 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 8 KeyboardSimulatorでマウス・キーボードの自動化 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 4 スクリプトの関連付け | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 8 KeyboardSimulatorでマウス・キーボードの自動化 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 4 スクリプトの関連付け | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 8 KeyboardSimulatorでマウス・キーボードの自動化 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="package.html"/>
-<link rel="next" href="fs.html"/>
+<link rel="prev" href="reticulate.html"/>
+<link rel="next" href="magrittr.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -361,51 +361,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="assoc" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chap. 4</span> スクリプトの関連付け<a href="assoc.html#assoc" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>ここでは，Windowsでのファイルの関連付けについて説明する．</p>
+<div id="keyboardsimulator" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chap. 8</span> KeyboardSimulatorでマウス・キーボードの自動化<a href="keyboardsimulator.html#keyboardsimulator" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!--
-**TODO：**
-Macでの関連付けの方法は，わかっていない．
-Linuxについては，できるだろうがよく知らない
 -->
-<p>Rのプログラムのファイルは拡張子「script.R」のように「R」という拡張子を付けて保存することが多い．
-拡張子「docx」をワードで，「xlsx」をエクセルで開くのと同様に，私は「R」をテキストエディタで開くするように設定している．
-その後，開いたファイルをRのコンソールに貼り付けて，プログラムを実行する．</p>
-<p>このような使い方でもちろん良いのだが，コードの内容を変更しないのであれば，いちいちRを起動してコードを貼り付けるのは面倒臭い．
-ファイルをクリックするだけで，プログラムが実行されれば便利である．
-プログラムのファイルをRに関連付けることで，これが実現できる．</p>
-<ol style="list-style-type: decimal">
-<li>プログラムのファイル名を「R」から「scr」に変更する(「scr」は大文字小文字は関係なく，「Rsc」や「RSC」などでもOK)．<br />
-<img src="img/assoc_01.png" style="width:30.0%" /></li>
-<li>拡張子が表示されていない場合は，エクスプローラの表示のオプションで，「登録されている拡張子は表示しない」のチェックを外して(チェックしないで)，「OK」を選択してから，名前を変更する．<br />
-<img src="img/assoc_00_01.png" style="width:40.0%" />
-<img src="img/assoc_00_02.png" style="width:40.0%" /></li>
-<li>ファイルを右クリックして，「プロパティ」を選択する．<br />
-<img src="img/assoc_02.png" style="width:30.0%" /></li>
-<li>「全般」タブのやや上にあるプログラムの「変更」を選択する．<br />
-<img src="img/assoc_03.png" style="width:50.0%" /></li>
-<li>「PCでアプリを選択する」をクリックする．<br />
-<img src="img/assoc_04.png" style="width:50.0%" /></li>
-<li>ファイル選択画面で，Rをインストールしたフォルダまで辿っていき(「c:\Program files\R\R-4.2.3\bin\x64」など)，「Rscript.exe」を選択する．<br />
-<img src="img/assoc_05.png" style="width:50.0%" /></li>
-<li>「.rscファイルの既定のアプリを選択する」で「R for windows front-end」が表示されるので，「既定値を設定する」を選択する．<br />
-<img src="img/assoc_06.png" style="width:50.0%" /></li>
-<li>全般タブのプログラムが「R for windows front-end」になっていることを確認して．「OK」を選択する．<br />
-<img src="img/assoc_07.png" style="width:50.0%" /></li>
-<li>ファイルのアイコンがRのアイコンになっていたらOKである．<br />
-<img src="img/assoc_08.png" style="width:30.0%" /></li>
-</ol>
-<p>ダブルクリックすると，ファイルの内容が実行される(はず)．</p>
+<!--
+https://github.com/ChiHangChen/KeyboardSimulator/
 
+PyAutoGUIみたいに，画像認識でクリックしてくれるパッケージはなさそう
+
+rMouse cran
+  # http://cran.nexr.com/web/packages/rMouse/vignettes/rMouseVignette.html
+  # archivedになっているが，記録する関数は使えそう
+-->
+<p>パッケージとして存在する可能性は否定できないが，多分ないと思われるものとして「USBの安全な取り出し」を自動化する機能がある．
+タスクバーにあるUSBのアイコンを何度かクリックして，USBを安全に取り出せるようにするものである．
+この作業をしなくても，USBディスクが壊れることはほとんど無いだろうが，作業したことに越したことは無い．
+単純な操作だが，何度もやっていると面倒くさいし，しかも自分のように老眼の人間には避けたい作業である．</p>
+<p>他にも，Rから直接操作しづらいくても，マウスやキーボードを用いて決まった操作をするものは自動化可能である．</p>
+<div id="準備-3" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> 準備<a href="keyboardsimulator.html#準備-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="keyboardsimulator.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;KeyboardSimulator&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="keyboardsimulator.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb54-2"><a href="keyboardsimulator.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(KeyboardSimulator)</span></code></pre></div>
+</div>
+<div id="キーボード操作の自動化" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> キーボード操作の自動化<a href="keyboardsimulator.html#キーボード操作の自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="keyboardsimulator.html#cb55-1" aria-hidden="true" tabindex="-1"></a>KeyboardSimulator<span class="sc">::</span><span class="fu">keybd.press</span>(<span class="st">&quot;Win+r&quot;</span>)</span></code></pre></div>
+</div>
+<div id="マウスの位置取得" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> マウスの位置取得<a href="keyboardsimulator.html#マウスの位置取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>マウス操作で重要なのは画面上での位置を取得することである．</p>
+<p>KeyboardSimulatorには，マウス位置を取得する関数<code>mouse.get_cursor()</code>がある．
+1箇所だけならこの関数で十分だが，何度かマウスをクリックする作業の場合は何度も実行しないと行けないのでちょっとめんどくさい．</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="keyboardsimulator.html#cb56-1" aria-hidden="true" tabindex="-1"></a>KeyboardSimulator<span class="sc">::</span><span class="fu">mouse.get_cursor</span>()</span>
+<span id="cb56-2"><a href="keyboardsimulator.html#cb56-2" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] -3297  1306</span></span></code></pre></div>
+<p>以下で関数を作成するUSBの取り外しの際には，タスクバーとRウインドウとの行き来をしていると，タスクバーの操作がもとに戻ってしまうことがあり，正しいマウスの位置を取得するのが難しいことがある．
+そこで，一定時間の間隔でマウス位置を取得するautomaterの関数を利用する．
+関数の内容は以下のとおりである．</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="keyboardsimulator.html#cb57-1" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span>mouse_record</span></code></pre></div>
+<pre><code>## function (n = 5, interval = 1) 
+## {
+##     x &lt;- list()
+##     y &lt;- list()
+##     for (i in seq(n)) {
+##         if (interval &lt; 0) {
+##             user_input(&quot;Press any keys on R console&quot;)
+##         }
+##         else {
+##             automater::sleep(interval)
+##         }
+##         x[[i]] &lt;- KeyboardSimulator::mouse.get_cursor()[1]
+##         y[[i]] &lt;- KeyboardSimulator::mouse.get_cursor()[2]
+##         position &lt;- paste0(i, &quot;: x = &quot;, x[[i]], &quot;, y = &quot;, y[[i]], 
+##             &quot;\n&quot;)
+##         cat(position)
+##     }
+##     return(list(x = unlist(x), y = unlist(y)))
+## }
+## &lt;bytecode: 0x0000022220027260&gt;
+## &lt;environment: namespace:automater&gt;</code></pre>
+<p>sleep()を挟んで，n回分の位置を取得するだけの関数である．
+実行すると以下のような結果が得られる．
+位置を表示させているのが煩わしければ，ループ中の最後の2行を削除すれば良い．</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="keyboardsimulator.html#cb59-1" aria-hidden="true" tabindex="-1"></a>position <span class="ot">&lt;-</span> automater<span class="sc">::</span><span class="fu">mouse_record</span>()</span>
+<span id="cb59-2"><a href="keyboardsimulator.html#cb59-2" aria-hidden="true" tabindex="-1"></a>position</span>
+<span id="cb59-3"><a href="keyboardsimulator.html#cb59-3" aria-hidden="true" tabindex="-1"></a> <span class="do">## 1: x = 680, y = 587</span></span>
+<span id="cb59-4"><a href="keyboardsimulator.html#cb59-4" aria-hidden="true" tabindex="-1"></a> <span class="do">## 2: x = 162, y = 482</span></span>
+<span id="cb59-5"><a href="keyboardsimulator.html#cb59-5" aria-hidden="true" tabindex="-1"></a> <span class="do">## 3: x = 94, y = 1250</span></span>
+<span id="cb59-6"><a href="keyboardsimulator.html#cb59-6" aria-hidden="true" tabindex="-1"></a> <span class="do">## 4: x = 816, y = 1352</span></span>
+<span id="cb59-7"><a href="keyboardsimulator.html#cb59-7" aria-hidden="true" tabindex="-1"></a> <span class="do">## 5: x = 773, y = 511</span></span>
+<span id="cb59-8"><a href="keyboardsimulator.html#cb59-8" aria-hidden="true" tabindex="-1"></a> <span class="do">## $x</span></span>
+<span id="cb59-9"><a href="keyboardsimulator.html#cb59-9" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] 680 162  94 816 773</span></span>
+<span id="cb59-10"><a href="keyboardsimulator.html#cb59-10" aria-hidden="true" tabindex="-1"></a> <span class="do">## </span></span>
+<span id="cb59-11"><a href="keyboardsimulator.html#cb59-11" aria-hidden="true" tabindex="-1"></a> <span class="do">## $y</span></span>
+<span id="cb59-12"><a href="keyboardsimulator.html#cb59-12" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1]  587  482 1250 1352  511</span></span></code></pre></div>
+</div>
+<div id="usbの安全な取り出しの自動化" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> 「USBの安全な取り出し」の自動化<a href="keyboardsimulator.html#usbの安全な取り出しの自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="keyboardsimulator.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mouse.move</span>(<span class="dv">630</span>, <span class="dv">650</span>) <span class="co"># DP: リモートデスクトップへの接続</span></span>
+<span id="cb60-2"><a href="keyboardsimulator.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="keyboardsimulator.html#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="keyboardsimulator.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># purrr::map2(mouse_move_click)</span></span>
+<span id="cb60-5"><a href="keyboardsimulator.html#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="keyboardsimulator.html#cb60-6" aria-hidden="true" tabindex="-1"></a>pos <span class="ot">&lt;-</span> KeyboardSimulator<span class="sc">::</span><span class="fu">mouse.get_cursor</span>()</span>
+<span id="cb60-7"><a href="keyboardsimulator.html#cb60-7" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">770</span>,<span class="dv">1900</span>)</span>
+<span id="cb60-8"><a href="keyboardsimulator.html#cb60-8" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">730</span>,<span class="dv">1800</span>)</span>
+<span id="cb60-9"><a href="keyboardsimulator.html#cb60-9" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">700</span>,<span class="dv">1760</span>)</span>
+<span id="cb60-10"><a href="keyboardsimulator.html#cb60-10" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>(<span class="dv">1040</span>,<span class="dv">1750</span>)</span>
+<span id="cb60-11"><a href="keyboardsimulator.html#cb60-11" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>(pos[<span class="dv">1</span>], pos[<span class="dv">2</span>])</span></code></pre></div>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reticulate.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="magrittr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

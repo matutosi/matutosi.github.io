@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 13 magickで画像編集 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 13 magickで画像編集 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 15 magickで画像編集 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 15 magickで画像編集 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 13 magickで画像編集 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 15 magickで画像編集 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 13 magickで画像編集 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 15 magickで画像編集 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-11" />
+<meta name="date" content="2023-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="rselenium.html"/>
-<link rel="next" href="reticulate.html"/>
+<link rel="next" href="dbi.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -174,166 +174,174 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>5.4</b> fsを使ったファイル操作例</a></li>
 <li class="chapter" data-level="5.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>5.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>6</b> magrittrでコードを簡潔に</a>
+<li class="chapter" data-level="6" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>6</b> system()やshell()でOSコマンドの実行</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="magrittr.html"><a href="magrittr.html#準備-1"><i class="fa fa-check"></i><b>6.1</b> 準備</a></li>
-<li class="chapter" data-level="6.2" data-path="magrittr.html"><a href="magrittr.html#magrittrとtidyverse"><i class="fa fa-check"></i><b>6.2</b> magrittrとtidyverse</a></li>
-<li class="chapter" data-level="6.3" data-path="magrittr.html"><a href="magrittr.html#でコードを簡潔に"><i class="fa fa-check"></i><b>6.3</b> <code>%&gt;%</code>でコードを簡潔に</a></li>
-<li class="chapter" data-level="6.4" data-path="magrittr.html"><a href="magrittr.html#パイプの仲間"><i class="fa fa-check"></i><b>6.4</b> パイプの仲間</a>
+<li class="chapter" data-level="6.1" data-path="shell.html"><a href="shell.html#準備-1"><i class="fa fa-check"></i><b>6.1</b> 準備</a></li>
+<li class="chapter" data-level="6.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>6.2</b> 活用例：Pythonとそのライブラリのインストール</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="magrittr.html"><a href="magrittr.html#でオブジェクトを代入"><i class="fa fa-check"></i><b>6.4.1</b> <code>%&lt;&gt;%</code>でオブジェクトを代入</a></li>
-<li class="chapter" data-level="6.4.2" data-path="magrittr.html"><a href="magrittr.html#tでコードを分岐"><i class="fa fa-check"></i><b>6.4.2</b> <code>%T&gt;%</code>でコードを分岐</a></li>
-<li class="chapter" data-level="6.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>6.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>6.5</b> パイプ以外の関数</a></li>
-<li class="chapter" data-level="6.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>6.6</b> おまけ：magrittrの不思議な関数たち</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>7</b> stringrで文字列操作</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>7.1</b> はじめに</a></li>
-<li class="chapter" data-level="7.2" data-path="stringr.html"><a href="stringr.html#準備-2"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
-<li class="chapter" data-level="7.3" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>7.3</b> stringrとbase</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ-1"><i class="fa fa-check"></i><b>7.3.1</b> baseパッケージ</a></li>
-<li class="chapter" data-level="7.3.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>7.3.2</b> stringrパッケージ</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>7.4</b> stringrの関数</a></li>
-<li class="chapter" data-level="7.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>7.5</b> stringrの利点</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>8</b> lubridateで日付・時刻を扱う</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="lubridate.html"><a href="lubridate.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
-<li class="chapter" data-level="8.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>8.2</b> 1月後・1年後の同一日</a></li>
-<li class="chapter" data-level="8.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>8.3</b> 文字列からDateクラスへの変換</a></li>
-<li class="chapter" data-level="8.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>8.4</b> 曜日を求める</a></li>
-<li class="chapter" data-level="8.5" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>8.5</b> 活用例</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>9</b> ggplot2で楽に綺麗に作図</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="ggplot2.html"><a href="ggplot2.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
-<li class="chapter" data-level="9.2" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>9.2</b> Rの作図環境の概要</a></li>
-<li class="chapter" data-level="9.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>9.3</b> ggplot2とは</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>9.3.1</b> ggplot2の利点</a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>9.4</b> ggplot2の基本</a></li>
-<li class="chapter" data-level="9.5" data-path="ggplot2.html"><a href="ggplot2.html#facetで簡単に分割作図"><i class="fa fa-check"></i><b>9.5</b> facetで簡単に分割作図</a></li>
-<li class="chapter" data-level="9.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>9.6</b> ggsave</a></li>
-<li class="chapter" data-level="9.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>9.7</b> 文字化けへの対処(windows)</a></li>
-<li class="chapter" data-level="9.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>9.8</b> themeを少しだけ説明</a></li>
-<li class="chapter" data-level="9.9" data-path="ggplot2.html"><a href="ggplot2.html#作図の自動化"><i class="fa fa-check"></i><b>9.9</b> 作図の自動化</a></li>
-<li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>9.10</b> 参考書</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>10</b> system()やshell()でOSコマンドの実行</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="shell.html"><a href="shell.html#準備-5"><i class="fa fa-check"></i><b>10.1</b> 準備</a></li>
-<li class="chapter" data-level="10.2" data-path="shell.html"><a href="shell.html#活用例pythonとそのライブラリのインストール"><i class="fa fa-check"></i><b>10.2</b> 活用例：Pythonとそのライブラリのインストール</a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>10.2.1</b> Pythonのイントール</a></li>
-<li class="chapter" data-level="10.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>10.2.2</b> PyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="6.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>6.2.1</b> Pythonのイントール</a></li>
+<li class="chapter" data-level="6.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>6.2.2</b> PyAutoGUIのインストール</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>11</b> rvestでスクレイピング</a>
+<li class="chapter" data-level="7" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>7</b> reticulate</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>11.1</b> スクレイピング</a></li>
-<li class="chapter" data-level="11.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>11.2</b> rvest と RSelenium</a></li>
-<li class="chapter" data-level="11.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>11.3</b> rvestのできること</a></li>
-<li class="chapter" data-level="11.4" data-path="rvest.html"><a href="rvest.html#準備-6"><i class="fa fa-check"></i><b>11.4</b> 準備</a></li>
-<li class="chapter" data-level="11.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>11.5</b> HTMLの取得</a></li>
-<li class="chapter" data-level="11.6" data-path="rvest.html"><a href="rvest.html#必要な情報の取得"><i class="fa fa-check"></i><b>11.6</b> 必要な情報の取得</a></li>
-<li class="chapter" data-level="11.7" data-path="rvest.html"><a href="rvest.html#urlの生成データの取得"><i class="fa fa-check"></i><b>11.7</b> URLの生成・データの取得</a></li>
-<li class="chapter" data-level="11.8" data-path="rvest.html"><a href="rvest.html#地図画像の取得"><i class="fa fa-check"></i><b>11.8</b> 地図画像の取得</a></li>
-<li class="chapter" data-level="11.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>11.9</b> 複数種への対応</a></li>
-<li class="chapter" data-level="11.10" data-path="rvest.html"><a href="rvest.html#webshot"><i class="fa fa-check"></i><b>11.10</b> おまけ：webshotでウエブページを画像に変換</a></li>
+<li class="chapter" data-level="7.1" data-path="reticulate.html"><a href="reticulate.html#準備-2"><i class="fa fa-check"></i><b>7.1</b> 準備</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>7.1.1</b> PythonとPyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reticulate.html"><a href="reticulate.html#使用するpythonの指定"><i class="fa fa-check"></i><b>7.1.2</b> 使用するPythonの指定</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>12</b> Rselenium</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="rselenium.html"><a href="rselenium.html#準備-7"><i class="fa fa-check"></i><b>12.1</b> 準備</a></li>
-<li class="chapter" data-level="12.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>12.2</b> ブラウザの自動化</a></li>
-<li class="chapter" data-level="12.3" data-path="rselenium.html"><a href="rselenium.html#section"><i class="fa fa-check"></i><b>12.3</b> </a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方"><i class="fa fa-check"></i><b>12.3.1</b> 使い方</a></li>
-<li class="chapter" data-level="12.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点"><i class="fa fa-check"></i><b>12.3.2</b> 注意点</a></li>
+<li class="chapter" data-level="7.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>7.2</b> Pythonを使ってみる</a></li>
+<li class="chapter" data-level="7.3" data-path="reticulate.html"><a href="reticulate.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>7.3</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
+<li class="chapter" data-level="7.4" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>7.4</b> PythoとRとの変数のやり取り</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>12.4</b> 要素の取得</a></li>
-<li class="chapter" data-level="12.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>12.5</b> その他</a></li>
+<li class="chapter" data-level="8" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>8</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
+<li class="chapter" data-level="8.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>8.2</b> キーボード操作の自動化</a></li>
+<li class="chapter" data-level="8.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>8.3</b> マウスの位置取得</a></li>
+<li class="chapter" data-level="8.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbの安全な取り出しの自動化"><i class="fa fa-check"></i><b>8.4</b> 「USBの安全な取り出し」の自動化</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="magick.html"><a href="magick.html"><i class="fa fa-check"></i><b>13</b> magickで画像編集</a>
+<li class="chapter" data-level="9" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>9</b> magrittrでコードを簡潔に</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="magick.html"><a href="magick.html#準備-8"><i class="fa fa-check"></i><b>13.1</b> 準備</a></li>
-<li class="chapter" data-level="13.2" data-path="magick.html"><a href="magick.html#使い方-1"><i class="fa fa-check"></i><b>13.2</b> 使い方</a>
+<li class="chapter" data-level="9.1" data-path="magrittr.html"><a href="magrittr.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
+<li class="chapter" data-level="9.2" data-path="magrittr.html"><a href="magrittr.html#magrittrとtidyverse"><i class="fa fa-check"></i><b>9.2</b> magrittrとtidyverse</a></li>
+<li class="chapter" data-level="9.3" data-path="magrittr.html"><a href="magrittr.html#でコードを簡潔に"><i class="fa fa-check"></i><b>9.3</b> <code>%&gt;%</code>でコードを簡潔に</a></li>
+<li class="chapter" data-level="9.4" data-path="magrittr.html"><a href="magrittr.html#パイプの仲間"><i class="fa fa-check"></i><b>9.4</b> パイプの仲間</a>
 <ul>
-<li class="chapter" data-level="13.2.1" data-path="magick.html"><a href="magick.html#読み込み表示変換保存"><i class="fa fa-check"></i><b>13.2.1</b> 読み込み・表示・変換・保存</a></li>
-<li class="chapter" data-level="13.2.2" data-path="magick.html"><a href="magick.html#切り抜き"><i class="fa fa-check"></i><b>13.2.2</b> 切り抜き</a></li>
-<li class="chapter" data-level="13.2.3" data-path="magick.html"><a href="magick.html#サイズの変更"><i class="fa fa-check"></i><b>13.2.3</b> サイズの変更</a></li>
-<li class="chapter" data-level="13.2.4" data-path="magick.html"><a href="magick.html#枠余白の追加註釈テキストの追加"><i class="fa fa-check"></i><b>13.2.4</b> 枠(余白)の追加・註釈(テキスト)の追加</a></li>
+<li class="chapter" data-level="9.4.1" data-path="magrittr.html"><a href="magrittr.html#でオブジェクトを代入"><i class="fa fa-check"></i><b>9.4.1</b> <code>%&lt;&gt;%</code>でオブジェクトを代入</a></li>
+<li class="chapter" data-level="9.4.2" data-path="magrittr.html"><a href="magrittr.html#tでコードを分岐"><i class="fa fa-check"></i><b>9.4.2</b> <code>%T&gt;%</code>でコードを分岐</a></li>
+<li class="chapter" data-level="9.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>9.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="magick.html"><a href="magick.html#その他の関数"><i class="fa fa-check"></i><b>13.3</b> その他の関数</a></li>
-<li class="chapter" data-level="13.4" data-path="magick.html"><a href="magick.html#ウエブのスクリーンショットにurlを付加する関数"><i class="fa fa-check"></i><b>13.4</b> ウエブのスクリーンショットにURLを付加する関数</a></li>
+<li class="chapter" data-level="9.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>9.5</b> パイプ以外の関数</a></li>
+<li class="chapter" data-level="9.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>9.6</b> おまけ：magrittrの不思議な関数たち</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>14</b> reticulate</a>
+<li class="chapter" data-level="10" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>10</b> stringrで文字列操作</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="reticulate.html"><a href="reticulate.html#準備-9"><i class="fa fa-check"></i><b>14.1</b> 準備</a>
+<li class="chapter" data-level="10.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>10.1</b> はじめに</a></li>
+<li class="chapter" data-level="10.2" data-path="stringr.html"><a href="stringr.html#準備-5"><i class="fa fa-check"></i><b>10.2</b> 準備</a></li>
+<li class="chapter" data-level="10.3" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>10.3</b> stringrとbase</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonのインストール"><i class="fa fa-check"></i><b>14.1.1</b> Pythonのインストール</a></li>
+<li class="chapter" data-level="10.3.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ-1"><i class="fa fa-check"></i><b>10.3.1</b> baseパッケージ</a></li>
+<li class="chapter" data-level="10.3.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>10.3.2</b> stringrパッケージ</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="reticulate.html"><a href="reticulate.html#pythonでのモジュールパッケージのインストール"><i class="fa fa-check"></i><b>14.2</b> Pythonでのモジュール(パッケージ)のインストール</a></li>
-<li class="chapter" data-level="14.3" data-path="reticulate.html"><a href="reticulate.html#実行"><i class="fa fa-check"></i><b>14.3</b> 実行</a></li>
-<li class="chapter" data-level="14.4" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>14.4</b> PythoとRとの変数のやり取り</a></li>
+<li class="chapter" data-level="10.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>10.4</b> stringrの関数</a></li>
+<li class="chapter" data-level="10.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>10.5</b> stringrの利点</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="dbi.html"><a href="dbi.html"><i class="fa fa-check"></i><b>15</b> DBIでデータ取得</a>
+<li class="chapter" data-level="11" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>11</b> lubridateで日付・時刻を扱う</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="dbi.html"><a href="dbi.html#データベースとの連携"><i class="fa fa-check"></i><b>15.1</b> データベースとの連携</a></li>
-<li class="chapter" data-level="15.2" data-path="dbi.html"><a href="dbi.html#dbiでできること"><i class="fa fa-check"></i><b>15.2</b> DBIでできること</a></li>
-<li class="chapter" data-level="15.3" data-path="dbi.html"><a href="dbi.html#準備-10"><i class="fa fa-check"></i><b>15.3</b> 準備</a></li>
-<li class="chapter" data-level="15.4" data-path="dbi.html"><a href="dbi.html#使い方-2"><i class="fa fa-check"></i><b>15.4</b> 使い方</a></li>
+<li class="chapter" data-level="11.1" data-path="lubridate.html"><a href="lubridate.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
+<li class="chapter" data-level="11.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>11.2</b> 1月後・1年後の同一日</a></li>
+<li class="chapter" data-level="11.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>11.3</b> 文字列からDateクラスへの変換</a></li>
+<li class="chapter" data-level="11.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>11.4</b> 曜日を求める</a></li>
+<li class="chapter" data-level="11.5" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>11.5</b> 活用例</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>16</b> xlsxでエクセル操作</a>
+<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> ggplot2で楽に綺麗に作図</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="xlsx.html"><a href="xlsx.html#準備-11"><i class="fa fa-check"></i><b>16.1</b> 準備</a></li>
-<li class="chapter" data-level="16.2" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>16.2</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
+<li class="chapter" data-level="12.1" data-path="ggplot2.html"><a href="ggplot2.html#準備-7"><i class="fa fa-check"></i><b>12.1</b> 準備</a></li>
+<li class="chapter" data-level="12.2" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>12.2</b> Rの作図環境の概要</a></li>
+<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>12.3</b> ggplot2とは</a>
 <ul>
-<li class="chapter" data-level="16.2.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>16.2.1</b> 使用方法</a></li>
-<li class="chapter" data-level="16.2.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>16.2.2</b> スクリプトの内容説明</a></li>
+<li class="chapter" data-level="12.3.1" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>12.3.1</b> ggplot2の利点</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="xlsx.html"><a href="xlsx.html#その他の操作未作成"><i class="fa fa-check"></i><b>16.3</b> その他の操作(未作成)</a></li>
+<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>12.4</b> ggplot2の基本</a></li>
+<li class="chapter" data-level="12.5" data-path="ggplot2.html"><a href="ggplot2.html#facetで簡単に分割作図"><i class="fa fa-check"></i><b>12.5</b> facetで簡単に分割作図</a></li>
+<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>12.6</b> ggsave</a></li>
+<li class="chapter" data-level="12.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>12.7</b> 文字化けへの対処(windows)</a></li>
+<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>12.8</b> themeを少しだけ説明</a></li>
+<li class="chapter" data-level="12.9" data-path="ggplot2.html"><a href="ggplot2.html#作図の自動化"><i class="fa fa-check"></i><b>12.9</b> 作図の自動化</a></li>
+<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>12.10</b> 参考書</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>17</b> qpdfでPDF操作</a>
+<li class="chapter" data-level="13" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>13</b> rvestでスクレイピング</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="qpdf.html"><a href="qpdf.html#準備-12"><i class="fa fa-check"></i><b>17.1</b> 準備</a></li>
-<li class="chapter" data-level="17.2" data-path="qpdf.html"><a href="qpdf.html#qpdfでできること"><i class="fa fa-check"></i><b>17.2</b> qpdfでできること</a></li>
-<li class="chapter" data-level="17.3" data-path="qpdf.html"><a href="qpdf.html#pdfの分割"><i class="fa fa-check"></i><b>17.3</b> PDFの分割</a></li>
-<li class="chapter" data-level="17.4" data-path="qpdf.html"><a href="qpdf.html#pdfの結合"><i class="fa fa-check"></i><b>17.4</b> PDFの結合</a></li>
-<li class="chapter" data-level="17.5" data-path="qpdf.html"><a href="qpdf.html#pdfの圧縮最適化"><i class="fa fa-check"></i><b>17.5</b> PDFの圧縮・最適化</a></li>
-<li class="chapter" data-level="17.6" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>17.6</b> PDFへのページ番号付加</a></li>
-<li class="chapter" data-level="17.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>17.7</b> その他の関数</a></li>
-<li class="chapter" data-level="17.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>17.8</b> pdftoolsでテキストの取り出し</a></li>
+<li class="chapter" data-level="13.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>13.1</b> スクレイピング</a></li>
+<li class="chapter" data-level="13.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>13.2</b> rvest と RSelenium</a></li>
+<li class="chapter" data-level="13.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>13.3</b> rvestのできること</a></li>
+<li class="chapter" data-level="13.4" data-path="rvest.html"><a href="rvest.html#準備-8"><i class="fa fa-check"></i><b>13.4</b> 準備</a></li>
+<li class="chapter" data-level="13.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>13.5</b> HTMLの取得</a></li>
+<li class="chapter" data-level="13.6" data-path="rvest.html"><a href="rvest.html#必要な情報の取得"><i class="fa fa-check"></i><b>13.6</b> 必要な情報の取得</a></li>
+<li class="chapter" data-level="13.7" data-path="rvest.html"><a href="rvest.html#urlの生成データの取得"><i class="fa fa-check"></i><b>13.7</b> URLの生成・データの取得</a></li>
+<li class="chapter" data-level="13.8" data-path="rvest.html"><a href="rvest.html#地図画像の取得"><i class="fa fa-check"></i><b>13.8</b> 地図画像の取得</a></li>
+<li class="chapter" data-level="13.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>13.9</b> 複数種への対応</a></li>
+<li class="chapter" data-level="13.10" data-path="rvest.html"><a href="rvest.html#webshot"><i class="fa fa-check"></i><b>13.10</b> おまけ：webshotでウエブページを画像に変換</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>18</b> pdfをdocxに変換</a>
+<li class="chapter" data-level="14" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>14</b> Rselenium</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="pdf2docx.html"><a href="pdf2docx.html#rdcomclient"><i class="fa fa-check"></i><b>18.1</b> RDCOMClient</a>
+<li class="chapter" data-level="14.1" data-path="rselenium.html"><a href="rselenium.html#準備-9"><i class="fa fa-check"></i><b>14.1</b> 準備</a></li>
+<li class="chapter" data-level="14.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>14.2</b> ブラウザの自動化</a></li>
+<li class="chapter" data-level="14.3" data-path="rselenium.html"><a href="rselenium.html#section"><i class="fa fa-check"></i><b>14.3</b> </a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="pdf2docx.html"><a href="pdf2docx.html#インストール"><i class="fa fa-check"></i><b>18.1.1</b> インストール</a></li>
-<li class="chapter" data-level="18.1.2" data-path="pdf2docx.html"><a href="pdf2docx.html#変換実行"><i class="fa fa-check"></i><b>18.1.2</b> 変換実行</a></li>
-<li class="chapter" data-level="18.1.3" data-path="pdf2docx.html"><a href="pdf2docx.html#ラッパー関数"><i class="fa fa-check"></i><b>18.1.3</b> ラッパー関数</a></li>
+<li class="chapter" data-level="14.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方"><i class="fa fa-check"></i><b>14.3.1</b> 使い方</a></li>
+<li class="chapter" data-level="14.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点"><i class="fa fa-check"></i><b>14.3.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="pdf2docx.html"><a href="pdf2docx.html#pdf2docx-1"><i class="fa fa-check"></i><b>18.2</b> pdf2docx</a></li>
+<li class="chapter" data-level="14.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>14.4</b> 要素の取得</a></li>
+<li class="chapter" data-level="14.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>14.5</b> その他</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>19</b> Microsoft365R</a>
+<li class="chapter" data-level="15" data-path="magick.html"><a href="magick.html"><i class="fa fa-check"></i><b>15</b> magickで画像編集</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="microsoft365r.html"><a href="microsoft365r.html#outlookで複数メール送信を一斉送信"><i class="fa fa-check"></i><b>19.1</b> Outlookで複数メール送信を一斉送信</a>
+<li class="chapter" data-level="15.1" data-path="magick.html"><a href="magick.html#準備-10"><i class="fa fa-check"></i><b>15.1</b> 準備</a></li>
+<li class="chapter" data-level="15.2" data-path="magick.html"><a href="magick.html#使い方-1"><i class="fa fa-check"></i><b>15.2</b> 使い方</a>
 <ul>
-<li class="chapter" data-level="19.1.1" data-path="microsoft365r.html"><a href="microsoft365r.html#インストールと初期設定"><i class="fa fa-check"></i><b>19.1.1</b> インストールと初期設定</a></li>
-<li class="chapter" data-level="19.1.2" data-path="microsoft365r.html"><a href="microsoft365r.html#とりあえず使う"><i class="fa fa-check"></i><b>19.1.2</b> とりあえず使う</a></li>
-<li class="chapter" data-level="19.1.3" data-path="microsoft365r.html"><a href="microsoft365r.html#メールの一斉送信"><i class="fa fa-check"></i><b>19.1.3</b> メールの一斉送信</a></li>
+<li class="chapter" data-level="15.2.1" data-path="magick.html"><a href="magick.html#読み込み表示変換保存"><i class="fa fa-check"></i><b>15.2.1</b> 読み込み・表示・変換・保存</a></li>
+<li class="chapter" data-level="15.2.2" data-path="magick.html"><a href="magick.html#切り抜き"><i class="fa fa-check"></i><b>15.2.2</b> 切り抜き</a></li>
+<li class="chapter" data-level="15.2.3" data-path="magick.html"><a href="magick.html#サイズの変更"><i class="fa fa-check"></i><b>15.2.3</b> サイズの変更</a></li>
+<li class="chapter" data-level="15.2.4" data-path="magick.html"><a href="magick.html#枠余白の追加註釈テキストの追加"><i class="fa fa-check"></i><b>15.2.4</b> 枠(余白)の追加・註釈(テキスト)の追加</a></li>
 </ul></li>
-<li class="chapter" data-level="19.2" data-path="microsoft365r.html"><a href="microsoft365r.html#複数のワード文書の文字列を一括置換"><i class="fa fa-check"></i><b>19.2</b> 複数のワード文書の文字列を一括置換</a>
-<ul>
-<li class="chapter" data-level="19.2.1" data-path="microsoft365r.html"><a href="microsoft365r.html#置換のコードの例"><i class="fa fa-check"></i><b>19.2.1</b> 置換のコードの例</a></li>
+<li class="chapter" data-level="15.3" data-path="magick.html"><a href="magick.html#その他の関数"><i class="fa fa-check"></i><b>15.3</b> その他の関数</a></li>
+<li class="chapter" data-level="15.4" data-path="magick.html"><a href="magick.html#ウエブのスクリーンショットにurlを付加する関数"><i class="fa fa-check"></i><b>15.4</b> ウエブのスクリーンショットにURLを付加する関数</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="microsoft365r.html"><a href="microsoft365r.html#年月日の更新"><i class="fa fa-check"></i><b>19.3</b> 年月日の更新</a>
+<li class="chapter" data-level="16" data-path="dbi.html"><a href="dbi.html"><i class="fa fa-check"></i><b>16</b> DBIでデータ取得</a>
 <ul>
-<li class="chapter" data-level="19.3.1" data-path="microsoft365r.html"><a href="microsoft365r.html#活用例-1"><i class="fa fa-check"></i><b>19.3.1</b> 活用例</a></li>
+<li class="chapter" data-level="16.1" data-path="dbi.html"><a href="dbi.html#データベースとの連携"><i class="fa fa-check"></i><b>16.1</b> データベースとの連携</a></li>
+<li class="chapter" data-level="16.2" data-path="dbi.html"><a href="dbi.html#dbiでできること"><i class="fa fa-check"></i><b>16.2</b> DBIでできること</a></li>
+<li class="chapter" data-level="16.3" data-path="dbi.html"><a href="dbi.html#準備-11"><i class="fa fa-check"></i><b>16.3</b> 準備</a></li>
+<li class="chapter" data-level="16.4" data-path="dbi.html"><a href="dbi.html#使い方-2"><i class="fa fa-check"></i><b>16.4</b> 使い方</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>17</b> xlsxでエクセル操作</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="xlsx.html"><a href="xlsx.html#準備-12"><i class="fa fa-check"></i><b>17.1</b> 準備</a></li>
+<li class="chapter" data-level="17.2" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>17.2</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>17.2.1</b> 使用方法</a></li>
+<li class="chapter" data-level="17.2.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>17.2.2</b> スクリプトの内容説明</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="xlsx.html"><a href="xlsx.html#その他の操作未作成"><i class="fa fa-check"></i><b>17.3</b> その他の操作(未作成)</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>18</b> qpdfでPDF操作</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="qpdf.html"><a href="qpdf.html#準備-13"><i class="fa fa-check"></i><b>18.1</b> 準備</a></li>
+<li class="chapter" data-level="18.2" data-path="qpdf.html"><a href="qpdf.html#qpdfでできること"><i class="fa fa-check"></i><b>18.2</b> qpdfでできること</a></li>
+<li class="chapter" data-level="18.3" data-path="qpdf.html"><a href="qpdf.html#pdfの分割"><i class="fa fa-check"></i><b>18.3</b> PDFの分割</a></li>
+<li class="chapter" data-level="18.4" data-path="qpdf.html"><a href="qpdf.html#pdfの結合"><i class="fa fa-check"></i><b>18.4</b> PDFの結合</a></li>
+<li class="chapter" data-level="18.5" data-path="qpdf.html"><a href="qpdf.html#pdfの圧縮最適化"><i class="fa fa-check"></i><b>18.5</b> PDFの圧縮・最適化</a></li>
+<li class="chapter" data-level="18.6" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>18.6</b> PDFへのページ番号付加</a></li>
+<li class="chapter" data-level="18.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>18.7</b> その他の関数</a></li>
+<li class="chapter" data-level="18.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>18.8</b> pdftoolsでテキストの取り出し</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>19</b> pdfをdocxに変換</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="pdf2docx.html"><a href="pdf2docx.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="pdf2docx.html"><a href="pdf2docx.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
+<li class="chapter" data-level="19.1.2" data-path="pdf2docx.html"><a href="pdf2docx.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
+<li class="chapter" data-level="19.1.3" data-path="pdf2docx.html"><a href="pdf2docx.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="pdf2docx.html"><a href="pdf2docx.html#pdf2docx-1"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>20</b> Microsoft365R</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="microsoft365r.html"><a href="microsoft365r.html#outlookで複数メール送信を一斉送信"><i class="fa fa-check"></i><b>20.1</b> Outlookで複数メール送信を一斉送信</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="microsoft365r.html"><a href="microsoft365r.html#インストールと初期設定"><i class="fa fa-check"></i><b>20.1.1</b> インストールと初期設定</a></li>
+<li class="chapter" data-level="20.1.2" data-path="microsoft365r.html"><a href="microsoft365r.html#とりあえず使う"><i class="fa fa-check"></i><b>20.1.2</b> とりあえず使う</a></li>
+<li class="chapter" data-level="20.1.3" data-path="microsoft365r.html"><a href="microsoft365r.html#メールの一斉送信"><i class="fa fa-check"></i><b>20.1.3</b> メールの一斉送信</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="microsoft365r.html"><a href="microsoft365r.html#複数のワード文書の文字列を一括置換"><i class="fa fa-check"></i><b>20.2</b> 複数のワード文書の文字列を一括置換</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="microsoft365r.html"><a href="microsoft365r.html#置換のコードの例"><i class="fa fa-check"></i><b>20.2.1</b> 置換のコードの例</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="microsoft365r.html"><a href="microsoft365r.html#年月日の更新"><i class="fa fa-check"></i><b>20.3</b> 年月日の更新</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="microsoft365r.html"><a href="microsoft365r.html#活用例-1"><i class="fa fa-check"></i><b>20.3.1</b> 活用例</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -353,8 +361,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="magick" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">Chap. 13</span> magickで画像編集<a href="magick.html#magick" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="magick" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chap. 15</span> magickで画像編集<a href="magick.html#magick" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!--
 -->
 <p>パッケージmagickを使うと，各種の画像編集ができる．
@@ -362,66 +370,66 @@ magickは，画像編集ソフトであるImageMagickを使うためのパッケ
 ImageMagickは，png，gif，pdfなどをはじめ多くの画像形式を扱うことができ，拡大・縮小，形式変換，回転，切り出し，色加工など多くの機能を備えている．
 ImageMagick自体は，コマンドラインで使うことができるので，関数<code>system()</code>を使ってRから操作することもできる．
 でも，車輪の再発明は時間と労力の無駄なので，パッケージmagickを紹介する．</p>
-<div id="準備-8" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">13.1</span> 準備<a href="magick.html#準備-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="準備-10" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> 準備<a href="magick.html#準備-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>例によってまずはパッケージをインストールする．
 svg形式の画像を読み込む場合は，rsvgパッケージもインストールしておく．
 ウエブのスクリーンショットを使うので，webshotも必要だ．</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="magick.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magick&quot;</span>)</span>
-<span id="cb155-2"><a href="magick.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsvg&quot;</span>)</span>
-<span id="cb155-3"><a href="magick.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;webshot&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="magick.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb156-2"><a href="magick.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
-<span id="cb156-3"><a href="magick.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(webshot)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="magick.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magick&quot;</span>)</span>
+<span id="cb179-2"><a href="magick.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsvg&quot;</span>)</span>
+<span id="cb179-3"><a href="magick.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;webshot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="magick.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb180-2"><a href="magick.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb180-3"><a href="magick.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(webshot)</span></code></pre></div>
 </div>
-<div id="使い方-1" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> 使い方<a href="magick.html#使い方-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="使い方-1" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> 使い方<a href="magick.html#使い方-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ImageMagick自体に多くの機能があり，magickでもその機能を利用できるため，1つ1つを紹介するとキリがない．
 ここでは，基本的な機能として画像の読み込み・変換・保存を紹介するとともに，
 <a href="rvest.html#rvest">rvestでスクレイピング</a>で使用した画像を作成するために，実際に操作したコードを説明する．</p>
-<div id="読み込み表示変換保存" class="section level3 hasAnchor" number="13.2.1">
-<h3><span class="header-section-number">13.2.1</span> 読み込み・表示・変換・保存<a href="magick.html#読み込み表示変換保存" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="読み込み表示変換保存" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> 読み込み・表示・変換・保存<a href="magick.html#読み込み表示変換保存" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>png，jpeg，gif形式の画像には<code>image_read()</code>，svg形式には<code>image_read_svg()</code>，PDF形式には<code>image_read_pdf()</code>をそれぞれ用いる．
 読み込んだ画像オブジェクトの情報を表示するには，<code>image_info()</code>を使う．
 表示だけなら，オブジェクトをそのまま入力しても同じである．</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="magick.html#cb157-1" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
-<span id="cb157-2"><a href="magick.html#cb157-2" aria-hidden="true" tabindex="-1"></a>tiger <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read_svg</span>(<span class="st">&quot;http://jeroen.github.io/images/tiger.svg&quot;</span>)</span>
-<span id="cb157-3"><a href="magick.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(frink)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="magick.html#cb181-1" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
+<span id="cb181-2"><a href="magick.html#cb181-2" aria-hidden="true" tabindex="-1"></a>tiger <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read_svg</span>(<span class="st">&quot;http://jeroen.github.io/images/tiger.svg&quot;</span>)</span>
+<span id="cb181-3"><a href="magick.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(frink)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      220    445 sRGB       TRUE     73494 72x72</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="magick.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(tiger)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="magick.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(tiger)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      900    900 sRGB       TRUE         0 72x72</code></pre>
 <p>画像そのものを表示するには，<code>image_browse()</code>を用いる．
 OSで関連付けられているソフトが立ち上がって，画像を閲覧できる．</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="magick.html#cb161-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_browse</span>(tiger)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="magick.html#cb185-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_browse</span>(tiger)</span></code></pre></div>
 <p><code>image_convert()</code>を用いると画像をpng，jpeg，gif，pdf形式に変換できる．
 画像形式は，<code>format</code>で指定する．
 また，<code>type = "grayscale"</code>とすると，白黒画像似できる．</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="magick.html#cb162-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_convert</span>(tiger, <span class="at">format =</span> <span class="st">&quot;pdf&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb162-2"><a href="magick.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_browse</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="magick.html#cb186-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_convert</span>(tiger, <span class="at">format =</span> <span class="st">&quot;pdf&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb186-2"><a href="magick.html#cb186-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_browse</span>()</span></code></pre></div>
 <p>画像を保存するには，関数<code>image_write()</code>を使う．
 この関数の引数にも<code>format</code>があり，ここで形式を変換することもできる．
 <code>image_write()</code>の<code>path</code>で拡張子を含むファイル名を指定しても，自動的にはその拡張子の形式としては保存されない．
 形式を変換したい場合は，<code>format</code>で形式をしていしなければならない．
 <code>format</code>を指定しなければ，もとの画像の形式のまま保存される．</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="magick.html#cb163-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(frink, <span class="at">path =</span> <span class="st">&quot;frink.pdf&quot;</span>, <span class="at">format =</span> <span class="st">&quot;pdf&quot;</span>) </span>
-<span id="cb163-2"><a href="magick.html#cb163-2" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(frink, <span class="at">path =</span> <span class="st">&quot;frink&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="magick.html#cb187-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(frink, <span class="at">path =</span> <span class="st">&quot;frink.pdf&quot;</span>, <span class="at">format =</span> <span class="st">&quot;pdf&quot;</span>) </span>
+<span id="cb187-2"><a href="magick.html#cb187-2" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(frink, <span class="at">path =</span> <span class="st">&quot;frink&quot;</span>)</span></code></pre></div>
 </div>
-<div id="切り抜き" class="section level3 hasAnchor" number="13.2.2">
-<h3><span class="header-section-number">13.2.2</span> 切り抜き<a href="magick.html#切り抜き" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="切り抜き" class="section level3 hasAnchor" number="15.2.2">
+<h3><span class="header-section-number">15.2.2</span> 切り抜き<a href="magick.html#切り抜き" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>画像を切り抜きする前に，webshotを使って画像を取得する．</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="magick.html#cb164-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 画像の取得</span></span>
-<span id="cb164-2"><a href="magick.html#cb164-2" aria-hidden="true" tabindex="-1"></a>urls <span class="ot">&lt;-</span> </span>
-<span id="cb164-3"><a href="magick.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=spec&quot;</span>,</span>
-<span id="cb164-4"><a href="magick.html#cb164-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;http://jpnrdb.com/search.php?mode=key&amp;q=ニッコウキスゲ&quot;</span>,</span>
-<span id="cb164-5"><a href="magick.html#cb164-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;http://jpnrdb.com/search.php?mode=map&amp;q=06050095259&quot;</span>)</span>
-<span id="cb164-6"><a href="magick.html#cb164-6" aria-hidden="true" tabindex="-1"></a>pngs <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;rvest_&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">&quot;.png&quot;</span>)</span>
-<span id="cb164-7"><a href="magick.html#cb164-7" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map2</span>(urls, pngs, webshot<span class="sc">::</span>webshot)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="magick.html#cb188-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 画像の取得</span></span>
+<span id="cb188-2"><a href="magick.html#cb188-2" aria-hidden="true" tabindex="-1"></a>urls <span class="ot">&lt;-</span> </span>
+<span id="cb188-3"><a href="magick.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=spec&quot;</span>,</span>
+<span id="cb188-4"><a href="magick.html#cb188-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;http://jpnrdb.com/search.php?mode=key&amp;q=ニッコウキスゲ&quot;</span>,</span>
+<span id="cb188-5"><a href="magick.html#cb188-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;http://jpnrdb.com/search.php?mode=map&amp;q=06050095259&quot;</span>)</span>
+<span id="cb188-6"><a href="magick.html#cb188-6" aria-hidden="true" tabindex="-1"></a>pngs <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;rvest_&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">&quot;.png&quot;</span>)</span>
+<span id="cb188-7"><a href="magick.html#cb188-7" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map2</span>(urls, pngs, webshot<span class="sc">::</span>webshot)</span></code></pre></div>
 <pre><code>## [[1]]
 ## 
 ## [[2]]
@@ -432,14 +440,14 @@ OSで関連付けられているソフトが立ち上がって，画像を閲覧
 切り出しの左上と右下の位置は，画像編集ソフトなどで別途確認する．</p>
 <p>もし，切り出しの位置の細かな設定が面倒であれば，いくつかのパターンを作っておき，総当たり的に画像を切り出して，その中から求めるものを探す方法もある．
 その場合は，出力したファイルがどの設定によるものか分かるように，出力するファイル名に位置情報を付与しておくと良いだろう．</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="magick.html#cb166-1" aria-hidden="true" tabindex="-1"></a>magick_crop <span class="ot">&lt;-</span> <span class="cf">function</span>(image, left_top, right_bottom){</span>
-<span id="cb166-2"><a href="magick.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  left   <span class="ot">&lt;-</span> left_top[<span class="dv">1</span>]</span>
-<span id="cb166-3"><a href="magick.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  top    <span class="ot">&lt;-</span> left_top[<span class="dv">2</span>]</span>
-<span id="cb166-4"><a href="magick.html#cb166-4" aria-hidden="true" tabindex="-1"></a>  right  <span class="ot">&lt;-</span> right_bottom[<span class="dv">1</span>]</span>
-<span id="cb166-5"><a href="magick.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  bottom <span class="ot">&lt;-</span> right_bottom[<span class="dv">2</span>]</span>
-<span id="cb166-6"><a href="magick.html#cb166-6" aria-hidden="true" tabindex="-1"></a>  geometry <span class="ot">&lt;-</span> <span class="fu">paste0</span>(right <span class="sc">-</span> left, <span class="st">&quot;x&quot;</span>, bottom <span class="sc">-</span> top, <span class="st">&quot;+&quot;</span>, left, <span class="st">&quot;+&quot;</span>, top)</span>
-<span id="cb166-7"><a href="magick.html#cb166-7" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_crop</span>(image, geometry)</span>
-<span id="cb166-8"><a href="magick.html#cb166-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="magick.html#cb190-1" aria-hidden="true" tabindex="-1"></a>magick_crop <span class="ot">&lt;-</span> <span class="cf">function</span>(image, left_top, right_bottom){</span>
+<span id="cb190-2"><a href="magick.html#cb190-2" aria-hidden="true" tabindex="-1"></a>  left   <span class="ot">&lt;-</span> left_top[<span class="dv">1</span>]</span>
+<span id="cb190-3"><a href="magick.html#cb190-3" aria-hidden="true" tabindex="-1"></a>  top    <span class="ot">&lt;-</span> left_top[<span class="dv">2</span>]</span>
+<span id="cb190-4"><a href="magick.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  right  <span class="ot">&lt;-</span> right_bottom[<span class="dv">1</span>]</span>
+<span id="cb190-5"><a href="magick.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  bottom <span class="ot">&lt;-</span> right_bottom[<span class="dv">2</span>]</span>
+<span id="cb190-6"><a href="magick.html#cb190-6" aria-hidden="true" tabindex="-1"></a>  geometry <span class="ot">&lt;-</span> <span class="fu">paste0</span>(right <span class="sc">-</span> left, <span class="st">&quot;x&quot;</span>, bottom <span class="sc">-</span> top, <span class="st">&quot;+&quot;</span>, left, <span class="st">&quot;+&quot;</span>, top)</span>
+<span id="cb190-7"><a href="magick.html#cb190-7" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_crop</span>(image, geometry)</span>
+<span id="cb190-8"><a href="magick.html#cb190-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>今回は切り出し位置として2つ使う．
 1つ目は，<code>rvest_1.png</code>と<code>rvest_2.png</code>で使うもので，2つ目は，<code>rvest_3.png</code>で使うものである．
 それぞれの正しい設定だけを使ってコードを書いても良いが，面倒なのでとりあえず2つの位置を使って，画像を3つとも変換してしまう．
@@ -447,59 +455,59 @@ OSで関連付けられているソフトが立ち上がって，画像を閲覧
 <p>ところで，magickパッケージの関数ベクトルに対応しているので，文字列のベクトルである<code>pngs</code>でもそのまま引数として使うことができる．
 ただし，2つのベクトルを引数に使うことはできないため，以下ではmap2を使っている．
 また，その直前で返り値をリストに変換するために<code>as.list()</code>を使っている．</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="magick.html#cb167-1" aria-hidden="true" tabindex="-1"></a>crop_1 <span class="ot">&lt;-</span> </span>
-<span id="cb167-2"><a href="magick.html#cb167-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(pngs) <span class="sc">%&gt;%</span></span>
-<span id="cb167-3"><a href="magick.html#cb167-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">magick_crop</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">890</span>, <span class="dv">560</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb167-4"><a href="magick.html#cb167-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb167-5"><a href="magick.html#cb167-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2_chr</span>(., <span class="fu">paste0</span>(<span class="st">&quot;crop1_&quot;</span>, pngs), magick<span class="sc">::</span>image_write)</span>
-<span id="cb167-6"><a href="magick.html#cb167-6" aria-hidden="true" tabindex="-1"></a>crop_2 <span class="ot">&lt;-</span> </span>
-<span id="cb167-7"><a href="magick.html#cb167-7" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(pngs) <span class="sc">%&gt;%</span></span>
-<span id="cb167-8"><a href="magick.html#cb167-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">magick_crop</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">890</span>, <span class="dv">980</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb167-9"><a href="magick.html#cb167-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb167-10"><a href="magick.html#cb167-10" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2_chr</span>(., <span class="fu">paste0</span>(<span class="st">&quot;crop2_&quot;</span>, pngs), magick<span class="sc">::</span>image_write)</span>
-<span id="cb167-11"><a href="magick.html#cb167-11" aria-hidden="true" tabindex="-1"></a>crops <span class="ot">&lt;-</span> <span class="fu">c</span>(crop_1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)], crop_2[<span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="magick.html#cb191-1" aria-hidden="true" tabindex="-1"></a>crop_1 <span class="ot">&lt;-</span> </span>
+<span id="cb191-2"><a href="magick.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(pngs) <span class="sc">%&gt;%</span></span>
+<span id="cb191-3"><a href="magick.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">magick_crop</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">890</span>, <span class="dv">560</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb191-4"><a href="magick.html#cb191-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb191-5"><a href="magick.html#cb191-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2_chr</span>(., <span class="fu">paste0</span>(<span class="st">&quot;crop1_&quot;</span>, pngs), magick<span class="sc">::</span>image_write)</span>
+<span id="cb191-6"><a href="magick.html#cb191-6" aria-hidden="true" tabindex="-1"></a>crop_2 <span class="ot">&lt;-</span> </span>
+<span id="cb191-7"><a href="magick.html#cb191-7" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(pngs) <span class="sc">%&gt;%</span></span>
+<span id="cb191-8"><a href="magick.html#cb191-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">magick_crop</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">890</span>, <span class="dv">980</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb191-9"><a href="magick.html#cb191-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb191-10"><a href="magick.html#cb191-10" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2_chr</span>(., <span class="fu">paste0</span>(<span class="st">&quot;crop2_&quot;</span>, pngs), magick<span class="sc">::</span>image_write)</span>
+<span id="cb191-11"><a href="magick.html#cb191-11" aria-hidden="true" tabindex="-1"></a>crops <span class="ot">&lt;-</span> <span class="fu">c</span>(crop_1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)], crop_2[<span class="dv">3</span>])</span></code></pre></div>
 <p>ここでは，<code>image_crop()</code>を使用したが，上下左右から変化がない部分を除去する<code>image_trim()</code>という関数がある．
 余白部分(色は白だけとは限らない)を単純に除去するだけでれば，<code>位置を指定する必要のない</code>image_trim()`の方が楽である．</p>
 </div>
-<div id="サイズの変更" class="section level3 hasAnchor" number="13.2.3">
-<h3><span class="header-section-number">13.2.3</span> サイズの変更<a href="magick.html#サイズの変更" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="サイズの変更" class="section level3 hasAnchor" number="15.2.3">
+<h3><span class="header-section-number">15.2.3</span> サイズの変更<a href="magick.html#サイズの変更" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>画像サイズを変更するには，<code>image_scale()</code>を使う．
 <code>geometry = "200"</code>で幅200ピクセルに，<code>geometry = "x200"</code>で高さ200ピクセルに変更できる．
 なお，縦横比を保ったままである．</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="magick.html#cb168-1" aria-hidden="true" tabindex="-1"></a>resizes_crops <span class="ot">&lt;-</span> </span>
-<span id="cb168-2"><a href="magick.html#cb168-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(crops) <span class="sc">%&gt;%</span></span>
-<span id="cb168-3"><a href="magick.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_scale</span>(<span class="at">geometry =</span> <span class="st">&quot;600&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="magick.html#cb192-1" aria-hidden="true" tabindex="-1"></a>resizes_crops <span class="ot">&lt;-</span> </span>
+<span id="cb192-2"><a href="magick.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(crops) <span class="sc">%&gt;%</span></span>
+<span id="cb192-3"><a href="magick.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_scale</span>(<span class="at">geometry =</span> <span class="st">&quot;600&quot;</span>)</span></code></pre></div>
 </div>
-<div id="枠余白の追加註釈テキストの追加" class="section level3 hasAnchor" number="13.2.4">
-<h3><span class="header-section-number">13.2.4</span> 枠(余白)の追加・註釈(テキスト)の追加<a href="magick.html#枠余白の追加註釈テキストの追加" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="枠余白の追加註釈テキストの追加" class="section level3 hasAnchor" number="15.2.4">
+<h3><span class="header-section-number">15.2.4</span> 枠(余白)の追加・註釈(テキスト)の追加<a href="magick.html#枠余白の追加註釈テキストの追加" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>画像に枠(余白)と註釈(テキスト)をつけるには，それぞれ<code>image_border()</code>と<code>image_annotate()</code>を使う．
 <code>image_border()</code>で<code>geometry = "x40"</code>は上下に，<code>geometry = "40"</code>は左右に
 40ピクセルの枠を追加する．
 <code>image_annotate()</code>は位置<code>location</code>，角度<code>degrees</code>，文字サイズ<code>size</code>，フォント<code>font</code>なども指定可能である．</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="magick.html#cb169-1" aria-hidden="true" tabindex="-1"></a>boders_annotates <span class="ot">&lt;-</span> </span>
-<span id="cb169-2"><a href="magick.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  resizes_crops <span class="sc">%&gt;%</span></span>
-<span id="cb169-3"><a href="magick.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_border</span>(<span class="st">&quot;white&quot;</span>, <span class="at">geometry =</span> <span class="st">&quot;x40&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb169-4"><a href="magick.html#cb169-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb169-5"><a href="magick.html#cb169-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2</span>(., urls, magick<span class="sc">::</span>image_annotate, <span class="at">size =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="magick.html#cb193-1" aria-hidden="true" tabindex="-1"></a>boders_annotates <span class="ot">&lt;-</span> </span>
+<span id="cb193-2"><a href="magick.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  resizes_crops <span class="sc">%&gt;%</span></span>
+<span id="cb193-3"><a href="magick.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_border</span>(<span class="st">&quot;white&quot;</span>, <span class="at">geometry =</span> <span class="st">&quot;x40&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb193-4"><a href="magick.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb193-5"><a href="magick.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2</span>(., urls, magick<span class="sc">::</span>image_annotate, <span class="at">size =</span> <span class="dv">20</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="その他の関数" class="section level2 hasAnchor" number="13.3">
-<h2><span class="header-section-number">13.3</span> その他の関数<a href="magick.html#その他の関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="その他の関数" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> その他の関数<a href="magick.html#その他の関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>magickには，他にも有用な関数がたくさんある．</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="magick.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_append</span>(image, <span class="at">stack =</span> <span class="cn">FALSE</span>)   <span class="co"># 並べて表示，stack = TRUEで縦並べ</span></span>
-<span id="cb170-2"><a href="magick.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_background</span>(image, color)       <span class="co"># 背景の色付け</span></span>
-<span id="cb170-3"><a href="magick.html#cb170-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(image, degrees)         <span class="co"># 回転</span></span>
-<span id="cb170-4"><a href="magick.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="fu">image_blur</span>(image, radius, sigma)     <span class="co"># ぼかし処理．radius，sigma：ぼかしの大きさ</span></span>
-<span id="cb170-5"><a href="magick.html#cb170-5" aria-hidden="true" tabindex="-1"></a><span class="fu">image_noise</span>(image, noisetype)        <span class="co"># ノイズの追加</span></span>
-<span id="cb170-6"><a href="magick.html#cb170-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image_charcoal</span>(image, radius, sigma) <span class="co"># 縁取り</span></span>
-<span id="cb170-7"><a href="magick.html#cb170-7" aria-hidden="true" tabindex="-1"></a><span class="fu">image_oilpaint</span>(image, radius)        <span class="co"># 油絵</span></span>
-<span id="cb170-8"><a href="magick.html#cb170-8" aria-hidden="true" tabindex="-1"></a><span class="fu">image_edge</span>(image, radius)            <span class="co"># エッジ</span></span>
-<span id="cb170-9"><a href="magick.html#cb170-9" aria-hidden="true" tabindex="-1"></a><span class="fu">image_negate</span>(image)                  <span class="co"># ネガ</span></span>
-<span id="cb170-10"><a href="magick.html#cb170-10" aria-hidden="true" tabindex="-1"></a><span class="fu">image_morph</span>(image, frames)           <span class="co"># 画像を指定したframes間隔</span></span>
-<span id="cb170-11"><a href="magick.html#cb170-11" aria-hidden="true" tabindex="-1"></a><span class="fu">image_animate</span>(image, fps, loop)      <span class="co"># image_morph()画像のアニメ化，fps：frames/秒，`loop = 1`で繰り返しなし</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="magick.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_append</span>(image, <span class="at">stack =</span> <span class="cn">FALSE</span>)   <span class="co"># 並べて表示，stack = TRUEで縦並べ</span></span>
+<span id="cb194-2"><a href="magick.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_background</span>(image, color)       <span class="co"># 背景の色付け</span></span>
+<span id="cb194-3"><a href="magick.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(image, degrees)         <span class="co"># 回転</span></span>
+<span id="cb194-4"><a href="magick.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="fu">image_blur</span>(image, radius, sigma)     <span class="co"># ぼかし処理．radius，sigma：ぼかしの大きさ</span></span>
+<span id="cb194-5"><a href="magick.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="fu">image_noise</span>(image, noisetype)        <span class="co"># ノイズの追加</span></span>
+<span id="cb194-6"><a href="magick.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image_charcoal</span>(image, radius, sigma) <span class="co"># 縁取り</span></span>
+<span id="cb194-7"><a href="magick.html#cb194-7" aria-hidden="true" tabindex="-1"></a><span class="fu">image_oilpaint</span>(image, radius)        <span class="co"># 油絵</span></span>
+<span id="cb194-8"><a href="magick.html#cb194-8" aria-hidden="true" tabindex="-1"></a><span class="fu">image_edge</span>(image, radius)            <span class="co"># エッジ</span></span>
+<span id="cb194-9"><a href="magick.html#cb194-9" aria-hidden="true" tabindex="-1"></a><span class="fu">image_negate</span>(image)                  <span class="co"># ネガ</span></span>
+<span id="cb194-10"><a href="magick.html#cb194-10" aria-hidden="true" tabindex="-1"></a><span class="fu">image_morph</span>(image, frames)           <span class="co"># 画像を指定したframes間隔</span></span>
+<span id="cb194-11"><a href="magick.html#cb194-11" aria-hidden="true" tabindex="-1"></a><span class="fu">image_animate</span>(image, fps, loop)      <span class="co"># image_morph()画像のアニメ化，fps：frames/秒，`loop = 1`で繰り返しなし</span></span></code></pre></div>
 </div>
-<div id="ウエブのスクリーンショットにurlを付加する関数" class="section level2 hasAnchor" number="13.4">
-<h2><span class="header-section-number">13.4</span> ウエブのスクリーンショットにURLを付加する関数<a href="magick.html#ウエブのスクリーンショットにurlを付加する関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ウエブのスクリーンショットにurlを付加する関数" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> ウエブのスクリーンショットにURLを付加する関数<a href="magick.html#ウエブのスクリーンショットにurlを付加する関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>これまでの内容をもとに，ウエブのスクリーンショットにURLを付加する関数を作成する．
 主な流れは次のとおりである．</p>
 <ul>
@@ -521,47 +529,47 @@ OSで関連付けられているソフトが立ち上がって，画像を閲覧
 </li>
 <li>サイズの変更(オプション)</li>
 </ul>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="magick.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Donwload screenshot image from web based on URL and add text annotation of URL on the top of the image.</span></span>
-<span id="cb171-2"><a href="magick.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
-<span id="cb171-3"><a href="magick.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Needs </span></span>
-<span id="cb171-4"><a href="magick.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
-<span id="cb171-5"><a href="magick.html#cb171-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param url           A string of URL.</span></span>
-<span id="cb171-6"><a href="magick.html#cb171-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param trim          A logical if trim image by magick::image_trim().</span></span>
-<span id="cb171-7"><a href="magick.html#cb171-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param border_size   A string of border size. &quot;x40&quot;: Set border on the top for annotation.</span></span>
-<span id="cb171-8"><a href="magick.html#cb171-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;                      Will be passed like imagick::image_border(img, &quot;white&quot;, geometry = border_size).</span></span>
-<span id="cb171-9"><a href="magick.html#cb171-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param annotate_size A string of annnotation size.</span></span>
-<span id="cb171-10"><a href="magick.html#cb171-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;                      Will be passed like magick::image_annotate(img, url, size = annotate_size)</span></span>
-<span id="cb171-11"><a href="magick.html#cb171-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param format        A string of format of image. </span></span>
-<span id="cb171-12"><a href="magick.html#cb171-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;                      Will be passed like magick::image_convert(img, format = format)</span></span>
-<span id="cb171-13"><a href="magick.html#cb171-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param resize        A string for resize by magick::image_scale(). </span></span>
-<span id="cb171-14"><a href="magick.html#cb171-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;                      Passed like magick::image_scale(geometry = resize).</span></span>
-<span id="cb171-15"><a href="magick.html#cb171-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return              An magick-image object.</span></span>
-<span id="cb171-16"><a href="magick.html#cb171-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
-<span id="cb171-17"><a href="magick.html#cb171-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # install.packages(&quot;magick&quot;)</span></span>
-<span id="cb171-18"><a href="magick.html#cb171-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # install.packages(&quot;webshot&quot;)</span></span>
-<span id="cb171-19"><a href="magick.html#cb171-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; url &lt;- &quot;https://www.deepl.com/translator&quot;</span></span>
-<span id="cb171-20"><a href="magick.html#cb171-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; tmp &lt;- web_screenshot(url, format = &quot;png&quot;)</span></span>
-<span id="cb171-21"><a href="magick.html#cb171-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; magick::image_browse(tmp)</span></span>
-<span id="cb171-22"><a href="magick.html#cb171-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; magick::image_write(&quot;deepl.png&quot;)</span></span>
-<span id="cb171-23"><a href="magick.html#cb171-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
-<span id="cb171-24"><a href="magick.html#cb171-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb171-25"><a href="magick.html#cb171-25" aria-hidden="true" tabindex="-1"></a>web_screenshot <span class="ot">&lt;-</span> <span class="cf">function</span>(url, <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">border_size =</span> <span class="st">&quot;x40&quot;</span>, <span class="at">annotate_size =</span> <span class="dv">20</span>, <span class="at">format =</span> <span class="st">&quot;png&quot;</span>, <span class="at">resize =</span> <span class="cn">FALSE</span>){</span>
-<span id="cb171-26"><a href="magick.html#cb171-26" aria-hidden="true" tabindex="-1"></a>  png <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;png&quot;</span>)</span>
-<span id="cb171-27"><a href="magick.html#cb171-27" aria-hidden="true" tabindex="-1"></a>  webshot<span class="sc">::</span><span class="fu">webshot</span>(url, png)</span>
-<span id="cb171-28"><a href="magick.html#cb171-28" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(png)</span>
-<span id="cb171-29"><a href="magick.html#cb171-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file_delete</span>(path)</span>
-<span id="cb171-30"><a href="magick.html#cb171-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(trim){ img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_trim</span>(img) }</span>
-<span id="cb171-31"><a href="magick.html#cb171-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add top margin (removed bottom margin by image_crop)</span></span>
-<span id="cb171-32"><a href="magick.html#cb171-32" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_border</span>(img, <span class="st">&quot;white&quot;</span>, <span class="at">geometry =</span> border_size)</span>
-<span id="cb171-33"><a href="magick.html#cb171-33" aria-hidden="true" tabindex="-1"></a>  crop_size <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(border_size, <span class="at">pattern =</span> <span class="st">&quot;x&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[<span class="dv">2</span>]</span>
-<span id="cb171-34"><a href="magick.html#cb171-34" aria-hidden="true" tabindex="-1"></a>  h <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_info</span>(img)<span class="sc">$</span>height <span class="sc">-</span> <span class="fu">as.numeric</span>(crop_size)</span>
-<span id="cb171-35"><a href="magick.html#cb171-35" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_crop</span>(img, <span class="at">geometry =</span> <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, h))</span>
-<span id="cb171-36"><a href="magick.html#cb171-36" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_convert</span>(img, <span class="at">format =</span> format)</span>
-<span id="cb171-37"><a href="magick.html#cb171-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add annotation</span></span>
-<span id="cb171-38"><a href="magick.html#cb171-38" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_annotate</span>(img, url, <span class="at">size =</span> annotate_size)</span>
-<span id="cb171-39"><a href="magick.html#cb171-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(resize <span class="sc">!=</span> <span class="cn">FALSE</span>){ img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_scale</span>(<span class="at">geometry =</span> risize) }</span>
-<span id="cb171-40"><a href="magick.html#cb171-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(img)</span>
-<span id="cb171-41"><a href="magick.html#cb171-41" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="magick.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Donwload screenshot image from web based on URL and add text annotation of URL on the top of the image.</span></span>
+<span id="cb195-2"><a href="magick.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
+<span id="cb195-3"><a href="magick.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Needs </span></span>
+<span id="cb195-4"><a href="magick.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
+<span id="cb195-5"><a href="magick.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param url           A string of URL.</span></span>
+<span id="cb195-6"><a href="magick.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param trim          A logical if trim image by magick::image_trim().</span></span>
+<span id="cb195-7"><a href="magick.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param border_size   A string of border size. &quot;x40&quot;: Set border on the top for annotation.</span></span>
+<span id="cb195-8"><a href="magick.html#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;                      Will be passed like imagick::image_border(img, &quot;white&quot;, geometry = border_size).</span></span>
+<span id="cb195-9"><a href="magick.html#cb195-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param annotate_size A string of annnotation size.</span></span>
+<span id="cb195-10"><a href="magick.html#cb195-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;                      Will be passed like magick::image_annotate(img, url, size = annotate_size)</span></span>
+<span id="cb195-11"><a href="magick.html#cb195-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param format        A string of format of image. </span></span>
+<span id="cb195-12"><a href="magick.html#cb195-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;                      Will be passed like magick::image_convert(img, format = format)</span></span>
+<span id="cb195-13"><a href="magick.html#cb195-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param resize        A string for resize by magick::image_scale(). </span></span>
+<span id="cb195-14"><a href="magick.html#cb195-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;                      Passed like magick::image_scale(geometry = resize).</span></span>
+<span id="cb195-15"><a href="magick.html#cb195-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return              An magick-image object.</span></span>
+<span id="cb195-16"><a href="magick.html#cb195-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb195-17"><a href="magick.html#cb195-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # install.packages(&quot;magick&quot;)</span></span>
+<span id="cb195-18"><a href="magick.html#cb195-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # install.packages(&quot;webshot&quot;)</span></span>
+<span id="cb195-19"><a href="magick.html#cb195-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; url &lt;- &quot;https://www.deepl.com/translator&quot;</span></span>
+<span id="cb195-20"><a href="magick.html#cb195-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; tmp &lt;- web_screenshot(url, format = &quot;png&quot;)</span></span>
+<span id="cb195-21"><a href="magick.html#cb195-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; magick::image_browse(tmp)</span></span>
+<span id="cb195-22"><a href="magick.html#cb195-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; magick::image_write(&quot;deepl.png&quot;)</span></span>
+<span id="cb195-23"><a href="magick.html#cb195-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
+<span id="cb195-24"><a href="magick.html#cb195-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb195-25"><a href="magick.html#cb195-25" aria-hidden="true" tabindex="-1"></a>web_screenshot <span class="ot">&lt;-</span> <span class="cf">function</span>(url, <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">border_size =</span> <span class="st">&quot;x40&quot;</span>, <span class="at">annotate_size =</span> <span class="dv">20</span>, <span class="at">format =</span> <span class="st">&quot;png&quot;</span>, <span class="at">resize =</span> <span class="cn">FALSE</span>){</span>
+<span id="cb195-26"><a href="magick.html#cb195-26" aria-hidden="true" tabindex="-1"></a>  png <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;png&quot;</span>)</span>
+<span id="cb195-27"><a href="magick.html#cb195-27" aria-hidden="true" tabindex="-1"></a>  webshot<span class="sc">::</span><span class="fu">webshot</span>(url, png)</span>
+<span id="cb195-28"><a href="magick.html#cb195-28" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(png)</span>
+<span id="cb195-29"><a href="magick.html#cb195-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file_delete</span>(path)</span>
+<span id="cb195-30"><a href="magick.html#cb195-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(trim){ img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_trim</span>(img) }</span>
+<span id="cb195-31"><a href="magick.html#cb195-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add top margin (removed bottom margin by image_crop)</span></span>
+<span id="cb195-32"><a href="magick.html#cb195-32" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_border</span>(img, <span class="st">&quot;white&quot;</span>, <span class="at">geometry =</span> border_size)</span>
+<span id="cb195-33"><a href="magick.html#cb195-33" aria-hidden="true" tabindex="-1"></a>  crop_size <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(border_size, <span class="at">pattern =</span> <span class="st">&quot;x&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[<span class="dv">2</span>]</span>
+<span id="cb195-34"><a href="magick.html#cb195-34" aria-hidden="true" tabindex="-1"></a>  h <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_info</span>(img)<span class="sc">$</span>height <span class="sc">-</span> <span class="fu">as.numeric</span>(crop_size)</span>
+<span id="cb195-35"><a href="magick.html#cb195-35" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_crop</span>(img, <span class="at">geometry =</span> <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, h))</span>
+<span id="cb195-36"><a href="magick.html#cb195-36" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_convert</span>(img, <span class="at">format =</span> format)</span>
+<span id="cb195-37"><a href="magick.html#cb195-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add annotation</span></span>
+<span id="cb195-38"><a href="magick.html#cb195-38" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_annotate</span>(img, url, <span class="at">size =</span> annotate_size)</span>
+<span id="cb195-39"><a href="magick.html#cb195-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(resize <span class="sc">!=</span> <span class="cn">FALSE</span>){ img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_scale</span>(<span class="at">geometry =</span> risize) }</span>
+<span id="cb195-40"><a href="magick.html#cb195-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(img)</span>
+<span id="cb195-41"><a href="magick.html#cb195-41" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 
 </div>
 </div>
@@ -571,7 +579,7 @@ OSで関連付けられているソフトが立ち上がって，画像を閲覧
         </div>
       </div>
 <a href="rselenium.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reticulate.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dbi.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
