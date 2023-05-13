@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-12" />
+<meta name="date" content="2023-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,84 +156,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.4</b> GitHubから</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>4</b> スクリプトの関連付け</a></li>
-<li class="chapter" data-level="5" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>5</b> fsでファイル操作</a>
+<li class="chapter" data-level="5" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>5</b> magrittrでコードを簡潔に</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="fs.html"><a href="fs.html#準備"><i class="fa fa-check"></i><b>5.1</b> 準備</a></li>
-<li class="chapter" data-level="5.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>5.2</b> shell，baseパッケージ, fsパッケージ</a>
+<li class="chapter" data-level="5.1" data-path="magrittr.html"><a href="magrittr.html#準備"><i class="fa fa-check"></i><b>5.1</b> 準備</a></li>
+<li class="chapter" data-level="5.2" data-path="magrittr.html"><a href="magrittr.html#magrittrとtidyverse"><i class="fa fa-check"></i><b>5.2</b> magrittrとtidyverse</a></li>
+<li class="chapter" data-level="5.3" data-path="magrittr.html"><a href="magrittr.html#でコードを簡潔に"><i class="fa fa-check"></i><b>5.3</b> <code>%&gt;%</code>でコードを簡潔に</a></li>
+<li class="chapter" data-level="5.4" data-path="magrittr.html"><a href="magrittr.html#パイプの仲間"><i class="fa fa-check"></i><b>5.4</b> パイプの仲間</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>5.2.1</b> shellを使う</a></li>
-<li class="chapter" data-level="5.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ"><i class="fa fa-check"></i><b>5.2.2</b> baseパッケージ</a></li>
-<li class="chapter" data-level="5.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>5.2.3</b> fsパッケージ</a></li>
+<li class="chapter" data-level="5.4.1" data-path="magrittr.html"><a href="magrittr.html#でオブジェクトを代入"><i class="fa fa-check"></i><b>5.4.1</b> <code>%&lt;&gt;%</code>でオブジェクトを代入</a></li>
+<li class="chapter" data-level="5.4.2" data-path="magrittr.html"><a href="magrittr.html#tでコードを分岐"><i class="fa fa-check"></i><b>5.4.2</b> <code>%T&gt;%</code>でコードを分岐</a></li>
+<li class="chapter" data-level="5.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>5.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="fs.html"><a href="fs.html#fsの関数"><i class="fa fa-check"></i><b>5.3</b> fsの関数</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>5.3.1</b> パス操作</a></li>
-<li class="chapter" data-level="5.3.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>5.3.2</b> ディレクトリ操作</a></li>
-<li class="chapter" data-level="5.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>5.3.3</b> ファイル操作</a></li>
+<li class="chapter" data-level="5.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>5.5</b> パイプ以外の関数</a></li>
+<li class="chapter" data-level="5.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>5.6</b> おまけ：magrittrの不思議な関数たち</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>5.4</b> fsを使ったファイル操作例</a></li>
-<li class="chapter" data-level="5.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>5.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>6</b> system()やshell()でOSコマンドの実行</a>
+<li class="chapter" data-level="6" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>6</b> stringrで文字列操作</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="shell.html"><a href="shell.html#準備-1"><i class="fa fa-check"></i><b>6.1</b> 準備</a></li>
-<li class="chapter" data-level="6.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>6.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<li class="chapter" data-level="6.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>6.1</b> はじめに</a></li>
+<li class="chapter" data-level="6.2" data-path="stringr.html"><a href="stringr.html#準備-1"><i class="fa fa-check"></i><b>6.2</b> 準備</a></li>
+<li class="chapter" data-level="6.3" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>6.3</b> stringrとbase</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>6.2.1</b> Pythonのイントール</a></li>
-<li class="chapter" data-level="6.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>6.2.2</b> PyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="6.3.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ"><i class="fa fa-check"></i><b>6.3.1</b> baseパッケージ</a></li>
+<li class="chapter" data-level="6.3.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>6.3.2</b> stringrパッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>6.4</b> stringrの関数</a></li>
+<li class="chapter" data-level="6.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>6.5</b> stringrの利点</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>7</b> lubridateで日付・時刻を扱う</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="lubridate.html"><a href="lubridate.html#準備-2"><i class="fa fa-check"></i><b>7.1</b> 準備</a></li>
+<li class="chapter" data-level="7.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>7.2</b> 1月後・1年後の同一日</a></li>
+<li class="chapter" data-level="7.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>7.3</b> 文字列からDateクラスへの変換</a></li>
+<li class="chapter" data-level="7.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>7.4</b> 曜日を求める</a></li>
+<li class="chapter" data-level="7.5" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>7.5</b> 活用例</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>8</b> fsでファイル操作</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="fs.html"><a href="fs.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
+<li class="chapter" data-level="8.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>8.2</b> shell，baseパッケージ, fsパッケージ</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>8.2.1</b> shellを使う</a></li>
+<li class="chapter" data-level="8.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ-1"><i class="fa fa-check"></i><b>8.2.2</b> baseパッケージ</a></li>
+<li class="chapter" data-level="8.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>8.2.3</b> fsパッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="fs.html"><a href="fs.html#fsの関数"><i class="fa fa-check"></i><b>8.3</b> fsの関数</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>8.3.1</b> パス操作</a></li>
+<li class="chapter" data-level="8.3.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>8.3.2</b> ディレクトリ操作</a></li>
+<li class="chapter" data-level="8.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>8.3.3</b> ファイル操作</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>8.4</b> fsを使ったファイル操作例</a></li>
+<li class="chapter" data-level="8.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>8.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>9</b> system()やshell()でOSコマンドの実行</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="shell.html"><a href="shell.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
+<li class="chapter" data-level="9.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>9.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>9.2.1</b> Pythonのイントール</a></li>
+<li class="chapter" data-level="9.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>9.2.2</b> PyAutoGUIのインストール</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>7</b> reticulate</a>
+<li class="chapter" data-level="10" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>10</b> reticulateでPythonを使う</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="reticulate.html"><a href="reticulate.html#準備-2"><i class="fa fa-check"></i><b>7.1</b> 準備</a>
+<li class="chapter" data-level="10.1" data-path="reticulate.html"><a href="reticulate.html#準備-5"><i class="fa fa-check"></i><b>10.1</b> 準備</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>7.1.1</b> PythonとPyAutoGUIのインストール</a></li>
-<li class="chapter" data-level="7.1.2" data-path="reticulate.html"><a href="reticulate.html#使用するpythonの指定"><i class="fa fa-check"></i><b>7.1.2</b> 使用するPythonの指定</a></li>
+<li class="chapter" data-level="10.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>10.1.1</b> PythonとPyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="10.1.2" data-path="reticulate.html"><a href="reticulate.html#identify_python"><i class="fa fa-check"></i><b>10.1.2</b> 使用するPythonの指定</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>7.2</b> Pythonを使ってみる</a></li>
-<li class="chapter" data-level="7.3" data-path="reticulate.html"><a href="reticulate.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>7.3</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
-<li class="chapter" data-level="7.4" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>7.4</b> PythoとRとの変数のやり取り</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>8</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
+<li class="chapter" data-level="10.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>10.2</b> Pythonを使ってみる</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
-<li class="chapter" data-level="8.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>8.2</b> キーボード操作の自動化</a></li>
-<li class="chapter" data-level="8.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>8.3</b> マウスの位置取得</a></li>
-<li class="chapter" data-level="8.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbの安全な取り出しの自動化"><i class="fa fa-check"></i><b>8.4</b> 「USBの安全な取り出し」の自動化</a></li>
+<li class="chapter" data-level="10.2.1" data-path="reticulate.html"><a href="reticulate.html#hellow-world"><i class="fa fa-check"></i><b>10.2.1</b> Hellow World</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>9</b> magrittrでコードを簡潔に</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="magrittr.html"><a href="magrittr.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
-<li class="chapter" data-level="9.2" data-path="magrittr.html"><a href="magrittr.html#magrittrとtidyverse"><i class="fa fa-check"></i><b>9.2</b> magrittrとtidyverse</a></li>
-<li class="chapter" data-level="9.3" data-path="magrittr.html"><a href="magrittr.html#でコードを簡潔に"><i class="fa fa-check"></i><b>9.3</b> <code>%&gt;%</code>でコードを簡潔に</a></li>
-<li class="chapter" data-level="9.4" data-path="magrittr.html"><a href="magrittr.html#パイプの仲間"><i class="fa fa-check"></i><b>9.4</b> パイプの仲間</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="magrittr.html"><a href="magrittr.html#でオブジェクトを代入"><i class="fa fa-check"></i><b>9.4.1</b> <code>%&lt;&gt;%</code>でオブジェクトを代入</a></li>
-<li class="chapter" data-level="9.4.2" data-path="magrittr.html"><a href="magrittr.html#tでコードを分岐"><i class="fa fa-check"></i><b>9.4.2</b> <code>%T&gt;%</code>でコードを分岐</a></li>
-<li class="chapter" data-level="9.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>9.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
+<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>10.3</b> Pythonのコードを実行</a></li>
+<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>10.4</b> Pythonの呼び出し</a></li>
+<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.5</b> PythoとRとの変数のやり取り</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>9.5</b> パイプ以外の関数</a></li>
-<li class="chapter" data-level="9.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>9.6</b> おまけ：magrittrの不思議な関数たち</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>10</b> stringrで文字列操作</a>
+<li class="chapter" data-level="11" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>11</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>10.1</b> はじめに</a></li>
-<li class="chapter" data-level="10.2" data-path="stringr.html"><a href="stringr.html#準備-5"><i class="fa fa-check"></i><b>10.2</b> 準備</a></li>
-<li class="chapter" data-level="10.3" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>10.3</b> stringrとbase</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ-1"><i class="fa fa-check"></i><b>10.3.1</b> baseパッケージ</a></li>
-<li class="chapter" data-level="10.3.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>10.3.2</b> stringrパッケージ</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>10.4</b> stringrの関数</a></li>
-<li class="chapter" data-level="10.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>10.5</b> stringrの利点</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>11</b> lubridateで日付・時刻を扱う</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="lubridate.html"><a href="lubridate.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
-<li class="chapter" data-level="11.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>11.2</b> 1月後・1年後の同一日</a></li>
-<li class="chapter" data-level="11.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>11.3</b> 文字列からDateクラスへの変換</a></li>
-<li class="chapter" data-level="11.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>11.4</b> 曜日を求める</a></li>
-<li class="chapter" data-level="11.5" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>11.5</b> 活用例</a></li>
+<li class="chapter" data-level="11.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
+<li class="chapter" data-level="11.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>11.2</b> キーボード操作の自動化</a></li>
+<li class="chapter" data-level="11.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>11.3</b> マウスの位置取得</a></li>
+<li class="chapter" data-level="11.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbメモリの安全な取り出しの自動化"><i class="fa fa-check"></i><b>11.4</b> USBメモリの安全な取り出しの自動化</a></li>
+<li class="chapter" data-level="11.5" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>11.5</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> ggplot2で楽に綺麗に作図</a>
 <ul>
@@ -264,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>13.9</b> 複数種への対応</a></li>
 <li class="chapter" data-level="13.10" data-path="rvest.html"><a href="rvest.html#webshot"><i class="fa fa-check"></i><b>13.10</b> おまけ：webshotでウエブページを画像に変換</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>14</b> Rselenium</a>
+<li class="chapter" data-level="14" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>14</b> Rseleniumでスクレイピング</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="rselenium.html"><a href="rselenium.html#準備-9"><i class="fa fa-check"></i><b>14.1</b> 準備</a></li>
 <li class="chapter" data-level="14.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>14.2</b> ブラウザの自動化</a></li>
@@ -317,15 +322,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>18.7</b> その他の関数</a></li>
 <li class="chapter" data-level="18.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>18.8</b> pdftoolsでテキストの取り出し</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>19</b> pdfをdocxに変換</a>
+<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfをdocxに変換</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="pdf2docx.html"><a href="pdf2docx.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
+<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
 <ul>
-<li class="chapter" data-level="19.1.1" data-path="pdf2docx.html"><a href="pdf2docx.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
-<li class="chapter" data-level="19.1.2" data-path="pdf2docx.html"><a href="pdf2docx.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
-<li class="chapter" data-level="19.1.3" data-path="pdf2docx.html"><a href="pdf2docx.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
+<li class="chapter" data-level="19.1.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
+<li class="chapter" data-level="19.1.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
+<li class="chapter" data-level="19.1.3" data-path="RDCOMClient.html"><a href="RDCOMClient.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
 </ul></li>
-<li class="chapter" data-level="19.2" data-path="pdf2docx.html"><a href="pdf2docx.html#pdf2docx-1"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
+<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#pdf2docx"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>20</b> Microsoft365R</a>
 <ul>

@@ -2,7 +2,7 @@
 <!--
 -->
 
-Rから`system()`や`shell()'でOSのコマンドを実行できる．
+Rから`system()`や`shell()'(Windowsのみ)でOSのコマンドを実行できる．
 例えば，以下のようなことだ．
 
 - ファイルの移動    
@@ -18,12 +18,16 @@ Rから`system()`や`shell()'でOSのコマンドを実行できる．
 あるいは，自分で関数やパッケージを開発する際に使ってみることがあるかもしれない．
 一応，こんなこともできるんだという程度に知っておけばよいだろう．
 
+以下では，RからPythonとそのライブラリをインストールする．
+これらは，ふつうならコマンドプロンプト(Windows)やターミナル(MacやLinux)といったシェルで実行するものだが，ここではRをシェルの代わりとして使う．
+利点は，Rを起動していれば新たなシェルを起動せずにそのまま実行できること，返り値をRのオブジェクトに代入して使えることである．
+欠点は，キー入力が若干増えることである．
 
 ## 準備
 
 `system()`や`shell()'などはRのbaseパッケージに含まれている．
 そのため，Rのインストール後はすぐに使えるため，本来は特に準備は不要である．
-ここでは，組み合わせで使用するその他のパッケージをインストールしておく．
+ここでは，組み合わせて使用するcurlパッケージをインストールしておく．
 
 
 ```r
@@ -38,16 +42,15 @@ library(curl)
 
 ## 活用例：Pythonとそのライブラリのインストール {#install_python}
 
-わざわざRから実行する必要性はないが，PythonとそのライブラリのインストールをRから実行してみよう．
+PythonとそのライブラリのインストールをRから実行してみよう．
 Python自体を直接使わなくても，インストールしておいて損はない．
-Rからreticulateパッケージを用いてPythonを使うことができるし，RにはないライブラリがPythonにはあるためだ．
-また，Pythonと合わせて，キーボードとマウス操作の自動化で使用するPyAutoGUIというライブラリをインストールする．
+RにはないライブラリがPythonにはあり，reticulateパッケージを使えばRからPythonを実行できるためだ．
+ここではさらに，キーボードとマウス操作の自動化で使用するPyAutoGUIというライブラリをインストールする．
 
 ### Pythonのイントール
 
 まずは，Pythonのインストーラをダウンロードする．
 Windowsの場合は，以下を実行するとデフォルトのブラウザでPythonのインストラのダウンロードページが開く．
-その他のOSの場合は，自分でブラウザを起動してURLを開く．
 なお，ここで利用している`shell.exec()`はWindowsで使える関数で，拡張子に関連付けられたファイルを実行するものである．
 
 
@@ -56,6 +59,19 @@ Windowsの場合は，以下を実行するとデフォルトのブラウザでP
   shell.exec()
 ```
 
+MacやLinuxには，通常はデフォルトでOSにPython3がインストールされている．
+必要に応じてバージョンアップをして欲しい．
+また，Python2がインストールされているが，使わない場合はアンインストールしておくことをお勧めする．
+<!--
+複数のバージョンがインストールされていると，`Python`というコマンドでPython2が起動してしまうためである．
+
+MacやLinuxの場合は，以下のコマンドが可能である．
+
+```r
+system("open https://pythonlinks.python.jp/ja/index.html")     # Mac
+system("chrome https://pythonlinks.python.jp/ja/index.html &") # Linux
+```
+-->
 
 2023年5月現在での最新版は3.11.1なので，以下ではそのファイルのURLを入力している．
 最新版が異なる場合は，適宜URLを変更してほしい．
@@ -112,11 +128,10 @@ https://www.python.jp/install/windows/install.html
 -->
 
 次に，PyAutoGUIをインストールする．
-インストールする前に，インストールされているライブラリを確認しておく．
-"pip list"は，pipというPythonのライブラリを管理ソフトで
-インストール済みライブラリの一覧を出力するコマンドである．
-その結果を取得して，"PyAutoGUI"という文字列があるか確認している．
-一覧に何も表示されなければ，PyAutoGUIはないので，インストールの必要がある．
+インストールする前に，インストール済のライブラリを確認しておく．
+"pip list"は，pipというPythonのライブラリを管理ソフトを使ってインストール済みライブラリ一覧を出力するコマンドである．
+その結果の中に"PyAutoGUI"という文字列があるか確認している．
+一覧に何も表示されなければ，PyAutoGUIをインストールする．
 
 
 ```r
@@ -134,9 +149,12 @@ tibble::as_tibble(res) %>%
 cmd <- "pip install PyAutoGUI"
 res <- system(cmd, intern = TRUE)
 head(res)
-## [1] "Collecting PyAutoGUI"                                         "  Using cached PyAutoGUI-0.9.53.tar.gz (59 kB)"              
-## [3] "  Preparing metadata (setup.py): started"                     "  Preparing metadata (setup.py): finished with status 'done'"
-## [5] "Collecting pymsgbox"                                          "  Using cached PyMsgBox-1.0.9.tar.gz (18 kB)"    
+## [1] "Collecting PyAutoGUI"
+## [2] "  Using cached PyAutoGUI-0.9.53.tar.gz (59 kB)"              
+## [3] "  Preparing metadata (setup.py): started"
+## [4] "  Preparing metadata (setup.py): finished with status 'done'"
+## [5] "Collecting pymsgbox"
+## [6] "  Using cached PyMsgBox-1.0.9.tar.gz (18 kB)"    
 tail(res)
 ## [1] "  Running setup.py install for PyAutoGUI: started"
 ## [2] "  Running setup.py install for PyAutoGUI: finished with status 'done'"
@@ -162,8 +180,9 @@ tail(res)
 ## 1 PyAutoGUI     0.9.53
 ```
 
-ところで，2つ前のコードのところで，"[notice]"としてpipの最新版があるので，インストールしてはどうかという提案がされている．
-pipのバージョンアップをする場合は，以下を実行しておく．
+ところで，2つ前のコードのところで，"[notice]"としてpipの最新版がある．
+これは，pipをバージョンアップしてはどうかという提案である．
+せっかくなので，バージョンアップしておこう．
 
 
 ```r
@@ -182,7 +201,7 @@ res
 ## [11] "Successfully installed pip-23.1.2"
 ```
 
-とりあえず，これでPythonとPyAutoGUIのインストールが完了した．
+これでPythonとPyAutoGUIのインストールさらにpipのバージョンアップが完了した．
 
 <!--
 ## Pythonのスクリプト実行

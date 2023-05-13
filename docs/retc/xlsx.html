@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-12" />
+<meta name="date" content="2023-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,84 +156,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.4</b> GitHubから</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>4</b> スクリプトの関連付け</a></li>
-<li class="chapter" data-level="5" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>5</b> fsでファイル操作</a>
+<li class="chapter" data-level="5" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>5</b> magrittrでコードを簡潔に</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="fs.html"><a href="fs.html#準備"><i class="fa fa-check"></i><b>5.1</b> 準備</a></li>
-<li class="chapter" data-level="5.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>5.2</b> shell，baseパッケージ, fsパッケージ</a>
+<li class="chapter" data-level="5.1" data-path="magrittr.html"><a href="magrittr.html#準備"><i class="fa fa-check"></i><b>5.1</b> 準備</a></li>
+<li class="chapter" data-level="5.2" data-path="magrittr.html"><a href="magrittr.html#magrittrとtidyverse"><i class="fa fa-check"></i><b>5.2</b> magrittrとtidyverse</a></li>
+<li class="chapter" data-level="5.3" data-path="magrittr.html"><a href="magrittr.html#でコードを簡潔に"><i class="fa fa-check"></i><b>5.3</b> <code>%&gt;%</code>でコードを簡潔に</a></li>
+<li class="chapter" data-level="5.4" data-path="magrittr.html"><a href="magrittr.html#パイプの仲間"><i class="fa fa-check"></i><b>5.4</b> パイプの仲間</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>5.2.1</b> shellを使う</a></li>
-<li class="chapter" data-level="5.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ"><i class="fa fa-check"></i><b>5.2.2</b> baseパッケージ</a></li>
-<li class="chapter" data-level="5.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>5.2.3</b> fsパッケージ</a></li>
+<li class="chapter" data-level="5.4.1" data-path="magrittr.html"><a href="magrittr.html#でオブジェクトを代入"><i class="fa fa-check"></i><b>5.4.1</b> <code>%&lt;&gt;%</code>でオブジェクトを代入</a></li>
+<li class="chapter" data-level="5.4.2" data-path="magrittr.html"><a href="magrittr.html#tでコードを分岐"><i class="fa fa-check"></i><b>5.4.2</b> <code>%T&gt;%</code>でコードを分岐</a></li>
+<li class="chapter" data-level="5.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>5.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="fs.html"><a href="fs.html#fsの関数"><i class="fa fa-check"></i><b>5.3</b> fsの関数</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>5.3.1</b> パス操作</a></li>
-<li class="chapter" data-level="5.3.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>5.3.2</b> ディレクトリ操作</a></li>
-<li class="chapter" data-level="5.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>5.3.3</b> ファイル操作</a></li>
+<li class="chapter" data-level="5.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>5.5</b> パイプ以外の関数</a></li>
+<li class="chapter" data-level="5.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>5.6</b> おまけ：magrittrの不思議な関数たち</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>5.4</b> fsを使ったファイル操作例</a></li>
-<li class="chapter" data-level="5.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>5.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>6</b> system()やshell()でOSコマンドの実行</a>
+<li class="chapter" data-level="6" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>6</b> stringrで文字列操作</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="shell.html"><a href="shell.html#準備-1"><i class="fa fa-check"></i><b>6.1</b> 準備</a></li>
-<li class="chapter" data-level="6.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>6.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<li class="chapter" data-level="6.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>6.1</b> はじめに</a></li>
+<li class="chapter" data-level="6.2" data-path="stringr.html"><a href="stringr.html#準備-1"><i class="fa fa-check"></i><b>6.2</b> 準備</a></li>
+<li class="chapter" data-level="6.3" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>6.3</b> stringrとbase</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>6.2.1</b> Pythonのイントール</a></li>
-<li class="chapter" data-level="6.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>6.2.2</b> PyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="6.3.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ"><i class="fa fa-check"></i><b>6.3.1</b> baseパッケージ</a></li>
+<li class="chapter" data-level="6.3.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>6.3.2</b> stringrパッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>6.4</b> stringrの関数</a></li>
+<li class="chapter" data-level="6.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>6.5</b> stringrの利点</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>7</b> lubridateで日付・時刻を扱う</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="lubridate.html"><a href="lubridate.html#準備-2"><i class="fa fa-check"></i><b>7.1</b> 準備</a></li>
+<li class="chapter" data-level="7.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>7.2</b> 1月後・1年後の同一日</a></li>
+<li class="chapter" data-level="7.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>7.3</b> 文字列からDateクラスへの変換</a></li>
+<li class="chapter" data-level="7.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>7.4</b> 曜日を求める</a></li>
+<li class="chapter" data-level="7.5" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>7.5</b> 活用例</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>8</b> fsでファイル操作</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="fs.html"><a href="fs.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
+<li class="chapter" data-level="8.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>8.2</b> shell，baseパッケージ, fsパッケージ</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>8.2.1</b> shellを使う</a></li>
+<li class="chapter" data-level="8.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ-1"><i class="fa fa-check"></i><b>8.2.2</b> baseパッケージ</a></li>
+<li class="chapter" data-level="8.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>8.2.3</b> fsパッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="fs.html"><a href="fs.html#fsの関数"><i class="fa fa-check"></i><b>8.3</b> fsの関数</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>8.3.1</b> パス操作</a></li>
+<li class="chapter" data-level="8.3.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>8.3.2</b> ディレクトリ操作</a></li>
+<li class="chapter" data-level="8.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>8.3.3</b> ファイル操作</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>8.4</b> fsを使ったファイル操作例</a></li>
+<li class="chapter" data-level="8.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>8.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>9</b> system()やshell()でOSコマンドの実行</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="shell.html"><a href="shell.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
+<li class="chapter" data-level="9.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>9.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>9.2.1</b> Pythonのイントール</a></li>
+<li class="chapter" data-level="9.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>9.2.2</b> PyAutoGUIのインストール</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>7</b> reticulate</a>
+<li class="chapter" data-level="10" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>10</b> reticulateでPythonを使う</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="reticulate.html"><a href="reticulate.html#準備-2"><i class="fa fa-check"></i><b>7.1</b> 準備</a>
+<li class="chapter" data-level="10.1" data-path="reticulate.html"><a href="reticulate.html#準備-5"><i class="fa fa-check"></i><b>10.1</b> 準備</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>7.1.1</b> PythonとPyAutoGUIのインストール</a></li>
-<li class="chapter" data-level="7.1.2" data-path="reticulate.html"><a href="reticulate.html#使用するpythonの指定"><i class="fa fa-check"></i><b>7.1.2</b> 使用するPythonの指定</a></li>
+<li class="chapter" data-level="10.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>10.1.1</b> PythonとPyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="10.1.2" data-path="reticulate.html"><a href="reticulate.html#identify_python"><i class="fa fa-check"></i><b>10.1.2</b> 使用するPythonの指定</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>7.2</b> Pythonを使ってみる</a></li>
-<li class="chapter" data-level="7.3" data-path="reticulate.html"><a href="reticulate.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>7.3</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
-<li class="chapter" data-level="7.4" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>7.4</b> PythoとRとの変数のやり取り</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>8</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
+<li class="chapter" data-level="10.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>10.2</b> Pythonを使ってみる</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
-<li class="chapter" data-level="8.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>8.2</b> キーボード操作の自動化</a></li>
-<li class="chapter" data-level="8.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>8.3</b> マウスの位置取得</a></li>
-<li class="chapter" data-level="8.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbの安全な取り出しの自動化"><i class="fa fa-check"></i><b>8.4</b> 「USBの安全な取り出し」の自動化</a></li>
+<li class="chapter" data-level="10.2.1" data-path="reticulate.html"><a href="reticulate.html#hellow-world"><i class="fa fa-check"></i><b>10.2.1</b> Hellow World</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>9</b> magrittrでコードを簡潔に</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="magrittr.html"><a href="magrittr.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
-<li class="chapter" data-level="9.2" data-path="magrittr.html"><a href="magrittr.html#magrittrとtidyverse"><i class="fa fa-check"></i><b>9.2</b> magrittrとtidyverse</a></li>
-<li class="chapter" data-level="9.3" data-path="magrittr.html"><a href="magrittr.html#でコードを簡潔に"><i class="fa fa-check"></i><b>9.3</b> <code>%&gt;%</code>でコードを簡潔に</a></li>
-<li class="chapter" data-level="9.4" data-path="magrittr.html"><a href="magrittr.html#パイプの仲間"><i class="fa fa-check"></i><b>9.4</b> パイプの仲間</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="magrittr.html"><a href="magrittr.html#でオブジェクトを代入"><i class="fa fa-check"></i><b>9.4.1</b> <code>%&lt;&gt;%</code>でオブジェクトを代入</a></li>
-<li class="chapter" data-level="9.4.2" data-path="magrittr.html"><a href="magrittr.html#tでコードを分岐"><i class="fa fa-check"></i><b>9.4.2</b> <code>%T&gt;%</code>でコードを分岐</a></li>
-<li class="chapter" data-level="9.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>9.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
+<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>10.3</b> Pythonのコードを実行</a></li>
+<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>10.4</b> Pythonの呼び出し</a></li>
+<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.5</b> PythoとRとの変数のやり取り</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>9.5</b> パイプ以外の関数</a></li>
-<li class="chapter" data-level="9.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>9.6</b> おまけ：magrittrの不思議な関数たち</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>10</b> stringrで文字列操作</a>
+<li class="chapter" data-level="11" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>11</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>10.1</b> はじめに</a></li>
-<li class="chapter" data-level="10.2" data-path="stringr.html"><a href="stringr.html#準備-5"><i class="fa fa-check"></i><b>10.2</b> 準備</a></li>
-<li class="chapter" data-level="10.3" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>10.3</b> stringrとbase</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ-1"><i class="fa fa-check"></i><b>10.3.1</b> baseパッケージ</a></li>
-<li class="chapter" data-level="10.3.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>10.3.2</b> stringrパッケージ</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>10.4</b> stringrの関数</a></li>
-<li class="chapter" data-level="10.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>10.5</b> stringrの利点</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>11</b> lubridateで日付・時刻を扱う</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="lubridate.html"><a href="lubridate.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
-<li class="chapter" data-level="11.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>11.2</b> 1月後・1年後の同一日</a></li>
-<li class="chapter" data-level="11.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>11.3</b> 文字列からDateクラスへの変換</a></li>
-<li class="chapter" data-level="11.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>11.4</b> 曜日を求める</a></li>
-<li class="chapter" data-level="11.5" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>11.5</b> 活用例</a></li>
+<li class="chapter" data-level="11.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
+<li class="chapter" data-level="11.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>11.2</b> キーボード操作の自動化</a></li>
+<li class="chapter" data-level="11.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>11.3</b> マウスの位置取得</a></li>
+<li class="chapter" data-level="11.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbメモリの安全な取り出しの自動化"><i class="fa fa-check"></i><b>11.4</b> USBメモリの安全な取り出しの自動化</a></li>
+<li class="chapter" data-level="11.5" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>11.5</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> ggplot2で楽に綺麗に作図</a>
 <ul>
@@ -264,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>13.9</b> 複数種への対応</a></li>
 <li class="chapter" data-level="13.10" data-path="rvest.html"><a href="rvest.html#webshot"><i class="fa fa-check"></i><b>13.10</b> おまけ：webshotでウエブページを画像に変換</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>14</b> Rselenium</a>
+<li class="chapter" data-level="14" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>14</b> Rseleniumでスクレイピング</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="rselenium.html"><a href="rselenium.html#準備-9"><i class="fa fa-check"></i><b>14.1</b> 準備</a></li>
 <li class="chapter" data-level="14.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>14.2</b> ブラウザの自動化</a></li>
@@ -317,15 +322,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>18.7</b> その他の関数</a></li>
 <li class="chapter" data-level="18.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>18.8</b> pdftoolsでテキストの取り出し</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>19</b> pdfをdocxに変換</a>
+<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfをdocxに変換</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="pdf2docx.html"><a href="pdf2docx.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
+<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
 <ul>
-<li class="chapter" data-level="19.1.1" data-path="pdf2docx.html"><a href="pdf2docx.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
-<li class="chapter" data-level="19.1.2" data-path="pdf2docx.html"><a href="pdf2docx.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
-<li class="chapter" data-level="19.1.3" data-path="pdf2docx.html"><a href="pdf2docx.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
+<li class="chapter" data-level="19.1.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
+<li class="chapter" data-level="19.1.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
+<li class="chapter" data-level="19.1.3" data-path="RDCOMClient.html"><a href="RDCOMClient.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
 </ul></li>
-<li class="chapter" data-level="19.2" data-path="pdf2docx.html"><a href="pdf2docx.html#pdf2docx-1"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
+<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#pdf2docx"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>20</b> Microsoft365R</a>
 <ul>
@@ -367,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 オートフィルタの設定やウィンドウ枠の固定などの各種操作が可能である．</p>
 <div id="準備-12" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> 準備<a href="xlsx.html#準備-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="xlsx.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="xlsx.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト<a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -400,50 +405,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="スクリプトの内容説明" class="section level3 hasAnchor" number="17.2.2">
 <h3><span class="header-section-number">17.2.2</span> スクリプトの内容説明<a href="xlsx.html#スクリプトの内容説明" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="xlsx.html#cb206-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Package, 準備</span></span>
-<span id="cb206-2"><a href="xlsx.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span> <span class="st">&quot;xlsx&quot;</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]){  <span class="co"># xlsxパッケージ有無の確認</span></span>
-<span id="cb206-3"><a href="xlsx.html#cb206-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージが無い場合</span></span>
-<span id="cb206-4"><a href="xlsx.html#cb206-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>) <span class="co"># ミラーサイトの設定</span></span>
-<span id="cb206-5"><a href="xlsx.html#cb206-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;xlsx&quot;</span>)                   <span class="co"># パッケージのインストール</span></span>
-<span id="cb206-6"><a href="xlsx.html#cb206-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb206-7"><a href="xlsx.html#cb206-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-8"><a href="xlsx.html#cb206-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Functions, 関数</span></span>
-<span id="cb206-9"><a href="xlsx.html#cb206-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   註：xlsxパッケージの関数は返り値の代入がない</span></span>
-<span id="cb206-10"><a href="xlsx.html#cb206-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         副作用でシートなどを操作するため?</span></span>
-<span id="cb206-11"><a href="xlsx.html#cb206-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         参照型を使っているため?</span></span>
-<span id="cb206-12"><a href="xlsx.html#cb206-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   参考：通常のRの関数は，返り値の代入をすることが多いの</span></span>
-<span id="cb206-13"><a href="xlsx.html#cb206-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-14"><a href="xlsx.html#cb206-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># オートフィルタの設定</span></span>
-<span id="cb206-15"><a href="xlsx.html#cb206-15" aria-hidden="true" tabindex="-1"></a>set_auto_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
-<span id="cb206-16"><a href="xlsx.html#cb206-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A1からZ1までを設定</span></span>
-<span id="cb206-17"><a href="xlsx.html#cb206-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   もっと多くの列で設定したければ，&quot;A1:Z1&quot;のところを修正する</span></span>
-<span id="cb206-18"><a href="xlsx.html#cb206-18" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">addAutoFilter</span>(sh, <span class="st">&quot;A1:Z1&quot;</span>)</span>
-<span id="cb206-19"><a href="xlsx.html#cb206-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb206-20"><a href="xlsx.html#cb206-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-21"><a href="xlsx.html#cb206-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ウィンドウ枠の固定</span></span>
-<span id="cb206-22"><a href="xlsx.html#cb206-22" aria-hidden="true" tabindex="-1"></a>set_freeze_panel <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
-<span id="cb206-23"><a href="xlsx.html#cb206-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1列目と1行目のウィンドウ枠を固定</span></span>
-<span id="cb206-24"><a href="xlsx.html#cb206-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   固定する場所の変更方法</span></span>
-<span id="cb206-25"><a href="xlsx.html#cb206-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     2行目までを固定したい場合は，引数の2つ目と4つ目を，3にする</span></span>
-<span id="cb206-26"><a href="xlsx.html#cb206-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     3列目までを固定したい場合は，引数の3つ目と5つ目を，4にする</span></span>
-<span id="cb206-27"><a href="xlsx.html#cb206-27" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">createFreezePane</span>(sh, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb206-28"><a href="xlsx.html#cb206-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb206-29"><a href="xlsx.html#cb206-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-30"><a href="xlsx.html#cb206-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ワークブックごとで設定</span></span>
-<span id="cb206-31"><a href="xlsx.html#cb206-31" aria-hidden="true" tabindex="-1"></a>set_af_fp <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
-<span id="cb206-32"><a href="xlsx.html#cb206-32" aria-hidden="true" tabindex="-1"></a>  wb <span class="ot">&lt;-</span> xlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(file)   <span class="co"># ワークブックの読み込み</span></span>
-<span id="cb206-33"><a href="xlsx.html#cb206-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(sh <span class="cf">in</span> xlsx<span class="sc">::</span><span class="fu">getSheets</span>(wb)){  <span class="co"># シートの数だけ繰り返し</span></span>
-<span id="cb206-34"><a href="xlsx.html#cb206-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_auto_filter</span>(sh)            <span class="co">#   オートフィルタの設定</span></span>
-<span id="cb206-35"><a href="xlsx.html#cb206-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_freeze_panel</span>(sh)           <span class="co">#   ウィンドウ枠の固定</span></span>
-<span id="cb206-36"><a href="xlsx.html#cb206-36" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb206-37"><a href="xlsx.html#cb206-37" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, file)     <span class="co"># ワークブクの保存</span></span>
-<span id="cb206-38"><a href="xlsx.html#cb206-38" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb206-39"><a href="xlsx.html#cb206-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-40"><a href="xlsx.html#cb206-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Main, 本体</span></span>
-<span id="cb206-41"><a href="xlsx.html#cb206-41" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&quot;xls&quot;</span>) <span class="co"># &quot;.xls&quot;と&quot;xlsx&quot;の一覧取得</span></span>
-<span id="cb206-42"><a href="xlsx.html#cb206-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> files){                  <span class="co"># ファイルの数だけ繰り返し</span></span>
-<span id="cb206-43"><a href="xlsx.html#cb206-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_af_fp</span>(file)                    <span class="co"># set_af_fp()の実行</span></span>
-<span id="cb206-44"><a href="xlsx.html#cb206-44" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="xlsx.html#cb213-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Package, 準備</span></span>
+<span id="cb213-2"><a href="xlsx.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span> <span class="st">&quot;xlsx&quot;</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]){  <span class="co"># xlsxパッケージ有無の確認</span></span>
+<span id="cb213-3"><a href="xlsx.html#cb213-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージが無い場合</span></span>
+<span id="cb213-4"><a href="xlsx.html#cb213-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>) <span class="co"># ミラーサイトの設定</span></span>
+<span id="cb213-5"><a href="xlsx.html#cb213-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;xlsx&quot;</span>)                   <span class="co"># パッケージのインストール</span></span>
+<span id="cb213-6"><a href="xlsx.html#cb213-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb213-7"><a href="xlsx.html#cb213-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-8"><a href="xlsx.html#cb213-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Functions, 関数</span></span>
+<span id="cb213-9"><a href="xlsx.html#cb213-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   註：xlsxパッケージの関数は返り値の代入がない</span></span>
+<span id="cb213-10"><a href="xlsx.html#cb213-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         副作用でシートなどを操作するため?</span></span>
+<span id="cb213-11"><a href="xlsx.html#cb213-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         参照型を使っているため?</span></span>
+<span id="cb213-12"><a href="xlsx.html#cb213-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   参考：通常のRの関数は，返り値の代入をすることが多いの</span></span>
+<span id="cb213-13"><a href="xlsx.html#cb213-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-14"><a href="xlsx.html#cb213-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># オートフィルタの設定</span></span>
+<span id="cb213-15"><a href="xlsx.html#cb213-15" aria-hidden="true" tabindex="-1"></a>set_auto_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
+<span id="cb213-16"><a href="xlsx.html#cb213-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A1からZ1までを設定</span></span>
+<span id="cb213-17"><a href="xlsx.html#cb213-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   もっと多くの列で設定したければ，&quot;A1:Z1&quot;のところを修正する</span></span>
+<span id="cb213-18"><a href="xlsx.html#cb213-18" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">addAutoFilter</span>(sh, <span class="st">&quot;A1:Z1&quot;</span>)</span>
+<span id="cb213-19"><a href="xlsx.html#cb213-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb213-20"><a href="xlsx.html#cb213-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-21"><a href="xlsx.html#cb213-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ウィンドウ枠の固定</span></span>
+<span id="cb213-22"><a href="xlsx.html#cb213-22" aria-hidden="true" tabindex="-1"></a>set_freeze_panel <span class="ot">&lt;-</span> <span class="cf">function</span>(sh){</span>
+<span id="cb213-23"><a href="xlsx.html#cb213-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1列目と1行目のウィンドウ枠を固定</span></span>
+<span id="cb213-24"><a href="xlsx.html#cb213-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   固定する場所の変更方法</span></span>
+<span id="cb213-25"><a href="xlsx.html#cb213-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     2行目までを固定したい場合は，引数の2つ目と4つ目を，3にする</span></span>
+<span id="cb213-26"><a href="xlsx.html#cb213-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     3列目までを固定したい場合は，引数の3つ目と5つ目を，4にする</span></span>
+<span id="cb213-27"><a href="xlsx.html#cb213-27" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">createFreezePane</span>(sh, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb213-28"><a href="xlsx.html#cb213-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb213-29"><a href="xlsx.html#cb213-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-30"><a href="xlsx.html#cb213-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ワークブックごとで設定</span></span>
+<span id="cb213-31"><a href="xlsx.html#cb213-31" aria-hidden="true" tabindex="-1"></a>set_af_fp <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
+<span id="cb213-32"><a href="xlsx.html#cb213-32" aria-hidden="true" tabindex="-1"></a>  wb <span class="ot">&lt;-</span> xlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(file)   <span class="co"># ワークブックの読み込み</span></span>
+<span id="cb213-33"><a href="xlsx.html#cb213-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(sh <span class="cf">in</span> xlsx<span class="sc">::</span><span class="fu">getSheets</span>(wb)){  <span class="co"># シートの数だけ繰り返し</span></span>
+<span id="cb213-34"><a href="xlsx.html#cb213-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_auto_filter</span>(sh)            <span class="co">#   オートフィルタの設定</span></span>
+<span id="cb213-35"><a href="xlsx.html#cb213-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_freeze_panel</span>(sh)           <span class="co">#   ウィンドウ枠の固定</span></span>
+<span id="cb213-36"><a href="xlsx.html#cb213-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb213-37"><a href="xlsx.html#cb213-37" aria-hidden="true" tabindex="-1"></a>  xlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, file)     <span class="co"># ワークブクの保存</span></span>
+<span id="cb213-38"><a href="xlsx.html#cb213-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb213-39"><a href="xlsx.html#cb213-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-40"><a href="xlsx.html#cb213-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Main, 本体</span></span>
+<span id="cb213-41"><a href="xlsx.html#cb213-41" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&quot;xls&quot;</span>) <span class="co"># &quot;.xls&quot;と&quot;xlsx&quot;の一覧取得</span></span>
+<span id="cb213-42"><a href="xlsx.html#cb213-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> files){                  <span class="co"># ファイルの数だけ繰り返し</span></span>
+<span id="cb213-43"><a href="xlsx.html#cb213-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_af_fp</span>(file)                    <span class="co"># set_af_fp()の実行</span></span>
+<span id="cb213-44"><a href="xlsx.html#cb213-44" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="その他の操作未作成" class="section level2 hasAnchor" number="17.3">

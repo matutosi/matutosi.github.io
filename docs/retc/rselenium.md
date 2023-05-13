@@ -1,4 +1,4 @@
-# Rselenium {#rselenium}
+# Rseleniumでスクレイピング {#rselenium}
 
 Seleniumは，ブラウザを使って動的に巡回しつつ，スクレイピングをするのに適している．
 

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 6 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 6 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 9 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 9 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 6 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 9 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 6 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 9 system()やshell()でOSコマンドの実行 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-12" />
+<meta name="date" content="2023-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,84 +156,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.4</b> GitHubから</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>4</b> スクリプトの関連付け</a></li>
-<li class="chapter" data-level="5" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>5</b> fsでファイル操作</a>
+<li class="chapter" data-level="5" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>5</b> magrittrでコードを簡潔に</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="fs.html"><a href="fs.html#準備"><i class="fa fa-check"></i><b>5.1</b> 準備</a></li>
-<li class="chapter" data-level="5.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>5.2</b> shell，baseパッケージ, fsパッケージ</a>
+<li class="chapter" data-level="5.1" data-path="magrittr.html"><a href="magrittr.html#準備"><i class="fa fa-check"></i><b>5.1</b> 準備</a></li>
+<li class="chapter" data-level="5.2" data-path="magrittr.html"><a href="magrittr.html#magrittrとtidyverse"><i class="fa fa-check"></i><b>5.2</b> magrittrとtidyverse</a></li>
+<li class="chapter" data-level="5.3" data-path="magrittr.html"><a href="magrittr.html#でコードを簡潔に"><i class="fa fa-check"></i><b>5.3</b> <code>%&gt;%</code>でコードを簡潔に</a></li>
+<li class="chapter" data-level="5.4" data-path="magrittr.html"><a href="magrittr.html#パイプの仲間"><i class="fa fa-check"></i><b>5.4</b> パイプの仲間</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>5.2.1</b> shellを使う</a></li>
-<li class="chapter" data-level="5.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ"><i class="fa fa-check"></i><b>5.2.2</b> baseパッケージ</a></li>
-<li class="chapter" data-level="5.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>5.2.3</b> fsパッケージ</a></li>
+<li class="chapter" data-level="5.4.1" data-path="magrittr.html"><a href="magrittr.html#でオブジェクトを代入"><i class="fa fa-check"></i><b>5.4.1</b> <code>%&lt;&gt;%</code>でオブジェクトを代入</a></li>
+<li class="chapter" data-level="5.4.2" data-path="magrittr.html"><a href="magrittr.html#tでコードを分岐"><i class="fa fa-check"></i><b>5.4.2</b> <code>%T&gt;%</code>でコードを分岐</a></li>
+<li class="chapter" data-level="5.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>5.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="fs.html"><a href="fs.html#fsの関数"><i class="fa fa-check"></i><b>5.3</b> fsの関数</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>5.3.1</b> パス操作</a></li>
-<li class="chapter" data-level="5.3.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>5.3.2</b> ディレクトリ操作</a></li>
-<li class="chapter" data-level="5.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>5.3.3</b> ファイル操作</a></li>
+<li class="chapter" data-level="5.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>5.5</b> パイプ以外の関数</a></li>
+<li class="chapter" data-level="5.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>5.6</b> おまけ：magrittrの不思議な関数たち</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>5.4</b> fsを使ったファイル操作例</a></li>
-<li class="chapter" data-level="5.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>5.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>6</b> system()やshell()でOSコマンドの実行</a>
+<li class="chapter" data-level="6" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>6</b> stringrで文字列操作</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="shell.html"><a href="shell.html#準備-1"><i class="fa fa-check"></i><b>6.1</b> 準備</a></li>
-<li class="chapter" data-level="6.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>6.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<li class="chapter" data-level="6.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>6.1</b> はじめに</a></li>
+<li class="chapter" data-level="6.2" data-path="stringr.html"><a href="stringr.html#準備-1"><i class="fa fa-check"></i><b>6.2</b> 準備</a></li>
+<li class="chapter" data-level="6.3" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>6.3</b> stringrとbase</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>6.2.1</b> Pythonのイントール</a></li>
-<li class="chapter" data-level="6.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>6.2.2</b> PyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="6.3.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ"><i class="fa fa-check"></i><b>6.3.1</b> baseパッケージ</a></li>
+<li class="chapter" data-level="6.3.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>6.3.2</b> stringrパッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>6.4</b> stringrの関数</a></li>
+<li class="chapter" data-level="6.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>6.5</b> stringrの利点</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>7</b> lubridateで日付・時刻を扱う</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="lubridate.html"><a href="lubridate.html#準備-2"><i class="fa fa-check"></i><b>7.1</b> 準備</a></li>
+<li class="chapter" data-level="7.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>7.2</b> 1月後・1年後の同一日</a></li>
+<li class="chapter" data-level="7.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>7.3</b> 文字列からDateクラスへの変換</a></li>
+<li class="chapter" data-level="7.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>7.4</b> 曜日を求める</a></li>
+<li class="chapter" data-level="7.5" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>7.5</b> 活用例</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>8</b> fsでファイル操作</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="fs.html"><a href="fs.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
+<li class="chapter" data-level="8.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>8.2</b> shell，baseパッケージ, fsパッケージ</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>8.2.1</b> shellを使う</a></li>
+<li class="chapter" data-level="8.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ-1"><i class="fa fa-check"></i><b>8.2.2</b> baseパッケージ</a></li>
+<li class="chapter" data-level="8.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>8.2.3</b> fsパッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="fs.html"><a href="fs.html#fsの関数"><i class="fa fa-check"></i><b>8.3</b> fsの関数</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>8.3.1</b> パス操作</a></li>
+<li class="chapter" data-level="8.3.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>8.3.2</b> ディレクトリ操作</a></li>
+<li class="chapter" data-level="8.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>8.3.3</b> ファイル操作</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>8.4</b> fsを使ったファイル操作例</a></li>
+<li class="chapter" data-level="8.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>8.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>9</b> system()やshell()でOSコマンドの実行</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="shell.html"><a href="shell.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
+<li class="chapter" data-level="9.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>9.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>9.2.1</b> Pythonのイントール</a></li>
+<li class="chapter" data-level="9.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>9.2.2</b> PyAutoGUIのインストール</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>7</b> reticulate</a>
+<li class="chapter" data-level="10" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>10</b> reticulateでPythonを使う</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="reticulate.html"><a href="reticulate.html#準備-2"><i class="fa fa-check"></i><b>7.1</b> 準備</a>
+<li class="chapter" data-level="10.1" data-path="reticulate.html"><a href="reticulate.html#準備-5"><i class="fa fa-check"></i><b>10.1</b> 準備</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>7.1.1</b> PythonとPyAutoGUIのインストール</a></li>
-<li class="chapter" data-level="7.1.2" data-path="reticulate.html"><a href="reticulate.html#使用するpythonの指定"><i class="fa fa-check"></i><b>7.1.2</b> 使用するPythonの指定</a></li>
+<li class="chapter" data-level="10.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>10.1.1</b> PythonとPyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="10.1.2" data-path="reticulate.html"><a href="reticulate.html#identify_python"><i class="fa fa-check"></i><b>10.1.2</b> 使用するPythonの指定</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>7.2</b> Pythonを使ってみる</a></li>
-<li class="chapter" data-level="7.3" data-path="reticulate.html"><a href="reticulate.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>7.3</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
-<li class="chapter" data-level="7.4" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>7.4</b> PythoとRとの変数のやり取り</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>8</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
+<li class="chapter" data-level="10.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>10.2</b> Pythonを使ってみる</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
-<li class="chapter" data-level="8.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>8.2</b> キーボード操作の自動化</a></li>
-<li class="chapter" data-level="8.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>8.3</b> マウスの位置取得</a></li>
-<li class="chapter" data-level="8.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbの安全な取り出しの自動化"><i class="fa fa-check"></i><b>8.4</b> 「USBの安全な取り出し」の自動化</a></li>
+<li class="chapter" data-level="10.2.1" data-path="reticulate.html"><a href="reticulate.html#hellow-world"><i class="fa fa-check"></i><b>10.2.1</b> Hellow World</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>9</b> magrittrでコードを簡潔に</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="magrittr.html"><a href="magrittr.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
-<li class="chapter" data-level="9.2" data-path="magrittr.html"><a href="magrittr.html#magrittrとtidyverse"><i class="fa fa-check"></i><b>9.2</b> magrittrとtidyverse</a></li>
-<li class="chapter" data-level="9.3" data-path="magrittr.html"><a href="magrittr.html#でコードを簡潔に"><i class="fa fa-check"></i><b>9.3</b> <code>%&gt;%</code>でコードを簡潔に</a></li>
-<li class="chapter" data-level="9.4" data-path="magrittr.html"><a href="magrittr.html#パイプの仲間"><i class="fa fa-check"></i><b>9.4</b> パイプの仲間</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="magrittr.html"><a href="magrittr.html#でオブジェクトを代入"><i class="fa fa-check"></i><b>9.4.1</b> <code>%&lt;&gt;%</code>でオブジェクトを代入</a></li>
-<li class="chapter" data-level="9.4.2" data-path="magrittr.html"><a href="magrittr.html#tでコードを分岐"><i class="fa fa-check"></i><b>9.4.2</b> <code>%T&gt;%</code>でコードを分岐</a></li>
-<li class="chapter" data-level="9.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>9.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
+<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>10.3</b> Pythonのコードを実行</a></li>
+<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>10.4</b> Pythonの呼び出し</a></li>
+<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.5</b> PythoとRとの変数のやり取り</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>9.5</b> パイプ以外の関数</a></li>
-<li class="chapter" data-level="9.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>9.6</b> おまけ：magrittrの不思議な関数たち</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>10</b> stringrで文字列操作</a>
+<li class="chapter" data-level="11" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>11</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>10.1</b> はじめに</a></li>
-<li class="chapter" data-level="10.2" data-path="stringr.html"><a href="stringr.html#準備-5"><i class="fa fa-check"></i><b>10.2</b> 準備</a></li>
-<li class="chapter" data-level="10.3" data-path="stringr.html"><a href="stringr.html#stringrとbase"><i class="fa fa-check"></i><b>10.3</b> stringrとbase</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="stringr.html"><a href="stringr.html#baseパッケージ-1"><i class="fa fa-check"></i><b>10.3.1</b> baseパッケージ</a></li>
-<li class="chapter" data-level="10.3.2" data-path="stringr.html"><a href="stringr.html#stringrパッケージ"><i class="fa fa-check"></i><b>10.3.2</b> stringrパッケージ</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="stringr.html"><a href="stringr.html#stringrの関数"><i class="fa fa-check"></i><b>10.4</b> stringrの関数</a></li>
-<li class="chapter" data-level="10.5" data-path="stringr.html"><a href="stringr.html#stringrの利点"><i class="fa fa-check"></i><b>10.5</b> stringrの利点</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>11</b> lubridateで日付・時刻を扱う</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="lubridate.html"><a href="lubridate.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
-<li class="chapter" data-level="11.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>11.2</b> 1月後・1年後の同一日</a></li>
-<li class="chapter" data-level="11.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>11.3</b> 文字列からDateクラスへの変換</a></li>
-<li class="chapter" data-level="11.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>11.4</b> 曜日を求める</a></li>
-<li class="chapter" data-level="11.5" data-path="lubridate.html"><a href="lubridate.html#活用例"><i class="fa fa-check"></i><b>11.5</b> 活用例</a></li>
+<li class="chapter" data-level="11.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
+<li class="chapter" data-level="11.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>11.2</b> キーボード操作の自動化</a></li>
+<li class="chapter" data-level="11.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>11.3</b> マウスの位置取得</a></li>
+<li class="chapter" data-level="11.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbメモリの安全な取り出しの自動化"><i class="fa fa-check"></i><b>11.4</b> USBメモリの安全な取り出しの自動化</a></li>
+<li class="chapter" data-level="11.5" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>11.5</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> ggplot2で楽に綺麗に作図</a>
 <ul>
@@ -264,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>13.9</b> 複数種への対応</a></li>
 <li class="chapter" data-level="13.10" data-path="rvest.html"><a href="rvest.html#webshot"><i class="fa fa-check"></i><b>13.10</b> おまけ：webshotでウエブページを画像に変換</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>14</b> Rselenium</a>
+<li class="chapter" data-level="14" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>14</b> Rseleniumでスクレイピング</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="rselenium.html"><a href="rselenium.html#準備-9"><i class="fa fa-check"></i><b>14.1</b> 準備</a></li>
 <li class="chapter" data-level="14.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>14.2</b> ブラウザの自動化</a></li>
@@ -317,15 +322,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>18.7</b> その他の関数</a></li>
 <li class="chapter" data-level="18.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>18.8</b> pdftoolsでテキストの取り出し</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="pdf2docx.html"><a href="pdf2docx.html"><i class="fa fa-check"></i><b>19</b> pdfをdocxに変換</a>
+<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfをdocxに変換</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="pdf2docx.html"><a href="pdf2docx.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
+<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
 <ul>
-<li class="chapter" data-level="19.1.1" data-path="pdf2docx.html"><a href="pdf2docx.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
-<li class="chapter" data-level="19.1.2" data-path="pdf2docx.html"><a href="pdf2docx.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
-<li class="chapter" data-level="19.1.3" data-path="pdf2docx.html"><a href="pdf2docx.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
+<li class="chapter" data-level="19.1.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
+<li class="chapter" data-level="19.1.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
+<li class="chapter" data-level="19.1.3" data-path="RDCOMClient.html"><a href="RDCOMClient.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
 </ul></li>
-<li class="chapter" data-level="19.2" data-path="pdf2docx.html"><a href="pdf2docx.html#pdf2docx-1"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
+<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#pdf2docx"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>20</b> Microsoft365R</a>
 <ul>
@@ -361,11 +366,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="shell" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chap. 6</span> system()やshell()でOSコマンドの実行<a href="shell.html#shell" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="shell" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chap. 9</span> system()やshell()でOSコマンドの実行<a href="shell.html#shell" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!--
 -->
-<p>Rから<code>system()</code>や`shell()’でOSのコマンドを実行できる．
+<p>Rから<code>system()</code>や`shell()’(Windowsのみ)でOSのコマンドを実行できる．
 例えば，以下のようなことだ．</p>
 <ul>
 <li>ファイルの移動<br />
@@ -383,36 +388,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 実行するとすれば，自作のバッチファイル(Windows)やシェルスクリプト(MacやLinux)などだろうか．
 あるいは，自分で関数やパッケージを開発する際に使ってみることがあるかもしれない．
 一応，こんなこともできるんだという程度に知っておけばよいだろう．</p>
-<div id="準備-1" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> 準備<a href="shell.html#準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>以下では，RからPythonとそのライブラリをインストールする．
+これらは，ふつうならコマンドプロンプト(Windows)やターミナル(MacやLinux)といったシェルで実行するものだが，ここではRをシェルの代わりとして使う．
+利点は，Rを起動していれば新たなシェルを起動せずにそのまま実行できること，返り値をRのオブジェクトに代入して使えることである．
+欠点は，キー入力が若干増えることである．</p>
+<div id="準備-4" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> 準備<a href="shell.html#準備-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>system()</code>や`shell()’などはRのbaseパッケージに含まれている．
 そのため，Rのインストール後はすぐに使えるため，本来は特に準備は不要である．
-ここでは，組み合わせで使用するその他のパッケージをインストールしておく．</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="shell.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;curl&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="shell.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb25-2"><a href="shell.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(curl)</span></code></pre></div>
+ここでは，組み合わせて使用するcurlパッケージをインストールしておく．</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="shell.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;curl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="shell.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb114-2"><a href="shell.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(curl)</span></code></pre></div>
 </div>
-<div id="install_python" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> 活用例：Pythonとそのライブラリのインストール<a href="shell.html#install_python" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>わざわざRから実行する必要性はないが，PythonとそのライブラリのインストールをRから実行してみよう．
+<div id="install_python" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> 活用例：Pythonとそのライブラリのインストール<a href="shell.html#install_python" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>PythonとそのライブラリのインストールをRから実行してみよう．
 Python自体を直接使わなくても，インストールしておいて損はない．
-Rからreticulateパッケージを用いてPythonを使うことができるし，RにはないライブラリがPythonにはあるためだ．
-また，Pythonと合わせて，キーボードとマウス操作の自動化で使用するPyAutoGUIというライブラリをインストールする．</p>
-<div id="pythonのイントール" class="section level3 hasAnchor" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Pythonのイントール<a href="shell.html#pythonのイントール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+RにはないライブラリがPythonにはあり，reticulateパッケージを使えばRからPythonを実行できるためだ．
+ここではさらに，キーボードとマウス操作の自動化で使用するPyAutoGUIというライブラリをインストールする．</p>
+<div id="pythonのイントール" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Pythonのイントール<a href="shell.html#pythonのイントール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>まずは，Pythonのインストーラをダウンロードする．
 Windowsの場合は，以下を実行するとデフォルトのブラウザでPythonのインストラのダウンロードページが開く．
-その他のOSの場合は，自分でブラウザを起動してURLを開く．
 なお，ここで利用している<code>shell.exec()</code>はWindowsで使える関数で，拡張子に関連付けられたファイルを実行するものである．</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="shell.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;https://pythonlinks.python.jp/ja/index.html&quot;</span> <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="shell.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shell.exec</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="shell.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;https://pythonlinks.python.jp/ja/index.html&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb115-2"><a href="shell.html#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shell.exec</span>()</span></code></pre></div>
+<p>MacやLinuxには，通常はデフォルトでOSにPython3がインストールされている．
+必要に応じてバージョンアップをして欲しい．
+また，Python2がインストールされているが，使わない場合はアンインストールしておくことをお勧めする．
+<!--
+複数のバージョンがインストールされていると，`Python`というコマンドでPython2が起動してしまうためである．
+
+MacやLinuxの場合は，以下のコマンドが可能である．
+
+```r
+system("open https://pythonlinks.python.jp/ja/index.html")     # Mac
+system("chrome https://pythonlinks.python.jp/ja/index.html &") # Linux
+```
+--></p>
 <p>2023年5月現在での最新版は3.11.1なので，以下ではそのファイルのURLを入力している．
 最新版が異なる場合は，適宜URLを変更してほしい．
 curl_downloadで一時ファイルとしてインストーラをダウンロードする．
 なお，<code>py_installer</code>にはダウンロードした一時ファイル名を保存している．</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="shell.html#cb27-1" aria-hidden="true" tabindex="-1"></a>py_installer <span class="ot">&lt;-</span> </span>
-<span id="cb27-2"><a href="shell.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://www.python.org/ftp/python/3.11.1/python-3.11.1-amd64.exe&quot;</span> <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a href="shell.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;exe&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="shell.html#cb116-1" aria-hidden="true" tabindex="-1"></a>py_installer <span class="ot">&lt;-</span> </span>
+<span id="cb116-2"><a href="shell.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://www.python.org/ftp/python/3.11.1/python-3.11.1-amd64.exe&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb116-3"><a href="shell.html#cb116-3" aria-hidden="true" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;exe&quot;</span>))</span></code></pre></div>
 <!--
 ## TODO
 tempfileの削除が必要
@@ -424,72 +445,75 @@ tempfileの削除が必要
 <p>内容がわかっていて，自分流でインストールしたい場合はカスタマイズすると良い．
 カスタマイズする場合でも，インストールする項目で<code>pip</code>のチェックは入れたままにしておく．
 ライブラリのPyAutoGUIのインストールに使用するからだ．</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="shell.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shell.exec</span>(py_installer)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="shell.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shell.exec</span>(py_installer)</span></code></pre></div>
 <p>これでPythonがインストールできたはずだが，念のため確認をしておく．
 インストールしたバージョンによって表示が若干ことなるが，バージョンが表示されていれば，インストールは成功である．</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="shell.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;python -V&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="shell.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;python -V&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Python 3.11.1&quot;</code></pre>
 <p>Pythonのインストールがうまくいかない場合は，以下を参考にして欲しい．</p>
 <p><a href="https://www.python.jp/install/windows/install.html" class="uri">https://www.python.jp/install/windows/install.html</a></p>
 </div>
-<div id="pyautoguiのインストール" class="section level3 hasAnchor" number="6.2.2">
-<h3><span class="header-section-number">6.2.2</span> PyAutoGUIのインストール<a href="shell.html#pyautoguiのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="pyautoguiのインストール" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> PyAutoGUIのインストール<a href="shell.html#pyautoguiのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <!--
 
 -->
 <p>次に，PyAutoGUIをインストールする．
-インストールする前に，インストールされているライブラリを確認しておく．
-“pip list”は，pipというPythonのライブラリを管理ソフトで
-インストール済みライブラリの一覧を出力するコマンドである．
-その結果を取得して，“PyAutoGUI”という文字列があるか確認している．
-一覧に何も表示されなければ，PyAutoGUIはないので，インストールの必要がある．</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="shell.html#cb31-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip list&quot;</span></span>
-<span id="cb31-2"><a href="shell.html#cb31-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb31-3"><a href="shell.html#cb31-3" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(res) <span class="sc">%&gt;%</span></span>
-<span id="cb31-4"><a href="shell.html#cb31-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;PyAutoGUI&quot;</span>))</span>
-<span id="cb31-5"><a href="shell.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 0 × 1</span></span>
-<span id="cb31-6"><a href="shell.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="do">## ℹ 1 variable: value &lt;chr&gt;</span></span>
-<span id="cb31-7"><a href="shell.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="shell.html#cb32-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip install PyAutoGUI&quot;</span></span>
-<span id="cb32-2"><a href="shell.html#cb32-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-3"><a href="shell.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res)</span>
-<span id="cb32-4"><a href="shell.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Collecting PyAutoGUI&quot;                                         &quot;  Using cached PyAutoGUI-0.9.53.tar.gz (59 kB)&quot;              </span></span>
-<span id="cb32-5"><a href="shell.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;  Preparing metadata (setup.py): started&quot;                     &quot;  Preparing metadata (setup.py): finished with status &#39;done&#39;&quot;</span></span>
-<span id="cb32-6"><a href="shell.html#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;Collecting pymsgbox&quot;                                          &quot;  Using cached PyMsgBox-1.0.9.tar.gz (18 kB)&quot;    </span></span>
-<span id="cb32-7"><a href="shell.html#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(res)</span>
-<span id="cb32-8"><a href="shell.html#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;  Running setup.py install for PyAutoGUI: started&quot;</span></span>
-<span id="cb32-9"><a href="shell.html#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;  Running setup.py install for PyAutoGUI: finished with status &#39;done&#39;&quot;</span></span>
-<span id="cb32-10"><a href="shell.html#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;Successfully installed PyAutoGUI-0.9.53 PyTweening-1.0.7 mouseinfo-0.1.3 pygetwindow-0.0.9 pymsgbox-1.0.9 pyperclip-1.8.2 pyrect-0.2.0 pyscreeze-0.1.28&quot;</span></span>
-<span id="cb32-11"><a href="shell.html#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;&quot;</span></span>
-<span id="cb32-12"><a href="shell.html#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;[notice] A new release of pip available: 22.3.1 -&gt; 23.1.2&quot;</span></span>
-<span id="cb32-13"><a href="shell.html#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;[notice] To update, run: python.exe -m pip install --upgrade pip&quot;</span></span></code></pre></div>
+インストールする前に，インストール済のライブラリを確認しておく．
+“pip list”は，pipというPythonのライブラリを管理ソフトを使ってインストール済みライブラリ一覧を出力するコマンドである．
+その結果の中に”PyAutoGUI”という文字列があるか確認している．
+一覧に何も表示されなければ，PyAutoGUIをインストールする．</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="shell.html#cb120-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip list&quot;</span></span>
+<span id="cb120-2"><a href="shell.html#cb120-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb120-3"><a href="shell.html#cb120-3" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(res) <span class="sc">%&gt;%</span></span>
+<span id="cb120-4"><a href="shell.html#cb120-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;PyAutoGUI&quot;</span>))</span>
+<span id="cb120-5"><a href="shell.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 0 × 1</span></span>
+<span id="cb120-6"><a href="shell.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="do">## ℹ 1 variable: value &lt;chr&gt;</span></span>
+<span id="cb120-7"><a href="shell.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="shell.html#cb121-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip install PyAutoGUI&quot;</span></span>
+<span id="cb121-2"><a href="shell.html#cb121-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb121-3"><a href="shell.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res)</span>
+<span id="cb121-4"><a href="shell.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Collecting PyAutoGUI&quot;</span></span>
+<span id="cb121-5"><a href="shell.html#cb121-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;  Using cached PyAutoGUI-0.9.53.tar.gz (59 kB)&quot;              </span></span>
+<span id="cb121-6"><a href="shell.html#cb121-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;  Preparing metadata (setup.py): started&quot;</span></span>
+<span id="cb121-7"><a href="shell.html#cb121-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;  Preparing metadata (setup.py): finished with status &#39;done&#39;&quot;</span></span>
+<span id="cb121-8"><a href="shell.html#cb121-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;Collecting pymsgbox&quot;</span></span>
+<span id="cb121-9"><a href="shell.html#cb121-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;  Using cached PyMsgBox-1.0.9.tar.gz (18 kB)&quot;    </span></span>
+<span id="cb121-10"><a href="shell.html#cb121-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(res)</span>
+<span id="cb121-11"><a href="shell.html#cb121-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;  Running setup.py install for PyAutoGUI: started&quot;</span></span>
+<span id="cb121-12"><a href="shell.html#cb121-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;  Running setup.py install for PyAutoGUI: finished with status &#39;done&#39;&quot;</span></span>
+<span id="cb121-13"><a href="shell.html#cb121-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;Successfully installed PyAutoGUI-0.9.53 PyTweening-1.0.7 mouseinfo-0.1.3 pygetwindow-0.0.9 pymsgbox-1.0.9 pyperclip-1.8.2 pyrect-0.2.0 pyscreeze-0.1.28&quot;</span></span>
+<span id="cb121-14"><a href="shell.html#cb121-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;&quot;</span></span>
+<span id="cb121-15"><a href="shell.html#cb121-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;[notice] A new release of pip available: 22.3.1 -&gt; 23.1.2&quot;</span></span>
+<span id="cb121-16"><a href="shell.html#cb121-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;[notice] To update, run: python.exe -m pip install --upgrade pip&quot;</span></span></code></pre></div>
 <p>最後の方に”Successfully installed PyAutoGUI-0.9.53”のような表示があればインストールができているはずだ．
 念のためpipで確認する．
 以下は書き方をわざと変えているが，PyAutoGUIインストール前と実行内容は同じである．</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="shell.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;pip list&quot;</span> <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="shell.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-3"><a href="shell.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb33-4"><a href="shell.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;PyAutoGUI&quot;</span>))</span>
-<span id="cb33-5"><a href="shell.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
-<span id="cb33-6"><a href="shell.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   value               </span></span>
-<span id="cb33-7"><a href="shell.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;               </span></span>
-<span id="cb33-8"><a href="shell.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 PyAutoGUI     0.9.53</span></span></code></pre></div>
-<p>ところで，2つ前のコードのところで，“[notice]”としてpipの最新版があるので，インストールしてはどうかという提案がされている．
-pipのバージョンアップをする場合は，以下を実行しておく．</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="shell.html#cb34-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(<span class="st">&quot;python.exe -m pip install --upgrade pip&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb34-2"><a href="shell.html#cb34-2" aria-hidden="true" tabindex="-1"></a>res</span>
-<span id="cb34-3"><a href="shell.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] &quot;Requirement already satisfied: pip in c:\\users\\matu\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (22.3.1)&quot;</span></span>
-<span id="cb34-4"><a href="shell.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  [2] &quot;Collecting pip&quot;</span></span>
-<span id="cb34-5"><a href="shell.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] &quot;  Using cached pip-23.1.2-py3-none-any.whl (2.1 MB)&quot;</span></span>
-<span id="cb34-6"><a href="shell.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [4] &quot;Installing collected packages: pip&quot;</span></span>
-<span id="cb34-7"><a href="shell.html#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] &quot;  Attempting uninstall: pip&quot;</span></span>
-<span id="cb34-8"><a href="shell.html#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [6] &quot;    Found existing installation: pip 22.3.1&quot;</span></span>
-<span id="cb34-9"><a href="shell.html#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] &quot;    Uninstalling pip-22.3.1:&quot;</span></span>
-<span id="cb34-10"><a href="shell.html#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [8] &quot;      Successfully uninstalled pip-22.3.1&quot;</span></span>
-<span id="cb34-11"><a href="shell.html#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] &quot;  </span><span class="al">WARNING</span><span class="do">: The scripts pip.exe, pip3.11.exe and pip3.exe are installed in &#39;C:\\Users\\matu\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Scripts&#39; which is not on PATH.&quot;</span></span>
-<span id="cb34-12"><a href="shell.html#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [10] &quot;  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.&quot;</span></span>
-<span id="cb34-13"><a href="shell.html#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] &quot;Successfully installed pip-23.1.2&quot;</span></span></code></pre></div>
-<p>とりあえず，これでPythonとPyAutoGUIのインストールが完了した．</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="shell.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;pip list&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb122-2"><a href="shell.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb122-3"><a href="shell.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb122-4"><a href="shell.html#cb122-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;PyAutoGUI&quot;</span>))</span>
+<span id="cb122-5"><a href="shell.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb122-6"><a href="shell.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   value               </span></span>
+<span id="cb122-7"><a href="shell.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;               </span></span>
+<span id="cb122-8"><a href="shell.html#cb122-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 PyAutoGUI     0.9.53</span></span></code></pre></div>
+<p>ところで，2つ前のコードのところで，“[notice]”としてpipの最新版がある．
+これは，pipをバージョンアップしてはどうかという提案である．
+せっかくなので，バージョンアップしておこう．</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="shell.html#cb123-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(<span class="st">&quot;python.exe -m pip install --upgrade pip&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb123-2"><a href="shell.html#cb123-2" aria-hidden="true" tabindex="-1"></a>res</span>
+<span id="cb123-3"><a href="shell.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] &quot;Requirement already satisfied: pip in c:\\users\\matu\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (22.3.1)&quot;</span></span>
+<span id="cb123-4"><a href="shell.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  [2] &quot;Collecting pip&quot;</span></span>
+<span id="cb123-5"><a href="shell.html#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] &quot;  Using cached pip-23.1.2-py3-none-any.whl (2.1 MB)&quot;</span></span>
+<span id="cb123-6"><a href="shell.html#cb123-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [4] &quot;Installing collected packages: pip&quot;</span></span>
+<span id="cb123-7"><a href="shell.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] &quot;  Attempting uninstall: pip&quot;</span></span>
+<span id="cb123-8"><a href="shell.html#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [6] &quot;    Found existing installation: pip 22.3.1&quot;</span></span>
+<span id="cb123-9"><a href="shell.html#cb123-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] &quot;    Uninstalling pip-22.3.1:&quot;</span></span>
+<span id="cb123-10"><a href="shell.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [8] &quot;      Successfully uninstalled pip-22.3.1&quot;</span></span>
+<span id="cb123-11"><a href="shell.html#cb123-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] &quot;  </span><span class="al">WARNING</span><span class="do">: The scripts pip.exe, pip3.11.exe and pip3.exe are installed in &#39;C:\\Users\\matu\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Scripts&#39; which is not on PATH.&quot;</span></span>
+<span id="cb123-12"><a href="shell.html#cb123-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [10] &quot;  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.&quot;</span></span>
+<span id="cb123-13"><a href="shell.html#cb123-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] &quot;Successfully installed pip-23.1.2&quot;</span></span></code></pre></div>
+<p>これでPythonとPyAutoGUIのインストールさらにpipのバージョンアップが完了した．</p>
 <!--
 ## Pythonのスクリプト実行
 
