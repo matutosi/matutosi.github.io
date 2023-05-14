@@ -226,11 +226,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>10.2</b> Pythonを使ってみる</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="reticulate.html"><a href="reticulate.html#hellow-world"><i class="fa fa-check"></i><b>10.2.1</b> Hellow World</a></li>
+<li class="chapter" data-level="10.2.1" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>10.2.1</b> Pythonの呼び出し</a></li>
+<li class="chapter" data-level="10.2.2" data-path="reticulate.html"><a href="reticulate.html#rからpythonのhellow-world"><i class="fa fa-check"></i><b>10.2.2</b> RからPythonのHellow World</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>10.3</b> Pythonのコードを実行</a></li>
-<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>10.4</b> Pythonの呼び出し</a></li>
-<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.5</b> PythoとRとの変数のやり取り</a></li>
+<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.3</b> PythoとRとの変数のやり取り</a></li>
+<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>10.4</b> Pythonのコードを実行</a></li>
+<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#rとpythoでの用語の違い"><i class="fa fa-check"></i><b>10.5</b> RとPythoでの用語の違い</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>11</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
 <ul>
@@ -368,65 +369,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="RDCOMClient" class="section level1 hasAnchor" number="19">
 <h1><span class="header-section-number">Chap. 19</span> RDCOMClientでpdfをdocxに変換<a href="RDCOMClient.html#RDCOMClient" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="RDCOMClient.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="RDCOMClient.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <div id="rdcomclient" class="section level2 hasAnchor" number="19.1">
 <h2><span class="header-section-number">19.1</span> RDCOMClient<a href="RDCOMClient.html#rdcomclient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://github.com/omegahat/RDCOMClient" class="uri">https://github.com/omegahat/RDCOMClient</a>
 CRANにはないが，</p>
 <div id="インストール" class="section level3 hasAnchor" number="19.1.1">
 <h3><span class="header-section-number">19.1.1</span> インストール<a href="RDCOMClient.html#インストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="RDCOMClient.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RDCOMClient&quot;</span>, </span>
-<span id="cb238-2"><a href="RDCOMClient.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">&quot;http://www.omegahat.net/R&quot;</span>, </span>
-<span id="cb238-3"><a href="RDCOMClient.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;win.binary&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="RDCOMClient.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RDCOMClient&quot;</span>, </span>
+<span id="cb239-2"><a href="RDCOMClient.html#cb239-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">&quot;http://www.omegahat.net/R&quot;</span>, </span>
+<span id="cb239-3"><a href="RDCOMClient.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;win.binary&quot;</span>)</span></code></pre></div>
 </div>
 <div id="変換実行" class="section level3 hasAnchor" number="19.1.2">
 <h3><span class="header-section-number">19.1.2</span> 変換実行<a href="RDCOMClient.html#変換実行" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><a href="https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411" class="uri">https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411</a></p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="RDCOMClient.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
-<span id="cb239-2"><a href="RDCOMClient.html#cb239-2" aria-hidden="true" tabindex="-1"></a>wordApp <span class="ot">&lt;-</span> <span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
-<span id="cb239-3"><a href="RDCOMClient.html#cb239-3" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb239-4"><a href="RDCOMClient.html#cb239-4" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb239-5"><a href="RDCOMClient.html#cb239-5" aria-hidden="true" tabindex="-1"></a>path_To_PDF_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.pdf&quot;</span></span>
-<span id="cb239-6"><a href="RDCOMClient.html#cb239-6" aria-hidden="true" tabindex="-1"></a>path_To_Word_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.docx&quot;</span></span>
-<span id="cb239-7"><a href="RDCOMClient.html#cb239-7" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> </span>
-<span id="cb239-8"><a href="RDCOMClient.html#cb239-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(path_To_PDF_File), </span>
-<span id="cb239-9"><a href="RDCOMClient.html#cb239-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb239-10"><a href="RDCOMClient.html#cb239-10" aria-hidden="true" tabindex="-1"></a>doc<span class="sc">$</span><span class="fu">SaveAs2</span>(path_To_Word_File)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="RDCOMClient.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
+<span id="cb240-2"><a href="RDCOMClient.html#cb240-2" aria-hidden="true" tabindex="-1"></a>wordApp <span class="ot">&lt;-</span> <span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
+<span id="cb240-3"><a href="RDCOMClient.html#cb240-3" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb240-4"><a href="RDCOMClient.html#cb240-4" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb240-5"><a href="RDCOMClient.html#cb240-5" aria-hidden="true" tabindex="-1"></a>path_To_PDF_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.pdf&quot;</span></span>
+<span id="cb240-6"><a href="RDCOMClient.html#cb240-6" aria-hidden="true" tabindex="-1"></a>path_To_Word_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.docx&quot;</span></span>
+<span id="cb240-7"><a href="RDCOMClient.html#cb240-7" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> </span>
+<span id="cb240-8"><a href="RDCOMClient.html#cb240-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(path_To_PDF_File), </span>
+<span id="cb240-9"><a href="RDCOMClient.html#cb240-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb240-10"><a href="RDCOMClient.html#cb240-10" aria-hidden="true" tabindex="-1"></a>doc<span class="sc">$</span><span class="fu">SaveAs2</span>(path_To_Word_File)</span></code></pre></div>
 </div>
 <div id="ラッパー関数" class="section level3 hasAnchor" number="19.1.3">
 <h3><span class="header-section-number">19.1.3</span> ラッパー関数<a href="RDCOMClient.html#ラッパー関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="RDCOMClient.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
-<span id="cb240-2"><a href="RDCOMClient.html#cb240-2" aria-hidden="true" tabindex="-1"></a>pdf2docx <span class="ot">&lt;-</span> <span class="cf">function</span>(pdf, <span class="at">docx =</span> <span class="cn">NULL</span>){</span>
-<span id="cb240-3"><a href="RDCOMClient.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(docx)){</span>
-<span id="cb240-4"><a href="RDCOMClient.html#cb240-4" aria-hidden="true" tabindex="-1"></a>    docx <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, pdf))</span>
-<span id="cb240-5"><a href="RDCOMClient.html#cb240-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb240-6"><a href="RDCOMClient.html#cb240-6" aria-hidden="true" tabindex="-1"></a>  wordApp <span class="ot">&lt;-</span> RDCOMClient<span class="sc">::</span><span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
-<span id="cb240-7"><a href="RDCOMClient.html#cb240-7" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb240-8"><a href="RDCOMClient.html#cb240-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb240-9"><a href="RDCOMClient.html#cb240-9" aria-hidden="true" tabindex="-1"></a>  doc <span class="ot">&lt;-</span> </span>
-<span id="cb240-10"><a href="RDCOMClient.html#cb240-10" aria-hidden="true" tabindex="-1"></a>    wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(pdf), <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb240-11"><a href="RDCOMClient.html#cb240-11" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">SaveAs2</span>(docx)</span>
-<span id="cb240-12"><a href="RDCOMClient.html#cb240-12" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">close</span>()</span>
-<span id="cb240-13"><a href="RDCOMClient.html#cb240-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb240-14"><a href="RDCOMClient.html#cb240-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-15"><a href="RDCOMClient.html#cb240-15" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/matu/work/tmp/&quot;</span></span>
-<span id="cb240-16"><a href="RDCOMClient.html#cb240-16" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb240-17"><a href="RDCOMClient.html#cb240-17" aria-hidden="true" tabindex="-1"></a>path_docx <span class="ot">&lt;-</span> <span class="cf">function</span>(path_pdf){</span>
-<span id="cb240-18"><a href="RDCOMClient.html#cb240-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">grepl</span>(<span class="st">&quot;[A-z]:&quot;</span>, path_pdf)){</span>
-<span id="cb240-19"><a href="RDCOMClient.html#cb240-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
-<span id="cb240-20"><a href="RDCOMClient.html#cb240-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb240-21"><a href="RDCOMClient.html#cb240-21" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
-<span id="cb240-22"><a href="RDCOMClient.html#cb240-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;//&quot;</span>, <span class="st">&quot;/&quot;</span>, path))</span>
-<span id="cb240-23"><a href="RDCOMClient.html#cb240-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb240-24"><a href="RDCOMClient.html#cb240-24" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;a.pdf&quot;</span>                 ), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
-<span id="cb240-25"><a href="RDCOMClient.html#cb240-25" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;d:/matu/work/tmp/a.pdf&quot;</span>), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
-<span id="cb240-26"><a href="RDCOMClient.html#cb240-26" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;test/a.pdf&quot;</span>            ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
-<span id="cb240-27"><a href="RDCOMClient.html#cb240-27" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;/test/a.pdf&quot;</span>           ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
-<span id="cb240-28"><a href="RDCOMClient.html#cb240-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-29"><a href="RDCOMClient.html#cb240-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-30"><a href="RDCOMClient.html#cb240-30" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/&quot;</span></span>
-<span id="cb240-31"><a href="RDCOMClient.html#cb240-31" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb240-32"><a href="RDCOMClient.html#cb240-32" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf2docx</span>(<span class="st">&quot;a.pdf&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="RDCOMClient.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
+<span id="cb241-2"><a href="RDCOMClient.html#cb241-2" aria-hidden="true" tabindex="-1"></a>pdf2docx <span class="ot">&lt;-</span> <span class="cf">function</span>(pdf, <span class="at">docx =</span> <span class="cn">NULL</span>){</span>
+<span id="cb241-3"><a href="RDCOMClient.html#cb241-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(docx)){</span>
+<span id="cb241-4"><a href="RDCOMClient.html#cb241-4" aria-hidden="true" tabindex="-1"></a>    docx <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, pdf))</span>
+<span id="cb241-5"><a href="RDCOMClient.html#cb241-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb241-6"><a href="RDCOMClient.html#cb241-6" aria-hidden="true" tabindex="-1"></a>  wordApp <span class="ot">&lt;-</span> RDCOMClient<span class="sc">::</span><span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
+<span id="cb241-7"><a href="RDCOMClient.html#cb241-7" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb241-8"><a href="RDCOMClient.html#cb241-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb241-9"><a href="RDCOMClient.html#cb241-9" aria-hidden="true" tabindex="-1"></a>  doc <span class="ot">&lt;-</span> </span>
+<span id="cb241-10"><a href="RDCOMClient.html#cb241-10" aria-hidden="true" tabindex="-1"></a>    wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(pdf), <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb241-11"><a href="RDCOMClient.html#cb241-11" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">SaveAs2</span>(docx)</span>
+<span id="cb241-12"><a href="RDCOMClient.html#cb241-12" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">close</span>()</span>
+<span id="cb241-13"><a href="RDCOMClient.html#cb241-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb241-14"><a href="RDCOMClient.html#cb241-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-15"><a href="RDCOMClient.html#cb241-15" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/matu/work/tmp/&quot;</span></span>
+<span id="cb241-16"><a href="RDCOMClient.html#cb241-16" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb241-17"><a href="RDCOMClient.html#cb241-17" aria-hidden="true" tabindex="-1"></a>path_docx <span class="ot">&lt;-</span> <span class="cf">function</span>(path_pdf){</span>
+<span id="cb241-18"><a href="RDCOMClient.html#cb241-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">grepl</span>(<span class="st">&quot;[A-z]:&quot;</span>, path_pdf)){</span>
+<span id="cb241-19"><a href="RDCOMClient.html#cb241-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
+<span id="cb241-20"><a href="RDCOMClient.html#cb241-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb241-21"><a href="RDCOMClient.html#cb241-21" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
+<span id="cb241-22"><a href="RDCOMClient.html#cb241-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;//&quot;</span>, <span class="st">&quot;/&quot;</span>, path))</span>
+<span id="cb241-23"><a href="RDCOMClient.html#cb241-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb241-24"><a href="RDCOMClient.html#cb241-24" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;a.pdf&quot;</span>                 ), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
+<span id="cb241-25"><a href="RDCOMClient.html#cb241-25" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;d:/matu/work/tmp/a.pdf&quot;</span>), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
+<span id="cb241-26"><a href="RDCOMClient.html#cb241-26" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;test/a.pdf&quot;</span>            ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
+<span id="cb241-27"><a href="RDCOMClient.html#cb241-27" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;/test/a.pdf&quot;</span>           ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
+<span id="cb241-28"><a href="RDCOMClient.html#cb241-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-29"><a href="RDCOMClient.html#cb241-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-30"><a href="RDCOMClient.html#cb241-30" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/&quot;</span></span>
+<span id="cb241-31"><a href="RDCOMClient.html#cb241-31" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb241-32"><a href="RDCOMClient.html#cb241-32" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf2docx</span>(<span class="st">&quot;a.pdf&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="pdf2docx" class="section level2 hasAnchor" number="19.2">

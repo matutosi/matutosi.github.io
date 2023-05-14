@@ -101,7 +101,7 @@ automater::mouse_record
 ##     }
 ##     return(list(x = unlist(x), y = unlist(y)))
 ## }
-## <bytecode: 0x000001e3dbaf8e88>
+## <bytecode: 0x0000019f762950a8>
 ## <environment: namespace:automater>
 ```
 

@@ -226,11 +226,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>10.2</b> Pythonを使ってみる</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="reticulate.html"><a href="reticulate.html#hellow-world"><i class="fa fa-check"></i><b>10.2.1</b> Hellow World</a></li>
+<li class="chapter" data-level="10.2.1" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>10.2.1</b> Pythonの呼び出し</a></li>
+<li class="chapter" data-level="10.2.2" data-path="reticulate.html"><a href="reticulate.html#rからpythonのhellow-world"><i class="fa fa-check"></i><b>10.2.2</b> RからPythonのHellow World</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>10.3</b> Pythonのコードを実行</a></li>
-<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>10.4</b> Pythonの呼び出し</a></li>
-<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.5</b> PythoとRとの変数のやり取り</a></li>
+<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.3</b> PythoとRとの変数のやり取り</a></li>
+<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>10.4</b> Pythonのコードを実行</a></li>
+<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#rとpythoでの用語の違い"><i class="fa fa-check"></i><b>10.5</b> RとPythoでの用語の違い</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>11</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
 <ul>
@@ -375,12 +376,12 @@ qpdfはPDF操作のためのパッケージである．
 著者作パッケージのであるautomaterをインストールするが，これはCRANには登録していない．
 いずれはCRANに登録したいと思っているが，現段階ではGitHubで公開している．
 そのため，install.packages()ではなく，devtools::install_github()を使ってインストールする．</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="qpdf.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;qpdf&quot;</span>)</span>
-<span id="cb214-2"><a href="qpdf.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb214-3"><a href="qpdf.html#cb214-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/automater&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="qpdf.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb215-2"><a href="qpdf.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qpdf)</span>
-<span id="cb215-3"><a href="qpdf.html#cb215-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="qpdf.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;qpdf&quot;</span>)</span>
+<span id="cb215-2"><a href="qpdf.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb215-3"><a href="qpdf.html#cb215-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/automater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="qpdf.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb216-2"><a href="qpdf.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qpdf)</span>
+<span id="cb216-3"><a href="qpdf.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
 </div>
 <div id="qpdfでできること" class="section level2 hasAnchor" number="18.2">
 <h2><span class="header-section-number">18.2</span> qpdfでできること<a href="qpdf.html#qpdfでできること" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -402,27 +403,27 @@ pdftoolsではテキスト抽出，OCR(画像の文字認識，内部でtesserac
 <p>PDFの分割は非常に簡単である．
 pdf_split()関数にinput引数として分割するファイルを，output引数として出力パスを指定すれば良い．
 パスワードが必要な場合は，引数passwordを指定する．</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="qpdf.html#cb216-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;set_your_directory&quot;</span></span>
-<span id="cb216-2"><a href="qpdf.html#cb216-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
-<span id="cb216-3"><a href="qpdf.html#cb216-3" aria-hidden="true" tabindex="-1"></a>review <span class="ot">&lt;-</span> </span>
-<span id="cb216-4"><a href="qpdf.html#cb216-4" aria-hidden="true" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(</span>
-<span id="cb216-5"><a href="qpdf.html#cb216-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;https://www.jstage.jst.go.jp/article/vegsci/31/2/31_193/_pdf/-char/ja&quot;</span>, </span>
-<span id="cb216-6"><a href="qpdf.html#cb216-6" aria-hidden="true" tabindex="-1"></a>    fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;pdf&quot;</span>)</span>
-<span id="cb216-7"><a href="qpdf.html#cb216-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb216-8"><a href="qpdf.html#cb216-8" aria-hidden="true" tabindex="-1"></a>split_pdf <span class="ot">&lt;-</span> qpdf<span class="sc">::</span><span class="fu">pdf_split</span>(review)</span>
-<span id="cb216-9"><a href="qpdf.html#cb216-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_pdf)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="qpdf.html#cb217-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;set_your_directory&quot;</span></span>
+<span id="cb217-2"><a href="qpdf.html#cb217-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
+<span id="cb217-3"><a href="qpdf.html#cb217-3" aria-hidden="true" tabindex="-1"></a>review <span class="ot">&lt;-</span> </span>
+<span id="cb217-4"><a href="qpdf.html#cb217-4" aria-hidden="true" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(</span>
+<span id="cb217-5"><a href="qpdf.html#cb217-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;https://www.jstage.jst.go.jp/article/vegsci/31/2/31_193/_pdf/-char/ja&quot;</span>, </span>
+<span id="cb217-6"><a href="qpdf.html#cb217-6" aria-hidden="true" tabindex="-1"></a>    fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;pdf&quot;</span>)</span>
+<span id="cb217-7"><a href="qpdf.html#cb217-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb217-8"><a href="qpdf.html#cb217-8" aria-hidden="true" tabindex="-1"></a>split_pdf <span class="ot">&lt;-</span> qpdf<span class="sc">::</span><span class="fu">pdf_split</span>(review)</span>
+<span id="cb217-9"><a href="qpdf.html#cb217-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_pdf)</span></code></pre></div>
 <p>ファイル名の文字列のベクトルが返り値なので，それをもとにしてファイル名を変更すると実用的な自動化ができるだろう．</p>
 <p>ページを指定した抽出も可能で，pdf_subset()関数を使用する．
 引数としてpagesを指定する以外は，pdf_split()と同じ使い方である．</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="qpdf.html#cb217-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 指定ページを抽出，create a new pdf with a subset of the input pages</span></span>
-<span id="cb217-2"><a href="qpdf.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(input, <span class="at">pages =</span> <span class="dv">1</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="qpdf.html#cb218-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 指定ページを抽出，create a new pdf with a subset of the input pages</span></span>
+<span id="cb218-2"><a href="qpdf.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_subset</span>(input, <span class="at">pages =</span> <span class="dv">1</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>以下の内容は，パッケージautomaterのinst/rscディレクトリにあるsplit_qpdf.rscの内容である．
 拡張子.rscをRscriptに関連付けすれば，split_qpdf.rscと同じフォルダに保存したPDFファイルをsplit_qpdf.rscをクリックするだけで分割できる．
 拡張子の関連付けは，<a href="assoc.html#assoc">スクリプトの関連付け</a>を参照して欲しい．</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="qpdf.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;rsc/split_qpdf.rsc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;automater&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb218-2"><a href="qpdf.html#cb218-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">readLines</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb218-3"><a href="qpdf.html#cb218-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb218-4"><a href="qpdf.html#cb218-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="qpdf.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;rsc/split_qpdf.rsc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;automater&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb219-2"><a href="qpdf.html#cb219-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">readLines</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb219-3"><a href="qpdf.html#cb219-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb219-4"><a href="qpdf.html#cb219-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code></pre></div>
 <pre><code>##   #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  # 
 ##   # 
 ##   # See https://github.com/matutosi/automater/blob/main/vignettes/split_qpdf.md
@@ -459,16 +460,16 @@ pdf_split()関数にinput引数として分割するファイルを，output引�
 ## }
 ## 
 ## automater::message_to_continue()</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="qpdf.html#cb220-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># system.file(&quot;rsc/split_qpdf.rsc&quot;, package = &quot;automater&quot;) %&gt;%</span></span>
-<span id="cb220-2"><a href="qpdf.html#cb220-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   readtext::readtext(verbosity = 0) %&gt;%</span></span>
-<span id="cb220-3"><a href="qpdf.html#cb220-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   `[[`(&quot;text&quot;) %&gt;%</span></span>
-<span id="cb220-4"><a href="qpdf.html#cb220-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   cat()</span></span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="qpdf.html#cb221-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># system.file(&quot;rsc/split_qpdf.rsc&quot;, package = &quot;automater&quot;) %&gt;%</span></span>
+<span id="cb221-2"><a href="qpdf.html#cb221-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   readtext::readtext(verbosity = 0) %&gt;%</span></span>
+<span id="cb221-3"><a href="qpdf.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   `[[`(&quot;text&quot;) %&gt;%</span></span>
+<span id="cb221-4"><a href="qpdf.html#cb221-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   cat()</span></span></code></pre></div>
 <p>具体的な方法は次のとおりである．
 - split_qpdf.rsc をディレクトリーに保存する
 - 以下のコードで split_qpdf.rsc をコピー可能</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="qpdf.html#cb221-1" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;split_qpdf&quot;</span></span>
-<span id="cb221-2"><a href="qpdf.html#cb221-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;c:/&quot;</span> <span class="co"># set your path</span></span>
-<span id="cb221-3"><a href="qpdf.html#cb221-3" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">set_rsc</span>(file, path)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="qpdf.html#cb222-1" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;split_qpdf&quot;</span></span>
+<span id="cb222-2"><a href="qpdf.html#cb222-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;c:/&quot;</span> <span class="co"># set your path</span></span>
+<span id="cb222-3"><a href="qpdf.html#cb222-3" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">set_rsc</span>(file, path)</span></code></pre></div>
 <ul>
 <li>拡張子 .rsc を Rscript.exe に関連付ける</li>
 <li>分割したいPDFファイルを split_qpdf.rsc と同じディレクトリにコピーする</li>
@@ -484,23 +485,23 @@ pdf_split()関数にinput引数として分割するファイルを，output引�
 <h2><span class="header-section-number">18.4</span> PDFの結合<a href="qpdf.html#pdfの結合" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>結合させる場合は，input引数に結合させたいファイル名を指定する．
 それ以外は，pdf_split()と同様である．</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="qpdf.html#cb222-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 結合，join several pdf files into one</span></span>
-<span id="cb222-2"><a href="qpdf.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_combine</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="qpdf.html#cb223-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 結合，join several pdf files into one</span></span>
+<span id="cb223-2"><a href="qpdf.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_combine</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>特定のディレクトリ内のPDFファイルを1つのPDFファイルとして結合することを自動化するスクリプトは以下のとおりである．</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="qpdf.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;rsc/combine_qpdf.rsc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;automater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="qpdf.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;rsc/combine_qpdf.rsc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;automater&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;D:/pf/R/R-4.3.0/library/automater/rsc/combine_qpdf.rsc&quot;</code></pre>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="qpdf.html#cb225-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">readLines</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb225-2"><a href="qpdf.html#cb225-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb225-3"><a href="qpdf.html#cb225-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="qpdf.html#cb226-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">readLines</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb226-2"><a href="qpdf.html#cb226-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb226-3"><a href="qpdf.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code></pre></div>
 <ul>
 <li>combine_qpdf.rsc をディレクトリに保存
 <ul>
 <li>以下のコードで、combine_qpdf.rsc をコピー可能</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="qpdf.html#cb226-1" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;combine_qpdf&quot;</span></span>
-<span id="cb226-2"><a href="qpdf.html#cb226-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;c:/&quot;</span> <span class="co"># set your path</span></span>
-<span id="cb226-3"><a href="qpdf.html#cb226-3" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">set_rsc</span>(file, path)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="qpdf.html#cb227-1" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;combine_qpdf&quot;</span></span>
+<span id="cb227-2"><a href="qpdf.html#cb227-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;c:/&quot;</span> <span class="co"># set your path</span></span>
+<span id="cb227-3"><a href="qpdf.html#cb227-3" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">set_rsc</span>(file, path)</span></code></pre></div>
 <ul>
 <li>拡張子 .rsc を Rscript.exe に関連付ける<br />
 </li>
@@ -516,39 +517,39 @@ pdf_split()関数にinput引数として分割するファイルを，output引�
 </ul>
 <p>PDFファイルの結合順はファイル名の順序と同じなので，<code>fs::dir_ls()</code>でファイル名一覧を取得し，<code>file_move()</code>で名前を変更する必要がある．
 さらに，このあたりも自動化するには，ユーザからの入力を受け取り，それをもとにファイル名の順序を決めれば良い．</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="qpdf.html#cb227-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;set_your_directory&quot;</span></span>
-<span id="cb227-2"><a href="qpdf.html#cb227-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
-<span id="cb227-3"><a href="qpdf.html#cb227-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb227-4"><a href="qpdf.html#cb227-4" aria-hidden="true" tabindex="-1"></a>input_files <span class="ot">&lt;-</span> <span class="cf">function</span>(files){</span>
-<span id="cb227-5"><a href="qpdf.html#cb227-5" aria-hidden="true" tabindex="-1"></a>  len <span class="ot">&lt;-</span> <span class="fu">length</span>(files) <span class="sc">%&gt;%</span> <span class="fu">log10</span>() <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>()</span>
-<span id="cb227-6"><a href="qpdf.html#cb227-6" aria-hidden="true" tabindex="-1"></a>  no <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_pad</span>(<span class="fu">seq</span>(files), <span class="at">width =</span> len, <span class="at">side =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb227-7"><a href="qpdf.html#cb227-7" aria-hidden="true" tabindex="-1"></a>  prompt <span class="ot">&lt;-</span> </span>
-<span id="cb227-8"><a href="qpdf.html#cb227-8" aria-hidden="true" tabindex="-1"></a>    files <span class="sc">%&gt;%</span></span>
-<span id="cb227-9"><a href="qpdf.html#cb227-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(no, <span class="st">&quot;: &quot;</span>, .) <span class="sc">%&gt;%</span></span>
-<span id="cb227-10"><a href="qpdf.html#cb227-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb227-11"><a href="qpdf.html#cb227-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">結合するファイルを番号で指定してください(カンマ区切り)．</span><span class="sc">\n</span><span class="st">  例：3,1,2</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb227-12"><a href="qpdf.html#cb227-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>()</span>
-<span id="cb227-13"><a href="qpdf.html#cb227-13" aria-hidden="true" tabindex="-1"></a>  input_order <span class="ot">&lt;-</span> </span>
-<span id="cb227-14"><a href="qpdf.html#cb227-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">user_input</span>(prompt) <span class="sc">%&gt;%</span></span>
-<span id="cb227-15"><a href="qpdf.html#cb227-15" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb227-16"><a href="qpdf.html#cb227-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb227-17"><a href="qpdf.html#cb227-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>()</span>
-<span id="cb227-18"><a href="qpdf.html#cb227-18" aria-hidden="true" tabindex="-1"></a>  files[input_order]</span>
-<span id="cb227-19"><a href="qpdf.html#cb227-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb227-20"><a href="qpdf.html#cb227-20" aria-hidden="true" tabindex="-1"></a>user_input <span class="ot">&lt;-</span> <span class="cf">function</span>(prompt){</span>
-<span id="cb227-21"><a href="qpdf.html#cb227-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
-<span id="cb227-22"><a href="qpdf.html#cb227-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">readline</span>(prompt))</span>
-<span id="cb227-23"><a href="qpdf.html#cb227-23" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb227-24"><a href="qpdf.html#cb227-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(prompt)</span>
-<span id="cb227-25"><a href="qpdf.html#cb227-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">readLines</span>(<span class="st">&quot;stdin&quot;</span>, <span class="at">n=</span><span class="dv">1</span>))</span>
-<span id="cb227-26"><a href="qpdf.html#cb227-26" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb227-27"><a href="qpdf.html#cb227-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb227-28"><a href="qpdf.html#cb227-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb227-29"><a href="qpdf.html#cb227-29" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regexp =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.pdf&quot;</span>)</span>
-<span id="cb227-30"><a href="qpdf.html#cb227-30" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">input_files</span>(files)</span>
-<span id="cb227-31"><a href="qpdf.html#cb227-31" aria-hidden="true" tabindex="-1"></a>input</span>
-<span id="cb227-32"><a href="qpdf.html#cb227-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb227-33"><a href="qpdf.html#cb227-33" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">message_to_continue</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="qpdf.html#cb228-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;set_your_directory&quot;</span></span>
+<span id="cb228-2"><a href="qpdf.html#cb228-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
+<span id="cb228-3"><a href="qpdf.html#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb228-4"><a href="qpdf.html#cb228-4" aria-hidden="true" tabindex="-1"></a>input_files <span class="ot">&lt;-</span> <span class="cf">function</span>(files){</span>
+<span id="cb228-5"><a href="qpdf.html#cb228-5" aria-hidden="true" tabindex="-1"></a>  len <span class="ot">&lt;-</span> <span class="fu">length</span>(files) <span class="sc">%&gt;%</span> <span class="fu">log10</span>() <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>()</span>
+<span id="cb228-6"><a href="qpdf.html#cb228-6" aria-hidden="true" tabindex="-1"></a>  no <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_pad</span>(<span class="fu">seq</span>(files), <span class="at">width =</span> len, <span class="at">side =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb228-7"><a href="qpdf.html#cb228-7" aria-hidden="true" tabindex="-1"></a>  prompt <span class="ot">&lt;-</span> </span>
+<span id="cb228-8"><a href="qpdf.html#cb228-8" aria-hidden="true" tabindex="-1"></a>    files <span class="sc">%&gt;%</span></span>
+<span id="cb228-9"><a href="qpdf.html#cb228-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(no, <span class="st">&quot;: &quot;</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb228-10"><a href="qpdf.html#cb228-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb228-11"><a href="qpdf.html#cb228-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">結合するファイルを番号で指定してください(カンマ区切り)．</span><span class="sc">\n</span><span class="st">  例：3,1,2</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb228-12"><a href="qpdf.html#cb228-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>()</span>
+<span id="cb228-13"><a href="qpdf.html#cb228-13" aria-hidden="true" tabindex="-1"></a>  input_order <span class="ot">&lt;-</span> </span>
+<span id="cb228-14"><a href="qpdf.html#cb228-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">user_input</span>(prompt) <span class="sc">%&gt;%</span></span>
+<span id="cb228-15"><a href="qpdf.html#cb228-15" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb228-16"><a href="qpdf.html#cb228-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb228-17"><a href="qpdf.html#cb228-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>()</span>
+<span id="cb228-18"><a href="qpdf.html#cb228-18" aria-hidden="true" tabindex="-1"></a>  files[input_order]</span>
+<span id="cb228-19"><a href="qpdf.html#cb228-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb228-20"><a href="qpdf.html#cb228-20" aria-hidden="true" tabindex="-1"></a>user_input <span class="ot">&lt;-</span> <span class="cf">function</span>(prompt){</span>
+<span id="cb228-21"><a href="qpdf.html#cb228-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
+<span id="cb228-22"><a href="qpdf.html#cb228-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">readline</span>(prompt))</span>
+<span id="cb228-23"><a href="qpdf.html#cb228-23" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb228-24"><a href="qpdf.html#cb228-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(prompt)</span>
+<span id="cb228-25"><a href="qpdf.html#cb228-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">readLines</span>(<span class="st">&quot;stdin&quot;</span>, <span class="at">n=</span><span class="dv">1</span>))</span>
+<span id="cb228-26"><a href="qpdf.html#cb228-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb228-27"><a href="qpdf.html#cb228-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb228-28"><a href="qpdf.html#cb228-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb228-29"><a href="qpdf.html#cb228-29" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regexp =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.pdf&quot;</span>)</span>
+<span id="cb228-30"><a href="qpdf.html#cb228-30" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">input_files</span>(files)</span>
+<span id="cb228-31"><a href="qpdf.html#cb228-31" aria-hidden="true" tabindex="-1"></a>input</span>
+<span id="cb228-32"><a href="qpdf.html#cb228-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb228-33"><a href="qpdf.html#cb228-33" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">message_to_continue</span>()</span></code></pre></div>
 <p>上のコードの<code>input_files()</code>では，ファイル名の一覧からファイル数を取り出し，ファイル番号を画面表示用に桁揃えしている．
 その後，ファイル番号とファイル名，さらにユーザへの註釈を結合して，プロンプトに表示するメッセージ文字列を生成する．
 メッセージを<code>user_input()</code>を用いて表示するとともに，ユーザからの入力を受け取る．
@@ -576,14 +577,14 @@ pdf_split()関数にinput引数として分割するファイルを，output引�
 ネット上にある重いPDFを表示させる場合に特に役立つ．
 使い方は次のとおりである．
 詳細な説明は不要だろう．</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="qpdf.html#cb228-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 圧縮，compress or linearize a pdf file</span></span>
-<span id="cb228-2"><a href="qpdf.html#cb228-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 最適化する場合は，linearize = TRUE</span></span>
-<span id="cb228-3"><a href="qpdf.html#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_compress</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">linearize =</span> <span class="cn">FALSE</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="qpdf.html#cb229-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 圧縮，compress or linearize a pdf file</span></span>
+<span id="cb229-2"><a href="qpdf.html#cb229-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 最適化する場合は，linearize = TRUE</span></span>
+<span id="cb229-3"><a href="qpdf.html#cb229-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_compress</span>(input, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">linearize =</span> <span class="cn">FALSE</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 </div>
 <div id="pdfへのページ番号付加" class="section level2 hasAnchor" number="18.6">
 <h2><span class="header-section-number">18.6</span> PDFへのページ番号付加<a href="qpdf.html#pdfへのページ番号付加" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>pdf_overlay_stamp()</code>を使うと，PDFファイルに別のPDFファイルを重ね合わせることができる．</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="qpdf.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="qpdf.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_overlay_stamp</span>(input, stamp, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>引数<code>input</code>にはベースとなるPDFファイルを，<code>stamp</code>には重ね合わせるPDFファイルを指定する．
 <code>stamp</code>として「部外秘」「資料1」などを記載したPDFファイルをあらかじめ準備しておく．
 <code>input</code>の各ページに<code>stamp</code>の1ページ目が重ね合わせられる．</p>
@@ -706,8 +707,8 @@ texを使うのが難しければ，ワードなどで同様の書式のファ�
 <code>pdf_rotate_pages()</code>はPDFファイルのページを90度単位で回転できる．
 <code>angle</code>で時計回りの角度を指定する．
 <code>relative</code>が<code>TRUE</code>のときは入力時点での角度からの相対的な角度で回転し，<code>FALSE</code>のときは<code>angle = 0</code>のときは縦長で<code>angle = 90</code>のときは横長になる．</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="qpdf.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_length</span>(input, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)   </span>
-<span id="cb231-2"><a href="qpdf.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_rotate_pages</span>(input, pages, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">relative =</span> <span class="cn">FALSE</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)   </span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="qpdf.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_length</span>(input, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)   </span>
+<span id="cb232-2"><a href="qpdf.html#cb232-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_rotate_pages</span>(input, pages, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">relative =</span> <span class="cn">FALSE</span>, <span class="at">output =</span> <span class="cn">NULL</span>, <span class="at">password =</span> <span class="st">&quot;&quot;</span>)   </span></code></pre></div>
 </div>
 <div id="pdftools" class="section level2 hasAnchor" number="18.8">
 <h2><span class="header-section-number">18.8</span> pdftoolsでテキストの取り出し<a href="qpdf.html#pdftools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -720,16 +721,16 @@ MacやLinuxでは，popplerを別途インストールしなければならな�
 popplerのインストール方法は以下を参考にして欲しい．</p>
 <p><a href="https://docs.ropensci.org/pdftools/" class="uri">https://docs.ropensci.org/pdftools/</a></p>
 <p>まずは，パッケージのインストールと呼び出しを実行する．</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="qpdf.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pdftools&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="qpdf.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="qpdf.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pdftools&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="qpdf.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span></code></pre></div>
 <p>関数<code>pdf_text()</code>にPDFファイルのパスを指定すれば，テキストを抽出した結果が得られる．
 1ページごとの内容が文字列のベクトルになっている．</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="qpdf.html#cb234-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://docs.ropensci.org/pdftools/</span></span>
-<span id="cb234-2"><a href="qpdf.html#cb234-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://arxiv.org/pdf/1403.2805.pdf&quot;</span></span>
-<span id="cb234-3"><a href="qpdf.html#cb234-3" aria-hidden="true" tabindex="-1"></a>destfile <span class="ot">&lt;-</span> <span class="st">&quot;1403.2805.pdf&quot;</span></span>
-<span id="cb234-4"><a href="qpdf.html#cb234-4" aria-hidden="true" tabindex="-1"></a>curl<span class="sc">::</span><span class="fu">curl_download</span>(url, destfile)</span>
-<span id="cb234-5"><a href="qpdf.html#cb234-5" aria-hidden="true" tabindex="-1"></a>txt <span class="ot">&lt;-</span> pdftools<span class="sc">::</span><span class="fu">pdf_text</span>(destfile)</span>
-<span id="cb234-6"><a href="qpdf.html#cb234-6" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(txt)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="qpdf.html#cb235-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://docs.ropensci.org/pdftools/</span></span>
+<span id="cb235-2"><a href="qpdf.html#cb235-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://arxiv.org/pdf/1403.2805.pdf&quot;</span></span>
+<span id="cb235-3"><a href="qpdf.html#cb235-3" aria-hidden="true" tabindex="-1"></a>destfile <span class="ot">&lt;-</span> <span class="st">&quot;1403.2805.pdf&quot;</span></span>
+<span id="cb235-4"><a href="qpdf.html#cb235-4" aria-hidden="true" tabindex="-1"></a>curl<span class="sc">::</span><span class="fu">curl_download</span>(url, destfile)</span>
+<span id="cb235-5"><a href="qpdf.html#cb235-5" aria-hidden="true" tabindex="-1"></a>txt <span class="ot">&lt;-</span> pdftools<span class="sc">::</span><span class="fu">pdf_text</span>(destfile)</span>
+<span id="cb235-6"><a href="qpdf.html#cb235-6" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(txt)</span></code></pre></div>
 <pre><code>## # A tibble: 29 × 1
 ##    value                                                                        
 ##    &lt;chr&gt;                                                                        
@@ -746,7 +747,7 @@ popplerのインストール方法は以下を参考にして欲しい．</p>
 ## # ℹ 19 more rows</code></pre>
 <p>文字列内の<code>\n</code>は改行を示しているが，そのままでは読みにくい．
 <code>\n</code>で改行して画面で表示するには<code>cat()</code>を使う．</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="qpdf.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(txt[<span class="dv">1</span>])  <span class="co"># [1]で1ページ目</span></span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="qpdf.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(txt[<span class="dv">1</span>])  <span class="co"># [1]で1ページ目</span></span></code></pre></div>
 <!--
   # install.packages("Rpoppler")
   # library(Rpoppler)
