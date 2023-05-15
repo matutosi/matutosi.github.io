@@ -71,7 +71,7 @@ path
 ```
 
 ```
-## [1] "C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe"
+## [1] "C:/Users/matutosi/AppData/Local/Programs/Python/Python311/python.exe"
 ```
 
 ```r
