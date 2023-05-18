@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-15" />
+<meta name="date" content="2023-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,10 +136,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a>
 <ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#対象とする読者"><i class="fa fa-check"></i><b>0.1</b> 対象とする読者</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#特徴"><i class="fa fa-check"></i><b>0.2</b> 特徴</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#読み方"><i class="fa fa-check"></i><b>0.3</b> 読み方</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>1</b> Rとは</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#特徴"><i class="fa fa-check"></i><b>1.1</b> 特徴</a></li>
+<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#特徴-1"><i class="fa fa-check"></i><b>1.1</b> 特徴</a></li>
 <li class="chapter" data-level="1.2" data-path="R.html"><a href="R.html#点突破"><i class="fa fa-check"></i><b>1.2</b> 1点突破</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Rのインストール</a>
@@ -318,15 +320,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>18.7</b> その他の関数</a></li>
 <li class="chapter" data-level="18.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>18.8</b> pdftoolsでテキストの取り出し</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfをdocxに変換</a>
+<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfとdocxを相互変換</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
-<ul>
-<li class="chapter" data-level="19.1.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
-<li class="chapter" data-level="19.1.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
-<li class="chapter" data-level="19.1.3" data-path="RDCOMClient.html"><a href="RDCOMClient.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
-</ul></li>
-<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#pdf2docx"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
+<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
+<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.2</b> RDCOMClient</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>20</b> Microsoft365R</a>
 <ul>
@@ -455,7 +452,7 @@ fsパッケージの関数は，パス操作は<code>path_*</code>，ディレ�
 <span id="cb116-10"><a href="fs.html#cb116-10" aria-hidden="true" tabindex="-1"></a><span class="fu">path_norm</span>(<span class="st">&quot;path&quot;</span>)                                   <span class="co"># 参照や&quot;..&quot;の削除   </span></span>
 <span id="cb116-11"><a href="fs.html#cb116-11" aria-hidden="true" tabindex="-1"></a><span class="fu">path_real</span>(<span class="st">&quot;path&quot;</span>)                                   <span class="co"># 実体パス(シンボリックリンクを実体パスに)   </span></span>
 <span id="cb116-12"><a href="fs.html#cb116-12" aria-hidden="true" tabindex="-1"></a><span class="fu">path_abs</span>(<span class="st">&quot;path&quot;</span>)                                    <span class="co"># 絶対パス</span></span>
-<span id="cb116-13"><a href="fs.html#cb116-13" aria-hidden="true" tabindex="-1"></a><span class="fu">path_rel</span>(<span class="st">&quot;path/foo&quot;</span>, <span class="st">&quot;path/bar&quot;</span>)                    <span class="co">#  相対パス  </span></span>
+<span id="cb116-13"><a href="fs.html#cb116-13" aria-hidden="true" tabindex="-1"></a><span class="fu">path_rel</span>(<span class="st">&quot;path/foo&quot;</span>, <span class="st">&quot;path/bar&quot;</span>)                    <span class="co"># 相対パス</span></span>
 <span id="cb116-14"><a href="fs.html#cb116-14" aria-hidden="true" tabindex="-1"></a><span class="fu">path_common</span>(<span class="fu">c</span>(<span class="st">&quot;path/foo&quot;</span>, <span class="st">&quot;path/bar&quot;</span>, <span class="st">&quot;path/baz&quot;</span>))  <span class="co"># パスの共通部分   </span></span>
 <span id="cb116-15"><a href="fs.html#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="fu">path_ext_set</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;new_ext&quot;</span>)                     <span class="co"># 拡張子変更   </span></span>
 <span id="cb116-16"><a href="fs.html#cb116-16" aria-hidden="true" tabindex="-1"></a><span class="fu">path_sanitize</span>(<span class="st">&quot;path&quot;</span>)                               <span class="co"># 無効な文字を削除   </span></span>
@@ -529,13 +526,13 @@ fsパッケージの関数は，パス操作は<code>path_*</code>，ディレ�
 <div id="おまけguiでの作業フォルダの指定" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> おまけ：GUIでの作業フォルダの指定<a href="fs.html#おまけguiでの作業フォルダの指定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>GUI(Graphical User Interface)による作業フォルダを指定するには，tcltkパッケージを使うと良い．
+tcltkパッケージは，Rをインストールすると既に入っているので，インストールの必要はない．
 なお，<code>tkchooseDirectory()</code>で得たオブジェクトをそのまま<code>setwd()</code>で指定するとエラーになるので，<code>fs::path()</code>でパスに変換しておく．</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="fs.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
-<span id="cb120-2"><a href="fs.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tcltk&quot;</span>)</span>
-<span id="cb120-3"><a href="fs.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tcltk)</span>
-<span id="cb120-4"><a href="fs.html#cb120-4" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> tcltk<span class="sc">::</span><span class="fu">tkchooseDirectory</span>()</span>
-<span id="cb120-5"><a href="fs.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(fs<span class="sc">::</span><span class="fu">path</span>(wd))</span>
-<span id="cb120-6"><a href="fs.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<span id="cb120-2"><a href="fs.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tcltk)</span>
+<span id="cb120-3"><a href="fs.html#cb120-3" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> tcltk<span class="sc">::</span><span class="fu">tkchooseDirectory</span>()</span>
+<span id="cb120-4"><a href="fs.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(fs<span class="sc">::</span><span class="fu">path</span>(wd))</span>
+<span id="cb120-5"><a href="fs.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 
 </div>
 </div>

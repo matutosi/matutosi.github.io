@@ -1,25 +1,108 @@
-# RDCOMClientでpdfをdocxに変換 {#RDCOMClient}
+# RDCOMClientでpdfとdocxを相互変換 {#RDCOMClient}
+
+RDCOMClientはWindowsに特化したパッケージのため他のOSでは利用できない．
+
+
+## 準備
+
+
+CRANには登録されておらず，ウェブページかGitHubからインストールする．
+`install.packages()`でインストールする場合は，バイナリなので比較的時間が早いがRのバージョンによってはうまくインストールできないかもしれない．
+`install_github()`の場合は，コンパイルするのに少し時間がかかる．
+
+
+```r
+  # どちらか一方でうまくいけばOK
+utils::install.packages("RDCOMClient", repos = "http://www.omegahat.net/R", type = "win.binary")
+devtools::install_github("omegahat/RDCOMClient")
+devtools::install_github("matutosi/automater")
+```
 
 
 ```r
 library(tidyverse)
+library(RDCOMClient)
+library(automater)
 ```
 
 ## RDCOMClient
 
-https://github.com/omegahat/RDCOMClient
-CRANにはないが，
-
-### インストール
 
 ```r
-install.packages("RDCOMClient", 
-  repos = "http://www.omegahat.net/R", 
-  type = "win.binary")
+convert_docs
 ```
 
+```
+## function (path, format) 
+## {
+##     if (fs::path_ext(path) == format) {
+##         return(invisible(path))
+##     }
+##     no <- switch(format, pdf = 17, xps = 19, html = 20, rtf = 23, 
+##         txt = 25)
+##     path <- normalizePath(path)
+##     suppressWarnings({
+##         converted <- normalizePath(path_convert(path, pre = "converted_", 
+##             ext = format))
+##     })
+##     wordApp <- RDCOMClient::COMCreate("Word.Application")
+##     wordApp[["Visible"]] <- TRUE
+##     wordApp[["DisplayAlerts"]] <- FALSE
+##     doc <- wordApp[["Documents"]]$Open(path, ConfirmConversions = FALSE)
+##     doc$SaveAs2(converted, FileFormat = no)
+##     doc$close()
+##     return(invisible(converted))
+## }
+## <bytecode: 0x0000026078a552a8>
+## <environment: namespace:automater>
+```
+
+`convert_docs()`の中でファイルの読み込み・保存でファイル名を指定する．
+その際に`normalizePath()`を使う必要がある．
+この部分を別の関数に置き換えても大丈夫かと考えて，`fs::path_norm()`を使ってみたところエラーになった．
+このように，コードを改善しようとする場合は，作業の結果としてうまく動作しないことがよくり，注意が必要である．
+
+`doc$SaveAs2()`の`FileFormat = no`で保存形式をそれに対応する数値で指定している．
+このあたりは，試行錯誤の結果である．
+もしかしたら他の形式での保存が可能なのかもしれないが，確実に変換できるのは以下の5つである．
+
+- pdf：PDF
+- xps：XML Paper Specification(xmlベースファイル形式)   
+- html：HTML   
+- rtf：リッチテキスト   
+- txt：テキスト   
+
+
+なお，`convert_docs()`の実行時には，MS Wordを起動してその機能としてファイルの読み込み・保存をする．
+そのため，MS Wordがインストールされていないと，この関数は使えない．
+
+
+複数のdocxファイルを圧縮したzipファイルがあり，ファイル解凍，PDFへの変換，1つのPDFファイルへの結合をするようなコードは以下のとおりである．
+結合時の順序はファイル名の順序に従う．
+そのため，PDFファイルでのファイル順を踏まえて，docxの命名規則を決める必要がある．
+
+- `unzip()`で解凍   
+- `fs::dir_ls()`でファイル名取得   
+- `convert_docs()`で形式変換   
+- `qpdf_combine()`で結合
+
+
+<!--
+
+```r
+files <- 
+  "C:/Users/matu/Desktop" %>%
+  fs::dir_ls()
+files %>%
+  purrr::walk(convert_docs, format = "pdf")
+```
+
+
+
 ### 変換実行
-https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411
+  # https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411
+  # https://stackoverflow.com/questions/49113503/how-to-convert-docx-to-pdf
+
 
 
 ```r
@@ -77,3 +160,4 @@ pdf2docx("a.pdf")
 ## pdf2docx
 
 
+-->

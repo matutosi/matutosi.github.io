@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 19 RDCOMClientでpdfをdocxに変換 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 19 RDCOMClientでpdfをdocxに変換 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 19 RDCOMClientでpdfとdocxを相互変換 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 19 RDCOMClientでpdfとdocxを相互変換 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 19 RDCOMClientでpdfをdocxに変換 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 19 RDCOMClientでpdfとdocxを相互変換 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 19 RDCOMClientでpdfをdocxに変換 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 19 RDCOMClientでpdfとdocxを相互変換 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-15" />
+<meta name="date" content="2023-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,10 +136,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a>
 <ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#対象とする読者"><i class="fa fa-check"></i><b>0.1</b> 対象とする読者</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#特徴"><i class="fa fa-check"></i><b>0.2</b> 特徴</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#読み方"><i class="fa fa-check"></i><b>0.3</b> 読み方</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>1</b> Rとは</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#特徴"><i class="fa fa-check"></i><b>1.1</b> 特徴</a></li>
+<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#特徴-1"><i class="fa fa-check"></i><b>1.1</b> 特徴</a></li>
 <li class="chapter" data-level="1.2" data-path="R.html"><a href="R.html#点突破"><i class="fa fa-check"></i><b>1.2</b> 1点突破</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Rのインストール</a>
@@ -318,15 +320,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>18.7</b> その他の関数</a></li>
 <li class="chapter" data-level="18.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>18.8</b> pdftoolsでテキストの取り出し</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfをdocxに変換</a>
+<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfとdocxを相互変換</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
-<ul>
-<li class="chapter" data-level="19.1.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
-<li class="chapter" data-level="19.1.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
-<li class="chapter" data-level="19.1.3" data-path="RDCOMClient.html"><a href="RDCOMClient.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
-</ul></li>
-<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#pdf2docx"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
+<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
+<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.2</b> RDCOMClient</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>20</b> Microsoft365R</a>
 <ul>
@@ -363,70 +360,151 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="RDCOMClient" class="section level1 hasAnchor" number="19">
-<h1><span class="header-section-number">Chap. 19</span> RDCOMClientでpdfをdocxに変換<a href="RDCOMClient.html#RDCOMClient" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="RDCOMClient.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div id="rdcomclient" class="section level2 hasAnchor" number="19.1">
-<h2><span class="header-section-number">19.1</span> RDCOMClient<a href="RDCOMClient.html#rdcomclient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://github.com/omegahat/RDCOMClient" class="uri">https://github.com/omegahat/RDCOMClient</a>
-CRANにはないが，</p>
-<div id="インストール" class="section level3 hasAnchor" number="19.1.1">
-<h3><span class="header-section-number">19.1.1</span> インストール<a href="RDCOMClient.html#インストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="RDCOMClient.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RDCOMClient&quot;</span>, </span>
-<span id="cb247-2"><a href="RDCOMClient.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">&quot;http://www.omegahat.net/R&quot;</span>, </span>
-<span id="cb247-3"><a href="RDCOMClient.html#cb247-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;win.binary&quot;</span>)</span></code></pre></div>
+<h1><span class="header-section-number">Chap. 19</span> RDCOMClientでpdfとdocxを相互変換<a href="RDCOMClient.html#RDCOMClient" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>RDCOMClientはWindowsに特化したパッケージのため他のOSでは利用できない．</p>
+<div id="準備-14" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">19.1</span> 準備<a href="RDCOMClient.html#準備-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>CRANには登録されておらず，ウェブページかGitHubからインストールする．
+<code>install.packages()</code>でインストールする場合は，バイナリなので比較的時間が早いがRのバージョンによってはうまくインストールできないかもしれない．
+<code>install_github()</code>の場合は，コンパイルするのに少し時間がかかる．</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="RDCOMClient.html#cb246-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># どちらか一方でうまくいけばOK</span></span>
+<span id="cb246-2"><a href="RDCOMClient.html#cb246-2" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">install.packages</span>(<span class="st">&quot;RDCOMClient&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;http://www.omegahat.net/R&quot;</span>, <span class="at">type =</span> <span class="st">&quot;win.binary&quot;</span>)</span>
+<span id="cb246-3"><a href="RDCOMClient.html#cb246-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;omegahat/RDCOMClient&quot;</span>)</span>
+<span id="cb246-4"><a href="RDCOMClient.html#cb246-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/automater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="RDCOMClient.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb247-2"><a href="RDCOMClient.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
+<span id="cb247-3"><a href="RDCOMClient.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
 </div>
-<div id="変換実行" class="section level3 hasAnchor" number="19.1.2">
-<h3><span class="header-section-number">19.1.2</span> 変換実行<a href="RDCOMClient.html#変換実行" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><a href="https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411" class="uri">https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411</a></p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="RDCOMClient.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
-<span id="cb248-2"><a href="RDCOMClient.html#cb248-2" aria-hidden="true" tabindex="-1"></a>wordApp <span class="ot">&lt;-</span> <span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
-<span id="cb248-3"><a href="RDCOMClient.html#cb248-3" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb248-4"><a href="RDCOMClient.html#cb248-4" aria-hidden="true" tabindex="-1"></a>wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb248-5"><a href="RDCOMClient.html#cb248-5" aria-hidden="true" tabindex="-1"></a>path_To_PDF_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.pdf&quot;</span></span>
-<span id="cb248-6"><a href="RDCOMClient.html#cb248-6" aria-hidden="true" tabindex="-1"></a>path_To_Word_File <span class="ot">&lt;-</span> <span class="st">&quot;xxx.docx&quot;</span></span>
-<span id="cb248-7"><a href="RDCOMClient.html#cb248-7" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> </span>
-<span id="cb248-8"><a href="RDCOMClient.html#cb248-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(path_To_PDF_File), </span>
-<span id="cb248-9"><a href="RDCOMClient.html#cb248-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb248-10"><a href="RDCOMClient.html#cb248-10" aria-hidden="true" tabindex="-1"></a>doc<span class="sc">$</span><span class="fu">SaveAs2</span>(path_To_Word_File)</span></code></pre></div>
-</div>
-<div id="ラッパー関数" class="section level3 hasAnchor" number="19.1.3">
-<h3><span class="header-section-number">19.1.3</span> ラッパー関数<a href="RDCOMClient.html#ラッパー関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="RDCOMClient.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
-<span id="cb249-2"><a href="RDCOMClient.html#cb249-2" aria-hidden="true" tabindex="-1"></a>pdf2docx <span class="ot">&lt;-</span> <span class="cf">function</span>(pdf, <span class="at">docx =</span> <span class="cn">NULL</span>){</span>
-<span id="cb249-3"><a href="RDCOMClient.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(docx)){</span>
-<span id="cb249-4"><a href="RDCOMClient.html#cb249-4" aria-hidden="true" tabindex="-1"></a>    docx <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, pdf))</span>
-<span id="cb249-5"><a href="RDCOMClient.html#cb249-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb249-6"><a href="RDCOMClient.html#cb249-6" aria-hidden="true" tabindex="-1"></a>  wordApp <span class="ot">&lt;-</span> RDCOMClient<span class="sc">::</span><span class="fu">COMCreate</span>(<span class="st">&quot;Word.Application&quot;</span>)</span>
-<span id="cb249-7"><a href="RDCOMClient.html#cb249-7" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;Visible&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb249-8"><a href="RDCOMClient.html#cb249-8" aria-hidden="true" tabindex="-1"></a>  wordApp[[<span class="st">&quot;DisplayAlerts&quot;</span>]] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb249-9"><a href="RDCOMClient.html#cb249-9" aria-hidden="true" tabindex="-1"></a>  doc <span class="ot">&lt;-</span> </span>
-<span id="cb249-10"><a href="RDCOMClient.html#cb249-10" aria-hidden="true" tabindex="-1"></a>    wordApp[[<span class="st">&quot;Documents&quot;</span>]]<span class="sc">$</span><span class="fu">Open</span>(<span class="fu">normalizePath</span>(pdf), <span class="at">ConfirmConversions =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb249-11"><a href="RDCOMClient.html#cb249-11" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">SaveAs2</span>(docx)</span>
-<span id="cb249-12"><a href="RDCOMClient.html#cb249-12" aria-hidden="true" tabindex="-1"></a>  doc<span class="sc">$</span><span class="fu">close</span>()</span>
-<span id="cb249-13"><a href="RDCOMClient.html#cb249-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb249-14"><a href="RDCOMClient.html#cb249-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-15"><a href="RDCOMClient.html#cb249-15" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/matu/work/tmp/&quot;</span></span>
-<span id="cb249-16"><a href="RDCOMClient.html#cb249-16" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb249-17"><a href="RDCOMClient.html#cb249-17" aria-hidden="true" tabindex="-1"></a>path_docx <span class="ot">&lt;-</span> <span class="cf">function</span>(path_pdf){</span>
-<span id="cb249-18"><a href="RDCOMClient.html#cb249-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">grepl</span>(<span class="st">&quot;[A-z]:&quot;</span>, path_pdf)){</span>
-<span id="cb249-19"><a href="RDCOMClient.html#cb249-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
-<span id="cb249-20"><a href="RDCOMClient.html#cb249-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb249-21"><a href="RDCOMClient.html#cb249-21" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="fu">sub</span>(<span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;docx&quot;</span>, path_pdf))</span>
-<span id="cb249-22"><a href="RDCOMClient.html#cb249-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sub</span>(<span class="st">&quot;//&quot;</span>, <span class="st">&quot;/&quot;</span>, path))</span>
-<span id="cb249-23"><a href="RDCOMClient.html#cb249-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb249-24"><a href="RDCOMClient.html#cb249-24" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;a.pdf&quot;</span>                 ), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
-<span id="cb249-25"><a href="RDCOMClient.html#cb249-25" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;d:/matu/work/tmp/a.pdf&quot;</span>), <span class="st">&quot;d:/matu/work/tmp/a.docx&quot;</span>     )</span>
-<span id="cb249-26"><a href="RDCOMClient.html#cb249-26" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;test/a.pdf&quot;</span>            ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
-<span id="cb249-27"><a href="RDCOMClient.html#cb249-27" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">path_docx</span>(<span class="st">&quot;/test/a.pdf&quot;</span>           ), <span class="st">&quot;d:/matu/work/tmp/test/a.docx&quot;</span>)</span>
-<span id="cb249-28"><a href="RDCOMClient.html#cb249-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-29"><a href="RDCOMClient.html#cb249-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-30"><a href="RDCOMClient.html#cb249-30" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/&quot;</span></span>
-<span id="cb249-31"><a href="RDCOMClient.html#cb249-31" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
-<span id="cb249-32"><a href="RDCOMClient.html#cb249-32" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf2docx</span>(<span class="st">&quot;a.pdf&quot;</span>)</span></code></pre></div>
-</div>
-</div>
-<div id="pdf2docx" class="section level2 hasAnchor" number="19.2">
-<h2><span class="header-section-number">19.2</span> pdf2docx<a href="RDCOMClient.html#pdf2docx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rdcomclient" class="section level2 hasAnchor" number="19.2">
+<h2><span class="header-section-number">19.2</span> RDCOMClient<a href="RDCOMClient.html#rdcomclient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="RDCOMClient.html#cb248-1" aria-hidden="true" tabindex="-1"></a>convert_docs</span></code></pre></div>
+<pre><code>## function (path, format) 
+## {
+##     if (fs::path_ext(path) == format) {
+##         return(invisible(path))
+##     }
+##     no &lt;- switch(format, pdf = 17, xps = 19, html = 20, rtf = 23, 
+##         txt = 25)
+##     path &lt;- normalizePath(path)
+##     suppressWarnings({
+##         converted &lt;- normalizePath(path_convert(path, pre = &quot;converted_&quot;, 
+##             ext = format))
+##     })
+##     wordApp &lt;- RDCOMClient::COMCreate(&quot;Word.Application&quot;)
+##     wordApp[[&quot;Visible&quot;]] &lt;- TRUE
+##     wordApp[[&quot;DisplayAlerts&quot;]] &lt;- FALSE
+##     doc &lt;- wordApp[[&quot;Documents&quot;]]$Open(path, ConfirmConversions = FALSE)
+##     doc$SaveAs2(converted, FileFormat = no)
+##     doc$close()
+##     return(invisible(converted))
+## }
+## &lt;bytecode: 0x0000028430e49e80&gt;
+## &lt;environment: namespace:automater&gt;</code></pre>
+<p><code>convert_docs()</code>の中でファイルの読み込み・保存でファイル名を指定する．
+その際に<code>normalizePath()</code>を使う必要がある．
+この部分を別の関数に置き換えても大丈夫かと考えて，<code>fs::path_norm()</code>を使ってみたところエラーになった．
+このように，コードを改善しようとする場合は，作業の結果としてうまく動作しないことがよくり，注意が必要である．</p>
+<p><code>doc$SaveAs2()</code>の<code>FileFormat = no</code>で保存形式をそれに対応する数値で指定している．
+このあたりは，試行錯誤の結果である．
+もしかしたら他の形式での保存が可能なのかもしれないが，確実に変換できるのは以下の5つである．</p>
+<ul>
+<li>pdf：PDF</li>
+<li>xps：XML Paper Specification(xmlベースファイル形式)<br />
+</li>
+<li>html：HTML<br />
+</li>
+<li>rtf：リッチテキスト<br />
+</li>
+<li>txt：テキスト</li>
+</ul>
+<p>なお，<code>convert_docs()</code>の実行時には，MS Wordを起動してその機能としてファイルの読み込み・保存をする．
+そのため，MS Wordがインストールされていないと，この関数は使えない．</p>
+<p>複数のdocxファイルを圧縮したzipファイルがあり，ファイル解凍，PDFへの変換，1つのPDFファイルへの結合をするようなコードは以下のとおりである．
+結合時の順序はファイル名の順序に従う．
+そのため，PDFファイルでのファイル順を踏まえて，docxの命名規則を決める必要がある．</p>
+<ul>
+<li><code>unzip()</code>で解凍<br />
+</li>
+<li><code>fs::dir_ls()</code>でファイル名取得<br />
+</li>
+<li><code>convert_docs()</code>で形式変換<br />
+</li>
+<li><code>qpdf_combine()</code>で結合</li>
+</ul>
+<!--
+
+```r
+files <- 
+  "C:/Users/matu/Desktop" %>%
+  fs::dir_ls()
+files %>%
+  purrr::walk(convert_docs, format = "pdf")
+```
+
+
+
+### 変換実行
+  # https://stackoverflow.com/questions/32846741/convert-pdf-file-to-docx/73720411#73720411
+  # https://stackoverflow.com/questions/49113503/how-to-convert-docx-to-pdf
+
+
+
+```r
+library(RDCOMClient)
+wordApp <- COMCreate("Word.Application")
+wordApp[["Visible"]] <- TRUE
+wordApp[["DisplayAlerts"]] <- FALSE
+path_To_PDF_File <- "xxx.pdf"
+path_To_Word_File <- "xxx.docx"
+doc <- 
+  wordApp[["Documents"]]$Open(normalizePath(path_To_PDF_File), 
+    ConfirmConversions = FALSE)
+doc$SaveAs2(path_To_Word_File)
+```
+
+### ラッパー関数
+
+
+```r
+library(RDCOMClient)
+pdf2docx <- function(pdf, docx = NULL){
+  if(is.null(docx)){
+    docx <- paste0(getwd(), sub("pdf", "docx", pdf))
+  }
+  wordApp <- RDCOMClient::COMCreate("Word.Application")
+  wordApp[["Visible"]] <- TRUE
+  wordApp[["DisplayAlerts"]] <- FALSE
+  doc <- 
+    wordApp[["Documents"]]$Open(normalizePath(pdf), ConfirmConversions = FALSE)
+  doc$SaveAs2(docx)
+  doc$close()
+}
+
+wd <- "d:/matu/work/tmp/"
+setwd(wd)
+path_docx <- function(path_pdf){
+  if(grepl("[A-z]:", path_pdf)){
+    return(sub("pdf", "docx", path_pdf))
+  }
+  path <- file.path(getwd(), sub("pdf", "docx", path_pdf))
+  return(sub("//", "/", path))
+}
+testthat::expect_equal(path_docx("a.pdf"                 ), "d:/matu/work/tmp/a.docx"     )
+testthat::expect_equal(path_docx("d:/matu/work/tmp/a.pdf"), "d:/matu/work/tmp/a.docx"     )
+testthat::expect_equal(path_docx("test/a.pdf"            ), "d:/matu/work/tmp/test/a.docx")
+testthat::expect_equal(path_docx("/test/a.pdf"           ), "d:/matu/work/tmp/test/a.docx")
+
+
+wd <- "d:/"
+setwd(wd)
+pdf2docx("a.pdf")
+```
+
+
+## pdf2docx
+
+
+-->
 
 </div>
 </div>

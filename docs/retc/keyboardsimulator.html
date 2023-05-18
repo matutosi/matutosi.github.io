@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-15" />
+<meta name="date" content="2023-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,10 +136,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a>
 <ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#対象とする読者"><i class="fa fa-check"></i><b>0.1</b> 対象とする読者</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#特徴"><i class="fa fa-check"></i><b>0.2</b> 特徴</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#読み方"><i class="fa fa-check"></i><b>0.3</b> 読み方</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>1</b> Rとは</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#特徴"><i class="fa fa-check"></i><b>1.1</b> 特徴</a></li>
+<li class="chapter" data-level="1.1" data-path="R.html"><a href="R.html#特徴-1"><i class="fa fa-check"></i><b>1.1</b> 特徴</a></li>
 <li class="chapter" data-level="1.2" data-path="R.html"><a href="R.html#点突破"><i class="fa fa-check"></i><b>1.2</b> 1点突破</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Rのインストール</a>
@@ -318,15 +320,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>18.7</b> その他の関数</a></li>
 <li class="chapter" data-level="18.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>18.8</b> pdftoolsでテキストの取り出し</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfをdocxに変換</a>
+<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfとdocxを相互変換</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.1</b> RDCOMClient</a>
-<ul>
-<li class="chapter" data-level="19.1.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#インストール"><i class="fa fa-check"></i><b>19.1.1</b> インストール</a></li>
-<li class="chapter" data-level="19.1.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#変換実行"><i class="fa fa-check"></i><b>19.1.2</b> 変換実行</a></li>
-<li class="chapter" data-level="19.1.3" data-path="RDCOMClient.html"><a href="RDCOMClient.html#ラッパー関数"><i class="fa fa-check"></i><b>19.1.3</b> ラッパー関数</a></li>
-</ul></li>
-<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#pdf2docx"><i class="fa fa-check"></i><b>19.2</b> pdf2docx</a></li>
+<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
+<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.2</b> RDCOMClient</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>20</b> Microsoft365R</a>
 <ul>
@@ -379,33 +376,49 @@ rMouse cran
 <div id="準備-6" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> 準備<a href="keyboardsimulator.html#準備-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>キーボードとマウスの自動操作のパッケージKeyboardSimulatorをインストールする．</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="keyboardsimulator.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;KeyboardSimulator&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="keyboardsimulator.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb152-2"><a href="keyboardsimulator.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(KeyboardSimulator)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="keyboardsimulator.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;KeyboardSimulator&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="keyboardsimulator.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb149-2"><a href="keyboardsimulator.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(KeyboardSimulator)</span></code></pre></div>
 <p>KeyboardSimulatorでは，マウスやキーボードの操作とマウス位置の取得は可能であるものの，アイコンの画像をもとにして画面上でのマウスの位置を自動的に取得することができない．
 マウス位置の取得のために，PythonとそのライブラリPyAutoGUIを使用する．
 これらのインストールがまだの場合は，[Pythonとそのライブラリのインストール](#install_python}を参考にして，PythonとPyAutoGUIをインストールする．</p>
 <p>また，RからPythonを使うためにreticulateを呼び出しておく．</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="keyboardsimulator.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="keyboardsimulator.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span></code></pre></div>
 <p>さらに，<a href="reticulate.html#identify_python">使用するPythonの指定</a>を参考にreticulateで使用するPythonを指定する．
-以下のように直接Pythonのパスを指定しても良いし，<code>find_python()</code>を使用しても良い．</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="keyboardsimulator.html#cb154-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">&quot;your_python_path&quot;</span>)</span></code></pre></div>
+automaterパッケージの<code>find_python()</code>を使用すると，楽に指定ができる．
+インストール済のPythonを探して1つだけのときはそのパスを出力する．
+複数ある場合は選択肢からユーザが選んだパスが出力される．．</p>
+<p>find_pythonの中身は以下のとおりである．</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="keyboardsimulator.html#cb151-1" aria-hidden="true" tabindex="-1"></a>find_python <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb151-2"><a href="keyboardsimulator.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  os <span class="ot">&lt;-</span> <span class="fu">get_os</span>()</span>
+<span id="cb151-3"><a href="keyboardsimulator.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  python_path <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(os <span class="sc">==</span> <span class="st">&quot;win&quot;</span>, <span class="st">&quot;where python&quot;</span>, <span class="st">&quot;which python&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb151-4"><a href="keyboardsimulator.html#cb151-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> fs<span class="sc">::</span><span class="fu">path</span>()</span>
+<span id="cb151-5"><a href="keyboardsimulator.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(python_path) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb151-6"><a href="keyboardsimulator.html#cb151-6" aria-hidden="true" tabindex="-1"></a>    choice <span class="ot">&lt;-</span> <span class="fu">menu</span>(python_path, <span class="at">title =</span> <span class="st">&quot;Select Python path&quot;</span>)</span>
+<span id="cb151-7"><a href="keyboardsimulator.html#cb151-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb151-8"><a href="keyboardsimulator.html#cb151-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb151-9"><a href="keyboardsimulator.html#cb151-9" aria-hidden="true" tabindex="-1"></a>    choice <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb151-10"><a href="keyboardsimulator.html#cb151-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb151-11"><a href="keyboardsimulator.html#cb151-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(python_path[choice])</span>
+<span id="cb151-12"><a href="keyboardsimulator.html#cb151-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>もちろん，自分でPythonのパスを指定しても良い．</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="keyboardsimulator.html#cb152-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">&quot;your_python_path&quot;</span>)</span></code></pre></div>
 </div>
 <div id="キーボード操作の自動化" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> キーボード操作の自動化<a href="keyboardsimulator.html#キーボード操作の自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="keyboardsimulator.html#cb155-1" aria-hidden="true" tabindex="-1"></a>KeyboardSimulator<span class="sc">::</span><span class="fu">keybd.press</span>(<span class="st">&quot;Win+r&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="keyboardsimulator.html#cb153-1" aria-hidden="true" tabindex="-1"></a>KeyboardSimulator<span class="sc">::</span><span class="fu">keybd.press</span>(<span class="st">&quot;Win+r&quot;</span>)</span></code></pre></div>
 </div>
 <div id="マウスの位置取得" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">11.3</span> マウスの位置取得<a href="keyboardsimulator.html#マウスの位置取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>マウス操作で重要なのは画面上での位置を取得することである．</p>
 <p>KeyboardSimulatorには，マウス位置を取得する関数<code>mouse.get_cursor()</code>がある．
 1箇所だけならこの関数で十分だが，何度かマウスをクリックする作業の場合は何度も実行しないと行けないのでちょっとめんどくさい．</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="keyboardsimulator.html#cb156-1" aria-hidden="true" tabindex="-1"></a>KeyboardSimulator<span class="sc">::</span><span class="fu">mouse.get_cursor</span>()</span>
-<span id="cb156-2"><a href="keyboardsimulator.html#cb156-2" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] -3297  1306</span></span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="keyboardsimulator.html#cb154-1" aria-hidden="true" tabindex="-1"></a>KeyboardSimulator<span class="sc">::</span><span class="fu">mouse.get_cursor</span>()</span>
+<span id="cb154-2"><a href="keyboardsimulator.html#cb154-2" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] -3297  1306</span></span></code></pre></div>
 <p>以下で関数を作成するUSBの取り外しの際には，タスクバーとRウインドウとの行き来をしていると，タスクバーの操作がもとに戻ってしまうことがあり，正しいマウスの位置を取得するのが難しいことがある．
 そこで，一定時間の間隔でマウス位置を取得するautomaterの関数を利用する．
 関数の内容は以下のとおりである．</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="keyboardsimulator.html#cb157-1" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span>mouse_record</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="keyboardsimulator.html#cb155-1" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span>mouse_record</span></code></pre></div>
 <pre><code>## function (n = 5, interval = 1) 
 ## {
 ##     x &lt;- list()
@@ -425,23 +438,23 @@ rMouse cran
 ##     }
 ##     return(list(x = unlist(x), y = unlist(y)))
 ## }
-## &lt;bytecode: 0x000001e157d15ec8&gt;
+## &lt;bytecode: 0x000002c4151db828&gt;
 ## &lt;environment: namespace:automater&gt;</code></pre>
 <p>sleep()を挟んで，n回分の位置を取得するだけの関数である．
 実行すると以下のような結果が得られる．
 位置を表示させているのが煩わしければ，ループ中の最後の2行を削除すれば良い．</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="keyboardsimulator.html#cb159-1" aria-hidden="true" tabindex="-1"></a>position <span class="ot">&lt;-</span> automater<span class="sc">::</span><span class="fu">mouse_record</span>()</span>
-<span id="cb159-2"><a href="keyboardsimulator.html#cb159-2" aria-hidden="true" tabindex="-1"></a>position</span>
-<span id="cb159-3"><a href="keyboardsimulator.html#cb159-3" aria-hidden="true" tabindex="-1"></a> <span class="do">## 1: x = 680, y = 587</span></span>
-<span id="cb159-4"><a href="keyboardsimulator.html#cb159-4" aria-hidden="true" tabindex="-1"></a> <span class="do">## 2: x = 162, y = 482</span></span>
-<span id="cb159-5"><a href="keyboardsimulator.html#cb159-5" aria-hidden="true" tabindex="-1"></a> <span class="do">## 3: x = 94, y = 1250</span></span>
-<span id="cb159-6"><a href="keyboardsimulator.html#cb159-6" aria-hidden="true" tabindex="-1"></a> <span class="do">## 4: x = 816, y = 1352</span></span>
-<span id="cb159-7"><a href="keyboardsimulator.html#cb159-7" aria-hidden="true" tabindex="-1"></a> <span class="do">## 5: x = 773, y = 511</span></span>
-<span id="cb159-8"><a href="keyboardsimulator.html#cb159-8" aria-hidden="true" tabindex="-1"></a> <span class="do">## $x</span></span>
-<span id="cb159-9"><a href="keyboardsimulator.html#cb159-9" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] 680 162  94 816 773</span></span>
-<span id="cb159-10"><a href="keyboardsimulator.html#cb159-10" aria-hidden="true" tabindex="-1"></a> <span class="do">## </span></span>
-<span id="cb159-11"><a href="keyboardsimulator.html#cb159-11" aria-hidden="true" tabindex="-1"></a> <span class="do">## $y</span></span>
-<span id="cb159-12"><a href="keyboardsimulator.html#cb159-12" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1]  587  482 1250 1352  511</span></span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="keyboardsimulator.html#cb157-1" aria-hidden="true" tabindex="-1"></a>position <span class="ot">&lt;-</span> automater<span class="sc">::</span><span class="fu">mouse_record</span>()</span>
+<span id="cb157-2"><a href="keyboardsimulator.html#cb157-2" aria-hidden="true" tabindex="-1"></a>position</span>
+<span id="cb157-3"><a href="keyboardsimulator.html#cb157-3" aria-hidden="true" tabindex="-1"></a> <span class="do">## 1: x = 680, y = 587</span></span>
+<span id="cb157-4"><a href="keyboardsimulator.html#cb157-4" aria-hidden="true" tabindex="-1"></a> <span class="do">## 2: x = 162, y = 482</span></span>
+<span id="cb157-5"><a href="keyboardsimulator.html#cb157-5" aria-hidden="true" tabindex="-1"></a> <span class="do">## 3: x = 94, y = 1250</span></span>
+<span id="cb157-6"><a href="keyboardsimulator.html#cb157-6" aria-hidden="true" tabindex="-1"></a> <span class="do">## 4: x = 816, y = 1352</span></span>
+<span id="cb157-7"><a href="keyboardsimulator.html#cb157-7" aria-hidden="true" tabindex="-1"></a> <span class="do">## 5: x = 773, y = 511</span></span>
+<span id="cb157-8"><a href="keyboardsimulator.html#cb157-8" aria-hidden="true" tabindex="-1"></a> <span class="do">## $x</span></span>
+<span id="cb157-9"><a href="keyboardsimulator.html#cb157-9" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] 680 162  94 816 773</span></span>
+<span id="cb157-10"><a href="keyboardsimulator.html#cb157-10" aria-hidden="true" tabindex="-1"></a> <span class="do">## </span></span>
+<span id="cb157-11"><a href="keyboardsimulator.html#cb157-11" aria-hidden="true" tabindex="-1"></a> <span class="do">## $y</span></span>
+<span id="cb157-12"><a href="keyboardsimulator.html#cb157-12" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1]  587  482 1250 1352  511</span></span></code></pre></div>
 </div>
 <div id="usbメモリの安全な取り出しの自動化" class="section level2 hasAnchor" number="11.4">
 <h2><span class="header-section-number">11.4</span> USBメモリの安全な取り出しの自動化<a href="keyboardsimulator.html#usbメモリの安全な取り出しの自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -451,21 +464,21 @@ rMouse cran
 単純な操作だが，何度もやっていると面倒くさいし，しかも自分のように老眼の人間には避けたい作業である．</p>
 <p>マウスをどこでクリックしているのか，あらかじめ位置を取得しておく必要がある．
 <code>mouse_record()</code>を使えば，マウス位置を簡単に取得できる．</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="keyboardsimulator.html#cb160-1" aria-hidden="true" tabindex="-1"></a>position <span class="ot">&lt;-</span> automater<span class="sc">::</span><span class="fu">mouse_record</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">interval =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb160-2"><a href="keyboardsimulator.html#cb160-2" aria-hidden="true" tabindex="-1"></a>position</span>
-<span id="cb160-3"><a href="keyboardsimulator.html#cb160-3" aria-hidden="true" tabindex="-1"></a> <span class="do">## $x</span></span>
-<span id="cb160-4"><a href="keyboardsimulator.html#cb160-4" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1]  770  730  700 1040</span></span>
-<span id="cb160-5"><a href="keyboardsimulator.html#cb160-5" aria-hidden="true" tabindex="-1"></a> <span class="do">## $y</span></span>
-<span id="cb160-6"><a href="keyboardsimulator.html#cb160-6" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] 1900 1800 1760 1750</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="keyboardsimulator.html#cb158-1" aria-hidden="true" tabindex="-1"></a>position <span class="ot">&lt;-</span> automater<span class="sc">::</span><span class="fu">mouse_record</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">interval =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb158-2"><a href="keyboardsimulator.html#cb158-2" aria-hidden="true" tabindex="-1"></a>position</span>
+<span id="cb158-3"><a href="keyboardsimulator.html#cb158-3" aria-hidden="true" tabindex="-1"></a> <span class="do">## $x</span></span>
+<span id="cb158-4"><a href="keyboardsimulator.html#cb158-4" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1]  770  730  700 1040</span></span>
+<span id="cb158-5"><a href="keyboardsimulator.html#cb158-5" aria-hidden="true" tabindex="-1"></a> <span class="do">## $y</span></span>
+<span id="cb158-6"><a href="keyboardsimulator.html#cb158-6" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] 1900 1800 1760 1750</span></span></code></pre></div>
 <p>USBメモリの安全な取り出しをする前の位置にマウスを戻したい場合は，あらかじめ<code>pos</code>に代入しておき，最後にその位置に戻す．
 あとは，上で取得した位置にマウスを移動させ，順次クリックしていくだけだ．
 実際にUSBメモリをパソコンに取り付け，</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="keyboardsimulator.html#cb161-1" aria-hidden="true" tabindex="-1"></a>pos <span class="ot">&lt;-</span> KeyboardSimulator<span class="sc">::</span><span class="fu">mouse.get_cursor</span>()</span>
-<span id="cb161-2"><a href="keyboardsimulator.html#cb161-2" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">770</span>,<span class="dv">1900</span>)</span>
-<span id="cb161-3"><a href="keyboardsimulator.html#cb161-3" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">730</span>,<span class="dv">1800</span>)</span>
-<span id="cb161-4"><a href="keyboardsimulator.html#cb161-4" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">700</span>,<span class="dv">1760</span>)</span>
-<span id="cb161-5"><a href="keyboardsimulator.html#cb161-5" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>(<span class="dv">1040</span>,<span class="dv">1750</span>)</span>
-<span id="cb161-6"><a href="keyboardsimulator.html#cb161-6" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>(pos[<span class="dv">1</span>], pos[<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="keyboardsimulator.html#cb159-1" aria-hidden="true" tabindex="-1"></a>pos <span class="ot">&lt;-</span> KeyboardSimulator<span class="sc">::</span><span class="fu">mouse.get_cursor</span>()</span>
+<span id="cb159-2"><a href="keyboardsimulator.html#cb159-2" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">770</span>,<span class="dv">1900</span>)</span>
+<span id="cb159-3"><a href="keyboardsimulator.html#cb159-3" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">730</span>,<span class="dv">1800</span>)</span>
+<span id="cb159-4"><a href="keyboardsimulator.html#cb159-4" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>( <span class="dv">700</span>,<span class="dv">1760</span>)</span>
+<span id="cb159-5"><a href="keyboardsimulator.html#cb159-5" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>(<span class="dv">1040</span>,<span class="dv">1750</span>)</span>
+<span id="cb159-6"><a href="keyboardsimulator.html#cb159-6" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>(pos[<span class="dv">1</span>], pos[<span class="dv">2</span>])</span></code></pre></div>
 <p>この内容を<code>remove_usb.rsc</code>といったテキストファイルとして保存しておけば，<code>remove_usb.rsc</code>をクリックするだけでUSBメモリの安全な取り出しを自動化できる．
 さらに，<code>c:\windows\system32</code>のディレクトリに<code>remove_usb.rsc</code>のショートカットを<code>ru</code>として保存し，[Win] + [R]のファイル名を指定して実行に<code>ru</code>と入力すれば，<code>remove_usb.rsc</code>が実行されてUSBメモリの安全な取り出しが一発で出来るようになる．</p>
 </div>
@@ -480,36 +493,77 @@ pyautogui.click('button.png') # Find where button.png appears on the screen and 
 しかし，ウィンドウの位置が異なったり，タスクバー上での位置が変化したりして，クリックするべき位置が一定でないことがある．</p>
 <p>クリックする対象を画像ファイルとして用意できるのであれば，その画像をもとにしてクリックするべき位置を決定できる．
 Rのパッケージではこれを実現できなさそうなので，PythonのPyAutoGUIを利用する．</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="keyboardsimulator.html#cb162-1" aria-hidden="true" tabindex="-1"></a>pag <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;pyautogui&quot;</span>)  <span class="co"># 呼び出し時は小文字で</span></span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="keyboardsimulator.html#cb160-1" aria-hidden="true" tabindex="-1"></a>pag <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;pyautogui&quot;</span>)  <span class="co"># 呼び出し時は小文字で</span></span></code></pre></div>
 <p>Pythonに慣れていない筆者は何度かコケてしまったのが，Pythonでライブラリが大文字を含んでいても，呼び出すときは小文字で指定するようだ．</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="keyboardsimulator.html#cb163-1" aria-hidden="true" tabindex="-1"></a>pag<span class="sc">$</span><span class="fu">moveTo</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb163-2"><a href="keyboardsimulator.html#cb163-2" aria-hidden="true" tabindex="-1"></a>pag<span class="sc">$</span><span class="fu">moveTo</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="at">duration=</span><span class="dv">3</span>)</span>
-<span id="cb163-3"><a href="keyboardsimulator.html#cb163-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-4"><a href="keyboardsimulator.html#cb163-4" aria-hidden="true" tabindex="-1"></a>img <span class="ot">&lt;-</span> path <span class="ot">&lt;-</span> <span class="st">&quot;D:/matu/work/ToDo/automater/inst/img/up_arrow.png&quot;</span></span>
-<span id="cb163-5"><a href="keyboardsimulator.html#cb163-5" aria-hidden="true" tabindex="-1"></a>position <span class="ot">&lt;-</span> pag<span class="sc">$</span><span class="fu">locateOnScreen</span>(img)</span>
-<span id="cb163-6"><a href="keyboardsimulator.html#cb163-6" aria-hidden="true" tabindex="-1"></a>get_center <span class="ot">&lt;-</span> <span class="cf">function</span>(position){</span>
-<span id="cb163-7"><a href="keyboardsimulator.html#cb163-7" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> position<span class="sc">$</span>left <span class="sc">+</span> (position<span class="sc">$</span>width <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb163-8"><a href="keyboardsimulator.html#cb163-8" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> position<span class="sc">$</span>top <span class="sc">+</span>  (position<span class="sc">$</span>height <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb163-9"><a href="keyboardsimulator.html#cb163-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">x =</span> x, <span class="at">y =</span> y))</span>
-<span id="cb163-10"><a href="keyboardsimulator.html#cb163-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb163-11"><a href="keyboardsimulator.html#cb163-11" aria-hidden="true" tabindex="-1"></a><span class="fu">get_center</span>(position)</span>
-<span id="cb163-12"><a href="keyboardsimulator.html#cb163-12" aria-hidden="true" tabindex="-1"></a>pag<span class="sc">$</span><span class="fu">moveTo</span>(<span class="fu">get_center</span>(position)<span class="sc">$</span>x, <span class="fu">get_center</span>(position)<span class="sc">$</span>y)</span></code></pre></div>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="keyboardsimulator.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rJava)</span>
-<span id="cb164-2"><a href="keyboardsimulator.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.jinit</span>()</span>
-<span id="cb164-3"><a href="keyboardsimulator.html#cb164-3" aria-hidden="true" tabindex="-1"></a>toolkit <span class="ot">&lt;-</span> <span class="fu">J</span>(<span class="st">&quot;java.awt.Toolkit&quot;</span>)</span>
-<span id="cb164-4"><a href="keyboardsimulator.html#cb164-4" aria-hidden="true" tabindex="-1"></a>default_toolkit <span class="ot">&lt;-</span> <span class="fu">.jrcall</span>(toolkit, <span class="st">&quot;getDefaultToolkit&quot;</span>)</span>
-<span id="cb164-5"><a href="keyboardsimulator.html#cb164-5" aria-hidden="true" tabindex="-1"></a>dim <span class="ot">&lt;-</span> <span class="fu">.jrcall</span>(default_toolkit, <span class="st">&quot;getScreenSize&quot;</span>)</span>
-<span id="cb164-6"><a href="keyboardsimulator.html#cb164-6" aria-hidden="true" tabindex="-1"></a>width <span class="ot">&lt;-</span> <span class="fu">.jcall</span>(dim, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;getWidth&quot;</span>)</span>
-<span id="cb164-7"><a href="keyboardsimulator.html#cb164-7" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">.jcall</span>(dim, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;getHeight&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="keyboardsimulator.html#cb161-1" aria-hidden="true" tabindex="-1"></a>pag<span class="sc">$</span><span class="fu">moveTo</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb161-2"><a href="keyboardsimulator.html#cb161-2" aria-hidden="true" tabindex="-1"></a>pag<span class="sc">$</span><span class="fu">moveTo</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="at">duration=</span><span class="dv">3</span>)</span>
+<span id="cb161-3"><a href="keyboardsimulator.html#cb161-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-4"><a href="keyboardsimulator.html#cb161-4" aria-hidden="true" tabindex="-1"></a>img <span class="ot">&lt;-</span> <span class="st">&quot;D:/matu/work/ToDo/automater/inst/img/up_arrow.png&quot;</span></span>
+<span id="cb161-5"><a href="keyboardsimulator.html#cb161-5" aria-hidden="true" tabindex="-1"></a>position <span class="ot">&lt;-</span> pag<span class="sc">$</span><span class="fu">locateOnScreen</span>(img)</span>
+<span id="cb161-6"><a href="keyboardsimulator.html#cb161-6" aria-hidden="true" tabindex="-1"></a>center <span class="ot">&lt;-</span> <span class="cf">function</span>(position){</span>
+<span id="cb161-7"><a href="keyboardsimulator.html#cb161-7" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> position<span class="sc">$</span>left <span class="sc">+</span> (position<span class="sc">$</span>width <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb161-8"><a href="keyboardsimulator.html#cb161-8" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> position<span class="sc">$</span>top <span class="sc">+</span>  (position<span class="sc">$</span>height <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb161-9"><a href="keyboardsimulator.html#cb161-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">x =</span> x, <span class="at">y =</span> y))</span>
+<span id="cb161-10"><a href="keyboardsimulator.html#cb161-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb161-11"><a href="keyboardsimulator.html#cb161-11" aria-hidden="true" tabindex="-1"></a><span class="fu">center</span>(position)</span>
+<span id="cb161-12"><a href="keyboardsimulator.html#cb161-12" aria-hidden="true" tabindex="-1"></a>pag<span class="sc">$</span><span class="fu">moveTo</span>(<span class="fu">center</span>(position)<span class="sc">$</span>x, <span class="fu">center</span>(position)<span class="sc">$</span>y)</span></code></pre></div>
+<p>画像をもとにクリックする位置を取得する場合，画面全体を検索すると時間がかかる．
+設定にもよるが，USBメモリの取り出しやwifiへの接続なら画面の右下，スタートメニューなら画面の中央か左下のように，ある程度の位置が決まっているので，その領域のみ検索すれば動作が早くなる．
+そこで，検索する領域を画面サイズから位置を指定する．
+パソコンの設定を見て手入力しても良いが，rJavaを使うと，画面サイズの取得が可能かもしれない．
+「かもしれない」というのは理由があって，rJavaパッケージはその名のとおりRからJavaを利用するものだが，うまく動作しないことがあるからだ．
+通常のパッケージならインストールして呼び出せば，そのまますぐに使えるはずだが，rJavaはうまくいかないことがある．
+OSにインストールされているJavaのバージョンとRとの関係や，パスの設定の関係でエラーが出て動かないことがある．</p>
+<p>次のコードを実行してうまく動けばこれを使って画面サイズを取得する．</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="keyboardsimulator.html#cb162-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># C:\Users\matu&gt;java -version</span></span>
+<span id="cb162-2"><a href="keyboardsimulator.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># java version &quot;1.8.0_361&quot;</span></span>
+<span id="cb162-3"><a href="keyboardsimulator.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Java(TM) SE Runtime Environment (build 1.8.0_361-b09)</span></span>
+<span id="cb162-4"><a href="keyboardsimulator.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Java HotSpot(TM) 64-Bit Server VM (build 25.361-b09, mixed mode)</span></span>
+<span id="cb162-5"><a href="keyboardsimulator.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># C:\Users\matu&gt;path</span></span>
+<span id="cb162-6"><a href="keyboardsimulator.html#cb162-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># PATH=C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Java\jre1.8.0_361\bin\client</span></span>
+<span id="cb162-7"><a href="keyboardsimulator.html#cb162-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ユーザの環境変数</span></span>
+<span id="cb162-8"><a href="keyboardsimulator.html#cb162-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   C:\Program Files (x86)\Java\jre1.8.0_361\bin\client</span></span>
+<span id="cb162-9"><a href="keyboardsimulator.html#cb162-9" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rJava&quot;</span>)</span>
+<span id="cb162-10"><a href="keyboardsimulator.html#cb162-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rJava)</span>
+<span id="cb162-11"><a href="keyboardsimulator.html#cb162-11" aria-hidden="true" tabindex="-1"></a><span class="fu">.jinit</span>()</span>
+<span id="cb162-12"><a href="keyboardsimulator.html#cb162-12" aria-hidden="true" tabindex="-1"></a>toolkit <span class="ot">&lt;-</span> <span class="fu">J</span>(<span class="st">&quot;java.awt.Toolkit&quot;</span>)</span>
+<span id="cb162-13"><a href="keyboardsimulator.html#cb162-13" aria-hidden="true" tabindex="-1"></a>default_toolkit <span class="ot">&lt;-</span> <span class="fu">.jrcall</span>(toolkit, <span class="st">&quot;getDefaultToolkit&quot;</span>)</span>
+<span id="cb162-14"><a href="keyboardsimulator.html#cb162-14" aria-hidden="true" tabindex="-1"></a>dim <span class="ot">&lt;-</span> <span class="fu">.jrcall</span>(default_toolkit, <span class="st">&quot;getScreenSize&quot;</span>)</span>
+<span id="cb162-15"><a href="keyboardsimulator.html#cb162-15" aria-hidden="true" tabindex="-1"></a>width <span class="ot">&lt;-</span> <span class="fu">.jcall</span>(dim, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;getWidth&quot;</span>)</span>
+<span id="cb162-16"><a href="keyboardsimulator.html#cb162-16" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">.jcall</span>(dim, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;getHeight&quot;</span>)</span></code></pre></div>
+<p>rJavaがだめな場合には他の方法がある．
+Windowsであれば，次のコードのように<code>system()</code>を使ってコマンドを入力して情報を得ることができる．
+ただし，この場合は注意が必要で，ここで取得したのは画面の解像度であって，KeyboardSimulatorで指定するマウスの位置ではないことがある．
+高解像度の画面の場合は，画面を125%に拡大していることがあるためだ.
+その場合は，ここで得た値を1.25で割る必要がある．</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="keyboardsimulator.html#cb163-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   https://stackoverflow.com/questions/7305244/how-can-i-get-the-screen-resolution-in-r</span></span>
+<span id="cb163-2"><a href="keyboardsimulator.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb163-3"><a href="keyboardsimulator.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># cmd &lt;- &quot;wmic path Win32_VideoController get CurrentHorizontalResolution,CurrentVerticalResolution /format:value&quot;</span></span>
+<span id="cb163-4"><a href="keyboardsimulator.html#cb163-4" aria-hidden="true" tabindex="-1"></a>item <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CurrentHorizontalResolution&quot;</span>, <span class="st">&quot;CurrentVerticalResolution&quot;</span>)</span>
+<span id="cb163-5"><a href="keyboardsimulator.html#cb163-5" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;wmic path Win32_VideoController get &quot;</span>, item, <span class="st">&quot; /format:value&quot;</span>)</span>
+<span id="cb163-6"><a href="keyboardsimulator.html#cb163-6" aria-hidden="true" tabindex="-1"></a>resol <span class="ot">&lt;-</span> </span>
+<span id="cb163-7"><a href="keyboardsimulator.html#cb163-7" aria-hidden="true" tabindex="-1"></a>  cmd <span class="sc">%&gt;%</span></span>
+<span id="cb163-8"><a href="keyboardsimulator.html#cb163-8" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(system, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb163-9"><a href="keyboardsimulator.html#cb163-9" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(paste0, <span class="at">collapse =</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb163-10"><a href="keyboardsimulator.html#cb163-10" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(stringr<span class="sc">::</span>str_replace_all, <span class="st">&quot;[A-z</span><span class="sc">\\</span><span class="st">r=]+&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb163-11"><a href="keyboardsimulator.html#cb163-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.double</span>()</span></code></pre></div>
+<p>rJavaもダメで，<code>system()</code>を使っても注意が必要でといろいろと自動化も大変である．
+自動化すれば手を抜けるが，手を抜くための努力は必要だ．
+著者も色々と試行錯誤したが，結局たどり着いた簡単な方法は次のように<code>mouse.move()</code>でマウスをありえないぐらい右下に移動して，その位置を取得する方法だ．
+幸いなことに，<code>mouse.move()</code>はありえない位置を指定してもエラーにはならず，最大限可能なところまで移動してくれる．
+最大限に移動した位置を取得すれば完了だ．
+画面の最大値とマウスの位置が1つずれているのは，画面の左上が[1,1]ではなく[0,0]のためだ．</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="keyboardsimulator.html#cb164-1" aria-hidden="true" tabindex="-1"></a>KeyboardSimulator<span class="sc">::</span><span class="fu">mouse.move</span>(<span class="dv">999999</span>,<span class="dv">999999</span>)</span>
+<span id="cb164-2"><a href="keyboardsimulator.html#cb164-2" aria-hidden="true" tabindex="-1"></a>KeyboardSimulator<span class="sc">::</span><span class="fu">mouse.get_cursor</span>()</span></code></pre></div>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="keyboardsimulator.html#cb165-1" aria-hidden="true" tabindex="-1"></a>recog_image_click <span class="ot">&lt;-</span> <span class="cf">function</span>(img, pag, ...){</span>
 <span id="cb165-2"><a href="keyboardsimulator.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  position <span class="ot">&lt;-</span> </span>
 <span id="cb165-3"><a href="keyboardsimulator.html#cb165-3" aria-hidden="true" tabindex="-1"></a>    img <span class="sc">%&gt;%</span></span>
 <span id="cb165-4"><a href="keyboardsimulator.html#cb165-4" aria-hidden="true" tabindex="-1"></a>    pag<span class="sc">$</span><span class="fu">locateOnScreen</span>(...) <span class="sc">%&gt;%</span></span>
-<span id="cb165-5"><a href="keyboardsimulator.html#cb165-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">get_center</span>()</span>
+<span id="cb165-5"><a href="keyboardsimulator.html#cb165-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">center</span>()</span>
 <span id="cb165-6"><a href="keyboardsimulator.html#cb165-6" aria-hidden="true" tabindex="-1"></a>  automater<span class="sc">::</span><span class="fu">mouse_move_click</span>(position<span class="sc">$</span>x, position<span class="sc">$</span>y)</span>
 <span id="cb165-7"><a href="keyboardsimulator.html#cb165-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb165-8"><a href="keyboardsimulator.html#cb165-8" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="dv">600</span></span>
-<span id="cb165-9"><a href="keyboardsimulator.html#cb165-9" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb165-9"><a href="keyboardsimulator.html#cb165-9" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">300</span></span>
 <span id="cb165-10"><a href="keyboardsimulator.html#cb165-10" aria-hidden="true" tabindex="-1"></a>region <span class="ot">&lt;-</span> <span class="fu">c</span>(width <span class="sc">-</span> w, height <span class="sc">-</span> h, w, h)</span>
 <span id="cb165-11"><a href="keyboardsimulator.html#cb165-11" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;D:/matu/work/ToDo/automater/inst/img&quot;</span></span>
 <span id="cb165-12"><a href="keyboardsimulator.html#cb165-12" aria-hidden="true" tabindex="-1"></a>img <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(path, <span class="at">regexp =</span> <span class="st">&quot;png&quot;</span>) </span>
@@ -517,7 +571,7 @@ Rのパッケージではこれを実現できなさそうなので，PythonのP
 <span id="cb165-14"><a href="keyboardsimulator.html#cb165-14" aria-hidden="true" tabindex="-1"></a><span class="fu">recog_image_click</span>(img[<span class="dv">3</span>], pag, <span class="at">region =</span> region)</span>
 <span id="cb165-15"><a href="keyboardsimulator.html#cb165-15" aria-hidden="true" tabindex="-1"></a><span class="fu">recog_image_click</span>(img[<span class="dv">2</span>], pag, <span class="at">region =</span> region)</span>
 <span id="cb165-16"><a href="keyboardsimulator.html#cb165-16" aria-hidden="true" tabindex="-1"></a><span class="fu">recog_image_click</span>(img[<span class="dv">1</span>], pag, <span class="at">region =</span> region)</span>
-<span id="cb165-17"><a href="keyboardsimulator.html#cb165-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mouse_move_click</span>(pos[<span class="dv">1</span>], pos[<span class="dv">2</span>])</span>
+<span id="cb165-17"><a href="keyboardsimulator.html#cb165-17" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">mouse_move_click</span>(pos[<span class="dv">1</span>], pos[<span class="dv">2</span>])</span>
 <span id="cb165-18"><a href="keyboardsimulator.html#cb165-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb165-19"><a href="keyboardsimulator.html#cb165-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># region = region</span></span>
 <span id="cb165-20"><a href="keyboardsimulator.html#cb165-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># grayscale = True</span></span>

@@ -71,7 +71,7 @@ path
 ```
 
 ```
-## [1] "C:/Users/matutosi/AppData/Local/Programs/Python/Python311/python.exe"
+## [1] "C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe"
 ```
 
 ```r
@@ -270,36 +270,17 @@ reticulate::py_run_string("parse(pdf_file, docx_file)")
 
 ```r
   # USB取り出し用の画像のトリミング(作業済)
-library(tidyverse)
-path <- 
-  "D:/matu/work/ToDo/automater/inst/img" %>%
-  fs::dir_ls(regexp = "png") 
-img <- 
-  path %>%
-  purrr::map(magick::image_read) %>%
-  purrr::map(magick::image_trim)
-purrr::map2(img, path, magick::image_write)
-```
-
-```
-## $`D:/matu/work/ToDo/automater/inst/img/34gb.png`
-## D:/matu/work/ToDo/automater/inst/img/34gb.png
-## 
-## $`D:/matu/work/ToDo/automater/inst/img/media.png`
-## D:/matu/work/ToDo/automater/inst/img/media.png
-## 
-## $`D:/matu/work/ToDo/automater/inst/img/up_arrow.png`
-## D:/matu/work/ToDo/automater/inst/img/up_arrow.png
-```
-
-```r
-path
-```
-
-```
-## D:/matu/work/ToDo/automater/inst/img/34gb.png
-## D:/matu/work/ToDo/automater/inst/img/media.png
-## D:/matu/work/ToDo/automater/inst/img/up_arrow.png
+  #   トリミングをしたほうが画像認識がうまくいくかとおもったが，逆にダメだった
+  # library(tidyverse)
+  # path <- 
+  #   "D:/matu/work/ToDo/automater/inst/img" %>%
+  #   fs::dir_ls(regexp = "png") 
+  # img <- 
+  #   path %>%
+  #   purrr::map(magick::image_read) %>%
+  #   purrr::map(magick::image_trim)
+  # purrr::map2(img, path, magick::image_write)
+  # path
 ```
 
 

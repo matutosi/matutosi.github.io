@@ -125,7 +125,7 @@ path_package("pkgname", "dir", "file")              # パッケージのパス�
 path_norm("path")                                   # 参照や".."の削除   
 path_real("path")                                   # 実体パス(シンボリックリンクを実体パスに)   
 path_abs("path")                                    # 絶対パス
-path_rel("path/foo", "path/bar")                    #  相対パス  
+path_rel("path/foo", "path/bar")                    # 相対パス
 path_common(c("path/foo", "path/bar", "path/baz"))  # パスの共通部分   
 path_ext_set("path", "new_ext")                     # 拡張子変更   
 path_sanitize("path")                               # 無効な文字を削除   
@@ -216,14 +216,16 @@ fs::file_copy(f_old, f_new, overwrite = TRUE)
 ## おまけ：GUIでの作業フォルダの指定
 
 GUI(Graphical User Interface)による作業フォルダを指定するには，tcltkパッケージを使うと良い．
+tcltkパッケージは，Rをインストールすると既に入っているので，インストールの必要はない．
 なお，`tkchooseDirectory()`で得たオブジェクトをそのまま`setwd()`で指定するとエラーになるので，`fs::path()`でパスに変換しておく．
 
 
 ```r
 getwd()
-install.packages("tcltk")
 library(tcltk)
 wd <- tcltk::tkchooseDirectory()
 setwd(fs::path(wd))
 getwd()
 ```
+
+

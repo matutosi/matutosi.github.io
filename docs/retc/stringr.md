@@ -132,7 +132,7 @@ fs::dir_ls()
 ## package.md             package.Rmd            pkgs.txt               
 ## preamble.tex           qpdf.Rmd               r.md                   
 ## r.Rmd                  RDCOMClient.Rmd        README.md              
-## render23184564f3e.rds  render27b8327730f.rds  render2b3062637f2b.rds 
+## render23184564f3e.rds  render2b3062637f2b.rds render41348f2513d.rds  
 ## render436872674bbe.rds render4b443f867fc.rds  retc-blog.lnk          
 ## retc.Rproj             reticulate.Rmd         reticulate_files       
 ## rselenium.Rmd          rvest.Rmd              rvest_1.png            
@@ -140,7 +140,8 @@ fs::dir_ls()
 ## shell.Rmd              shell_cache            stringr.Rmd            
 ## style.css              xlsx.Rmd               _book                  
 ## _bookdown.yml          _bookdown_files        _cp_retc.bat           
-## _main.rds              _output.yml            ニッコウキスゲ.png
+## _main.pdf              _main.rds              _output.yml            
+## ニッコウキスゲ.png
 ```
 
 ```r
