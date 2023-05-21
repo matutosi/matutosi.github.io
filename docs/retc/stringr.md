@@ -132,7 +132,7 @@ fs::dir_ls()
 ## package.md             package.Rmd            pkgs.txt               
 ## preamble.tex           qpdf.Rmd               r.md                   
 ## r.Rmd                  RDCOMClient.Rmd        README.md              
-## render23184564f3e.rds  render2b3062637f2b.rds render32602a6b6da7.rds 
+## render23184564f3e.rds  render2b3062637f2b.rds render3bbc56b81357.rds 
 ## render436872674bbe.rds render4b443f867fc.rds  retc-blog.lnk          
 ## retc.Rproj             reticulate.Rmd         reticulate_files       
 ## rselenium.Rmd          rvest.Rmd              rvest_1.png            
