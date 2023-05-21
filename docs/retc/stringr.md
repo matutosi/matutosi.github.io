@@ -121,9 +121,9 @@ fs::dir_ls()
 
 ```
 ## 1403.2805.pdf          assoc.md               assoc.Rmd              
-## authors_note.Rmd       crop1_rvest_1.png      crop1_rvest_2.png      
-## crop1_rvest_3.png      crop2_rvest_1.png      crop2_rvest_2.png      
-## crop2_rvest_3.png      dbi.Rmd                dplyr.Rmd              
+## assoc_files            authors_note.Rmd       crop1_rvest_1.png      
+## crop1_rvest_2.png      crop1_rvest_3.png      crop2_rvest_1.png      
+## crop2_rvest_2.png      crop2_rvest_3.png      dbi.Rmd                
 ## fs.Rmd                 ggplot2.Rmd            img                    
 ## index.md               index.Rmd              install.md             
 ## install.Rmd            keyboardsimulator.Rmd  lubridate.Rmd          
@@ -132,16 +132,16 @@ fs::dir_ls()
 ## package.md             package.Rmd            pkgs.txt               
 ## preamble.tex           qpdf.Rmd               r.md                   
 ## r.Rmd                  RDCOMClient.Rmd        README.md              
-## render23184564f3e.rds  render2b3062637f2b.rds render41348f2513d.rds  
+## render23184564f3e.rds  render2b3062637f2b.rds render32602a6b6da7.rds 
 ## render436872674bbe.rds render4b443f867fc.rds  retc-blog.lnk          
 ## retc.Rproj             reticulate.Rmd         reticulate_files       
 ## rselenium.Rmd          rvest.Rmd              rvest_1.png            
 ## rvest_2.png            rvest_3.png            rvest_amazon.Rmd       
 ## shell.Rmd              shell_cache            stringr.Rmd            
-## style.css              xlsx.Rmd               _book                  
-## _bookdown.yml          _bookdown_files        _cp_retc.bat           
-## _main.pdf              _main.rds              _output.yml            
-## ニッコウキスゲ.png
+## style.css              tidyverse.md           tidyverse.Rmd          
+## xlsx.Rmd               _book                  _bookdown.yml          
+## _bookdown_files        _cp_retc.bat           _main.rds              
+## _output.yml            ニッコウキスゲ.png
 ```
 
 ```r

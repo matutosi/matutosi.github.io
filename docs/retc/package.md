@@ -60,57 +60,13 @@ devtools::install_local("d:/rMouse_0.1.zip")
 CRANに登録されているパッケージは，2023年5月現在で2万近くになっている．
 たくさんあることは嬉しい反面，目的とするパッケージを検索するのは困難である．
 パッケージ一覧のページで検索しても良いが，ブラウザでは正規表現が使えないことが多い．
-そこで，とりあえずパッケージの一覧を取得して，自分のパソコンの中に一覧を保存して，その後でRやエディタの正規表現を用いて検索できるようにする．
+そこで，パッケージの一覧を取得して，自分のパソコンの中に一覧を保存して，その後でRやエディタの正規表現を用いて検索できるようにする．
 
 
 ```r
 library(tidyverse)
-```
-
-```
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.2     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.2     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.0
-## v purrr     1.0.1     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-```r
 library(magrittr)
-```
-
-```
-## 
-## Attaching package: 'magrittr'
-## 
-## The following object is masked from 'package:purrr':
-## 
-##     set_names
-## 
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-```
-
-```r
 library(rvest)
-```
-
-```
-## 
-## Attaching package: 'rvest'
-## 
-## The following object is masked from 'package:readr':
-## 
-##     guess_encoding
-```
-
-```r
   # wd <- "your_directory"
   # wd <- "D:/matu/work/tmp"
   # setwd(wd)
@@ -130,33 +86,12 @@ readr::write_tsv(pkgs, "pkgs.txt") # readrは第???章を参照
 dplyr::filter(pkgs, stringr::str_detect(description, "Image|image"))
 ```
 
-```
-## # A tibble: 152 x 2
-##    pkg            description                                                
-##    <chr>          <chr>                                                      
-##  1 adimpro        Adaptive Smoothing of Digital Images                       
-##  2 AFM            Atomic Force Microscope Image Analysis                     
-##  3 agrifeature    Agriculture Image Feature                                  
-##  4 annotator      Image Annotation and Polygon Outlining using Free Drawing  
-##  5 ASIP           Automated Satellite Image Processing                       
-##  6 autothresholdr An R Port of the 'ImageJ' Plugin 'Auto Threshold'          
-##  7 bayesImageS    Bayesian Methods for Image Segmentation using a Potts Model
-##  8 Bioi           Biological Image Analysis                                  
-##  9 bmp            Read Windows Bitmap (BMP) Images                           
-## 10 boundingbox    Create a Bounding Box in an Image                          
-## # i 142 more rows
-```
-
-```r
-  # pkgs %>%
-  #   dplyr::filter(stringr::str_detect(description, "Image|image")) %>%
-  #   print(n = nrow(.))
-```
-
 詳しい説明は省略するが，以下を実行すると`pkgs.txt`というテキストファイルが作業ディレクトリに保存される．
 また，「Image」か「image」が`description`に含まれるものが出力される．
 すべてを画面に出力したい場合は，最後にコメントアウトした3行を実行する．
 検索結果を`write_tsv()`でテキストファイルとして保存するのも良いだろう．
+
+パッケージとその説明の一覧を分析する方法は，tidyverseの章を参考にしてほしい．
 
 ## GitHubから {#github}
 

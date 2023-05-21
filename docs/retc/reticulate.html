@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 10 reticulateでPythonを使う | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 10 reticulateでPythonを使う | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 11 reticulateでPythonを使う | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 11 reticulateでPythonを使う | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 10 reticulateでPythonを使う | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 11 reticulateでPythonを使う | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 10 reticulateでPythonを使う | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 11 reticulateでPythonを使う | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-19" />
+<meta name="date" content="2023-05-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,7 +157,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="package.html"><a href="package.html#cranからpackage一覧を取得する"><i class="fa fa-check"></i><b>3.3</b> CRANからPackage一覧を取得する</a></li>
 <li class="chapter" data-level="3.4" data-path="package.html"><a href="package.html#github"><i class="fa fa-check"></i><b>3.4</b> GitHubから</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>4</b> スクリプトの関連付け</a></li>
+<li class="chapter" data-level="4" data-path="assoc.html"><a href="assoc.html"><i class="fa fa-check"></i><b>4</b> スクリプトの関連付け</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="assoc.html"><a href="assoc.html#windows"><i class="fa fa-check"></i><b>4.1</b> Windows</a></li>
+<li class="chapter" data-level="4.2" data-path="assoc.html"><a href="assoc.html#macとlinux"><i class="fa fa-check"></i><b>4.2</b> MacとLinux</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="magrittr.html"><a href="magrittr.html"><i class="fa fa-check"></i><b>5</b> magrittrでコードを簡潔に</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="magrittr.html"><a href="magrittr.html#準備"><i class="fa fa-check"></i><b>5.1</b> 準備</a></li>
@@ -172,174 +176,191 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>5.5</b> パイプ以外の関数</a></li>
 <li class="chapter" data-level="5.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>5.6</b> おまけ：magrittrの不思議な関数たち</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>6</b> stringrで文字列操作</a>
+<li class="chapter" data-level="6" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>6</b> tidyverseを使う</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>6.1</b> はじめに</a></li>
-<li class="chapter" data-level="6.2" data-path="stringr.html"><a href="stringr.html#準備-1"><i class="fa fa-check"></i><b>6.2</b> 準備</a></li>
-<li class="chapter" data-level="6.3" data-path="stringr.html"><a href="stringr.html#stringrの主な関数"><i class="fa fa-check"></i><b>6.3</b> stringrの主な関数</a></li>
-<li class="chapter" data-level="6.4" data-path="stringr.html"><a href="stringr.html#活用例"><i class="fa fa-check"></i><b>6.4</b> 活用例</a></li>
+<li class="chapter" data-level="6.1" data-path="tidyverse.html"><a href="tidyverse.html#準備-1"><i class="fa fa-check"></i><b>6.1</b> 準備</a></li>
+<li class="chapter" data-level="6.2" data-path="tidyverse.html"><a href="tidyverse.html#tidyverseとは"><i class="fa fa-check"></i><b>6.2</b> tidyverseとは</a></li>
+<li class="chapter" data-level="6.3" data-path="tidyverse.html"><a href="tidyverse.html#tibbleでデータフレームを使いやすくする"><i class="fa fa-check"></i><b>6.3</b> tibbleでデータフレームを使いやすくする</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="tidyverse.html"><a href="tidyverse.html#データフレームとtibble"><i class="fa fa-check"></i><b>6.3.1</b> データフレームとtibble</a></li>
+<li class="chapter" data-level="6.3.2" data-path="tidyverse.html"><a href="tidyverse.html#tibbleの気の利いた表示"><i class="fa fa-check"></i><b>6.3.2</b> tibbleの気の利いた表示</a></li>
+<li class="chapter" data-level="6.3.3" data-path="tidyverse.html"><a href="tidyverse.html#tibbleへの変換tibbleの生成"><i class="fa fa-check"></i><b>6.3.3</b> tibbleへの変換，tibbleの生成</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>7</b> lubridateで日付・時刻を扱う</a>
+<li class="chapter" data-level="6.4" data-path="tidyverse.html"><a href="tidyverse.html#tidyrでデータを整形する"><i class="fa fa-check"></i><b>6.4</b> tidyrでデータを整形する</a></li>
+<li class="chapter" data-level="6.5" data-path="tidyverse.html"><a href="tidyverse.html#readrでファイルの保存と読み込み"><i class="fa fa-check"></i><b>6.5</b> readrでファイルの保存と読み込み</a></li>
+<li class="chapter" data-level="6.6" data-path="tidyverse.html"><a href="tidyverse.html#dplyrでデータフレームを操作する"><i class="fa fa-check"></i><b>6.6</b> dplyrでデータフレームを操作する</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lubridate.html"><a href="lubridate.html#準備-2"><i class="fa fa-check"></i><b>7.1</b> 準備</a></li>
-<li class="chapter" data-level="7.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>7.2</b> 1月後・1年後の同一日</a></li>
-<li class="chapter" data-level="7.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>7.3</b> 文字列からDateクラスへの変換</a></li>
-<li class="chapter" data-level="7.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>7.4</b> 曜日を求める</a></li>
-<li class="chapter" data-level="7.5" data-path="lubridate.html"><a href="lubridate.html#活用例-1"><i class="fa fa-check"></i><b>7.5</b> 活用例</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>8</b> fsでファイル操作</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="fs.html"><a href="fs.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
-<li class="chapter" data-level="8.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>8.2</b> shell，baseパッケージ, fsパッケージ</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>8.2.1</b> shellを使う</a></li>
-<li class="chapter" data-level="8.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ"><i class="fa fa-check"></i><b>8.2.2</b> baseパッケージ</a></li>
-<li class="chapter" data-level="8.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>8.2.3</b> fsパッケージ</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="fs.html"><a href="fs.html#fsの関数"><i class="fa fa-check"></i><b>8.3</b> fsの関数</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>8.3.1</b> パス操作</a></li>
-<li class="chapter" data-level="8.3.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>8.3.2</b> ディレクトリ操作</a></li>
-<li class="chapter" data-level="8.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>8.3.3</b> ファイル操作</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>8.4</b> fsを使ったファイル操作例</a></li>
-<li class="chapter" data-level="8.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>8.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>9</b> system()やshell()でOSコマンドの実行</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="shell.html"><a href="shell.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
-<li class="chapter" data-level="9.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>9.2</b> 活用例：Pythonとそのライブラリのインストール</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>9.2.1</b> Pythonのイントール</a></li>
-<li class="chapter" data-level="9.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>9.2.2</b> PyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="6.6.1" data-path="tidyverse.html"><a href="tidyverse.html#cranのパッケージを分類する"><i class="fa fa-check"></i><b>6.6.1</b> CRANのパッケージを分類する</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>10</b> reticulateでPythonを使う</a>
+<li class="chapter" data-level="7" data-path="stringr.html"><a href="stringr.html"><i class="fa fa-check"></i><b>7</b> stringrで文字列操作</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="reticulate.html"><a href="reticulate.html#準備-5"><i class="fa fa-check"></i><b>10.1</b> 準備</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>10.1.1</b> PythonとPyAutoGUIのインストール</a></li>
-<li class="chapter" data-level="10.1.2" data-path="reticulate.html"><a href="reticulate.html#identify_python"><i class="fa fa-check"></i><b>10.1.2</b> 使用するPythonの指定</a></li>
+<li class="chapter" data-level="7.1" data-path="stringr.html"><a href="stringr.html#はじめに-1"><i class="fa fa-check"></i><b>7.1</b> はじめに</a></li>
+<li class="chapter" data-level="7.2" data-path="stringr.html"><a href="stringr.html#準備-2"><i class="fa fa-check"></i><b>7.2</b> 準備</a></li>
+<li class="chapter" data-level="7.3" data-path="stringr.html"><a href="stringr.html#stringrの主な関数"><i class="fa fa-check"></i><b>7.3</b> stringrの主な関数</a></li>
+<li class="chapter" data-level="7.4" data-path="stringr.html"><a href="stringr.html#活用例"><i class="fa fa-check"></i><b>7.4</b> 活用例</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>10.2</b> Pythonを使ってみる</a>
+<li class="chapter" data-level="8" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>8</b> lubridateで日付・時刻を扱う</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>10.2.1</b> Pythonの呼び出し</a></li>
-<li class="chapter" data-level="10.2.2" data-path="reticulate.html"><a href="reticulate.html#rからpythonのhellow-world"><i class="fa fa-check"></i><b>10.2.2</b> RからPythonのHellow World</a></li>
+<li class="chapter" data-level="8.1" data-path="lubridate.html"><a href="lubridate.html#準備-3"><i class="fa fa-check"></i><b>8.1</b> 準備</a></li>
+<li class="chapter" data-level="8.2" data-path="lubridate.html"><a href="lubridate.html#月後1年後の同一日"><i class="fa fa-check"></i><b>8.2</b> 1月後・1年後の同一日</a></li>
+<li class="chapter" data-level="8.3" data-path="lubridate.html"><a href="lubridate.html#文字列からdateクラスへの変換"><i class="fa fa-check"></i><b>8.3</b> 文字列からDateクラスへの変換</a></li>
+<li class="chapter" data-level="8.4" data-path="lubridate.html"><a href="lubridate.html#曜日を求める"><i class="fa fa-check"></i><b>8.4</b> 曜日を求める</a></li>
+<li class="chapter" data-level="8.5" data-path="lubridate.html"><a href="lubridate.html#活用例-1"><i class="fa fa-check"></i><b>8.5</b> 活用例</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>10.3</b> PythoとRとの変数のやり取り</a></li>
-<li class="chapter" data-level="10.4" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>10.4</b> Pythonのコードを実行</a></li>
-<li class="chapter" data-level="10.5" data-path="reticulate.html"><a href="reticulate.html#rとpythoでの用語の違い"><i class="fa fa-check"></i><b>10.5</b> RとPythoでの用語の違い</a></li>
+<li class="chapter" data-level="9" data-path="fs.html"><a href="fs.html"><i class="fa fa-check"></i><b>9</b> fsでファイル操作</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="fs.html"><a href="fs.html#準備-4"><i class="fa fa-check"></i><b>9.1</b> 準備</a></li>
+<li class="chapter" data-level="9.2" data-path="fs.html"><a href="fs.html#shellbaseパッケージ-fsパッケージ"><i class="fa fa-check"></i><b>9.2</b> shell，baseパッケージ, fsパッケージ</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="fs.html"><a href="fs.html#shellを使う"><i class="fa fa-check"></i><b>9.2.1</b> shellを使う</a></li>
+<li class="chapter" data-level="9.2.2" data-path="fs.html"><a href="fs.html#baseパッケージ"><i class="fa fa-check"></i><b>9.2.2</b> baseパッケージ</a></li>
+<li class="chapter" data-level="9.2.3" data-path="fs.html"><a href="fs.html#fsパッケージ"><i class="fa fa-check"></i><b>9.2.3</b> fsパッケージ</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>11</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
+<li class="chapter" data-level="9.3" data-path="fs.html"><a href="fs.html#fsの関数"><i class="fa fa-check"></i><b>9.3</b> fsの関数</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a></li>
-<li class="chapter" data-level="11.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>11.2</b> キーボード操作の自動化</a></li>
-<li class="chapter" data-level="11.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>11.3</b> マウスの位置取得</a></li>
-<li class="chapter" data-level="11.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbメモリの安全な取り出しの自動化"><i class="fa fa-check"></i><b>11.4</b> USBメモリの安全な取り出しの自動化</a></li>
-<li class="chapter" data-level="11.5" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>11.5</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
+<li class="chapter" data-level="9.3.1" data-path="fs.html"><a href="fs.html#パス操作"><i class="fa fa-check"></i><b>9.3.1</b> パス操作</a></li>
+<li class="chapter" data-level="9.3.2" data-path="fs.html"><a href="fs.html#ディレクトリ操作"><i class="fa fa-check"></i><b>9.3.2</b> ディレクトリ操作</a></li>
+<li class="chapter" data-level="9.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>9.3.3</b> ファイル操作</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> ggplot2で楽に綺麗に作図</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="ggplot2.html"><a href="ggplot2.html#準備-7"><i class="fa fa-check"></i><b>12.1</b> 準備</a></li>
-<li class="chapter" data-level="12.2" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>12.2</b> Rの作図環境の概要</a></li>
-<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>12.3</b> ggplot2とは</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>12.3.1</b> ggplot2の利点</a></li>
+<li class="chapter" data-level="9.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>9.4</b> fsを使ったファイル操作例</a></li>
+<li class="chapter" data-level="9.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>9.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>12.4</b> ggplot2の基本</a></li>
-<li class="chapter" data-level="12.5" data-path="ggplot2.html"><a href="ggplot2.html#facetで簡単に分割作図"><i class="fa fa-check"></i><b>12.5</b> facetで簡単に分割作図</a></li>
-<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>12.6</b> ggsave</a></li>
-<li class="chapter" data-level="12.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>12.7</b> 文字化けへの対処(windows)</a></li>
-<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>12.8</b> themeを少しだけ説明</a></li>
-<li class="chapter" data-level="12.9" data-path="ggplot2.html"><a href="ggplot2.html#作図の自動化"><i class="fa fa-check"></i><b>12.9</b> 作図の自動化</a></li>
-<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>12.10</b> 参考書</a></li>
+<li class="chapter" data-level="10" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>10</b> system()やshell()でOSコマンドの実行</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="shell.html"><a href="shell.html#準備-5"><i class="fa fa-check"></i><b>10.1</b> 準備</a></li>
+<li class="chapter" data-level="10.2" data-path="shell.html"><a href="shell.html#install_python"><i class="fa fa-check"></i><b>10.2</b> 活用例：Pythonとそのライブラリのインストール</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="shell.html"><a href="shell.html#pythonのイントール"><i class="fa fa-check"></i><b>10.2.1</b> Pythonのイントール</a></li>
+<li class="chapter" data-level="10.2.2" data-path="shell.html"><a href="shell.html#pyautoguiのインストール"><i class="fa fa-check"></i><b>10.2.2</b> PyAutoGUIのインストール</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>13</b> rvestでスクレイピング</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>13.1</b> スクレイピング</a></li>
-<li class="chapter" data-level="13.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>13.2</b> rvest と RSelenium</a></li>
-<li class="chapter" data-level="13.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>13.3</b> rvestのできること</a></li>
-<li class="chapter" data-level="13.4" data-path="rvest.html"><a href="rvest.html#準備-8"><i class="fa fa-check"></i><b>13.4</b> 準備</a></li>
-<li class="chapter" data-level="13.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>13.5</b> HTMLの取得</a></li>
-<li class="chapter" data-level="13.6" data-path="rvest.html"><a href="rvest.html#必要な情報の取得"><i class="fa fa-check"></i><b>13.6</b> 必要な情報の取得</a></li>
-<li class="chapter" data-level="13.7" data-path="rvest.html"><a href="rvest.html#urlの生成データの取得"><i class="fa fa-check"></i><b>13.7</b> URLの生成・データの取得</a></li>
-<li class="chapter" data-level="13.8" data-path="rvest.html"><a href="rvest.html#地図画像の取得"><i class="fa fa-check"></i><b>13.8</b> 地図画像の取得</a></li>
-<li class="chapter" data-level="13.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>13.9</b> 複数種への対応</a></li>
-<li class="chapter" data-level="13.10" data-path="rvest.html"><a href="rvest.html#webshot"><i class="fa fa-check"></i><b>13.10</b> おまけ：webshotでウエブページを画像に変換</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>14</b> Rseleniumでスクレイピング</a>
+<li class="chapter" data-level="11" data-path="reticulate.html"><a href="reticulate.html"><i class="fa fa-check"></i><b>11</b> reticulateでPythonを使う</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="rselenium.html"><a href="rselenium.html#準備-9"><i class="fa fa-check"></i><b>14.1</b> 準備</a></li>
-<li class="chapter" data-level="14.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>14.2</b> ブラウザの自動化</a></li>
-<li class="chapter" data-level="14.3" data-path="rselenium.html"><a href="rselenium.html#section"><i class="fa fa-check"></i><b>14.3</b> </a>
+<li class="chapter" data-level="11.1" data-path="reticulate.html"><a href="reticulate.html#準備-6"><i class="fa fa-check"></i><b>11.1</b> 準備</a>
 <ul>
-<li class="chapter" data-level="14.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方"><i class="fa fa-check"></i><b>14.3.1</b> 使い方</a></li>
-<li class="chapter" data-level="14.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点"><i class="fa fa-check"></i><b>14.3.2</b> 注意点</a></li>
+<li class="chapter" data-level="11.1.1" data-path="reticulate.html"><a href="reticulate.html#pythonとpyautoguiのインストール"><i class="fa fa-check"></i><b>11.1.1</b> PythonとPyAutoGUIのインストール</a></li>
+<li class="chapter" data-level="11.1.2" data-path="reticulate.html"><a href="reticulate.html#identify_python"><i class="fa fa-check"></i><b>11.1.2</b> 使用するPythonの指定</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>14.4</b> 要素の取得</a></li>
-<li class="chapter" data-level="14.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>14.5</b> その他</a></li>
+<li class="chapter" data-level="11.2" data-path="reticulate.html"><a href="reticulate.html#pythonを使ってみる"><i class="fa fa-check"></i><b>11.2</b> Pythonを使ってみる</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="reticulate.html"><a href="reticulate.html#pythonの呼び出し"><i class="fa fa-check"></i><b>11.2.1</b> Pythonの呼び出し</a></li>
+<li class="chapter" data-level="11.2.2" data-path="reticulate.html"><a href="reticulate.html#rからpythonのhellow-world"><i class="fa fa-check"></i><b>11.2.2</b> RからPythonのHellow World</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="magick.html"><a href="magick.html"><i class="fa fa-check"></i><b>15</b> magickで画像編集</a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="magick.html"><a href="magick.html#準備-10"><i class="fa fa-check"></i><b>15.1</b> 準備</a></li>
-<li class="chapter" data-level="15.2" data-path="magick.html"><a href="magick.html#使い方-1"><i class="fa fa-check"></i><b>15.2</b> 使い方</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="magick.html"><a href="magick.html#読み込み表示変換保存"><i class="fa fa-check"></i><b>15.2.1</b> 読み込み・表示・変換・保存</a></li>
-<li class="chapter" data-level="15.2.2" data-path="magick.html"><a href="magick.html#切り抜き"><i class="fa fa-check"></i><b>15.2.2</b> 切り抜き</a></li>
-<li class="chapter" data-level="15.2.3" data-path="magick.html"><a href="magick.html#サイズの変更"><i class="fa fa-check"></i><b>15.2.3</b> サイズの変更</a></li>
-<li class="chapter" data-level="15.2.4" data-path="magick.html"><a href="magick.html#枠余白の追加註釈テキストの追加"><i class="fa fa-check"></i><b>15.2.4</b> 枠(余白)の追加・註釈(テキスト)の追加</a></li>
+<li class="chapter" data-level="11.3" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>11.3</b> PythoとRとの変数のやり取り</a></li>
+<li class="chapter" data-level="11.4" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>11.4</b> Pythonのコードを実行</a></li>
+<li class="chapter" data-level="11.5" data-path="reticulate.html"><a href="reticulate.html#rとpythoでの用語の違い"><i class="fa fa-check"></i><b>11.5</b> RとPythoでの用語の違い</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="magick.html"><a href="magick.html#その他の関数"><i class="fa fa-check"></i><b>15.3</b> その他の関数</a></li>
-<li class="chapter" data-level="15.4" data-path="magick.html"><a href="magick.html#ウエブのスクリーンショットにurlを付加する関数"><i class="fa fa-check"></i><b>15.4</b> ウエブのスクリーンショットにURLを付加する関数</a></li>
+<li class="chapter" data-level="12" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>12</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#準備-7"><i class="fa fa-check"></i><b>12.1</b> 準備</a></li>
+<li class="chapter" data-level="12.2" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#キーボード操作の自動化"><i class="fa fa-check"></i><b>12.2</b> キーボード操作の自動化</a></li>
+<li class="chapter" data-level="12.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>12.3</b> マウスの位置取得</a></li>
+<li class="chapter" data-level="12.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbメモリの安全な取り出しの自動化"><i class="fa fa-check"></i><b>12.4</b> USBメモリの安全な取り出しの自動化</a></li>
+<li class="chapter" data-level="12.5" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#pyautoguiで画像認識した場所にマウスポインターを動かしてクリックする"><i class="fa fa-check"></i><b>12.5</b> PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="dbi.html"><a href="dbi.html"><i class="fa fa-check"></i><b>16</b> DBIでデータ取得</a>
+<li class="chapter" data-level="13" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>13</b> ggplot2で楽に綺麗に作図</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="dbi.html"><a href="dbi.html#データベースとの連携"><i class="fa fa-check"></i><b>16.1</b> データベースとの連携</a></li>
-<li class="chapter" data-level="16.2" data-path="dbi.html"><a href="dbi.html#dbiでできること"><i class="fa fa-check"></i><b>16.2</b> DBIでできること</a></li>
-<li class="chapter" data-level="16.3" data-path="dbi.html"><a href="dbi.html#準備-11"><i class="fa fa-check"></i><b>16.3</b> 準備</a></li>
-<li class="chapter" data-level="16.4" data-path="dbi.html"><a href="dbi.html#使い方-2"><i class="fa fa-check"></i><b>16.4</b> 使い方</a></li>
+<li class="chapter" data-level="13.1" data-path="ggplot2.html"><a href="ggplot2.html#準備-8"><i class="fa fa-check"></i><b>13.1</b> 準備</a></li>
+<li class="chapter" data-level="13.2" data-path="ggplot2.html"><a href="ggplot2.html#rの作図環境の概要"><i class="fa fa-check"></i><b>13.2</b> Rの作図環境の概要</a></li>
+<li class="chapter" data-level="13.3" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2とは"><i class="fa fa-check"></i><b>13.3</b> ggplot2とは</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の利点"><i class="fa fa-check"></i><b>13.3.1</b> ggplot2の利点</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>17</b> xlsxでエクセル操作</a>
-<ul>
-<li class="chapter" data-level="17.1" data-path="xlsx.html"><a href="xlsx.html#準備-12"><i class="fa fa-check"></i><b>17.1</b> 準備</a></li>
-<li class="chapter" data-level="17.2" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>17.2</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
-<ul>
-<li class="chapter" data-level="17.2.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>17.2.1</b> 使用方法</a></li>
-<li class="chapter" data-level="17.2.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>17.2.2</b> スクリプトの内容説明</a></li>
+<li class="chapter" data-level="13.4" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2の基本"><i class="fa fa-check"></i><b>13.4</b> ggplot2の基本</a></li>
+<li class="chapter" data-level="13.5" data-path="ggplot2.html"><a href="ggplot2.html#facetで簡単に分割作図"><i class="fa fa-check"></i><b>13.5</b> facetで簡単に分割作図</a></li>
+<li class="chapter" data-level="13.6" data-path="ggplot2.html"><a href="ggplot2.html#ggsave"><i class="fa fa-check"></i><b>13.6</b> ggsave</a></li>
+<li class="chapter" data-level="13.7" data-path="ggplot2.html"><a href="ggplot2.html#文字化けへの対処windows"><i class="fa fa-check"></i><b>13.7</b> 文字化けへの対処(windows)</a></li>
+<li class="chapter" data-level="13.8" data-path="ggplot2.html"><a href="ggplot2.html#themeを少しだけ説明"><i class="fa fa-check"></i><b>13.8</b> themeを少しだけ説明</a></li>
+<li class="chapter" data-level="13.9" data-path="ggplot2.html"><a href="ggplot2.html#作図の自動化"><i class="fa fa-check"></i><b>13.9</b> 作図の自動化</a></li>
+<li class="chapter" data-level="13.10" data-path="ggplot2.html"><a href="ggplot2.html#参考書"><i class="fa fa-check"></i><b>13.10</b> 参考書</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="xlsx.html"><a href="xlsx.html#その他の操作未作成"><i class="fa fa-check"></i><b>17.3</b> その他の操作(未作成)</a></li>
+<li class="chapter" data-level="14" data-path="rvest.html"><a href="rvest.html"><i class="fa fa-check"></i><b>14</b> rvestでスクレイピング</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="rvest.html"><a href="rvest.html#スクレイピング"><i class="fa fa-check"></i><b>14.1</b> スクレイピング</a></li>
+<li class="chapter" data-level="14.2" data-path="rvest.html"><a href="rvest.html#rvest-と-rselenium"><i class="fa fa-check"></i><b>14.2</b> rvest と RSelenium</a></li>
+<li class="chapter" data-level="14.3" data-path="rvest.html"><a href="rvest.html#rvestのできること"><i class="fa fa-check"></i><b>14.3</b> rvestのできること</a></li>
+<li class="chapter" data-level="14.4" data-path="rvest.html"><a href="rvest.html#準備-9"><i class="fa fa-check"></i><b>14.4</b> 準備</a></li>
+<li class="chapter" data-level="14.5" data-path="rvest.html"><a href="rvest.html#htmlの取得"><i class="fa fa-check"></i><b>14.5</b> HTMLの取得</a></li>
+<li class="chapter" data-level="14.6" data-path="rvest.html"><a href="rvest.html#必要な情報の取得"><i class="fa fa-check"></i><b>14.6</b> 必要な情報の取得</a></li>
+<li class="chapter" data-level="14.7" data-path="rvest.html"><a href="rvest.html#urlの生成データの取得"><i class="fa fa-check"></i><b>14.7</b> URLの生成・データの取得</a></li>
+<li class="chapter" data-level="14.8" data-path="rvest.html"><a href="rvest.html#地図画像の取得"><i class="fa fa-check"></i><b>14.8</b> 地図画像の取得</a></li>
+<li class="chapter" data-level="14.9" data-path="rvest.html"><a href="rvest.html#複数種への対応"><i class="fa fa-check"></i><b>14.9</b> 複数種への対応</a></li>
+<li class="chapter" data-level="14.10" data-path="rvest.html"><a href="rvest.html#webshot"><i class="fa fa-check"></i><b>14.10</b> おまけ：webshotでウエブページを画像に変換</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>18</b> qpdfでPDF操作</a>
+<li class="chapter" data-level="15" data-path="rselenium.html"><a href="rselenium.html"><i class="fa fa-check"></i><b>15</b> Rseleniumでスクレイピング</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="qpdf.html"><a href="qpdf.html#準備-13"><i class="fa fa-check"></i><b>18.1</b> 準備</a></li>
-<li class="chapter" data-level="18.2" data-path="qpdf.html"><a href="qpdf.html#qpdfでできること"><i class="fa fa-check"></i><b>18.2</b> qpdfでできること</a></li>
-<li class="chapter" data-level="18.3" data-path="qpdf.html"><a href="qpdf.html#pdfの分割"><i class="fa fa-check"></i><b>18.3</b> PDFの分割</a></li>
-<li class="chapter" data-level="18.4" data-path="qpdf.html"><a href="qpdf.html#pdfの結合"><i class="fa fa-check"></i><b>18.4</b> PDFの結合</a></li>
-<li class="chapter" data-level="18.5" data-path="qpdf.html"><a href="qpdf.html#pdfの圧縮最適化"><i class="fa fa-check"></i><b>18.5</b> PDFの圧縮・最適化</a></li>
-<li class="chapter" data-level="18.6" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>18.6</b> PDFへのページ番号付加</a></li>
-<li class="chapter" data-level="18.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>18.7</b> その他の関数</a></li>
-<li class="chapter" data-level="18.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>18.8</b> pdftoolsでテキストの取り出し</a></li>
+<li class="chapter" data-level="15.1" data-path="rselenium.html"><a href="rselenium.html#準備-10"><i class="fa fa-check"></i><b>15.1</b> 準備</a></li>
+<li class="chapter" data-level="15.2" data-path="rselenium.html"><a href="rselenium.html#ブラウザの自動化"><i class="fa fa-check"></i><b>15.2</b> ブラウザの自動化</a></li>
+<li class="chapter" data-level="15.3" data-path="rselenium.html"><a href="rselenium.html#section"><i class="fa fa-check"></i><b>15.3</b> </a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="rselenium.html"><a href="rselenium.html#使い方"><i class="fa fa-check"></i><b>15.3.1</b> 使い方</a></li>
+<li class="chapter" data-level="15.3.2" data-path="rselenium.html"><a href="rselenium.html#注意点"><i class="fa fa-check"></i><b>15.3.2</b> 注意点</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>19</b> RDCOMClientでpdfとdocxを相互変換</a>
-<ul>
-<li class="chapter" data-level="19.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
-<li class="chapter" data-level="19.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>19.2</b> RDCOMClient</a></li>
+<li class="chapter" data-level="15.4" data-path="rselenium.html"><a href="rselenium.html#要素の取得"><i class="fa fa-check"></i><b>15.4</b> 要素の取得</a></li>
+<li class="chapter" data-level="15.5" data-path="rselenium.html"><a href="rselenium.html#その他"><i class="fa fa-check"></i><b>15.5</b> その他</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>20</b> Microsoft365R</a>
+<li class="chapter" data-level="16" data-path="magick.html"><a href="magick.html"><i class="fa fa-check"></i><b>16</b> magickで画像編集</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="microsoft365r.html"><a href="microsoft365r.html#outlookで複数メール送信を一斉送信"><i class="fa fa-check"></i><b>20.1</b> Outlookで複数メール送信を一斉送信</a>
+<li class="chapter" data-level="16.1" data-path="magick.html"><a href="magick.html#準備-11"><i class="fa fa-check"></i><b>16.1</b> 準備</a></li>
+<li class="chapter" data-level="16.2" data-path="magick.html"><a href="magick.html#使い方-1"><i class="fa fa-check"></i><b>16.2</b> 使い方</a>
 <ul>
-<li class="chapter" data-level="20.1.1" data-path="microsoft365r.html"><a href="microsoft365r.html#インストールと初期設定"><i class="fa fa-check"></i><b>20.1.1</b> インストールと初期設定</a></li>
-<li class="chapter" data-level="20.1.2" data-path="microsoft365r.html"><a href="microsoft365r.html#とりあえず使う"><i class="fa fa-check"></i><b>20.1.2</b> とりあえず使う</a></li>
-<li class="chapter" data-level="20.1.3" data-path="microsoft365r.html"><a href="microsoft365r.html#メールの一斉送信"><i class="fa fa-check"></i><b>20.1.3</b> メールの一斉送信</a></li>
+<li class="chapter" data-level="16.2.1" data-path="magick.html"><a href="magick.html#読み込み表示変換保存"><i class="fa fa-check"></i><b>16.2.1</b> 読み込み・表示・変換・保存</a></li>
+<li class="chapter" data-level="16.2.2" data-path="magick.html"><a href="magick.html#切り抜き"><i class="fa fa-check"></i><b>16.2.2</b> 切り抜き</a></li>
+<li class="chapter" data-level="16.2.3" data-path="magick.html"><a href="magick.html#サイズの変更"><i class="fa fa-check"></i><b>16.2.3</b> サイズの変更</a></li>
+<li class="chapter" data-level="16.2.4" data-path="magick.html"><a href="magick.html#枠余白の追加註釈テキストの追加"><i class="fa fa-check"></i><b>16.2.4</b> 枠(余白)の追加・註釈(テキスト)の追加</a></li>
 </ul></li>
-<li class="chapter" data-level="20.2" data-path="microsoft365r.html"><a href="microsoft365r.html#複数のワード文書の文字列を一括置換"><i class="fa fa-check"></i><b>20.2</b> 複数のワード文書の文字列を一括置換</a>
-<ul>
-<li class="chapter" data-level="20.2.1" data-path="microsoft365r.html"><a href="microsoft365r.html#置換のコードの例"><i class="fa fa-check"></i><b>20.2.1</b> 置換のコードの例</a></li>
+<li class="chapter" data-level="16.3" data-path="magick.html"><a href="magick.html#その他の関数"><i class="fa fa-check"></i><b>16.3</b> その他の関数</a></li>
+<li class="chapter" data-level="16.4" data-path="magick.html"><a href="magick.html#ウエブのスクリーンショットにurlを付加する関数"><i class="fa fa-check"></i><b>16.4</b> ウエブのスクリーンショットにURLを付加する関数</a></li>
 </ul></li>
-<li class="chapter" data-level="20.3" data-path="microsoft365r.html"><a href="microsoft365r.html#年月日の更新"><i class="fa fa-check"></i><b>20.3</b> 年月日の更新</a>
+<li class="chapter" data-level="17" data-path="dbi.html"><a href="dbi.html"><i class="fa fa-check"></i><b>17</b> DBIでデータ取得</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="microsoft365r.html"><a href="microsoft365r.html#活用例-2"><i class="fa fa-check"></i><b>20.3.1</b> 活用例</a></li>
+<li class="chapter" data-level="17.1" data-path="dbi.html"><a href="dbi.html#データベースとの連携"><i class="fa fa-check"></i><b>17.1</b> データベースとの連携</a></li>
+<li class="chapter" data-level="17.2" data-path="dbi.html"><a href="dbi.html#dbiでできること"><i class="fa fa-check"></i><b>17.2</b> DBIでできること</a></li>
+<li class="chapter" data-level="17.3" data-path="dbi.html"><a href="dbi.html#準備-12"><i class="fa fa-check"></i><b>17.3</b> 準備</a></li>
+<li class="chapter" data-level="17.4" data-path="dbi.html"><a href="dbi.html#使い方-2"><i class="fa fa-check"></i><b>17.4</b> 使い方</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>18</b> xlsxでエクセル操作</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="xlsx.html"><a href="xlsx.html#準備-13"><i class="fa fa-check"></i><b>18.1</b> 準備</a></li>
+<li class="chapter" data-level="18.2" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>18.2</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>18.2.1</b> 使用方法</a></li>
+<li class="chapter" data-level="18.2.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>18.2.2</b> スクリプトの内容説明</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="xlsx.html"><a href="xlsx.html#その他の操作未作成"><i class="fa fa-check"></i><b>18.3</b> その他の操作(未作成)</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>19</b> qpdfでPDF操作</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="qpdf.html"><a href="qpdf.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
+<li class="chapter" data-level="19.2" data-path="qpdf.html"><a href="qpdf.html#qpdfでできること"><i class="fa fa-check"></i><b>19.2</b> qpdfでできること</a></li>
+<li class="chapter" data-level="19.3" data-path="qpdf.html"><a href="qpdf.html#pdfの分割"><i class="fa fa-check"></i><b>19.3</b> PDFの分割</a></li>
+<li class="chapter" data-level="19.4" data-path="qpdf.html"><a href="qpdf.html#pdfの結合"><i class="fa fa-check"></i><b>19.4</b> PDFの結合</a></li>
+<li class="chapter" data-level="19.5" data-path="qpdf.html"><a href="qpdf.html#pdfの圧縮最適化"><i class="fa fa-check"></i><b>19.5</b> PDFの圧縮・最適化</a></li>
+<li class="chapter" data-level="19.6" data-path="qpdf.html"><a href="qpdf.html#pdfへのページ番号付加"><i class="fa fa-check"></i><b>19.6</b> PDFへのページ番号付加</a></li>
+<li class="chapter" data-level="19.7" data-path="qpdf.html"><a href="qpdf.html#その他の関数-1"><i class="fa fa-check"></i><b>19.7</b> その他の関数</a></li>
+<li class="chapter" data-level="19.8" data-path="qpdf.html"><a href="qpdf.html#pdftools"><i class="fa fa-check"></i><b>19.8</b> pdftoolsでテキストの取り出し</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="RDCOMClient.html"><a href="RDCOMClient.html"><i class="fa fa-check"></i><b>20</b> RDCOMClientでpdfとdocxを相互変換</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="RDCOMClient.html"><a href="RDCOMClient.html#準備-15"><i class="fa fa-check"></i><b>20.1</b> 準備</a></li>
+<li class="chapter" data-level="20.2" data-path="RDCOMClient.html"><a href="RDCOMClient.html#rdcomclient"><i class="fa fa-check"></i><b>20.2</b> RDCOMClient</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="microsoft365r.html"><a href="microsoft365r.html"><i class="fa fa-check"></i><b>21</b> Microsoft365R</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="microsoft365r.html"><a href="microsoft365r.html#outlookで複数メール送信を一斉送信"><i class="fa fa-check"></i><b>21.1</b> Outlookで複数メール送信を一斉送信</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="microsoft365r.html"><a href="microsoft365r.html#インストールと初期設定"><i class="fa fa-check"></i><b>21.1.1</b> インストールと初期設定</a></li>
+<li class="chapter" data-level="21.1.2" data-path="microsoft365r.html"><a href="microsoft365r.html#とりあえず使う"><i class="fa fa-check"></i><b>21.1.2</b> とりあえず使う</a></li>
+<li class="chapter" data-level="21.1.3" data-path="microsoft365r.html"><a href="microsoft365r.html#メールの一斉送信"><i class="fa fa-check"></i><b>21.1.3</b> メールの一斉送信</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="microsoft365r.html"><a href="microsoft365r.html#複数のワード文書の文字列を一括置換"><i class="fa fa-check"></i><b>21.2</b> 複数のワード文書の文字列を一括置換</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="microsoft365r.html"><a href="microsoft365r.html#置換のコードの例"><i class="fa fa-check"></i><b>21.2.1</b> 置換のコードの例</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="microsoft365r.html"><a href="microsoft365r.html#年月日の更新"><i class="fa fa-check"></i><b>21.3</b> 年月日の更新</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="microsoft365r.html"><a href="microsoft365r.html#活用例-2"><i class="fa fa-check"></i><b>21.3.1</b> 活用例</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -359,8 +380,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reticulate" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chap. 10</span> reticulateでPythonを使う<a href="reticulate.html#reticulate" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="reticulate" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chap. 11</span> reticulateでPythonを使う<a href="reticulate.html#reticulate" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>RとPythonのパッケージは，相互に移植されていることが多い．
 例えば，Pythonのlogging(とRのfutile.logger)をもとにRのパッケージloggerは開発されている．
 <a href="https://cran.r-project.org/web/packages/logger/index.html" class="uri">https://cran.r-project.org/web/packages/logger/index.html</a>
@@ -369,49 +390,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 そんなとき，ちょっとだけ使うのであれば，Rのパッケージreticulateが便利である．
 もちろん，Pythonをちゃんと勉強するのも良いだろう．
 さらに，reticulateを使うとRとPythonとの変数のやり取りが簡単にできるので，本格的にPythonを使うのにも良さそう．</p>
-<div id="準備-5" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> 準備<a href="reticulate.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="reticulate.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;reticulate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="reticulate.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb133-2"><a href="reticulate.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb133-3"><a href="reticulate.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
-<div id="pythonとpyautoguiのインストール" class="section level3 hasAnchor" number="10.1.1">
-<h3><span class="header-section-number">10.1.1</span> PythonとPyAutoGUIのインストール<a href="reticulate.html#pythonとpyautoguiのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="準備-6" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> 準備<a href="reticulate.html#準備-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="reticulate.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;reticulate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="reticulate.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb169-2"><a href="reticulate.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb169-3"><a href="reticulate.html#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
+<div id="pythonとpyautoguiのインストール" class="section level3 hasAnchor" number="11.1.1">
+<h3><span class="header-section-number">11.1.1</span> PythonとPyAutoGUIのインストール<a href="reticulate.html#pythonとpyautoguiのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><a href="shell.html#install_python">Pythonとそのライブラリのインストール</a>を参照して，PythonとPyAutoGUIをインストールしておく．</p>
 <p>ライブラリの一覧の中に，あとで使うnumpy，matplotlib，artがなければインストールしておく．
 なお，この文書ではPythonをパッケージ版でインストールしするとともに，pipでパッケージを管理している．
 Anacondaやminicondaで仮想環境を使用している場合は，<code>retuculate::conda_install()</code>でパッケージをインストールする．</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="reticulate.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip list&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb134-2"><a href="reticulate.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb134-3"><a href="reticulate.html#cb134-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;numpy|matplotlib|art&quot;</span>))</span>
-<span id="cb134-4"><a href="reticulate.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="do">## A tibble: 0 × 1</span></span>
-<span id="cb134-5"><a href="reticulate.html#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ℹ 1 variable: value &lt;chr&gt;</span></span>
-<span id="cb134-6"><a href="reticulate.html#cb134-6" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install numpy&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb134-7"><a href="reticulate.html#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install matplotlib&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb134-8"><a href="reticulate.html#cb134-8" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install art&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="reticulate.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip list&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb170-2"><a href="reticulate.html#cb170-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb170-3"><a href="reticulate.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;numpy|matplotlib|art&quot;</span>))</span>
+<span id="cb170-4"><a href="reticulate.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="do">## A tibble: 0 × 1</span></span>
+<span id="cb170-5"><a href="reticulate.html#cb170-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ℹ 1 variable: value &lt;chr&gt;</span></span>
+<span id="cb170-6"><a href="reticulate.html#cb170-6" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install numpy&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb170-7"><a href="reticulate.html#cb170-7" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install matplotlib&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb170-8"><a href="reticulate.html#cb170-8" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install art&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
-<div id="identify_python" class="section level3 hasAnchor" number="10.1.2">
-<h3><span class="header-section-number">10.1.2</span> 使用するPythonの指定<a href="reticulate.html#identify_python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="identify_python" class="section level3 hasAnchor" number="11.1.2">
+<h3><span class="header-section-number">11.1.2</span> 使用するPythonの指定<a href="reticulate.html#identify_python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>バージョンや形態の異なるPythonを複数インストールすることが可能である．
 <a href="shell.html#install_python">Pythonとそのライブラリのインストール</a>で説明したようなPythonパッケージのインストーラを用いたもの(パッケージ版Python)もあれば，Microsoft Store版のPythonもある．
 さらに，Anacondaをインストールしてその中でPythonを使うこともできる．
 色々とあってややこしいが，この文章ではパッケージ版Pythonを使うことにする．
 reticulateで使用するPythonとしてインストールしたパッケージ版Pythonを指定する．
 なお，AnacondaなどにあるPythonを使う場合は，別途インストールして，<code>use_condaenv()</code>で指定する．</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="reticulate.html#cb135-1" aria-hidden="true" tabindex="-1"></a>find_python <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb135-2"><a href="reticulate.html#cb135-2" aria-hidden="true" tabindex="-1"></a>  os <span class="ot">&lt;-</span> automater<span class="sc">::</span><span class="fu">get_os</span>()</span>
-<span id="cb135-3"><a href="reticulate.html#cb135-3" aria-hidden="true" tabindex="-1"></a>  python_path <span class="ot">&lt;-</span> </span>
-<span id="cb135-4"><a href="reticulate.html#cb135-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(os <span class="sc">==</span> <span class="st">&quot;win&quot;</span>, <span class="st">&quot;where python&quot;</span>, <span class="st">&quot;which python&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb135-5"><a href="reticulate.html#cb135-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb135-6"><a href="reticulate.html#cb135-6" aria-hidden="true" tabindex="-1"></a>    fs<span class="sc">::</span><span class="fu">path</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb135-7"><a href="reticulate.html#cb135-7" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_subset</span>(<span class="st">&quot;Python311&quot;</span>)</span>
-<span id="cb135-8"><a href="reticulate.html#cb135-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(python_path)</span>
-<span id="cb135-9"><a href="reticulate.html#cb135-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb135-10"><a href="reticulate.html#cb135-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-11"><a href="reticulate.html#cb135-11" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">find_python</span>()</span>
-<span id="cb135-12"><a href="reticulate.html#cb135-12" aria-hidden="true" tabindex="-1"></a>path</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="reticulate.html#cb171-1" aria-hidden="true" tabindex="-1"></a>find_python <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb171-2"><a href="reticulate.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  os <span class="ot">&lt;-</span> automater<span class="sc">::</span><span class="fu">get_os</span>()</span>
+<span id="cb171-3"><a href="reticulate.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  python_path <span class="ot">&lt;-</span> </span>
+<span id="cb171-4"><a href="reticulate.html#cb171-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(os <span class="sc">==</span> <span class="st">&quot;win&quot;</span>, <span class="st">&quot;where python&quot;</span>, <span class="st">&quot;which python&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb171-5"><a href="reticulate.html#cb171-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb171-6"><a href="reticulate.html#cb171-6" aria-hidden="true" tabindex="-1"></a>    fs<span class="sc">::</span><span class="fu">path</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb171-7"><a href="reticulate.html#cb171-7" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_subset</span>(<span class="st">&quot;Python311&quot;</span>)</span>
+<span id="cb171-8"><a href="reticulate.html#cb171-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(python_path)</span>
+<span id="cb171-9"><a href="reticulate.html#cb171-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb171-10"><a href="reticulate.html#cb171-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb171-11"><a href="reticulate.html#cb171-11" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">find_python</span>()</span>
+<span id="cb171-12"><a href="reticulate.html#cb171-12" aria-hidden="true" tabindex="-1"></a>path</span></code></pre></div>
 <pre><code>## [1] &quot;C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe&quot;</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="reticulate.html#cb137-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(path)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="reticulate.html#cb173-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(path)</span></code></pre></div>
 <p><code>path</code>に複数の文字列が入っているときは，複数のPythonがインストールされている．
 例えば，以下のような文字列が入っている可能性がある</p>
 <p>C:/Users/your_user_name/AppData/Local/r-miniconda/envs/r-reticulate/python.exe
@@ -421,96 +442,96 @@ C:/Users/your_user_name/AppData/Local/Microsoft/WindowsApps/python.exe</p>
 <p>参考：<a href="https://hrkworks.com/it/programming/python/py-4421/" class="uri">https://hrkworks.com/it/programming/python/py-4421/</a></p>
 </div>
 </div>
-<div id="pythonを使ってみる" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> Pythonを使ってみる<a href="reticulate.html#pythonを使ってみる" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="pythonの呼び出し" class="section level3 hasAnchor" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span> Pythonの呼び出し<a href="reticulate.html#pythonの呼び出し" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="pythonを使ってみる" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Pythonを使ってみる<a href="reticulate.html#pythonを使ってみる" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pythonの呼び出し" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Pythonの呼び出し<a href="reticulate.html#pythonの呼び出し" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>repl_python()</code>を実行するとRからPythonを呼び出すことができる．
 Python実行時にはコンソールが<code>&gt;</code>から<code>&gt;&gt;&gt;</code>に変化する．</p>
 <p>古典的なことだが，まずはHellow World!を実行する．
 “Hellow World!”が出力されたら成功である．
 <code>&gt;&gt;&gt;</code>のときに<code>quit</code>か<code>exit</code>とすればRに戻る．</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="reticulate.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">repl_python</span>()</span>
-<span id="cb138-2"><a href="reticulate.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Python 3.11.1 (C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe)</span></span>
-<span id="cb138-3"><a href="reticulate.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Reticulate 1.28 REPL -- A Python interpreter in R.</span></span>
-<span id="cb138-4"><a href="reticulate.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Enter &#39;exit&#39; or &#39;quit&#39; to exit the REPL and return to R.</span></span>
-<span id="cb138-5"><a href="reticulate.html#cb138-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
-<span id="cb138-6"><a href="reticulate.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Hellow World!</span></span>
-<span id="cb138-7"><a href="reticulate.html#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> quit</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="reticulate.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">repl_python</span>()</span>
+<span id="cb174-2"><a href="reticulate.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Python 3.11.1 (C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe)</span></span>
+<span id="cb174-3"><a href="reticulate.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Reticulate 1.28 REPL -- A Python interpreter in R.</span></span>
+<span id="cb174-4"><a href="reticulate.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Enter &#39;exit&#39; or &#39;quit&#39; to exit the REPL and return to R.</span></span>
+<span id="cb174-5"><a href="reticulate.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
+<span id="cb174-6"><a href="reticulate.html#cb174-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Hellow World!</span></span>
+<span id="cb174-7"><a href="reticulate.html#cb174-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> quit</span></code></pre></div>
 <p>他にもPythonで実行したいことがあれば，<code>&gt;&gt;&gt;</code>のときに入力する．</p>
 </div>
-<div id="rからpythonのhellow-world" class="section level3 hasAnchor" number="10.2.2">
-<h3><span class="header-section-number">10.2.2</span> RからPythonのHellow World<a href="reticulate.html#rからpythonのhellow-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="rからpythonのhellow-world" class="section level3 hasAnchor" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> RからPythonのHellow World<a href="reticulate.html#rからpythonのhellow-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pythonにあらかじめ用意されているビルトイン関数を使うには，<code>import_builtins()</code>を使う．
 <code>import_builtins()</code>で生成したオブジェクトに<code>$</code>とPythonの関数名をつければ，Rの関数として使うことができる．</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="reticulate.html#cb139-1" aria-hidden="true" tabindex="-1"></a>builtins <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import_builtins</span>()</span>
-<span id="cb139-2"><a href="reticulate.html#cb139-2" aria-hidden="true" tabindex="-1"></a>builtins<span class="sc">$</span><span class="fu">print</span>(<span class="st">&#39;Hellow World!&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="reticulate.html#cb175-1" aria-hidden="true" tabindex="-1"></a>builtins <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import_builtins</span>()</span>
+<span id="cb175-2"><a href="reticulate.html#cb175-2" aria-hidden="true" tabindex="-1"></a>builtins<span class="sc">$</span><span class="fu">print</span>(<span class="st">&#39;Hellow World!&#39;</span>)</span></code></pre></div>
 <p>ふつうにHellow Worldをしていても面白くないので，ちょっと変わったHellow Worldをしてみる．
 ライブラリartを呼び出して，Hellow World!をするとちょっと面白い．</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="reticulate.html#cb140-1" aria-hidden="true" tabindex="-1"></a>art <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;art&quot;</span>)</span>
-<span id="cb140-2"><a href="reticulate.html#cb140-2" aria-hidden="true" tabindex="-1"></a>art<span class="sc">$</span><span class="fu">tprint</span>(<span class="st">&quot;Hellow World!&quot;</span>)</span>
-<span id="cb140-3"><a href="reticulate.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  _   _        _  _                   __        __              _      _  _ </span></span>
-<span id="cb140-4"><a href="reticulate.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="do">## | | | |  ___ | || |  ___  __      __ \ \      / /  ___   _ __ | |  __| || |</span></span>
-<span id="cb140-5"><a href="reticulate.html#cb140-5" aria-hidden="true" tabindex="-1"></a><span class="do">## | |_| | / _ \| || | / _ \ \ \ /\ / /  \ \ /\ / /  / _ \ | &#39;__|| | / _` || |</span></span>
-<span id="cb140-6"><a href="reticulate.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="do">## |  _  ||  __/| || || (_) | \ V  V /    \ V  V /  | (_) || |   | || (_| ||_|</span></span>
-<span id="cb140-7"><a href="reticulate.html#cb140-7" aria-hidden="true" tabindex="-1"></a><span class="do">## |_| |_| \___||_||_| \___/   \_/\_/      \_/\_/    \___/ |_|   |_| \__,_|(_)</span></span>
-<span id="cb140-8"><a href="reticulate.html#cb140-8" aria-hidden="true" tabindex="-1"></a>art<span class="sc">$</span><span class="fu">tprint</span>(<span class="st">&quot;FUN&quot;</span>, <span class="at">font =</span> <span class="st">&quot;block&quot;</span>, <span class="at">chr_ignore =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb140-9"><a href="reticulate.html#cb140-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  .----------------.  .----------------.  .-----------------.</span></span>
-<span id="cb140-10"><a href="reticulate.html#cb140-10" aria-hidden="true" tabindex="-1"></a><span class="do">## | .--------------. || .--------------. || .--------------. |</span></span>
-<span id="cb140-11"><a href="reticulate.html#cb140-11" aria-hidden="true" tabindex="-1"></a><span class="do">## | |  _________   | || | _____  _____ | || | ____  _____  | |</span></span>
-<span id="cb140-12"><a href="reticulate.html#cb140-12" aria-hidden="true" tabindex="-1"></a><span class="do">## | | |_   ___  |  | || ||_   _||_   _|| || ||_   \|_   _| | |</span></span>
-<span id="cb140-13"><a href="reticulate.html#cb140-13" aria-hidden="true" tabindex="-1"></a><span class="do">## | |   | |_  \_|  | || |  | |    | |  | || |  |   \ | |   | |</span></span>
-<span id="cb140-14"><a href="reticulate.html#cb140-14" aria-hidden="true" tabindex="-1"></a><span class="do">## | |   |  _|      | || |  | &#39;    &#39; |  | || |  | |\ \| |   | |</span></span>
-<span id="cb140-15"><a href="reticulate.html#cb140-15" aria-hidden="true" tabindex="-1"></a><span class="do">## | |  _| |_       | || |   \ `--&#39; /   | || | _| |_\   |_  | |</span></span>
-<span id="cb140-16"><a href="reticulate.html#cb140-16" aria-hidden="true" tabindex="-1"></a><span class="do">## | | |_____|      | || |    `.__.&#39;    | || ||_____|\____| | |</span></span>
-<span id="cb140-17"><a href="reticulate.html#cb140-17" aria-hidden="true" tabindex="-1"></a><span class="do">## | |              | || |              | || |              | |</span></span>
-<span id="cb140-18"><a href="reticulate.html#cb140-18" aria-hidden="true" tabindex="-1"></a><span class="do">## | &#39;--------------&#39; || &#39;--------------&#39; || &#39;--------------&#39; |</span></span>
-<span id="cb140-19"><a href="reticulate.html#cb140-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  &#39;----------------&#39;  &#39;----------------&#39;  &#39;----------------&#39; </span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="reticulate.html#cb176-1" aria-hidden="true" tabindex="-1"></a>art <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;art&quot;</span>)</span>
+<span id="cb176-2"><a href="reticulate.html#cb176-2" aria-hidden="true" tabindex="-1"></a>art<span class="sc">$</span><span class="fu">tprint</span>(<span class="st">&quot;Hellow World!&quot;</span>)</span>
+<span id="cb176-3"><a href="reticulate.html#cb176-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  _   _        _  _                   __        __              _      _  _ </span></span>
+<span id="cb176-4"><a href="reticulate.html#cb176-4" aria-hidden="true" tabindex="-1"></a><span class="do">## | | | |  ___ | || |  ___  __      __ \ \      / /  ___   _ __ | |  __| || |</span></span>
+<span id="cb176-5"><a href="reticulate.html#cb176-5" aria-hidden="true" tabindex="-1"></a><span class="do">## | |_| | / _ \| || | / _ \ \ \ /\ / /  \ \ /\ / /  / _ \ | &#39;__|| | / _` || |</span></span>
+<span id="cb176-6"><a href="reticulate.html#cb176-6" aria-hidden="true" tabindex="-1"></a><span class="do">## |  _  ||  __/| || || (_) | \ V  V /    \ V  V /  | (_) || |   | || (_| ||_|</span></span>
+<span id="cb176-7"><a href="reticulate.html#cb176-7" aria-hidden="true" tabindex="-1"></a><span class="do">## |_| |_| \___||_||_| \___/   \_/\_/      \_/\_/    \___/ |_|   |_| \__,_|(_)</span></span>
+<span id="cb176-8"><a href="reticulate.html#cb176-8" aria-hidden="true" tabindex="-1"></a>art<span class="sc">$</span><span class="fu">tprint</span>(<span class="st">&quot;FUN&quot;</span>, <span class="at">font =</span> <span class="st">&quot;block&quot;</span>, <span class="at">chr_ignore =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb176-9"><a href="reticulate.html#cb176-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  .----------------.  .----------------.  .-----------------.</span></span>
+<span id="cb176-10"><a href="reticulate.html#cb176-10" aria-hidden="true" tabindex="-1"></a><span class="do">## | .--------------. || .--------------. || .--------------. |</span></span>
+<span id="cb176-11"><a href="reticulate.html#cb176-11" aria-hidden="true" tabindex="-1"></a><span class="do">## | |  _________   | || | _____  _____ | || | ____  _____  | |</span></span>
+<span id="cb176-12"><a href="reticulate.html#cb176-12" aria-hidden="true" tabindex="-1"></a><span class="do">## | | |_   ___  |  | || ||_   _||_   _|| || ||_   \|_   _| | |</span></span>
+<span id="cb176-13"><a href="reticulate.html#cb176-13" aria-hidden="true" tabindex="-1"></a><span class="do">## | |   | |_  \_|  | || |  | |    | |  | || |  |   \ | |   | |</span></span>
+<span id="cb176-14"><a href="reticulate.html#cb176-14" aria-hidden="true" tabindex="-1"></a><span class="do">## | |   |  _|      | || |  | &#39;    &#39; |  | || |  | |\ \| |   | |</span></span>
+<span id="cb176-15"><a href="reticulate.html#cb176-15" aria-hidden="true" tabindex="-1"></a><span class="do">## | |  _| |_       | || |   \ `--&#39; /   | || | _| |_\   |_  | |</span></span>
+<span id="cb176-16"><a href="reticulate.html#cb176-16" aria-hidden="true" tabindex="-1"></a><span class="do">## | | |_____|      | || |    `.__.&#39;    | || ||_____|\____| | |</span></span>
+<span id="cb176-17"><a href="reticulate.html#cb176-17" aria-hidden="true" tabindex="-1"></a><span class="do">## | |              | || |              | || |              | |</span></span>
+<span id="cb176-18"><a href="reticulate.html#cb176-18" aria-hidden="true" tabindex="-1"></a><span class="do">## | &#39;--------------&#39; || &#39;--------------&#39; || &#39;--------------&#39; |</span></span>
+<span id="cb176-19"><a href="reticulate.html#cb176-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  &#39;----------------&#39;  &#39;----------------&#39;  &#39;----------------&#39; </span></span></code></pre></div>
 <p>遊んでばかりいても仕方ないので，ちょっと真面目に使ってみる．
 Pythonで，<code>np.random.rand</code>と表記するものをRで使うには，<code>np$random$rand</code>とする．
 Rのオブジェクトに代入してしまえば，あとは慣れたもので簡単に散布図が作成できる．</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="reticulate.html#cb141-1" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;numpy&quot;</span>) <span class="co"># import numpy as npと同じ</span></span>
-<span id="cb141-2"><a href="reticulate.html#cb141-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> np<span class="sc">$</span>random<span class="sc">$</span><span class="fu">rand</span>(<span class="fu">as.integer</span>(<span class="dv">100</span>))</span>
-<span id="cb141-3"><a href="reticulate.html#cb141-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> np<span class="sc">$</span>random<span class="sc">$</span><span class="fu">rand</span>(<span class="fu">as.integer</span>(<span class="dv">100</span>))</span>
-<span id="cb141-4"><a href="reticulate.html#cb141-4" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(x, y) <span class="sc">%&gt;%</span></span>
-<span id="cb141-5"><a href="reticulate.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
-<span id="cb141-6"><a href="reticulate.html#cb141-6" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="reticulate.html#cb177-1" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;numpy&quot;</span>) <span class="co"># import numpy as npと同じ</span></span>
+<span id="cb177-2"><a href="reticulate.html#cb177-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> np<span class="sc">$</span>random<span class="sc">$</span><span class="fu">rand</span>(<span class="fu">as.integer</span>(<span class="dv">100</span>))</span>
+<span id="cb177-3"><a href="reticulate.html#cb177-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> np<span class="sc">$</span>random<span class="sc">$</span><span class="fu">rand</span>(<span class="fu">as.integer</span>(<span class="dv">100</span>))</span>
+<span id="cb177-4"><a href="reticulate.html#cb177-4" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(x, y) <span class="sc">%&gt;%</span></span>
+<span id="cb177-5"><a href="reticulate.html#cb177-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb177-6"><a href="reticulate.html#cb177-6" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="reticulate_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 </div>
-<div id="pythoとrとの変数のやり取り" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> PythoとRとの変数のやり取り<a href="reticulate.html#pythoとrとの変数のやり取り" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pythoとrとの変数のやり取り" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> PythoとRとの変数のやり取り<a href="reticulate.html#pythoとrとの変数のやり取り" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>行ったり来たりつつRとPythonを使いたいことがあるかもしれない．
 つまり<code>repl_python()</code>を使ってPythonに入って，<code>exit</code>でRでに戻って，またPythonに入るなどである．
 そのときに，RとPythonの変数のやりとりができる．</p>
 <p>PythonでRの<code>variable</code>という変数を取り出したいときは<code>r.variable</code>，RでPythonの<code>variable</code>という変数を取り出したいときには<code>py$variable</code>とする．</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="reticulate.html#cb142-1" aria-hidden="true" tabindex="-1"></a>r.variable  <span class="co"># RからPythonへ(Pythonで取り出し)，variableは変数名</span></span>
-<span id="cb142-2"><a href="reticulate.html#cb142-2" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>variable <span class="co"># PythonからRへ(Rで取り出し)</span></span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="reticulate.html#cb178-1" aria-hidden="true" tabindex="-1"></a>r.variable  <span class="co"># RからPythonへ(Pythonで取り出し)，variableは変数名</span></span>
+<span id="cb178-2"><a href="reticulate.html#cb178-2" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>variable <span class="co"># PythonからRへ(Rで取り出し)</span></span></code></pre></div>
 <p>これでRとPythonを対話的に行きつ戻りつしながら実行できる．</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="reticulate.html#cb143-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;r_val&quot;</span></span>
-<span id="cb143-2"><a href="reticulate.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">repl_python</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb143-3"><a href="reticulate.html#cb143-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>r.a</span>
-<span id="cb143-4"><a href="reticulate.html#cb143-4" aria-hidden="true" tabindex="-1"></a><span class="do">## &#39;r_val&#39;</span></span>
-<span id="cb143-5"><a href="reticulate.html#cb143-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>a <span class="ot">=</span> <span class="st">&quot;python_val&quot;</span></span>
-<span id="cb143-6"><a href="reticulate.html#cb143-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>exit</span>
-<span id="cb143-7"><a href="reticulate.html#cb143-7" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>a</span>
-<span id="cb143-8"><a href="reticulate.html#cb143-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;python_val&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="reticulate.html#cb179-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;r_val&quot;</span></span>
+<span id="cb179-2"><a href="reticulate.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">repl_python</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb179-3"><a href="reticulate.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>r.a</span>
+<span id="cb179-4"><a href="reticulate.html#cb179-4" aria-hidden="true" tabindex="-1"></a><span class="do">## &#39;r_val&#39;</span></span>
+<span id="cb179-5"><a href="reticulate.html#cb179-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>a <span class="ot">=</span> <span class="st">&quot;python_val&quot;</span></span>
+<span id="cb179-6"><a href="reticulate.html#cb179-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>exit</span>
+<span id="cb179-7"><a href="reticulate.html#cb179-7" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>a</span>
+<span id="cb179-8"><a href="reticulate.html#cb179-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;python_val&quot;</span></span></code></pre></div>
 </div>
-<div id="pythonのコードを実行" class="section level2 hasAnchor" number="10.4">
-<h2><span class="header-section-number">10.4</span> Pythonのコードを実行<a href="reticulate.html#pythonのコードを実行" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pythonのコードを実行" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Pythonのコードを実行<a href="reticulate.html#pythonのコードを実行" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>既にPythonの関数やコードのファイルがある場合は，<code>source_python()</code>でファイルを読み込んで使うことができる．</p>
 <!--
 TODO：Pythonらしいコードを入れる
   # https://techblog.nhn-techorus.com/archives/8329
 -->
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="reticulate.html#cb144-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">source_python</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="reticulate.html#cb180-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">source_python</span>()</span></code></pre></div>
 <p><code>source_python()</code>でのコード内の関数や変数をそのままRで使うことができる．</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="reticulate.html#cb145-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_file</span>(<span class="st">&quot;script.py&quot;</span>)</span>
-<span id="cb145-2"><a href="reticulate.html#cb145-2" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;x = 10&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="reticulate.html#cb181-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_file</span>(<span class="st">&quot;script.py&quot;</span>)</span>
+<span id="cb181-2"><a href="reticulate.html#cb181-2" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;x = 10&quot;</span>)</span></code></pre></div>
 <p><code>py_run_file()</code>や<code>py_run_string()</code>でのコード内の変数や関数をRで使う場合は，<code>py$val</code>のように<code>py$</code>の後ろに変数や関数の名前を付ける必要がある．</p>
 </div>
-<div id="rとpythoでの用語の違い" class="section level2 hasAnchor" number="10.5">
-<h2><span class="header-section-number">10.5</span> RとPythoでの用語の違い<a href="reticulate.html#rとpythoでの用語の違い" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rとpythoでの用語の違い" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> RとPythoでの用語の違い<a href="reticulate.html#rとpythoでの用語の違い" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Pythonでのモジュールとはファイル(<code>*.py</code>)のことで，モジュールをまとめたものがパッケージ，パッケージをまとめたものがライブラリである．
 このライブラリを<code>pip install</code>でインストール，<code>import()</code>でインポートしている．
 つまり，Rでのパッケージにあたるのが，Pythonでのライブラリである．</p>
@@ -546,20 +567,20 @@ reticulate::py_run_string("docx_file = 'D:/a.docx'")
 reticulate::py_run_string("parse(pdf_file, docx_file)")
 ```
 -->
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="reticulate.html#cb146-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># USB取り出し用の画像のトリミング(作業済)</span></span>
-<span id="cb146-2"><a href="reticulate.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   トリミングをしたほうが画像認識がうまくいくかとおもったが，逆にダメだった</span></span>
-<span id="cb146-3"><a href="reticulate.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(tidyverse)</span></span>
-<span id="cb146-4"><a href="reticulate.html#cb146-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># path &lt;- </span></span>
-<span id="cb146-5"><a href="reticulate.html#cb146-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   &quot;D:/matu/work/ToDo/automater/inst/img&quot; %&gt;%</span></span>
-<span id="cb146-6"><a href="reticulate.html#cb146-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   fs::dir_ls(regexp = &quot;png&quot;) </span></span>
-<span id="cb146-7"><a href="reticulate.html#cb146-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># img &lt;- </span></span>
-<span id="cb146-8"><a href="reticulate.html#cb146-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   path %&gt;%</span></span>
-<span id="cb146-9"><a href="reticulate.html#cb146-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   purrr::map(magick::image_read) %&gt;%</span></span>
-<span id="cb146-10"><a href="reticulate.html#cb146-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   purrr::map(magick::image_trim)</span></span>
-<span id="cb146-11"><a href="reticulate.html#cb146-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># purrr::map2(img, path, magick::image_write)</span></span>
-<span id="cb146-12"><a href="reticulate.html#cb146-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># path</span></span></code></pre></div>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="reticulate.html#cb147-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 画面サイズの取得だが，実際は拡大をしていたりするので，ちょっと数字が違う</span></span>
-<span id="cb147-2"><a href="reticulate.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># system(&quot;wmic path Win32_VideoController get VideoModeDescription,CurrentVerticalResolution,CurrentHorizontalResolution /format:value&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="reticulate.html#cb182-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># USB取り出し用の画像のトリミング(作業済)</span></span>
+<span id="cb182-2"><a href="reticulate.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   トリミングをしたほうが画像認識がうまくいくかとおもったが，逆にダメだった</span></span>
+<span id="cb182-3"><a href="reticulate.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(tidyverse)</span></span>
+<span id="cb182-4"><a href="reticulate.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># path &lt;- </span></span>
+<span id="cb182-5"><a href="reticulate.html#cb182-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   &quot;D:/matu/work/ToDo/automater/inst/img&quot; %&gt;%</span></span>
+<span id="cb182-6"><a href="reticulate.html#cb182-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   fs::dir_ls(regexp = &quot;png&quot;) </span></span>
+<span id="cb182-7"><a href="reticulate.html#cb182-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># img &lt;- </span></span>
+<span id="cb182-8"><a href="reticulate.html#cb182-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   path %&gt;%</span></span>
+<span id="cb182-9"><a href="reticulate.html#cb182-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   purrr::map(magick::image_read) %&gt;%</span></span>
+<span id="cb182-10"><a href="reticulate.html#cb182-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   purrr::map(magick::image_trim)</span></span>
+<span id="cb182-11"><a href="reticulate.html#cb182-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># purrr::map2(img, path, magick::image_write)</span></span>
+<span id="cb182-12"><a href="reticulate.html#cb182-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># path</span></span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="reticulate.html#cb183-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 画面サイズの取得だが，実際は拡大をしていたりするので，ちょっと数字が違う</span></span>
+<span id="cb183-2"><a href="reticulate.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># system(&quot;wmic path Win32_VideoController get VideoModeDescription,CurrentVerticalResolution,CurrentHorizontalResolution /format:value&quot;)</span></span></code></pre></div>
 
 </div>
 </div>

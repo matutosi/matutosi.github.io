@@ -199,13 +199,13 @@ rvest::html_table(html) %>%
 ```
 
 ```
-## # A tibble: 2 x 6
-##   `目録No▲▼` `上位分類群▲▼` `科名▲▼` 和名▲▼／学名\r\n\t\t~1   `指定都道府県数▲▼`
+## # A tibble: 2 × 6
+##   `目録No▲▼` `上位分類群▲▼` `科名▲▼` 和名▲▼／学名\r\n\t\t…¹   `指定都道府県数▲▼`
 ##        <int> <chr>          <chr>    <chr>                                 <int>
-## 1       5266 単子葉類       ユリ     ゼンテイカ  Hemerocalli~                  6
-## 2       5259 単子葉類       ユリ     ニッコウキスゲ  Hemeroc~                  3
-## # i abbreviated name: 1: `和名▲▼／学名\r\n\t\t                             ▲▼`
-## # i 1 more variable: `環境省▲▼` <chr>
+## 1       5266 単子葉類       ユリ     ゼンテイカ  Hemerocalli…                  6
+## 2       5259 単子葉類       ユリ     ニッコウキスゲ  Hemeroc…                  3
+## # ℹ abbreviated name: ¹​`和名▲▼／学名\r\n\t\t                             ▲▼`
+## # ℹ 1 more variable: `環境省▲▼` <chr>
 ```
 
 和名としてゼンテイカとニッコウキスゲの2つが示されている．
@@ -275,25 +275,25 @@ html %>%
 
 ```
 ## [[1]]
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   X1   
 ##   <lgl>
 ## 1 NA   
 ## 
 ## [[2]]
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   X1                
 ##   <chr>             
 ## 1 "ホーム | \r\n >>"
 ## 
 ## [[3]]
-## # A tibble: 1 x 6
+## # A tibble: 1 × 6
 ##   X1    X2    X3    X4    X5    X6   
 ##   <lgl> <lgl> <lgl> <lgl> <lgl> <lgl>
 ## 1 NA    NA    NA    NA    NA    NA   
 ## 
 ## [[4]]
-## # A tibble: 49 x 5
+## # A tibble: 49 × 5
 ##    `都道府県名▲▼` 和名  学名  RDBカテゴリ名 統一カテゴリ
 ##    <chr>          <chr> <chr> <chr>         <chr>       
 ##  1 環境省RDB      -     -     -             ""          
@@ -306,35 +306,35 @@ html %>%
 ##  8 福島県         -     -     -             ""          
 ##  9 茨城県         -     -     -             ""          
 ## 10 栃木県         -     -     -             ""          
-## # i 39 more rows
+## # ℹ 39 more rows
 ## 
 ## [[5]]
-## # A tibble: 8 x 13
-##   ニッコウキスゲ学名：Hemerocallis dumo~1 ニッコウキスゲ ニッコウキスゲ `学名：`
+## # A tibble: 8 × 13
+##   ニッコウキスゲ学名：Hemerocallis dumo…¹ ニッコウキスゲ ニッコウキスゲ `学名：`
 ##   <chr>                                   <chr>          <lgl>          <lgl>   
-## 1 "ニッコウキスゲ"                        "ニッコウキス~ NA             NA      
-## 2 "学名："                                "Hemerocallis~ NA             NA      
-## 3 "分類："                                "単子葉類 \t\~ NA             NA      
+## 1 "ニッコウキスゲ"                        "ニッコウキス… NA             NA      
+## 2 "学名："                                "Hemerocallis… NA             NA      
+## 3 "分類："                                "単子葉類 \t\… NA             NA      
 ## 4 "登録別名："                            ""             NA             NA      
 ## 5 "環境省カテゴリ："                      "なし"         NA             NA      
 ## 6 "都道府県のRDB指定状況："               ""             NA             NA      
 ## 7 ""                                      ""             NA             NA      
-## 8 "※埼玉県・東京都・神奈川県では、季節~   ""             NA             NA      
-## # i abbreviated name:
-## #   1: `ニッコウキスゲ学名：Hemerocallis dumortieri var. esculenta分類：\r\n\t\t\r\n\t\t 単子葉類 \t\t\t\t \t\t\r\n\t\t\t\t\t\t \r\n\t\t\t\t\r\n\t\t\t\t ユリ科 \t\t\r\n\t\t登録別名：環境省カテゴリ：なし都道府県のRDB指定状況：`
-## # i 9 more variables: `Hemerocallis dumortieri var. esculenta` <lgl>,
+## 8 "※埼玉県・東京都・神奈川県では、季節…   ""             NA             NA      
+## # ℹ abbreviated name:
+## #   ¹​`ニッコウキスゲ学名：Hemerocallis dumortieri var. esculenta分類：\r\n\t\t\r\n\t\t 単子葉類 \t\t\t\t \t\t\r\n\t\t\t\t\t\t \r\n\t\t\t\t\r\n\t\t\t\t ユリ科 \t\t\r\n\t\t登録別名：環境省カテゴリ：なし都道府県のRDB指定状況：`
+## # ℹ 9 more variables: `Hemerocallis dumortieri var. esculenta` <lgl>,
 ## #   `分類：` <lgl>,
 ## #   `単子葉類 \t\t\t\t \t\t\r\n\t\t\t\t\t\t \r\n\t\t\t\t\r\n\t\t\t\t ユリ科` <lgl>,
 ## #   `登録別名：` <lgl>, `` <lgl>, `環境省カテゴリ：` <lgl>, なし <lgl>,
 ## #   `都道府県のRDB指定状況：` <lgl>, `` <lgl>
 ## 
 ## [[6]]
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   X1                      X2                                                    
 ##   <chr>                   <chr>                                                 
 ## 1 ニッコウキスゲ          "ニッコウキスゲ"                                      
 ## 2 学名：                  "Hemerocallis dumortieri var. esculenta"              
-## 3 分類：                  "単子葉類 \t\t\t\t \t\t\r\n\t\t\t\t\t\t \r\n\t\t\t\t\~
+## 3 分類：                  "単子葉類 \t\t\t\t \t\t\r\n\t\t\t\t\t\t \r\n\t\t\t\t\…
 ## 4 登録別名：              ""                                                    
 ## 5 環境省カテゴリ：        "なし"                                                
 ## 6 都道府県のRDB指定状況： ""
@@ -353,13 +353,13 @@ html %>%
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   `都道府県名▲▼`                        和名   学名   RDBカテゴリ名 統一カテゴリ
 ##   <chr>                                 <chr>  <chr>  <chr>         <chr>       
-## 1 "埼玉県\r\n        ※"                 "ニッ~ "Heme~ "絶滅危惧Ⅱ類~ ""          
-## 2 "滋賀県"                              "ニッ~ "Heme~ "分布上重要~  ""          
-## 3 "島根県"                              "ニッ~ "Heme~ "絶滅危惧Ⅰ類~ ""          
-## 4 "※埼玉県・東京都・神奈川県では、季節~ "※埼~  "※埼~  "※埼玉県・~   "※埼玉県・~
+## 1 "埼玉県\r\n        ※"                 "ニッ… "Heme… "絶滅危惧Ⅱ類… ""          
+## 2 "滋賀県"                              "ニッ… "Heme… "分布上重要…  ""          
+## 3 "島根県"                              "ニッ… "Heme… "絶滅危惧Ⅰ類… ""          
+## 4 "※埼玉県・東京都・神奈川県では、季節… "※埼…  "※埼…  "※埼玉県・…   "※埼玉県・…
 ```
 
 ## 地図画像の取得

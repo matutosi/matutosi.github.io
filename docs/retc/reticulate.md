@@ -164,7 +164,7 @@ tibble::tibble(x, y) %>%
     ggplot2::geom_point()
 ```
 
-![](reticulate_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
+<img src="reticulate_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 
 ## PythoとRとの変数のやり取り
