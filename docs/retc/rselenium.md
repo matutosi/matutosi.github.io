@@ -20,7 +20,6 @@ JavascriptやPHPなどを使って，動的に作成されるサイトでは，U
 
 
 
-
 ```r
 install.packages("RSelenium")
 ```

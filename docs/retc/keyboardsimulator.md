@@ -13,7 +13,9 @@ rMouse cran
   # archivedになっているが，記録する関数は使えそう
 -->
 
-Rから直接操作しづらいくても，マウスやキーボードを用いて決まった操作をするものは自動化可能である．
+
+KeyboardSimulatorを使うと，Rから直接操作しづらいくても，マウスやキーボードを用いて決まった操作をするものは自動化可能である．
+ただし，このパッケージはWindows専用である．
 
 ## 準備
 
@@ -28,11 +30,13 @@ install.packages("KeyboardSimulator")
 ```r
 library(tidyverse)
 library(KeyboardSimulator)
+library(automater)
+  # mouse.get_cursor()
 ```
 
-KeyboardSimulatorでは，マウスやキーボードの操作とマウス位置の取得は可能であるものの，アイコンの画像をもとにして画面上でのマウスの位置を自動的に取得することができない．
-マウス位置の取得のために，PythonとそのライブラリPyAutoGUIを使用する．
-これらのインストールがまだの場合は，[Pythonとそのライブラリのインストール](#install_python}を参考にして，PythonとPyAutoGUIをインストールする．
+KeyboardSimulatorでは，マウスやキーボードの操作とマウス位置の取得は可能であるものの，アイコンの画像をもとに画面上での位置の取得ができない．
+画像からの位置取得のために，PythonとそのライブラリPillowとPyAutoGUIを使用する．
+これらのインストールがまだの場合は，[Pythonとそのライブラリのインストール](#install_python}を参考にして，Python，Pillow，PyAutoGUIをインストールする．
 
 また，RからPythonを使うためにreticulateを呼び出しておく．
 
@@ -52,14 +56,20 @@ find_pythonの中身は以下のとおりである．
 
 
 ```r
-find_python <- function(){
+find_python <- function(select_memu = TRUE){
   os <- get_os()
-  python_path <- ifelse(os == "win", "where python", "which python") %>% 
-    system(intern = TRUE) %>% fs::path()
-  if (length(python_path) > 1) {
-    choice <- menu(python_path, title = "Select Python path")
-  }
-  else {
+  python_path <- 
+    ifelse(os == "win", "where python", "which python") %>%
+    system(intern = TRUE) %>%
+    fs::path()
+  if(length(python_path) > 1){
+    if(select_memu){
+      choice <- utils::menu(python_path, title = "Select Python path. 0: exit and return all.")
+      if(choice == 0){ return(python_path) }
+    }else{
+      return(python_path)
+    }
+  }else{
     choice <- 1
   }
   return(python_path[choice])
@@ -74,19 +84,24 @@ reticulate::use_python("your_python_path")
 ```
 
 
-## キーボード操作の自動化
+## マウスの移動
+
+マウスの移動は次のようにする．
+コードを実行すると移動の様子を実際にみることができる．
 
 
 ```r
-KeyboardSimulator::keybd.press("Win+r")
+KeyboardSimulator::mouse.move(10, 10, duration = 1, step_ratio = 0.1)
+KeyboardSimulator::mouse.move(100, 100, duration = 0.5)
 ```
+
 
 ## マウスの位置取得
 
 マウス操作で重要なのは画面上での位置を取得することである．
 
 KeyboardSimulatorには，マウス位置を取得する関数`mouse.get_cursor()`がある．
-1箇所だけならこの関数で十分だが，何度かマウスをクリックする作業の場合は何度も実行しないと行けないのでちょっとめんどくさい．
+1箇所だけならこの関数で十分だが，何度かマウスをクリックする作業の場合は何度も実行する必要があってちょっとめんどくさい．
 
 
 ```r
@@ -94,7 +109,7 @@ KeyboardSimulator::mouse.get_cursor()
  ## [1] -3297  1306
 ```
 
-以下で関数を作成するUSBの取り外しの際には，タスクバーとRウインドウとの行き来をしていると，タスクバーの操作がもとに戻ってしまうことがあり，正しいマウスの位置を取得するのが難しいことがある．
+以下で作成するUSBの取り外しの関数では，タスクバーとRウインドウとの行き来をしていると，タスクバーの操作がもとに戻ってしまうことがあり，正しいマウスの位置を取得するのが難しいことがある．
 そこで，一定時間の間隔でマウス位置を取得するautomaterの関数を利用する．
 関数の内容は以下のとおりである．
 
@@ -123,7 +138,7 @@ automater::mouse_record
 ##     }
 ##     return(list(x = unlist(x), y = unlist(y)))
 ## }
-## <bytecode: 0x000001b270791fe0>
+## <bytecode: 0x0000021386c133c0>
 ## <environment: namespace:automater>
 ```
 
@@ -151,10 +166,10 @@ position
 
 ## USBメモリの安全な取り出しの自動化
 
-パッケージとして存在する可能性は否定できないが，多分ないと思われるものとして「USBの安全な取り出し」を自動化する機能がある．
+ここでは「USBの安全な取り出し」を自動化する．
 タスクバーにあるUSBのアイコンを何度かクリックして，USBを安全に取り出せるようにするものである．
-この作業をしなくても，USBディスクが壊れることはほとんど無いだろうが，作業したことに越したことは無い．
-単純な操作だが，何度もやっていると面倒くさいし，しかも自分のように老眼の人間には避けたい作業である．
+この作業をしなくても，USBディスクが壊れることはほとんど無いだろうが，作業するに越したことは無い．
+単純な操作だが，何度もやっていると面倒くさいし，しかも老眼の人間には避けたい作業である．
 
 
 マウスをどこでクリックしているのか，あらかじめ位置を取得しておく必要がある．
@@ -172,7 +187,9 @@ position
 
 USBメモリの安全な取り出しをする前の位置にマウスを戻したい場合は，あらかじめ`pos`に代入しておき，最後にその位置に戻す．
 あとは，上で取得した位置にマウスを移動させ，順次クリックしていくだけだ．
-実際にUSBメモリをパソコンに取り付け，
+実際にUSBメモリをパソコンに取り付けて，動作を確認する必要がある．
+マウスの移動速度が早すぎて，パソコンの動作よりも先にクリックをしてしまう場合があるかもしれない．
+その場合は，`sleep_sec = 1`(デフォルトは0.5秒)などと調整の必要がある．
 
 
 ```r
@@ -184,10 +201,15 @@ automater::mouse_move_click(1040,1750)
 automater::mouse_move_click(pos[1], pos[2])
 ```
 
-この内容を`remove_usb.rsc`といったテキストファイルとして保存しておけば，`remove_usb.rsc`をクリックするだけでUSBメモリの安全な取り出しを自動化できる．
-さらに，`c:\windows\system32`のディレクトリに`remove_usb.rsc`のショートカットを`ru`として保存し，[Win] + [R]のファイル名を指定して実行に`ru`と入力すれば，`remove_usb.rsc`が実行されてUSBメモリの安全な取り出しが一発で出来るようになる．
+また，[アプリ・ディレクトリの瞬間起動](#run_in a_second)を参考に，以下のようにすれば，瞬間起動ができる．
 
-## PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする
+- 上記の内容をテキストファイル`remove_usb.rsc`として保存   
+- `remove_usb.rsc`をクリックして，USBメモリの安全な取り出しを実行   
+- さらに，パスの通ったディレクトリにショートカットを`ru`として保存   
+- [Win] + [R]の「ファイル名を指定して実行」に`ru`と入力   
+- `remove_usb.rsc`が実行されてUSBメモリの安全な取り出しが起動   
+
+## 画像をもとにマウスを動かしてクリックする
 
 <!--
 PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする
@@ -195,45 +217,121 @@ https://take-tech-engineer.com/pyautogui-image/
 pyautogui.click('button.png') # Find where button.png appears on the screen and click it.
 -->
 
-アイコンの位置が固定されている，つまりマウスのクリック位置が固定されているのであれば，`automater::mouse_move_click(1040,1750)`のような定位置での作業が良い．
+アイコンの位置が固定されている，つまりマウスのクリック位置が一定であれば，`automater::mouse_move_click(1040,1750)`のような定位置で良い．
 しかし，ウィンドウの位置が異なったり，タスクバー上での位置が変化したりして，クリックするべき位置が一定でないことがある．
 
-クリックする対象を画像ファイルとして用意できるのであれば，その画像をもとにしてクリックするべき位置を決定できる．
+クリックする対象を画像ファイルとして用意できれば，その画像をもとにクリックの位置を決定できる．
 Rのパッケージではこれを実現できなさそうなので，PythonのPyAutoGUIを利用する．
-
+Pythonに慣れていない筆者は何度かコケてしまったのが，Pythonでライブラリが大文字を含んでいても，呼び出すときは小文字で指定しないといけないようだ．
 
 
 ```r
+  # reticulate::use_python("your_python_path")
+  # reticulate::use_python(automater::find_python())
 pag <- reticulate::import("pyautogui")  # 呼び出し時は小文字で
 ```
 
-Pythonに慣れていない筆者は何度かコケてしまったのが，Pythonでライブラリが大文字を含んでいても，呼び出すときは小文字で指定するようだ．
+<!--
+読者にも同じことを体験してもらうために，
+-->
+以下ではディスプレイの左下部部のスクリーンショットをとって，一時フォルダにpng保存する．
+スクリーンショットの範囲は，ディスプレイの左下の100*100ピクセルである．
+この範囲をpngとして保存する．
 
 
 ```r
-pag$moveTo(10, 10)
-pag$moveTo(100, 100, duration=3)
-
-img <- "D:/matu/work/ToDo/automater/inst/img/up_arrow.png"
-position <- pag$locateOnScreen(img)
-center <- function(position){
-  x <- position$left + (position$width / 2)
-  y <- position$top +  (position$height / 2)
-  return(list(x = x, y = y))
-}
-center(position)
-pag$moveTo(center(position)$x, center(position)$y)
+region <- automater::display_corner(corner = "bottom_left", width = 100, height = 100)
+screenshot <- pag$screenshot(region = region)
+  # ls("package:fs")
+png <- fs::path_temp("screenshot.png")
+screenshot$save(png)
 ```
 
-画像をもとにクリックする位置を取得する場合，画面全体を検索すると時間がかかる．
-設定にもよるが，USBメモリの取り出しやwifiへの接続なら画面の右下，スタートメニューなら画面の中央か左下のように，ある程度の位置が決まっているので，その領域のみ検索すれば動作が早くなる．
+`pag$locateOnScreen()`は画像のパスを指定して，その画像の位置を得ることができる．
+位置は，画像の4つの頂点の位置なので，その中心を`automater::center()`で取得し，その位置へマウスを移動する．
+ここではマウスの移動は`pag$moveTo()`でしているが，もちろん`KeyboardSimulator::mouse.move()`でも構わない．
+コードを実行して画像が正しく認識されると，正しい位置(左下から左に50・上に50の位置)に移動するはずである．
+
+マウスが動かない場合は，画像認識がうまくいっていない可能性が高い．
+PyAutoGUIの画像認識は，ディープラーニングのような似たものを抽出するのではなく，ピクセル単位で合致するもの，つまり全く同じ画像を探し出すものである．
+そのため，取得したスクリーンショットの状態から変化があると認識できない．
+これを改善するためには，`pag$locateOnScreen()`で`confidence = 0.6`のように画像認識の精度を設定する．
+完全に一致しなくても結果を返してくれるが，下げすぎると誤認識の可能性が出てくる．
+また，`confidence`を使うには，PythonのライブラリであるOpenCV-Pythonをインストールしなければならない．
+
+
+```r
+shell("pip install opencv-python")
+```
+
+さらに，`grayscale = TRUE`を指定すると白黒画像として認識するため若干であるが高速化する．
+
+
+```r
+  # img <- fs::path_package("automater", "img/up_arrow.png")
+position <- pag$locateOnScreen(png)
+position <- automater::center(position)
+pag$moveTo(position$x, position$y)
+  # durationの指定が可能
+pag$moveTo(10,10, duration = 5)
+```
+
+画像から位置を取得するとき，画面全体を検索すると時間がかかる．
+設定によるが，USBメモリの取り出しやwifiへの接続なら画面の右下，スタートメニューなら画面の中央か左下のように，ある程度の位置が決まっているので，その領域のみ検索すれば動作が早くなる．
 そこで，検索する領域を画面サイズから位置を指定する．
-パソコンの設定を見て手入力しても良いが，rJavaを使うと，画面サイズの取得が可能かもしれない．
-「かもしれない」というのは理由があって，rJavaパッケージはその名のとおりRからJavaを利用するものだが，うまく動作しないことがあるからだ．
+パソコンの設定を見て手入力しても良いが，できれば自動的に取得したい．
+画面サイズを取得するには，`display_size()`を使いう．
+画面の4隅の位置を指定するには，`display_size()`を含んでいる`display_corner()`を使う．
+関数の実行例と中身は以下を見てほしい．
+
+
+```r
+automater::display_size()
+automater::display_size
+
+automater::display_corner()
+automater::display_corner
+```
+
+これまでの内容を踏また画像から位置をクリックする関数として`recog_image_click()`がある．
+以下の引数が利用可能である．
+
+- wait：TRUEでは，画像が見つかるまで画像認識を1秒間隔で繰り返す．パソコン描画がマウスの自動化に追いつかないときには便利．
+- button：クリックの左右を指定．c("left", "right")
+- hold：クリックの保持を指定．TRUE, FALSE   
+- ...：オプションの引数で`pag$locateOnScreen()`に渡される   
+  - region：画像の検索範囲を指定．`display_corner()`で指定可能   
+  - grayscale：TRUEで白黒認識   
+  - confidence：認識精度を数値で指定(0-1)   
+
+使い方と関数の内容は以下を見てほしい．
+
+
+```r
+region <- automater::display_corner()
+img <- "your_image_path"
+automater::recog_image_click(img, pag, region = region)
+automater::recog_image_click
+```
+
+
+画像をもとにしてマウスを動かすことができれば，定位置での操作だけでなく，まるで人間が作業しているようなこともできる．
+繰り返しだが，画像が完全に一致しないときには認識できないことがあるので，`grayscale`や`confidence`でうまく調整しなければならない．
+また，描画が追いつかないときへの対応も必要である．
+
+## (コラム)画面サイズ取得の試行錯誤
+
+本文では，画面サイズの取得方法する関数`display_size()`をさらっと紹介したが，関数完成には試行錯誤があった．
+スマートな解決方法をすぐに思い付けば良いのだが，なかなかそうは行かない．
+
+まず試したのは，rJavaを使う方法である．
+rJavaで画面サイズの取得は可能であるが，あまりおすすめしない．
+「おすすめしない」というのは理由がある．
+rJavaパッケージはその名のとおりRからJavaを利用するものだが，うまく動作しないことがあるからだ．
 通常のパッケージならインストールして呼び出せば，そのまますぐに使えるはずだが，rJavaはうまくいかないことがある．
 OSにインストールされているJavaのバージョンとRとの関係や，パスの設定の関係でエラーが出て動かないことがある．
 
-次のコードを実行してうまく動けばこれを使って画面サイズを取得する．
+うまくいくか分からないが，次のコードが動けば使って画面サイズを取得できる．
 
 
 ```r
@@ -255,7 +353,8 @@ width <- .jcall(dim, "D", "getWidth")
 height <- .jcall(dim, "D", "getHeight")
 ```
 
-rJavaがだめな場合には他の方法がある．
+いくつかの環境で試したが，どうも設定がよくわからない場合があった．
+rJavaがあまり良くなさそうなので，別の方法を考えた．
 Windowsであれば，次のコードのように`system()`を使ってコマンドを入力して情報を得ることができる．
 ただし，この場合は注意が必要で，ここで取得したのは画面の解像度であって，KeyboardSimulatorで指定するマウスの位置ではないことがある．
 高解像度の画面の場合は，画面を125\%に拡大していることがあるためだ.
@@ -276,9 +375,11 @@ resol <-
   as.double()
 ```
 
-rJavaもダメで，`system()`を使っても注意が必要でといろいろと自動化も大変である．
+rJavaもダメで，`system()`を使っても注意が必要であり，自動化もいろいろと大変である．
 自動化すれば手を抜けるが，手を抜くための努力は必要だ．
-著者も色々と試行錯誤したが，結局たどり着いた簡単な方法は次のように`mouse.move()`でマウスをありえないぐらい右下に移動して，その位置を取得する方法だ．
+著者も色々と試行錯誤したが，結局たどり着いたのは簡単な方法であった．
+
+次のように`mouse.move()`でマウスをありえないぐらい右下に移動して，その位置を取得する方法だ．
 幸いなことに，`mouse.move()`はありえない位置を指定してもエラーにはならず，最大限可能なところまで移動してくれる．
 最大限に移動した位置を取得すれば完了だ．
 画面の最大値とマウスの位置が1つずれているのは，画面の左上が[1,1]ではなく[0,0]のためだ．
@@ -289,33 +390,13 @@ KeyboardSimulator::mouse.move(999999,999999)
 KeyboardSimulator::mouse.get_cursor()
 ```
 
+以上のように，関数を1つ作るにも試行錯誤をともなうことがある．
+もちろん，考えた関数がそのままうまく動けばよいが，そうでないときも多い．
+出来上がった関数だけを見れば非常にスマートな解決方法を実装していても，その背景には多くの試行錯誤や失敗(成功の糧)があるのであった．
 
-
-
-```r
-recog_image_click <- function(img, pag, ...){
-  position <- 
-    img %>%
-    pag$locateOnScreen(...) %>%
-    center()
-  automater::mouse_move_click(position$x, position$y)
-}
-w <- 600
-h <- 300
-region <- c(width - w, height - h, w, h)
-path <- "D:/matu/work/ToDo/automater/inst/img"
-img <- fs::dir_ls(path, regexp = "png") 
-pos <- KeyboardSimulator::mouse.get_cursor()
-recog_image_click(img[3], pag, region = region)
-recog_image_click(img[2], pag, region = region)
-recog_image_click(img[1], pag, region = region)
-automater::mouse_move_click(pos[1], pos[2])
-
-  # region = region
-  # grayscale = True
-  # confidence = 0.6
-```
-
+<!--
+まとめ的なことを書く?
+-->
 
 <!--
 PyAutoGUIで画像認識した場所にマウスポインターを動かしてクリックする

@@ -38,8 +38,8 @@ convert_docs
 ##     if (fs::path_ext(path) == format) {
 ##         return(invisible(path))
 ##     }
-##     no <- switch(format, pdf = 17, xps = 19, html = 20, rtf = 23, 
-##         txt = 25)
+##     no <- switch(format, docx = 11, pdf = 17, xps = 19, html = 20, 
+##         rtf = 23, txt = 25)
 ##     path <- normalizePath(path)
 ##     suppressWarnings({
 ##         converted <- normalizePath(path_convert(path, pre = "converted_", 
@@ -53,7 +53,7 @@ convert_docs
 ##     doc$close()
 ##     return(invisible(converted))
 ## }
-## <bytecode: 0x000001ebfcfca810>
+## <bytecode: 0x000002405835a210>
 ## <environment: namespace:automater>
 ```
 

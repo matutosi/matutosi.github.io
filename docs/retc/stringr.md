@@ -5,19 +5,19 @@
 
 ## はじめに
 
-stringrはstringiパッケージのラッパー関数群である．
-stringiは文字列操作の関数群で，文字コードの変換なども含む多様な関数を含んでいる．
+stringrはstringiパッケージのラッパーである．
+stringiは文字列操作のパッケージで，文字コードの変換などを含む多様な関数を含んでいる．
 通常のユーザの文字列操作なら，stringrで大丈夫なことが多い．
-万が一，込み入った文字列操作が必要なときは，stringiの関数を探してみると良いかもしれない．
+万が一，込み入った文字列操作が必要なときは，stringiの関数を探してみると良いだろう．
 
 stringrには，
 
 少なくとも自分の経験では，stringrだけで操作が完結することはほとんどない．
 逆に，パッケージ開発をしていてstringr(やdplyr)を使わずに一日が終わることもあまりない．
 つまり，stringrはかなり便利で必要不可欠なツールである．
-もちろん，baseパッケージの同様の関数を使っても機能上は問題ないことが多い．
-でも，引数の指定方法に一貫性があると，コードを綺麗に書くことができる．
-綺麗なコードは，汚いコードよりも書きやすいし，見た目も良いし，何よりもバグが入りにくい(入らないわけではない)．
+もちろんbaseパッケージの同様の関数を使っても機能上は問題ないことが多い．
+しかし，引数の指定方法に一貫性があると，コードを綺麗に書くことができる．
+綺麗なコードは，汚いコードよりも書きやすく，見た目が良く，何よりもバグが入りにくい(入らないわけではない)．
 
 ## 準備
 
@@ -106,6 +106,12 @@ ls("package:stringr") %>%
   # stringr::str_length()
   # stringr::str_split()
   # stringr::str_subset()
+  # stringr::str_sub()
+
+  # stringr::str_dup()
+  # stringr::str_extract()
+  # stringr::str_pad()
+  # stringr::str_trunc()
 
   # stringr::str_replace_all()
   # stringr::str_to_lower()
@@ -116,35 +122,18 @@ ls("package:stringr") %>%
 
 
 ```r
-fs::dir_ls()
-```
+  # fs::dir_ls()
 
-```
-## 1403.2805.pdf          assoc.md               assoc.Rmd              
-## assoc_files            authors_note.Rmd       crop1_rvest_1.png      
-## crop1_rvest_2.png      crop1_rvest_3.png      crop2_rvest_1.png      
-## crop2_rvest_2.png      crop2_rvest_3.png      dbi.Rmd                
-## fs.Rmd                 ggplot2.Rmd            img                    
-## index.md               index.Rmd              install.md             
-## install.Rmd            keyboardsimulator.Rmd  lubridate.Rmd          
-## lubridate_files        magick.Rmd             magrittr.md            
-## magrittr.Rmd           microsoft365r.Rmd      Microsoft365R_files    
-## package.md             package.Rmd            pkgs.txt               
-## preamble.tex           qpdf.Rmd               r.md                   
-## r.Rmd                  RDCOMClient.Rmd        README.md              
-## render23184564f3e.rds  render2b3062637f2b.rds render3bbc56b81357.rds 
-## render436872674bbe.rds render4b443f867fc.rds  retc-blog.lnk          
-## retc.Rproj             reticulate.Rmd         reticulate_files       
-## rselenium.Rmd          rvest.Rmd              rvest_1.png            
-## rvest_2.png            rvest_3.png            rvest_amazon.Rmd       
-## shell.Rmd              shell_cache            stringr.Rmd            
-## style.css              tidyverse.md           tidyverse.Rmd          
-## xlsx.Rmd               _book                  _bookdown.yml          
-## _bookdown_files        _cp_retc.bat           _main.rds              
-## _output.yml            ニッコウキスゲ.png
-```
+  # パッケージ名の一覧を検索するという活用例
+  # fs::dir_ls(regexp = "Rmd")
+  # install.packages("")
+  # library()
+  # pkg::fun()
 
-```r
+
+  # stringr::fixed()
+  # stringr::regex()
+
   # fs.Rmd
   # fs::path_dir("path")         # パスからディレクトリ名抽出   
   # fs::path_file("path")        # パスからファイル名抽出   
@@ -152,4 +141,3 @@ fs::dir_ls()
   # fs::path_ext_remove("path")  # パスから拡張子を削除   
   # path_ext_set("path", "new_ext")   # 拡張子変更   
 ```
-

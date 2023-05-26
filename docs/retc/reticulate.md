@@ -40,54 +40,92 @@ system("pip list", intern = TRUE) %>%
   dplyr::filter(stringr::str_detect(value, "numpy|matplotlib|art"))
 ## A tibble: 0 × 1
 ## ℹ 1 variable: value <chr>
+```
+
+一覧に"numpy"，"matplotlib"，"art"などのライブラリ名がなければ，以下のコードでライブラリをインストールする．
+
+
+```r
 system("pip install numpy", intern = TRUE)
 system("pip install matplotlib", intern = TRUE)
 system("pip install art", intern = TRUE)
 ```
 
+ライブラリがインストールできたか念のため確認したい場合は，以下のようにする．
+
+
+```r
+system("pip list", intern = TRUE) %>%
+  tibble::as_tibble() %>%
+  dplyr::filter(stringr::str_detect(value, "numpy|matplotlib|art"))
+## # A tibble: 3 × 1
+##   value                 
+##   <chr>                 
+## 1 art             5.9   
+## 2 matplotlib      3.7.1 
+## 3 numpy           1.24.2
+```
+
+
 ### 使用するPythonの指定 {#identify_python}
 
-バージョンや形態の異なるPythonを複数インストールすることが可能である．
+1つのパソコンにバージョンや形態の異なるPythonを複数インストールすることが可能である．
 [Pythonとそのライブラリのインストール](#install_python)で説明したようなPythonパッケージのインストーラを用いたもの(パッケージ版Python)もあれば，Microsoft Store版のPythonもある．
 さらに，Anacondaをインストールしてその中でPythonを使うこともできる．
 色々とあってややこしいが，この文章ではパッケージ版Pythonを使うことにする．
 reticulateで使用するPythonとしてインストールしたパッケージ版Pythonを指定する．
 なお，AnacondaなどにあるPythonを使う場合は，別途インストールして，`use_condaenv()`で指定する．
 
+ここでは，パッケージ版Pythonを使用する．
+Pythonのパスが分かってれば，`use_python()`でそのパスを指定する．
+パスが分からなければ，以下のように`find_python()`を使うことができる．
+Pythonが1つだけのときは，パスがそのまま取得できる．
+
+複数のPythonがインストールされている場合は，メニューが表示される．
+例えば，以下のような文字列が入っている可能性がある．
+C:/Users/your_user_name/AppData/Local/r-miniconda/envs/r-reticulate/python.exe
+C:/Users/your_user_name/AppData/Local/Microsoft/WindowsApps/python.exe
+
+メニューが表示されれば，使用するPythonのパスの番号を入力する．
+どれを使っていいのかわからない場合は，"0"でとりあえず全部のパスを出力する．
+その後，それぞれのパスのPythonがどのようなものか確認してからどれを使うか決める．
+
+なお，Windowsでパスに"WindowsApps/python.exe"があるときは，このファイルはアプリ実行エイリアスという機能でPythonをインストールための実行ファイルである．
+以下を参考にアプリ実行エイリアスの設定でチェックを外すとパスの一覧からは出なくなる．
+
+参考：https://hrkworks.com/it/programming/python/py-4421/
+
 
 ```r
-find_python <- function(){
-  os <- automater::get_os()
+find_python <- function(select_memu = TRUE){
+  os <- get_os()
   python_path <- 
     ifelse(os == "win", "where python", "which python") %>%
     system(intern = TRUE) %>%
-    fs::path() %>%
-    stringr::str_subset("Python311")
-  return(python_path)
+    fs::path()
+  if(length(python_path) > 1){
+    if(select_memu){
+      choice <- utils::menu(python_path, title = "Select Python path. 0: exit and return all.")
+      if(choice == 0){ return(python_path) }
+    }else{
+      return(python_path)
+    }
+  }else{
+    choice <- 1
+  }
+  return(python_path[choice])
 }
-
 path <- find_python()
 path
 ```
 
 ```
-## [1] "C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe"
+## C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe
 ```
 
 ```r
 reticulate::use_python(path)
 ```
-
-`path`に複数の文字列が入っているときは，複数のPythonがインストールされている．
-例えば，以下のような文字列が入っている可能性がある
-
-C:/Users/your_user_name/AppData/Local/r-miniconda/envs/r-reticulate/python.exe
-C:/Users/your_user_name/AppData/Local/Microsoft/WindowsApps/python.exe
-
-このように複数の文字列がpathに入っているときは，`path[1]`のように指定しなければならない．
-上記のうち，後者(最後がWindowsApps/python.exeの方)のときは，アプリ実行エイリアスの設定でチェックを外すと良い．
-
-参考：https://hrkworks.com/it/programming/python/py-4421/
 
 ## Pythonを使ってみる
 
@@ -98,22 +136,22 @@ Python実行時にはコンソールが`>`から`>>>`に変化する．
 
 古典的なことだが，まずはHellow World!を実行する．
 "Hellow World!"が出力されたら成功である．
-`>>>`のときに`quit`か`exit`とすればRに戻る．
+コンソールが`>>>`のときに`exit`か`quit`とすればRに戻る．
 
 
 ```r
 repl_python()
-## Python 3.11.1 (C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe)
+## Python 3.11.1 (C:/Users/username/AppData/Local/Programs/Python/Python311/python.exe)
 ## Reticulate 1.28 REPL -- A Python interpreter in R.
 ## Enter 'exit' or 'quit' to exit the REPL and return to R.
 >>> print("Hello World!")
 ## Hellow World!
->>> quit
+>>> exit
 ```
 
 他にもPythonで実行したいことがあれば，`>>>`のときに入力する．
 
-### RからPythonのHellow World
+### RからPythonのHellow World!
 
 Pythonにあらかじめ用意されているビルトイン関数を使うには，`import_builtins()`を使う．
 `import_builtins()`で生成したオブジェクトに`$`とPythonの関数名をつければ，Rの関数として使うことができる．
@@ -124,7 +162,7 @@ builtins <- reticulate::import_builtins()
 builtins$print('Hellow World!')
 ```
 
-ふつうにHellow Worldをしていても面白くないので，ちょっと変わったHellow Worldをしてみる．
+ふつうにHellow World!をしていても面白くないので，ちょっと変わったHellow World!をしてみる．
 ライブラリartを呼び出して，Hellow World!をするとちょっと面白い．
 
 
@@ -150,7 +188,7 @@ art$tprint("FUN", font = "block", chr_ignore = TRUE)
 ##  '----------------'  '----------------'  '----------------' 
 ```
 
-遊んでばかりいても仕方ないので，ちょっと真面目に使ってみる．
+遊んでばかりいても仕方ないので，ちょっと真面目に使ってみよう．
 Pythonで，`np.random.rand`と表記するものをRで使うには，`np$random$rand`とする．
 Rのオブジェクトに代入してしまえば，あとは慣れたもので簡単に散布図が作成できる．
 
@@ -161,10 +199,11 @@ x <- np$random$rand(as.integer(100))
 y <- np$random$rand(as.integer(100))
 tibble::tibble(x, y) %>%
   ggplot2::ggplot(aes(x, y)) +
-    ggplot2::geom_point()
+    ggplot2::geom_point() + 
+    ggplot2::theme_bw()
 ```
 
-![](reticulate_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
+![](reticulate_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
 
 
 ## PythoとRとの変数のやり取り
@@ -224,7 +263,6 @@ reticulate::py_run_string("x = 10")
 
 
 ## RとPythoでの用語の違い
-
 
 
 Pythonでのモジュールとはファイル(`*.py`)のことで，モジュールをまとめたものがパッケージ，パッケージをまとめたものがライブラリである．
