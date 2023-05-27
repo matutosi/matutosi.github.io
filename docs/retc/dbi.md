@@ -35,6 +35,9 @@ library(DBI)
 library(RSQLite)
 ```
 
+本来はDBに接続するが，解説のための一時データを使用する．
+通常はDB接続のためのユーザIDとパスワードが必要だろう．
+
 
 ```r
   # 一時的データの準備
@@ -47,6 +50,17 @@ dbListTables(con)
 ## [1] "mpg"
 ```
 
+
+```r
+  # https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.Connect.html
+  # con <- 
+  #   dbConnect(RSQLite::SQLite(), 
+  #   username = "matutosi@gmail.com",
+  #   password = "yPXIHeGWXGmPabSiVx2LCopy",
+  #   host = "database-1.cd3bluovykft.ap-southeast-2.rds.amazonaws.com", 
+  #   port = 5432, # PostgreSQL
+  #   dbname = "database-1")
+```
 
 ## 使い方
 

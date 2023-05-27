@@ -35,9 +35,9 @@ pdftoolsではテキスト抽出，OCR(画像の文字認識，内部でtesserac
 また，Microsoft365Rを使えばPDFをワードに変換できる．
 [Microsoft365R](#microsoft365r)
 
-余談であるが，Rのパッケージはそれぞれ独自コードを持つ部分がある一方で，他のパッケージの関数をインポートしているものや，ラッパー関数を用意しているものなどがある．
+余談だが，Rのパッケージはそれぞれ独自コードを持つ部分がある一方で，他のパッケージの関数をインポートしているものや，ラッパー関数を用意しているものなどがある．
 例えば，automaterではそれ自体で有用な機能を持っているというよりは，他のパッケージを利用しやすくするためのラッパー関数の集合である．
-そのため，automaterのコードをもとにさらに使いやすく改良可能であり，各自で試してほしい．
+そのため，automaterのコードをもとにして改良可能であり，各自で試してほしい．
 
 ## PDFの分割
 
@@ -57,7 +57,7 @@ review <-
 split_pdf <- qpdf::pdf_split(review)
 head(split_pdf)
 ```
-ファイル名の文字列のベクトルが返り値なので，それをもとにしてファイル名を変更すると実用的な自動化ができるだろう．
+ファイル名の文字列のベクトルが返り値なので，それをもとにファイル名を変更すると実用的な自動化ができるだろう．
 
 ページを指定した抽出も可能で，pdf_subset()関数を使用する．
 引数としてpagesを指定する以外は，pdf_split()と同じ使い方である．
@@ -127,23 +127,26 @@ system.file("rsc/split_qpdf.rsc", package = "automater") %>%
 ```
 
 具体的な方法は次のとおりである．
-- split_qpdf.rsc をディレクトリーに保存する
-  - 以下のコードで split_qpdf.rsc をコピー可能
+
+- split_qpdf.rsc をディレクトリーに保存する   
+- 以下のコードで split_qpdf.rsc をコピー可能   
+
 
 ```r
 file <- "split_qpdf"
 path <- "c:/" # set your path
 automater::set_rsc(file, path)
 ```
-- 拡張子 .rsc を Rscript.exe に関連付ける
-- 分割したいPDFファイルを split_qpdf.rsc と同じディレクトリにコピーする
-- split_qpdf.rsc をクリックする
-- 黒いウィンドウが開くので，しばらく待つ
+- 拡張子 .rsc を Rscript.exe に関連付ける   
+- 分割したいPDFファイルを split_qpdf.rsc と同じディレクトリにコピーする   
+- split_qpdf.rsc をクリックする   
+- 黒いウィンドウが開くので，しばらく待つ   
 
 split_qpdf.rsc を初めて実行するときは，パッケージのインストールに時間がかかることがある．
 出力ファイル名は以下のとおりである．
-- 入力：「original.pdf」(15ページ)
-- 出力: "original_01.pdf", "original_02.pdf", ..., "original_15.pdf"
+
+- 入力：「original.pdf」(15ページ)   
+- 出力: "original_01.pdf", "original_02.pdf", ..., "original_15.pdf"   
 
 
 
@@ -176,17 +179,19 @@ system.file("rsc/combine_qpdf.rsc", package = "automater")
   cat()
 ```
 
-- combine_qpdf.rsc をディレクトリに保存
-  - 以下のコードで、combine_qpdf.rsc をコピー可能
+- combine_qpdf.rsc をディレクトリに保存   
+- 以下のコードで、combine_qpdf.rsc をコピー可能   
+
 
 ```r
 file <- "combine_qpdf"
 path <- "c:/" # set your path
 automater::set_rsc(file, path)
 ```
+
 - 拡張子 .rsc を Rscript.exe に関連付ける   
 - 結合したいPDFファイルを combine_qpdf.rsc と同じディレクトリにコピーする   
-  ファイルの結合順はファイル名の順序と同じ
+  ファイルの結合順はファイル名の順序と同じ   
 - combine_qpdf.rsc をクリックする   
 - 黒いウィンドウが開くので，しばらく待つ   
   初めて実行するときは，パッケージのインストールに時間がかかることがある．   
@@ -233,6 +238,7 @@ input
 
 automater::message_to_continue()
 ```
+
 上のコードの`input_files()`では，ファイル名の一覧からファイル数を取り出し，ファイル番号を画面表示用に桁揃えしている．
 その後，ファイル番号とファイル名，さらにユーザへの註釈を結合して，プロンプトに表示するメッセージ文字列を生成する．
 メッセージを`user_input()`を用いて表示するとともに，ユーザからの入力を受け取る．
@@ -246,7 +252,7 @@ automater::message_to_continue()
 - 一覧をもとに1行ごとに1つのファイル名のテキストファイルとして保存   
 - テキストファイルをユーザが並び替える(Rでは並び替えが終わるまで待機)   
 - 並び替えが終われば，RでEnter(他のキーでもOK)を入力   
-- テキストファイルを読み込み，や`combine_qpdf()`(`pdf_combine()`でもOK)でPDFを結合   
+- テキストファイルを読み込み，`combine_qpdf()`(`qpdf::pdf_combine()`でもOK)でPDFを結合   
 
 ## PDFの圧縮・最適化
 
@@ -270,7 +276,8 @@ pdf_compress(input, output = NULL, linearize = FALSE, password = "")
 
 
 ```r
-pdf_overlay_stamp(input, stamp, output = NULL, password = "")
+  # automater::pdf_overlay_stamp()と同じ
+pdf_overlay_stamp
 ```
 
 引数`input`にはベースとなるPDFファイルを，`stamp`には重ね合わせるPDFファイルを指定する．
@@ -286,91 +293,55 @@ pdf_overlay_stamp(input, stamp, output = NULL, password = "")
 これらの内容を実行するコードは次のとおりである．
 
 
+```r
+pdf_overlay_stamps_each
 ```
-#' Wrapper functions to overlay page numbers and others using package qpdf.
-#' 
-#' pdf_overlay_stamps_each() overlay PDF for each page in pdf file. 
-#' validate_page() is a helper function for pdf_overlay_stamps_each() 
-#' to validate page consistency of among page no. of input, stamp, start and end.
-#' pdf_overlay_page_num() and pdf_overlay_session_num() are wrapper functions to 
-#' overlay page no. and session no. for accademic congress or symposium etc. 
-#' pdf_overlay_page_num() can overlay up to 100 pages.
-#' 
-#' Package qpdf <https://cran.r-project.org/web/packages/qpdf/index.html>
-#' includes useful functions as shown bellow.
-#' pdf_length(), pdf_split(), pdf_subset(), pdf_combine(), 
-#' pdf_compress(), pdf_rotate_pages(), pdf_overlay_stamp().
-#' 
-#' @name pdf_overlay
-#' @param input,stamp  A string of file name or path of pdf file.
-#'                     input is a base pdf and stamp will be overlayed.
-#'                     No. of pages in stamp PDF should be equal to or over no. of pages in input PDF.
-#'                     Pages in stamp exceeding pages over input pages will be ignored.
-#' @param start,end    An integer of start and end page to be stamped.
-#'                     negative integer can be used for end, which means
-#'                     number from the last page.
-#' @param len_input,len_stamp    An integer to validate.
-#' @param session      A string of session name. Can use "a", "b", or "p".
-#'                     'session = "a"' uses 'pdf/00_sn_a.pdf' as stamp. 
-#'                     pdf directory include '00_sn_a.pdf', '00_sn_b.pdf', and '00_sn_p.pdf' 
-#'                     by default, which invlude 50 pages (eg., A01, A02, ..., A50) respectively.
-#' @examples
-#' \dontrun{
-#' input <- system.file("pdf/00_sn_a.pdf", package = "automater")
-#' pdf_overlay_page_num(input, start = 11, end = -3)
-#' pdf_overlay_session_num(input, session = "b")
-#' }
-#' 
-#' @return  A string of output pdf file.
-#' @export
-pdf_overlay_stamps_each <- function(input, stamp, start = 1, end = NULL){
-  len_input <- qpdf::pdf_length(input)
-  len_stamp <- qpdf::pdf_length(stamp)
-  if(is.null(end)){ end <- len_input }
-  if(end < 0     ){ end <- len_input + end}
-  validate_page(len_input, len_stamp, start, end)
-  pages_inputs <- seq(to = len_input)
-    # +1 means out of bounds, inputs[pages_pre]: NA
-  pages_pre    <- if(start != 1      ){ seq(to = start - 1)                 } else { len_input + 1 }
-  pages_post   <- if(end != len_input){ seq(from = end  + 1, to = len_input)} else { len_input + 1 }
-  pages_body   <- pages_inputs[-c(pages_pre, pages_post)]
-  inputs <- qpdf::pdf_split(input)
-  stamps <- qpdf::pdf_split(stamp)
-  out <- list()
-  for(i in seq_along(pages_body)){
-    out[[i]] <- qpdf::pdf_overlay_stamp(inputs[pages_body[i]], stamps[i])
-  }
-  out <- stats::na.omit(c(inputs[pages_pre], unlist(out), inputs[pages_post]))
-  outfile <- qpdf::pdf_combine(out, "out.pdf")
-  file.remove(inputs)
-  file.remove(stamps)
-  file.remove(out[pages_body])
-  return(outfile)
-}
 
-#' @rdname pdf_overlay
-#' @export
-validate_page <- function(len_input, len_stamp, start, end){
-  if(end       < start)    { stop("end must be larger than start!") }
-  if(len_input < start)    { stop("input pages must be larger than start!") }
-  if(len_input < end  )    { stop("input pages must be larger than end!") }
-  if(len_input > len_stamp){ stop("stamp pages must be equal to or bigger than input!") }
-}
-
-#' @rdname pdf_overlay
-#' @export
-pdf_overlay_page_num <- function(input, start = 1, end = NULL){
-  stamp <- file.path(find.package("automater"), "pdf/00_page.pdf")
-  pdf_overlay_stamps_each(input, stamp, start, end)
-}
-
-#' @rdname pdf_overlay
-#' @export
-pdf_overlay_session_num <- function(input, start = 1, end = NULL, session = "a"){
-  stamp <- file.path(find.package("automater"), "pdf/00_sn_", session, ".pdf")
-  pdf_overlay_stamps_each(input, stamp, start, end)
-}
 ```
+## function (input, stamp, start = 1, end = NULL) 
+## {
+##     len_input <- qpdf::pdf_length(input)
+##     len_stamp <- qpdf::pdf_length(stamp)
+##     if (is.null(end)) {
+##         end <- len_input
+##     }
+##     if (end < 0) {
+##         end <- len_input + end
+##     }
+##     validate_page(len_input, len_stamp, start, end)
+##     pages_inputs <- seq(to = len_input)
+##     pages_pre <- if (start != 1) {
+##         seq(to = start - 1)
+##     }
+##     else {
+##         len_input + 1
+##     }
+##     pages_post <- if (end != len_input) {
+##         seq(from = end + 1, to = len_input)
+##     }
+##     else {
+##         len_input + 1
+##     }
+##     pages_body <- pages_inputs[-c(pages_pre, pages_post)]
+##     inputs <- qpdf::pdf_split(input)
+##     stamps <- qpdf::pdf_split(stamp)
+##     out <- list()
+##     for (i in seq_along(pages_body)) {
+##         out[[i]] <- qpdf::pdf_overlay_stamp(inputs[pages_body[i]], 
+##             stamps[i])
+##     }
+##     out <- stats::na.omit(c(inputs[pages_pre], unlist(out), inputs[pages_post]))
+##     outfile <- qpdf::pdf_combine(out, "out.pdf")
+##     file.remove(inputs)
+##     file.remove(stamps)
+##     file.remove(out[pages_body])
+##     return(outfile)
+## }
+## <bytecode: 0x00000164770261a0>
+## <environment: namespace:automater>
+```
+
+
 
 `pdf_overlay_stamps_each()`の引数には，`input`，`stamp`，`start`，`end`がある．
 `input`と`stamp`はqpdfの他の関数と同様の引数で，ファイルのパスを文字列で指定する．
@@ -378,7 +349,7 @@ pdf_overlay_session_num <- function(input, start = 1, end = NULL, session = "a")
 最後からのページ数とするには，`end`を負の数で指定する．
 
 関数の主な構成は以下のとおりである．
-- input`と`stamp`のページ数を取得   
+- `input`と`stamp`のページ数を取得   
 - `start`や`end`との整合性を`validate_page()`で確認   
 - 重ね合わせ対象よりも前(`pages_pre`)，後ろ(`pages_post`)，重ね合わせの対象のページ(`pages_body`)を取得  
 - `pdf_split()`で`input`と`stamp`を1ページごとに分割   
@@ -393,12 +364,17 @@ pdf_overlay_session_num <- function(input, start = 1, end = NULL, session = "a")
 ただし，最大ページ数は100ページである．
 `pdf_overlay_session_num()`は，さらに`session`を指定して「A01」のような番号を左上に付加する．
 
+
+```r
 pdf_overlay_page_num(input, start = 1, end = NULL)
 pdf_overlay_session_num(input, start = 1, end = NULL, session = "a")
+```
 
 パッケージautomaterのpdfフォルダには，ページ番号と学会でのセッション番号を付加するためのPDFファイル(すべてA4版)がある．
-- 00_page.pdf
-- 00_sn_a.pdf，00_sn_b.pdf，00_sn_p.pdf
+
+- 00_page.pdf   
+- 00_sn_a.pdf，00_sn_b.pdf，00_sn_p.pdf   
+
 ページ番号は，下部に「-1-」などの表記があり100ページ分からなる．
 セッション番号は，左上に「A01」(A会場を想定)「B01」「P01」(ポスター会場を想定)などの表記があり，50番までが入っている．
 それぞれのtexソースファイルも保存されている．

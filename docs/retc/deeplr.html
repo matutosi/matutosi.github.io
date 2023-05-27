@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 14 ggplot2で楽に綺麗に作図 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 14 ggplot2で楽に綺麗に作図 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 11 Deeplrで翻訳する | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 11 Deeplrで翻訳する | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 14 ggplot2で楽に綺麗に作図 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 11 Deeplrで翻訳する | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 14 ggplot2で楽に綺麗に作図 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 11 Deeplrで翻訳する | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="keyboardsimulator.html"/>
-<link rel="next" href="rvest.html"/>
+<link rel="prev" href="shell.html"/>
+<link rel="next" href="reticulate.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -397,143 +397,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ggplot2" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chap. 14</span> ggplot2で楽に綺麗に作図<a href="ggplot2.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="deeplr" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chap. 11</span> Deeplrで翻訳する<a href="deeplr.html#deeplr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!--
-![](images/tools_list01.png){ width=70% }
-<img src="images/tools_list01.png" width="30%">
 -->
+<p>DeepLは高機能な翻訳ツールで，結構自然な文章を提案してくれる．
+Google Translateもそれなりに素晴らしい翻訳をしてくれるが，それよりも良さそうな文章になることが多い．
+DeepLのページに文章を入力・貼り付けするだけで簡単に使える．
+しかし，ネットでのフリー版だと1回あたり5000文字という制約があるため，文章量が増えると手作業が面倒になってくる．</p>
+<p>DeepLのAPIを使えば，1ヶ月あたり50万文字までは無料で翻訳が可能である．
+Rから直接操作するのはちょっと面倒だが，CRANに登録されているdeeplrパッケージのお世話になれば簡単にDeepLを使いこなせる．</p>
+<div id="準備-6" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> 準備<a href="deeplr.html#準備-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="deeplr.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;deeplr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="deeplr.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb175-2"><a href="deeplr.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deeplr)</span></code></pre></div>
+</div>
+<div id="deeplのapi" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> DeepLのAPI<a href="deeplr.html#deeplのapi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <!--
-TODO：
-ggplot2の利点・できることを書く
+https://auto-worker.com/blog/?p=5030
+https://powervbadesktop.com/web27/
 -->
-<div id="準備-9" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> 準備<a href="ggplot2.html#準備-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="ggplot2.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb217-2"><a href="ggplot2.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>DeepLのAPIを使うには，事前に認証キーを取得しなければならない．</p>
 </div>
-<div id="rの作図環境の概要" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> Rの作図環境の概要<a href="ggplot2.html#rの作図環境の概要" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Rの作図環境として主なものは以下の4つがある．</p>
-<ul>
-<li>base graphics</li>
-<li>lattice</li>
-<li>grid</li>
-<li>ggplot2</li>
-</ul>
-<p>base graphicsは古典的な作図環境で長らく使われてきた．
-Rが統計解析のシステムとして使われるようになった理由の1つとして強力な作図環境があり，まさしくこのbase graphicsシステムがそれに当たる．
-すごく便利なものと当時は考えていた．
-ただし，base graphicsは紙と鉛筆を使って作図していくようなものだと喩えられることがあるように，作図済みのものは修正できない．
-また，作図する関数によって引数の取り方が異なるなど，発展するなかで継ぎ接ぎだらけになってしまった．
-システムが急速に発展する中ではこのような状況はよくあり，途中から綺麗に整理し直すことは困難である．
-新しいシステムを作り直す方が楽であり現実的である．</p>
-<p>そのような状況もあってか，lattice，それをもとにしたgrid，さらにはこの2つをベースにしたggpot2が開発された．
-これら3つの作図環境のうち，最近ではggplot2が最も使われているものである．
-ggplot2では，Grammar of Graphics，つまり作図の文法という考え方が用いられており，洗練された作図が可能である．
-詳細は「ggplot2」(Hadley )を参照して欲しい．</p>
-</div>
-<div id="ggplot2とは" class="section level2 hasAnchor" number="14.3">
-<h2><span class="header-section-number">14.3</span> ggplot2とは<a href="ggplot2.html#ggplot2とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>ggplot2は，作図環境を提供するパッケージである．
-統一的なインターフェスを持っており，非常に使いやすい．
-散布図を作成したデータをもとにして，簡単に箱ひげ図などの他の形式の作図やグループ分けした作図も簡単である．</p>
-<div id="ggplot2の利点" class="section level3 hasAnchor" number="14.3.1">
-<h3><span class="header-section-number">14.3.1</span> ggplot2の利点<a href="ggplot2.html#ggplot2の利点" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>ggplot2では，第1引数としてtidyなデータフレームを受け取る．</p>
-<ul>
-<li>1つのデータから各種作図が可能<br />
-ちょっとの変更で棒グラフ，散布図など各種の作図が可能<br />
-</li>
-<li>図が綺麗<br />
-</li>
-<li>テーマの変更が簡単<br />
-</li>
-<li>facetによるグループ分けが便利<br />
+<div id="deeplr-1" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> deeplr<a href="deeplr.html#deeplr-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>有料版のProを契約しているときは<code>translate()</code>を，無料版のfreeのときは<code>translate2()</code>を使う．
+この文章の冒頭部分を英語に翻訳してみる．
+<code>str_detect()</code>の正規表現で<code>"^[^\x01-\x7E]"</code>として全角文字ではじまる文字列を抽出している．
+正規表現は若干ややこしいが，<code>[^\x01-\x7E]"</code>の<code>^</code>と<code>\x01-\x7E</code>はそれぞれ”以外”と”1バイト文字”の意味，最初の<code>^</code>は”行頭”の意味である．
+つまり，1バイト文字以外が行頭のものということだ．</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="deeplr.html#cb176-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> </span>
+<span id="cb176-2"><a href="deeplr.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;index.Rmd&quot;</span>, <span class="at">col_names =</span> <span class="st">&quot;jp&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb176-3"><a href="deeplr.html#cb176-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(jp, <span class="st">&quot;^[^</span><span class="sc">\x01</span><span class="st">-</span><span class="sc">\x7E</span><span class="st">]&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb176-4"><a href="deeplr.html#cb176-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb176-5"><a href="deeplr.html#cb176-5" aria-hidden="true" tabindex="-1"></a>en <span class="ot">&lt;-</span> </span>
+<span id="cb176-6"><a href="deeplr.html#cb176-6" aria-hidden="true" tabindex="-1"></a>  text <span class="sc">%&gt;%</span></span>
+<span id="cb176-7"><a href="deeplr.html#cb176-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$</span><span class="st">`</span>(<span class="st">&quot;jp&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb176-8"><a href="deeplr.html#cb176-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb176-9"><a href="deeplr.html#cb176-9" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(deeplr<span class="sc">::</span>translate2, </span>
+<span id="cb176-10"><a href="deeplr.html#cb176-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_lang =</span> <span class="st">&quot;EN&quot;</span>, <span class="at">source_lang =</span> <span class="st">&quot;JP&quot;</span>, <span class="at">auth_key =</span> <span class="st">&quot;your_api_key&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb176-11"><a href="deeplr.html#cb176-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span>
+<span id="cb176-12"><a href="deeplr.html#cb176-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-13"><a href="deeplr.html#cb176-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;誰でもそうだろうが，面倒くさい仕事はしたくない．&quot;</span></span>
+<span id="cb176-14"><a href="deeplr.html#cb176-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;というか，したくないことが面倒くさいのだろう．&quot;</span></span>
+<span id="cb176-15"><a href="deeplr.html#cb176-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;ニワトリとタマゴの議論は別として，できることなら面倒な作業はしたくない．&quot;</span></span>
+<span id="cb176-16"><a href="deeplr.html#cb176-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;でも，しなければならないのなら自動化したい．&quot;</span></span>
+<span id="cb176-17"><a href="deeplr.html#cb176-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;もちろんすべての仕事を自動化できるわけでもないし，作業内容によっては文章執筆のように自動化すべきでないこともある．&quot;</span></span>
+<span id="cb176-18"><a href="deeplr.html#cb176-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;作業の自動化には，プログラミング言語を使うことが多い．</span></span>
+<span id="cb176-19"><a href="deeplr.html#cb176-19" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;I don&#39;t want to do a tedious job, as anyone would.&quot;</span></span>
+<span id="cb176-20"><a href="deeplr.html#cb176-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;Or perhaps it is the hassle of not wanting to.&quot;</span></span>
+<span id="cb176-21"><a href="deeplr.html#cb176-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;Aside from the chicken and egg argument, I don&#39;t want to go through the hassle if I can help it.&quot;</span></span>
+<span id="cb176-22"><a href="deeplr.html#cb176-22" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;But if I have to do it, I want to automate it.&quot;</span></span>
+<span id="cb176-23"><a href="deeplr.html#cb176-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;Of course, not all tasks can be automated, and some tasks, such as writing, should not be automated.&quot;</span></span>
+<span id="cb176-24"><a href="deeplr.html#cb176-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;Programming languages are often used to automate tasks.&quot;</span></span></code></pre></div>
+<p>無事に翻訳できたが，自分の文章を読むよりも英語に翻訳したものを読む方がなぜか恥ずかしい感じがする．
+上のように英語だけをベクトルにしてもよいが，できれば英語と日本語を並べて見たほうがわかりやすい．
+あとから<code>tibble::tibble(en = en, jp = jp)</code>としても同じであるが，以下のようにすることもできる．
+なお，<code>relocate()</code>は列の表示順を変更しているだけであまり大した意味はない．</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="deeplr.html#cb177-1" aria-hidden="true" tabindex="-1"></a>translated <span class="ot">&lt;-</span> </span>
+<span id="cb177-2"><a href="deeplr.html#cb177-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(text, <span class="at">en =</span> deeplr<span class="sc">::</span><span class="fu">translate2</span>(jp, </span>
+<span id="cb177-3"><a href="deeplr.html#cb177-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_lang =</span> <span class="st">&quot;EN&quot;</span>, <span class="at">source_lang =</span> <span class="st">&quot;JP&quot;</span>, <span class="at">auth_key =</span> <span class="st">&quot;your_api_key&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb177-4"><a href="deeplr.html#cb177-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">relocate</span>(en, jp) <span class="sc">%&gt;%</span></span>
+<span id="cb177-5"><a href="deeplr.html#cb177-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span>
+<span id="cb177-6"><a href="deeplr.html#cb177-6" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<span id="cb177-7"><a href="deeplr.html#cb177-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   en                                                       jp</span></span>
+<span id="cb177-8"><a href="deeplr.html#cb177-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                    &lt;chr&gt;</span></span>
+<span id="cb177-9"><a href="deeplr.html#cb177-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 I don&#39;t want to do a tedious job, as anyone would.       誰でもそうだろ…</span></span>
+<span id="cb177-10"><a href="deeplr.html#cb177-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 Or perhaps it is the hassle of not wanting to.           というか，した…</span></span>
+<span id="cb177-11"><a href="deeplr.html#cb177-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 Aside from the chicken and egg argument, I don&#39;t want…  ニワトリとタマ…</span></span>
+<span id="cb177-12"><a href="deeplr.html#cb177-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 But if I have to do it, I want to automate it.           でも，しなけれ…</span></span>
+<span id="cb177-13"><a href="deeplr.html#cb177-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 Of course, not all tasks can be automated, and some t…  もちろんすべて…</span></span>
+<span id="cb177-14"><a href="deeplr.html#cb177-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 Programming languages are often used to automate task    作業の自動化に…</span></span></code></pre></div>
 <!--
-TODO：
-magrittrの説明は必要?
---></li>
-<li>magrittrによるパイプとの相性が良い<br />
-特にファイル名を設定するときの<code>%$%</code>や<code>%T%</code>など<br />
-</li>
-<li>ggplot2をサポートするパッケージも豊富<br />
-凡例の自動的な位置決めや配置など
-ggpubrなども</li>
-</ul>
-</div>
-</div>
-<div id="ggplot2の基本" class="section level2 hasAnchor" number="14.4">
-<h2><span class="header-section-number">14.4</span> ggplot2の基本<a href="ggplot2.html#ggplot2の基本" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>aesthetics</p>
-<p>geom_point()
-geom_bar()
-aes()
-colour
-group
-size</p>
-</div>
-<div id="facetで簡単に分割作図" class="section level2 hasAnchor" number="14.5">
-<h2><span class="header-section-number">14.5</span> facetで簡単に分割作図<a href="ggplot2.html#facetで簡単に分割作図" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>facetは，もともとは宝石をカットしたときの面を指すことばのようだが，ggplot2においては全体のデータを分割して表示させることを意味する．
-つまり，1つのデータを色々な側面から分析しようという意図でfacetが使われている．
-例えば，irisのデータを全種でプロットするのではなく，種ごとに作図するのがfacetである．
-ggplot2ではこれが簡単にできて，しかも作図したものが見やすく，色々と指定できる点でも優れている．</p>
-<p>forループやsubset，あるいはdplyr::filterを使っていたものが，一気にできて便利
-コードも簡単で見やすい
-コードの転用が簡単</p>
-<p>group VS facet</p>
-</div>
-<div id="ggsave" class="section level2 hasAnchor" number="14.6">
-<h2><span class="header-section-number">14.6</span> ggsave<a href="ggplot2.html#ggsave" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>pngとPDF<br />
-PDFで日本語文字が化ける場合は，pngを使う</p></li>
-<li><p>指定しないと，直前のプロット</p></li>
-</ul>
-</div>
-<div id="文字化けへの対処windows" class="section level2 hasAnchor" number="14.7">
-<h2><span class="header-section-number">14.7</span> 文字化けへの対処(windows)<a href="ggplot2.html#文字化けへの対処windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>-cario?</p>
-</div>
-<div id="themeを少しだけ説明" class="section level2 hasAnchor" number="14.8">
-<h2><span class="header-section-number">14.8</span> themeを少しだけ説明<a href="ggplot2.html#themeを少しだけ説明" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>デフォルト<br />
-</li>
-<li>theme_bw()</li>
-</ul>
-<!--
-## shiny
-shinyは必要?
-Rだけでウェブアプリが作れる
-reactiveの考え方を覚える必要あり
+translated <- 
+  dplyr::relocate(en, jp) %>%
+
+ls("package:deeplr")
 -->
-</div>
-<div id="作図の自動化" class="section level2 hasAnchor" number="14.9">
-<h2><span class="header-section-number">14.9</span> 作図の自動化<a href="ggplot2.html#作図の自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>例を示す．</p>
-<ul>
-<li>入力：readr, readxl<br />
-エクセルかcsvでデータ入力</li>
-<li>分析：dplyr, stringr<br />
-filter(), summarise(), tally()</li>
-<li>作図：ggplot2<br />
-ggplot()
-geom_point()
-geom_jitter()
-geom_boxplot()
-ggsave()</li>
-</ul>
-</div>
-<div id="参考書" class="section level2 hasAnchor" number="14.10">
-<h2><span class="header-section-number">14.10</span> 参考書<a href="ggplot2.html#参考書" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>ggplot2</li>
-<li>ggplot2のレシピ</li>
-<li>unwin GDA</li>
-<li>チートシート</li>
-</ul>
 
 </div>
 </div>
@@ -542,8 +484,8 @@ ggsave()</li>
           </div>
         </div>
       </div>
-<a href="keyboardsimulator.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rvest.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="shell.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reticulate.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

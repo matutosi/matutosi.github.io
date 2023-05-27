@@ -1,13 +1,19 @@
-# RDCOMClientでpdfとdocxを相互変換 {#RDCOMClient}
+# RDCOMClientでMS WordやExcelと他形式と相互変換する {#RDCOMClient}
 
-RDCOMClientはWindowsに特化したパッケージのため他のOSでは利用できない．
+RDCOMClientはWindowsに特化したパッケージであるが，これを使うとMS WordやExcelの操作が可能である．
+ここでは，WordおよびExcelを他のファイル形式に変換したり，その逆の方法を紹介する．
+また，操作対象のWordやExcelがインストールされている必要がある．
 
+<!--
+  # https://github.com/omegahat/RDCOMClient
+library(RDCOMClient)
+ls("package:RDCOMClient")
+-->
 
 ## 準備
 
-
 CRANには登録されておらず，ウェブページかGitHubからインストールする．
-`install.packages()`でインストールする場合は，バイナリなので比較的時間が早いがRのバージョンによってはうまくインストールできないかもしれない．
+`install.packages()`でインストールする場合は，バイナリなので比較的時間が早いが，Rのバージョンによってはうまくインストールできないかもしれない．
 `install_github()`の場合は，コンパイルするのに少し時間がかかる．
 
 
@@ -25,7 +31,7 @@ library(RDCOMClient)
 library(automater)
 ```
 
-## RDCOMClient
+## ドキュメントの形式変換
 
 
 ```r
@@ -53,7 +59,7 @@ convert_docs
 ##     doc$close()
 ##     return(invisible(converted))
 ## }
-## <bytecode: 0x000002405835a210>
+## <bytecode: 0x000001f680d7f460>
 ## <environment: namespace:automater>
 ```
 
@@ -87,6 +93,11 @@ convert_docs
 - `qpdf_combine()`で結合
 
 
+##スプレッドシートの形式変換
+
+
+
+
 <!--
 
 ```r
@@ -96,7 +107,6 @@ files <-
 files %>%
   purrr::walk(convert_docs, format = "pdf")
 ```
-
 
 
 ### 変換実行

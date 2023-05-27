@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 14 ggplot2で楽に綺麗に作図 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 14 ggplot2で楽に綺麗に作図 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 23 officerでWordやEscelの内容を編集する | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 23 officerでWordやEscelの内容を編集する | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 14 ggplot2で楽に綺麗に作図 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 23 officerでWordやEscelの内容を編集する | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 14 ggplot2で楽に綺麗に作図 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 23 officerでWordやEscelの内容を編集する | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="keyboardsimulator.html"/>
-<link rel="next" href="rvest.html"/>
+<link rel="prev" href="microsoft365r.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -397,144 +397,124 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ggplot2" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chap. 14</span> ggplot2で楽に綺麗に作図<a href="ggplot2.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="officer" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">Chap. 23</span> officerでWordやEscelの内容を編集する<a href="officer.html#officer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!--
-![](images/tools_list01.png){ width=70% }
-<img src="images/tools_list01.png" width="30%">
+<a href=""></a>
+[Preface](#)
 -->
+<div id="複数のワード文書の文字列を一括置換-1" class="section level2 hasAnchor" number="23.1">
+<h2><span class="header-section-number">23.1</span> 複数のワード文書の文字列を一括置換<a href="officer.html#複数のワード文書の文字列を一括置換-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>多くのプログラマは，普段はそれぞれの好みのテキストエディタを使っていいるだろう．
+私はWindowsでは古典的なエディタである秀丸エディタを長らく使っている．
+キー割り当てのカスタマイズや自分用の細かなマクロがあるので，今さらエディタを変更できない．
+ノートパソコンではThinkPadをずっと使っているので，キーボード自体も変更できない．
+これを変更すると作業効率が悪くなってしまう．
+そのため，デスクトップパソコンでもThinkPadキーボードを愛用している．</p>
+<p>このようにエディタとキーボードだけでパソコンの作業が完了すれば良いのだが，仕事上はワードで文書を作成しなければならないことがある．
+ワードは余計なおせっかいをたくさんしてくれるので，不要なことはしないように設定している．
+それでも，できればワードでの作業は最小限にしたいのが本音である．
+起動に時間はかかるし，置換で使える正規表現がちょっと変だからである．</p>
+<p>Rからワード文書内の文字列を置換すれば，ワードを起動する手間が省略できる．
+また，正規表現を使った置換や複数の組み合わせの置換もできる．
+さらに，「AをB」に「BをA」にという入れ替えも，プログラムで途中に別の文字列への置き換えで実現できる．
+このとき途中で使う文字列が元の文書内にないことは必須条件であるが，これもプログラムで確認可能である．
+もちろん，複数ファイルでの置換やファイル名を正規表現で指定することもできる．</p>
 <!--
-TODO：
-ggplot2の利点・できることを書く
+  # なお，VBAでマクロを使えば，複数ファイルの文字列置ができる．
+  # その場合，1つの組み合わせだけでなく，複数の組み合わせの置換もできるだろう．
+  # VBAのマクロと同様のことをRから実行してみる．
 -->
-<div id="準備-9" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> 準備<a href="ggplot2.html#準備-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="ggplot2.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb217-2"><a href="ggplot2.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div id="置換のコードの例-1" class="section level3 hasAnchor" number="23.1.1">
+<h3><span class="header-section-number">23.1.1</span> 置換のコードの例<a href="officer.html#置換のコードの例-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="officer.html#cb316-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># コードの動作確認</span></span>
+<span id="cb316-2"><a href="officer.html#cb316-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-3"><a href="officer.html#cb316-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://ardata-fr.github.io/officeverse/index.html</span></span>
+<span id="cb316-4"><a href="officer.html#cb316-4" aria-hidden="true" tabindex="-1"></a>pkg <span class="ot">&lt;-</span> <span class="st">&quot;D:/matu/work/ToDo/automater/R&quot;</span></span>
+<span id="cb316-5"><a href="officer.html#cb316-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>(pkg)</span>
+<span id="cb316-6"><a href="officer.html#cb316-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(officer)</span>
+<span id="cb316-7"><a href="officer.html#cb316-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb316-8"><a href="officer.html#cb316-8" aria-hidden="true" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;d:/&quot;</span></span>
+<span id="cb316-9"><a href="officer.html#cb316-9" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(wd)</span>
+<span id="cb316-10"><a href="officer.html#cb316-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-11"><a href="officer.html#cb316-11" aria-hidden="true" tabindex="-1"></a>replacement <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;replacement.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb316-12"><a href="officer.html#cb316-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-13"><a href="officer.html#cb316-13" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> </span>
+<span id="cb316-14"><a href="officer.html#cb316-14" aria-hidden="true" tabindex="-1"></a>  replacement[[<span class="st">&quot;file&quot;</span>]] <span class="sc">%&gt;%</span></span>
+<span id="cb316-15"><a href="officer.html#cb316-15" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb316-16"><a href="officer.html#cb316-16" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regexp =</span> .) <span class="sc">%&gt;%</span></span>
+<span id="cb316-17"><a href="officer.html#cb316-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exclude</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(., <span class="st">&quot;^replaced</span><span class="sc">\\</span><span class="st">_&quot;</span>))</span>
+<span id="cb316-18"><a href="officer.html#cb316-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-19"><a href="officer.html#cb316-19" aria-hidden="true" tabindex="-1"></a>replacement <span class="ot">&lt;-</span> <span class="fu">expand_file</span>(replacement, files)</span>
+<span id="cb316-20"><a href="officer.html#cb316-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-21"><a href="officer.html#cb316-21" aria-hidden="true" tabindex="-1"></a>files <span class="sc">%&gt;%</span></span>
+<span id="cb316-22"><a href="officer.html#cb316-22" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">walk</span>(replace_docs, replacement)</span></code></pre></div>
 </div>
-<div id="rの作図環境の概要" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> Rの作図環境の概要<a href="ggplot2.html#rの作図環境の概要" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Rの作図環境として主なものは以下の4つがある．</p>
-<ul>
-<li>base graphics</li>
-<li>lattice</li>
-<li>grid</li>
-<li>ggplot2</li>
-</ul>
-<p>base graphicsは古典的な作図環境で長らく使われてきた．
-Rが統計解析のシステムとして使われるようになった理由の1つとして強力な作図環境があり，まさしくこのbase graphicsシステムがそれに当たる．
-すごく便利なものと当時は考えていた．
-ただし，base graphicsは紙と鉛筆を使って作図していくようなものだと喩えられることがあるように，作図済みのものは修正できない．
-また，作図する関数によって引数の取り方が異なるなど，発展するなかで継ぎ接ぎだらけになってしまった．
-システムが急速に発展する中ではこのような状況はよくあり，途中から綺麗に整理し直すことは困難である．
-新しいシステムを作り直す方が楽であり現実的である．</p>
-<p>そのような状況もあってか，lattice，それをもとにしたgrid，さらにはこの2つをベースにしたggpot2が開発された．
-これら3つの作図環境のうち，最近ではggplot2が最も使われているものである．
-ggplot2では，Grammar of Graphics，つまり作図の文法という考え方が用いられており，洗練された作図が可能である．
-詳細は「ggplot2」(Hadley )を参照して欲しい．</p>
 </div>
-<div id="ggplot2とは" class="section level2 hasAnchor" number="14.3">
-<h2><span class="header-section-number">14.3</span> ggplot2とは<a href="ggplot2.html#ggplot2とは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>ggplot2は，作図環境を提供するパッケージである．
-統一的なインターフェスを持っており，非常に使いやすい．
-散布図を作成したデータをもとにして，簡単に箱ひげ図などの他の形式の作図やグループ分けした作図も簡単である．</p>
-<div id="ggplot2の利点" class="section level3 hasAnchor" number="14.3.1">
-<h3><span class="header-section-number">14.3.1</span> ggplot2の利点<a href="ggplot2.html#ggplot2の利点" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>ggplot2では，第1引数としてtidyなデータフレームを受け取る．</p>
-<ul>
-<li>1つのデータから各種作図が可能<br />
-ちょっとの変更で棒グラフ，散布図など各種の作図が可能<br />
-</li>
-<li>図が綺麗<br />
-</li>
-<li>テーマの変更が簡単<br />
-</li>
-<li>facetによるグループ分けが便利<br />
+<div id="年月日の更新-1" class="section level2 hasAnchor" number="23.2">
+<h2><span class="header-section-number">23.2</span> 年月日の更新<a href="officer.html#年月日の更新-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>毎年同じような文書を作成しているが，年だけを更新しなければならないことは多いだろう．
+手作業で日付を更新すると，どうしても間違いが混入する．
+単純な見間違いや入力間違いもあれば，日付を変更して曜日を変更し忘れる，あるいは日付を変更し忘れることをやってしまいがちだ．
+このような更新作業も，Wordの検索・置換の機能で可能だし，Rから特定の日付を別の日付に変換できる．</p>
+<p>いっそのことなら，日付を文書内で自動的に取得して日付あるいは曜日を更新できれば楽ができる．
+例えば，「2023年4月10日(月)」を2024年に変更することを考えよう．
+何番目の何曜日かで日付が決まっているなら，2023年4月10日は第2月曜日である．
+この場合は，2024年4月の第2月曜日は「2024年4月8日(月)」なので，「2023年4月10日(月)」を「2024年4月8日(月)」に置換する．
+一方，日付固定なら「2024年4月10日(水)」に置換する．</p>
 <!--
-TODO：
-magrittrの説明は必要?
---></li>
-<li>magrittrによるパイプとの相性が良い<br />
-特にファイル名を設定するときの<code>%$%</code>や<code>%T%</code>など<br />
-</li>
-<li>ggplot2をサポートするパッケージも豊富<br />
-凡例の自動的な位置決めや配置など
-ggpubrなども</li>
-</ul>
-</div>
-</div>
-<div id="ggplot2の基本" class="section level2 hasAnchor" number="14.4">
-<h2><span class="header-section-number">14.4</span> ggplot2の基本<a href="ggplot2.html#ggplot2の基本" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>aesthetics</p>
-<p>geom_point()
-geom_bar()
-aes()
-colour
-group
-size</p>
-</div>
-<div id="facetで簡単に分割作図" class="section level2 hasAnchor" number="14.5">
-<h2><span class="header-section-number">14.5</span> facetで簡単に分割作図<a href="ggplot2.html#facetで簡単に分割作図" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>facetは，もともとは宝石をカットしたときの面を指すことばのようだが，ggplot2においては全体のデータを分割して表示させることを意味する．
-つまり，1つのデータを色々な側面から分析しようという意図でfacetが使われている．
-例えば，irisのデータを全種でプロットするのではなく，種ごとに作図するのがfacetである．
-ggplot2ではこれが簡単にできて，しかも作図したものが見やすく，色々と指定できる点でも優れている．</p>
-<p>forループやsubset，あるいはdplyr::filterを使っていたものが，一気にできて便利
-コードも簡単で見やすい
-コードの転用が簡単</p>
-<p>group VS facet</p>
-</div>
-<div id="ggsave" class="section level2 hasAnchor" number="14.6">
-<h2><span class="header-section-number">14.6</span> ggsave<a href="ggplot2.html#ggsave" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>pngとPDF<br />
-PDFで日本語文字が化ける場合は，pngを使う</p></li>
-<li><p>指定しないと，直前のプロット</p></li>
-</ul>
-</div>
-<div id="文字化けへの対処windows" class="section level2 hasAnchor" number="14.7">
-<h2><span class="header-section-number">14.7</span> 文字化けへの対処(windows)<a href="ggplot2.html#文字化けへの対処windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>-cario?</p>
-</div>
-<div id="themeを少しだけ説明" class="section level2 hasAnchor" number="14.8">
-<h2><span class="header-section-number">14.8</span> themeを少しだけ説明<a href="ggplot2.html#themeを少しだけ説明" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>デフォルト<br />
-</li>
-<li>theme_bw()</li>
-</ul>
-<!--
-## shiny
-shinyは必要?
-Rだけでウェブアプリが作れる
-reactiveの考え方を覚える必要あり
+日付(月日)を固定したい場合であれば，曜日のみ変更すれば良いので分かりやすい．
+曜日を固定したい場合は「10月の第2日曜日」のように法則がきっちりとしていれば，プログラムは簡単である．
 -->
-</div>
-<div id="作図の自動化" class="section level2 hasAnchor" number="14.9">
-<h2><span class="header-section-number">14.9</span> 作図の自動化<a href="ggplot2.html#作図の自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>例を示す．</p>
-<ul>
-<li>入力：readr, readxl<br />
-エクセルかcsvでデータ入力</li>
-<li>分析：dplyr, stringr<br />
-filter(), summarise(), tally()</li>
-<li>作図：ggplot2<br />
-ggplot()
-geom_point()
-geom_jitter()
-geom_boxplot()
-ggsave()</li>
-</ul>
-</div>
-<div id="参考書" class="section level2 hasAnchor" number="14.10">
-<h2><span class="header-section-number">14.10</span> 参考書<a href="ggplot2.html#参考書" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>ggplot2</li>
-<li>ggplot2のレシピ</li>
-<li>unwin GDA</li>
-<li>チートシート</li>
-</ul>
+<p>さらに，求めた日が日曜日の場合は前日の土曜日あるいは月曜日にずらすとか，10月1日の前後3日以内の火曜日のような法則でも可能である．
+祝日との関連で日付を決定することもあるだろう．
+そのようなときは，祝日データをあわせてコードに入れれば良い．
+とにかく，作業の手順が決まっていれば，プログラムによる自動化できる．</p>
+<p>ここではlubridateを活用して，ワード文書の日付を更新する方法を扱う．
+lubridateで日付固定あるいは位置固定のときでの翌年の年月日を求める方法は以下を参考にして欲しい．</p>
+<p><a href="lubridate.html#lubridate">lubridateで日付・時刻を扱う</a></p>
+<div id="活用例-3" class="section level3 hasAnchor" number="23.2.1">
+<h3><span class="header-section-number">23.2.1</span> 活用例<a href="officer.html#活用例-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ワード文書内の日付は，正規表現を用いて入手できる．</p>
+<p>それぞれの曜日なし版が考えられ，月と日が1桁の時に「04」のようにパディング(桁合わせ)されていることもあるだろう．
+これらは，正規表現によって対応可能である．
+もちろん，日付っぽい表記のすべてを含むことはできないが，よく使う日付表記は網羅できるだろう．
+年表記が2桁の場合，半角や全角のスペースを途中に含んだり，「()」の半角・全角の違いなどの表現揺れもあり得る．
+表記揺れを修正するための置換や削除などは，stringr(あるいはbase)の関数で対応できる．</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="officer.html#cb317-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 20\d\d年月日</span></span>
+<span id="cb317-2"><a href="officer.html#cb317-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># /</span></span>
+<span id="cb317-3"><a href="officer.html#cb317-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-4"><a href="officer.html#cb317-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wordファイルを開く</span></span>
+<span id="cb317-5"><a href="officer.html#cb317-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 文字列の取得</span></span>
+<span id="cb317-6"><a href="officer.html#cb317-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 日付の一覧抽出</span></span>
+<span id="cb317-7"><a href="officer.html#cb317-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 日付の置換</span></span>
+<span id="cb317-8"><a href="officer.html#cb317-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wordの保存</span></span>
+<span id="cb317-9"><a href="officer.html#cb317-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-10"><a href="officer.html#cb317-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-11"><a href="officer.html#cb317-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="officer.html#cb319-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;21年1月1日(月)，2021年1月1日(月)，2021年10月10日(月)，2月2日(月)，12月22日(月)，2021/1/1(月)，2021/10/10(月)，2/2(月)，12/22(月)，21年1月1日，2021年1月1日，2021年10月10日，2月2日，12月22日，2021/1/1，2021/10/10，2/2，12/22&quot;</span></span>
+<span id="cb319-2"><a href="officer.html#cb319-2" aria-hidden="true" tabindex="-1"></a>regrep <span class="ot">&lt;-</span> <span class="st">&quot;((20)*[2-5]</span><span class="sc">\\</span><span class="st">d+[年/_-]*)*</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">d*[月/_-]*</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">d*[日]*(</span><span class="sc">\\</span><span class="st">([月火水木金土日]</span><span class="sc">\\</span><span class="st">))*&quot;</span></span>
+<span id="cb319-3"><a href="officer.html#cb319-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb319-4"><a href="officer.html#cb319-4" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_extract_all</span>(x, regrep)</span></code></pre></div>
+<pre><code>## [[1]]
+##  [1] &quot;21年1月1日(月)&quot;     &quot;2021年1月1日(月)&quot;   &quot;2021年10月10日(月)&quot;
+##  [4] &quot;2月2日(月)&quot;         &quot;12月22日(月)&quot;       &quot;2021/1/1(月)&quot;      
+##  [7] &quot;2021/10/10(月)&quot;     &quot;2/2(月)&quot;            &quot;12/22(月)&quot;         
+## [10] &quot;21年1月1日&quot;         &quot;2021年1月1日&quot;       &quot;2021年10月10日&quot;    
+## [13] &quot;2月2日&quot;             &quot;12月22日&quot;           &quot;2021/1/1&quot;          
+## [16] &quot;2021/10/10&quot;         &quot;2/2&quot;                &quot;12/22&quot;</code></pre>
 
+</div>
 </div>
 </div>
             </section>
@@ -542,8 +522,8 @@ ggsave()</li>
           </div>
         </div>
       </div>
-<a href="keyboardsimulator.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rvest.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="microsoft365r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

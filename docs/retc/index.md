@@ -1,7 +1,7 @@
 --- 
 title: "Rにる作業の効率化・自動化 -パッケージ活用術-"
 author: "Toshikazu Masumura"
-date: "2023-05-26"
+date: "2023-05-27"
 site: bookdown::bookdown_site
 
   # https://qiita.com/Atsushi776/items/9ef1e5d744e2b91c61ee#xelatex%E3%82%92%E7%94%A8%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88
@@ -20,8 +20,7 @@ header-includes:
 # はじめに {-}
 
 <!--
-TODO
-コンソール出力で"matu"，"matutosi"などのユーザ情報があるところは，"username"に置換しておく
+TODO：コンソール出力で"matu"，"matutosi"などのユーザ情報があるところは，"username"に置換しておく
 -->
 
 誰でもそうだろうが，面倒くさい仕事はしたくない．

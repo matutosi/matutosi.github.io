@@ -3,17 +3,17 @@
 <!--
 -->
 
-パッケージmagickを使うと，各種の画像編集ができる．
-magickは，画像編集ソフトであるImageMagickを使うためのパッケージである．
+パッケージmagickは，画像編集ができる．
+magickは，画像編集ソフトのImageMagickをRから使えるようにしたものである．
 ImageMagickは，png，gif，pdfなどをはじめ多くの画像形式を扱うことができ，拡大・縮小，形式変換，回転，切り出し，色加工など多くの機能を備えている．
-ImageMagick自体は，コマンドラインで使うことができるので，関数`system()`を使ってRから操作することもできる．
+ImageMagickは，コマンドラインで使えるので，関数`system()`を使えばRから直接操作できる．
 でも，車輪の再発明は時間と労力の無駄なので，パッケージmagickを紹介する．
 
 ## 準備
 
 例によってまずはパッケージをインストールする．
 svg形式の画像を読み込む場合は，rsvgパッケージもインストールしておく．
-ウエブのスクリーンショットを使うので，webshotも必要だ．
+ウエブのスクリーンショットを使うので，webshotもインストールする．
 
 
 ```r
@@ -33,7 +33,7 @@ library(webshot)
 
 ## 使い方
 
-ImageMagick自体に多くの機能があり，magickでもその機能を利用できるため，1つ1つを紹介するとキリがない．
+ImageMagickに多くの機能があり，magickでもその機能を利用できるため，1つ1つを紹介するとキリがない．
 ここでは，基本的な機能として画像の読み込み・変換・保存を紹介するとともに，
 [rvestでスクレイピング](#rvest)で使用した画像を作成するために，実際に操作したコードを説明する．
 
@@ -78,7 +78,7 @@ magick::image_browse(tiger)
 
 `image_convert()`を用いると画像をpng，jpeg，gif，pdf形式に変換できる．
 画像形式は，`format`で指定する．
-また，`type = "grayscale"`とすると，白黒画像似できる．
+また，`type = "grayscale"`とすると，白黒画像にできる．
 
 
 ```r
@@ -89,8 +89,8 @@ magick::image_convert(tiger, format = "pdf") %>%
 画像を保存するには，関数`image_write()`を使う．
 この関数の引数にも`format`があり，ここで形式を変換することもできる．
 `image_write()`の`path`で拡張子を含むファイル名を指定しても，自動的にはその拡張子の形式としては保存されない．
-形式を変換したい場合は，`format`で形式をしていしなければならない．
-`format`を指定しなければ，もとの画像の形式のまま保存される．
+`format`を指定しなければもとの画像形式で保存されるため，形式を変換したい場合は`format`で形式を指定する．
+
 
 
 ```r
@@ -98,9 +98,9 @@ magick::image_write(frink, path = "frink.pdf", format = "pdf")
 magick::image_write(frink, path = "frink")
 ```
 
-### 切り抜き
+### 切り出し
 
-画像を切り抜きする前に，webshotを使って画像を取得する．
+画像を切り出しする前に，webshotを使って画像を取得する．
 
 
 
@@ -123,7 +123,8 @@ purrr::map2(urls, pngs, webshot::webshot)
 ## [[3]]
 ```
 
-`image_crop()`をそのまま使っても便利ではあるが，切り出しサイズ・位置の指定方法がどうも個人の性に合わない．
+`image_crop()`をそのまま使っても便利ではあるが，切り出しサイズ・位置の指定方法([width]x[height]+[xpos]+[y])がどうも個人の性に合わない．
+
 そのためラッパー関数で，切り出したい左上の位置と右下の位置を指定できるようにする．
 切り出しの左上と右下の位置は，画像編集ソフトなどで別途確認する．
 
@@ -132,6 +133,7 @@ purrr::map2(urls, pngs, webshot::webshot)
 
 
 ```r
+  # automater::magick_crop()と同じ
 magick_crop <- function(image, left_top, right_bottom){
   left   <- left_top[1]
   top    <- left_top[2]
@@ -144,10 +146,10 @@ magick_crop <- function(image, left_top, right_bottom){
 
 今回は切り出し位置として2つ使う．
 1つ目は，`rvest_1.png`と`rvest_2.png`で使うもので，2つ目は，`rvest_3.png`で使うものである．
-それぞれの正しい設定だけを使ってコードを書いても良いが，面倒なのでとりあえず2つの位置を使って，画像を3つとも変換してしまう．
+それぞれ正しい設定だけを使っても良いが，面倒なので2つの位置を使って，画像を3つとも変換してしまう．
 変換後に実際に必要な画像だけを使えば良い．
 
-ところで，magickパッケージの関数ベクトルに対応しているので，文字列のベクトルである`pngs`でもそのまま引数として使うことができる．
+ところで，magickパッケージの関数はベクトルに対応しているので，文字列のベクトルである`pngs`でもそのまま引数として使うことができる．
 ただし，2つのベクトルを引数に使うことはできないため，以下ではmap2を使っている．
 また，その直前で返り値をリストに変換するために`as.list()`を使っている．
 
@@ -155,12 +157,12 @@ magick_crop <- function(image, left_top, right_bottom){
 ```r
 crop_1 <- 
   magick::image_read(pngs) %>%
-  magick_crop(c(100, 0), c(890, 560)) %>%
+  automater::magick_crop(c(100, 0), c(890, 560)) %>%
   as.list() %>%
   purrr::map2_chr(., paste0("crop1_", pngs), magick::image_write)
 crop_2 <- 
   magick::image_read(pngs) %>%
-  magick_crop(c(100, 0), c(890, 980)) %>%
+  automater::magick_crop(c(100, 0), c(890, 980)) %>%
   as.list() %>%
   purrr::map2_chr(., paste0("crop2_", pngs), magick::image_write)
 crops <- c(crop_1[c(1,2)], crop_2[3])
@@ -185,8 +187,7 @@ resizes_crops <-
 ### 枠(余白)の追加・註釈(テキスト)の追加
 
 画像に枠(余白)と註釈(テキスト)をつけるには，それぞれ`image_border()`と`image_annotate()`を使う．
-`image_border()`で`geometry = "x40"`は上下に，`geometry = "40"`は左右に
-40ピクセルの枠を追加する．
+`image_border()`で`geometry = "40"`は左右に，`geometry = "x40"`は上下に40ピクセルの枠を追加する．
 `image_annotate()`は位置`location`，角度`degrees`，文字サイズ`size`，フォント`font`なども指定可能である．
 
 
@@ -235,37 +236,14 @@ image_animate(image, fps, loop)      # image_morph()画像のアニメ化，fps�
 
 
 ```r
-#' Donwload screenshot image from web based on URL and add text annotation of URL on the top of the image.
-#' 
-#' Needs 
-#' 
-#' @param url           A string of URL.
-#' @param trim          A logical if trim image by magick::image_trim().
-#' @param border_size   A string of border size. "x40": Set border on the top for annotation.
-#'                      Will be passed like imagick::image_border(img, "white", geometry = border_size).
-#' @param annotate_size A string of annnotation size.
-#'                      Will be passed like magick::image_annotate(img, url, size = annotate_size)
-#' @param format        A string of format of image. 
-#'                      Will be passed like magick::image_convert(img, format = format)
-#' @param resize        A string for resize by magick::image_scale(). 
-#'                      Passed like magick::image_scale(geometry = resize).
-#' @return              An magick-image object.
-#' @examples
-#' # install.packages("magick")
-#' # install.packages("webshot")
-#' url <- "https://www.deepl.com/translator"
-#' tmp <- web_screenshot(url, format = "png")
-#' magick::image_browse(tmp)
-#' magick::image_write("deepl.png")
-#' 
-#' @export
+  # automater::web_screenshot()と同じ
 web_screenshot <- function(url, trim = TRUE, border_size = "x40", annotate_size = 20, format = "png", resize = FALSE){
   png <- fs::file_temp(ext = "png")
   webshot::webshot(url, png)
   img <- magick::image_read(png)
-  file_delete(path)
+  fs::file_delete(png)
   if(trim){ img <- magick::image_trim(img) }
-    # add top margin (removed bottom margin by image_crop)
+    # add top margin (and removed bottom margin by image_crop)
   img <- magick::image_border(img, "white", geometry = border_size)
   crop_size <- stringr::str_split(border_size, pattern = "x", simplify = TRUE)[2]
   h <- magick::image_info(img)$height - as.numeric(crop_size)
@@ -273,8 +251,7 @@ web_screenshot <- function(url, trim = TRUE, border_size = "x40", annotate_size 
   img <- magick::image_convert(img, format = format)
     # add annotation
   img <- magick::image_annotate(img, url, size = annotate_size)
-  if(resize != FALSE){ img <- magick::image_scale(geometry = risize) }
+  if(resize != FALSE){ img <- magick::image_scale(geometry = resize) }
   return(img)
 }
 ```
-

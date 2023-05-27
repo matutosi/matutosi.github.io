@@ -334,9 +334,10 @@ automater::make_shortcut
 ##         finish)
 ##     cmd <- "powershell"
 ##     res <- shell(cmd, input = input, intern = TRUE)
+##     shortcut <- stringr::str_remove_all_all(shortcut, "\"")
 ##     return(list(shortcut = shortcut, res = res))
 ## }
-## <bytecode: 0x0000021bd26f7ff8>
+## <bytecode: 0x000001cb54aa97f0>
 ## <environment: namespace:automater>
 ```
 
@@ -347,17 +348,14 @@ automater::add_path
 ```
 ## function (new_path) 
 ## {
-##     if (!fs::dir_exists(dir)) {
-##         stop("path ", new_path, " not found!")
-##     }
 ##     cmd <- "reg query \"HKEY_CURRENT_USER\\Environment\" /v \"path\""
-##     path <- shell(cmd, intern = TRUE)[3] %>% stringr::str_replace(" *path *REG_[A-z]* *", 
-##         "") %>% double_quote()
+##     path <- shell(cmd, intern = TRUE)[3] %>% stringr::str_remove(" *path *REG_[A-z]* *") %>% 
+##         double_quote()
 ##     cmd <- paste0("setx path ", normalizePath(new_path), ";", 
 ##         path)
 ##     shell(cmd, intern = TRUE)
 ## }
-## <bytecode: 0x0000021bd276cfa8>
+## <bytecode: 0x000001cb54b5f720>
 ## <environment: namespace:automater>
 ```
 
