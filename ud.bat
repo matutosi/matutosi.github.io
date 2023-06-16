@@ -1,6 +1,6 @@
 d:
 cd d:\matu\work\todo\blog
-hugo
+D:\pf\hugo\bin\hugo.exe
 git add .
 git commit -m "update"
 git pull

@@ -6,7 +6,17 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 30 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPT-3</title>
+      <link>https://matutosi.github.io/post/20230322/</link>
+      <pubDate>Wed, 22 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230322/</guid>
+      <description>OpenAIのGPT-3に登録して，ちょっと遊んでみた． 文章生成やチャットをしてくれる． 内容的にはびっくりするぐらいよくできているが，具体性が少なく，どこかから取ってきた文章みたいで，内容自体には面白みに欠ける．
+GitHubのcoplilotもちょっと試してみた． これは，プログラムをAIがサポートするもので，コメントを書くだけでコードを提案してくれてすごく便利だ． ただ，誰かが書いたコードをなぞっているという感じで，全く新しいプログラムを想像しているわけではない． そのため，自分は具体的なコードを知らないけど，たぶん誰かが既に考えてるだろうというものを書く(勉強する)のに向いているとは思う． 一方，個別の事案や全く新しいものを作り出すのはやっぱり自分の頭が必要だ．</description>
+    </item>
+    
     <item>
       <title>ドンピシャな検索結果</title>
       <link>https://matutosi.github.io/post/20230131/</link>
