@@ -424,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="アーカイブされたパッケージ" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> アーカイブされたパッケージ<a href="package.html#アーカイブされたパッケージ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="img/packages_01.png" width="50%"></p>
+<p><img src="img/package_01.png" width="50%"></p>
 <p>zipファイルとしてアーカイブ化されている場合は，<code>devtools::install_local()</code>でインストールできる．
 例えば，過去にCRANに登録されたていたが削除されたパッケージやパッケージの古いバージョンである．
 CRANの一覧からは削除されても，アーカイブ化されたものが保存されているため，そこからzipファイルをダウンロードできる．
@@ -441,7 +441,7 @@ CRANの一覧からは削除されても，アーカイブ化されたものが�
 たくさんあることは嬉しい反面，目的とするパッケージを検索するのは困難である．
 パッケージ一覧のページで検索しても良いが，ブラウザでは正規表現が使えないことが多い．
 そこで，パッケージの一覧を取得して，自分のパソコンの中に一覧を保存して，その後でRやエディタの正規表現を用いて検索できるようにする．</p>
-<p><img src="img/packages_02.png" width="50%"></p>
+<p><img src="img/package_02.png" width="50%"></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="package.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb4-2"><a href="package.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb4-3"><a href="package.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
@@ -472,7 +472,7 @@ CRANの一覧からは削除されても，アーカイブ化されたものが�
 <h2><span class="header-section-number">3.4</span> GitHubから<a href="package.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>たいていはCRANに登録されているが，GitHubにしかないパッケージのときは<code>remotes::install_github()</code>を使う．
 本書で使用するパッケージautomaterをインストールしてみる．</p>
-<p><img src="img/packages_03.png" width="50%"></p>
+<p><img src="img/package_03.png" width="50%"></p>
 <p>まずは，CRANからremotesをインストールしておく．
 その後，<code>install_github()</code>の引数で，GitHubのリポジトリを指定する．</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="package.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
