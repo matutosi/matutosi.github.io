@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-06-27" />
+<meta name="date" content="2023-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -424,6 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="アーカイブされたパッケージ" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> アーカイブされたパッケージ<a href="package.html#アーカイブされたパッケージ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="img/packages_01.png" width="50%"></p>
 <p>zipファイルとしてアーカイブ化されている場合は，<code>devtools::install_local()</code>でインストールできる．
 例えば，過去にCRANに登録されたていたが削除されたパッケージやパッケージの古いバージョンである．
 CRANの一覧からは削除されても，アーカイブ化されたものが保存されているため，そこからzipファイルをダウンロードできる．
@@ -440,6 +441,7 @@ CRANの一覧からは削除されても，アーカイブ化されたものが�
 たくさんあることは嬉しい反面，目的とするパッケージを検索するのは困難である．
 パッケージ一覧のページで検索しても良いが，ブラウザでは正規表現が使えないことが多い．
 そこで，パッケージの一覧を取得して，自分のパソコンの中に一覧を保存して，その後でRやエディタの正規表現を用いて検索できるようにする．</p>
+<p><img src="img/packages_02.png" width="50%"></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="package.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb4-2"><a href="package.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb4-3"><a href="package.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
@@ -468,22 +470,31 @@ CRANの一覧からは削除されても，アーカイブ化されたものが�
 </div>
 <div id="github" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> GitHubから<a href="package.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>たいていはCRANに登録されているが，GitHubにしかないパッケージのときは以下のようにする．</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="package.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb5-2"><a href="package.html#cb5-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/ecan&quot;</span>)</span></code></pre></div>
-<pre><code>validate_package_version &lt;- function(pkg, version, 
-                                     site = &quot;&quot;, 
-                                     upgrade = &quot;never&quot;){
-  if(!require(pkg)){
-    remotes::install_github(site, upgrade = upgrade)
-  }else
-   # installed - need &lt; 0
-  if(compareVersion(as.character(packageVersion(pkg)), version) &lt; 0){
-    detach(paste0(&quot;package:&quot;, pkg))
-    remotes::install_github(site, upgrade = upgrade)
-  }
-}
-function(&quot;moranajp&quot;, &quot;0.9.6.11000&quot;, site = &quot;matutosi/moranajp&quot;)</code></pre>
+<p>たいていはCRANに登録されているが，GitHubにしかないパッケージのときは<code>remotes::install_github()</code>を使う．
+本書で使用するパッケージautomaterをインストールしてみる．</p>
+<p><img src="img/packages_03.png" width="50%"></p>
+<p>まずは，CRANからremotesをインストールしておく．
+その後，<code>install_github()</code>の引数で，GitHubのリポジトリを指定する．</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="package.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb5-2"><a href="package.html#cb5-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/automater&quot;</span>)</span>
+<span id="cb5-3"><a href="package.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Downloading GitHub repo matutosi/automater@HEAD</span></span>
+<span id="cb5-4"><a href="package.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Installing 15 packages: rJava, SnowballC, semver, assertthat, binman, bitops, xlsxjars, magick, ...</span></span>
+<span id="cb5-5"><a href="package.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## trying URL &#39;https://ftp.yz.yamagata-u.ac.jp/pub/cran/bin/windows/contrib/4.3/rJava_1.0-6.zip&#39;</span></span>
+<span id="cb5-6"><a href="package.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Content type &#39;application/zip&#39; length 1299141 bytes (1.2 MB)</span></span>
+<span id="cb5-7"><a href="package.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">## downloaded 1.2 MB</span></span>
+<span id="cb5-8"><a href="package.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">## # (中略)</span></span>
+<span id="cb5-9"><a href="package.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">## package ‘rJava’ successfully unpacked and MD5 sums checked</span></span>
+<span id="cb5-10"><a href="package.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## # (中略)</span></span>
+<span id="cb5-11"><a href="package.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb5-12"><a href="package.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">## The downloaded binary packages are in</span></span>
+<span id="cb5-13"><a href="package.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">##         C:\Users\matu\AppData\Local\Temp\Rtmpkt9har\downloaded_packages</span></span>
+<span id="cb5-14"><a href="package.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # (中略)</span></span>
+<span id="cb5-15"><a href="package.html#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="do">## ** testing if installed package keeps a record of temporary installation path</span></span>
+<span id="cb5-16"><a href="package.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="do">## * DONE (automater)</span></span></code></pre></div>
+<p>automaterでは多くのパッケージに依存している．
+それらのパッケージがない場合は，まずは依存しているパッケージがダウンロード・インストールされる．
+その後，automaterがインストールされるので，少し時間がかかるかもしれない．
+なお，<code>install_github()</code>でインストールする場合は，ソースコードからビルドする(要は自分のパソコン内でパッケージを作り上げる)ので，CRANからのインストールよりは時間がかかることがある．</p>
 
 </div>
 </div>

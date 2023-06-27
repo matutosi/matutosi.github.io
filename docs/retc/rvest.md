@@ -73,22 +73,7 @@ install.packages("polite")
 
 ```r
 library(rvest)
-```
-
-```
-## Warning: package 'rvest' was built under R version 4.3.1
-```
-
-```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
 ```
 
 ## HTMLの取得
@@ -238,13 +223,13 @@ rvest::html_table(html) %>%
 ```
 
 ```
-## # A tibble: 2 x 6
-##   `目録No▲▼` `上位分類群▲▼` `科名▲▼` 和名▲▼／学名\r\n\t\t~1   `指定都道府県数▲▼`
+## # A tibble: 2 × 6
+##   `目録No▲▼` `上位分類群▲▼` `科名▲▼` 和名▲▼／学名\r\n\t\t…¹   `指定都道府県数▲▼`
 ##        <int> <chr>          <chr>    <chr>                                 <int>
-## 1       5266 単子葉類       ユリ     ゼンテイカ  Hemerocalli~                  6
-## 2       5259 単子葉類       ユリ     ニッコウキスゲ  Hemeroc~                  3
-## # i abbreviated name: 1: `和名▲▼／学名\r\n\t\t                             ▲▼`
-## # i 1 more variable: `環境省▲▼` <chr>
+## 1       5266 単子葉類       ユリ     ゼンテイカ  Hemerocalli…                  6
+## 2       5259 単子葉類       ユリ     ニッコウキスゲ  Hemeroc…                  3
+## # ℹ abbreviated name: ¹​`和名▲▼／学名\r\n\t\t                             ▲▼`
+## # ℹ 1 more variable: `環境省▲▼` <chr>
 ```
 
 和名としてゼンテイカとニッコウキスゲの2つが示されている．
@@ -361,13 +346,13 @@ html %>%
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   `都道府県名▲▼`                        和名   学名   RDBカテゴリ名 統一カテゴリ
 ##   <chr>                                 <chr>  <chr>  <chr>         <chr>       
-## 1 "埼玉県\r\n        ※"                 "ニッ~ "Heme~ "絶滅危惧Ⅱ類~ ""          
-## 2 "滋賀県"                              "ニッ~ "Heme~ "分布上重要~  ""          
-## 3 "島根県"                              "ニッ~ "Heme~ "絶滅危惧Ⅰ類~ ""          
-## 4 "※埼玉県・東京都・神奈川県では、季節~ "※埼~  "※埼~  "※埼玉県・~   "※埼玉県・~
+## 1 "埼玉県\r\n        ※"                 "ニッ… "Heme… "絶滅危惧Ⅱ類… ""          
+## 2 "滋賀県"                              "ニッ… "Heme… "分布上重要…  ""          
+## 3 "島根県"                              "ニッ… "Heme… "絶滅危惧Ⅰ類… ""          
+## 4 "※埼玉県・東京都・神奈川県では、季節… "※埼…  "※埼…  "※埼玉県・…   "※埼玉県・…
 ```
 
 ## 地図画像の取得
@@ -489,9 +474,6 @@ install.packages("webshot")
 ```
 
 
-```
-## Warning: package 'webshot' was built under R version 4.3.1
-```
 
 webshotは内部でPhantomjsというブラウザを使っているので，
 webshotからPhantomjsをインストールするための関数を実行する．

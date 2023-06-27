@@ -30,23 +30,8 @@ install.packages("stringr")
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(stringr)  # 本来は不要
 library(fs)
-```
-
-```
-## Warning: package 'fs' was built under R version 4.3.1
 ```
 
 

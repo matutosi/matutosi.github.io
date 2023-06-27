@@ -12,14 +12,6 @@ install.packages("tidyverse")
 library(tidyverse)
 ```
 
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
 ## tidyverseとは
 
 tidyverseは単一のパッケージではなく，9つのパッケージを含むパッケージ群である．
@@ -67,14 +59,14 @@ df <-
 ```
 
 ```
-##             a         b           c         d          e          f         g
-## 1 -1.14437357 -2.403740 -0.01341474 -1.783865 -1.1420603 -1.0829991  1.154877
-## 2 -0.75379838 -1.106680 -0.72211072 -1.552654 -0.8564830 -0.5139749  0.703245
-## 3 -0.09462742  1.524012  0.17316058 -0.858569 -0.1659611  0.7511184 -1.819957
-##            h          i          j
-## 1  0.1421177  0.5195399  0.6357990
-## 2 -0.6137610 -1.2372677 -0.8692819
-## 3 -0.7380971 -0.4615875 -0.7809987
+##            a         b           c          d          e          f          g
+## 1  0.5415030  1.437442  0.37331429  0.8084406 -0.9199928  0.6834451 -0.9216515
+## 2  1.1442190  1.477063  1.68233110 -0.0714246  0.3314063  0.6307950  0.7634924
+## 3 -0.6987207 -2.002979 -0.01605533 -0.2186250  1.6555000 -1.5304865 -0.3499536
+##            h            i          j
+## 1  1.0375981  0.371114782  0.5483758
+## 2 -0.3028194 -0.452504861  0.3430106
+## 3  0.5752126  0.005682614 -0.4956439
 ```
 
 ```r
@@ -82,12 +74,12 @@ tibble::as_tibble(df)
 ```
 
 ```
-## # A tibble: 3 x 10
-##         a     b       c      d      e      f      g      h      i      j
-##     <dbl> <dbl>   <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-## 1 -1.14   -2.40 -0.0134 -1.78  -1.14  -1.08   1.15   0.142  0.520  0.636
-## 2 -0.754  -1.11 -0.722  -1.55  -0.856 -0.514  0.703 -0.614 -1.24  -0.869
-## 3 -0.0946  1.52  0.173  -0.859 -0.166  0.751 -1.82  -0.738 -0.462 -0.781
+## # A tibble: 3 × 10
+##        a     b       c       d      e      f      g      h        i      j
+##    <dbl> <dbl>   <dbl>   <dbl>  <dbl>  <dbl>  <dbl>  <dbl>    <dbl>  <dbl>
+## 1  0.542  1.44  0.373   0.808  -0.920  0.683 -0.922  1.04   0.371    0.548
+## 2  1.14   1.48  1.68   -0.0714  0.331  0.631  0.763 -0.303 -0.453    0.343
+## 3 -0.699 -2.00 -0.0161 -0.219   1.66  -1.53  -0.350  0.575  0.00568 -0.496
 ```
 
 変なたとえかもしれないが，データフレームは「言われたことをそのままやりました」という何も考えずに与えられたことをするような感じで，tibbleは「見やすく修正しておきました」という非常に気の利いた対応をする感じである．
@@ -109,28 +101,28 @@ df <-
 ```
 
 ```
-##              a          b            c
-## 1  -0.11881038 -0.1586230  0.406382077
-## 2  -0.13150506  0.9162971 -0.253791233
-## 3  -1.52433049 -0.6504628  0.001528422
-## 4  -2.07582692 -0.5671600  0.176848590
-## 5  -1.23388200  1.1365929  0.960830981
-## 6   1.32360598  0.3154618  0.002722782
-## 7  -1.00163321 -0.2885163  0.487308315
-## 8  -0.92706071  1.5522320 -1.659272522
-## 9  -0.08081457 -0.1419922  0.889825875
-## 10  0.82879621 -1.1855307  0.021525244
-## 11 -1.62653652 -0.4061891  0.786726971
-## 12 -2.69691538 -1.8643084 -0.816958864
-## 13  0.04536385 -0.4168458  0.448495090
-## 14  0.24068272 -0.1501557 -0.553179773
-## 15  2.44549452  1.3381585 -1.099030468
-## 16 -0.11374072 -1.0968838 -0.985574866
-## 17  1.01172915 -1.0530102 -0.160025479
-## 18 -0.03403598  0.9418742  0.262867633
-## 19  1.01783356  0.6065713 -0.155406693
-## 20  0.45244878  1.8405642  0.204821507
-## 21  0.82812780 -0.4973931  0.262743499
+##              a           b            c
+## 1   0.65176949  0.61375113 -0.006800131
+## 2  -1.67158454 -0.57375117 -0.538699672
+## 3   0.77074876  0.26533404 -1.187149473
+## 4  -0.51797986  1.83572572  1.080610770
+## 5   0.83026363  1.69332852 -0.649758083
+## 6   0.05342717  0.43616007  2.337390696
+## 7  -1.36766177  0.57553079 -0.477684942
+## 8  -0.71388702 -0.24307840 -0.175196277
+## 9   1.55478059  1.03742431 -1.729713719
+## 10 -1.50157675  0.83288847  1.270457407
+## 11 -0.59156833 -0.27037448  0.306520534
+## 12 -0.63937416  0.20689483 -0.599557662
+## 13  1.28399115  0.79265959  0.259182779
+## 14 -0.76890225  0.37422013  0.394931143
+## 15 -0.35955388 -0.53180983 -0.242937944
+## 16  0.31021646 -1.09140319 -1.065402756
+## 17  0.94911774  0.21397386 -0.218749522
+## 18  0.77184065 -0.09161485 -0.644820763
+## 19 -0.11000427 -0.96712057 -1.071640022
+## 20  1.87418753 -0.74721298 -0.514101596
+## 21 -0.45318102  0.68012459  0.980688358
 ```
 
 ```r
@@ -138,20 +130,20 @@ tibble::as_tibble(df)
 ```
 
 ```
-## # A tibble: 21 x 3
+## # A tibble: 21 × 3
 ##          a      b        c
 ##      <dbl>  <dbl>    <dbl>
-##  1 -0.119  -0.159  0.406  
-##  2 -0.132   0.916 -0.254  
-##  3 -1.52   -0.650  0.00153
-##  4 -2.08   -0.567  0.177  
-##  5 -1.23    1.14   0.961  
-##  6  1.32    0.315  0.00272
-##  7 -1.00   -0.289  0.487  
-##  8 -0.927   1.55  -1.66   
-##  9 -0.0808 -0.142  0.890  
-## 10  0.829  -1.19   0.0215 
-## # i 11 more rows
+##  1  0.652   0.614 -0.00680
+##  2 -1.67   -0.574 -0.539  
+##  3  0.771   0.265 -1.19   
+##  4 -0.518   1.84   1.08   
+##  5  0.830   1.69  -0.650  
+##  6  0.0534  0.436  2.34   
+##  7 -1.37    0.576 -0.478  
+##  8 -0.714  -0.243 -0.175  
+##  9  1.55    1.04  -1.73   
+## 10 -1.50    0.833  1.27   
+## # ℹ 11 more rows
 ```
 
 表示したい行数を指定するには，引数`n`で指定する．
@@ -188,7 +180,7 @@ tibble::as_tibble(mtcars)
 ```
 
 ```
-## # A tibble: 32 x 11
+## # A tibble: 32 × 11
 ##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 ##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
@@ -201,7 +193,7 @@ tibble::as_tibble(mtcars)
 ##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
 ##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
 ## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # i 22 more rows
+## # ℹ 22 more rows
 ```
 
 新たにtibbleを生成するには，データフレームの場合と同様である．
@@ -213,17 +205,17 @@ data.frame(x = runif(n), y = rnorm(n))
 ```
 
 ```
-##              x          y
-## 1  0.476604972  0.1211516
-## 2  0.223251870  1.2669045
-## 3  0.864167790 -1.1420258
-## 4  0.005729571  0.6042254
-## 5  0.216076545  0.4700489
-## 6  0.189226947 -1.5602313
-## 7  0.336077071  1.1190308
-## 8  0.196852078  0.2709492
-## 9  0.866358501  0.7937375
-## 10 0.787685575 -1.0222568
+##              x           y
+## 1  0.692499497 -0.30575901
+## 2  0.974348444  0.11026543
+## 3  0.949869317  0.95910893
+## 4  0.696616281  0.38627475
+## 5  0.080097520  1.17306071
+## 6  0.004256191  0.30515334
+## 7  0.573512262 -0.29768181
+## 8  0.659086987 -0.01559263
+## 9  0.056847845  0.23857153
+## 10 0.023744088 -0.02914088
 ```
 
 ```r
@@ -231,19 +223,19 @@ tibble::tibble(x = runif(n), y = rnorm(n))
 ```
 
 ```
-## # A tibble: 10 x 2
-##         x      y
-##     <dbl>  <dbl>
-##  1 0.523  -0.926
-##  2 0.692  -0.105
-##  3 0.719  -0.148
-##  4 0.733   0.140
-##  5 0.634  -0.266
-##  6 0.0251 -0.320
-##  7 0.470  -0.280
-##  8 0.593   1.05 
-##  9 0.0413  0.988
-## 10 0.906  -0.243
+## # A tibble: 10 × 2
+##        x        y
+##    <dbl>    <dbl>
+##  1 0.886 -0.582  
+##  2 0.459 -0.148  
+##  3 0.420  0.531  
+##  4 0.848 -0.170  
+##  5 0.433  1.69   
+##  6 0.975 -0.683  
+##  7 0.480  0.00871
+##  8 0.702  0.355  
+##  9 0.421 -1.06   
+## 10 0.643 -0.185
 ```
 
 ## tidyrでデータを整形する
@@ -267,28 +259,28 @@ relig_income
 ```
 
 ```
-## # A tibble: 18 x 11
+## # A tibble: 18 × 11
 ##    religion `<$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k`
 ##    <chr>      <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>      <dbl>
 ##  1 Agnostic      27        34        60        81        76       137        122
 ##  2 Atheist       12        27        37        52        35        70         73
 ##  3 Buddhist      27        21        30        34        33        58         62
 ##  4 Catholic     418       617       732       670       638      1116        949
-##  5 Don’t ~       15        14        15        11        10        35         21
-##  6 Evangel~     575       869      1064       982       881      1486        949
+##  5 Don’t …       15        14        15        11        10        35         21
+##  6 Evangel…     575       869      1064       982       881      1486        949
 ##  7 Hindu          1         9         7         9        11        34         47
-##  8 Histori~     228       244       236       238       197       223        131
-##  9 Jehovah~      20        27        24        24        21        30         15
+##  8 Histori…     228       244       236       238       197       223        131
+##  9 Jehovah…      20        27        24        24        21        30         15
 ## 10 Jewish        19        19        25        25        30        95         69
-## 11 Mainlin~     289       495       619       655       651      1107        939
+## 11 Mainlin…     289       495       619       655       651      1107        939
 ## 12 Mormon        29        40        48        51        56       112         85
 ## 13 Muslim         6         7         9        10         9        23         16
 ## 14 Orthodox      13        17        23        32        32        47         38
-## 15 Other C~       9         7        11        13        13        14         18
-## 16 Other F~      20        33        40        46        49        63         46
-## 17 Other W~       5         2         3         4         2         7          3
-## 18 Unaffil~     217       299       374       365       341       528        407
-## # i 3 more variables: `$100-150k` <dbl>, `>150k` <dbl>,
+## 15 Other C…       9         7        11        13        13        14         18
+## 16 Other F…      20        33        40        46        49        63         46
+## 17 Other W…       5         2         3         4         2         7          3
+## 18 Unaffil…     217       299       374       365       341       528        407
+## # ℹ 3 more variables: `$100-150k` <dbl>, `>150k` <dbl>,
 ## #   `Don't know/refused` <dbl>
 ```
 
@@ -315,7 +307,7 @@ relig_income %>%
 ```
 
 ```
-## # A tibble: 180 x 3
+## # A tibble: 180 × 3
 ##    religion income             count
 ##    <chr>    <chr>              <dbl>
 ##  1 Agnostic <$10k                 27
@@ -328,7 +320,7 @@ relig_income %>%
 ##  8 Agnostic $100-150k            109
 ##  9 Agnostic >150k                 84
 ## 10 Agnostic Don't know/refused    96
-## # i 170 more rows
+## # ℹ 170 more rows
 ```
 
 `pivot_longer()`で出力されたデータフレームは，それぞれの変数が1列に，それぞれの観測が1行になった．
@@ -365,7 +357,7 @@ household %>%
 ```
 
 ```
-## # A tibble: 9 x 4
+## # A tibble: 9 × 4
 ##   family child  dob        name  
 ##    <int> <chr>  <date>     <chr> 
 ## 1      1 child1 1998-11-26 Susan 
@@ -416,20 +408,20 @@ pkgs
 ```
 
 ```
-## # A tibble: 19,530 x 2
+## # A tibble: 19,530 × 2
 ##    pkg           description                                                    
 ##    <chr>         <chr>                                                          
-##  1 A3            Accurate, Adaptable, and Accessible Error Metrics for Predicti~
+##  1 A3            Accurate, Adaptable, and Accessible Error Metrics for Predicti…
 ##  2 AalenJohansen Conditional Aalen-Johansen Estimation                          
-##  3 AATtools      Reliability and Scoring Routines for the Approach-Avoidance Ta~
-##  4 ABACUS        Apps Based Activities for Communicating and Understanding Stat~
+##  3 AATtools      Reliability and Scoring Routines for the Approach-Avoidance Ta…
+##  4 ABACUS        Apps Based Activities for Communicating and Understanding Stat…
 ##  5 abbreviate    Readable String Abbreviation                                   
 ##  6 abbyyR        Access to Abbyy Optical Character Recognition (OCR) API        
 ##  7 abc           Tools for Approximate Bayesian Computation (ABC)               
 ##  8 abc.data      Data Only: Tools for Approximate Bayesian Computation (ABC)    
 ##  9 ABC.RAP       Array Based CpG Region Analysis Pipeline                       
 ## 10 ABCanalysis   Computed ABC Analysis                                          
-## # i 19,520 more rows
+## # ℹ 19,520 more rows
 ```
 
 `col_types`でタイプを指定していないと色々と表示されて面倒なので，`show_col_types = FALSE`で表示を抑制している．
@@ -461,20 +453,20 @@ pkgs %>%
 ```
 
 ```
-## # A tibble: 19,530 x 3
+## # A tibble: 19,530 × 3
 ##    pkg           description                                               ocr  
 ##    <chr>         <chr>                                                     <lgl>
-##  1 A3            Accurate, Adaptable, and Accessible Error Metrics for Pr~ FALSE
+##  1 A3            Accurate, Adaptable, and Accessible Error Metrics for Pr… FALSE
 ##  2 AalenJohansen Conditional Aalen-Johansen Estimation                     FALSE
-##  3 AATtools      Reliability and Scoring Routines for the Approach-Avoida~ FALSE
-##  4 ABACUS        Apps Based Activities for Communicating and Understandin~ FALSE
+##  3 AATtools      Reliability and Scoring Routines for the Approach-Avoida… FALSE
+##  4 ABACUS        Apps Based Activities for Communicating and Understandin… FALSE
 ##  5 abbreviate    Readable String Abbreviation                              FALSE
 ##  6 abbyyR        Access to Abbyy Optical Character Recognition (OCR) API   FALSE
 ##  7 abc           Tools for Approximate Bayesian Computation (ABC)          FALSE
-##  8 abc.data      Data Only: Tools for Approximate Bayesian Computation (A~ FALSE
+##  8 abc.data      Data Only: Tools for Approximate Bayesian Computation (A… FALSE
 ##  9 ABC.RAP       Array Based CpG Region Analysis Pipeline                  FALSE
 ## 10 ABCanalysis   Computed ABC Analysis                                     FALSE
-## # i 19,520 more rows
+## # ℹ 19,520 more rows
 ```
 
 `mutate()`での新しい列名は，「"」を使わずに指定する．
@@ -515,21 +507,21 @@ pkgs
 ```
 
 ```
-## # A tibble: 19,530 x 14
+## # A tibble: 19,530 × 14
 ##    pkg           description          database excel file  ggplot `image|magick`
 ##    <chr>         <chr>                <lgl>    <lgl> <lgl> <lgl>  <lgl>         
-##  1 A3            Accurate, Adaptable~ FALSE    FALSE FALSE FALSE  FALSE         
-##  2 AalenJohansen Conditional Aalen-J~ FALSE    FALSE FALSE FALSE  FALSE         
-##  3 AATtools      Reliability and Sco~ FALSE    FALSE FALSE FALSE  FALSE         
-##  4 ABACUS        Apps Based Activiti~ FALSE    FALSE FALSE FALSE  FALSE         
-##  5 abbreviate    Readable String Abb~ FALSE    FALSE FALSE FALSE  FALSE         
-##  6 abbyyR        Access to Abbyy Opt~ FALSE    FALSE FALSE FALSE  FALSE         
-##  7 abc           Tools for Approxima~ FALSE    FALSE FALSE FALSE  FALSE         
-##  8 abc.data      Data Only: Tools fo~ FALSE    FALSE FALSE FALSE  FALSE         
-##  9 ABC.RAP       Array Based CpG Reg~ FALSE    FALSE FALSE FALSE  FALSE         
-## 10 ABCanalysis   Computed ABC Analys~ FALSE    FALSE FALSE FALSE  FALSE         
-## # i 19,520 more rows
-## # i 7 more variables: `keyboards|mouse` <lgl>, ocr <lgl>, office <lgl>,
+##  1 A3            Accurate, Adaptable… FALSE    FALSE FALSE FALSE  FALSE         
+##  2 AalenJohansen Conditional Aalen-J… FALSE    FALSE FALSE FALSE  FALSE         
+##  3 AATtools      Reliability and Sco… FALSE    FALSE FALSE FALSE  FALSE         
+##  4 ABACUS        Apps Based Activiti… FALSE    FALSE FALSE FALSE  FALSE         
+##  5 abbreviate    Readable String Abb… FALSE    FALSE FALSE FALSE  FALSE         
+##  6 abbyyR        Access to Abbyy Opt… FALSE    FALSE FALSE FALSE  FALSE         
+##  7 abc           Tools for Approxima… FALSE    FALSE FALSE FALSE  FALSE         
+##  8 abc.data      Data Only: Tools fo… FALSE    FALSE FALSE FALSE  FALSE         
+##  9 ABC.RAP       Array Based CpG Reg… FALSE    FALSE FALSE FALSE  FALSE         
+## 10 ABCanalysis   Computed ABC Analys… FALSE    FALSE FALSE FALSE  FALSE         
+## # ℹ 19,520 more rows
+## # ℹ 7 more variables: `keyboards|mouse` <lgl>, ocr <lgl>, office <lgl>,
 ## #   pdf <lgl>, python <lgl>, `scrape|scraping|selenium` <lgl>, shell <lgl>
 ```
 
@@ -553,13 +545,13 @@ pkgs %>%
 ```
 
 ```
-## # A tibble: 10 x 3
+## # A tibble: 10 × 3
 ##    pkg                description                                          ocr  
 ##    <chr>              <chr>                                                <lgl>
-##  1 abbyyR             "Access to Abbyy Optical Character Recognition (OCR~ TRUE 
-##  2 coalitions         "Bayesian \"\"Now-Cast\"\" Estimation of Event Prob~ TRUE 
-##  3 elastes            "Elastic Full Procrustes Means for Sparse and Irreg~ TRUE 
-##  4 googleCloudVisionR "Access to the 'Google Cloud Vision' API for Image ~ TRUE 
+##  1 abbyyR             "Access to Abbyy Optical Character Recognition (OCR… TRUE 
+##  2 coalitions         "Bayesian \"\"Now-Cast\"\" Estimation of Event Prob… TRUE 
+##  3 elastes            "Elastic Full Procrustes Means for Sparse and Irreg… TRUE 
+##  4 googleCloudVisionR "Access to the 'Google Cloud Vision' API for Image … TRUE 
 ##  5 paco               "Procrustes Application to Cophylogenetic Analysis"  TRUE 
 ##  6 pcv                "Procrustes Cross-Validation"                        TRUE 
 ##  7 ProcMod            "Informative Procrustean Matrix Correlation"         TRUE 
@@ -573,11 +565,11 @@ dplyr::select(pkgs, -description) # dplyr::select(pkgs, !description)も同じ
 ```
 
 ```
-## # A tibble: 19,530 x 13
+## # A tibble: 19,530 × 13
 ##    pkg        database excel file  ggplot `image|magick` `keyboards|mouse` ocr  
 ##    <chr>      <lgl>    <lgl> <lgl> <lgl>  <lgl>          <lgl>             <lgl>
 ##  1 A3         FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
-##  2 AalenJoha~ FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
+##  2 AalenJoha… FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
 ##  3 AATtools   FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
 ##  4 ABACUS     FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
 ##  5 abbreviate FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
@@ -585,9 +577,9 @@ dplyr::select(pkgs, -description) # dplyr::select(pkgs, !description)も同じ
 ##  7 abc        FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
 ##  8 abc.data   FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
 ##  9 ABC.RAP    FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
-## 10 ABCanalys~ FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
-## # i 19,520 more rows
-## # i 5 more variables: office <lgl>, pdf <lgl>, python <lgl>,
+## 10 ABCanalys… FALSE    FALSE FALSE FALSE  FALSE          FALSE             FALSE
+## # ℹ 19,520 more rows
+## # ℹ 5 more variables: office <lgl>, pdf <lgl>, python <lgl>,
 ## #   `scrape|scraping|selenium` <lgl>, shell <lgl>
 ```
 
@@ -603,20 +595,20 @@ pkgs <-
 ```
 
 ```
-## # A tibble: 958 x 4
+## # A tibble: 958 × 4
 ##    pkg              description                                      kwd   val  
 ##    <chr>            <chr>                                            <chr> <lgl>
-##  1 abbyyR           Access to Abbyy Optical Character Recognition (~ ocr   TRUE 
-##  2 abjData          Databases Used Routinely by the Brazilian Jurim~ data~ TRUE 
-##  3 ABPS             The Abnormal Blood Profile Score to Detect Bloo~ file  TRUE 
+##  1 abbyyR           Access to Abbyy Optical Character Recognition (… ocr   TRUE 
+##  2 abjData          Databases Used Routinely by the Brazilian Jurim… data… TRUE 
+##  3 ABPS             The Abnormal Blood Profile Score to Detect Bloo… file  TRUE 
 ##  4 ace2fastq        ACE File to FASTQ Converter                      file  TRUE 
 ##  5 AcousticNDLCodeR Coding Sound Files for Use with NDL              file  TRUE 
-##  6 activPAL         Advanced Processing and Chart Generation from a~ file  TRUE 
-##  7 ADAPTS           Automated Deconvolution Augmentation of Profile~ file  TRUE 
-##  8 add2ggplot       Add to 'ggplot2'                                 ggpl~ TRUE 
-##  9 adepro           A 'shiny' Application for the (Audio-)Visualiza~ file  TRUE 
+##  6 activPAL         Advanced Processing and Chart Generation from a… file  TRUE 
+##  7 ADAPTS           Automated Deconvolution Augmentation of Profile… file  TRUE 
+##  8 add2ggplot       Add to 'ggplot2'                                 ggpl… TRUE 
+##  9 adepro           A 'shiny' Application for the (Audio-)Visualiza… file  TRUE 
 ## 10 adfExplorer      Import from and Export to Amiga Disk Files       file  TRUE 
-## # i 948 more rows
+## # ℹ 948 more rows
 ```
 
 tidyになったデータフレームを集計する．
@@ -644,22 +636,22 @@ pkgs %>%
 ```
 
 ```
-## # A tibble: 958 x 4
+## # A tibble: 958 × 4
 ## # Groups:   kwd [12]
 ##    pkg              description                                      kwd   val  
 ##    <chr>            <chr>                                            <chr> <lgl>
-##  1 abbyyR           Access to Abbyy Optical Character Recognition (~ ocr   TRUE 
-##  2 abjData          Databases Used Routinely by the Brazilian Jurim~ data~ TRUE 
-##  3 ABPS             The Abnormal Blood Profile Score to Detect Bloo~ file  TRUE 
+##  1 abbyyR           Access to Abbyy Optical Character Recognition (… ocr   TRUE 
+##  2 abjData          Databases Used Routinely by the Brazilian Jurim… data… TRUE 
+##  3 ABPS             The Abnormal Blood Profile Score to Detect Bloo… file  TRUE 
 ##  4 ace2fastq        ACE File to FASTQ Converter                      file  TRUE 
 ##  5 AcousticNDLCodeR Coding Sound Files for Use with NDL              file  TRUE 
-##  6 activPAL         Advanced Processing and Chart Generation from a~ file  TRUE 
-##  7 ADAPTS           Automated Deconvolution Augmentation of Profile~ file  TRUE 
-##  8 add2ggplot       Add to 'ggplot2'                                 ggpl~ TRUE 
-##  9 adepro           A 'shiny' Application for the (Audio-)Visualiza~ file  TRUE 
+##  6 activPAL         Advanced Processing and Chart Generation from a… file  TRUE 
+##  7 ADAPTS           Automated Deconvolution Augmentation of Profile… file  TRUE 
+##  8 add2ggplot       Add to 'ggplot2'                                 ggpl… TRUE 
+##  9 adepro           A 'shiny' Application for the (Audio-)Visualiza… file  TRUE 
 ## 10 adfExplorer      Import from and Export to Amiga Disk Files       file  TRUE 
-## # i 948 more rows
-## # A tibble: 12 x 2
+## # ℹ 948 more rows
+## # A tibble: 12 × 2
 ##    kwd                          n
 ##    <chr>                    <int>
 ##  1 database                   155
@@ -677,7 +669,7 @@ pkgs %>%
 ```
 
 ```
-## # A tibble: 12 x 2
+## # A tibble: 12 × 2
 ##    kwd                          n
 ##    <chr>                    <int>
 ##  1 file                       364

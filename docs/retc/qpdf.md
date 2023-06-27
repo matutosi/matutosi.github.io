@@ -19,25 +19,7 @@ remotes::install_github("matutosi/automater")
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(qpdf)
-```
-
-```
-## Warning: package 'qpdf' was built under R version 4.3.1
-```
-
-```r
 library(automater)
 ```
 
@@ -191,7 +173,7 @@ system.file("rsc/combine_qpdf.rsc", package = "automater")
 ```
 
 ```
-## [1] "D:/pf/R/R-4.3.0/library/automater/rsc/combine_qpdf.rsc"
+## [1] "D:/pf/R/R-4.3.1/library/automater/rsc/combine_qpdf.rsc"
 ```
 
 ```r
@@ -358,7 +340,7 @@ pdf_overlay_stamps_each
 ##     file.remove(out[pages_body])
 ##     return(outfile)
 ## }
-## <bytecode: 0x0000019986248d30>
+## <bytecode: 0x00000176c5468ce8>
 ## <environment: namespace:automater>
 ```
 
@@ -443,10 +425,6 @@ install.packages("pdftools")
 library(pdftools)
 ```
 
-```
-## Warning: package 'pdftools' was built under R version 4.3.1
-```
-
 関数`pdf_text()`にPDFファイルのパスを指定すれば，テキストを抽出した結果が得られる．
 1ページごとの内容が文字列のベクトルになっている．
 
@@ -461,20 +439,20 @@ tibble::as_tibble(txt)
 ```
 
 ```
-## # A tibble: 29 x 1
+## # A tibble: 29 × 1
 ##    value                                                                        
 ##    <chr>                                                                        
-##  1 "                                              The jsonlite Package: A Pract~
-##  2 "JSON with R. We refer to Nolan and Temple Lang (2014) for a comprehensive i~
-##  3 "homogenous. And indeed, some implementations will now return a list instead~
-##  4 "The alternative to class-based method dispatch is to use type-based encodin~
-##  5 "2       Converting between JSON and R classes\n\nThis section lists example~
-##  6 "encoding. However, the problem with encoding missing values as strings is t~
-##  7 "limitations as text based formats such as CSV.\n\n\n2.1.3      Special case~
-##  8 "is assuming an array, the application will likely break. Any consumer or cl~
-##  9 "We expect this representation will be the most intuitive to interpret, also~
-## 10 "colnames(x) <- c(\"Treatment A\", \"Treatment B\")\nprint(x)\n\n        Tre~
-## # i 19 more rows
+##  1 "                                              The jsonlite Package: A Pract…
+##  2 "JSON with R. We refer to Nolan and Temple Lang (2014) for a comprehensive i…
+##  3 "homogenous. And indeed, some implementations will now return a list instead…
+##  4 "The alternative to class-based method dispatch is to use type-based encodin…
+##  5 "2       Converting between JSON and R classes\n\nThis section lists example…
+##  6 "encoding. However, the problem with encoding missing values as strings is t…
+##  7 "limitations as text based formats such as CSV.\n\n\n2.1.3      Special case…
+##  8 "is assuming an array, the application will likely break. Any consumer or cl…
+##  9 "We expect this representation will be the most intuitive to interpret, also…
+## 10 "colnames(x) <- c(\"Treatment A\", \"Treatment B\")\nprint(x)\n\n        Tre…
+## # ℹ 19 more rows
 ```
 
 文字列内の`\n`は改行を示しているが，そのままでは読みにくい．

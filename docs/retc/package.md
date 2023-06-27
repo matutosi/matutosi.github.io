@@ -43,6 +43,8 @@ install.packages(pkg)
 
 ## アーカイブされたパッケージ
 
+<img src="img/packages_01.png" width="50%">
+
 zipファイルとしてアーカイブ化されている場合は，`devtools::install_local()`でインストールできる．
 例えば，過去にCRANに登録されたていたが削除されたパッケージやパッケージの古いバージョンである．
 CRANの一覧からは削除されても，アーカイブ化されたものが保存されているため，そこからzipファイルをダウンロードできる．
@@ -63,6 +65,8 @@ CRANに登録されているパッケージは，2023年5月現在で2万近く�
 たくさんあることは嬉しい反面，目的とするパッケージを検索するのは困難である．
 パッケージ一覧のページで検索しても良いが，ブラウザでは正規表現が使えないことが多い．
 そこで，パッケージの一覧を取得して，自分のパソコンの中に一覧を保存して，その後でRやエディタの正規表現を用いて検索できるようにする．
+
+<img src="img/packages_02.png" width="50%">
 
 
 ```r
@@ -97,27 +101,38 @@ dplyr::filter(pkgs, stringr::str_detect(description, "Image|image"))
 
 ## GitHubから {#github}
 
-たいていはCRANに登録されているが，GitHubにしかないパッケージのときは以下のようにする．
+たいていはCRANに登録されているが，GitHubにしかないパッケージのときは`remotes::install_github()`を使う．
+本書で使用するパッケージautomaterをインストールしてみる．
+
+<img src="img/packages_03.png" width="50%">
+
+まずは，CRANからremotesをインストールしておく．
+その後，`install_github()`の引数で，GitHubのリポジトリを指定する．
 
 
 ```r
-install.packages("devtools")
-remotes::install_github("matutosi/ecan")
+install.packages("remotes")
+remotes::install_github("matutosi/automater")
+## Downloading GitHub repo matutosi/automater@HEAD
+## Installing 15 packages: rJava, SnowballC, semver, assertthat, binman, bitops, xlsxjars, magick, ...
+## trying URL 'https://ftp.yz.yamagata-u.ac.jp/pub/cran/bin/windows/contrib/4.3/rJava_1.0-6.zip'
+## Content type 'application/zip' length 1299141 bytes (1.2 MB)
+## downloaded 1.2 MB
+## # (中略)
+## package ‘rJava’ successfully unpacked and MD5 sums checked
+## # (中略)
+## 
+## The downloaded binary packages are in
+##         C:\Users\matu\AppData\Local\Temp\Rtmpkt9har\downloaded_packages
+## # (中略)
+## ** testing if installed package keeps a record of temporary installation path
+## * DONE (automater)
 ```
 
+automaterでは多くのパッケージに依存している．
+それらのパッケージがない場合は，まずは依存しているパッケージがダウンロード・インストールされる．
+その後，automaterがインストールされるので，少し時間がかかるかもしれない．
+なお，`install_github()`でインストールする場合は，ソースコードからビルドする(要は自分のパソコン内でパッケージを作り上げる)ので，CRANからのインストールよりは時間がかかることがある．
 
-```
-validate_package_version <- function(pkg, version, 
-                                     site = "", 
-                                     upgrade = "never"){
-  if(!require(pkg)){
-    remotes::install_github(site, upgrade = upgrade)
-  }else
-   # installed - need < 0
-  if(compareVersion(as.character(packageVersion(pkg)), version) < 0){
-    detach(paste0("package:", pkg))
-    remotes::install_github(site, upgrade = upgrade)
-  }
-}
-function("moranajp", "0.9.6.11000", site = "matutosi/moranajp")
-```
+
+

@@ -29,25 +29,7 @@ install.packages("KeyboardSimulator")
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(KeyboardSimulator)
-```
-
-```
-## Warning: package 'KeyboardSimulator' was built under R version 4.3.1
-```
-
-```r
 library(automater)
 ```
 
@@ -60,10 +42,6 @@ KeyboardSimulatorでは，マウスやキーボードの操作とマウス位置
 
 ```r
 library(reticulate)
-```
-
-```
-## Warning: package 'reticulate' was built under R version 4.3.1
 ```
 
 さらに，[使用するPythonの指定](#identify_python)を参考にreticulateで使用するPythonを指定する．
@@ -106,7 +84,7 @@ find_python
 ##     }
 ##     return(python_path[choice])
 ## }
-## <bytecode: 0x000001a45a38d930>
+## <bytecode: 0x000001f2e16ff9e8>
 ## <environment: namespace:automater>
 ```
 
@@ -182,7 +160,7 @@ automater::mouse_record
 ##     }
 ##     return(list(x = unlist(x), y = unlist(y)))
 ## }
-## <bytecode: 0x000001a459811530>
+## <bytecode: 0x000001f2d9afda10>
 ## <environment: namespace:automater>
 ```
 
@@ -309,7 +287,7 @@ png
 ```
 
 ```
-## C:/Users/matu/AppData/Local/Temp/RtmpUBoztu/screenshot.png
+## C:/Users/matu/AppData/Local/Temp/RtmpCI6N5c/screenshot.png
 ```
 
 コードを実行すると，一時ディレクトリにpng形式の画像が保存される．

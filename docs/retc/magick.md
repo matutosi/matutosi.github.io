@@ -26,30 +26,8 @@ webshot::install_phantomjs()
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(magick)
-```
-
-```
-## Warning: package 'magick' was built under R version 4.3.1
-```
-
-```r
 library(webshot)
-```
-
-```
-## Warning: package 'webshot' was built under R version 4.3.1
 ```
 
 ## 使い方
@@ -72,7 +50,7 @@ image_info(frink)
 ```
 
 ```
-## # A tibble: 1 x 7
+## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
 ## 1 PNG      220    445 sRGB       TRUE     73494 72x72
@@ -83,7 +61,7 @@ image_info(tiger)
 ```
 
 ```
-## # A tibble: 1 x 7
+## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
 ## 1 PNG      900    900 sRGB       TRUE         0 72x72

@@ -21,25 +21,7 @@ install.packages("reticulate")
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(reticulate)
-```
-
-```
-## Warning: package 'reticulate' was built under R version 4.3.1
-```
-
-```r
 library(automater)
 ```
 
@@ -221,7 +203,7 @@ tibble::tibble(x, y) %>%
     ggplot2::theme_bw()
 ```
 
-![](reticulate_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
+<img src="reticulate_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 
 ## PythoとRとの変数のやり取り

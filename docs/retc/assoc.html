@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-06-27" />
+<meta name="date" content="2023-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -441,11 +441,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>簡単な例として散布図をpdfに保存するコードを取り上げる．
 次のコードをRで実行すると，乱数(x軸：一様分布，y軸：正規分布)に基づく散布図がpdfとして保存される．</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="assoc.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># コード例</span></span>
-<span id="cb7-2"><a href="assoc.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ユーザディレクトリにtest.pdfというファイルを生成</span></span>
-<span id="cb7-3"><a href="assoc.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;~/test.pdf&quot;</span>)</span>
-<span id="cb7-4"><a href="assoc.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb7-5"><a href="assoc.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="assoc.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># コード例</span></span>
+<span id="cb6-2"><a href="assoc.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ユーザディレクトリにtest.pdfというファイルを生成</span></span>
+<span id="cb6-3"><a href="assoc.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;~/test.pdf&quot;</span>)</span>
+<span id="cb6-4"><a href="assoc.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb6-5"><a href="assoc.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p><img src="assoc_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>このコードをユーザ・ディレクトリ(~/)に保存する．
 ファイル名は何でも良いが，ここではplot.Rとする．</p>

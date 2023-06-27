@@ -27,17 +27,6 @@ remotes::install_github("matutosi/automater")
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(RDCOMClient)
 library(automater)
 ```
@@ -70,7 +59,7 @@ convert_docs
 ##     doc$close()
 ##     return(invisible(converted))
 ## }
-## <bytecode: 0x0000028b272a9c88>
+## <bytecode: 0x000001dde5b8a390>
 ## <environment: namespace:automater>
 ```
 

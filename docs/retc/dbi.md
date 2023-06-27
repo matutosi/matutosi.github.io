@@ -31,30 +31,8 @@ install.packages(c("DBI", "RSQLite"))
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(DBI)
-```
-
-```
-## Warning: package 'DBI' was built under R version 4.3.1
-```
-
-```r
 library(RSQLite)
-```
-
-```
-## Warning: package 'RSQLite' was built under R version 4.3.1
 ```
 
 本来はDBに接続するが，解説のための一時データを使用する．
@@ -97,7 +75,7 @@ tibble::as_tibble(df)
 ```
 
 ```
-## # A tibble: 81 x 4
+## # A tibble: 81 × 4
 ##     year model      displ   cyl
 ##    <int> <chr>      <dbl> <int>
 ##  1  1999 a4           1.8     4
@@ -110,7 +88,7 @@ tibble::as_tibble(df)
 ##  8  2008 a4 quattro   2       4
 ##  9  1999 malibu       2.4     4
 ## 10  2008 malibu       2.4     4
-## # i 71 more rows
+## # ℹ 71 more rows
 ```
 
 ```r
@@ -127,24 +105,24 @@ df %>%
 ```
 
 ```
-## # A tibble: 234 x 11
+## # A tibble: 234 × 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    <chr>        <chr>      <dbl> <int> <int> <chr> <chr> <int> <int> <chr> <chr>
-##  1 audi         a4           1.8  1999     4 auto~ f        18    29 p     comp~
-##  2 audi         a4           1.8  1999     4 manu~ f        21    29 p     comp~
-##  3 audi         a4           2    2008     4 manu~ f        20    31 p     comp~
-##  4 audi         a4           2    2008     4 auto~ f        21    30 p     comp~
-##  5 audi         a4           2.8  1999     6 auto~ f        16    26 p     comp~
-##  6 audi         a4           2.8  1999     6 manu~ f        18    26 p     comp~
-##  7 audi         a4           3.1  2008     6 auto~ f        18    27 p     comp~
-##  8 audi         a4 quattro   1.8  1999     4 manu~ 4        18    26 p     comp~
-##  9 audi         a4 quattro   1.8  1999     4 auto~ 4        16    25 p     comp~
-## 10 audi         a4 quattro   2    2008     4 manu~ 4        20    28 p     comp~
-## # i 224 more rows
+##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+## # ℹ 224 more rows
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##    year model      displ   cyl
 ##   <int> <chr>      <dbl> <int>
 ## 1  1999 a4           1.8     4
