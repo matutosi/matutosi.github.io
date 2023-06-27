@@ -10,6 +10,14 @@ xlsxパッケージを使うと，エクセルのファイルの読み込み・�
 library(tidyverse)
 ```
 
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
 
 ## オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト
 

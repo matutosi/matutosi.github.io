@@ -39,6 +39,14 @@ library(tidyverse)
 ```
 
 ```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -53,6 +61,10 @@ library(tidyverse)
 
 ```r
 library(curl)
+```
+
+```
+## Warning: package 'curl' was built under R version 4.3.1
 ```
 
 ```
@@ -337,7 +349,7 @@ automater::make_shortcut
 ##     shortcut <- stringr::str_remove_all_all(shortcut, "\"")
 ##     return(list(shortcut = shortcut, res = res))
 ## }
-## <bytecode: 0x000002456775a4a0>
+## <bytecode: 0x00000256926c0420>
 ## <environment: namespace:automater>
 ```
 
@@ -355,7 +367,7 @@ automater::add_path
 ##         path)
 ##     shell(cmd, intern = TRUE)
 ## }
-## <bytecode: 0x00000245677ddba8>
+## <bytecode: 0x0000025692776a50>
 ## <environment: namespace:automater>
 ```
 

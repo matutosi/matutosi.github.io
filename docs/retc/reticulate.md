@@ -21,7 +21,25 @@ install.packages("reticulate")
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(reticulate)
+```
+
+```
+## Warning: package 'reticulate' was built under R version 4.3.1
+```
+
+```r
 library(automater)
 ```
 
@@ -120,7 +138,7 @@ path
 ```
 
 ```
-## C:/Users/matutosi/AppData/Local/Programs/Python/Python311/python.exe
+## C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe
 ```
 
 ```r

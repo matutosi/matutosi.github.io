@@ -413,13 +413,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 なお，パッケージの名前は分かっているが，内容がよくわからない場合は，<code>PackageName cran</code>で検索するとCRANのページがひっかかることが多い．</p>
 <p><a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" class="uri">https://cran.r-project.org/web/packages/available_packages_by_name.html</a></p>
 <p>CRANに登録されたパッケージで名前がわかっていたら，以下のようにすればインストールできる．</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="package.html#cb2-1" tabindex="-1"></a>  <span class="co"># ミラーサイト(ダウンロード元)の設定</span></span>
-<span id="cb2-2"><a href="package.html#cb2-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>)</span>
-<span id="cb2-3"><a href="package.html#cb2-3" tabindex="-1"></a>  <span class="co"># 1つの場合</span></span>
-<span id="cb2-4"><a href="package.html#cb2-4" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb2-5"><a href="package.html#cb2-5" tabindex="-1"></a>  <span class="co"># 複数の場合</span></span>
-<span id="cb2-6"><a href="package.html#cb2-6" tabindex="-1"></a>pkg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;xlsx&quot;</span>, <span class="st">&quot;magrittr&quot;</span>, <span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb2-7"><a href="package.html#cb2-7" tabindex="-1"></a><span class="fu">install.packages</span>(pkg)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="package.html#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ミラーサイト(ダウンロード元)の設定</span></span>
+<span id="cb2-2"><a href="package.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>)</span>
+<span id="cb2-3"><a href="package.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1つの場合</span></span>
+<span id="cb2-4"><a href="package.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb2-5"><a href="package.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 複数の場合</span></span>
+<span id="cb2-6"><a href="package.html#cb2-6" aria-hidden="true" tabindex="-1"></a>pkg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;xlsx&quot;</span>, <span class="st">&quot;magrittr&quot;</span>, <span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb2-7"><a href="package.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(pkg)</span></code></pre></div>
 <p>実行すると，ファイルをダウンロードし，成功(あるいは失敗)したことが表示される．</p>
 </div>
 <div id="アーカイブされたパッケージ" class="section level2 hasAnchor" number="3.2">
@@ -429,10 +429,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 CRANの一覧からは削除されても，アーカイブ化されたものが保存されているため，そこからzipファイルをダウンロードできる．
 パッケージの古いバージョンも同様である．
 <code>devtools::install_local()</code>はネットのものは直接インストールできないので，一旦ダウンロードしてからインストールする．</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="package.html#cb3-1" tabindex="-1"></a>zip <span class="ot">&lt;-</span> </span>
-<span id="cb3-2"><a href="package.html#cb3-2" tabindex="-1"></a>  <span class="st">&quot;http://cran.nexr.com/bin/windows/contrib/3.5/rMouse_0.1.zip&quot;</span> <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="package.html#cb3-3" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;zip&quot;</span>))</span>
-<span id="cb3-4"><a href="package.html#cb3-4" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_local</span>(zip)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="package.html#cb3-1" aria-hidden="true" tabindex="-1"></a>zip <span class="ot">&lt;-</span> </span>
+<span id="cb3-2"><a href="package.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;http://cran.nexr.com/bin/windows/contrib/3.5/rMouse_0.1.zip&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="package.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;zip&quot;</span>))</span>
+<span id="cb3-4"><a href="package.html#cb3-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_local</span>(zip)</span></code></pre></div>
 </div>
 <div id="cranからpackage一覧を取得する" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> CRANからPackage一覧を取得する<a href="package.html#cranからpackage一覧を取得する" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -440,26 +440,26 @@ CRANの一覧からは削除されても，アーカイブ化されたものが�
 たくさんあることは嬉しい反面，目的とするパッケージを検索するのは困難である．
 パッケージ一覧のページで検索しても良いが，ブラウザでは正規表現が使えないことが多い．
 そこで，パッケージの一覧を取得して，自分のパソコンの中に一覧を保存して，その後でRやエディタの正規表現を用いて検索できるようにする．</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="package.html#cb4-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-2"><a href="package.html#cb4-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb4-3"><a href="package.html#cb4-3" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
-<span id="cb4-4"><a href="package.html#cb4-4" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;your_directory&quot;</span></span>
-<span id="cb4-5"><a href="package.html#cb4-5" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;D:/matu/work/tmp&quot;</span></span>
-<span id="cb4-6"><a href="package.html#cb4-6" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
-<span id="cb4-7"><a href="package.html#cb4-7" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://cran.r-project.org/web/packages/available_packages_by_name.html&quot;</span></span>
-<span id="cb4-8"><a href="package.html#cb4-8" tabindex="-1"></a>html <span class="ot">&lt;-</span> rvest<span class="sc">::</span><span class="fu">read_html</span>(url)  <span class="co"># rvestは第???章を参照</span></span>
-<span id="cb4-9"><a href="package.html#cb4-9" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span></span>
-<span id="cb4-10"><a href="package.html#cb4-10" tabindex="-1"></a>  html <span class="sc">%&gt;%</span></span>
-<span id="cb4-11"><a href="package.html#cb4-11" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-12"><a href="package.html#cb4-12" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># .[[1]]と同じ</span></span>
-<span id="cb4-13"><a href="package.html#cb4-13" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">set_colnames</span>(<span class="fu">c</span>(<span class="st">&quot;pkg&quot;</span>, <span class="st">&quot;description&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># magrittrは第???章を参照</span></span>
-<span id="cb4-14"><a href="package.html#cb4-14" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-15"><a href="package.html#cb4-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>( <span class="co"># dplyrは第???章を参照，stringrは第???章を参照</span></span>
-<span id="cb4-16"><a href="package.html#cb4-16" tabindex="-1"></a>    <span class="at">description =</span> stringr<span class="sc">::</span><span class="fu">str_replace_all</span>(description, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot; &quot;</span>))</span>
-<span id="cb4-17"><a href="package.html#cb4-17" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="package.html#cb4-18" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_tsv</span>(pkgs, <span class="st">&quot;pkgs.txt&quot;</span>) <span class="co"># readrは第???章を参照</span></span>
-<span id="cb4-19"><a href="package.html#cb4-19" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="package.html#cb4-20" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(pkgs, stringr<span class="sc">::</span><span class="fu">str_detect</span>(description, <span class="st">&quot;Image|image&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="package.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="package.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb4-3"><a href="package.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb4-4"><a href="package.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;your_directory&quot;</span></span>
+<span id="cb4-5"><a href="package.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;D:/matu/work/tmp&quot;</span></span>
+<span id="cb4-6"><a href="package.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
+<span id="cb4-7"><a href="package.html#cb4-7" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://cran.r-project.org/web/packages/available_packages_by_name.html&quot;</span></span>
+<span id="cb4-8"><a href="package.html#cb4-8" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> rvest<span class="sc">::</span><span class="fu">read_html</span>(url)  <span class="co"># rvestは第???章を参照</span></span>
+<span id="cb4-9"><a href="package.html#cb4-9" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span></span>
+<span id="cb4-10"><a href="package.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  html <span class="sc">%&gt;%</span></span>
+<span id="cb4-11"><a href="package.html#cb4-11" aria-hidden="true" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="package.html#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># .[[1]]と同じ</span></span>
+<span id="cb4-13"><a href="package.html#cb4-13" aria-hidden="true" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">set_colnames</span>(<span class="fu">c</span>(<span class="st">&quot;pkg&quot;</span>, <span class="st">&quot;description&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># magrittrは第???章を参照</span></span>
+<span id="cb4-14"><a href="package.html#cb4-14" aria-hidden="true" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-15"><a href="package.html#cb4-15" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>( <span class="co"># dplyrは第???章を参照，stringrは第???章を参照</span></span>
+<span id="cb4-16"><a href="package.html#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">description =</span> stringr<span class="sc">::</span><span class="fu">str_replace_all</span>(description, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot; &quot;</span>))</span>
+<span id="cb4-17"><a href="package.html#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="package.html#cb4-18" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_tsv</span>(pkgs, <span class="st">&quot;pkgs.txt&quot;</span>) <span class="co"># readrは第???章を参照</span></span>
+<span id="cb4-19"><a href="package.html#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="package.html#cb4-20" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(pkgs, stringr<span class="sc">::</span><span class="fu">str_detect</span>(description, <span class="st">&quot;Image|image&quot;</span>))</span></code></pre></div>
 <p>詳しい説明は省略するが，以下を実行すると<code>pkgs.txt</code>というテキストファイルが作業ディレクトリに保存される．
 また，「Image」か「image」が<code>description</code>に含まれるものが出力される．
 すべてを画面に出力したい場合は，最後にコメントアウトした3行を実行する．
@@ -469,8 +469,8 @@ CRANの一覧からは削除されても，アーカイブ化されたものが�
 <div id="github" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> GitHubから<a href="package.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>たいていはCRANに登録されているが，GitHubにしかないパッケージのときは以下のようにする．</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="package.html#cb5-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb5-2"><a href="package.html#cb5-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/ecan&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="package.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb5-2"><a href="package.html#cb5-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/ecan&quot;</span>)</span></code></pre></div>
 <pre><code>validate_package_version &lt;- function(pkg, version, 
                                      site = &quot;&quot;, 
                                      upgrade = &quot;never&quot;){

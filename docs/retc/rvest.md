@@ -73,7 +73,22 @@ install.packages("polite")
 
 ```r
 library(rvest)
+```
+
+```
+## Warning: package 'rvest' was built under R version 4.3.1
+```
+
+```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
 ```
 
 ## HTMLの取得
@@ -474,6 +489,9 @@ install.packages("webshot")
 ```
 
 
+```
+## Warning: package 'webshot' was built under R version 4.3.1
+```
 
 webshotは内部でPhantomjsというブラウザを使っているので，
 webshotからPhantomjsをインストールするための関数を実行する．

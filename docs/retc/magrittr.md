@@ -24,7 +24,22 @@ install.packages("magrittr")
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(magrittr)
+```
+
+```
+## Warning: package 'magrittr' was built under R version 4.3.1
 ```
 
 ## magrittrとtidyverse
