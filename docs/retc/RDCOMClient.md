@@ -70,7 +70,7 @@ convert_docs
 ##     doc$close()
 ##     return(invisible(converted))
 ## }
-## <bytecode: 0x000001280f0647e8>
+## <bytecode: 0x0000028b272a9c88>
 ## <environment: namespace:automater>
 ```
 
