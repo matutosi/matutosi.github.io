@@ -5,6 +5,50 @@
 [Preface](#)
 -->
 
+## 準備
+
+例によってまずはパッケージをインストールする．
+日付のデータを扱うためのlubridateとさらにそのラッパーを使うので，automaterを読み込む．
+
+
+```r
+install.packages("officer")
+```
+
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+```
+## Warning: package 'officer' was built under R version 4.3.1
+```
+
+
+
+
+## officerとofficeverse
+
+
+
+
 
 ## 複数のワード文書の文字列を一括置換
 
@@ -41,25 +85,41 @@ Rからワード文書内の文字列を置換すれば，ワードを起動す�
   # コードの動作確認
 
   # https://ardata-fr.github.io/officeverse/index.html
-pkg <- "D:/matu/work/ToDo/automater/R"
-devtools::load_all(pkg)
-library(officer)
+  # pkg <- "D:/matu/work/ToDo/automater/R"
+  # devtools::load_all(pkg)
+
+  # fs::path_package("")
+  # replacement <- readr::read_tsv("replacement.txt", header = TRUE)
+  # ls("package:tibble")
+
 library(tidyverse)
-wd <- "d:/"
-setwd(wd)
+library(officer)
+library(lubridate)
+  # library(automater)
+a <- 
+  read_docx() %>%
+  officer::body_add_par("置換前，変換前，へんかん，ヘンカン") %>%
+  print(fs::path_temp("a.docx"))
+b <- 
+  read_docx() %>%
+  officer::body_add_par("置換前，変換前，へんかん，ヘンカン") %>%
+  print(fs::path_temp("b.docx"))
+fs::path_dir(a) %>%
+  shell.exec()
 
-replacement <- read.table("replacement.txt", header = TRUE, sep = "\t")
+replacement <- 
+  tibble::tribble(
+    ~file          , ~old_value, ~new_value,
+    a              , "置換前"  , "置換後"  ,
+    b              , "変換前"  , "変換後"  ,
+    paste0(a,",",b), "へんかん", "変換"    )
 
-files <- 
-  replacement[["file"]] %>%
-  stringr::str_c(collapse = "|") %>%
-  fs::dir_ls(regexp = .) %>%
-  exclude(stringr::str_detect(., "^replaced\\_"))
+replacement <- 
+  replacement %>%
+  expand_file() %>%
+  dplyr::filter(!stringr::str_detect(file, "replaced\\_"))
 
-replacement <- expand_file(replacement, files)
-
-files %>%
-  purrr::walk(replace_docs, replacement)
+replace_docs(replacement)
 ```
 
 ## 年月日の更新
@@ -97,55 +157,51 @@ lubridateで日付固定あるいは位置固定のときでの翌年の年月�
 ワード文書内の日付は，正規表現を用いて入手できる．
 
 それぞれの曜日なし版が考えられ，月と日が1桁の時に「04」のようにパディング(桁合わせ)されていることもあるだろう．
-これらは，正規表現によって対応可能である．
-もちろん，日付っぽい表記のすべてを含むことはできないが，よく使う日付表記は網羅できるだろう．
+これらは正規表現によって対応可能である．
+日付っぽい表記のすべてを含もうとするとややこしいが，よく使う日付表記であれば網羅できるだろう．
 年表記が2桁の場合，半角や全角のスペースを途中に含んだり，「()」の半角・全角の違いなどの表現揺れもあり得る．
 表記揺れを修正するための置換や削除などは，stringr(あるいはbase)の関数で対応できる．
 
 
-
-
 ```r
-  # 20\d\d年月日
-  # /
-
   # Wordファイルを開く
   # 文字列の取得
   # 日付の一覧抽出
   # 日付の置換
   # Wordの保存
 
-
+  # library(automater)
+  # library(moranajp)
 library(tidyverse)
-```
+library(officer)
+library(lubridate)
 
-```
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.2     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.2     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.0
-## v purrr     1.0.1     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
+  # 準備
+x <- 
+  "23年1月1日(月)，2023年1月1日(月)，2023年10月10日(月)，
+  2月2日(月)，12月22日(月)，2023/1/1(月)，2023/10/10(月)，
+  2/2(月)，12/22(月)，23年1月1日，2023年1月1日，
+  2023年10月10日，2月2日，12月22日，2023/1/1，2023/10/10，
+  2/2，12/22"
+date_x <- extract_date(x)
+date_doc <- print(fs::path_temp("date.docx"))
 
-```r
-x <- "21年1月1日(月)，2021年1月1日(月)，2021年10月10日(月)，2月2日(月)，12月22日(月)，2021/1/1(月)，2021/10/10(月)，2/2(月)，12/22(月)，21年1月1日，2021年1月1日，2021年10月10日，2月2日，12月22日，2021/1/1，2021/10/10，2/2，12/22"
-regrep <- "((20)*[2-5]\\d+[年/_-]*)*\\d\\d*[月/_-]*\\d\\d*[日]*(\\([月火水木金土日]\\))*"
+doc <- read_docx()
+doc <- body_add_par(doc, "日付置換の例")
+for(d in date_x){
+  doc <- body_add_par(doc, d)
+  #   doc <- body_add_fpar(doc, fpar(ftext(d, fp_text(color = "red"))))
+}
+write_docx(doc, date_doc)
+fs::path_dir(date_doc) %>%
+  shell.exec()
 
-stringr::str_extract_all(x, regrep)
-```
+  # 読み込み
+doc <- read_docx(date_doc)
 
-```
-## [[1]]
-##  [1] "21年1月1日(月)"     "2021年1月1日(月)"   "2021年10月10日(月)"
-##  [4] "2月2日(月)"         "12月22日(月)"       "2021/1/1(月)"      
-##  [7] "2021/10/10(月)"     "2/2(月)"            "12/22(月)"         
-## [10] "21年1月1日"         "2021年1月1日"       "2021年10月10日"    
-## [13] "2月2日"             "12月22日"           "2021/1/1"          
-## [16] "2021/10/10"         "2/2"                "12/22"
-```
 
+automater::format_ymd(x)
+
+  # ls("package:officer")
+  # ls("package:moranajp")
+```

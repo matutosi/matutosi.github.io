@@ -20,14 +20,31 @@ svg形式の画像を読み込む場合は，rsvgパッケージもインスト�
 install.packages("magick")
 install.packages("rsvg")
 install.packages("webshot")
+webshot::install_phantomjs()
 ```
-
-
 
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(magick)
+```
+
+```
+## Warning: package 'magick' was built under R version 4.3.1
+```
+
+```r
 library(webshot)
 ```
 
@@ -51,7 +68,7 @@ image_info(frink)
 ```
 
 ```
-## # A tibble: 1 x 7
+## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
 ## 1 PNG      220    445 sRGB       TRUE     73494 72x72
@@ -62,7 +79,7 @@ image_info(tiger)
 ```
 
 ```
-## # A tibble: 1 x 7
+## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
 ## 1 PNG      900    900 sRGB       TRUE         0 72x72
@@ -94,8 +111,8 @@ magick::image_convert(tiger, format = "pdf") %>%
 
 
 ```r
-magick::image_write(frink, path = "frink.pdf", format = "pdf") 
-magick::image_write(frink, path = "frink")
+magick::image_write(frink, path = "img/frink.pdf", format = "pdf") 
+magick::image_write(frink, path = "img/frink")
 ```
 
 ### 切り出し
@@ -112,7 +129,7 @@ urls <-
        "http://jpnrdb.com/search.php?mode=key&q=ニッコウキスゲ",
        "http://jpnrdb.com/search.php?mode=map&q=06050095259")
 pngs <- paste0("rvest_", 1:3, ".png")
-purrr::map2(urls, pngs, webshot::webshot)
+purrr::map2(urls, paste0("img/", pngs), webshot::webshot)
 ```
 
 ```
@@ -156,15 +173,15 @@ magick_crop <- function(image, left_top, right_bottom){
 
 ```r
 crop_1 <- 
-  magick::image_read(pngs) %>%
+  magick::image_read(paste0("img/", pngs)) %>%
   automater::magick_crop(c(100, 0), c(890, 560)) %>%
   as.list() %>%
-  purrr::map2_chr(., paste0("crop1_", pngs), magick::image_write)
+  purrr::map2_chr(., paste0("img/crop1_", pngs), magick::image_write)
 crop_2 <- 
-  magick::image_read(pngs) %>%
+  magick::image_read(paste0("img/", pngs)) %>%
   automater::magick_crop(c(100, 0), c(890, 980)) %>%
   as.list() %>%
-  purrr::map2_chr(., paste0("crop2_", pngs), magick::image_write)
+  purrr::map2_chr(., paste0("img/crop2_", pngs), magick::image_write)
 crops <- c(crop_1[c(1,2)], crop_2[3])
 ```
 

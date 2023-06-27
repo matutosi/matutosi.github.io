@@ -39,20 +39,32 @@ library(tidyverse)
 ```
 
 ```
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.2     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.2     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.0
-## v purrr     1.0.1     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
 ```r
 library(curl)
+```
+
+```
+## Warning: package 'curl' was built under R version 4.3.1
 ```
 
 ```
@@ -337,7 +349,7 @@ automater::make_shortcut
 ##     shortcut <- stringr::str_remove_all_all(shortcut, "\"")
 ##     return(list(shortcut = shortcut, res = res))
 ## }
-## <bytecode: 0x000001cb54aa97f0>
+## <bytecode: 0x0000018a5ac4e508>
 ## <environment: namespace:automater>
 ```
 
@@ -355,7 +367,7 @@ automater::add_path
 ##         path)
 ##     shell(cmd, intern = TRUE)
 ## }
-## <bytecode: 0x000001cb54b5f720>
+## <bytecode: 0x0000018a5aceac00>
 ## <environment: namespace:automater>
 ```
 

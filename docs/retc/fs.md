@@ -44,6 +44,10 @@ install.packages("fs")
 library(fs)
 ```
 
+```
+## Warning: package 'fs' was built under R version 4.3.1
+```
+
 
 ## シェル，baseパッケージ, fsパッケージ
 

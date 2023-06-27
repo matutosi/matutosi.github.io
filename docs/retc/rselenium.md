@@ -30,7 +30,22 @@ install.packages("RSelenium")
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(RSelenium)
+```
+
+```
+## Warning: package 'RSelenium' was built under R version 4.3.1
 ```
 
 

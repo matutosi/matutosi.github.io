@@ -20,13 +20,24 @@ CRANには登録されておらず，ウェブページかGitHubからインス�
 ```r
   # どちらか一方でうまくいけばOK
 utils::install.packages("RDCOMClient", repos = "http://www.omegahat.net/R", type = "win.binary")
-devtools::install_github("omegahat/RDCOMClient")
-devtools::install_github("matutosi/automater")
+remotes::install_github("omegahat/RDCOMClient")
+remotes::install_github("matutosi/automater")
 ```
 
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(RDCOMClient)
 library(automater)
 ```
@@ -59,7 +70,7 @@ convert_docs
 ##     doc$close()
 ##     return(invisible(converted))
 ## }
-## <bytecode: 0x000001f680d7f460>
+## <bytecode: 0x000001d807f0ad50>
 ## <environment: namespace:automater>
 ```
 
@@ -159,15 +170,20 @@ testthat::expect_equal(path_docx("a.pdf"                 ), "d:/matu/work/tmp/a.
 testthat::expect_equal(path_docx("d:/matu/work/tmp/a.pdf"), "d:/matu/work/tmp/a.docx"     )
 testthat::expect_equal(path_docx("test/a.pdf"            ), "d:/matu/work/tmp/test/a.docx")
 testthat::expect_equal(path_docx("/test/a.pdf"           ), "d:/matu/work/tmp/test/a.docx")
-
-
-wd <- "d:/"
-setwd(wd)
-pdf2docx("a.pdf")
 ```
 
 
-## pdf2docx
-
-
--->
+```
+ワードの新規ファイル作成
+  # https://stackoverflow.com/questions/67378245/r-rdcomclient-find-and-replace-in-word-doc
+  #   https://andrisignorell.github.io/DescTools/reference/GetNewWrd.html
+  # library(tidyverse)
+  # library(RDCOMClient)
+  # wordApp <- COMCreate("Word.Application")
+  # wordApp[["Visible"]] <- TRUE
+  # wordApp[["DisplayAlerts"]] <- FALSE
+  # doc <- wordApp[["Documents"]]$Add()
+  # path <- normalizePath("D:/matu/work/ToDo/retc/doc/test.docx")
+  # doc$SaveAs(path)
+  # wordApp$quit()
+```

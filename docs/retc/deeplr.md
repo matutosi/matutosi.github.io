@@ -20,7 +20,22 @@ install.packages("deeplr")
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(deeplr)
+```
+
+```
+## Warning: package 'deeplr' was built under R version 4.3.1
 ```
 
 ## DeepLのAPI
@@ -33,8 +48,6 @@ DeepLのAPIを使うには，事前に認証キーを取得しなければなら
 
 
 ## deeplr
-
-
 
 
 有料版のProを契約しているときは`translate()`を，無料版のfreeのときは`translate2()`を使う．

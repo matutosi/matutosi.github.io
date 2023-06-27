@@ -29,7 +29,25 @@ install.packages("KeyboardSimulator")
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(KeyboardSimulator)
+```
+
+```
+## Warning: package 'KeyboardSimulator' was built under R version 4.3.1
+```
+
+```r
 library(automater)
   # mouse.get_cursor()
 ```
@@ -43,6 +61,10 @@ KeyboardSimulatorでは，マウスやキーボードの操作とマウス位置
 
 ```r
 library(reticulate)
+```
+
+```
+## Warning: package 'reticulate' was built under R version 4.3.1
 ```
 
 さらに，[使用するPythonの指定](#identify_python)を参考にreticulateで使用するPythonを指定する．
@@ -138,7 +160,7 @@ automater::mouse_record
 ##     }
 ##     return(list(x = unlist(x), y = unlist(y)))
 ## }
-## <bytecode: 0x000001e8692b5ac0>
+## <bytecode: 0x000002475a32ad08>
 ## <environment: namespace:automater>
 ```
 

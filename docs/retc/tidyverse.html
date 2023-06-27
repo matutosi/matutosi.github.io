@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chap. 6 tidyverseを使う | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
   <meta name="description" content="Chap. 6 tidyverseを使う | Rにる作業の効率化・自動化 -パッケージ活用術-" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chap. 6 tidyverseを使う | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-05-27" />
+<meta name="date" content="2023-06-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -360,24 +364,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.1.2" data-path="microsoft365r.html"><a href="microsoft365r.html#とりあえず使う"><i class="fa fa-check"></i><b>22.1.2</b> とりあえず使う</a></li>
 <li class="chapter" data-level="22.1.3" data-path="microsoft365r.html"><a href="microsoft365r.html#メールの一斉送信"><i class="fa fa-check"></i><b>22.1.3</b> メールの一斉送信</a></li>
 </ul></li>
-<li class="chapter" data-level="22.2" data-path="microsoft365r.html"><a href="microsoft365r.html#複数のワード文書の文字列を一括置換"><i class="fa fa-check"></i><b>22.2</b> 複数のワード文書の文字列を一括置換</a>
-<ul>
-<li class="chapter" data-level="22.2.1" data-path="microsoft365r.html"><a href="microsoft365r.html#置換のコードの例"><i class="fa fa-check"></i><b>22.2.1</b> 置換のコードの例</a></li>
-</ul></li>
-<li class="chapter" data-level="22.3" data-path="microsoft365r.html"><a href="microsoft365r.html#年月日の更新"><i class="fa fa-check"></i><b>22.3</b> 年月日の更新</a>
-<ul>
-<li class="chapter" data-level="22.3.1" data-path="microsoft365r.html"><a href="microsoft365r.html#活用例-2"><i class="fa fa-check"></i><b>22.3.1</b> 活用例</a></li>
-</ul></li>
 </ul></li>
 <li class="chapter" data-level="23" data-path="officer.html"><a href="officer.html"><i class="fa fa-check"></i><b>23</b> officerでWordやEscelの内容を編集する</a>
 <ul>
-<li class="chapter" data-level="23.1" data-path="officer.html"><a href="officer.html#複数のワード文書の文字列を一括置換-1"><i class="fa fa-check"></i><b>23.1</b> 複数のワード文書の文字列を一括置換</a>
+<li class="chapter" data-level="23.1" data-path="officer.html"><a href="officer.html#準備-17"><i class="fa fa-check"></i><b>23.1</b> 準備</a></li>
+<li class="chapter" data-level="23.2" data-path="officer.html"><a href="officer.html#officerとofficeverse"><i class="fa fa-check"></i><b>23.2</b> officerとofficeverse</a></li>
+<li class="chapter" data-level="23.3" data-path="officer.html"><a href="officer.html#複数のワード文書の文字列を一括置換"><i class="fa fa-check"></i><b>23.3</b> 複数のワード文書の文字列を一括置換</a>
 <ul>
-<li class="chapter" data-level="23.1.1" data-path="officer.html"><a href="officer.html#置換のコードの例-1"><i class="fa fa-check"></i><b>23.1.1</b> 置換のコードの例</a></li>
+<li class="chapter" data-level="23.3.1" data-path="officer.html"><a href="officer.html#置換のコードの例"><i class="fa fa-check"></i><b>23.3.1</b> 置換のコードの例</a></li>
 </ul></li>
-<li class="chapter" data-level="23.2" data-path="officer.html"><a href="officer.html#年月日の更新-1"><i class="fa fa-check"></i><b>23.2</b> 年月日の更新</a>
+<li class="chapter" data-level="23.4" data-path="officer.html"><a href="officer.html#年月日の更新"><i class="fa fa-check"></i><b>23.4</b> 年月日の更新</a>
 <ul>
-<li class="chapter" data-level="23.2.1" data-path="officer.html"><a href="officer.html#活用例-3"><i class="fa fa-check"></i><b>23.2.1</b> 活用例</a></li>
+<li class="chapter" data-level="23.4.1" data-path="officer.html"><a href="officer.html#活用例-2"><i class="fa fa-check"></i><b>23.4.1</b> 活用例</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -401,8 +399,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chap. 6</span> tidyverseを使う<a href="tidyverse.html#tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="準備-1" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> 準備<a href="tidyverse.html#準備-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tidyverse.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="tidyverse.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tidyverse.html#cb46-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tidyverse.html#cb47-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.3.1</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.3.1</code></pre>
 </div>
 <div id="tidyverseとは" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> tidyverseとは<a href="tidyverse.html#tidyverseとは" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -438,87 +438,87 @@ int(整数)やchr(文字列)のように省略して表示されるので，若�
 例えば，次のように画面の幅に収まりきらない場合でも，データフレームではダラダラと表示を続ける．
 一方，tibbleでは画面の幅に入る範囲に「良い感じ」にまとめて表示してくれる．
 それでも表示できなかった場合は，最後に列名とその形式を出力する．</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tidyverse.html#cb43-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb43-2"><a href="tidyverse.html#cb43-2" aria-hidden="true" tabindex="-1"></a>ncol <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb43-3"><a href="tidyverse.html#cb43-3" aria-hidden="true" tabindex="-1"></a>cnames <span class="ot">&lt;-</span> letters[<span class="fu">seq</span>(ncol)]</span>
-<span id="cb43-4"><a href="tidyverse.html#cb43-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
-<span id="cb43-5"><a href="tidyverse.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> ncol), <span class="at">ncol =</span> ncol, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">seq</span>(n), cnames)) <span class="sc">%&gt;%</span></span>
-<span id="cb43-6"><a href="tidyverse.html#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb43-7"><a href="tidyverse.html#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
-<pre><code>##           a          b          c          d          e          f          g
-## 1 1.6031545 -0.8459339  0.7503150 -1.0371317 -0.5706424 -0.5723482 -0.7673747
-## 2 0.3287564  0.2722861  0.6801985  1.9848016 -0.4019791 -0.5003546  0.0851631
-## 3 1.6240216 -0.9894099 -0.9921501 -0.1704829 -0.1179002  0.9082985 -0.5844367
-##           h          i           j
-## 1 0.6119649  1.5251493  1.73564765
-## 2 0.4207984  0.7160914  0.53616546
-## 3 0.7481714 -1.4372744 -0.09330249</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tidyverse.html#cb45-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="tidyverse.html#cb50-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb50-2"><a href="tidyverse.html#cb50-2" tabindex="-1"></a>ncol <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb50-3"><a href="tidyverse.html#cb50-3" tabindex="-1"></a>cnames <span class="ot">&lt;-</span> letters[<span class="fu">seq</span>(ncol)]</span>
+<span id="cb50-4"><a href="tidyverse.html#cb50-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb50-5"><a href="tidyverse.html#cb50-5" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> ncol), <span class="at">ncol =</span> ncol, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">seq</span>(n), cnames)) <span class="sc">%&gt;%</span></span>
+<span id="cb50-6"><a href="tidyverse.html#cb50-6" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb50-7"><a href="tidyverse.html#cb50-7" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
+<pre><code>##            a          b          c           d          e           f
+## 1  0.5756292  0.6481020 -1.1013421 -0.05401655  0.3099304 -0.49075684
+## 2  0.5150150 -0.9708171  0.4862761 -0.86443298  0.1366361 -1.29970808
+## 3 -0.4841446  1.3642321  1.4416147 -0.39088440 -2.6876306 -0.02635282
+##            g           h          i           j
+## 1 -0.5173117  0.03229134 -0.8979058  0.05422912
+## 2  0.1888758 -1.62215590 -0.7773959 -2.39419722
+## 3  1.6095103 -0.78289519 -1.2959647  0.52861721</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="tidyverse.html#cb52-1" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 10
-##       a      b      c      d      e      f       g     h      i       j
-##   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-## 1 1.60  -0.846  0.750 -1.04  -0.571 -0.572 -0.767  0.612  1.53   1.74  
-## 2 0.329  0.272  0.680  1.98  -0.402 -0.500  0.0852 0.421  0.716  0.536 
-## 3 1.62  -0.989 -0.992 -0.170 -0.118  0.908 -0.584  0.748 -1.44  -0.0933</code></pre>
+##        a      b      c       d      e       f      g       h      i       j
+##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1  0.576  0.648 -1.10  -0.0540  0.310 -0.491  -0.517  0.0323 -0.898  0.0542
+## 2  0.515 -0.971  0.486 -0.864   0.137 -1.30    0.189 -1.62   -0.777 -2.39  
+## 3 -0.484  1.36   1.44  -0.391  -2.69  -0.0264  1.61  -0.783  -1.30   0.529</code></pre>
 <p>変なたとえかもしれないが，データフレームは「言われたことをそのままやりました」という何も考えずに与えられたことをするような感じで，tibbleは「見やすく修正しておきました」という非常に気の利いた対応をする感じである．</p>
 <p>さらに，tibbleでは行数が多いときは最初の10行だけ表示する．
 データフレームではすべてのデータを表示させるので，巨大なデータのときに，画面がやたらスクロールして困った経験があるかもしれない．
 tibbleではそれがない．
 なお，行数と列数は最初に書かれている．</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tidyverse.html#cb47-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">21</span></span>
-<span id="cb47-2"><a href="tidyverse.html#cb47-2" aria-hidden="true" tabindex="-1"></a>ncol <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb47-3"><a href="tidyverse.html#cb47-3" aria-hidden="true" tabindex="-1"></a>cnames <span class="ot">&lt;-</span> letters[<span class="fu">seq</span>(ncol)]</span>
-<span id="cb47-4"><a href="tidyverse.html#cb47-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
-<span id="cb47-5"><a href="tidyverse.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> ncol), <span class="at">ncol =</span> ncol, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">seq</span>(n), cnames)) <span class="sc">%&gt;%</span></span>
-<span id="cb47-6"><a href="tidyverse.html#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb47-7"><a href="tidyverse.html#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
-<pre><code>##              a           b           c
-## 1   0.19305421 -0.17351625 -1.02986476
-## 2  -0.33650128  0.66924650 -0.65993968
-## 3   0.75227531 -0.30692364 -0.02760578
-## 4  -2.26347543  0.63682653 -0.52842832
-## 5  -0.70009085 -1.12772401  0.26610099
-## 6   0.90109545 -0.64839976  0.36334590
-## 7  -0.08345112 -1.50958888 -0.65059798
-## 8  -0.30535984  0.65829446  0.63277532
-## 9   1.20026318  0.76644060  0.79954694
-## 10  0.87740152  0.49517724  0.72031562
-## 11  1.33512781 -0.99900551 -1.39835789
-## 12 -0.28038791  1.96790487 -2.24645683
-## 13  0.18153904  1.21129682 -0.50823279
-## 14  1.27111279  0.42988824  1.20315077
-## 15 -1.67318984 -1.10966850  0.47896005
-## 16 -0.06307024  0.99490893 -0.16680225
-## 17 -0.29206247  1.44786173 -0.71223762
-## 18 -1.83128441 -0.80690031 -1.67589080
-## 19  0.13081061 -0.31439699  0.21149743
-## 20  0.73293331  0.02098035 -0.32777867
-## 21  0.12876496 -0.45918774  1.74777220</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tidyverse.html#cb49-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="tidyverse.html#cb54-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">21</span></span>
+<span id="cb54-2"><a href="tidyverse.html#cb54-2" tabindex="-1"></a>ncol <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb54-3"><a href="tidyverse.html#cb54-3" tabindex="-1"></a>cnames <span class="ot">&lt;-</span> letters[<span class="fu">seq</span>(ncol)]</span>
+<span id="cb54-4"><a href="tidyverse.html#cb54-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb54-5"><a href="tidyverse.html#cb54-5" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> ncol), <span class="at">ncol =</span> ncol, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">seq</span>(n), cnames)) <span class="sc">%&gt;%</span></span>
+<span id="cb54-6"><a href="tidyverse.html#cb54-6" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb54-7"><a href="tidyverse.html#cb54-7" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
+<pre><code>##             a           b           c
+## 1   0.1526568 -0.04251096 -0.19834342
+## 2   1.3558324 -1.92823944 -0.27505172
+## 3   0.4311610  0.54420657  0.92784334
+## 4  -1.7074419 -0.44894006 -1.14581535
+## 5   0.8035260 -0.14996269  0.71687845
+## 6   1.8918512  0.12953325  0.58758917
+## 7  -1.3953444  0.36187277  1.17930451
+## 8  -0.8326713 -0.12997947  2.47437025
+## 9  -0.5638687 -0.22877032  0.15153106
+## 10  0.2751767 -0.23882751  0.53005929
+## 11 -1.2555855  1.11129580 -1.00021282
+## 12  0.1710426 -1.04349060 -0.05906626
+## 13  0.1496510 -0.96233264 -1.04116020
+## 14 -0.3428818  0.75430084  0.16373302
+## 15  1.1646854  1.73785429  1.65627408
+## 16 -0.0275444 -2.33809111 -0.86471852
+## 17  1.4374350  1.12033165 -0.06397220
+## 18 -1.0481574 -1.38587784  0.93081388
+## 19  0.2825637  0.64573267 -1.82901834
+## 20 -0.9777470 -1.18301813 -0.42739886
+## 21  0.7394082  0.11256912 -0.07456815</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="tidyverse.html#cb56-1" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 21 × 3
-##          a      b       c
-##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-##  1  0.193  -0.174 -1.03  
-##  2 -0.337   0.669 -0.660 
-##  3  0.752  -0.307 -0.0276
-##  4 -2.26    0.637 -0.528 
-##  5 -0.700  -1.13   0.266 
-##  6  0.901  -0.648  0.363 
-##  7 -0.0835 -1.51  -0.651 
-##  8 -0.305   0.658  0.633 
-##  9  1.20    0.766  0.800 
-## 10  0.877   0.495  0.720 
+##         a       b      c
+##     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1  0.153 -0.0425 -0.198
+##  2  1.36  -1.93   -0.275
+##  3  0.431  0.544   0.928
+##  4 -1.71  -0.449  -1.15 
+##  5  0.804 -0.150   0.717
+##  6  1.89   0.130   0.588
+##  7 -1.40   0.362   1.18 
+##  8 -0.833 -0.130   2.47 
+##  9 -0.564 -0.229   0.152
+## 10  0.275 -0.239   0.530
 ## # ℹ 11 more rows</code></pre>
 <p>表示したい行数を指定するには，引数<code>n</code>で指定する．
 以下のコードのうち，3つ目を実行すると全行が表示されるので以下では表示を省略している．</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="tidyverse.html#cb51-1" aria-hidden="true" tabindex="-1"></a>mpg                  <span class="co"># 通常表示</span></span>
-<span id="cb51-2"><a href="tidyverse.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(mpg, <span class="at">n =</span> <span class="dv">30</span>)   <span class="co"># 30行を表示</span></span>
-<span id="cb51-3"><a href="tidyverse.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="at">n =</span> <span class="fu">nrow</span>(mpg)) <span class="co"># 全行を表示</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="tidyverse.html#cb58-1" tabindex="-1"></a>mpg                  <span class="co"># 通常表示</span></span>
+<span id="cb58-2"><a href="tidyverse.html#cb58-2" tabindex="-1"></a><span class="fu">print</span>(mpg, <span class="at">n =</span> <span class="dv">30</span>)   <span class="co"># 30行を表示</span></span>
+<span id="cb58-3"><a href="tidyverse.html#cb58-3" tabindex="-1"></a><span class="fu">print</span>(<span class="at">n =</span> <span class="fu">nrow</span>(mpg)) <span class="co"># 全行を表示</span></span></code></pre></div>
 </div>
 <div id="tibbleへの変換tibbleの生成" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> tibbleへの変換，tibbleの生成<a href="tidyverse.html#tibbleへの変換tibbleの生成" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>すでにデータフレームがある場合は，<code>as_tibble()</code>でtibbleへの変換ができる．</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="tidyverse.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="tidyverse.html#cb59-1" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -526,7 +526,7 @@ tibbleではそれがない．
 ## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 ## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="tidyverse.html#cb54-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="tidyverse.html#cb61-1" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(mtcars)</span></code></pre></div>
 <pre><code>## # A tibble: 32 × 11
 ##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -542,33 +542,33 @@ tibbleではそれがない．
 ## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
 ## # ℹ 22 more rows</code></pre>
 <p>新たにtibbleを生成するには，データフレームの場合と同様である．</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="tidyverse.html#cb56-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb56-2"><a href="tidyverse.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">runif</span>(n), <span class="at">y =</span> <span class="fu">rnorm</span>(n))</span></code></pre></div>
-<pre><code>##             x          y
-## 1  0.02610457 -0.3568213
-## 2  0.99499580  0.2191991
-## 3  0.50381918  0.5989819
-## 4  0.57951831  0.3978429
-## 5  0.62523510 -1.8918239
-## 6  0.11767768 -2.1098545
-## 7  0.16852006 -1.2603363
-## 8  0.17224956 -0.2248742
-## 9  0.46051440 -2.2982628
-## 10 0.41997928 -1.0668981</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="tidyverse.html#cb58-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">runif</span>(n), <span class="at">y =</span> <span class="fu">rnorm</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="tidyverse.html#cb63-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb63-2"><a href="tidyverse.html#cb63-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">runif</span>(n), <span class="at">y =</span> <span class="fu">rnorm</span>(n))</span></code></pre></div>
+<pre><code>##             x           y
+## 1  0.21810445 -1.50365026
+## 2  0.48731208  0.98205956
+## 3  0.11403671  0.37568787
+## 4  0.09285179 -0.02775862
+## 5  0.03394133  1.38206474
+## 6  0.86622988  1.06439348
+## 7  0.20582252 -0.57026127
+## 8  0.85355696 -0.56039977
+## 9  0.28628574 -0.11161478
+## 10 0.90155610 -1.51044054</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="tidyverse.html#cb65-1" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">runif</span>(n), <span class="at">y =</span> <span class="fu">rnorm</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 2
-##        x      y
-##    &lt;dbl&gt;  &lt;dbl&gt;
-##  1 0.725 -0.353
-##  2 0.120 -0.170
-##  3 0.771  0.149
-##  4 0.783 -0.249
-##  5 0.457 -0.642
-##  6 0.526 -1.37 
-##  7 0.676  0.649
-##  8 0.182  0.787
-##  9 0.748  0.192
-## 10 0.669  0.642</code></pre>
+##        x       y
+##    &lt;dbl&gt;   &lt;dbl&gt;
+##  1 0.685  2.32  
+##  2 0.939  0.937 
+##  3 0.608  0.319 
+##  4 0.716  1.67  
+##  5 0.762  2.74  
+##  6 0.878 -0.228 
+##  7 0.187  0.0345
+##  8 0.823 -0.0499
+##  9 0.583  1.66  
+## 10 0.949  0.133</code></pre>
 </div>
 </div>
 <div id="tidyrでデータを整形する" class="section level2 hasAnchor" number="6.4">
@@ -582,7 +582,7 @@ tibbleではそれがない．
 3 1つのタイプの観測群が1つの表を構成する<br />
 4 1つの値が1つのセルを構成する</p>
 <p>例えば，次のデータ<code>household</code>は非整然(messy，tidyの対義語)データの典型的な例である．</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="tidyverse.html#cb60-1" aria-hidden="true" tabindex="-1"></a>relig_income</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="tidyverse.html#cb67-1" tabindex="-1"></a>relig_income</span></code></pre></div>
 <pre><code>## # A tibble: 18 × 11
 ##    religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k`
 ##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -615,12 +615,12 @@ tibbleではそれがない．
 ここでは，<code>!religion</code>で<code>religion</code>以外を指定している．
 <code>names_to</code>には列名をもとに作る新たな変数(列)名を，
 <code>values_to</code>にはデータの値をもとに作る新たな変数(列)名を文字列で指定する．</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="tidyverse.html#cb62-1" aria-hidden="true" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span> </span>
-<span id="cb62-2"><a href="tidyverse.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb62-3"><a href="tidyverse.html#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>religion, </span>
-<span id="cb62-4"><a href="tidyverse.html#cb62-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;income&quot;</span>, </span>
-<span id="cb62-5"><a href="tidyverse.html#cb62-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span></span>
-<span id="cb62-6"><a href="tidyverse.html#cb62-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="tidyverse.html#cb69-1" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span> </span>
+<span id="cb69-2"><a href="tidyverse.html#cb69-2" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb69-3"><a href="tidyverse.html#cb69-3" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>religion, </span>
+<span id="cb69-4"><a href="tidyverse.html#cb69-4" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;income&quot;</span>, </span>
+<span id="cb69-5"><a href="tidyverse.html#cb69-5" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span></span>
+<span id="cb69-6"><a href="tidyverse.html#cb69-6" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 180 × 3
 ##    religion income             count
 ##    &lt;chr&gt;    &lt;chr&gt;              &lt;dbl&gt;
@@ -642,7 +642,7 @@ tibbleではそれがない．
 また，関数によってはtidyではないオブジェクトを入力する必要やプログラム途中でtidyではない方が都合が良いこともある．
 tidyではないものからtidyなものへの変換，あるいはその逆をするのに便利な関数がtidyrには多くある．
 次のコードでパッケージ内の関数一覧が取得できる．</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="tidyverse.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;packages:tidyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="tidyverse.html#cb71-1" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;packages:tidyr&quot;</span>)</span></code></pre></div>
 <p>以下も参考にしてほしい．</p>
 <p><a href="https://tidyr.tidyverse.org/" class="uri">https://tidyr.tidyverse.org/</a></p>
 <!--
@@ -680,19 +680,19 @@ household %>%
 <p>tidyな状態に整理したデータをファイルとして保存や読み込みをするには，readrの関数を使うのが良い．
 baseの<code>write.table()</code>や<code>read.table()</code>よりも使いやすく，読み込んだデータをtibble形式にしてくれるのが良い．</p>
 <p>保存するときは，<code>write_csv</code>(カンマ区切り)や<code>write_tsv</code>(タブ区切り)を使う．</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="tidyverse.html#cb65-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(mpg, <span class="at">file =</span> <span class="st">&quot;file_path&quot;</span>)</span>
-<span id="cb65-2"><a href="tidyverse.html#cb65-2" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_tsv</span>(mpg, <span class="at">file =</span> <span class="st">&quot;file_path&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="tidyverse.html#cb72-1" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(mpg, <span class="at">file =</span> <span class="st">&quot;file_path&quot;</span>)</span>
+<span id="cb72-2"><a href="tidyverse.html#cb72-2" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_tsv</span>(mpg, <span class="at">file =</span> <span class="st">&quot;file_path&quot;</span>)</span></code></pre></div>
 <p>読み込むときは，<code>read_csv</code>(カンマ区切り)や<code>read_tsv</code>(タブ区切り)を使う．
 各列のデータ形式を指定したい場合は，<code>col_types</code>を使う．</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="tidyverse.html#cb66-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;file_path&quot;</span>)</span>
-<span id="cb66-2"><a href="tidyverse.html#cb66-2" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;file_path&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="tidyverse.html#cb73-1" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;file_path&quot;</span>)</span>
+<span id="cb73-2"><a href="tidyverse.html#cb73-2" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;file_path&quot;</span>)</span></code></pre></div>
 <p>ここでは，第?章で保存したデータを読み込む．</p>
 <!--
 wd <- "D:/matu/work/ToDo/retc"
 setwd(wd)
 -->
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="tidyverse.html#cb67-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;pkgs.txt&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb67-2"><a href="tidyverse.html#cb67-2" aria-hidden="true" tabindex="-1"></a>pkgs</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="tidyverse.html#cb74-1" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;pkgs.txt&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb74-2"><a href="tidyverse.html#cb74-2" tabindex="-1"></a>pkgs</span></code></pre></div>
 <pre><code>## # A tibble: 19,530 × 2
 ##    pkg           description                                                    
 ##    &lt;chr&gt;         &lt;chr&gt;                                                          
@@ -725,8 +725,8 @@ setwd(wd)
 <code>mutate()</code>を使って，<code>description</code>に特定の文字列が含まれるかを判定して，その結果を真偽値の新しい列として追加する．
 まずは<code>str_detect()</code>で<code>description</code>の列に”ocr”を含むかどうかをTRUEまたはFALSEで返す．
 その結果をocrという列として新たに追加する．</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="tidyverse.html#cb69-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="sc">%&gt;%</span></span>
-<span id="cb69-2"><a href="tidyverse.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ocr =</span> stringr<span class="sc">::</span><span class="fu">str_detect</span>(description, <span class="st">&quot;ocr&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="tidyverse.html#cb76-1" tabindex="-1"></a>pkgs <span class="sc">%&gt;%</span></span>
+<span id="cb76-2"><a href="tidyverse.html#cb76-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ocr =</span> stringr<span class="sc">::</span><span class="fu">str_detect</span>(description, <span class="st">&quot;ocr&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 19,530 × 3
 ##    pkg           description                                               ocr  
 ##    &lt;chr&gt;         &lt;chr&gt;                                                     &lt;lgl&gt;
@@ -756,21 +756,21 @@ setwd(wd)
 同様の理由で<code>=</code>ではなく<code>:=</code>というrlangパッケージの関数を使っている．
 また，<code>str_detect()</code>内で<code>.data[[col]]</code>としている．
 これは，文字列で列を選択するときに使用する手法である．</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="tidyverse.html#cb71-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># キーワードを列名として追加する関数，合致するときはTRUE</span></span>
-<span id="cb71-2"><a href="tidyverse.html#cb71-2" aria-hidden="true" tabindex="-1"></a>add_kwd <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col, kwd){</span>
-<span id="cb71-3"><a href="tidyverse.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  pattern <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">regex</span>(kwd, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb71-4"><a href="tidyverse.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
-<span id="cb71-5"><a href="tidyverse.html#cb71-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">`</span><span class="at">:=</span><span class="st">`</span>({{kwd}}, stringr<span class="sc">::</span><span class="fu">str_detect</span>(.data[[col]], pattern)))</span>
-<span id="cb71-6"><a href="tidyverse.html#cb71-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-7"><a href="tidyverse.html#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># キーワードの一覧</span></span>
-<span id="cb71-8"><a href="tidyverse.html#cb71-8" aria-hidden="true" tabindex="-1"></a>kwds <span class="ot">&lt;-</span> </span>
-<span id="cb71-9"><a href="tidyverse.html#cb71-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;database&quot;</span>, <span class="st">&quot;excel&quot;</span>, <span class="st">&quot;file&quot;</span>, <span class="st">&quot;ggplot&quot;</span>, <span class="st">&quot;image|magick&quot;</span>, <span class="st">&quot;keyboards|mouse&quot;</span>, </span>
-<span id="cb71-10"><a href="tidyverse.html#cb71-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ocr&quot;</span>, <span class="st">&quot;office&quot;</span>, <span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;python&quot;</span>, <span class="st">&quot;scrape|scraping|selenium&quot;</span>, <span class="st">&quot;shell&quot;</span>)</span>
-<span id="cb71-11"><a href="tidyverse.html#cb71-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># キーワード列の追加</span></span>
-<span id="cb71-12"><a href="tidyverse.html#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(kwds)){</span>
-<span id="cb71-13"><a href="tidyverse.html#cb71-13" aria-hidden="true" tabindex="-1"></a>  pkgs <span class="ot">&lt;-</span> <span class="fu">add_kwd</span>(pkgs, <span class="st">&quot;description&quot;</span>, kwds[i])</span>
-<span id="cb71-14"><a href="tidyverse.html#cb71-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-15"><a href="tidyverse.html#cb71-15" aria-hidden="true" tabindex="-1"></a>pkgs</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="tidyverse.html#cb78-1" tabindex="-1"></a>  <span class="co"># キーワードを列名として追加する関数，合致するときはTRUE</span></span>
+<span id="cb78-2"><a href="tidyverse.html#cb78-2" tabindex="-1"></a>add_kwd <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col, kwd){</span>
+<span id="cb78-3"><a href="tidyverse.html#cb78-3" tabindex="-1"></a>  pattern <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">regex</span>(kwd, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb78-4"><a href="tidyverse.html#cb78-4" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb78-5"><a href="tidyverse.html#cb78-5" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">`</span><span class="at">:=</span><span class="st">`</span>({{kwd}}, stringr<span class="sc">::</span><span class="fu">str_detect</span>(.data[[col]], pattern)))</span>
+<span id="cb78-6"><a href="tidyverse.html#cb78-6" tabindex="-1"></a>}</span>
+<span id="cb78-7"><a href="tidyverse.html#cb78-7" tabindex="-1"></a>  <span class="co"># キーワードの一覧</span></span>
+<span id="cb78-8"><a href="tidyverse.html#cb78-8" tabindex="-1"></a>kwds <span class="ot">&lt;-</span> </span>
+<span id="cb78-9"><a href="tidyverse.html#cb78-9" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;database&quot;</span>, <span class="st">&quot;excel&quot;</span>, <span class="st">&quot;file&quot;</span>, <span class="st">&quot;ggplot&quot;</span>, <span class="st">&quot;image|magick&quot;</span>, <span class="st">&quot;keyboards|mouse&quot;</span>, </span>
+<span id="cb78-10"><a href="tidyverse.html#cb78-10" tabindex="-1"></a>    <span class="st">&quot;ocr&quot;</span>, <span class="st">&quot;office&quot;</span>, <span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;python&quot;</span>, <span class="st">&quot;scrape|scraping|selenium&quot;</span>, <span class="st">&quot;shell&quot;</span>)</span>
+<span id="cb78-11"><a href="tidyverse.html#cb78-11" tabindex="-1"></a>  <span class="co"># キーワード列の追加</span></span>
+<span id="cb78-12"><a href="tidyverse.html#cb78-12" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(kwds)){</span>
+<span id="cb78-13"><a href="tidyverse.html#cb78-13" tabindex="-1"></a>  pkgs <span class="ot">&lt;-</span> <span class="fu">add_kwd</span>(pkgs, <span class="st">&quot;description&quot;</span>, kwds[i])</span>
+<span id="cb78-14"><a href="tidyverse.html#cb78-14" tabindex="-1"></a>}</span>
+<span id="cb78-15"><a href="tidyverse.html#cb78-15" tabindex="-1"></a>pkgs</span></code></pre></div>
 <pre><code>## # A tibble: 19,530 × 14
 ##    pkg           description          database excel file  ggplot `image|magick`
 ##    &lt;chr&gt;         &lt;chr&gt;                &lt;lgl&gt;    &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;  &lt;lgl&gt;         
@@ -796,9 +796,9 @@ setwd(wd)
 <p><code>filter()</code>は，データフレームから条件に合致した行を抽出する．
 最も単純な抽出方法は<code>ocr == TRUE</code>のように真偽値(logical，TRUE か FALSE)として判定されるものであれば，どのようなものでも構わない．
 次のコードの場合は，そもそも<code>ocr</code>が真偽値なので，<code>ocr == TRUE</code>とせずに<code>ocr</code>としても同じ結果を得られる．</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="tidyverse.html#cb73-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="sc">%&gt;%</span></span>
-<span id="cb73-2"><a href="tidyverse.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(pkg, description, ocr) <span class="sc">%&gt;%</span></span>
-<span id="cb73-3"><a href="tidyverse.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(ocr <span class="sc">==</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="tidyverse.html#cb80-1" tabindex="-1"></a>pkgs <span class="sc">%&gt;%</span></span>
+<span id="cb80-2"><a href="tidyverse.html#cb80-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(pkg, description, ocr) <span class="sc">%&gt;%</span></span>
+<span id="cb80-3"><a href="tidyverse.html#cb80-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(ocr <span class="sc">==</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 3
 ##    pkg                description                                          ocr  
 ##    &lt;chr&gt;              &lt;chr&gt;                                                &lt;lgl&gt;
@@ -812,7 +812,7 @@ setwd(wd)
 ##  8 RSocrata           &quot;Download or Upload &#39;Socrata&#39; Data Sets&quot;             TRUE 
 ##  9 soql               &quot;Helps Make Socrata Open Data API Calls&quot;             TRUE 
 ## 10 tesseract          &quot;Open Source OCR Engine&quot;                             TRUE</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="tidyverse.html#cb75-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(pkgs, <span class="sc">-</span>description) <span class="co"># dplyr::select(pkgs, !description)も同じ</span></span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="tidyverse.html#cb82-1" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">select</span>(pkgs, <span class="sc">-</span>description) <span class="co"># dplyr::select(pkgs, !description)も同じ</span></span></code></pre></div>
 <pre><code>## # A tibble: 19,530 × 13
 ##    pkg        database excel file  ggplot `image|magick` `keyboards|mouse` ocr  
 ##    &lt;chr&gt;      &lt;lgl&gt;    &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;  &lt;lgl&gt;          &lt;lgl&gt;             &lt;lgl&gt;
@@ -830,11 +830,11 @@ setwd(wd)
 ## # ℹ 5 more variables: office &lt;lgl&gt;, pdf &lt;lgl&gt;, python &lt;lgl&gt;,
 ## #   `scrape|scraping|selenium` &lt;lgl&gt;, shell &lt;lgl&gt;</code></pre>
 <p>お気づきかもしれないがpkgsはtidyではないので，ここで整形しておく．</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="tidyverse.html#cb77-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> </span>
-<span id="cb77-2"><a href="tidyverse.html#cb77-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(pkgs, </span>
-<span id="cb77-3"><a href="tidyverse.html#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(pkg, description), <span class="at">names_to =</span> <span class="st">&quot;kwd&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb77-4"><a href="tidyverse.html#cb77-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(val) <span class="sc">%&gt;%</span></span>
-<span id="cb77-5"><a href="tidyverse.html#cb77-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="tidyverse.html#cb84-1" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> </span>
+<span id="cb84-2"><a href="tidyverse.html#cb84-2" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(pkgs, </span>
+<span id="cb84-3"><a href="tidyverse.html#cb84-3" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(pkg, description), <span class="at">names_to =</span> <span class="st">&quot;kwd&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb84-4"><a href="tidyverse.html#cb84-4" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(val) <span class="sc">%&gt;%</span></span>
+<span id="cb84-5"><a href="tidyverse.html#cb84-5" tabindex="-1"></a>    <span class="fu">print</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 958 × 4
 ##    pkg              description                                      kwd   val  
 ##    &lt;chr&gt;            &lt;chr&gt;                                            &lt;chr&gt; &lt;lgl&gt;
@@ -859,13 +859,13 @@ setwd(wd)
 なお，<code>tally()</code>は<code>summarise(n = n())</code>のショートカットである．</p>
 <p><code>arrange()</code>は，指定した列のデータの順序に従って並べ替えをする．
 何も指定しなければ昇順，<code>desc()</code>で列名を指定すれば降順で並べ替えができる．</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="tidyverse.html#cb79-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="sc">%&gt;%</span></span>
-<span id="cb79-2"><a href="tidyverse.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(val) <span class="sc">%&gt;%</span></span>
-<span id="cb79-3"><a href="tidyverse.html#cb79-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(kwd) <span class="sc">%&gt;%</span></span>
-<span id="cb79-4"><a href="tidyverse.html#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb79-5"><a href="tidyverse.html#cb79-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># tally()も同じ</span></span>
-<span id="cb79-6"><a href="tidyverse.html#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb79-7"><a href="tidyverse.html#cb79-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="tidyverse.html#cb86-1" tabindex="-1"></a>pkgs <span class="sc">%&gt;%</span></span>
+<span id="cb86-2"><a href="tidyverse.html#cb86-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(val) <span class="sc">%&gt;%</span></span>
+<span id="cb86-3"><a href="tidyverse.html#cb86-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(kwd) <span class="sc">%&gt;%</span></span>
+<span id="cb86-4"><a href="tidyverse.html#cb86-4" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb86-5"><a href="tidyverse.html#cb86-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># tally()も同じ</span></span>
+<span id="cb86-6"><a href="tidyverse.html#cb86-6" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb86-7"><a href="tidyverse.html#cb86-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 958 × 4
 ## # Groups:   kwd [12]
 ##    pkg              description                                      kwd   val  

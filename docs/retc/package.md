@@ -43,17 +43,19 @@ install.packages(pkg)
 
 ## アーカイブされたパッケージ
 
-過去にCRANに登録されたが，その後何らかの理由でCRANからは削除されたパッケージがある．
-その場合でも，アーカイブ化されたものがCRANには保存されているため，そこからインストールできる．
-また，パッケージの古いバージョンをインストールする場合にも同じ手法が使える．
+zipファイルとしてアーカイブ化されている場合は，`devtools::install_local()`でインストールできる．
+例えば，過去にCRANに登録されたていたが削除されたパッケージやパッケージの古いバージョンである．
+CRANの一覧からは削除されても，アーカイブ化されたものが保存されているため，そこからzipファイルをダウンロードできる．
+パッケージの古いバージョンも同様である．
+`devtools::install_local()`はネットのものは直接インストールできないので，一旦ダウンロードしてからインストールする．
 
 
 ```r
-zip <- "http://cran.nexr.com/bin/windows/contrib/3.5/rMouse_0.1.zip"
-setwd("d:/")
-devtools::install_local("d:/rMouse_0.1.zip")
+zip <- 
+  "http://cran.nexr.com/bin/windows/contrib/3.5/rMouse_0.1.zip" %>%
+  curl::curl_download(fs::file_temp(ext = "zip"))
+devtools::install_local(zip)
 ```
-
 
 ## CRANからPackage一覧を取得する
 
@@ -100,5 +102,22 @@ dplyr::filter(pkgs, stringr::str_detect(description, "Image|image"))
 
 ```r
 install.packages("devtools")
-devtools::install_github("matutosi/ecan")
+remotes::install_github("matutosi/ecan")
+```
+
+
+```
+validate_package_version <- function(pkg, version, 
+                                     site = "", 
+                                     upgrade = "never"){
+  if(!require(pkg)){
+    remotes::install_github(site, upgrade = upgrade)
+  }else
+   # installed - need < 0
+  if(compareVersion(as.character(packageVersion(pkg)), version) < 0){
+    detach(paste0("package:", pkg))
+    remotes::install_github(site, upgrade = upgrade)
+  }
+}
+function("moranajp", "0.9.6.11000", site = "matutosi/moranajp")
 ```

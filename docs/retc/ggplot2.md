@@ -16,6 +16,17 @@ ggplot2の利点・できることを書く
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(ggplot2)
 ```
 

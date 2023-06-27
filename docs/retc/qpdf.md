@@ -6,21 +6,42 @@
 qpdfはPDF操作のためのパッケージである．
 著者作パッケージのであるautomaterをインストールするが，これはCRANには登録していない．
 いずれはCRANに登録したいと思っているが，現段階ではGitHubで公開している．
-そのため，install.packages()ではなく，devtools::install_github()を使ってインストールする．
+そのため，install.packages()ではなく，remotes::install_github()を使ってインストールする．
+
 
 
 ```r
 install.packages("qpdf")
 install.packages("devtools")
-devtools::install_github("matutosi/automater")
+remotes::install_github("matutosi/automater")
 ```
 
 
 ```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 4.3.1
+```
+
+```
+## Warning: package 'stringr' was built under R version 4.3.1
+```
+
+```r
 library(qpdf)
+```
+
+```
+## Warning: package 'qpdf' was built under R version 4.3.1
+```
+
+```r
 library(automater)
 ```
+
+
 
 ## qpdfでできること
 
@@ -337,7 +358,7 @@ pdf_overlay_stamps_each
 ##     file.remove(out[pages_body])
 ##     return(outfile)
 ## }
-## <bytecode: 0x00000164770261a0>
+## <bytecode: 0x000001b557dcc570>
 ## <environment: namespace:automater>
 ```
 
@@ -422,6 +443,10 @@ install.packages("pdftools")
 library(pdftools)
 ```
 
+```
+## Warning: package 'pdftools' was built under R version 4.3.1
+```
+
 関数`pdf_text()`にPDFファイルのパスを指定すれば，テキストを抽出した結果が得られる．
 1ページごとの内容が文字列のベクトルになっている．
 
@@ -429,27 +454,27 @@ library(pdftools)
 ```r
   # https://docs.ropensci.org/pdftools/
 url <- "http://arxiv.org/pdf/1403.2805.pdf"
-destfile <- "1403.2805.pdf"
+destfile <- fs::file_temp(ext = "pdf")
 curl::curl_download(url, destfile)
 txt <- pdftools::pdf_text(destfile)
 tibble::as_tibble(txt)
 ```
 
 ```
-## # A tibble: 29 x 1
+## # A tibble: 29 × 1
 ##    value                                                                        
 ##    <chr>                                                                        
-##  1 "                                              The jsonlite Package: A Pract~
-##  2 "JSON with R. We refer to Nolan and Temple Lang (2014) for a comprehensive i~
-##  3 "homogenous. And indeed, some implementations will now return a list instead~
-##  4 "The alternative to class-based method dispatch is to use type-based encodin~
-##  5 "2       Converting between JSON and R classes\n\nThis section lists example~
-##  6 "encoding. However, the problem with encoding missing values as strings is t~
-##  7 "limitations as text based formats such as CSV.\n\n\n2.1.3      Special case~
-##  8 "is assuming an array, the application will likely break. Any consumer or cl~
-##  9 "We expect this representation will be the most intuitive to interpret, also~
-## 10 "colnames(x) <- c(\"Treatment A\", \"Treatment B\")\nprint(x)\n\n        Tre~
-## # i 19 more rows
+##  1 "                                              The jsonlite Package: A Pract…
+##  2 "JSON with R. We refer to Nolan and Temple Lang (2014) for a comprehensive i…
+##  3 "homogenous. And indeed, some implementations will now return a list instead…
+##  4 "The alternative to class-based method dispatch is to use type-based encodin…
+##  5 "2       Converting between JSON and R classes\n\nThis section lists example…
+##  6 "encoding. However, the problem with encoding missing values as strings is t…
+##  7 "limitations as text based formats such as CSV.\n\n\n2.1.3      Special case…
+##  8 "is assuming an array, the application will likely break. Any consumer or cl…
+##  9 "We expect this representation will be the most intuitive to interpret, also…
+## 10 "colnames(x) <- c(\"Treatment A\", \"Treatment B\")\nprint(x)\n\n        Tre…
+## # ℹ 19 more rows
 ```
 
 文字列内の`\n`は改行を示しているが，そのままでは読みにくい．
