@@ -26,25 +26,7 @@ webshot::install_phantomjs()
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(magick)
-```
-
-```
-## Warning: package 'magick' was built under R version 4.3.1
-```
-
-```r
 library(webshot)
 ```
 

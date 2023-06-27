@@ -31,30 +31,8 @@ install.packages(c("DBI", "RSQLite"))
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(DBI)
-```
-
-```
-## Warning: package 'DBI' was built under R version 4.3.1
-```
-
-```r
 library(RSQLite)
-```
-
-```
-## Warning: package 'RSQLite' was built under R version 4.3.1
 ```
 
 本来はDBに接続するが，解説のための一時データを使用する．

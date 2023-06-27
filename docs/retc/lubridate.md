@@ -19,22 +19,7 @@ install.packages("calendR")
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(calendR)
-```
-
-```
-## Warning: package 'calendR' was built under R version 4.3.1
 ```
 
 ## 1月後・1年後の同一日

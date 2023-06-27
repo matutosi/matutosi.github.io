@@ -19,25 +19,7 @@ remotes::install_github("matutosi/automater")
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(qpdf)
-```
-
-```
-## Warning: package 'qpdf' was built under R version 4.3.1
-```
-
-```r
 library(automater)
 ```
 
@@ -191,7 +173,7 @@ system.file("rsc/combine_qpdf.rsc", package = "automater")
 ```
 
 ```
-## [1] "D:/pf/R/R-4.3.0/library/automater/rsc/combine_qpdf.rsc"
+## [1] "D:/pf/R/R-4.3.1/library/automater/rsc/combine_qpdf.rsc"
 ```
 
 ```r
@@ -358,7 +340,7 @@ pdf_overlay_stamps_each
 ##     file.remove(out[pages_body])
 ##     return(outfile)
 ## }
-## <bytecode: 0x00000164632c3a00>
+## <bytecode: 0x000001b652ea1e00>
 ## <environment: namespace:automater>
 ```
 
@@ -441,10 +423,6 @@ install.packages("pdftools")
 
 ```r
 library(pdftools)
-```
-
-```
-## Warning: package 'pdftools' was built under R version 4.3.1
 ```
 
 関数`pdf_text()`にPDFファイルのパスを指定すれば，テキストを抽出した結果が得られる．

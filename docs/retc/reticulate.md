@@ -21,25 +21,7 @@ install.packages("reticulate")
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.3.1
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.3.1
-```
-
-```r
 library(reticulate)
-```
-
-```
-## Warning: package 'reticulate' was built under R version 4.3.1
-```
-
-```r
 library(automater)
 ```
 

@@ -412,11 +412,8 @@ Rのバージョン4.1以降では，base機能のパイプとして<code>|&gt;<
 <h2><span class="header-section-number">5.1</span> 準備<a href="magrittr.html#準備" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>例によって，インストールとパッケージの呼び出しをしておく．</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="magrittr.html#cb10-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magrittr&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="magrittr.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.3.1</code></pre>
-<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.3.1</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="magrittr.html#cb14-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
-<pre><code>## Warning: package &#39;magrittr&#39; was built under R version 4.3.1</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="magrittr.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-2"><a href="magrittr.html#cb11-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
 </div>
 <div id="magrittrとtidyverse" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> magrittrとtidyverse<a href="magrittr.html#magrittrとtidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -441,21 +438,21 @@ RStudioでは，Ctrl + Shift + Mである．
 はじめてみると，面食らって思考停止に陥ってしまうかも知れない．
 しかし，恐れることはない．
 以下では簡単な例を使って説明する．</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="magrittr.html#cb16-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">%&gt;%</span> <span class="fu">fun</span>() <span class="co"># あるとき：慣れていないと変な感じ</span></span>
-<span id="cb16-2"><a href="magrittr.html#cb16-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun</span>(a)      <span class="co"># ないとき：こっちのほうが分かりやすい</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="magrittr.html#cb12-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">%&gt;%</span> <span class="fu">fun</span>() <span class="co"># あるとき：慣れていないと変な感じ</span></span>
+<span id="cb12-2"><a href="magrittr.html#cb12-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun</span>(a)      <span class="co"># ないとき：こっちのほうが分かりやすい</span></span></code></pre></div>
 <p>ある時とない時と比べると，ある時の方がコードが長くなっていて，何が便利なのかわからないだろう．
 著者も正直なところ，少し見たときには便利さが全くわからなかった．</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="magrittr.html#cb17-1" tabindex="-1"></a>  <span class="co"># ないとき：「a &lt;- 」が何度も必要</span></span>
-<span id="cb17-2"><a href="magrittr.html#cb17-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun1</span>(a)</span>
-<span id="cb17-3"><a href="magrittr.html#cb17-3" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun2</span>(a)</span>
-<span id="cb17-4"><a href="magrittr.html#cb17-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun3</span>(a)</span>
-<span id="cb17-5"><a href="magrittr.html#cb17-5" tabindex="-1"></a>  <span class="co"># 力技!：括弧が見づらい</span></span>
-<span id="cb17-6"><a href="magrittr.html#cb17-6" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun3</span>(<span class="fu">fun2</span>(<span class="fu">fun1</span>(a)))</span>
-<span id="cb17-7"><a href="magrittr.html#cb17-7" tabindex="-1"></a>  <span class="co"># あるとき</span></span>
-<span id="cb17-8"><a href="magrittr.html#cb17-8" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">%&gt;%</span>   <span class="co"># aに(以下の結果を)代入</span></span>
-<span id="cb17-9"><a href="magrittr.html#cb17-9" tabindex="-1"></a>  <span class="fu">fun1</span>() <span class="sc">%&gt;%</span> <span class="co"># fun1を実行</span></span>
-<span id="cb17-10"><a href="magrittr.html#cb17-10" tabindex="-1"></a>  <span class="fu">fun2</span>() <span class="sc">%&gt;%</span> <span class="co"># fun2を実行</span></span>
-<span id="cb17-11"><a href="magrittr.html#cb17-11" tabindex="-1"></a>  <span class="fu">fun3</span>() <span class="sc">%&gt;%</span> <span class="co"># fun3を実行</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="magrittr.html#cb13-1" tabindex="-1"></a>  <span class="co"># ないとき：「a &lt;- 」が何度も必要</span></span>
+<span id="cb13-2"><a href="magrittr.html#cb13-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun1</span>(a)</span>
+<span id="cb13-3"><a href="magrittr.html#cb13-3" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun2</span>(a)</span>
+<span id="cb13-4"><a href="magrittr.html#cb13-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun3</span>(a)</span>
+<span id="cb13-5"><a href="magrittr.html#cb13-5" tabindex="-1"></a>  <span class="co"># 力技!：括弧が見づらい</span></span>
+<span id="cb13-6"><a href="magrittr.html#cb13-6" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun3</span>(<span class="fu">fun2</span>(<span class="fu">fun1</span>(a)))</span>
+<span id="cb13-7"><a href="magrittr.html#cb13-7" tabindex="-1"></a>  <span class="co"># あるとき</span></span>
+<span id="cb13-8"><a href="magrittr.html#cb13-8" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">%&gt;%</span>   <span class="co"># aに(以下の結果を)代入</span></span>
+<span id="cb13-9"><a href="magrittr.html#cb13-9" tabindex="-1"></a>  <span class="fu">fun1</span>() <span class="sc">%&gt;%</span> <span class="co"># fun1を実行</span></span>
+<span id="cb13-10"><a href="magrittr.html#cb13-10" tabindex="-1"></a>  <span class="fu">fun2</span>() <span class="sc">%&gt;%</span> <span class="co"># fun2を実行</span></span>
+<span id="cb13-11"><a href="magrittr.html#cb13-11" tabindex="-1"></a>  <span class="fu">fun3</span>() <span class="sc">%&gt;%</span> <span class="co"># fun3を実行</span></span></code></pre></div>
 <p>パイプを使うと，左側のオブジェクトを右側の関数の第1引数として使うため，引数が1つだけの場合は引数を書く必要がなくなる．
 このようにオブジェクトaに対して， fun1，fun2，fun3と順に関数を適用するということは，しばしば出てくる．
 特に，dplyrで<code>select()</code>，<code>filter()</code>，<code>group_by()</code>，<code>summarise()</code>などを使う時はそうである．
@@ -486,7 +483,7 @@ RStudioでは，Ctrl + Shift + Mである．
 <h3><span class="header-section-number">5.4.1</span> <code>%&lt;&gt;%</code>でオブジェクトを代入<a href="magrittr.html#でオブジェクトを代入" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>%&lt;&gt;%</code>は，パイプを使って処理した内容を，最初のオブジェクトに再度代入するときに使う．
 ほんの少しだけ，コードを短くできる．</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="magrittr.html#cb18-1" tabindex="-1"></a><span class="fu">head</span>(mpg) <span class="co"># 燃費データ</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="magrittr.html#cb14-1" tabindex="-1"></a><span class="fu">head</span>(mpg) <span class="co"># 燃費データ</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
 ##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -496,16 +493,16 @@ RStudioでは，Ctrl + Shift + Mである．
 ## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
 ## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
 ## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="magrittr.html#cb20-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
-<span id="cb20-2"><a href="magrittr.html#cb20-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span></span>
-<span id="cb20-3"><a href="magrittr.html#cb20-3" tabindex="-1"></a>  tmp <span class="sc">%&gt;%</span></span>
-<span id="cb20-4"><a href="magrittr.html#cb20-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb20-5"><a href="magrittr.html#cb20-5" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>))</span>
-<span id="cb20-6"><a href="magrittr.html#cb20-6" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="magrittr.html#cb20-7" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
-<span id="cb20-8"><a href="magrittr.html#cb20-8" tabindex="-1"></a>tmp <span class="sc">%&lt;&gt;%</span></span>
-<span id="cb20-9"><a href="magrittr.html#cb20-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb20-10"><a href="magrittr.html#cb20-10" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="magrittr.html#cb16-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
+<span id="cb16-2"><a href="magrittr.html#cb16-2" tabindex="-1"></a>tmp <span class="ot">&lt;-</span></span>
+<span id="cb16-3"><a href="magrittr.html#cb16-3" tabindex="-1"></a>  tmp <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="magrittr.html#cb16-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="magrittr.html#cb16-5" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>))</span>
+<span id="cb16-6"><a href="magrittr.html#cb16-6" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="magrittr.html#cb16-7" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
+<span id="cb16-8"><a href="magrittr.html#cb16-8" tabindex="-1"></a>tmp <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb16-9"><a href="magrittr.html#cb16-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-10"><a href="magrittr.html#cb16-10" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>))</span></code></pre></div>
 <p>注意点としては，試行錯誤でコードを書いている途中は，あまり使わないほうが良いだろう．
 もとのオブジェクトが置き換わるので，処理結果が求めるものでないときに，もとに戻れなくなってしまうためだ．
 コードを短くできるのは1行で，可読性が特に高くなるというわけでもない．
@@ -530,16 +527,16 @@ imapと組み合わせて，保存する画像のファイル名を設定する�
 <p><code>%T&gt;%</code>を使うとコードの途中に，ちょっとだけ枝分かれしたコードを挿入できる．
 有用な機能ではあるが，トリッキーなコードになる可能性があるため，使いすぎには気をつけたい．</p>
 <p>以下の例は，あまり実用的なものではないが，簡単な例として示す．</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="magrittr.html#cb21-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="magrittr.html#cb21-2" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="magrittr.html#cb21-3" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>Species) <span class="sc">%&gt;%</span>          <span class="co"># Speciesで分割</span></span>
-<span id="cb21-4"><a href="magrittr.html#cb21-4" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(print, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%T&gt;%</span> <span class="co"># それぞれ3行だけ表示</span></span>
-<span id="cb21-5"><a href="magrittr.html#cb21-5" tabindex="-1"></a>  {</span>
-<span id="cb21-6"><a href="magrittr.html#cb21-6" tabindex="-1"></a>    sp_path <span class="ot">&lt;&lt;-</span> <span class="fu">paste0</span>(<span class="fu">names</span>(.), <span class="st">&quot;.txt&quot;</span>) <span class="co"># ファイル名：種名.txt</span></span>
-<span id="cb21-7"><a href="magrittr.html#cb21-7" tabindex="-1"></a>  } <span class="sc">%&gt;%</span></span>
-<span id="cb21-8"><a href="magrittr.html#cb21-8" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>select_if, is.numeric) <span class="sc">%&gt;%</span> <span class="co"># 数値だけを選択</span></span>
-<span id="cb21-9"><a href="magrittr.html#cb21-9" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>summarise_all, mean) <span class="sc">%&gt;%</span>   <span class="co"># 平均を算出</span></span>
-<span id="cb21-10"><a href="magrittr.html#cb21-10" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2</span>(<span class="at">.x =</span> ., <span class="at">.y =</span> sp_path, readr<span class="sc">::</span>write_csv) <span class="co"># 種ごとにcsvを保存</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="magrittr.html#cb17-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="magrittr.html#cb17-2" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="magrittr.html#cb17-3" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>Species) <span class="sc">%&gt;%</span>          <span class="co"># Speciesで分割</span></span>
+<span id="cb17-4"><a href="magrittr.html#cb17-4" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(print, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%T&gt;%</span> <span class="co"># それぞれ3行だけ表示</span></span>
+<span id="cb17-5"><a href="magrittr.html#cb17-5" tabindex="-1"></a>  {</span>
+<span id="cb17-6"><a href="magrittr.html#cb17-6" tabindex="-1"></a>    sp_path <span class="ot">&lt;&lt;-</span> <span class="fu">paste0</span>(<span class="fu">names</span>(.), <span class="st">&quot;.txt&quot;</span>) <span class="co"># ファイル名：種名.txt</span></span>
+<span id="cb17-7"><a href="magrittr.html#cb17-7" tabindex="-1"></a>  } <span class="sc">%&gt;%</span></span>
+<span id="cb17-8"><a href="magrittr.html#cb17-8" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>select_if, is.numeric) <span class="sc">%&gt;%</span> <span class="co"># 数値だけを選択</span></span>
+<span id="cb17-9"><a href="magrittr.html#cb17-9" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>summarise_all, mean) <span class="sc">%&gt;%</span>   <span class="co"># 平均を算出</span></span>
+<span id="cb17-10"><a href="magrittr.html#cb17-10" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2</span>(<span class="at">.x =</span> ., <span class="at">.y =</span> sp_path, readr<span class="sc">::</span>write_csv) <span class="co"># 種ごとにcsvを保存</span></span></code></pre></div>
 <p>Tパイプは，Tの文字の形が意味をなしており，左から来たデータを分岐させて右側と下側に流す役割をする．
 上の例では，分岐した途中でファイル名<code>sp_path</code>を生成するために，(わざと)分岐を入れている．
 このコードで本来<code>{}</code>は不要だが，入れておくとTパイプを使っている部分がわかりやすい．
@@ -548,19 +545,19 @@ imapと組み合わせて，保存する画像のファイル名を設定する�
 <code>map2()</code>は<code>map()</code>の引数を2つとるバージョンであり，第1引数に上から来たデータフレームを，第2引数にファイル名を使っている．</p>
 <p>なお，最後の<code>map2()</code>を<code>purrr::walk2</code>とすると種ごとの平均値は画面には出力されず，ファイルへの出力だけになる．
 さらに余談だが，上で「(わざと)」と書いたのは，Tパイプを使わずに，最後のところを<code>map2(.x = ., .y = paste0(names(.), ".txt"), readr::write_csv)</code>とすれば同じ結果が得られるためである．</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="magrittr.html#cb22-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="magrittr.html#cb22-2" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="magrittr.html#cb22-3" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>Species) <span class="sc">%&gt;%</span></span>
-<span id="cb22-4"><a href="magrittr.html#cb22-4" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>select_if, is.numeric) <span class="sc">%&gt;%</span></span>
-<span id="cb22-5"><a href="magrittr.html#cb22-5" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>summarise_all, mean) <span class="sc">%&gt;%</span></span>
-<span id="cb22-6"><a href="magrittr.html#cb22-6" tabindex="-1"></a>  <span class="fu">map2</span>(<span class="at">.x =</span> ., <span class="at">.y =</span> <span class="fu">paste0</span>(<span class="fu">names</span>(.), <span class="st">&quot;.txt&quot;</span>), readr<span class="sc">::</span>write_csv)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="magrittr.html#cb18-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="magrittr.html#cb18-2" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="magrittr.html#cb18-3" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>Species) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="magrittr.html#cb18-4" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>select_if, is.numeric) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="magrittr.html#cb18-5" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>summarise_all, mean) <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="magrittr.html#cb18-6" tabindex="-1"></a>  <span class="fu">map2</span>(<span class="at">.x =</span> ., <span class="at">.y =</span> <span class="fu">paste0</span>(<span class="fu">names</span>(.), <span class="st">&quot;.txt&quot;</span>), readr<span class="sc">::</span>write_csv)</span></code></pre></div>
 </div>
 <div id="でのショートカット" class="section level3 hasAnchor" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> <code>%$%</code>で<code>$</code>のショートカット<a href="magrittr.html#でのショートカット" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>%$%</code>は，<code>%&gt;%</code>と<code>.$</code>の組み合わせのショートカットである．</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="magrittr.html#cb23-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="magrittr.html#cb19-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="magrittr.html#cb25-1" tabindex="-1"></a>mpg <span class="sc">%$%</span>   manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="magrittr.html#cb21-1" tabindex="-1"></a>mpg <span class="sc">%$%</span>   manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
 <p>パッケージ開発ではパイプを使った場合の<code>.</code>が推奨されていない．
 パッケージ開発時に欠かせないチェック(R CMD check)ではpossible problemとしてWarningが出力される．
@@ -570,14 +567,14 @@ Githubでパッケージを公開するならそれでも問題はないが，Ch
 <!--
 なお，`%>%`だけなら，usethis::use_pipe()とすれば，開発パッケージのDESCRIPTIONに，importFrom(magrittr,"%>%")を書いてくれる．
 --></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="magrittr.html#cb27-1" tabindex="-1"></a><span class="fu">importFrom</span>(magrittr,<span class="st">&quot;%$%&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="magrittr.html#cb23-1" tabindex="-1"></a><span class="fu">importFrom</span>(magrittr,<span class="st">&quot;%$%&quot;</span>)</span></code></pre></div>
 <p>なお余談ではあるが，この場合は<code>$</code>の代わりに<code>[[</code>と<code>]]</code>を使っても同じ結果が得られる．
 <code>[</code>と<code>]</code>ではデータフレームの1列をそのまま取り出すので，結果が異なる．</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="magrittr.html#cb28-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer      <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="magrittr.html#cb24-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer      <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="magrittr.html#cb30-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[[<span class="st">&quot;manufacturer&quot;</span>]] <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="magrittr.html#cb26-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[[<span class="st">&quot;manufacturer&quot;</span>]] <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="magrittr.html#cb32-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[<span class="st">&quot;manufacturer&quot;</span>]   <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="magrittr.html#cb28-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[<span class="st">&quot;manufacturer&quot;</span>]   <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 1
 ##   manufacturer
 ##   &lt;chr&gt;       
@@ -589,11 +586,11 @@ Githubでパッケージを公開するならそれでも問題はないが，Ch
 ## 6 audi</code></pre>
 <p><code>[[ ]]</code>と<code>[ ]</code>は，それぞれ<code>[[</code>と<code>[</code>という関数であるため，以下のように書くことができる．
 この場合，第1引数がパイプの前から引き継がれるため，<code>.</code>を明示しなくてもよい．</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="magrittr.html#cb34-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">$</span><span class="st">`</span>(manufacturer)    <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="magrittr.html#cb30-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">$</span><span class="st">`</span>(manufacturer)    <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="magrittr.html#cb36-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="co"># mpg %&gt;% `[[`(., &quot;manufacturer&quot;) と同じ</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="magrittr.html#cb32-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="co"># mpg %&gt;% `[[`(., &quot;manufacturer&quot;) と同じ</span></span></code></pre></div>
 <pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="magrittr.html#cb38-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>)  <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="magrittr.html#cb34-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>)  <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 1
 ##   manufacturer
 ##   &lt;chr&gt;       
@@ -611,12 +608,12 @@ Githubでパッケージを公開するならそれでも問題はないが，Ch
 例えば，パイプを使ったコードの中で列名を変更したいことがある．
 <code>set_colnames()</code>はデータフレームの列名を変更する時に便利だ．
 これを使わずに列名を変更しようとすると，ちょっとトリッキーな関数<code>colnames&lt;-()</code>を使うか，途中でコードを区切る必要がある．</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="magrittr.html#cb40-1" tabindex="-1"></a>hoge <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(mpg, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb40-2"><a href="magrittr.html#cb40-2" tabindex="-1"></a>cnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>)</span>
-<span id="cb40-3"><a href="magrittr.html#cb40-3" tabindex="-1"></a> <span class="co"># colnames(hoge) &lt;- cnames      # 通常のコード</span></span>
-<span id="cb40-4"><a href="magrittr.html#cb40-4" tabindex="-1"></a><span class="st">`</span><span class="at">colnames&lt;-</span><span class="st">`</span>(hoge, cnames)       <span class="co"># トリッキーなコード</span></span>
-<span id="cb40-5"><a href="magrittr.html#cb40-5" tabindex="-1"></a>hoge <span class="sc">%&gt;%</span> </span>
-<span id="cb40-6"><a href="magrittr.html#cb40-6" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">set_colnames</span>(cnames)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="magrittr.html#cb36-1" tabindex="-1"></a>hoge <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(mpg, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb36-2"><a href="magrittr.html#cb36-2" tabindex="-1"></a>cnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>)</span>
+<span id="cb36-3"><a href="magrittr.html#cb36-3" tabindex="-1"></a> <span class="co"># colnames(hoge) &lt;- cnames      # 通常のコード</span></span>
+<span id="cb36-4"><a href="magrittr.html#cb36-4" tabindex="-1"></a><span class="st">`</span><span class="at">colnames&lt;-</span><span class="st">`</span>(hoge, cnames)       <span class="co"># トリッキーなコード</span></span>
+<span id="cb36-5"><a href="magrittr.html#cb36-5" tabindex="-1"></a>hoge <span class="sc">%&gt;%</span> </span>
+<span id="cb36-6"><a href="magrittr.html#cb36-6" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">set_colnames</span>(cnames)</span></code></pre></div>
 <!--
 ところで，`dplyr::rename()`や`dplyr::select()`を使って列名を変更する方法もあるが，もとの列名も指定する必要がある．
 -->
@@ -624,19 +621,19 @@ Githubでパッケージを公開するならそれでも問題はないが，Ch
 <div id="おまけmagrittrの不思議な関数たち" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> おまけ：magrittrの不思議な関数たち<a href="magrittr.html#おまけmagrittrの不思議な関数たち" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>magrittrには以下のような関数もある．</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="magrittr.html#cb41-1" tabindex="-1"></a>not          <span class="co"># `!`，`n&#39;est pas`(フランス語)も同じ</span></span>
-<span id="cb41-2"><a href="magrittr.html#cb41-2" tabindex="-1"></a>add          <span class="co"># `+`</span></span>
-<span id="cb41-3"><a href="magrittr.html#cb41-3" tabindex="-1"></a>subtract     <span class="co"># `-`</span></span>
-<span id="cb41-4"><a href="magrittr.html#cb41-4" tabindex="-1"></a>multiply_by  <span class="co"># `*`</span></span>
-<span id="cb41-5"><a href="magrittr.html#cb41-5" tabindex="-1"></a>divide_by    <span class="co"># `/`</span></span>
-<span id="cb41-6"><a href="magrittr.html#cb41-6" tabindex="-1"></a>and          <span class="co"># `&amp;`</span></span>
-<span id="cb41-7"><a href="magrittr.html#cb41-7" tabindex="-1"></a>or           <span class="co"># `|`</span></span>
-<span id="cb41-8"><a href="magrittr.html#cb41-8" tabindex="-1"></a>equals       <span class="co"># `==`</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="magrittr.html#cb37-1" tabindex="-1"></a>not          <span class="co"># `!`，`n&#39;est pas`(フランス語)も同じ</span></span>
+<span id="cb37-2"><a href="magrittr.html#cb37-2" tabindex="-1"></a>add          <span class="co"># `+`</span></span>
+<span id="cb37-3"><a href="magrittr.html#cb37-3" tabindex="-1"></a>subtract     <span class="co"># `-`</span></span>
+<span id="cb37-4"><a href="magrittr.html#cb37-4" tabindex="-1"></a>multiply_by  <span class="co"># `*`</span></span>
+<span id="cb37-5"><a href="magrittr.html#cb37-5" tabindex="-1"></a>divide_by    <span class="co"># `/`</span></span>
+<span id="cb37-6"><a href="magrittr.html#cb37-6" tabindex="-1"></a>and          <span class="co"># `&amp;`</span></span>
+<span id="cb37-7"><a href="magrittr.html#cb37-7" tabindex="-1"></a>or           <span class="co"># `|`</span></span>
+<span id="cb37-8"><a href="magrittr.html#cb37-8" tabindex="-1"></a>equals       <span class="co"># `==`</span></span></code></pre></div>
 <p><code>?not</code>とすれば，似たような不思議な関数の一覧と説明が出てくる．
 パイプと一緒に使うと<code>add</code>であれば，<code>+</code>と同じ機能であるがパイプの中でつかたときに若干読みやすい気がする．</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="magrittr.html#cb42-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="magrittr.html#cb38-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="magrittr.html#cb44-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="fu">add</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="magrittr.html#cb40-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="fu">add</span>(<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
 
 </div>

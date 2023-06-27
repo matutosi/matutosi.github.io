@@ -411,19 +411,17 @@ ls("package:RDCOMClient")
 <p>CRANには登録されておらず，ウェブページかGitHubからインストールする．
 <code>install.packages()</code>でインストールする場合は，バイナリなので比較的時間が早いが，Rのバージョンによってはうまくインストールできないかもしれない．
 <code>install_github()</code>の場合は，コンパイルするのに少し時間がかかる．</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="RDCOMClient.html#cb371-1" tabindex="-1"></a>  <span class="co"># どちらか一方でうまくいけばOK</span></span>
-<span id="cb371-2"><a href="RDCOMClient.html#cb371-2" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">install.packages</span>(<span class="st">&quot;RDCOMClient&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;http://www.omegahat.net/R&quot;</span>, <span class="at">type =</span> <span class="st">&quot;win.binary&quot;</span>)</span>
-<span id="cb371-3"><a href="RDCOMClient.html#cb371-3" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;omegahat/RDCOMClient&quot;</span>)</span>
-<span id="cb371-4"><a href="RDCOMClient.html#cb371-4" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/automater&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="RDCOMClient.html#cb372-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.3.1</code></pre>
-<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.3.1</code></pre>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="RDCOMClient.html#cb375-1" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
-<span id="cb375-2"><a href="RDCOMClient.html#cb375-2" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="RDCOMClient.html#cb308-1" tabindex="-1"></a>  <span class="co"># どちらか一方でうまくいけばOK</span></span>
+<span id="cb308-2"><a href="RDCOMClient.html#cb308-2" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">install.packages</span>(<span class="st">&quot;RDCOMClient&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;http://www.omegahat.net/R&quot;</span>, <span class="at">type =</span> <span class="st">&quot;win.binary&quot;</span>)</span>
+<span id="cb308-3"><a href="RDCOMClient.html#cb308-3" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;omegahat/RDCOMClient&quot;</span>)</span>
+<span id="cb308-4"><a href="RDCOMClient.html#cb308-4" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;matutosi/automater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="RDCOMClient.html#cb309-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb309-2"><a href="RDCOMClient.html#cb309-2" tabindex="-1"></a><span class="fu">library</span>(RDCOMClient)</span>
+<span id="cb309-3"><a href="RDCOMClient.html#cb309-3" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
 </div>
 <div id="ドキュメントの形式変換" class="section level2 hasAnchor" number="21.2">
 <h2><span class="header-section-number">21.2</span> ドキュメントの形式変換<a href="RDCOMClient.html#ドキュメントの形式変換" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="RDCOMClient.html#cb376-1" tabindex="-1"></a>convert_docs</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="RDCOMClient.html#cb310-1" tabindex="-1"></a>convert_docs</span></code></pre></div>
 <pre><code>## function (path, format) 
 ## {
 ##     if (fs::path_ext(path) == format) {
@@ -444,7 +442,7 @@ ls("package:RDCOMClient")
 ##     doc$close()
 ##     return(invisible(converted))
 ## }
-## &lt;bytecode: 0x0000025005ac3528&gt;
+## &lt;bytecode: 0x000001965f430320&gt;
 ## &lt;environment: namespace:automater&gt;</code></pre>
 <p><code>convert_docs()</code>の中でファイルの読み込み・保存でファイル名を指定する．
 その際に<code>normalizePath()</code>を使う必要がある．
