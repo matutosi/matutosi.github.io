@@ -423,49 +423,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="インストールと初期設定" class="section level3 hasAnchor" number="22.1.1">
 <h3><span class="header-section-number">22.1.1</span> インストールと初期設定<a href="microsoft365r.html#インストールと初期設定" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>この操作は，最初に1回だけ実行すればOK.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="microsoft365r.html#cb311-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># インストール</span></span>
-<span id="cb311-2"><a href="microsoft365r.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;Microsoft365R&quot;</span>)</span>
-<span id="cb311-3"><a href="microsoft365r.html#cb311-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージの読み込み</span></span></code></pre></div>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="microsoft365r.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb312-2"><a href="microsoft365r.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
-<span id="cb312-3"><a href="microsoft365r.html#cb312-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># 会社など組織で契約している場合</span></span>
-<span id="cb312-4"><a href="microsoft365r.html#cb312-4" aria-hidden="true" tabindex="-1"></a>Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
-<span id="cb312-5"><a href="microsoft365r.html#cb312-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># 個人利用の場合</span></span>
-<span id="cb312-6"><a href="microsoft365r.html#cb312-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Microsoft365R::get_personal_outlook()</span></span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="microsoft365r.html#cb311-1" tabindex="-1"></a>  <span class="co"># インストール</span></span>
+<span id="cb311-2"><a href="microsoft365r.html#cb311-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;Microsoft365R&quot;</span>)</span>
+<span id="cb311-3"><a href="microsoft365r.html#cb311-3" tabindex="-1"></a>  <span class="co"># パッケージの読み込み</span></span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="microsoft365r.html#cb312-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb312-2"><a href="microsoft365r.html#cb312-2" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
+<span id="cb312-3"><a href="microsoft365r.html#cb312-3" tabindex="-1"></a> <span class="co"># 会社など組織で契約している場合</span></span>
+<span id="cb312-4"><a href="microsoft365r.html#cb312-4" tabindex="-1"></a>Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb312-5"><a href="microsoft365r.html#cb312-5" tabindex="-1"></a> <span class="co"># 個人利用の場合</span></span>
+<span id="cb312-6"><a href="microsoft365r.html#cb312-6" tabindex="-1"></a>  <span class="co"># Microsoft365R::get_personal_outlook()</span></span></code></pre></div>
 </div>
 <div id="とりあえず使う" class="section level3 hasAnchor" number="22.1.2">
 <h3><span class="header-section-number">22.1.2</span> とりあえず使う<a href="microsoft365r.html#とりあえず使う" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>まずは，試しにメールを作って送ってみる．</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="microsoft365r.html#cb313-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># 会社などで組織で契約している場合</span></span>
-<span id="cb313-2"><a href="microsoft365r.html#cb313-2" aria-hidden="true" tabindex="-1"></a>outlook <span class="ot">&lt;-</span> Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
-<span id="cb313-3"><a href="microsoft365r.html#cb313-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># 個人利用の場合</span></span>
-<span id="cb313-4"><a href="microsoft365r.html#cb313-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># outlook &lt;- Microsoft365R::get_personal_outlook()</span></span>
-<span id="cb313-5"><a href="microsoft365r.html#cb313-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb313-6"><a href="microsoft365r.html#cb313-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 個別にemailを送る場合</span></span>
-<span id="cb313-7"><a href="microsoft365r.html#cb313-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
-<span id="cb313-8"><a href="microsoft365r.html#cb313-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メールはoutlookの下書きフォルダにも保存されている</span></span>
-<span id="cb313-9"><a href="microsoft365r.html#cb313-9" aria-hidden="true" tabindex="-1"></a>em <span class="ot">&lt;-</span> </span>
-<span id="cb313-10"><a href="microsoft365r.html#cb313-10" aria-hidden="true" tabindex="-1"></a>  outlook<span class="sc">$</span><span class="fu">create_email</span>(</span>
-<span id="cb313-11"><a href="microsoft365r.html#cb313-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">body =</span> <span class="st">&quot;Hello from R</span><span class="sc">\n</span><span class="st">Hello from R</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
-<span id="cb313-12"><a href="microsoft365r.html#cb313-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">&quot;Hello&quot;</span>,</span>
-<span id="cb313-13"><a href="microsoft365r.html#cb313-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">&quot;matutosi@gmail.com&quot;</span>, </span>
-<span id="cb313-14"><a href="microsoft365r.html#cb313-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">cc =</span> <span class="st">&quot;matutosi@konan-wu.ac.jp&quot;</span></span>
-<span id="cb313-15"><a href="microsoft365r.html#cb313-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb313-16"><a href="microsoft365r.html#cb313-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb313-17"><a href="microsoft365r.html#cb313-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール送信</span></span>
-<span id="cb313-18"><a href="microsoft365r.html#cb313-18" aria-hidden="true" tabindex="-1"></a>em<span class="sc">$</span><span class="fu">send</span>()</span>
-<span id="cb313-19"><a href="microsoft365r.html#cb313-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb313-20"><a href="microsoft365r.html#cb313-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># outlookの下書きフォルダからメールを取り出す</span></span>
-<span id="cb313-21"><a href="microsoft365r.html#cb313-21" aria-hidden="true" tabindex="-1"></a>drafts <span class="ot">&lt;-</span> outlook<span class="sc">$</span><span class="fu">get_drafts</span>()<span class="sc">$</span><span class="fu">list_emails</span>()</span>
-<span id="cb313-22"><a href="microsoft365r.html#cb313-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 下書きフォルダのメール一覧</span></span>
-<span id="cb313-23"><a href="microsoft365r.html#cb313-23" aria-hidden="true" tabindex="-1"></a>drafts</span>
-<span id="cb313-24"><a href="microsoft365r.html#cb313-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 下書きフォルダのメールの1つ目を送信</span></span>
-<span id="cb313-25"><a href="microsoft365r.html#cb313-25" aria-hidden="true" tabindex="-1"></a>drafts[[<span class="dv">1</span>]]<span class="sc">$</span><span class="fu">send</span>()</span>
-<span id="cb313-26"><a href="microsoft365r.html#cb313-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb313-27"><a href="microsoft365r.html#cb313-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 受信トレイのメール一覧</span></span>
-<span id="cb313-28"><a href="microsoft365r.html#cb313-28" aria-hidden="true" tabindex="-1"></a>inbox <span class="ot">&lt;-</span> outlook<span class="sc">$</span><span class="fu">get_inbox</span>()<span class="sc">$</span><span class="fu">list_emails</span>()</span>
-<span id="cb313-29"><a href="microsoft365r.html#cb313-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 受信トレイの1つ目の内容</span></span>
-<span id="cb313-30"><a href="microsoft365r.html#cb313-30" aria-hidden="true" tabindex="-1"></a>inbox[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="microsoft365r.html#cb313-1" tabindex="-1"></a> <span class="co"># 会社などで組織で契約している場合</span></span>
+<span id="cb313-2"><a href="microsoft365r.html#cb313-2" tabindex="-1"></a>outlook <span class="ot">&lt;-</span> Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb313-3"><a href="microsoft365r.html#cb313-3" tabindex="-1"></a> <span class="co"># 個人利用の場合</span></span>
+<span id="cb313-4"><a href="microsoft365r.html#cb313-4" tabindex="-1"></a>  <span class="co"># outlook &lt;- Microsoft365R::get_personal_outlook()</span></span>
+<span id="cb313-5"><a href="microsoft365r.html#cb313-5" tabindex="-1"></a></span>
+<span id="cb313-6"><a href="microsoft365r.html#cb313-6" tabindex="-1"></a>  <span class="co"># 個別にemailを送る場合</span></span>
+<span id="cb313-7"><a href="microsoft365r.html#cb313-7" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
+<span id="cb313-8"><a href="microsoft365r.html#cb313-8" tabindex="-1"></a>  <span class="co"># メールはoutlookの下書きフォルダにも保存されている</span></span>
+<span id="cb313-9"><a href="microsoft365r.html#cb313-9" tabindex="-1"></a>em <span class="ot">&lt;-</span> </span>
+<span id="cb313-10"><a href="microsoft365r.html#cb313-10" tabindex="-1"></a>  outlook<span class="sc">$</span><span class="fu">create_email</span>(</span>
+<span id="cb313-11"><a href="microsoft365r.html#cb313-11" tabindex="-1"></a>    <span class="at">body =</span> <span class="st">&quot;Hello from R</span><span class="sc">\n</span><span class="st">Hello from R</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb313-12"><a href="microsoft365r.html#cb313-12" tabindex="-1"></a>    <span class="at">subject =</span> <span class="st">&quot;Hello&quot;</span>,</span>
+<span id="cb313-13"><a href="microsoft365r.html#cb313-13" tabindex="-1"></a>    <span class="at">to =</span> <span class="st">&quot;matutosi@gmail.com&quot;</span>, </span>
+<span id="cb313-14"><a href="microsoft365r.html#cb313-14" tabindex="-1"></a>    <span class="at">cc =</span> <span class="st">&quot;matutosi@konan-wu.ac.jp&quot;</span></span>
+<span id="cb313-15"><a href="microsoft365r.html#cb313-15" tabindex="-1"></a>  )</span>
+<span id="cb313-16"><a href="microsoft365r.html#cb313-16" tabindex="-1"></a></span>
+<span id="cb313-17"><a href="microsoft365r.html#cb313-17" tabindex="-1"></a>  <span class="co"># メール送信</span></span>
+<span id="cb313-18"><a href="microsoft365r.html#cb313-18" tabindex="-1"></a>em<span class="sc">$</span><span class="fu">send</span>()</span>
+<span id="cb313-19"><a href="microsoft365r.html#cb313-19" tabindex="-1"></a></span>
+<span id="cb313-20"><a href="microsoft365r.html#cb313-20" tabindex="-1"></a>  <span class="co"># outlookの下書きフォルダからメールを取り出す</span></span>
+<span id="cb313-21"><a href="microsoft365r.html#cb313-21" tabindex="-1"></a>drafts <span class="ot">&lt;-</span> outlook<span class="sc">$</span><span class="fu">get_drafts</span>()<span class="sc">$</span><span class="fu">list_emails</span>()</span>
+<span id="cb313-22"><a href="microsoft365r.html#cb313-22" tabindex="-1"></a>  <span class="co"># 下書きフォルダのメール一覧</span></span>
+<span id="cb313-23"><a href="microsoft365r.html#cb313-23" tabindex="-1"></a>drafts</span>
+<span id="cb313-24"><a href="microsoft365r.html#cb313-24" tabindex="-1"></a>  <span class="co"># 下書きフォルダのメールの1つ目を送信</span></span>
+<span id="cb313-25"><a href="microsoft365r.html#cb313-25" tabindex="-1"></a>drafts[[<span class="dv">1</span>]]<span class="sc">$</span><span class="fu">send</span>()</span>
+<span id="cb313-26"><a href="microsoft365r.html#cb313-26" tabindex="-1"></a></span>
+<span id="cb313-27"><a href="microsoft365r.html#cb313-27" tabindex="-1"></a>  <span class="co"># 受信トレイのメール一覧</span></span>
+<span id="cb313-28"><a href="microsoft365r.html#cb313-28" tabindex="-1"></a>inbox <span class="ot">&lt;-</span> outlook<span class="sc">$</span><span class="fu">get_inbox</span>()<span class="sc">$</span><span class="fu">list_emails</span>()</span>
+<span id="cb313-29"><a href="microsoft365r.html#cb313-29" tabindex="-1"></a>  <span class="co"># 受信トレイの1つ目の内容</span></span>
+<span id="cb313-30"><a href="microsoft365r.html#cb313-30" tabindex="-1"></a>inbox[[<span class="dv">1</span>]]</span></code></pre></div>
 </div>
 <div id="メールの一斉送信" class="section level3 hasAnchor" number="22.1.3">
 <h3><span class="header-section-number">22.1.3</span> メールの一斉送信<a href="microsoft365r.html#メールの一斉送信" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -490,23 +490,23 @@ CCとBCCは任意．<br />
 添付ファイルがあれば，ファイル名を指定．
 複数ファイルを添付するときは，カンマでパス(ファイル名)を区切る．
 絶対パスで指定すると間違いは少ない．</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="microsoft365r.html#cb314-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 宛先や本文をエクセルで作成しておき</span></span>
-<span id="cb314-2"><a href="microsoft365r.html#cb314-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   一斉にメールを作成・送信する場合</span></span>
-<span id="cb314-3"><a href="microsoft365r.html#cb314-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb314-4"><a href="microsoft365r.html#cb314-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 関数の読み込み</span></span>
-<span id="cb314-5"><a href="microsoft365r.html#cb314-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://gist.githubusercontent.com/matutosi/bed00135698c8e3d2c49ef08d12eef9c/raw/6acc2de844eeeab03aaf36f2391e223d621b36a8/outlook.R&quot;</span>)</span>
-<span id="cb314-6"><a href="microsoft365r.html#cb314-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb314-7"><a href="microsoft365r.html#cb314-7" aria-hidden="true" tabindex="-1"></a>outlook <span class="ot">&lt;-</span> Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
-<span id="cb314-8"><a href="microsoft365r.html#cb314-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># エクセルファイルの内容</span></span>
-<span id="cb314-9"><a href="microsoft365r.html#cb314-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   working directoryにファイルがない場合は，</span></span>
-<span id="cb314-10"><a href="microsoft365r.html#cb314-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   絶対パス(&quot;c:/user/documents/outlook.xlsx&quot;など)で指定</span></span>
-<span id="cb314-11"><a href="microsoft365r.html#cb314-11" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;outlook.xlsx&quot;</span></span>
-<span id="cb314-12"><a href="microsoft365r.html#cb314-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成・送信</span></span>
-<span id="cb314-13"><a href="microsoft365r.html#cb314-13" aria-hidden="true" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb314-14"><a href="microsoft365r.html#cb314-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb314-15"><a href="microsoft365r.html#cb314-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
-<span id="cb314-16"><a href="microsoft365r.html#cb314-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   &quot;send = FALSE&quot; にすれば，メールを作成して下書きに保存</span></span>
-<span id="cb314-17"><a href="microsoft365r.html#cb314-17" aria-hidden="true" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="microsoft365r.html#cb314-1" tabindex="-1"></a>  <span class="co"># 宛先や本文をエクセルで作成しておき</span></span>
+<span id="cb314-2"><a href="microsoft365r.html#cb314-2" tabindex="-1"></a>  <span class="co">#   一斉にメールを作成・送信する場合</span></span>
+<span id="cb314-3"><a href="microsoft365r.html#cb314-3" tabindex="-1"></a></span>
+<span id="cb314-4"><a href="microsoft365r.html#cb314-4" tabindex="-1"></a>  <span class="co"># 関数の読み込み</span></span>
+<span id="cb314-5"><a href="microsoft365r.html#cb314-5" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://gist.githubusercontent.com/matutosi/bed00135698c8e3d2c49ef08d12eef9c/raw/6acc2de844eeeab03aaf36f2391e223d621b36a8/outlook.R&quot;</span>)</span>
+<span id="cb314-6"><a href="microsoft365r.html#cb314-6" tabindex="-1"></a></span>
+<span id="cb314-7"><a href="microsoft365r.html#cb314-7" tabindex="-1"></a>outlook <span class="ot">&lt;-</span> Microsoft365R<span class="sc">::</span><span class="fu">get_business_outlook</span>()</span>
+<span id="cb314-8"><a href="microsoft365r.html#cb314-8" tabindex="-1"></a>  <span class="co"># エクセルファイルの内容</span></span>
+<span id="cb314-9"><a href="microsoft365r.html#cb314-9" tabindex="-1"></a>  <span class="co">#   working directoryにファイルがない場合は，</span></span>
+<span id="cb314-10"><a href="microsoft365r.html#cb314-10" tabindex="-1"></a>  <span class="co">#   絶対パス(&quot;c:/user/documents/outlook.xlsx&quot;など)で指定</span></span>
+<span id="cb314-11"><a href="microsoft365r.html#cb314-11" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;outlook.xlsx&quot;</span></span>
+<span id="cb314-12"><a href="microsoft365r.html#cb314-12" tabindex="-1"></a>  <span class="co"># メール作成・送信</span></span>
+<span id="cb314-13"><a href="microsoft365r.html#cb314-13" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb314-14"><a href="microsoft365r.html#cb314-14" tabindex="-1"></a></span>
+<span id="cb314-15"><a href="microsoft365r.html#cb314-15" tabindex="-1"></a>  <span class="co"># メール作成のみ</span></span>
+<span id="cb314-16"><a href="microsoft365r.html#cb314-16" tabindex="-1"></a>  <span class="co">#   &quot;send = FALSE&quot; にすれば，メールを作成して下書きに保存</span></span>
+<span id="cb314-17"><a href="microsoft365r.html#cb314-17" tabindex="-1"></a><span class="fu">create_email</span>(path, outlook, <span class="at">send =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 
 </div>
 </div>

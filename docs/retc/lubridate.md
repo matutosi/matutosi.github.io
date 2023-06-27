@@ -406,10 +406,10 @@ title_2 <- paste0(year(x) + 1, "-" ,month(x))
 calendR::calendR(year(x)    , month(x), title = title_1, start = "M", weeknames = weeknames)
 ```
 
-<img src="lubridate_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](lubridate_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
 
 ```r
 calendR::calendR(year(x) + 1, month(x), title = title_2, start = "M", weeknames = weeknames)
 ```
 
-<img src="lubridate_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+![](lubridate_files/figure-latex/unnamed-chunk-16-2.pdf)<!-- --> 

@@ -120,7 +120,7 @@ path
 ```
 
 ```
-## C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe
+## C:/Users/matutosi/AppData/Local/Programs/Python/Python311/python.exe
 ```
 
 ```r
@@ -203,7 +203,7 @@ tibble::tibble(x, y) %>%
     ggplot2::theme_bw()
 ```
 
-<img src="reticulate_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+![](reticulate_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
 
 
 ## PythoとRとの変数のやり取り

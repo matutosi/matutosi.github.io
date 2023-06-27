@@ -408,9 +408,9 @@ DeepLのページに文章を入力・貼り付けするだけで簡単に使え
 Rから直接操作するのはちょっと面倒だが，CRANに登録されているdeeplrパッケージのお世話になれば簡単にDeepLを使いこなせる．</p>
 <div id="準備-6" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> 準備<a href="deeplr.html#準備-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="deeplr.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;deeplr&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="deeplr.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb175-2"><a href="deeplr.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deeplr)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="deeplr.html#cb174-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;deeplr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="deeplr.html#cb175-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb175-2"><a href="deeplr.html#cb175-2" tabindex="-1"></a><span class="fu">library</span>(deeplr)</span></code></pre></div>
 </div>
 <div id="deeplのapi" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> DeepLのAPI<a href="deeplr.html#deeplのapi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -427,48 +427,48 @@ https://powervbadesktop.com/web27/
 <code>str_detect()</code>の正規表現で<code>"^[^\x01-\x7E]"</code>として全角文字ではじまる文字列を抽出している．
 正規表現は若干ややこしいが，<code>[^\x01-\x7E]"</code>の<code>^</code>と<code>\x01-\x7E</code>はそれぞれ”以外”と”1バイト文字”の意味，最初の<code>^</code>は”行頭”の意味である．
 つまり，1バイト文字以外が行頭のものということだ．</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="deeplr.html#cb176-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> </span>
-<span id="cb176-2"><a href="deeplr.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;index.Rmd&quot;</span>, <span class="at">col_names =</span> <span class="st">&quot;jp&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb176-3"><a href="deeplr.html#cb176-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(jp, <span class="st">&quot;^[^</span><span class="sc">\x01</span><span class="st">-</span><span class="sc">\x7E</span><span class="st">]&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb176-4"><a href="deeplr.html#cb176-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb176-5"><a href="deeplr.html#cb176-5" aria-hidden="true" tabindex="-1"></a>en <span class="ot">&lt;-</span> </span>
-<span id="cb176-6"><a href="deeplr.html#cb176-6" aria-hidden="true" tabindex="-1"></a>  text <span class="sc">%&gt;%</span></span>
-<span id="cb176-7"><a href="deeplr.html#cb176-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$</span><span class="st">`</span>(<span class="st">&quot;jp&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb176-8"><a href="deeplr.html#cb176-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb176-9"><a href="deeplr.html#cb176-9" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(deeplr<span class="sc">::</span>translate2, </span>
-<span id="cb176-10"><a href="deeplr.html#cb176-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_lang =</span> <span class="st">&quot;EN&quot;</span>, <span class="at">source_lang =</span> <span class="st">&quot;JP&quot;</span>, <span class="at">auth_key =</span> <span class="st">&quot;your_api_key&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb176-11"><a href="deeplr.html#cb176-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span>
-<span id="cb176-12"><a href="deeplr.html#cb176-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb176-13"><a href="deeplr.html#cb176-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;誰でもそうだろうが，面倒くさい仕事はしたくない．&quot;</span></span>
-<span id="cb176-14"><a href="deeplr.html#cb176-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;というか，したくないことが面倒くさいのだろう．&quot;</span></span>
-<span id="cb176-15"><a href="deeplr.html#cb176-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;ニワトリとタマゴの議論は別として，できることなら面倒な作業はしたくない．&quot;</span></span>
-<span id="cb176-16"><a href="deeplr.html#cb176-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;でも，しなければならないのなら自動化したい．&quot;</span></span>
-<span id="cb176-17"><a href="deeplr.html#cb176-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;もちろんすべての仕事を自動化できるわけでもないし，作業内容によっては文章執筆のように自動化すべきでないこともある．&quot;</span></span>
-<span id="cb176-18"><a href="deeplr.html#cb176-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;作業の自動化には，プログラミング言語を使うことが多い．</span></span>
-<span id="cb176-19"><a href="deeplr.html#cb176-19" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;I don&#39;t want to do a tedious job, as anyone would.&quot;</span></span>
-<span id="cb176-20"><a href="deeplr.html#cb176-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;Or perhaps it is the hassle of not wanting to.&quot;</span></span>
-<span id="cb176-21"><a href="deeplr.html#cb176-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;Aside from the chicken and egg argument, I don&#39;t want to go through the hassle if I can help it.&quot;</span></span>
-<span id="cb176-22"><a href="deeplr.html#cb176-22" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;But if I have to do it, I want to automate it.&quot;</span></span>
-<span id="cb176-23"><a href="deeplr.html#cb176-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;Of course, not all tasks can be automated, and some tasks, such as writing, should not be automated.&quot;</span></span>
-<span id="cb176-24"><a href="deeplr.html#cb176-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;Programming languages are often used to automate tasks.&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="deeplr.html#cb176-1" tabindex="-1"></a>text <span class="ot">&lt;-</span> </span>
+<span id="cb176-2"><a href="deeplr.html#cb176-2" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;index.Rmd&quot;</span>, <span class="at">col_names =</span> <span class="st">&quot;jp&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb176-3"><a href="deeplr.html#cb176-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(jp, <span class="st">&quot;^[^</span><span class="sc">\x01</span><span class="st">-</span><span class="sc">\x7E</span><span class="st">]&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb176-4"><a href="deeplr.html#cb176-4" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb176-5"><a href="deeplr.html#cb176-5" tabindex="-1"></a>en <span class="ot">&lt;-</span> </span>
+<span id="cb176-6"><a href="deeplr.html#cb176-6" tabindex="-1"></a>  text <span class="sc">%&gt;%</span></span>
+<span id="cb176-7"><a href="deeplr.html#cb176-7" tabindex="-1"></a>  <span class="st">`</span><span class="at">$</span><span class="st">`</span>(<span class="st">&quot;jp&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb176-8"><a href="deeplr.html#cb176-8" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb176-9"><a href="deeplr.html#cb176-9" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(deeplr<span class="sc">::</span>translate2, </span>
+<span id="cb176-10"><a href="deeplr.html#cb176-10" tabindex="-1"></a>    <span class="at">target_lang =</span> <span class="st">&quot;EN&quot;</span>, <span class="at">source_lang =</span> <span class="st">&quot;JP&quot;</span>, <span class="at">auth_key =</span> <span class="st">&quot;your_api_key&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb176-11"><a href="deeplr.html#cb176-11" tabindex="-1"></a>  <span class="fu">print</span>()</span>
+<span id="cb176-12"><a href="deeplr.html#cb176-12" tabindex="-1"></a></span>
+<span id="cb176-13"><a href="deeplr.html#cb176-13" tabindex="-1"></a><span class="do">## [1] &quot;誰でもそうだろうが，面倒くさい仕事はしたくない．&quot;</span></span>
+<span id="cb176-14"><a href="deeplr.html#cb176-14" tabindex="-1"></a><span class="do">## [2] &quot;というか，したくないことが面倒くさいのだろう．&quot;</span></span>
+<span id="cb176-15"><a href="deeplr.html#cb176-15" tabindex="-1"></a><span class="do">## [3] &quot;ニワトリとタマゴの議論は別として，できることなら面倒な作業はしたくない．&quot;</span></span>
+<span id="cb176-16"><a href="deeplr.html#cb176-16" tabindex="-1"></a><span class="do">## [4] &quot;でも，しなければならないのなら自動化したい．&quot;</span></span>
+<span id="cb176-17"><a href="deeplr.html#cb176-17" tabindex="-1"></a><span class="do">## [5] &quot;もちろんすべての仕事を自動化できるわけでもないし，作業内容によっては文章執筆のように自動化すべきでないこともある．&quot;</span></span>
+<span id="cb176-18"><a href="deeplr.html#cb176-18" tabindex="-1"></a><span class="do">## [6] &quot;作業の自動化には，プログラミング言語を使うことが多い．</span></span>
+<span id="cb176-19"><a href="deeplr.html#cb176-19" tabindex="-1"></a><span class="do">## [1] &quot;I don&#39;t want to do a tedious job, as anyone would.&quot;</span></span>
+<span id="cb176-20"><a href="deeplr.html#cb176-20" tabindex="-1"></a><span class="do">## [2] &quot;Or perhaps it is the hassle of not wanting to.&quot;</span></span>
+<span id="cb176-21"><a href="deeplr.html#cb176-21" tabindex="-1"></a><span class="do">## [3] &quot;Aside from the chicken and egg argument, I don&#39;t want to go through the hassle if I can help it.&quot;</span></span>
+<span id="cb176-22"><a href="deeplr.html#cb176-22" tabindex="-1"></a><span class="do">## [4] &quot;But if I have to do it, I want to automate it.&quot;</span></span>
+<span id="cb176-23"><a href="deeplr.html#cb176-23" tabindex="-1"></a><span class="do">## [5] &quot;Of course, not all tasks can be automated, and some tasks, such as writing, should not be automated.&quot;</span></span>
+<span id="cb176-24"><a href="deeplr.html#cb176-24" tabindex="-1"></a><span class="do">## [6] &quot;Programming languages are often used to automate tasks.&quot;</span></span></code></pre></div>
 <p>無事に翻訳できたが，自分の文章を読むよりも英語に翻訳したものを読む方がなぜか恥ずかしい感じがする．
 上のように英語だけをベクトルにしてもよいが，できれば英語と日本語を並べて見たほうがわかりやすい．
 あとから<code>tibble::tibble(en = en, jp = jp)</code>としても同じであるが，以下のようにすることもできる．
 なお，<code>relocate()</code>は列の表示順を変更しているだけであまり大した意味はない．</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="deeplr.html#cb177-1" aria-hidden="true" tabindex="-1"></a>translated <span class="ot">&lt;-</span> </span>
-<span id="cb177-2"><a href="deeplr.html#cb177-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(text, <span class="at">en =</span> deeplr<span class="sc">::</span><span class="fu">translate2</span>(jp, </span>
-<span id="cb177-3"><a href="deeplr.html#cb177-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_lang =</span> <span class="st">&quot;EN&quot;</span>, <span class="at">source_lang =</span> <span class="st">&quot;JP&quot;</span>, <span class="at">auth_key =</span> <span class="st">&quot;your_api_key&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb177-4"><a href="deeplr.html#cb177-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">relocate</span>(en, jp) <span class="sc">%&gt;%</span></span>
-<span id="cb177-5"><a href="deeplr.html#cb177-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span>
-<span id="cb177-6"><a href="deeplr.html#cb177-6" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
-<span id="cb177-7"><a href="deeplr.html#cb177-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   en                                                       jp</span></span>
-<span id="cb177-8"><a href="deeplr.html#cb177-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                    &lt;chr&gt;</span></span>
-<span id="cb177-9"><a href="deeplr.html#cb177-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 I don&#39;t want to do a tedious job, as anyone would.       誰でもそうだろ…</span></span>
-<span id="cb177-10"><a href="deeplr.html#cb177-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 Or perhaps it is the hassle of not wanting to.           というか，した…</span></span>
-<span id="cb177-11"><a href="deeplr.html#cb177-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 Aside from the chicken and egg argument, I don&#39;t want…  ニワトリとタマ…</span></span>
-<span id="cb177-12"><a href="deeplr.html#cb177-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 But if I have to do it, I want to automate it.           でも，しなけれ…</span></span>
-<span id="cb177-13"><a href="deeplr.html#cb177-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 Of course, not all tasks can be automated, and some t…  もちろんすべて…</span></span>
-<span id="cb177-14"><a href="deeplr.html#cb177-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 Programming languages are often used to automate task    作業の自動化に…</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="deeplr.html#cb177-1" tabindex="-1"></a>translated <span class="ot">&lt;-</span> </span>
+<span id="cb177-2"><a href="deeplr.html#cb177-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(text, <span class="at">en =</span> deeplr<span class="sc">::</span><span class="fu">translate2</span>(jp, </span>
+<span id="cb177-3"><a href="deeplr.html#cb177-3" tabindex="-1"></a>    <span class="at">target_lang =</span> <span class="st">&quot;EN&quot;</span>, <span class="at">source_lang =</span> <span class="st">&quot;JP&quot;</span>, <span class="at">auth_key =</span> <span class="st">&quot;your_api_key&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb177-4"><a href="deeplr.html#cb177-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">relocate</span>(en, jp) <span class="sc">%&gt;%</span></span>
+<span id="cb177-5"><a href="deeplr.html#cb177-5" tabindex="-1"></a>  <span class="fu">print</span>()</span>
+<span id="cb177-6"><a href="deeplr.html#cb177-6" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<span id="cb177-7"><a href="deeplr.html#cb177-7" tabindex="-1"></a><span class="do">##   en                                                       jp</span></span>
+<span id="cb177-8"><a href="deeplr.html#cb177-8" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                    &lt;chr&gt;</span></span>
+<span id="cb177-9"><a href="deeplr.html#cb177-9" tabindex="-1"></a><span class="do">## 1 I don&#39;t want to do a tedious job, as anyone would.       誰でもそうだろ…</span></span>
+<span id="cb177-10"><a href="deeplr.html#cb177-10" tabindex="-1"></a><span class="do">## 2 Or perhaps it is the hassle of not wanting to.           というか，した…</span></span>
+<span id="cb177-11"><a href="deeplr.html#cb177-11" tabindex="-1"></a><span class="do">## 3 Aside from the chicken and egg argument, I don&#39;t want…  ニワトリとタマ…</span></span>
+<span id="cb177-12"><a href="deeplr.html#cb177-12" tabindex="-1"></a><span class="do">## 4 But if I have to do it, I want to automate it.           でも，しなけれ…</span></span>
+<span id="cb177-13"><a href="deeplr.html#cb177-13" tabindex="-1"></a><span class="do">## 5 Of course, not all tasks can be automated, and some t…  もちろんすべて…</span></span>
+<span id="cb177-14"><a href="deeplr.html#cb177-14" tabindex="-1"></a><span class="do">## 6 Programming languages are often used to automate task    作業の自動化に…</span></span></code></pre></div>
 <!--
 translated <- 
   dplyr::relocate(en, jp) %>%

@@ -408,35 +408,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 さらに，reticulateを使うとRとPythonとの変数のやり取りが簡単にできるので，本格的にPythonを使うのにも良さそう．</p>
 <div id="準備-7" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> 準備<a href="reticulate.html#準備-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="reticulate.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;reticulate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="reticulate.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb179-2"><a href="reticulate.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb179-3"><a href="reticulate.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="reticulate.html#cb178-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;reticulate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="reticulate.html#cb179-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb179-2"><a href="reticulate.html#cb179-2" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb179-3"><a href="reticulate.html#cb179-3" tabindex="-1"></a><span class="fu">library</span>(automater)</span></code></pre></div>
 <div id="pythonとpyautoguiのインストール" class="section level3 hasAnchor" number="12.1.1">
 <h3><span class="header-section-number">12.1.1</span> PythonとPyAutoGUIのインストール<a href="reticulate.html#pythonとpyautoguiのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><a href="shell.html#install_python">Pythonとそのライブラリのインストール</a>を参照して，PythonとPyAutoGUIをインストールしておく．</p>
 <p>ライブラリの一覧の中に，あとで使うnumpy，matplotlib，artがなければインストールしておく．
 なお，この文書ではPythonをパッケージ版でインストールしするとともに，pipでパッケージを管理している．
 Anacondaやminicondaで仮想環境を使用している場合は，<code>retuculate::conda_install()</code>でパッケージをインストールする．</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="reticulate.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip list&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb180-2"><a href="reticulate.html#cb180-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb180-3"><a href="reticulate.html#cb180-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;numpy|matplotlib|art&quot;</span>))</span>
-<span id="cb180-4"><a href="reticulate.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="do">## A tibble: 0 × 1</span></span>
-<span id="cb180-5"><a href="reticulate.html#cb180-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ℹ 1 variable: value &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="reticulate.html#cb180-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip list&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb180-2"><a href="reticulate.html#cb180-2" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb180-3"><a href="reticulate.html#cb180-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;numpy|matplotlib|art&quot;</span>))</span>
+<span id="cb180-4"><a href="reticulate.html#cb180-4" tabindex="-1"></a><span class="do">## A tibble: 0 × 1</span></span>
+<span id="cb180-5"><a href="reticulate.html#cb180-5" tabindex="-1"></a><span class="do">## ℹ 1 variable: value &lt;chr&gt;</span></span></code></pre></div>
 <p>一覧に”numpy”，“matplotlib”，“art”などのライブラリ名がなければ，以下のコードでライブラリをインストールする．</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="reticulate.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install numpy&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb181-2"><a href="reticulate.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install matplotlib&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb181-3"><a href="reticulate.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install art&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="reticulate.html#cb181-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install numpy&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb181-2"><a href="reticulate.html#cb181-2" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install matplotlib&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb181-3"><a href="reticulate.html#cb181-3" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip install art&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>ライブラリがインストールできたか念のため確認したい場合は，以下のようにする．</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="reticulate.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip list&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb182-2"><a href="reticulate.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb182-3"><a href="reticulate.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;numpy|matplotlib|art&quot;</span>))</span>
-<span id="cb182-4"><a href="reticulate.html#cb182-4" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3 × 1</span></span>
-<span id="cb182-5"><a href="reticulate.html#cb182-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   value                 </span></span>
-<span id="cb182-6"><a href="reticulate.html#cb182-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                 </span></span>
-<span id="cb182-7"><a href="reticulate.html#cb182-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 art             5.9   </span></span>
-<span id="cb182-8"><a href="reticulate.html#cb182-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 matplotlib      3.7.1 </span></span>
-<span id="cb182-9"><a href="reticulate.html#cb182-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 numpy           1.24.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="reticulate.html#cb182-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;pip list&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb182-2"><a href="reticulate.html#cb182-2" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb182-3"><a href="reticulate.html#cb182-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;numpy|matplotlib|art&quot;</span>))</span>
+<span id="cb182-4"><a href="reticulate.html#cb182-4" tabindex="-1"></a><span class="do">## # A tibble: 3 × 1</span></span>
+<span id="cb182-5"><a href="reticulate.html#cb182-5" tabindex="-1"></a><span class="do">##   value                 </span></span>
+<span id="cb182-6"><a href="reticulate.html#cb182-6" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                 </span></span>
+<span id="cb182-7"><a href="reticulate.html#cb182-7" tabindex="-1"></a><span class="do">## 1 art             5.9   </span></span>
+<span id="cb182-8"><a href="reticulate.html#cb182-8" tabindex="-1"></a><span class="do">## 2 matplotlib      3.7.1 </span></span>
+<span id="cb182-9"><a href="reticulate.html#cb182-9" tabindex="-1"></a><span class="do">## 3 numpy           1.24.2</span></span></code></pre></div>
 </div>
 <div id="identify_python" class="section level3 hasAnchor" number="12.1.2">
 <h3><span class="header-section-number">12.1.2</span> 使用するPythonの指定<a href="reticulate.html#identify_python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -460,28 +460,28 @@ C:/Users/your_user_name/AppData/Local/Microsoft/WindowsApps/python.exe</p>
 <p>なお，Windowsでパスに”WindowsApps/python.exe”があるときは，このファイルはアプリ実行エイリアスという機能でPythonをインストールための実行ファイルである．
 以下を参考にアプリ実行エイリアスの設定でチェックを外すとパスの一覧からは出なくなる．</p>
 <p>参考：<a href="https://hrkworks.com/it/programming/python/py-4421/" class="uri">https://hrkworks.com/it/programming/python/py-4421/</a></p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="reticulate.html#cb183-1" aria-hidden="true" tabindex="-1"></a>find_python <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">select_memu =</span> <span class="cn">TRUE</span>){</span>
-<span id="cb183-2"><a href="reticulate.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  os <span class="ot">&lt;-</span> <span class="fu">get_os</span>()</span>
-<span id="cb183-3"><a href="reticulate.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  python_path <span class="ot">&lt;-</span> </span>
-<span id="cb183-4"><a href="reticulate.html#cb183-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(os <span class="sc">==</span> <span class="st">&quot;win&quot;</span>, <span class="st">&quot;where python&quot;</span>, <span class="st">&quot;which python&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb183-5"><a href="reticulate.html#cb183-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb183-6"><a href="reticulate.html#cb183-6" aria-hidden="true" tabindex="-1"></a>    fs<span class="sc">::</span><span class="fu">path</span>()</span>
-<span id="cb183-7"><a href="reticulate.html#cb183-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(python_path) <span class="sc">&gt;</span> <span class="dv">1</span>){</span>
-<span id="cb183-8"><a href="reticulate.html#cb183-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(select_memu){</span>
-<span id="cb183-9"><a href="reticulate.html#cb183-9" aria-hidden="true" tabindex="-1"></a>      choice <span class="ot">&lt;-</span> utils<span class="sc">::</span><span class="fu">menu</span>(python_path, <span class="at">title =</span> <span class="st">&quot;Select Python path. 0: exit and return all.&quot;</span>)</span>
-<span id="cb183-10"><a href="reticulate.html#cb183-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span>(choice <span class="sc">==</span> <span class="dv">0</span>){ <span class="fu">return</span>(python_path) }</span>
-<span id="cb183-11"><a href="reticulate.html#cb183-11" aria-hidden="true" tabindex="-1"></a>    }<span class="cf">else</span>{</span>
-<span id="cb183-12"><a href="reticulate.html#cb183-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(python_path)</span>
-<span id="cb183-13"><a href="reticulate.html#cb183-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb183-14"><a href="reticulate.html#cb183-14" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
-<span id="cb183-15"><a href="reticulate.html#cb183-15" aria-hidden="true" tabindex="-1"></a>    choice <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb183-16"><a href="reticulate.html#cb183-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb183-17"><a href="reticulate.html#cb183-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(python_path[choice])</span>
-<span id="cb183-18"><a href="reticulate.html#cb183-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb183-19"><a href="reticulate.html#cb183-19" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">find_python</span>()</span>
-<span id="cb183-20"><a href="reticulate.html#cb183-20" aria-hidden="true" tabindex="-1"></a>path</span></code></pre></div>
-<pre><code>## C:/Users/matu/AppData/Local/Programs/Python/Python311/python.exe</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="reticulate.html#cb185-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(path)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="reticulate.html#cb183-1" tabindex="-1"></a>find_python <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">select_memu =</span> <span class="cn">TRUE</span>){</span>
+<span id="cb183-2"><a href="reticulate.html#cb183-2" tabindex="-1"></a>  os <span class="ot">&lt;-</span> <span class="fu">get_os</span>()</span>
+<span id="cb183-3"><a href="reticulate.html#cb183-3" tabindex="-1"></a>  python_path <span class="ot">&lt;-</span> </span>
+<span id="cb183-4"><a href="reticulate.html#cb183-4" tabindex="-1"></a>    <span class="fu">ifelse</span>(os <span class="sc">==</span> <span class="st">&quot;win&quot;</span>, <span class="st">&quot;where python&quot;</span>, <span class="st">&quot;which python&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb183-5"><a href="reticulate.html#cb183-5" tabindex="-1"></a>    <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb183-6"><a href="reticulate.html#cb183-6" tabindex="-1"></a>    fs<span class="sc">::</span><span class="fu">path</span>()</span>
+<span id="cb183-7"><a href="reticulate.html#cb183-7" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(python_path) <span class="sc">&gt;</span> <span class="dv">1</span>){</span>
+<span id="cb183-8"><a href="reticulate.html#cb183-8" tabindex="-1"></a>    <span class="cf">if</span>(select_memu){</span>
+<span id="cb183-9"><a href="reticulate.html#cb183-9" tabindex="-1"></a>      choice <span class="ot">&lt;-</span> utils<span class="sc">::</span><span class="fu">menu</span>(python_path, <span class="at">title =</span> <span class="st">&quot;Select Python path. 0: exit and return all.&quot;</span>)</span>
+<span id="cb183-10"><a href="reticulate.html#cb183-10" tabindex="-1"></a>      <span class="cf">if</span>(choice <span class="sc">==</span> <span class="dv">0</span>){ <span class="fu">return</span>(python_path) }</span>
+<span id="cb183-11"><a href="reticulate.html#cb183-11" tabindex="-1"></a>    }<span class="cf">else</span>{</span>
+<span id="cb183-12"><a href="reticulate.html#cb183-12" tabindex="-1"></a>      <span class="fu">return</span>(python_path)</span>
+<span id="cb183-13"><a href="reticulate.html#cb183-13" tabindex="-1"></a>    }</span>
+<span id="cb183-14"><a href="reticulate.html#cb183-14" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
+<span id="cb183-15"><a href="reticulate.html#cb183-15" tabindex="-1"></a>    choice <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb183-16"><a href="reticulate.html#cb183-16" tabindex="-1"></a>  }</span>
+<span id="cb183-17"><a href="reticulate.html#cb183-17" tabindex="-1"></a>  <span class="fu">return</span>(python_path[choice])</span>
+<span id="cb183-18"><a href="reticulate.html#cb183-18" tabindex="-1"></a>}</span>
+<span id="cb183-19"><a href="reticulate.html#cb183-19" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">find_python</span>()</span>
+<span id="cb183-20"><a href="reticulate.html#cb183-20" tabindex="-1"></a>path</span></code></pre></div>
+<pre><code>## C:/Users/matutosi/AppData/Local/Programs/Python/Python311/python.exe</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="reticulate.html#cb185-1" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(path)</span></code></pre></div>
 </div>
 </div>
 <div id="pythonを使ってみる" class="section level2 hasAnchor" number="12.2">
@@ -493,52 +493,52 @@ Python実行時にはコンソールが<code>&gt;</code>から<code>&gt;&gt;&gt;
 <p>古典的なことだが，まずはHellow World!を実行する．
 “Hellow World!”が出力されたら成功である．
 コンソールが<code>&gt;&gt;&gt;</code>のときに<code>exit</code>か<code>quit</code>とすればRに戻る．</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="reticulate.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">repl_python</span>()</span>
-<span id="cb186-2"><a href="reticulate.html#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Python 3.11.1 (C:/Users/username/AppData/Local/Programs/Python/Python311/python.exe)</span></span>
-<span id="cb186-3"><a href="reticulate.html#cb186-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Reticulate 1.28 REPL -- A Python interpreter in R.</span></span>
-<span id="cb186-4"><a href="reticulate.html#cb186-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Enter &#39;exit&#39; or &#39;quit&#39; to exit the REPL and return to R.</span></span>
-<span id="cb186-5"><a href="reticulate.html#cb186-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
-<span id="cb186-6"><a href="reticulate.html#cb186-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Hellow World!</span></span>
-<span id="cb186-7"><a href="reticulate.html#cb186-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> exit</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="reticulate.html#cb186-1" tabindex="-1"></a><span class="fu">repl_python</span>()</span>
+<span id="cb186-2"><a href="reticulate.html#cb186-2" tabindex="-1"></a><span class="do">## Python 3.11.1 (C:/Users/username/AppData/Local/Programs/Python/Python311/python.exe)</span></span>
+<span id="cb186-3"><a href="reticulate.html#cb186-3" tabindex="-1"></a><span class="do">## Reticulate 1.28 REPL -- A Python interpreter in R.</span></span>
+<span id="cb186-4"><a href="reticulate.html#cb186-4" tabindex="-1"></a><span class="do">## Enter &#39;exit&#39; or &#39;quit&#39; to exit the REPL and return to R.</span></span>
+<span id="cb186-5"><a href="reticulate.html#cb186-5" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span>
+<span id="cb186-6"><a href="reticulate.html#cb186-6" tabindex="-1"></a><span class="do">## Hellow World!</span></span>
+<span id="cb186-7"><a href="reticulate.html#cb186-7" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> exit</span></code></pre></div>
 <p>他にもPythonで実行したいことがあれば，<code>&gt;&gt;&gt;</code>のときに入力する．</p>
 </div>
 <div id="rからpythonのhellow-world" class="section level3 hasAnchor" number="12.2.2">
 <h3><span class="header-section-number">12.2.2</span> RからPythonのHellow World!<a href="reticulate.html#rからpythonのhellow-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pythonにあらかじめ用意されているビルトイン関数を使うには，<code>import_builtins()</code>を使う．
 <code>import_builtins()</code>で生成したオブジェクトに<code>$</code>とPythonの関数名をつければ，Rの関数として使うことができる．</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="reticulate.html#cb187-1" aria-hidden="true" tabindex="-1"></a>builtins <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import_builtins</span>()</span>
-<span id="cb187-2"><a href="reticulate.html#cb187-2" aria-hidden="true" tabindex="-1"></a>builtins<span class="sc">$</span><span class="fu">print</span>(<span class="st">&#39;Hellow World!&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="reticulate.html#cb187-1" tabindex="-1"></a>builtins <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import_builtins</span>()</span>
+<span id="cb187-2"><a href="reticulate.html#cb187-2" tabindex="-1"></a>builtins<span class="sc">$</span><span class="fu">print</span>(<span class="st">&#39;Hellow World!&#39;</span>)</span></code></pre></div>
 <p>ふつうにHellow World!をしていても面白くないので，ちょっと変わったHellow World!をしてみる．
 ライブラリartを呼び出して，Hellow World!をするとちょっと面白い．</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="reticulate.html#cb188-1" aria-hidden="true" tabindex="-1"></a>art <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;art&quot;</span>)</span>
-<span id="cb188-2"><a href="reticulate.html#cb188-2" aria-hidden="true" tabindex="-1"></a>art<span class="sc">$</span><span class="fu">tprint</span>(<span class="st">&quot;Hellow World!&quot;</span>)</span>
-<span id="cb188-3"><a href="reticulate.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  _   _        _  _                   __        __              _      _  _ </span></span>
-<span id="cb188-4"><a href="reticulate.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="do">## | | | |  ___ | || |  ___  __      __ \ \      / /  ___   _ __ | |  __| || |</span></span>
-<span id="cb188-5"><a href="reticulate.html#cb188-5" aria-hidden="true" tabindex="-1"></a><span class="do">## | |_| | / _ \| || | / _ \ \ \ /\ / /  \ \ /\ / /  / _ \ | &#39;__|| | / _` || |</span></span>
-<span id="cb188-6"><a href="reticulate.html#cb188-6" aria-hidden="true" tabindex="-1"></a><span class="do">## |  _  ||  __/| || || (_) | \ V  V /    \ V  V /  | (_) || |   | || (_| ||_|</span></span>
-<span id="cb188-7"><a href="reticulate.html#cb188-7" aria-hidden="true" tabindex="-1"></a><span class="do">## |_| |_| \___||_||_| \___/   \_/\_/      \_/\_/    \___/ |_|   |_| \__,_|(_)</span></span>
-<span id="cb188-8"><a href="reticulate.html#cb188-8" aria-hidden="true" tabindex="-1"></a>art<span class="sc">$</span><span class="fu">tprint</span>(<span class="st">&quot;FUN&quot;</span>, <span class="at">font =</span> <span class="st">&quot;block&quot;</span>, <span class="at">chr_ignore =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb188-9"><a href="reticulate.html#cb188-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  .----------------.  .----------------.  .-----------------.</span></span>
-<span id="cb188-10"><a href="reticulate.html#cb188-10" aria-hidden="true" tabindex="-1"></a><span class="do">## | .--------------. || .--------------. || .--------------. |</span></span>
-<span id="cb188-11"><a href="reticulate.html#cb188-11" aria-hidden="true" tabindex="-1"></a><span class="do">## | |  _________   | || | _____  _____ | || | ____  _____  | |</span></span>
-<span id="cb188-12"><a href="reticulate.html#cb188-12" aria-hidden="true" tabindex="-1"></a><span class="do">## | | |_   ___  |  | || ||_   _||_   _|| || ||_   \|_   _| | |</span></span>
-<span id="cb188-13"><a href="reticulate.html#cb188-13" aria-hidden="true" tabindex="-1"></a><span class="do">## | |   | |_  \_|  | || |  | |    | |  | || |  |   \ | |   | |</span></span>
-<span id="cb188-14"><a href="reticulate.html#cb188-14" aria-hidden="true" tabindex="-1"></a><span class="do">## | |   |  _|      | || |  | &#39;    &#39; |  | || |  | |\ \| |   | |</span></span>
-<span id="cb188-15"><a href="reticulate.html#cb188-15" aria-hidden="true" tabindex="-1"></a><span class="do">## | |  _| |_       | || |   \ `--&#39; /   | || | _| |_\   |_  | |</span></span>
-<span id="cb188-16"><a href="reticulate.html#cb188-16" aria-hidden="true" tabindex="-1"></a><span class="do">## | | |_____|      | || |    `.__.&#39;    | || ||_____|\____| | |</span></span>
-<span id="cb188-17"><a href="reticulate.html#cb188-17" aria-hidden="true" tabindex="-1"></a><span class="do">## | |              | || |              | || |              | |</span></span>
-<span id="cb188-18"><a href="reticulate.html#cb188-18" aria-hidden="true" tabindex="-1"></a><span class="do">## | &#39;--------------&#39; || &#39;--------------&#39; || &#39;--------------&#39; |</span></span>
-<span id="cb188-19"><a href="reticulate.html#cb188-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  &#39;----------------&#39;  &#39;----------------&#39;  &#39;----------------&#39; </span></span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="reticulate.html#cb188-1" tabindex="-1"></a>art <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;art&quot;</span>)</span>
+<span id="cb188-2"><a href="reticulate.html#cb188-2" tabindex="-1"></a>art<span class="sc">$</span><span class="fu">tprint</span>(<span class="st">&quot;Hellow World!&quot;</span>)</span>
+<span id="cb188-3"><a href="reticulate.html#cb188-3" tabindex="-1"></a><span class="do">##  _   _        _  _                   __        __              _      _  _ </span></span>
+<span id="cb188-4"><a href="reticulate.html#cb188-4" tabindex="-1"></a><span class="do">## | | | |  ___ | || |  ___  __      __ \ \      / /  ___   _ __ | |  __| || |</span></span>
+<span id="cb188-5"><a href="reticulate.html#cb188-5" tabindex="-1"></a><span class="do">## | |_| | / _ \| || | / _ \ \ \ /\ / /  \ \ /\ / /  / _ \ | &#39;__|| | / _` || |</span></span>
+<span id="cb188-6"><a href="reticulate.html#cb188-6" tabindex="-1"></a><span class="do">## |  _  ||  __/| || || (_) | \ V  V /    \ V  V /  | (_) || |   | || (_| ||_|</span></span>
+<span id="cb188-7"><a href="reticulate.html#cb188-7" tabindex="-1"></a><span class="do">## |_| |_| \___||_||_| \___/   \_/\_/      \_/\_/    \___/ |_|   |_| \__,_|(_)</span></span>
+<span id="cb188-8"><a href="reticulate.html#cb188-8" tabindex="-1"></a>art<span class="sc">$</span><span class="fu">tprint</span>(<span class="st">&quot;FUN&quot;</span>, <span class="at">font =</span> <span class="st">&quot;block&quot;</span>, <span class="at">chr_ignore =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb188-9"><a href="reticulate.html#cb188-9" tabindex="-1"></a><span class="do">##  .----------------.  .----------------.  .-----------------.</span></span>
+<span id="cb188-10"><a href="reticulate.html#cb188-10" tabindex="-1"></a><span class="do">## | .--------------. || .--------------. || .--------------. |</span></span>
+<span id="cb188-11"><a href="reticulate.html#cb188-11" tabindex="-1"></a><span class="do">## | |  _________   | || | _____  _____ | || | ____  _____  | |</span></span>
+<span id="cb188-12"><a href="reticulate.html#cb188-12" tabindex="-1"></a><span class="do">## | | |_   ___  |  | || ||_   _||_   _|| || ||_   \|_   _| | |</span></span>
+<span id="cb188-13"><a href="reticulate.html#cb188-13" tabindex="-1"></a><span class="do">## | |   | |_  \_|  | || |  | |    | |  | || |  |   \ | |   | |</span></span>
+<span id="cb188-14"><a href="reticulate.html#cb188-14" tabindex="-1"></a><span class="do">## | |   |  _|      | || |  | &#39;    &#39; |  | || |  | |\ \| |   | |</span></span>
+<span id="cb188-15"><a href="reticulate.html#cb188-15" tabindex="-1"></a><span class="do">## | |  _| |_       | || |   \ `--&#39; /   | || | _| |_\   |_  | |</span></span>
+<span id="cb188-16"><a href="reticulate.html#cb188-16" tabindex="-1"></a><span class="do">## | | |_____|      | || |    `.__.&#39;    | || ||_____|\____| | |</span></span>
+<span id="cb188-17"><a href="reticulate.html#cb188-17" tabindex="-1"></a><span class="do">## | |              | || |              | || |              | |</span></span>
+<span id="cb188-18"><a href="reticulate.html#cb188-18" tabindex="-1"></a><span class="do">## | &#39;--------------&#39; || &#39;--------------&#39; || &#39;--------------&#39; |</span></span>
+<span id="cb188-19"><a href="reticulate.html#cb188-19" tabindex="-1"></a><span class="do">##  &#39;----------------&#39;  &#39;----------------&#39;  &#39;----------------&#39; </span></span></code></pre></div>
 <p>遊んでばかりいても仕方ないので，ちょっと真面目に使ってみよう．
 Pythonで，<code>np.random.rand</code>と表記するものをRで使うには，<code>np$random$rand</code>とする．
 Rのオブジェクトに代入してしまえば，あとは慣れたもので簡単に散布図が作成できる．</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="reticulate.html#cb189-1" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;numpy&quot;</span>) <span class="co"># import numpy as npと同じ</span></span>
-<span id="cb189-2"><a href="reticulate.html#cb189-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> np<span class="sc">$</span>random<span class="sc">$</span><span class="fu">rand</span>(<span class="fu">as.integer</span>(<span class="dv">100</span>))</span>
-<span id="cb189-3"><a href="reticulate.html#cb189-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> np<span class="sc">$</span>random<span class="sc">$</span><span class="fu">rand</span>(<span class="fu">as.integer</span>(<span class="dv">100</span>))</span>
-<span id="cb189-4"><a href="reticulate.html#cb189-4" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(x, y) <span class="sc">%&gt;%</span></span>
-<span id="cb189-5"><a href="reticulate.html#cb189-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
-<span id="cb189-6"><a href="reticulate.html#cb189-6" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb189-7"><a href="reticulate.html#cb189-7" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="reticulate.html#cb189-1" tabindex="-1"></a>np <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;numpy&quot;</span>) <span class="co"># import numpy as npと同じ</span></span>
+<span id="cb189-2"><a href="reticulate.html#cb189-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> np<span class="sc">$</span>random<span class="sc">$</span><span class="fu">rand</span>(<span class="fu">as.integer</span>(<span class="dv">100</span>))</span>
+<span id="cb189-3"><a href="reticulate.html#cb189-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> np<span class="sc">$</span>random<span class="sc">$</span><span class="fu">rand</span>(<span class="fu">as.integer</span>(<span class="dv">100</span>))</span>
+<span id="cb189-4"><a href="reticulate.html#cb189-4" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(x, y) <span class="sc">%&gt;%</span></span>
+<span id="cb189-5"><a href="reticulate.html#cb189-5" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb189-6"><a href="reticulate.html#cb189-6" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb189-7"><a href="reticulate.html#cb189-7" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="reticulate_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 </div>
@@ -548,17 +548,17 @@ Rのオブジェクトに代入してしまえば，あとは慣れたもので�
 つまり<code>repl_python()</code>を使ってPythonに入って，<code>exit</code>でRでに戻って，またPythonに入るなどである．
 そのときに，RとPythonの変数のやりとりができる．</p>
 <p>PythonでRの<code>variable</code>という変数を取り出したいときは<code>r.variable</code>，RでPythonの<code>variable</code>という変数を取り出したいときには<code>py$variable</code>とする．</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="reticulate.html#cb190-1" aria-hidden="true" tabindex="-1"></a>r.variable  <span class="co"># RからPythonへ(Pythonで取り出し)，variableは変数名</span></span>
-<span id="cb190-2"><a href="reticulate.html#cb190-2" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>variable <span class="co"># PythonからRへ(Rで取り出し)</span></span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="reticulate.html#cb190-1" tabindex="-1"></a>r.variable  <span class="co"># RからPythonへ(Pythonで取り出し)，variableは変数名</span></span>
+<span id="cb190-2"><a href="reticulate.html#cb190-2" tabindex="-1"></a>py<span class="sc">$</span>variable <span class="co"># PythonからRへ(Rで取り出し)</span></span></code></pre></div>
 <p>これでRとPythonを対話的に行きつ戻りつしながら実行できる．</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="reticulate.html#cb191-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;r_val&quot;</span></span>
-<span id="cb191-2"><a href="reticulate.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">repl_python</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb191-3"><a href="reticulate.html#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>r.a</span>
-<span id="cb191-4"><a href="reticulate.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="do">## &#39;r_val&#39;</span></span>
-<span id="cb191-5"><a href="reticulate.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>a <span class="ot">=</span> <span class="st">&quot;python_val&quot;</span></span>
-<span id="cb191-6"><a href="reticulate.html#cb191-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>exit</span>
-<span id="cb191-7"><a href="reticulate.html#cb191-7" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>a</span>
-<span id="cb191-8"><a href="reticulate.html#cb191-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;python_val&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="reticulate.html#cb191-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;r_val&quot;</span></span>
+<span id="cb191-2"><a href="reticulate.html#cb191-2" tabindex="-1"></a><span class="fu">repl_python</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb191-3"><a href="reticulate.html#cb191-3" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>r.a</span>
+<span id="cb191-4"><a href="reticulate.html#cb191-4" tabindex="-1"></a><span class="do">## &#39;r_val&#39;</span></span>
+<span id="cb191-5"><a href="reticulate.html#cb191-5" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>a <span class="ot">=</span> <span class="st">&quot;python_val&quot;</span></span>
+<span id="cb191-6"><a href="reticulate.html#cb191-6" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span>exit</span>
+<span id="cb191-7"><a href="reticulate.html#cb191-7" tabindex="-1"></a>py<span class="sc">$</span>a</span>
+<span id="cb191-8"><a href="reticulate.html#cb191-8" tabindex="-1"></a><span class="do">## [1] &quot;python_val&quot;</span></span></code></pre></div>
 </div>
 <div id="pythonのコードを実行" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Pythonのコードを実行<a href="reticulate.html#pythonのコードを実行" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -567,10 +567,10 @@ Rのオブジェクトに代入してしまえば，あとは慣れたもので�
 TODO：Pythonらしいコードを入れる
   # https://techblog.nhn-techorus.com/archives/8329
 -->
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="reticulate.html#cb192-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">source_python</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="reticulate.html#cb192-1" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">source_python</span>()</span></code></pre></div>
 <p><code>source_python()</code>でのコード内の関数や変数をそのままRで使うことができる．</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="reticulate.html#cb193-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_file</span>(<span class="st">&quot;script.py&quot;</span>)</span>
-<span id="cb193-2"><a href="reticulate.html#cb193-2" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;x = 10&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="reticulate.html#cb193-1" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_file</span>(<span class="st">&quot;script.py&quot;</span>)</span>
+<span id="cb193-2"><a href="reticulate.html#cb193-2" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">&quot;x = 10&quot;</span>)</span></code></pre></div>
 <p><code>py_run_file()</code>や<code>py_run_string()</code>でのコード内の変数や関数をRで使う場合は，<code>py$val</code>のように<code>py$</code>の後ろに変数や関数の名前を付ける必要がある．</p>
 </div>
 <div id="rとpythoでの用語の違い" class="section level2 hasAnchor" number="12.5">
@@ -610,20 +610,20 @@ reticulate::py_run_string("docx_file = 'D:/a.docx'")
 reticulate::py_run_string("parse(pdf_file, docx_file)")
 ```
 -->
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="reticulate.html#cb194-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># USB取り出し用の画像のトリミング(作業済)</span></span>
-<span id="cb194-2"><a href="reticulate.html#cb194-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   トリミングをしたほうが画像認識がうまくいくかとおもったが，逆にダメだった</span></span>
-<span id="cb194-3"><a href="reticulate.html#cb194-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(tidyverse)</span></span>
-<span id="cb194-4"><a href="reticulate.html#cb194-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># path &lt;- </span></span>
-<span id="cb194-5"><a href="reticulate.html#cb194-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   &quot;D:/matu/work/ToDo/automater/inst/img&quot; %&gt;%</span></span>
-<span id="cb194-6"><a href="reticulate.html#cb194-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   fs::dir_ls(regexp = &quot;png&quot;) </span></span>
-<span id="cb194-7"><a href="reticulate.html#cb194-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># img &lt;- </span></span>
-<span id="cb194-8"><a href="reticulate.html#cb194-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   path %&gt;%</span></span>
-<span id="cb194-9"><a href="reticulate.html#cb194-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   purrr::map(magick::image_read) %&gt;%</span></span>
-<span id="cb194-10"><a href="reticulate.html#cb194-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   purrr::map(magick::image_trim)</span></span>
-<span id="cb194-11"><a href="reticulate.html#cb194-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># purrr::map2(img, path, magick::image_write)</span></span>
-<span id="cb194-12"><a href="reticulate.html#cb194-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># path</span></span></code></pre></div>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="reticulate.html#cb195-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 画面サイズの取得だが，実際は拡大をしていたりするので，ちょっと数字が違う</span></span>
-<span id="cb195-2"><a href="reticulate.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># system(&quot;wmic path Win32_VideoController get VideoModeDescription,CurrentVerticalResolution,CurrentHorizontalResolution /format:value&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="reticulate.html#cb194-1" tabindex="-1"></a>  <span class="co"># USB取り出し用の画像のトリミング(作業済)</span></span>
+<span id="cb194-2"><a href="reticulate.html#cb194-2" tabindex="-1"></a>  <span class="co">#   トリミングをしたほうが画像認識がうまくいくかとおもったが，逆にダメだった</span></span>
+<span id="cb194-3"><a href="reticulate.html#cb194-3" tabindex="-1"></a>  <span class="co"># library(tidyverse)</span></span>
+<span id="cb194-4"><a href="reticulate.html#cb194-4" tabindex="-1"></a>  <span class="co"># path &lt;- </span></span>
+<span id="cb194-5"><a href="reticulate.html#cb194-5" tabindex="-1"></a>  <span class="co">#   &quot;D:/matu/work/ToDo/automater/inst/img&quot; %&gt;%</span></span>
+<span id="cb194-6"><a href="reticulate.html#cb194-6" tabindex="-1"></a>  <span class="co">#   fs::dir_ls(regexp = &quot;png&quot;) </span></span>
+<span id="cb194-7"><a href="reticulate.html#cb194-7" tabindex="-1"></a>  <span class="co"># img &lt;- </span></span>
+<span id="cb194-8"><a href="reticulate.html#cb194-8" tabindex="-1"></a>  <span class="co">#   path %&gt;%</span></span>
+<span id="cb194-9"><a href="reticulate.html#cb194-9" tabindex="-1"></a>  <span class="co">#   purrr::map(magick::image_read) %&gt;%</span></span>
+<span id="cb194-10"><a href="reticulate.html#cb194-10" tabindex="-1"></a>  <span class="co">#   purrr::map(magick::image_trim)</span></span>
+<span id="cb194-11"><a href="reticulate.html#cb194-11" tabindex="-1"></a>  <span class="co"># purrr::map2(img, path, magick::image_write)</span></span>
+<span id="cb194-12"><a href="reticulate.html#cb194-12" tabindex="-1"></a>  <span class="co"># path</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="reticulate.html#cb195-1" tabindex="-1"></a>  <span class="co"># 画面サイズの取得だが，実際は拡大をしていたりするので，ちょっと数字が違う</span></span>
+<span id="cb195-2"><a href="reticulate.html#cb195-2" tabindex="-1"></a>  <span class="co"># system(&quot;wmic path Win32_VideoController get VideoModeDescription,CurrentVerticalResolution,CurrentHorizontalResolution /format:value&quot;)</span></span></code></pre></div>
 
 </div>
 </div>

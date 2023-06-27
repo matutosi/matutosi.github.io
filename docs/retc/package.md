@@ -43,7 +43,7 @@ install.packages(pkg)
 
 ## アーカイブされたパッケージ
 
-<img src="img/packages_01.png" width="50%">
+<img src="img/package_01.png" width="50%">
 
 zipファイルとしてアーカイブ化されている場合は，`devtools::install_local()`でインストールできる．
 例えば，過去にCRANに登録されたていたが削除されたパッケージやパッケージの古いバージョンである．
@@ -66,7 +66,7 @@ CRANに登録されているパッケージは，2023年5月現在で2万近く�
 パッケージ一覧のページで検索しても良いが，ブラウザでは正規表現が使えないことが多い．
 そこで，パッケージの一覧を取得して，自分のパソコンの中に一覧を保存して，その後でRやエディタの正規表現を用いて検索できるようにする．
 
-<img src="img/packages_02.png" width="50%">
+<img src="img/package_02.png" width="50%">
 
 
 ```r
@@ -104,7 +104,7 @@ dplyr::filter(pkgs, stringr::str_detect(description, "Image|image"))
 たいていはCRANに登録されているが，GitHubにしかないパッケージのときは`remotes::install_github()`を使う．
 本書で使用するパッケージautomaterをインストールしてみる．
 
-<img src="img/packages_03.png" width="50%">
+<img src="img/package_03.png" width="50%">
 
 まずは，CRANからremotesをインストールしておく．
 その後，`install_github()`の引数で，GitHubのリポジトリを指定する．
