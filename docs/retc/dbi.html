@@ -269,7 +269,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>13.3</b> マウスの位置取得</a></li>
 <li class="chapter" data-level="13.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbメモリの安全な取り出しの自動化"><i class="fa fa-check"></i><b>13.4</b> USBメモリの安全な取り出しの自動化</a></li>
 <li class="chapter" data-level="13.5" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#画像をもとにマウスを動かしてクリックする"><i class="fa fa-check"></i><b>13.5</b> 画像をもとにマウスを動かしてクリックする</a></li>
-<li class="chapter" data-level="13.6" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#コラム画面サイズ取得の試行錯誤"><i class="fa fa-check"></i><b>13.6</b> (コラム)画面サイズ取得の試行錯誤</a></li>
+<li class="chapter" data-level="13.6" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#まとめ"><i class="fa fa-check"></i><b>13.6</b> まとめ</a></li>
+<li class="chapter" data-level="13.7" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#コラム画面サイズ取得の試行錯誤"><i class="fa fa-check"></i><b>13.7</b> (コラム)画面サイズ取得の試行錯誤</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2で楽に綺麗に作図</a>
 <ul>
@@ -419,37 +420,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="準備-13" class="section level2 hasAnchor" number="18.3">
 <h2><span class="header-section-number">18.3</span> 準備<a href="dbi.html#準備-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="dbi.html#cb316-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="dbi.html#cb317-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="dbi.html#cb320-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="dbi.html#cb321-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.3.1</code></pre>
 <pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.3.1</code></pre>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="dbi.html#cb320-1" tabindex="-1"></a><span class="fu">library</span>(DBI)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="dbi.html#cb324-1" tabindex="-1"></a><span class="fu">library</span>(DBI)</span></code></pre></div>
 <pre><code>## Warning: package &#39;DBI&#39; was built under R version 4.3.1</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="dbi.html#cb322-1" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="dbi.html#cb326-1" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span></code></pre></div>
 <pre><code>## Warning: package &#39;RSQLite&#39; was built under R version 4.3.1</code></pre>
 <p>本来はDBに接続するが，解説のための一時データを使用する．
 通常はDB接続のためのユーザIDとパスワードが必要だろう．</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="dbi.html#cb324-1" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
-<span id="cb324-2"><a href="dbi.html#cb324-2" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
-<span id="cb324-3"><a href="dbi.html#cb324-3" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
-<span id="cb324-4"><a href="dbi.html#cb324-4" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="dbi.html#cb328-1" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
+<span id="cb328-2"><a href="dbi.html#cb328-2" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
+<span id="cb328-3"><a href="dbi.html#cb328-3" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
+<span id="cb328-4"><a href="dbi.html#cb328-4" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
 <pre><code>## [1] &quot;mpg&quot;</code></pre>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="dbi.html#cb326-1" tabindex="-1"></a>  <span class="co"># https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.Connect.html</span></span>
-<span id="cb326-2"><a href="dbi.html#cb326-2" tabindex="-1"></a>  <span class="co"># con &lt;- </span></span>
-<span id="cb326-3"><a href="dbi.html#cb326-3" tabindex="-1"></a>  <span class="co">#   dbConnect(RSQLite::SQLite(), </span></span>
-<span id="cb326-4"><a href="dbi.html#cb326-4" tabindex="-1"></a>  <span class="co">#   username = &quot;matutosi@gmail.com&quot;,</span></span>
-<span id="cb326-5"><a href="dbi.html#cb326-5" tabindex="-1"></a>  <span class="co">#   password = &quot;yPXIHeGWXGmPabSiVx2LCopy&quot;,</span></span>
-<span id="cb326-6"><a href="dbi.html#cb326-6" tabindex="-1"></a>  <span class="co">#   host = &quot;database-1.cd3bluovykft.ap-southeast-2.rds.amazonaws.com&quot;, </span></span>
-<span id="cb326-7"><a href="dbi.html#cb326-7" tabindex="-1"></a>  <span class="co">#   port = 5432, # PostgreSQL</span></span>
-<span id="cb326-8"><a href="dbi.html#cb326-8" tabindex="-1"></a>  <span class="co">#   dbname = &quot;database-1&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="dbi.html#cb330-1" tabindex="-1"></a>  <span class="co"># https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.Connect.html</span></span>
+<span id="cb330-2"><a href="dbi.html#cb330-2" tabindex="-1"></a>  <span class="co"># con &lt;- </span></span>
+<span id="cb330-3"><a href="dbi.html#cb330-3" tabindex="-1"></a>  <span class="co">#   dbConnect(RSQLite::SQLite(), </span></span>
+<span id="cb330-4"><a href="dbi.html#cb330-4" tabindex="-1"></a>  <span class="co">#   username = &quot;matutosi@gmail.com&quot;,</span></span>
+<span id="cb330-5"><a href="dbi.html#cb330-5" tabindex="-1"></a>  <span class="co">#   password = &quot;yPXIHeGWXGmPabSiVx2LCopy&quot;,</span></span>
+<span id="cb330-6"><a href="dbi.html#cb330-6" tabindex="-1"></a>  <span class="co">#   host = &quot;database-1.cd3bluovykft.ap-southeast-2.rds.amazonaws.com&quot;, </span></span>
+<span id="cb330-7"><a href="dbi.html#cb330-7" tabindex="-1"></a>  <span class="co">#   port = 5432, # PostgreSQL</span></span>
+<span id="cb330-8"><a href="dbi.html#cb330-8" tabindex="-1"></a>  <span class="co">#   dbname = &quot;database-1&quot;)</span></span></code></pre></div>
 </div>
 <div id="使い方-2" class="section level2 hasAnchor" number="18.4">
 <h2><span class="header-section-number">18.4</span> 使い方<a href="dbi.html#使い方-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="dbi.html#cb327-1" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
-<span id="cb327-2"><a href="dbi.html#cb327-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
-<span id="cb327-3"><a href="dbi.html#cb327-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb327-4"><a href="dbi.html#cb327-4" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb327-5"><a href="dbi.html#cb327-5" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="dbi.html#cb331-1" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
+<span id="cb331-2"><a href="dbi.html#cb331-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
+<span id="cb331-3"><a href="dbi.html#cb331-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
+<span id="cb331-4"><a href="dbi.html#cb331-4" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
+<span id="cb331-5"><a href="dbi.html#cb331-5" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 81 × 4
 ##     year model      displ   cyl
 ##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
@@ -464,16 +465,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  1999 malibu       2.4     4
 ## 10  2008 malibu       2.4     4
 ## # ℹ 71 more rows</code></pre>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="dbi.html#cb329-1" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
-<span id="cb329-2"><a href="dbi.html#cb329-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
-<span id="cb329-3"><a href="dbi.html#cb329-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb329-4"><a href="dbi.html#cb329-4" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb329-5"><a href="dbi.html#cb329-5" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb329-6"><a href="dbi.html#cb329-6" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb329-7"><a href="dbi.html#cb329-7" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb329-8"><a href="dbi.html#cb329-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb329-9"><a href="dbi.html#cb329-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb329-10"><a href="dbi.html#cb329-10" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="dbi.html#cb333-1" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
+<span id="cb333-2"><a href="dbi.html#cb333-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
+<span id="cb333-3"><a href="dbi.html#cb333-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
+<span id="cb333-4"><a href="dbi.html#cb333-4" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
+<span id="cb333-5"><a href="dbi.html#cb333-5" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb333-6"><a href="dbi.html#cb333-6" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb333-7"><a href="dbi.html#cb333-7" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb333-8"><a href="dbi.html#cb333-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb333-9"><a href="dbi.html#cb333-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb333-10"><a href="dbi.html#cb333-10" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 234 × 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;

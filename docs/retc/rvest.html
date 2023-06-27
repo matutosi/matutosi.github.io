@@ -269,7 +269,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#マウスの位置取得"><i class="fa fa-check"></i><b>13.3</b> マウスの位置取得</a></li>
 <li class="chapter" data-level="13.4" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#usbメモリの安全な取り出しの自動化"><i class="fa fa-check"></i><b>13.4</b> USBメモリの安全な取り出しの自動化</a></li>
 <li class="chapter" data-level="13.5" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#画像をもとにマウスを動かしてクリックする"><i class="fa fa-check"></i><b>13.5</b> 画像をもとにマウスを動かしてクリックする</a></li>
-<li class="chapter" data-level="13.6" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#コラム画面サイズ取得の試行錯誤"><i class="fa fa-check"></i><b>13.6</b> (コラム)画面サイズ取得の試行錯誤</a></li>
+<li class="chapter" data-level="13.6" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#まとめ"><i class="fa fa-check"></i><b>13.6</b> まとめ</a></li>
+<li class="chapter" data-level="13.7" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html#コラム画面サイズ取得の試行錯誤"><i class="fa fa-check"></i><b>13.7</b> (コラム)画面サイズ取得の試行錯誤</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2で楽に綺麗に作図</a>
 <ul>
@@ -470,14 +471,14 @@ CRANには，植生データの取得のためのパッケージがある．
 <p>例によってrvestをインストールする．
 curlとpoliteパッケージは少しだけ使うので予めインストールしておく．
 tidyverseは既にインストールしているはずだが，まだの場合はインストールする．</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="rvest.html#cb255-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rvest&quot;</span>)</span>
-<span id="cb255-2"><a href="rvest.html#cb255-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;curl&quot;</span>)</span>
-<span id="cb255-3"><a href="rvest.html#cb255-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;polite&quot;</span>)</span>
-<span id="cb255-4"><a href="rvest.html#cb255-4" tabindex="-1"></a>  <span class="co"># install.packages(&quot;moranajp&quot;)</span></span>
-<span id="cb255-5"><a href="rvest.html#cb255-5" tabindex="-1"></a>  <span class="co"># install.packages(&quot;tidyverse&quot;) # 未インストールの場合</span></span></code></pre></div>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="rvest.html#cb256-1" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="rvest.html#cb259-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rvest&quot;</span>)</span>
+<span id="cb259-2"><a href="rvest.html#cb259-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;curl&quot;</span>)</span>
+<span id="cb259-3"><a href="rvest.html#cb259-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;polite&quot;</span>)</span>
+<span id="cb259-4"><a href="rvest.html#cb259-4" tabindex="-1"></a>  <span class="co"># install.packages(&quot;moranajp&quot;)</span></span>
+<span id="cb259-5"><a href="rvest.html#cb259-5" tabindex="-1"></a>  <span class="co"># install.packages(&quot;tidyverse&quot;) # 未インストールの場合</span></span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="rvest.html#cb260-1" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div>
 <pre><code>## Warning: package &#39;rvest&#39; was built under R version 4.3.1</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="rvest.html#cb258-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="rvest.html#cb262-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.3.1</code></pre>
 <pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.3.1</code></pre>
 </div>
@@ -502,13 +503,13 @@ rvestを使ってHTMLを取得するときには，日本語をそのまま使�
 検索したい種名は変更する部分で，とりあえずspに入れておく．
 キーワード検索の命令(phpによるクエリ)と種名の文字列を結合し，さらにmainと結合する．
 これで得たURLを<code>read_html()</code>に与えると，ページのHTMLを得ることができる．</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="rvest.html#cb261-1" tabindex="-1"></a>main <span class="ot">&lt;-</span> <span class="st">&quot;http://jpnrdb.com/search.php?mode=&quot;</span></span>
-<span id="cb261-2"><a href="rvest.html#cb261-2" tabindex="-1"></a>sp <span class="ot">&lt;-</span> <span class="st">&quot;ニッコウキスゲ&quot;</span></span>
-<span id="cb261-3"><a href="rvest.html#cb261-3" tabindex="-1"></a>find_sp <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;key&amp;q=&quot;</span>, sp)</span>
-<span id="cb261-4"><a href="rvest.html#cb261-4" tabindex="-1"></a>html <span class="ot">&lt;-</span> </span>
-<span id="cb261-5"><a href="rvest.html#cb261-5" tabindex="-1"></a>  <span class="fu">paste0</span>(main, find_sp) <span class="sc">%&gt;%</span></span>
-<span id="cb261-6"><a href="rvest.html#cb261-6" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">read_html</span>()</span>
-<span id="cb261-7"><a href="rvest.html#cb261-7" tabindex="-1"></a>html</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="rvest.html#cb265-1" tabindex="-1"></a>main <span class="ot">&lt;-</span> <span class="st">&quot;http://jpnrdb.com/search.php?mode=&quot;</span></span>
+<span id="cb265-2"><a href="rvest.html#cb265-2" tabindex="-1"></a>sp <span class="ot">&lt;-</span> <span class="st">&quot;ニッコウキスゲ&quot;</span></span>
+<span id="cb265-3"><a href="rvest.html#cb265-3" tabindex="-1"></a>find_sp <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;key&amp;q=&quot;</span>, sp)</span>
+<span id="cb265-4"><a href="rvest.html#cb265-4" tabindex="-1"></a>html <span class="ot">&lt;-</span> </span>
+<span id="cb265-5"><a href="rvest.html#cb265-5" tabindex="-1"></a>  <span class="fu">paste0</span>(main, find_sp) <span class="sc">%&gt;%</span></span>
+<span id="cb265-6"><a href="rvest.html#cb265-6" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">read_html</span>()</span>
+<span id="cb265-7"><a href="rvest.html#cb265-7" tabindex="-1"></a>html</span></code></pre></div>
 <pre><code>## {html_document}
 ## &lt;html&gt;
 ## [1] &lt;body&gt;\n&lt;em&gt;&lt;/em&gt;\n\n&lt;title&gt;日本のレッドデータ検索システム&lt;/title&gt;\n&lt;meta http-equiv=&quot;co ...</code></pre>
@@ -523,33 +524,33 @@ rvestを使ってHTMLを取得するときには，日本語をそのまま使�
 また，文字列に変換してstringrを駆使すれば，情報を得ることはできるだろうが，多大な苦労が待っている．</p>
 <p>HTMLの全体を表示させたい場合は，以下のコードを実行する．
 とてもではないが，これを自分で解析したいとは思わないだろう．</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="rvest.html#cb263-1" tabindex="-1"></a> <span class="co"># 全体を表示させたい場合</span></span>
-<span id="cb263-2"><a href="rvest.html#cb263-2" tabindex="-1"></a><span class="fu">as.character</span>(html) <span class="sc">%&gt;%</span></span>
-<span id="cb263-3"><a href="rvest.html#cb263-3" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="rvest.html#cb267-1" tabindex="-1"></a> <span class="co"># 全体を表示させたい場合</span></span>
+<span id="cb267-2"><a href="rvest.html#cb267-2" tabindex="-1"></a><span class="fu">as.character</span>(html) <span class="sc">%&gt;%</span></span>
+<span id="cb267-3"><a href="rvest.html#cb267-3" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code></pre></div>
 <p>最初と最後の部分だけを示すと次のようになる．</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="rvest.html#cb264-1" tabindex="-1"></a><span class="fu">as.character</span>(html) <span class="sc">%&gt;%</span></span>
-<span id="cb264-2"><a href="rvest.html#cb264-2" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb264-3"><a href="rvest.html#cb264-3" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb264-4"><a href="rvest.html#cb264-4" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="rvest.html#cb268-1" tabindex="-1"></a><span class="fu">as.character</span>(html) <span class="sc">%&gt;%</span></span>
+<span id="cb268-2"><a href="rvest.html#cb268-2" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb268-3"><a href="rvest.html#cb268-3" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb268-4"><a href="rvest.html#cb268-4" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD HTML 4.0 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/REC-html40/loose.dtd\&quot;&gt;&quot;
 ## [2] &quot;&lt;html&gt;&lt;body&gt;&quot;                                                                                                  
 ## [3] &quot;&lt;em&gt;&lt;/em&gt;&quot;                                                                                                     
 ## [4] &quot;&quot;                                                                                                              
 ## [5] &quot;&lt;title&gt;日本のレッドデータ検索システム&lt;/title&gt;&quot;                                                                 
 ## [6] &quot;&lt;meta http-equiv=\&quot;content-type\&quot; content=\&quot;text/html;charset=utf-8\&quot;&gt;&quot;</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="rvest.html#cb266-1" tabindex="-1"></a><span class="fu">as.character</span>(html) <span class="sc">%&gt;%</span></span>
-<span id="cb266-2"><a href="rvest.html#cb266-2" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb266-3"><a href="rvest.html#cb266-3" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb266-4"><a href="rvest.html#cb266-4" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="rvest.html#cb270-1" tabindex="-1"></a><span class="fu">as.character</span>(html) <span class="sc">%&gt;%</span></span>
+<span id="cb270-2"><a href="rvest.html#cb270-2" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb270-3"><a href="rvest.html#cb270-3" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb270-4"><a href="rvest.html#cb270-4" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;}&quot;              &quot;&quot;               &quot;//--&gt;&quot;          &quot;&lt;/script&gt;&quot;     
 ## [5] &quot;&lt;/body&gt;&lt;/html&gt;&quot; &quot;&quot;</code></pre>
 <p>幸いにしてrvestにはhtmlから要素を取得するための便利な関数が用意されている．
 ウエブページを見ると，tableにデータが入っていそうなので，<code>html_table()</code>でデータを抽出する．
 ここではスペースの節約のため<code>purrr::map(colnames)</code>として列名だけ表示するとともに不要なスペースを除去している．
 なお，<code>rvest::html_table(html)</code>とするとtable全体を表示できる．</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="rvest.html#cb268-1" tabindex="-1"></a>rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
-<span id="cb268-2"><a href="rvest.html#cb268-2" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(colnames) <span class="sc">%&gt;%</span></span>
-<span id="cb268-3"><a href="rvest.html#cb268-3" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(stringr<span class="sc">::</span>str_remove, <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="rvest.html#cb272-1" tabindex="-1"></a>rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
+<span id="cb272-2"><a href="rvest.html#cb272-2" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(colnames) <span class="sc">%&gt;%</span></span>
+<span id="cb272-3"><a href="rvest.html#cb272-3" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(stringr<span class="sc">::</span>str_remove, <span class="st">&quot; &quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;X1&quot;
 ## 
@@ -579,8 +580,8 @@ rvestを使ってHTMLを取得するときには，日本語をそのまま使�
 ## [[8]]
 ## [1] &quot;X1&quot; &quot;X2&quot;</code></pre>
 <p>列名から6個目のtableが目録Noを含んでいそうだと考えられるので，6つ目の表を表示させる．</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="rvest.html#cb270-1" tabindex="-1"></a>rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
-<span id="cb270-2"><a href="rvest.html#cb270-2" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="rvest.html#cb274-1" tabindex="-1"></a>rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
+<span id="cb274-2"><a href="rvest.html#cb274-2" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 6
 ##   `目録No▲▼` `上位分類群▲▼` `科名▲▼` 和名▲▼／学名\r\n\t\t…¹   `指定都道府県数▲▼`
 ##        &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;                                 &lt;int&gt;
@@ -605,13 +606,13 @@ selectは列名を指定する以外に列番号を指定できるので，そ�
 また，<code>str_detect()</code>の引数で，<code>paste0("^", sp, "$")</code>としたのは，「ニッコウキスゲ」以外にマッチさせないためである．
 例えば，「ギンラン」を検索すると，「ギンラン」以外にも「エゾギンラン」と「ササバギンラン」も出てくる．
 この場合に正規表現の<code>^</code>(行頭の意味)<code>$</code>(行末の意味)を使うことで，「ギンラン」にしかマッチさせない．</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="rvest.html#cb272-1" tabindex="-1"></a>no <span class="ot">&lt;-</span> </span>
-<span id="cb272-2"><a href="rvest.html#cb272-2" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
-<span id="cb272-3"><a href="rvest.html#cb272-3" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb272-4"><a href="rvest.html#cb272-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">no =</span> <span class="dv">1</span>, <span class="at">wamei =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb272-5"><a href="rvest.html#cb272-5" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(wamei, <span class="at">into =</span> <span class="st">&quot;wamei&quot;</span>, <span class="at">sep =</span> stringi<span class="sc">::</span><span class="fu">stri_unescape_unicode</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">u00a0&quot;</span>), <span class="at">extra =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb272-6"><a href="rvest.html#cb272-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(wamei, <span class="fu">paste0</span>(<span class="st">&quot;^&quot;</span>, sp, <span class="st">&quot;$&quot;</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb272-7"><a href="rvest.html#cb272-7" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="st">&quot;no&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="rvest.html#cb276-1" tabindex="-1"></a>no <span class="ot">&lt;-</span> </span>
+<span id="cb276-2"><a href="rvest.html#cb276-2" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>(html) <span class="sc">%&gt;%</span></span>
+<span id="cb276-3"><a href="rvest.html#cb276-3" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb276-4"><a href="rvest.html#cb276-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">no =</span> <span class="dv">1</span>, <span class="at">wamei =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb276-5"><a href="rvest.html#cb276-5" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(wamei, <span class="at">into =</span> <span class="st">&quot;wamei&quot;</span>, <span class="at">sep =</span> stringi<span class="sc">::</span><span class="fu">stri_unescape_unicode</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">u00a0&quot;</span>), <span class="at">extra =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb276-6"><a href="rvest.html#cb276-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(wamei, <span class="fu">paste0</span>(<span class="st">&quot;^&quot;</span>, sp, <span class="st">&quot;$&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb276-7"><a href="rvest.html#cb276-7" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="st">&quot;no&quot;</span>)</span></code></pre></div>
 </div>
 <div id="urlの生成データの取得" class="section level2 hasAnchor" number="15.7">
 <h2><span class="header-section-number">15.7</span> URLの生成・データの取得<a href="rvest.html#urlの生成データの取得" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -619,20 +620,20 @@ selectは列名を指定する以外に列番号を指定できるので，そ�
 ブラウザで表示した地図や指定状況のURLを生成する．
 “map&amp;q=0605009”の詳細な意味はよくわからないが，“0605009”あたりは分類群を指定しているのだと考えられる．
 これに維管束植物(コケなどを除くシダ植物と花の咲く植物)の中での目録Noを結合して，さらにmainを結合するとURLの出来上がりだ．</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="rvest.html#cb273-1" tabindex="-1"></a>show_sp <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;map&amp;q=0605009&quot;</span>, no)</span>
-<span id="cb273-2"><a href="rvest.html#cb273-2" tabindex="-1"></a><span class="fu">paste0</span>(main, show_sp)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="rvest.html#cb277-1" tabindex="-1"></a>show_sp <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;map&amp;q=0605009&quot;</span>, no)</span>
+<span id="cb277-2"><a href="rvest.html#cb277-2" tabindex="-1"></a><span class="fu">paste0</span>(main, show_sp)</span></code></pre></div>
 <pre><code>## [1] &quot;http://jpnrdb.com/search.php?mode=map&amp;q=06050095259&quot;</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="rvest.html#cb275-1" tabindex="-1"></a>html <span class="ot">&lt;-</span> </span>
-<span id="cb275-2"><a href="rvest.html#cb275-2" tabindex="-1"></a>  <span class="fu">paste0</span>(main, show_sp) <span class="sc">%&gt;%</span></span>
-<span id="cb275-3"><a href="rvest.html#cb275-3" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">read_html</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="rvest.html#cb279-1" tabindex="-1"></a>html <span class="ot">&lt;-</span> </span>
+<span id="cb279-2"><a href="rvest.html#cb279-2" tabindex="-1"></a>  <span class="fu">paste0</span>(main, show_sp) <span class="sc">%&gt;%</span></span>
+<span id="cb279-3"><a href="rvest.html#cb279-3" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">read_html</span>()</span></code></pre></div>
 <p>生成したURLをブラウザで表示させると地図ページが表示される．
 一覧表の表示にしてもURLは変更されないため，内部的に表示を変更させている可能性が高い．
 そこで，とりあえずHTMLからtableデータの列名を確認する．
 なお，<code>str_remove_all()</code>で不要な文字の除去をしている．</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="rvest.html#cb276-1" tabindex="-1"></a>html <span class="sc">%&gt;%</span></span>
-<span id="cb276-2"><a href="rvest.html#cb276-2" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb276-3"><a href="rvest.html#cb276-3" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(colnames) <span class="sc">%&gt;%</span></span>
-<span id="cb276-4"><a href="rvest.html#cb276-4" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(stringr<span class="sc">::</span>str_remove_all, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">n|</span><span class="sc">\\</span><span class="st">t|</span><span class="sc">\\</span><span class="st">r&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="rvest.html#cb280-1" tabindex="-1"></a>html <span class="sc">%&gt;%</span></span>
+<span id="cb280-2"><a href="rvest.html#cb280-2" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb280-3"><a href="rvest.html#cb280-3" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(colnames) <span class="sc">%&gt;%</span></span>
+<span id="cb280-4"><a href="rvest.html#cb280-4" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(stringr<span class="sc">::</span>str_remove_all, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">n|</span><span class="sc">\\</span><span class="st">t|</span><span class="sc">\\</span><span class="st">r&quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;X1&quot;
 ## 
@@ -666,10 +667,10 @@ selectは列名を指定する以外に列番号を指定できるので，そ�
 <p>果たして，tableの4番目に欲しいデータがあった．
 あとは，filterで不要な都道府県データを除去する．
 さらに，データを分析するならば整形・変換・保存などをするが，スクレイピングとしての作業はここまでとする．</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="rvest.html#cb278-1" tabindex="-1"></a>html <span class="sc">%&gt;%</span></span>
-<span id="cb278-2"><a href="rvest.html#cb278-2" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb278-3"><a href="rvest.html#cb278-3" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb278-4"><a href="rvest.html#cb278-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(和名 <span class="sc">!=</span> <span class="st">&quot;-&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="rvest.html#cb282-1" tabindex="-1"></a>html <span class="sc">%&gt;%</span></span>
+<span id="cb282-2"><a href="rvest.html#cb282-2" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb282-3"><a href="rvest.html#cb282-3" tabindex="-1"></a>  <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb282-4"><a href="rvest.html#cb282-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(和名 <span class="sc">!=</span> <span class="st">&quot;-&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 5
 ##   `都道府県名▲▼`                        和名   学名   RDBカテゴリ名 統一カテゴリ
 ##   &lt;chr&gt;                                 &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt;       
@@ -686,10 +687,10 @@ GoogleChromeで画像を右クリックして，「画像アドレスをコピ�
 <p><a href="http://jpnrdb.com/png/06/06050095259.png" class="uri">http://jpnrdb.com/png/06/06050095259.png</a></p>
 <p>指定状況の一覧表データのHTMLにも(ほぼ)同じものが含まれているはずである．
 rvestで目的とするファイルのURLを得るコードは以下のとおりである．</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="rvest.html#cb280-1" tabindex="-1"></a>html <span class="sc">%&gt;%</span></span>
-<span id="cb280-2"><a href="rvest.html#cb280-2" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_elements</span>(<span class="st">&quot;img&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb280-3"><a href="rvest.html#cb280-3" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_attr</span>(<span class="st">&quot;src&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb280-4"><a href="rvest.html#cb280-4" tabindex="-1"></a>  <span class="st">`</span><span class="at">[</span><span class="st">`</span>(., stringr<span class="sc">::</span><span class="fu">str_detect</span>(. , <span class="fu">as.character</span>(no)))</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="rvest.html#cb284-1" tabindex="-1"></a>html <span class="sc">%&gt;%</span></span>
+<span id="cb284-2"><a href="rvest.html#cb284-2" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_elements</span>(<span class="st">&quot;img&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb284-3"><a href="rvest.html#cb284-3" tabindex="-1"></a>  rvest<span class="sc">::</span><span class="fu">html_attr</span>(<span class="st">&quot;src&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb284-4"><a href="rvest.html#cb284-4" tabindex="-1"></a>  <span class="st">`</span><span class="at">[</span><span class="st">`</span>(., stringr<span class="sc">::</span><span class="fu">str_detect</span>(. , <span class="fu">as.character</span>(no)))</span></code></pre></div>
 <pre><code>## [1] &quot;./png/06/06050095259.png&quot;</code></pre>
 <p>上のコード使用したように，rvestで便利な関数としてhtml_elements()とhtml_attr()がある．
 それぞれ次のようにid，class，tag，属性によってHTMLからDOMを取得可能である．</p>
@@ -724,10 +725,10 @@ hrefが複数ある場合は，すべてを含むベクトルが返り値にな�
 これは，curlパッケージの<code>curl_download()</code>で簡単にできる．
 引数urlにはURLを，destfileにはダウンロード後のファイル名を指定する．
 パスを指定しないと作業ディレクトリ(<code>getwd()</code>で取得可能)に保存されるが，作業ディレクトリ以外に保存したい場合は，相対パスや絶対パスを指定する．</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="rvest.html#cb282-1" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;set_your_directory&quot;</span></span>
-<span id="cb282-2"><a href="rvest.html#cb282-2" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
-<span id="cb282-3"><a href="rvest.html#cb282-3" tabindex="-1"></a>url_img <span class="ot">&lt;-</span> <span class="st">&quot;http://jpnrdb.com/png/06/06050095259.png&quot;</span></span>
-<span id="cb282-4"><a href="rvest.html#cb282-4" tabindex="-1"></a>curl<span class="sc">::</span><span class="fu">curl_download</span>(<span class="at">url =</span> url_img, <span class="at">destfile =</span> <span class="fu">paste0</span>(<span class="st">&quot;img/&quot;</span>, sp, <span class="st">&quot;.png&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="rvest.html#cb286-1" tabindex="-1"></a>  <span class="co"># wd &lt;- &quot;set_your_directory&quot;</span></span>
+<span id="cb286-2"><a href="rvest.html#cb286-2" tabindex="-1"></a>  <span class="co"># setwd(wd)</span></span>
+<span id="cb286-3"><a href="rvest.html#cb286-3" tabindex="-1"></a>url_img <span class="ot">&lt;-</span> <span class="st">&quot;http://jpnrdb.com/png/06/06050095259.png&quot;</span></span>
+<span id="cb286-4"><a href="rvest.html#cb286-4" tabindex="-1"></a>curl<span class="sc">::</span><span class="fu">curl_download</span>(<span class="at">url =</span> url_img, <span class="at">destfile =</span> <span class="fu">paste0</span>(<span class="st">&quot;img/&quot;</span>, sp, <span class="st">&quot;.png&quot;</span>))</span></code></pre></div>
 <p>このようにしてスクレイピングが可能ではあるが，URLの生成規則は，変更されることがある．
 <code>read_html()</code>でHTMLが取得できない場合は，URLを確認する．
 また，動的なサイトでは，idが固定ではない可能性がある．
@@ -745,7 +746,7 @@ hrefが複数ある場合は，すべてを含むベクトルが返り値にな�
 ただし，サイトによってはそれ以上の間隔を求めているときがある．
 その内容はドメインのトップに置かれた「robots.txt」で確認できる．
 “<a href="http://jpnrdb.com/%22には%22robots.txt%22が置かれていないが，politeパッケージの関数%60bow" class="uri">http://jpnrdb.com/"には"robots.txt"が置かれていないが，politeパッケージの関数`bow</a>()`でスクレイピングについて調べてみる．</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="rvest.html#cb283-1" tabindex="-1"></a>polite<span class="sc">::</span><span class="fu">bow</span>(<span class="st">&quot;http://jpnrdb.com/&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="rvest.html#cb287-1" tabindex="-1"></a>polite<span class="sc">::</span><span class="fu">bow</span>(<span class="st">&quot;http://jpnrdb.com/&quot;</span>)</span></code></pre></div>
 <pre><code>## &lt;polite session&gt; http://jpnrdb.com/
 ##     User-agent: polite R package
 ##     robots.txt: 1 rules are defined for 1 bots
@@ -764,7 +765,7 @@ hrefが複数ある場合は，すべてを含むベクトルが返り値にな�
 まさにこの文章を書いているときがそうだが，データを入手してそのサイトについて他人に説明したいときがあるだろう．
 そのようなときはパッケージwebshotが便利だ．</p>
 <p>例によってまずはパッケージをインストールする．</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="rvest.html#cb285-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;webshot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="rvest.html#cb289-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;webshot&quot;</span>)</span></code></pre></div>
 <p>webshotは内部でPhantomjsというブラウザを使っているので，
 webshotからPhantomjsをインストールするための関数を実行する．
 なお，Phantomjsはヘッドレス・ブラウザの1つである．
@@ -773,12 +774,12 @@ webshotからPhantomjsをインストールするための関数を実行する�
 <!--
 画面表示がないため動作が早い．
 --></p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="rvest.html#cb286-1" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">install_phantomjs</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="rvest.html#cb290-1" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">install_phantomjs</span>()</span></code></pre></div>
 <p>イントールに若干時間がかかるが，終わればあとは簡単だ．
 関数webshotにURLと保存するファイル名を指定すれば，画像を作業フォルダに保存してくれる．</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="rvest.html#cb287-1" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">webshot</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=spec&quot;</span>, <span class="st">&quot;img/rvest_1.png&quot;</span>)</span>
-<span id="cb287-2"><a href="rvest.html#cb287-2" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">webshot</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=key&amp;q=ニッコウキスゲ&quot;</span>, <span class="st">&quot;img/rvest_2.png&quot;</span>)</span>
-<span id="cb287-3"><a href="rvest.html#cb287-3" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">webshot</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=map&amp;q=06050095259&quot;</span>, <span class="st">&quot;img/rvest_3.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="rvest.html#cb291-1" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">webshot</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=spec&quot;</span>, <span class="st">&quot;img/rvest_1.png&quot;</span>)</span>
+<span id="cb291-2"><a href="rvest.html#cb291-2" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">webshot</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=key&amp;q=ニッコウキスゲ&quot;</span>, <span class="st">&quot;img/rvest_2.png&quot;</span>)</span>
+<span id="cb291-3"><a href="rvest.html#cb291-3" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">webshot</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=map&amp;q=06050095259&quot;</span>, <span class="st">&quot;img/rvest_3.png&quot;</span>)</span></code></pre></div>
 <p>なお，パッケージmagickを使うと保存した画像に対してトリミングなどの加工ができる．</p>
 <p>参考：<a href="magick.html#magick">magickで画像編集</a></p>
 
