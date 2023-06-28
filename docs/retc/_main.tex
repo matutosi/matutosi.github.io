@@ -1054,30 +1054,28 @@ magrittrにはパイプとともに使うと便利な関数も含まれている
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{ux304aux307eux3051magrittrux306eux4e0dux601dux8b70ux306aux95a2ux6570ux305fux3061}{%
-\subsection{おまけ：magrittrの不思議な関数たち}\label{ux304aux307eux3051magrittrux306eux4e0dux601dux8b70ux306aux95a2ux6570ux305fux3061}}
+\hypertarget{ux30b3ux30e9ux30e0magrittrux306eux4e0dux601dux8b70ux306aux95a2ux6570ux305fux3061}{%
+\subsection{コラム：magrittrの不思議な関数たち}\label{ux30b3ux30e9ux30e0magrittrux306eux4e0dux601dux8b70ux306aux95a2ux6570ux305fux3061}}
 
-magrittrには以下のような関数もある．
+magrittrは，そもそも変わったパッケージだが，不思議な名前の関数もある．
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{not          }\CommentTok{\# \textasciigrave{}!\textasciigrave{}，\textasciigrave{}n\textquotesingle{}est pas\textasciigrave{}(フランス語)も同じ}
 \NormalTok{add          }\CommentTok{\# \textasciigrave{}+\textasciigrave{}}
 \NormalTok{subtract     }\CommentTok{\# \textasciigrave{}{-}\textasciigrave{}}
 \NormalTok{multiply\_by  }\CommentTok{\# \textasciigrave{}*\textasciigrave{}}
 \NormalTok{divide\_by    }\CommentTok{\# \textasciigrave{}/\textasciigrave{}}
-\NormalTok{and          }\CommentTok{\# \textasciigrave{}\&\textasciigrave{}}
-\NormalTok{or           }\CommentTok{\# \textasciigrave{}|\textasciigrave{}}
-\NormalTok{equals       }\CommentTok{\# \textasciigrave{}==\textasciigrave{}}
 \end{Highlighting}
 \end{Shaded}
 
 \texttt{?not}とすれば，似たような不思議な関数の一覧と説明が出てくる．
-パイプと一緒に使うと\texttt{add}であれば，\texttt{+}と同じ機能であるがパイプの中でつかたときに若干読みやすい気がする．
+特に四則演算をする関数の場合は，パイプと一緒に使うと若干だが読みやすい．
+\texttt{+}と同じ機能である\texttt{add}であれば，以下のようになる．
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{\%\textgreater{}\%} \StringTok{\textasciigrave{}}\AttributeTok{+}\StringTok{\textasciigrave{}}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{\%\textgreater{}\%} 
+  \StringTok{\textasciigrave{}}\AttributeTok{+}\StringTok{\textasciigrave{}}\NormalTok{(}\DecValTok{100}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1087,12 +1085,70 @@ magrittrには以下のような関数もある．
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{\%\textgreater{}\%} \FunctionTok{add}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add}\NormalTok{(}\DecValTok{100}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##  [1] 101 102 103 104 105 106 107 108 109 110
+\end{verbatim}
+
+パイプで使わない場合は，普通の四則演算の方がわかりやすい．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{+} \DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 101 102 103 104 105 106 107 108 109 110
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{add}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 101 102 103 104 105 106 107 108 109 110
+\end{verbatim}
+
+論理演算で使う関数もパイプで使うと読みやすくなりそう．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{and          }\CommentTok{\# \textasciigrave{}\&\textasciigrave{}}
+\NormalTok{or           }\CommentTok{\# \textasciigrave{}|\textasciigrave{}}
+\NormalTok{equals       }\CommentTok{\# \textasciigrave{}==\textasciigrave{}}
+\NormalTok{not          }\CommentTok{\# \textasciigrave{}!\textasciigrave{}，\textasciigrave{}n\textquotesingle{}est pas\textasciigrave{}(フランス語)も同じ}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{\&}や\texttt{\textbar{}}で，条件が多くなってくると読みにくくなるので，改行するかパイプで繋いで1つ1つの条件を短くするとコードが読みやすくなる．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{), }\AttributeTok{times =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{and}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{), }\AttributeTok{each =} \DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{), }\AttributeTok{times =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{or}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{), }\AttributeTok{each =} \DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE
 \end{verbatim}
 
 \hypertarget{tidyverse}{%
@@ -1177,14 +1233,14 @@ int(整数)やchr(文字列)のように省略して表示されるので，若�
 \end{Shaded}
 
 \begin{verbatim}
-##            a          b         c          d         e           f          g
-## 1  0.3025562 -0.8664034 0.2702508 -0.3008700 0.6868508  0.47418762 -1.9107480
-## 2 -1.2751434  1.2508281 0.1839219  1.5540092 0.2565171  0.06199976 -1.2158784
-## 3 -0.3673995  0.6010281 0.7128831  0.3526951 0.1605058 -0.58847868 -0.1721213
+##            a         b          c          d           e          f          g
+## 1  0.8635802 -1.532019  0.5155211  0.1343803 -0.03648991 -0.4319773 -2.2186740
+## 2 -0.3306641  1.323358 -0.4696026  1.1236230  1.25669894 -0.9632944 -0.4335614
+## 3 -0.1925062  0.159876  1.0017934 -1.3703370  0.05403006 -0.5128797 -1.1969533
 ##            h         i          j
-## 1 -1.8058943 0.8747635  2.0140958
-## 2  0.4068443 1.5298158 -0.7277677
-## 3 -0.6840072 1.6587942  0.5607908
+## 1 -1.2968530 -1.633653 -0.8440309
+## 2  0.1853405  1.251133 -0.2260871
+## 3 -0.3989900  1.529830 -0.7108770
 \end{verbatim}
 
 \begin{Shaded}
@@ -1195,11 +1251,11 @@ int(整数)やchr(文字列)のように省略して表示されるので，若�
 
 \begin{verbatim}
 ## # A tibble: 3 x 10
-##        a      b     c      d     e       f      g      h     i      j
-##    <dbl>  <dbl> <dbl>  <dbl> <dbl>   <dbl>  <dbl>  <dbl> <dbl>  <dbl>
-## 1  0.303 -0.866 0.270 -0.301 0.687  0.474  -1.91  -1.81  0.875  2.01 
-## 2 -1.28   1.25  0.184  1.55  0.257  0.0620 -1.22   0.407 1.53  -0.728
-## 3 -0.367  0.601 0.713  0.353 0.161 -0.588  -0.172 -0.684 1.66   0.561
+##        a      b      c      d       e      f      g      h     i      j
+##    <dbl>  <dbl>  <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl> <dbl>  <dbl>
+## 1  0.864 -1.53   0.516  0.134 -0.0365 -0.432 -2.22  -1.30  -1.63 -0.844
+## 2 -0.331  1.32  -0.470  1.12   1.26   -0.963 -0.434  0.185  1.25 -0.226
+## 3 -0.193  0.160  1.00  -1.37   0.0540 -0.513 -1.20  -0.399  1.53 -0.711
 \end{verbatim}
 
 変なたとえかもしれないが，データフレームは「言われたことをそのままやりました」という何も考えずに与えられたことをするような感じで，tibbleは「見やすく修正しておきました」という非常に気の利いた対応をする感じである．
@@ -1222,28 +1278,28 @@ tibbleではそれがない．
 \end{Shaded}
 
 \begin{verbatim}
-##             a           b            c
-## 1   0.4506129  0.43865399 -0.376709060
-## 2  -1.4761082  2.22850893 -0.104622262
-## 3  -2.5854429  1.97305161 -0.195967237
-## 4   0.3420858 -0.03290289  0.282658354
-## 5   2.0022428  0.46984840 -0.977005780
-## 6  -0.3511741 -0.15356097  0.332689802
-## 7  -0.3143599  1.14952245 -0.315983301
-## 8  -0.7085312  0.28274005  0.300230588
-## 9  -1.3067322 -0.93824459  0.004215621
-## 10 -0.1218990 -0.46908635 -0.770037566
-## 11 -0.2281419 -0.18757614 -1.397500763
-## 12  1.1564059  1.35664580  0.042372540
-## 13  0.1887900 -0.14600313 -0.978963609
-## 14 -1.2205782 -0.99522350 -0.116298850
-## 15  0.3305042  0.61620071  0.136121834
-## 16 -1.1943091 -0.95158988  1.865826504
-## 17 -0.5200568 -0.50830081  0.435969861
-## 18 -1.0993477 -0.29325584  0.806685246
-## 19 -0.7762027  2.05059281  1.565102403
-## 20 -0.8788658  0.55105963 -0.873693504
-## 21  1.9409071  0.22681374 -3.430132464
+##              a           b           c
+## 1   0.54966651  0.92103053  0.55619878
+## 2  -0.38720047 -0.13322840 -1.95265373
+## 3  -0.22395647  0.92369479 -0.08303785
+## 4   1.70765052  0.38238119 -1.02930424
+## 5   0.18920154  0.90301167 -0.77653488
+## 6  -0.98611435 -1.01025731  0.34452412
+## 7  -0.64909709 -0.40169048  2.08108958
+## 8   0.88938596 -0.21566450 -0.18356237
+## 9  -0.40199510  0.78988206  0.02948823
+## 10  0.18723889 -0.09855282 -0.18247663
+## 11  1.20484583  2.05815798  0.24482919
+## 12  0.16706754  0.73603416  0.29673664
+## 13  0.16548676 -0.24940991  0.82483983
+## 14 -0.73235690  0.25770306  1.07612204
+## 15 -0.06454083 -0.77394868 -0.75066912
+## 16 -0.48571523 -0.03132121  0.88315959
+## 17  1.00532075  0.23504085  0.88557092
+## 18  0.83271481 -0.32740220  1.23997751
+## 19 -0.39693441  0.79026108 -1.60054057
+## 20 -1.54438011  2.25140534  0.48986319
+## 21  0.78548346 -0.22935161 -0.91970427
 \end{verbatim}
 
 \begin{Shaded}
@@ -1254,18 +1310,18 @@ tibbleではそれがない．
 
 \begin{verbatim}
 ## # A tibble: 21 x 3
-##         a       b        c
-##     <dbl>   <dbl>    <dbl>
-##  1  0.451  0.439  -0.377  
-##  2 -1.48   2.23   -0.105  
-##  3 -2.59   1.97   -0.196  
-##  4  0.342 -0.0329  0.283  
-##  5  2.00   0.470  -0.977  
-##  6 -0.351 -0.154   0.333  
-##  7 -0.314  1.15   -0.316  
-##  8 -0.709  0.283   0.300  
-##  9 -1.31  -0.938   0.00422
-## 10 -0.122 -0.469  -0.770  
+##         a       b       c
+##     <dbl>   <dbl>   <dbl>
+##  1  0.550  0.921   0.556 
+##  2 -0.387 -0.133  -1.95  
+##  3 -0.224  0.924  -0.0830
+##  4  1.71   0.382  -1.03  
+##  5  0.189  0.903  -0.777 
+##  6 -0.986 -1.01    0.345 
+##  7 -0.649 -0.402   2.08  
+##  8  0.889 -0.216  -0.184 
+##  9 -0.402  0.790   0.0295
+## 10  0.187 -0.0986 -0.182 
 ## # i 11 more rows
 \end{verbatim}
 
@@ -1335,16 +1391,16 @@ tibbleではそれがない．
 
 \begin{verbatim}
 ##             x           y
-## 1  0.09277377 -2.06977467
-## 2  0.17226274 -0.43081060
-## 3  0.07327753  0.64466535
-## 4  0.10595654 -1.52681895
-## 5  0.30883878 -0.57028922
-## 6  0.93544067 -0.04949254
-## 7  0.59399254  1.58081909
-## 8  0.27162571  0.14559997
-## 9  0.81664772 -0.13909087
-## 10 0.51381840 -0.48497138
+## 1  0.67563514 -1.49451157
+## 2  0.74622451 -0.01502268
+## 3  0.93549355  1.10506178
+## 4  0.38400976  1.15848663
+## 5  0.04495038  0.04795303
+## 6  0.65040187 -0.01050356
+## 7  0.31228480 -0.79237855
+## 8  0.19299176 -0.21485394
+## 9  0.79750598  0.66285364
+## 10 0.58906212 -0.43645979
 \end{verbatim}
 
 \begin{Shaded}
@@ -1357,16 +1413,16 @@ tibbleではそれがない．
 ## # A tibble: 10 x 2
 ##         x       y
 ##     <dbl>   <dbl>
-##  1 0.245  -1.30  
-##  2 0.731   0.189 
-##  3 0.341   0.318 
-##  4 0.986  -0.731 
-##  5 0.788   0.0841
-##  6 0.417   0.0636
-##  7 0.0143 -1.03  
-##  8 0.828  -1.54  
-##  9 0.0793  0.290 
-## 10 0.587   0.125
+##  1 0.531   0.0893
+##  2 0.367   0.406 
+##  3 0.798  -0.630 
+##  4 0.862   1.24  
+##  5 0.346  -2.49  
+##  6 0.134  -0.414 
+##  7 0.0905 -0.993 
+##  8 0.699   0.677 
+##  9 0.598  -0.456 
+## 10 0.589  -1.04
 \end{verbatim}
 
 \hypertarget{tidyrux3067ux30c7ux30fcux30bfux3092ux6574ux5f62ux3059ux308b}{%
@@ -1474,6 +1530,10 @@ tidyではないものからtidyなものへの変換，あるいはその逆を
 以下も参考にしてほしい．
 
 \url{https://tidyr.tidyverse.org/}
+
+なお，手前味噌で申し訳ないが，ピボットテーブルをより簡単に作成するためのパッケージpivoteaを作成したので，興味があれば使ってみてほしい．
+
+\url{https://cran.r-project.org/web/packages/pivotea/}
 
 \hypertarget{readrux3067ux30d5ux30a1ux30a4ux30ebux306eux4fddux5b58ux3068ux8aadux307fux8fbcux307f}{%
 \subsection{readrでファイルの保存と読み込み}\label{readrux3067ux30d5ux30a1ux30a4ux30ebux306eux4fddux5b58ux3068ux8aadux307fux8fbcux307f}}
@@ -2017,6 +2077,9 @@ lubridateを活用すると簡単に計算できる．
 ## [1] "2023-06-28" "2023-07-28" "2023-08-28" "2023-09-28" "2023-10-28"
 \end{verbatim}
 
+なお，\texttt{today()}はそのときの本日の日付を返す関数のため，上記の表示と読者が実行したときの表示は異なるはずである．
+また，引数\texttt{tzone}を指定するとタイムゾーンを指定でき，日本の場合は\texttt{today("Asia/Tokyo")}，グリニッジ標準時の場合は，\texttt{today("GMT")}とする．
+
 \hypertarget{ux6587ux5b57ux5217ux304bux3089dateux30afux30e9ux30b9ux3078ux306eux5909ux63db}{%
 \subsection{文字列からDateクラスへの変換}\label{ux6587ux5b57ux5217ux304bux3089dateux30afux30e9ux30b9ux3078ux306eux5909ux63db}}
 
@@ -2131,13 +2194,13 @@ lubridateを活用すると簡単に計算できる．
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{today}\NormalTok{()}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{ymd}\NormalTok{(}\StringTok{"2023{-}05{-}01"}\NormalTok{)}
 \NormalTok{x }\SpecialCharTok{+} \FunctionTok{years}\NormalTok{(}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2024-06-28"
+## [1] "2024-05-01"
 \end{verbatim}
 
 位置固定の場合は，関数を作成する必要がある．
@@ -2171,6 +2234,15 @@ lubridateを活用すると簡単に計算できる．
 念のため計算した\texttt{real}と求めるべき\texttt{expect}が同じか確認する．
 \texttt{real\ !=\ expect}，つまり\texttt{real}と\texttt{expect}異なるときはTRUEになる．
 この合計が0であれば全部が同じなので，計算結果は正しいといえる．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testthat}\SpecialCharTok{::}\FunctionTok{expect\_equal}\NormalTok{(real, expect)}
+\end{Highlighting}
+\end{Shaded}
+
+念のため，パッケージtestthatで確認する．
+testthat::expect\_equal()の結果として，何も出力されなければテストを通過したことが分かる．
 
 次に，年月日から1年後の
 年と月を分離してそこから求めたい月の1日をbaseの日付とする．
@@ -2211,17 +2283,17 @@ lubridateを活用すると簡単に計算できる．
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{days   }\OtherTok{\textless{}{-}} \FunctionTok{today}\NormalTok{() }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{0}\SpecialCharTok{:}\DecValTok{30}\NormalTok{)}
+\NormalTok{days   }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{0}\SpecialCharTok{:}\DecValTok{30}\NormalTok{)}
 \NormalTok{days\_n }\OtherTok{\textless{}{-}} \FunctionTok{same\_pos\_next\_yr}\NormalTok{(days)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in same_pos_next_yr(days): No same date as 2023-06-29!
+## Warning in same_pos_next_yr(days): No same date as 2023-05-29!
 \end{verbatim}
 
 \begin{verbatim}
-## Warning in same_pos_next_yr(days): No same date as 2023-06-30!
+## Warning in same_pos_next_yr(days): No same date as 2023-05-30!
 \end{verbatim}
 
 \begin{Shaded}
@@ -2231,13 +2303,13 @@ lubridateを活用すると簡単に計算できる．
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2023-06-28" "2023-06-29" "2023-06-30" "2023-07-01" "2023-07-02"
-##  [6] "2023-07-03" "2023-07-04" "2023-07-05" "2023-07-06" "2023-07-07"
-## [11] "2023-07-08" "2023-07-09" "2023-07-10" "2023-07-11" "2023-07-12"
-## [16] "2023-07-13" "2023-07-14" "2023-07-15" "2023-07-16" "2023-07-17"
-## [21] "2023-07-18" "2023-07-19" "2023-07-20" "2023-07-21" "2023-07-22"
-## [26] "2023-07-23" "2023-07-24" "2023-07-25" "2023-07-26" "2023-07-27"
-## [31] "2023-07-28"
+##  [1] "2023-05-01" "2023-05-02" "2023-05-03" "2023-05-04" "2023-05-05"
+##  [6] "2023-05-06" "2023-05-07" "2023-05-08" "2023-05-09" "2023-05-10"
+## [11] "2023-05-11" "2023-05-12" "2023-05-13" "2023-05-14" "2023-05-15"
+## [16] "2023-05-16" "2023-05-17" "2023-05-18" "2023-05-19" "2023-05-20"
+## [21] "2023-05-21" "2023-05-22" "2023-05-23" "2023-05-24" "2023-05-25"
+## [26] "2023-05-26" "2023-05-27" "2023-05-28" "2023-05-29" "2023-05-30"
+## [31] "2023-05-31"
 \end{verbatim}
 
 \begin{Shaded}
@@ -2247,13 +2319,13 @@ lubridateを活用すると簡単に計算できる．
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2024-06-26" NA           NA           "2024-07-06" "2024-07-07"
-##  [6] "2024-07-01" "2024-07-02" "2024-07-03" "2024-07-04" "2024-07-05"
-## [11] "2024-07-13" "2024-07-14" "2024-07-08" "2024-07-09" "2024-07-10"
-## [16] "2024-07-11" "2024-07-12" "2024-07-20" "2024-07-21" "2024-07-15"
-## [21] "2024-07-16" "2024-07-17" "2024-07-18" "2024-07-19" "2024-07-27"
-## [26] "2024-07-28" "2024-07-22" "2024-07-23" "2024-07-24" "2024-07-25"
-## [31] "2024-07-26"
+##  [1] "2024-05-06" "2024-05-07" "2024-05-01" "2024-05-02" "2024-05-03"
+##  [6] "2024-05-04" "2024-05-05" "2024-05-13" "2024-05-14" "2024-05-08"
+## [11] "2024-05-09" "2024-05-10" "2024-05-11" "2024-05-12" "2024-05-20"
+## [16] "2024-05-21" "2024-05-15" "2024-05-16" "2024-05-17" "2024-05-18"
+## [21] "2024-05-19" "2024-05-27" "2024-05-28" "2024-05-22" "2024-05-23"
+## [26] "2024-05-24" "2024-05-25" "2024-05-26" NA           NA          
+## [31] "2024-05-29"
 \end{verbatim}
 
 計算できているはずだが，日付だけを見てもよくわからない．
@@ -2263,87 +2335,46 @@ lubridateを活用すると簡単に計算できる．
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{mweek}\NormalTok{(days)   }\CommentTok{\# 第何の曜日か}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] 4 5 5 1 1 1 1 1 1 1 2 2 2 2 2 2 2 3 3 3 3 3 3 3 4 4 4 4 4 4 4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\DocumentationTok{\#\# [1] 1 1 1 1 1 1 1 2 2 2 2 2 2 2 3 3 3 3 3 3 3 4 4 4 4 4 4 4 5 5 5}
 \FunctionTok{mweek}\NormalTok{(days\_n)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  4 NA NA  1  1  1  1  1  1  1  2  2  2  2  2  2  2  3  3  3  3  3  3  3  4
-## [26]  4  4  4  4  4  4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\DocumentationTok{\#\# [1]  1  1  1  1  1  1  1  2  2  2  2  2  2  2  3  3  3  3  3  3  3  4  4  4  4  4  4  4 NA NA  5}
 \FunctionTok{sum}\NormalTok{(}\FunctionTok{mweek}\NormalTok{(days) }\SpecialCharTok{!=} \FunctionTok{mweek}\NormalTok{(days\_n), }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\DocumentationTok{\#\# [1] 0}
+\NormalTok{testthat}\SpecialCharTok{::}\FunctionTok{expect\_equal}\NormalTok{(}\FunctionTok{mweek}\NormalTok{(days), }\FunctionTok{mweek}\NormalTok{(days\_n))}
+\DocumentationTok{\#\# Error: mweek(days) not equal to mweek(days\_n).}
+\DocumentationTok{\#\# 2/31 mismatches (average diff: NaN)}
+\DocumentationTok{\#\# [29] 5 {-} NA == NA}
+\DocumentationTok{\#\# [30] 5 {-} NA == NA}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [1] 0
-\end{verbatim}
+少しだけNAのところがあるが，それ以外はうまくいっているようだ．
+testthatでのテストでも29日目と30日目がうまく行っていないことがわかる．
 
-\begin{Shaded}
-\begin{Highlighting}[]
-  \CommentTok{\# testthat::expect\_equal(mweek(days), mweek(days\_n))}
-\end{Highlighting}
-\end{Shaded}
-
-最後の方でエラーが出ている．
 さらに，曜日も確認してみる．
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{wday}\NormalTok{(days, }\AttributeTok{label =} \ConstantTok{TRUE}\NormalTok{)   }\CommentTok{\# 曜日}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水 木 金 土
-## [26] 日 月 火 水 木 金
-## Levels: 日 < 月 < 火 < 水 < 木 < 金 < 土
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\DocumentationTok{\#\#  [1] 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水}
+\DocumentationTok{\#\# Levels: 日 \textless{} 月 \textless{} 火 \textless{} 水 \textless{} 木 \textless{} 金 \textless{} 土}
 \FunctionTok{wday}\NormalTok{(days\_n, }\AttributeTok{label =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] 水   <NA> <NA> 土   日   月   火   水   木   金   土   日   月   火   水  
-## [16] 木   金   土   日   月   火   水   木   金   土   日   月   火   水   木  
-## [31] 金  
-## Levels: 日 < 月 < 火 < 水 < 木 < 金 < 土
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\DocumentationTok{\#\#  [1] 月   火   水   木   金   土   日   月   火   水   木   金   土   日   月   火   水   木   金   土  }
+\DocumentationTok{\#\# [21] 日   月   火   水   木   金   土   日   \textless{}NA\textgreater{} \textless{}NA\textgreater{} 水  }
+\DocumentationTok{\#\# Levels: 日 \textless{} 月 \textless{} 火 \textless{} 水 \textless{} 木 \textless{} 金 \textless{} 土}
 \FunctionTok{sum}\NormalTok{(}\FunctionTok{wday}\NormalTok{(days) }\SpecialCharTok{!=} \FunctionTok{wday}\NormalTok{(days\_n), }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-  \CommentTok{\# testthat::expect\_equal(wday(days), wday(days\_n))}
+\DocumentationTok{\#\# [1] 0}
+\NormalTok{testthat}\SpecialCharTok{::}\FunctionTok{expect\_equal}\NormalTok{(}\FunctionTok{wday}\NormalTok{(days), }\FunctionTok{wday}\NormalTok{(days\_n))}
+\DocumentationTok{\#\# Error: wday(days) not equal to wday(days\_n).}
+\DocumentationTok{\#\# 2/31 mismatches (average diff: NaN)}
+\DocumentationTok{\#\# [29] 2 {-} NA == NA}
+\DocumentationTok{\#\# [30] 3 {-} NA == NA}
 \end{Highlighting}
 \end{Shaded}
 
 こちらも，最後の方でエラーが出ている．
-このエラーは，第5週でずれるためでてくる部分である．
-ただし，閏年以外の2月だけは4週にピッタリ収まるので，エラーが出ないはずだ．
+なお，このエラーは第5週でずれるためにでてくる部分である．
+ただし，28日しかない2月だけは4週にピッタリ収まるので，エラーが出ないはずだ．
 
 テストもだいたいあっていそうだが，分かりにくいため，カレンダーで表示してみる．
 
@@ -2357,7 +2388,7 @@ lubridateを活用すると簡単に計算できる．
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{lubridate_files/figure-latex/unnamed-chunk-16-1.pdf}
+\includegraphics{lubridate_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2365,13 +2396,13 @@ lubridateを活用すると簡単に計算できる．
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{lubridate_files/figure-latex/unnamed-chunk-16-2.pdf}
+\includegraphics{lubridate_files/figure-latex/unnamed-chunk-17-2.pdf}
 
 \hypertarget{fs}{%
 \section{fsでファイル操作}\label{fs}}
 
 Windowsならコマンドプロンプト(古い言い方なら，いわゆるdos窓)，MacならTerminal，Linuxならシェルで，各種ファイル操作をコマンドラインで実行できる．
-もちろん，マウスを使った操作でも構わないが，名前の変更やファイル名によるフォルダの振り分けを大量にするなら，マウス操作よりもコマンドを使った操作が早いし確実である．
+もちろん，マウスを使った操作でも構わないが，名前の変更やファイル名によるディレクトリの振り分けを大量にするなら，マウス操作よりもコマンドを使った操作が早いし確実である．
 なお，Windowsでは {[}Win{]} + {[}R{]} - {[}ファイル名を指定して実{]} - {[}cmd{]} でコマンドプロンプトが，
 Macでは{[}Command{]} + {[}Space{]} - {[}Spotlight検索{]} - {[}terminal{]} でTerminalが起動する．
 
@@ -2584,10 +2615,10 @@ fs，base，シェルの比較は次のURLを参照して欲しい．
 そのような場合は，fsを活用して作業を自動化するとよいだろう．
 なお，fsで対応していない部分の文字列操作には，stringrを使うと便利である．
 
-\hypertarget{ux304aux307eux3051guiux3067ux306eux4f5cux696dux30d5ux30a9ux30ebux30c0ux306eux6307ux5b9a}{%
-\subsection{おまけ：GUIでの作業フォルダの指定}\label{ux304aux307eux3051guiux3067ux306eux4f5cux696dux30d5ux30a9ux30ebux30c0ux306eux6307ux5b9a}}
+\hypertarget{ux30b3ux30e9ux30e0guiux3067ux306eux4f5cux696dux30c7ux30a3ux30ecux30afux30c8ux30eaux306eux6307ux5b9a}{%
+\subsection{コラム：GUIでの作業ディレクトリの指定}\label{ux30b3ux30e9ux30e0guiux3067ux306eux4f5cux696dux30c7ux30a3ux30ecux30afux30c8ux30eaux306eux6307ux5b9a}}
 
-GUI(Graphical User Interface)，つまりマウス操作による作業フォルダを指定するには，tcltkパッケージを使うと良い．
+GUI(Graphical User Interface)，つまりマウス操作による作業ディレクトリを指定するには，tcltkパッケージを使うと良い．
 tcltkパッケージは，Rをインストールすると既に入っているので，インストールの必要はない．
 なお，\texttt{tkchooseDirectory()}で得たオブジェクトをそのまま\texttt{setwd()}で指定するとエラーになるので，\texttt{fs::path()}でパスに変換しておく．
 
@@ -2600,6 +2631,8 @@ tcltkパッケージは，Rをインストールすると既に入っている�
 \FunctionTok{getwd}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
+
+\texttt{tcltk::tkchooseDirectory()}を実行すると，ディレクトリを選択する画面が表示されるので，使いたいディレクトリを指定する．
 
 \hypertarget{shell}{%
 \section{system()やshell()でOSコマンドの実行}\label{shell}}
@@ -2948,7 +2981,7 @@ new_path <-
 ##     shortcut <- stringr::str_remove_all_all(shortcut, "\"")
 ##     return(list(shortcut = shortcut, res = res))
 ## }
-## <bytecode: 0x0000023940fc7a88>
+## <bytecode: 0x0000022fb4ce0600>
 ## <environment: namespace:automater>
 \end{verbatim}
 
@@ -2968,7 +3001,7 @@ new_path <-
 ##         path)
 ##     shell(cmd, intern = TRUE)
 ## }
-## <bytecode: 0x00000239410a44a8>
+## <bytecode: 0x0000022fb4d8ce78>
 ## <environment: namespace:automater>
 \end{verbatim}
 
@@ -3343,8 +3376,8 @@ PythonでRの\texttt{variable}という変数を取り出したいときは\text
 
 \texttt{py\_run\_file()}や\texttt{py\_run\_string()}でのコード内の変数や関数をRで使う場合は，\texttt{py\$val}のように\texttt{py\$}の後ろに変数や関数の名前を付ける必要がある．
 
-\hypertarget{rux3068pythoux3067ux306eux7528ux8a9eux306eux9055ux3044}{%
-\subsection{RとPythoでの用語の違い}\label{rux3068pythoux3067ux306eux7528ux8a9eux306eux9055ux3044}}
+\hypertarget{ux30b3ux30e9ux30e0rux3068pythoux3067ux306eux7528ux8a9eux306eux9055ux3044}{%
+\subsection{コラム：RとPythoでの用語の違い}\label{ux30b3ux30e9ux30e0rux3068pythoux3067ux306eux7528ux8a9eux306eux9055ux3044}}
 
 Pythonでのモジュールとはファイル(\texttt{*.py})のことで，モジュールをまとめたものがパッケージ，パッケージをまとめたものがライブラリである．
 このライブラリを\texttt{pip\ install}でインストール，\texttt{import()}でインポートしている．
@@ -3453,7 +3486,7 @@ automaterパッケージの\texttt{find\_python()}を使用すると，楽に指
 ##     }
 ##     return(python_path[choice])
 ## }
-## <bytecode: 0x000001baeff10370>
+## <bytecode: 0x000002029b9cdcc0>
 ## <environment: namespace:automater>
 \end{verbatim}
 
@@ -3527,7 +3560,7 @@ USBの取り外しの関数を作成するときには，タスクバーとRウ�
 ##     }
 ##     return(list(x = unlist(x), y = unlist(y)))
 ## }
-## <bytecode: 0x000001baee2b2398>
+## <bytecode: 0x0000020299de3ea8>
 ## <environment: namespace:automater>
 \end{verbatim}
 
@@ -3648,7 +3681,7 @@ Pythonでライブラリが大文字を含んでいても，呼び出すとき�
 \end{Shaded}
 
 \begin{verbatim}
-## C:/Users/matutosi/AppData/Local/Temp/Rtmpw1AjuD/screenshot.png
+## C:/Users/matutosi/AppData/Local/Temp/RtmpQbk8tv/screenshot.png
 \end{verbatim}
 
 コードを実行すると，一時ディレクトリにpng形式の画像が保存される．
@@ -5610,7 +5643,7 @@ pdf\_compress()は圧縮や最適化(Linealize)をしてくれる．
 ##     file.remove(out[pages_body])
 ##     return(outfile)
 ## }
-## <bytecode: 0x000002033e5a4710>
+## <bytecode: 0x00000227d612bea8>
 ## <environment: namespace:automater>
 \end{verbatim}
 
@@ -5801,7 +5834,7 @@ CRANには登録されておらず，ウェブページかGitHubからインス�
 ##     doc$close()
 ##     return(invisible(converted))
 ## }
-## <bytecode: 0x000001e0df110bd0>
+## <bytecode: 0x0000022c72ebf980>
 ## <environment: namespace:automater>
 \end{verbatim}
 

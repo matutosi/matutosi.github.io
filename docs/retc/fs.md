@@ -10,9 +10,11 @@
 -->
 
 Windowsならコマンドプロンプト(古い言い方なら，いわゆるdos窓)，MacならTerminal，Linuxならシェルで，各種ファイル操作をコマンドラインで実行できる．
-もちろん，マウスを使った操作でも構わないが，名前の変更やファイル名によるフォルダの振り分けを大量にするなら，マウス操作よりもコマンドを使った操作が早いし確実である．
+もちろん，マウスを使った操作でも構わないが，名前の変更やファイル名によるディレクトリの振り分けを大量にするなら，マウス操作よりもコマンドを使った操作が早いし確実である．
 なお，Windowsでは [Win] + [R]  - [ファイル名を指定して実] - [cmd] でコマンドプロンプトが，
 Macでは[Command] + [Space] - [Spotlight検索] - [terminal] でTerminalが起動する．
+
+<img src="img/fs_01.png" width="50%" alt="command prompt" title="command prompt">
 
 コマンドプロンプトやバッチファイル(あるいはシェルスクリプト)などでの操作に慣れていれば，それが便利である．
 ただ，dosコマンドの変数の扱いは，慣れていないと結構難しい(慣れていても?)．
@@ -215,9 +217,9 @@ fs::file_copy(f_old, f_new, overwrite = TRUE)
 そのような場合は，fsを活用して作業を自動化するとよいだろう．
 なお，fsで対応していない部分の文字列操作には，stringrを使うと便利である．
 
-## おまけ：GUIでの作業フォルダの指定
+## コラム：GUIでの作業ディレクトリの指定
 
-GUI(Graphical User Interface)，つまりマウス操作による作業フォルダを指定するには，tcltkパッケージを使うと良い．
+GUI(Graphical User Interface)，つまりマウス操作による作業ディレクトリを指定するには，tcltkパッケージを使うと良い．
 tcltkパッケージは，Rをインストールすると既に入っているので，インストールの必要はない．
 なお，`tkchooseDirectory()`で得たオブジェクトをそのまま`setwd()`で指定するとエラーになるので，`fs::path()`でパスに変換しておく．
 
@@ -229,5 +231,10 @@ wd <- tcltk::tkchooseDirectory()
 setwd(fs::path(wd))
 getwd()
 ```
+
+`tcltk::tkchooseDirectory()`を実行すると，ディレクトリを選択する画面が表示されるので，使いたいディレクトリを指定する．
+
+<img src="img/fs_01.png" width="50%" alt="select directory with gui" title="window of select directory with gui">
+
 
 

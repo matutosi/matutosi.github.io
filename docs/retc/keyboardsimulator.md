@@ -84,7 +84,7 @@ find_python
 ##     }
 ##     return(python_path[choice])
 ## }
-## <bytecode: 0x00000289b9a23640>
+## <bytecode: 0x00000269a7e2afc8>
 ## <environment: namespace:automater>
 ```
 
@@ -160,7 +160,7 @@ automater::mouse_record
 ##     }
 ##     return(list(x = unlist(x), y = unlist(y)))
 ## }
-## <bytecode: 0x00000289b8f20b40>
+## <bytecode: 0x00000269a73158e8>
 ## <environment: namespace:automater>
 ```
 
@@ -287,7 +287,7 @@ png
 ```
 
 ```
-## C:/Users/matutosi/AppData/Local/Temp/RtmpgBKL90/screenshot.png
+## C:/Users/matutosi/AppData/Local/Temp/RtmpkvzPrY/screenshot.png
 ```
 
 コードを実行すると，一時ディレクトリにpng形式の画像が保存される．

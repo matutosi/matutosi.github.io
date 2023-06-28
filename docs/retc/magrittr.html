@@ -178,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.3" data-path="magrittr.html"><a href="magrittr.html#でのショートカット"><i class="fa fa-check"></i><b>5.4.3</b> <code>%$%</code>で<code>$</code>のショートカット</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="magrittr.html"><a href="magrittr.html#パイプ以外の関数"><i class="fa fa-check"></i><b>5.5</b> パイプ以外の関数</a></li>
-<li class="chapter" data-level="5.6" data-path="magrittr.html"><a href="magrittr.html#おまけmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>5.6</b> おまけ：magrittrの不思議な関数たち</a></li>
+<li class="chapter" data-level="5.6" data-path="magrittr.html"><a href="magrittr.html#コラムmagrittrの不思議な関数たち"><i class="fa fa-check"></i><b>5.6</b> コラム：magrittrの不思議な関数たち</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>6</b> tidyverseを使う</a>
 <ul>
@@ -228,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.3" data-path="fs.html"><a href="fs.html#ファイル操作"><i class="fa fa-check"></i><b>9.3.3</b> ファイル操作</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="fs.html"><a href="fs.html#fsを使ったファイル操作例"><i class="fa fa-check"></i><b>9.4</b> fsを使ったファイル操作例</a></li>
-<li class="chapter" data-level="9.5" data-path="fs.html"><a href="fs.html#おまけguiでの作業フォルダの指定"><i class="fa fa-check"></i><b>9.5</b> おまけ：GUIでの作業フォルダの指定</a></li>
+<li class="chapter" data-level="9.5" data-path="fs.html"><a href="fs.html#コラムguiでの作業ディレクトリの指定"><i class="fa fa-check"></i><b>9.5</b> コラム：GUIでの作業ディレクトリの指定</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="shell.html"><a href="shell.html"><i class="fa fa-check"></i><b>10</b> system()やshell()でOSコマンドの実行</a>
 <ul>
@@ -260,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="reticulate.html"><a href="reticulate.html#pythoとrとの変数のやり取り"><i class="fa fa-check"></i><b>12.3</b> PythoとRとの変数のやり取り</a></li>
 <li class="chapter" data-level="12.4" data-path="reticulate.html"><a href="reticulate.html#pythonのコードを実行"><i class="fa fa-check"></i><b>12.4</b> Pythonのコードを実行</a></li>
-<li class="chapter" data-level="12.5" data-path="reticulate.html"><a href="reticulate.html#rとpythoでの用語の違い"><i class="fa fa-check"></i><b>12.5</b> RとPythoでの用語の違い</a></li>
+<li class="chapter" data-level="12.5" data-path="reticulate.html"><a href="reticulate.html#コラムrとpythoでの用語の違い"><i class="fa fa-check"></i><b>12.5</b> コラム：RとPythoでの用語の違い</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="keyboardsimulator.html"><a href="keyboardsimulator.html"><i class="fa fa-check"></i><b>13</b> KeyboardSimulatorでマウス・キーボードの自動化</a>
 <ul>
@@ -618,23 +618,39 @@ Githubでパッケージを公開するならそれでも問題はないが，Ch
 ところで，`dplyr::rename()`や`dplyr::select()`を使って列名を変更する方法もあるが，もとの列名も指定する必要がある．
 -->
 </div>
-<div id="おまけmagrittrの不思議な関数たち" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> おまけ：magrittrの不思議な関数たち<a href="magrittr.html#おまけmagrittrの不思議な関数たち" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>magrittrには以下のような関数もある．</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="magrittr.html#cb36-1" tabindex="-1"></a>not          <span class="co"># `!`，`n&#39;est pas`(フランス語)も同じ</span></span>
-<span id="cb36-2"><a href="magrittr.html#cb36-2" tabindex="-1"></a>add          <span class="co"># `+`</span></span>
-<span id="cb36-3"><a href="magrittr.html#cb36-3" tabindex="-1"></a>subtract     <span class="co"># `-`</span></span>
-<span id="cb36-4"><a href="magrittr.html#cb36-4" tabindex="-1"></a>multiply_by  <span class="co"># `*`</span></span>
-<span id="cb36-5"><a href="magrittr.html#cb36-5" tabindex="-1"></a>divide_by    <span class="co"># `/`</span></span>
-<span id="cb36-6"><a href="magrittr.html#cb36-6" tabindex="-1"></a>and          <span class="co"># `&amp;`</span></span>
-<span id="cb36-7"><a href="magrittr.html#cb36-7" tabindex="-1"></a>or           <span class="co"># `|`</span></span>
-<span id="cb36-8"><a href="magrittr.html#cb36-8" tabindex="-1"></a>equals       <span class="co"># `==`</span></span></code></pre></div>
+<div id="コラムmagrittrの不思議な関数たち" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> コラム：magrittrの不思議な関数たち<a href="magrittr.html#コラムmagrittrの不思議な関数たち" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>magrittrは，そもそも変わったパッケージだが，不思議な名前の関数もある．</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="magrittr.html#cb36-1" tabindex="-1"></a>add          <span class="co"># `+`</span></span>
+<span id="cb36-2"><a href="magrittr.html#cb36-2" tabindex="-1"></a>subtract     <span class="co"># `-`</span></span>
+<span id="cb36-3"><a href="magrittr.html#cb36-3" tabindex="-1"></a>multiply_by  <span class="co"># `*`</span></span>
+<span id="cb36-4"><a href="magrittr.html#cb36-4" tabindex="-1"></a>divide_by    <span class="co"># `/`</span></span></code></pre></div>
 <p><code>?not</code>とすれば，似たような不思議な関数の一覧と説明が出てくる．
-パイプと一緒に使うと<code>add</code>であれば，<code>+</code>と同じ機能であるがパイプの中でつかたときに若干読みやすい気がする．</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="magrittr.html#cb37-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="dv">100</span>)</span></code></pre></div>
+特に四則演算をする関数の場合は，パイプと一緒に使うと若干だが読みやすい．
+<code>+</code>と同じ機能である<code>add</code>であれば，以下のようになる．</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="magrittr.html#cb37-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="magrittr.html#cb37-2" tabindex="-1"></a>  <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="magrittr.html#cb39-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="fu">add</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="magrittr.html#cb39-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="magrittr.html#cb39-2" tabindex="-1"></a>  <span class="fu">add</span>(<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
+<p>パイプで使わない場合は，普通の四則演算の方がわかりやすい．</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="magrittr.html#cb41-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="magrittr.html#cb43-1" tabindex="-1"></a><span class="fu">add</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
+<p>論理演算で使う関数もパイプで使うと読みやすくなりそう．</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="magrittr.html#cb45-1" tabindex="-1"></a>and          <span class="co"># `&amp;`</span></span>
+<span id="cb45-2"><a href="magrittr.html#cb45-2" tabindex="-1"></a>or           <span class="co"># `|`</span></span>
+<span id="cb45-3"><a href="magrittr.html#cb45-3" tabindex="-1"></a>equals       <span class="co"># `==`</span></span>
+<span id="cb45-4"><a href="magrittr.html#cb45-4" tabindex="-1"></a>not          <span class="co"># `!`，`n&#39;est pas`(フランス語)も同じ</span></span></code></pre></div>
+<p><code>&amp;</code>や<code>|</code>で，条件が多くなってくると読みにくくなるので，改行するかパイプで繋いで1つ1つの条件を短くするとコードが読みやすくなる．</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="magrittr.html#cb46-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">times =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="magrittr.html#cb46-2" tabindex="-1"></a>  <span class="fu">and</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">each =</span> <span class="dv">5</span>))</span></code></pre></div>
+<pre><code>##  [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="magrittr.html#cb48-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">times =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="magrittr.html#cb48-2" tabindex="-1"></a>  <span class="fu">or</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">each =</span> <span class="dv">5</span>))</span></code></pre></div>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE</code></pre>
 
 </div>
 </div>
