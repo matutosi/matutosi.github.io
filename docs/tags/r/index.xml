@@ -6,7 +6,27 @@
     <description>Recent content in r on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Fri, 16 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hogwarts</title>
+      <link>https://matutosi.github.io/post/20230629/</link>
+      <pubDate>Thu, 29 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230629/</guid>
+      <description>R Package Scholarというのがあるらしく，pivoteaがこれに登録されたとの連絡があった． &amp;ldquo;pivotea is quite a useful package so we created some page tools for it!&amp;ldquo;だとさ． たぶん，いろんなところに送っているのだろうけど，褒められるのは嬉しい．
+ https://scholar.rpkg.net/authordetails.php?author=Toshikazu+Matsumura https://github.com/matutosi/pivotea/  </description>
+    </item>
+    
+    <item>
+      <title>hogwarts</title>
+      <link>https://matutosi.github.io/post/20230617/</link>
+      <pubDate>Sat, 17 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230617/</guid>
+      <description>pivotea (pivot easy)の時間割データとして良いものがないか探していたら，ホグワーツ魔法魔術学校の時間割を見つけた．
+ https://github.com/Arcfej/HogwartsTimetable/  </description>
+    </item>
+    
     <item>
       <title>pivotea</title>
       <link>https://matutosi.github.io/post/20230616/</link>
