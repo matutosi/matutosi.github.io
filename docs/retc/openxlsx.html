@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chap. 5 magrittrでコードを簡潔に | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
-  <meta name="description" content="Chap. 5 magrittrでコードを簡潔に | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <title>Chap. 19 openxlsxでエクセル操作 | Rにる作業の効率化・自動化 -パッケージ活用術-</title>
+  <meta name="description" content="Chap. 19 openxlsxでエクセル操作 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chap. 5 magrittrでコードを簡潔に | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta property="og:title" content="Chap. 19 openxlsxでエクセル操作 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chap. 5 magrittrでコードを簡潔に | Rにる作業の効率化・自動化 -パッケージ活用術-" />
+  <meta name="twitter:title" content="Chap. 19 openxlsxでエクセル操作 | Rにる作業の効率化・自動化 -パッケージ活用術-" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="assoc.html"/>
-<link rel="next" href="tidyverse.html"/>
+<link rel="prev" href="dbi.html"/>
+<link rel="next" href="qpdf.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -399,262 +399,202 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="magrittr" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chap. 5</span> magrittrでコードを簡潔に<a href="magrittr.html#magrittr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="openxlsx" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">Chap. 19</span> openxlsxでエクセル操作<a href="openxlsx.html#openxlsx" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Rで解析するときの元データとしてcsv(カンマ区切りのテキスト)やtsv(タブ区切りのテキスト)として使っているが，エクセル形式でデータが提供されることもよくある．
+エクセルで開いてからcsvなどに保存し直しても良いが，手作業が面倒である．
+どうせなら，エクセルファイルそのものからデータを取得したい．
+また，逆にRで分析した結果をデータをエクセル形式で提供したいこともある．
+いや，正確には提供したいというか，こっちはそんなことはないのだが，提供される側にそれを求められることがある．</p>
+<p>readxlパッケージを使えば簡単にデータの読み書きができるものの，内容は単純なものでcsvをエクセルに貼り付けただけになってしまう．
+折角ならエクセルのオートフィルタの設定やウィンドウ枠の固定を使ったり，セルの幅を自動で調整したり，罫線を引いたりもしておきたい．
+そんなときには，openxlsxパッケージが便利である．
+上記の操作をRから実行できるようにすれば，既存のエクセルのワークブックを開いて，各種操作をして，上書き保存することが自動化できる．
+ここでは，そのような技を紹介する．</p>
+<p>なお，エクセルのワークブックを操作するパッケージとしてxlsxやexcel.linkなどもあり，類似の機能を提供している．
+また，openxlsxの後継としてopenxlsx2があるものの，開発中でありAPI変更の可能性があるらしい．</p>
+<div id="準備-14" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">19.1</span> 準備<a href="openxlsx.html#準備-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>まずは，パッケージをCRANからインストールして，呼び出しておく．</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="openxlsx.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.package</span>(<span class="st">&quot;openxlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="openxlsx.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb279-2"><a href="openxlsx.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb279-3"><a href="openxlsx.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remotes::install_github(&quot;matutosi/pivotea&quot;)</span></span>
+<span id="cb279-4"><a href="openxlsx.html#cb279-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pivotea)</span>
+<span id="cb279-5"><a href="openxlsx.html#cb279-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(hogwarts)</span>
+<span id="cb279-6"><a href="openxlsx.html#cb279-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-7"><a href="openxlsx.html#cb279-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-8"><a href="openxlsx.html#cb279-8" aria-hidden="true" tabindex="-1"></a>timetable <span class="ot">&lt;-</span> </span>
+<span id="cb279-9"><a href="openxlsx.html#cb279-9" aria-hidden="true" tabindex="-1"></a>  hogwarts <span class="sc">%&gt;%</span></span>
+<span id="cb279-10"><a href="openxlsx.html#cb279-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot</span>(<span class="at">row =</span> <span class="fu">c</span>(<span class="st">&quot;grade&quot;</span>, <span class="st">&quot;hour&quot;</span>), <span class="at">col =</span> <span class="st">&quot;wday&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;subject&quot;</span>, <span class="st">&quot;teacher&quot;</span>), <span class="at">split =</span> <span class="st">&quot;house&quot;</span>)</span>
+<span id="cb279-11"><a href="openxlsx.html#cb279-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-12"><a href="openxlsx.html#cb279-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-13"><a href="openxlsx.html#cb279-13" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;xlsx&quot;</span>)</span>
+<span id="cb279-14"><a href="openxlsx.html#cb279-14" aria-hidden="true" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">write.xlsx</span>(timetable, tmp)</span>
+<span id="cb279-15"><a href="openxlsx.html#cb279-15" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(tmp)</span></code></pre></div>
+<p><img src="img/openxlsx_01.png" width="50%"></p>
+</div>
+<div id="列幅の変更オートフィルタの設定ウィンドウ枠の固定" class="section level2 hasAnchor" number="19.2">
+<h2><span class="header-section-number">19.2</span> 列幅の変更，オートフィルタの設定，ウィンドウ枠の固定<a href="openxlsx.html#列幅の変更オートフィルタの設定ウィンドウ枠の固定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>openxlsxでは，<code>setColWidths()</code>で列幅の変更，<code>addFilter()</code>でオートフィルタの設定，<code>freezePane()</code>ウィンドウ枠の固定ができる．
+ワークブック名やシート名などともに，それぞれで設定するべき値を指定する．
+なお，openxlsxでは副作用でワークブックの中身を更新するので，関数を適用したあとに，オブジェクトへの代入は不要である．
+不要というよりは，正確には代入してはならない．
+関数の戻り値が<code>invisible(0)</code>であるためだ．</p>
+<p>列幅を指定する<code>setColWidths()</code>では， <code>width =  "auto"</code>とすると，自動的に適切な幅に設定してくれる．
+エクセルの列の境界のところでダブルクリックをすると適切な幅にしてくれるのと，同様である．</p>
+<p><code>setColWidths()</code>，<code>addFilter()</code>，<code>freezePane()</code>で各シートでの設定をしたら，
+最後に，<code>saveWorkbook()</code>でワークブックを保存する．</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="openxlsx.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(sheet <span class="cf">in</span> <span class="fu">sheets</span>(wb)){</span>
+<span id="cb280-2"><a href="openxlsx.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">readWorkbook</span>(wb, sheet)</span>
+<span id="cb280-3"><a href="openxlsx.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  openxlsx<span class="sc">::</span><span class="fu">setColWidths</span>(wb, sheet, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df), <span class="at">width =</span>  <span class="st">&quot;auto&quot;</span>)</span>
+<span id="cb280-4"><a href="openxlsx.html#cb280-4" aria-hidden="true" tabindex="-1"></a>  openxlsx<span class="sc">::</span><span class="fu">addFilter</span>(wb, sheet, <span class="at">row =</span> <span class="dv">1</span>, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df))</span>
+<span id="cb280-5"><a href="openxlsx.html#cb280-5" aria-hidden="true" tabindex="-1"></a>  openxlsx<span class="sc">::</span><span class="fu">freezePane</span>(wb, sheet, <span class="at">firstCol =</span> <span class="cn">TRUE</span>, <span class="at">firstRow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb280-6"><a href="openxlsx.html#cb280-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb280-7"><a href="openxlsx.html#cb280-7" aria-hidden="true" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, tmp, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="img/openxlsx_02.png" width="50%"></p>
+<p>列幅の変更・オートフィルタの設定・ウィンドウ枠の固定のいずれもシートごとに作業しなければならない．
+これは手作業でもopenxlsxでも同じである．
+ただし，手作業の場合はファイルやシートが増えれば増えるほど，面倒くささが増加する．
+面倒なだけでなく，作業の間違いも当然発生するだろう．
+エクセルでも自動化は可能であるが，それでも手作業は必要である．</p>
+<p>openxlsxで自動化した場合でも，もちろんプログラムの実行時間はファイル数やシート数に比例して増加する．
+しかし，Rとopenxlsxに作業をしてもらっている間，ユーザ(あなたや私)は別のことに時間を使うことができる．
+他の仕事をやっつけるのもよし，ほっと一息をついてコーヒを飲んでもよい．</p>
+</div>
+<div id="罫線の設定" class="section level2 hasAnchor" number="19.3">
+<h2><span class="header-section-number">19.3</span> 罫線の設定<a href="openxlsx.html#罫線の設定" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>列幅・オートフィルタ・ウィンドウ枠の3点セットは，データを保存するワークブックであれば，設定しておきたいものなので，自動化と非常に相性が良い．
+それ以外にも，特定のところに罫線を引いて見栄えを良くしたいことがある．
+例えば，全体的には縦横に細線を，<code>grade</code>が変わるところには二重線を引くとする．</p>
+<p>フォントを変更したり，罫線を引いたり，セルの塗りつぶしをしたりするなどするには，まずは<code>createStyle()</code>でスタイルを作成する．
+詳細はヘルプで確認してほしいが，罫線に関しては<code>border</code>，<code>borderColour</code>，<code>borderStyle</code>で罫線の位置，色，種類を設定する．
+ここでは細線と二重線を使うので，それぞれの罫線をまず設定する．</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="openxlsx.html#cb281-1" aria-hidden="true" tabindex="-1"></a>sty_thn <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">createStyle</span>(<span class="at">border =</span> <span class="st">&quot;TopBottomLeftRight&quot;</span>, <span class="at">borderStyle =</span> <span class="st">&quot;thin&quot;</span>)</span>
+<span id="cb281-2"><a href="openxlsx.html#cb281-2" aria-hidden="true" tabindex="-1"></a>sty_dbl <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">createStyle</span>(<span class="at">border =</span> <span class="st">&quot;top&quot;</span>, <span class="at">borderStyle =</span> <span class="st">&quot;double&quot;</span>)</span></code></pre></div>
+<p>設定したスタイルは，<code>addStyle()</code>で各セルに追加する．
+ワークブック，シート，スタイルセルの位置などを設定する．</p>
+<p>セルの位置指定では，<code>gridExpand</code>とすると，<code>rows</code>と<code>cols</code>の組み合わせを拡張してくれるので便利だ．
+具体的には，<code>rows = 1:10, cols = 2:3</code>とすると，1-10行目のB列とC列のセルすべて，つまり<code>B1:C10</code>という指定と同じになる．
+個別に設定したい場合は，<code>gridExpand</code>を設定しない．
+その場合は，<code>rows</code>と<code>cols</code>のベクトルの長さを同じにする必要がある．
+例えば，<code>rows = c(1, 3, 5), cols = c(2, 4, 6)</code>とすれば，<code>B1</code>，<code>D2</code>，<code>F5</code>のセルを指定できるが，
+<code>rows = c(1, 3, 5), cols = c(2, 4)</code>はエラーになる．</p>
+<p><code>stack = TRUE</code>を指定すると，指定外の既存のスタイルに，さらにスタイルを積み重ねていく，つまり追加していくことができる．
+<code>stack = TRUE</code>を指定しないと，新たなスタイルが設定されるので，指定外のスタイルはデフォルトのものになる．</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="openxlsx.html#cb282-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(tmp)</span>
+<span id="cb282-2"><a href="openxlsx.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(sheet <span class="cf">in</span> openxlsx<span class="sc">::</span><span class="fu">sheets</span>(wb)){</span>
+<span id="cb282-3"><a href="openxlsx.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">readWorkbook</span>(wb, sheet)</span>
+<span id="cb282-4"><a href="openxlsx.html#cb282-4" aria-hidden="true" tabindex="-1"></a>  new_grade <span class="ot">&lt;-</span> </span>
+<span id="cb282-5"><a href="openxlsx.html#cb282-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq_along</span>(df<span class="sc">$</span>grade)[df<span class="sc">$</span>grade <span class="sc">!=</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(df<span class="sc">$</span>grade)] <span class="sc">%&gt;%</span></span>
+<span id="cb282-6"><a href="openxlsx.html#cb282-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">[&lt;-</span><span class="st">`</span>(<span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb282-7"><a href="openxlsx.html#cb282-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="dv">1</span>)</span>
+<span id="cb282-8"><a href="openxlsx.html#cb282-8" aria-hidden="true" tabindex="-1"></a>  openxlsx<span class="sc">::</span><span class="fu">addStyle</span>(wb, sheet, <span class="at">style =</span> sty_thn, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df), <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df), <span class="at">gridExpand =</span> <span class="cn">TRUE</span>, <span class="at">stack =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb282-9"><a href="openxlsx.html#cb282-9" aria-hidden="true" tabindex="-1"></a>  openxlsx<span class="sc">::</span><span class="fu">addStyle</span>(wb, sheet, <span class="at">style =</span> sty_dbl, <span class="at">rows =</span> new_grade , <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df), <span class="at">gridExpand =</span> <span class="cn">TRUE</span>, <span class="at">stack =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb282-10"><a href="openxlsx.html#cb282-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb282-11"><a href="openxlsx.html#cb282-11" aria-hidden="true" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, tmp, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <!--
+shell(tmp)
 -->
-<p>パッケージmagrittrはちょっと変わったパッケージである．
-そもそも名前が変わっていて何と読んで良いのか分からない．
-公式ページには「magrittr (to be pronounced with a sophisticated french accent) 」と書かれている．
-フランス語は，大学の第2外国語で習ったが，すでに記憶の彼方に沈んでしまっている．
-主な関数がパイプ(<code>%&gt;%</code>)である点も変わっている．</p>
-<p>このように，ちょっと変わったパーッケージではあるものの，Rを使う際には欠かせないパッケージといっても過言ではない．
-Rのバージョン4.1以降では，base機能のパイプとして<code>|&gt;</code>が使えるようになったが，第1引数(<code>_</code>)とその名前を明示しないといけないなど若干使いにくい．
-そこでここでは，コードを簡潔に書くためのmagrittrのパイプ(<code>%&gt;%</code>)と関連した関数を紹介する．</p>
-<div id="準備" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> 準備<a href="magrittr.html#準備" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>例によって，インストールとパッケージの呼び出しをしておく．</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="magrittr.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magrittr&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="magrittr.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-2"><a href="magrittr.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
+<p>上のコードでは，<code>grade</code>の境界だけを二重線にするためにちょっとややこしいコードになってしまっている．
+各シートのデータを<code>df</code>に代入しているので，学年のデータを<code>df$grade</code>として取得している．
+具体的には，<code>Automatic</code>では，以下のようになっている．</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="openxlsx.html#cb283-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>grade</span></code></pre></div>
+<pre><code>##  [1] &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot;</code></pre>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="openxlsx.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;6&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot; &quot;7&quot;</span></span></code></pre></div>
+<p>ここから，境界部分を取り出すために<code>lag()</code>で1つずらしたベクトルを作成して，元のベクトルと比較して，異なる位置を取得している．
+<code>[&lt;-()</code>という関数は，<code>x[1] &lt;- 1</code>のようなことをパイプの中で実行するためのものである．
+ここでは，<code>grade</code>の最初の部分にも二重線を引きたいので，1つ目の<code>NA</code>を置換している．
+また，<code>+()</code>も四則演算をパイプ内でするために通常の関数と同じように使っている．
+ここでは，1行目が列名であるため，1行ずらすために1を追加している．</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="openxlsx.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(df<span class="sc">$</span>grade)[df<span class="sc">$</span>grade <span class="sc">!=</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(df<span class="sc">$</span>grade)] <span class="sc">%&gt;%</span></span>
+<span id="cb286-2"><a href="openxlsx.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb286-3"><a href="openxlsx.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">[&lt;-</span><span class="st">`</span>(<span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb286-4"><a href="openxlsx.html#cb286-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb286-5"><a href="openxlsx.html#cb286-5" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="dv">1</span>)</span></code></pre></div>
+<p>若干説明が長くなってしまったが，上記のコードを実行すれば，エクセルのワークブックに罫線を引くことができる．
+1回だけの作業ならコードを書くのは面倒だが，何度も同じ作業を繰り返す場合は，コードを書く価値があるだろう．</p>
+<p><img src="img/openxlsx_03.png" width="50%"></p>
 </div>
-<div id="magrittrとtidyverse" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> magrittrとtidyverse<a href="magrittr.html#magrittrとtidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>tidyverseは，Rでのデータ解析には欠かせないものになっている．
-Rの起動時にtidyverseを読み込む人は多いだろう．
-tidyverseを読み込むと，その中のパッケージ(forcats，tibble，stringr，dplyr，tidyr，purrr)がインポートした<code>%&gt;%</code>を使うことができる．
-そのため，私は<code>%&gt;%</code>がtidyverseの独自のものだと勘違いをしていた．
-<code>%&gt;%</code>はもとはパッケージmagrittrの関数である．</p>
-<p>ただし，tidyverseと<code>%&gt;%</code>の相性は非常によい．
-tidyverseの関数では，第1引数のオブジェクトがdplyrではデータフレーム，stringrでは文字列などのように，それぞれのパッケージで引数とするオブジェクトが統一されている．
-そのため，簡潔にコードを書くことができる．
-なお，パイプの手入力は手間がかかるので，ショートカットを利用する．
-RStudioでは，Ctrl + Shift + Mである．
-テキストエディタを使っているときはマクロやスクリプトを組んでショートカットを設定することをお勧めする．</p>
-<p><code>%&gt;%</code>は，慣れるまでは何が便利なのか分からないが，慣れると欠かせなくなる．
-さらに使っていると，癖なってしまって無駄にパイプを繋ぐこともある．
-長過ぎるパイプは良くないのは当然であるものの，適度に使うとRでのプログラミングは非常に楽になる．</p>
+<div id="ヘッダーとフッターの追加" class="section level2 hasAnchor" number="19.4">
+<h2><span class="header-section-number">19.4</span> ヘッダーとフッターの追加<a href="openxlsx.html#ヘッダーとフッターの追加" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ヘッダーとフッターを設定するには，<code>setHeaderFooter()</code>を使う．
+他の関数と同様に，ワークブック，シート番号(シート名)とともに，<code>header</code>と<code>footer</code>でヘッダーとフッターの内容を指定する．
+ヘッダー(フッター)は，<code>c("left", "center", "right")</code>のように，左・中央・右のヘッダー(フッター)に入れたい内容を指定する．
+このとき，3つとも指定する必要があり，何も入れたくないときには，<code>c(NA, NA, "right")</code>のように<code>NA</code>とする．
+また，エクセルでの作業と同様に，ページ番号やシート名などを入れたいときは，以下の文字列を指定する．
+さらに，<code>evenHeader</code>と<code>evenFooter</code>で偶数ページの，<code>firstHeader</code>と<code>firstFooter</code>で最初のページのヘッダーとフッターを指定することも可能である．</p>
+<p><img src="img/openxlsx_04.png" width="50%"></p>
+<pre><code>&amp;[Page]  # ページ番号
+&amp;[Pages] # 全ページ数
+&amp;[Date]  # 現在の日付
+&amp;[Time]  # 現在時刻
+&amp;[Path]  # ファイルのパス
+&amp;[File]  # ファイル名
+&amp;[Tab]   # シート名</code></pre>
+<p>次のように設定して保存すると，エクセルのファイルでもちゃんと設定されている．</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="openxlsx.html#cb288-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(tmp)</span>
+<span id="cb288-2"><a href="openxlsx.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setHeaderFooter</span>(wb, <span class="dv">1</span>, <span class="at">header =</span> <span class="fu">c</span>(<span class="st">&quot;&amp;[Date]&quot;</span>, <span class="st">&quot;ALL HEAD CENTER&quot;</span>, <span class="st">&quot;&amp;[Page] / &amp;[Pages]&quot;</span>))</span>
+<span id="cb288-3"><a href="openxlsx.html#cb288-3" aria-hidden="true" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, tmp, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
-<div id="でコードを簡潔に" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> <code>%&gt;%</code>でコードを簡潔に<a href="magrittr.html#でコードを簡潔に" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>最近のRでは，パイプ(<code>%&gt;%</code>)を多用したコードをよく目にする．
-はじめてみると，面食らって思考停止に陥ってしまうかも知れない．
-しかし，恐れることはない．
-以下では簡単な例を使って説明する．</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="magrittr.html#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">%&gt;%</span> <span class="fu">fun</span>() <span class="co"># あるとき：慣れていないと変な感じ</span></span>
-<span id="cb11-2"><a href="magrittr.html#cb11-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun</span>(a)      <span class="co"># ないとき：こっちのほうが分かりやすい</span></span></code></pre></div>
-<p>ある時とない時と比べると，ある時の方がコードが長くなっていて，何が便利なのかわからないだろう．
-著者も正直なところ，少し見たときには便利さが全くわからなかった．</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="magrittr.html#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ないとき：「a &lt;- 」が何度も必要</span></span>
-<span id="cb12-2"><a href="magrittr.html#cb12-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun1</span>(a)</span>
-<span id="cb12-3"><a href="magrittr.html#cb12-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun2</span>(a)</span>
-<span id="cb12-4"><a href="magrittr.html#cb12-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun3</span>(a)</span>
-<span id="cb12-5"><a href="magrittr.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 力技!：括弧が見づらい</span></span>
-<span id="cb12-6"><a href="magrittr.html#cb12-6" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fun3</span>(<span class="fu">fun2</span>(<span class="fu">fun1</span>(a)))</span>
-<span id="cb12-7"><a href="magrittr.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># あるとき</span></span>
-<span id="cb12-8"><a href="magrittr.html#cb12-8" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">%&gt;%</span>   <span class="co"># aに(以下の結果を)代入</span></span>
-<span id="cb12-9"><a href="magrittr.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fun1</span>() <span class="sc">%&gt;%</span> <span class="co"># fun1を実行</span></span>
-<span id="cb12-10"><a href="magrittr.html#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fun2</span>() <span class="sc">%&gt;%</span> <span class="co"># fun2を実行</span></span>
-<span id="cb12-11"><a href="magrittr.html#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fun3</span>() <span class="sc">%&gt;%</span> <span class="co"># fun3を実行</span></span></code></pre></div>
-<p>パイプを使うと，左側のオブジェクトを右側の関数の第1引数として使うため，引数が1つだけの場合は引数を書く必要がなくなる．
-このようにオブジェクトaに対して， fun1，fun2，fun3と順に関数を適用するということは，しばしば出てくる．
-特に，dplyrで<code>select()</code>，<code>filter()</code>，<code>group_by()</code>，<code>summarise()</code>などを使う時はそうである．
-その時，代入先のオブジェクト名を1回ずつ新たに考えるのは，非常に面倒である．
-どこまでを同じ変数名として，どこで変えるかなど考えるのは手間だ．
-キーボードでの打ち込みが多いほど，オブジェクト名の重複や入力間違いが発生する可能性が高くなり，バグの温床である．
-これを避ける方法は入れ子状に書くことであるが，括弧の対応がよくわからず頭が混乱する．
-正直なところ，著者は時々このようなコードを書くことがある．
-しかし，他人から見たらこんな馬鹿げて見にくいコードは無い．</p>
-<p>パイプを使うと，これらの問題が解決する．
-また，見た目にもわかりやすくコードの再利用もしやすい利点もある．
-見た目では，1つの作業が1行にあるため，可読性が高く人間の思考回路にも近い．
-再利用するときに，処理対象のオブジェクトを引数として明記しなくても良いため，前後の文脈に左右されずに必要な部分のコードだけを複写・貼付できる．
-慣れるには，ほんの少しの時間がかかるかもしれないが，ぜひとも活用してほしい．</p>
+<div id="作業の自動化" class="section level2 hasAnchor" number="19.5">
+<h2><span class="header-section-number">19.5</span> 作業の自動化<a href="openxlsx.html#作業の自動化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>上記作業のうち，列幅・オートフィルタ・ウィンドウ枠の3点セットは自動化しておいて損のない作業である．
+そこでここでは，これらを実行するスクリプトを作成し，特定のディレクトリにある全てのエクセルのワークブックに一発で設定できるようにする．
+基本的なコードは既に出来上がっているので，ファイル名の一覧を取得して，ファイルごとにforループで回すようにするだけだ．
+forループではなく，<code>purrr::map()</code>を使ってもよいのだが，イントールするパッケージを少なくするためにforを使っている．</p>
+<div id="スクリプトの内容" class="section level3 hasAnchor" number="19.5.1">
+<h3><span class="header-section-number">19.5.1</span> スクリプトの内容<a href="openxlsx.html#スクリプトの内容" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rに慣れていない人でもスクリプトを使えるようにするために，Rのインストールだけは必須であるが，それ以外の作業は自動化しておきたい．
+そこで，パッケージopenxlsxのインストールをスクリプトに含めている．
+あとは，fsパッケージの<code>dir_ls()</code>でエクセルの一覧を取得して，各ファイルに列幅の変更・オートフィルタの設定・ウィンドウ枠の固定の3点セットを実行する関数を適用すれば完成である．</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="openxlsx.html#cb289-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージの確認</span></span>
+<span id="cb289-2"><a href="openxlsx.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;openxlsx&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){</span>
+<span id="cb289-3"><a href="openxlsx.html#cb289-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">repos =</span> <span class="st">&quot;https://cran.ism.ac.jp/&quot;</span>)</span>
+<span id="cb289-4"><a href="openxlsx.html#cb289-4" aria-hidden="true" tabindex="-1"></a>   utils<span class="sc">::</span><span class="fu">install.packages</span>(<span class="st">&quot;openxlsx&quot;</span>)</span>
+<span id="cb289-5"><a href="openxlsx.html#cb289-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb289-6"><a href="openxlsx.html#cb289-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb289-7"><a href="openxlsx.html#cb289-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ワークブックごとで設定</span></span>
+<span id="cb289-8"><a href="openxlsx.html#cb289-8" aria-hidden="true" tabindex="-1"></a>set_af_fp <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
+<span id="cb289-9"><a href="openxlsx.html#cb289-9" aria-hidden="true" tabindex="-1"></a>  wb <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(file)</span>
+<span id="cb289-10"><a href="openxlsx.html#cb289-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(sheet <span class="cf">in</span> openxlsx<span class="sc">::</span><span class="fu">sheets</span>(wb)){</span>
+<span id="cb289-11"><a href="openxlsx.html#cb289-11" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">readWorkbook</span>(wb, sheet)</span>
+<span id="cb289-12"><a href="openxlsx.html#cb289-12" aria-hidden="true" tabindex="-1"></a>    openxlsx<span class="sc">::</span><span class="fu">setColWidths</span>(wb, sheet, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df), <span class="at">width =</span>  <span class="st">&quot;auto&quot;</span>)</span>
+<span id="cb289-13"><a href="openxlsx.html#cb289-13" aria-hidden="true" tabindex="-1"></a>    openxlsx<span class="sc">::</span><span class="fu">addFilter</span>(wb, sheet, <span class="at">row =</span> <span class="dv">1</span>, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df))</span>
+<span id="cb289-14"><a href="openxlsx.html#cb289-14" aria-hidden="true" tabindex="-1"></a>    openxlsx<span class="sc">::</span><span class="fu">freezePane</span>(wb, sheet, <span class="at">firstCol =</span> <span class="cn">TRUE</span>, <span class="at">firstRow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb289-15"><a href="openxlsx.html#cb289-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb289-16"><a href="openxlsx.html#cb289-16" aria-hidden="true" tabindex="-1"></a>  openxlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(wb, file)</span>
+<span id="cb289-17"><a href="openxlsx.html#cb289-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb289-18"><a href="openxlsx.html#cb289-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb289-19"><a href="openxlsx.html#cb289-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 本体</span></span>
+<span id="cb289-20"><a href="openxlsx.html#cb289-20" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regexp =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.xlsx*&quot;</span>) <span class="co"># &quot;.xls&quot;と&quot;.xlsx&quot;の一覧取得</span></span>
+<span id="cb289-21"><a href="openxlsx.html#cb289-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(file <span class="cf">in</span> files){                      <span class="co"># ファイル数だけ繰り返し</span></span>
+<span id="cb289-22"><a href="openxlsx.html#cb289-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_af_fp</span>(file)                        <span class="co"># set_af_fp()の実行</span></span>
+<span id="cb289-23"><a href="openxlsx.html#cb289-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div id="パイプの仲間" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> パイプの仲間<a href="magrittr.html#パイプの仲間" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="使用方法" class="section level3 hasAnchor" number="19.5.2">
+<h3><span class="header-section-number">19.5.2</span> 使用方法<a href="openxlsx.html#使用方法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><code>%&lt;&gt;%</code><br />
-</li>
-<li><code>%T&gt;%</code>(Tパイプというらしい)<br />
-</li>
-<li><code>%$%</code></li>
+<li><p>準備：<a href="https://matutosi.github.io/retc/install.html">Rのインストール</a></p></li>
+<li><p>準備：<a href="https://gist.githubusercontent.com/matutosi/fe217c7ed934dd242d6798aca846d902/raw/c7b93586db398f801d469bd98a9e764a04a4a8e2/set_autofilter_freezepanel.rsc" download>set_autofilter_freezepanel.rsc</a>
+をダウンロード(右クリックして「名前を付けてリンク先を保存」)して，任意のフォルダに保存．</p></li>
+<li><p>準備：<a href="https://matutosi.github.io/retc/assoc.html">スクリプトの関連付け</a>を参考にして，「.rsc」を「Rscript.exe」に関連付けする(Windowsの場合)．<br />
+Macの場合は，<a href="https://pc-karuma.net/mac-extension-related-app-change/">Mac - 拡張子に関連付けられているアプリを変更する方法</a>などを参考にしてほしい．</p></li>
+<li><p>set_autofilter_freezepanel.rsc と同じフォルダに，処理したいエクセルのファイルを保存．<br />
+<img src="img/set_autofilter_freezepanel01.png" style="width:80.0%" /></p></li>
+<li><p>実行前のエクセルのファイル<br />
+<img src="img/set_autofilter_freezepanel02.png" style="width:40.0%" /></p></li>
+<li><p>set_autofilter_freezepanel.rsc をダブルクリックして実行すると，コマンドのウィンドウでプログラムが実行される．<br />
+<img src="img/set_autofilter_freezepanel03.png" style="width:40.0%" /><br />
+プログラムがオートフィルタを設定し，1行目と1列目でウィンドウ枠を固定する．
+複数ファイル・複数シートにも対応している．<br />
+なお，初回実行時は，openxlsxパケージのダウンロードのため，少し時間がかかるかもしれない．
+2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．<br />
+実行後のエクセルのファイル<br />
+<img src="img/set_autofilter_freezepanel04.png" style="width:40.0%" /></p></li>
 </ul>
-<p>これらの関数は，tidyverseには含まれていないため，使用するにはmagrittrを読み込む必要がある．
-<code>%&gt;%</code>と似た機能を持つ．</p>
-<div id="でオブジェクトを代入" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> <code>%&lt;&gt;%</code>でオブジェクトを代入<a href="magrittr.html#でオブジェクトを代入" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>%&lt;&gt;%</code>は，パイプを使って処理した内容を，最初のオブジェクトに再度代入するときに使う．
-ほんの少しだけ，コードを短くできる．</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="magrittr.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mpg) <span class="co"># 燃費データ</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 × 11
-##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
-##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
-## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa…
-## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa…
-## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
-## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
-## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="magrittr.html#cb15-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
-<span id="cb15-2"><a href="magrittr.html#cb15-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span></span>
-<span id="cb15-3"><a href="magrittr.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  tmp <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="magrittr.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-5"><a href="magrittr.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>))</span>
-<span id="cb15-6"><a href="magrittr.html#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="magrittr.html#cb15-7" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mpg</span>
-<span id="cb15-8"><a href="magrittr.html#cb15-8" aria-hidden="true" tabindex="-1"></a>tmp <span class="sc">%&lt;&gt;%</span></span>
-<span id="cb15-9"><a href="magrittr.html#cb15-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1999</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-10"><a href="magrittr.html#cb15-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(trans, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;trans1&quot;</span>, <span class="st">&quot;trans2&quot;</span>, <span class="cn">NA</span>))</span></code></pre></div>
-<p>注意点としては，試行錯誤でコードを書いている途中は，あまり使わないほうが良いだろう．
-もとのオブジェクトが置き換わるので，処理結果が求めるものでないときに，もとに戻れなくなってしまうためだ．
-コードを短くできるのは1行で，可読性が特に高くなるというわけでもない．
-便利なことは便利で，私も一時期はよく使用していた．
-しかし，上記の理由もあって，最近はほとんど使用していない．</p>
-</div>
-<div id="tでコードを分岐" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> <code>%T&gt;%</code>でコードを分岐<a href="magrittr.html#tでコードを分岐" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>処理途中に分岐をして別の処理をさせたいときに使う．
-例えば，ちょっとだけ処理して，変数に保存するときに使う．
-imapと組み合わせて，保存する画像のファイル名を設定する時に使うと便利である．</p>
-<p><code>%T&gt;%</code>は便利ではあるが，以下の点で注意が必要である．</p>
-<ul>
-<li>分岐途中の結果をオブジェクトに代入するときには，<code>&lt;-</code>ではなく，<code>&lt;&lt;-</code>を使う<br />
-</li>
-<li>明示的に<code>.</code>を使う<br />
-</li>
-<li>複数処理があれば，<code>{</code>と<code>}</code>で囲う<br />
-</li>
-<li>処理終了後に<code>%&gt;%</code>が必要</li>
-</ul>
-<p><code>%T&gt;%</code>を使うとコードの途中に，ちょっとだけ枝分かれしたコードを挿入できる．
-有用な機能ではあるが，トリッキーなコードになる可能性があるため，使いすぎには気をつけたい．</p>
-<p>以下の例は，あまり実用的なものではないが，簡単な例として示す．</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="magrittr.html#cb16-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="magrittr.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="magrittr.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>Species) <span class="sc">%&gt;%</span>          <span class="co"># Speciesで分割</span></span>
-<span id="cb16-4"><a href="magrittr.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(print, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%T&gt;%</span> <span class="co"># それぞれ3行だけ表示</span></span>
-<span id="cb16-5"><a href="magrittr.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb16-6"><a href="magrittr.html#cb16-6" aria-hidden="true" tabindex="-1"></a>    sp_path <span class="ot">&lt;&lt;-</span> <span class="fu">paste0</span>(<span class="fu">names</span>(.), <span class="st">&quot;.txt&quot;</span>) <span class="co"># ファイル名：種名.txt</span></span>
-<span id="cb16-7"><a href="magrittr.html#cb16-7" aria-hidden="true" tabindex="-1"></a>  } <span class="sc">%&gt;%</span></span>
-<span id="cb16-8"><a href="magrittr.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>select_if, is.numeric) <span class="sc">%&gt;%</span> <span class="co"># 数値だけを選択</span></span>
-<span id="cb16-9"><a href="magrittr.html#cb16-9" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>summarise_all, mean) <span class="sc">%&gt;%</span>   <span class="co"># 平均を算出</span></span>
-<span id="cb16-10"><a href="magrittr.html#cb16-10" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2</span>(<span class="at">.x =</span> ., <span class="at">.y =</span> sp_path, readr<span class="sc">::</span>write_csv) <span class="co"># 種ごとにcsvを保存</span></span></code></pre></div>
-<p>Tパイプは，Tの文字の形が意味をなしており，左から来たデータを分岐させて右側と下側に流す役割をする．
-上の例では，分岐した途中でファイル名<code>sp_path</code>を生成するために，(わざと)分岐を入れている．
-このコードで本来<code>{}</code>は不要だが，入れておくとTパイプを使っている部分がわかりやすい．
-ファイル名を生成したあと(<code>}</code>の後ろ)には，上から流れてきたものがそのまま<code>purrr::map()</code>の第1引数として使われる．
-<code>select_if()</code>と<code>dplyr::summarise_all()</code>をしてから，最終的にファイルとして出力する．
-<code>map2()</code>は<code>map()</code>の引数を2つとるバージョンであり，第1引数に上から来たデータフレームを，第2引数にファイル名を使っている．</p>
-<p>なお，最後の<code>map2()</code>を<code>purrr::walk2</code>とすると種ごとの平均値は画面には出力されず，ファイルへの出力だけになる．
-さらに余談だが，上で「(わざと)」と書いたのは，Tパイプを使わずに，最後のところを<code>map2(.x = ., .y = paste0(names(.), ".txt"), readr::write_csv)</code>とすれば同じ結果が得られるためである．</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="magrittr.html#cb17-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="magrittr.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="magrittr.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>Species) <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href="magrittr.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>select_if, is.numeric) <span class="sc">%&gt;%</span></span>
-<span id="cb17-5"><a href="magrittr.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(dplyr<span class="sc">::</span>summarise_all, mean) <span class="sc">%&gt;%</span></span>
-<span id="cb17-6"><a href="magrittr.html#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map2</span>(<span class="at">.x =</span> ., <span class="at">.y =</span> <span class="fu">paste0</span>(<span class="fu">names</span>(.), <span class="st">&quot;.txt&quot;</span>), readr<span class="sc">::</span>write_csv)</span></code></pre></div>
-</div>
-<div id="でのショートカット" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> <code>%$%</code>で<code>$</code>のショートカット<a href="magrittr.html#でのショートカット" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>%$%</code>は，<code>%&gt;%</code>と<code>.$</code>の組み合わせのショートカットである．</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="magrittr.html#cb18-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="magrittr.html#cb20-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%$%</span>   manufacturer <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<p>パッケージ開発ではパイプを使った場合の<code>.</code>が推奨されていない．
-パッケージ開発時に欠かせないチェック(R CMD check)ではpossible problemとしてWarningが出力される．
-そのため，そのままではCRANでは受け付けてもらえない．
-Githubでパッケージを公開するならそれでも問題はないが，Checkで毎回Warningが出力されるのは，心理的に嬉しくない．</p>
-<p>そこで，DESCRIPTIONで次のように<code>%$%</code>をインポートしておくと，<code>.$</code>を使わなくても良い．
-<!--
-なお，`%>%`だけなら，usethis::use_pipe()とすれば，開発パッケージのDESCRIPTIONに，importFrom(magrittr,"%>%")を書いてくれる．
---></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="magrittr.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">importFrom</span>(magrittr,<span class="st">&quot;%$%&quot;</span>)</span></code></pre></div>
-<p>なお余談ではあるが，この場合は<code>$</code>の代わりに<code>[[</code>と<code>]]</code>を使っても同じ結果が得られる．
-<code>[</code>と<code>]</code>ではデータフレームの1列をそのまま取り出すので，結果が異なる．</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="magrittr.html#cb23-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .<span class="sc">$</span>manufacturer      <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="magrittr.html#cb25-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[[<span class="st">&quot;manufacturer&quot;</span>]] <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="magrittr.html#cb27-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> .[<span class="st">&quot;manufacturer&quot;</span>]   <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 1
-##   manufacturer
-##   &lt;chr&gt;       
-## 1 audi        
-## 2 audi        
-## 3 audi        
-## 4 audi        
-## 5 audi        
-## 6 audi</code></pre>
-<p><code>[[ ]]</code>と<code>[ ]</code>は，それぞれ<code>[[</code>と<code>[</code>という関数であるため，以下のように書くことができる．
-この場合，第1引数がパイプの前から引き継がれるため，<code>.</code>を明示しなくてもよい．</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="magrittr.html#cb29-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">$</span><span class="st">`</span>(manufacturer)    <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="magrittr.html#cb31-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="co"># mpg %&gt;% `[[`(., &quot;manufacturer&quot;) と同じ</span></span></code></pre></div>
-<pre><code>## [1] &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot;</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="magrittr.html#cb33-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[</span><span class="st">`</span>(<span class="st">&quot;manufacturer&quot;</span>)  <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 1
-##   manufacturer
-##   &lt;chr&gt;       
-## 1 audi        
-## 2 audi        
-## 3 audi        
-## 4 audi        
-## 5 audi        
-## 6 audi</code></pre>
-</div>
-</div>
-<div id="パイプ以外の関数" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> パイプ以外の関数<a href="magrittr.html#パイプ以外の関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>magrittrにはパイプとともに使うと便利な関数も含まれている．
-例えば，パイプを使ったコードの中で列名を変更したいことがある．
-<code>set_colnames()</code>はデータフレームの列名を変更する時に便利だ．
-これを使わずに列名を変更しようとすると，ちょっとトリッキーな関数<code>colnames&lt;-()</code>を使うか，途中でコードを区切る必要がある．</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="magrittr.html#cb35-1" aria-hidden="true" tabindex="-1"></a>hoge <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(mpg, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb35-2"><a href="magrittr.html#cb35-2" aria-hidden="true" tabindex="-1"></a>cnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>)</span>
-<span id="cb35-3"><a href="magrittr.html#cb35-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># colnames(hoge) &lt;- cnames      # 通常のコード</span></span>
-<span id="cb35-4"><a href="magrittr.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">colnames&lt;-</span><span class="st">`</span>(hoge, cnames)       <span class="co"># トリッキーなコード</span></span>
-<span id="cb35-5"><a href="magrittr.html#cb35-5" aria-hidden="true" tabindex="-1"></a>hoge <span class="sc">%&gt;%</span> </span>
-<span id="cb35-6"><a href="magrittr.html#cb35-6" aria-hidden="true" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">set_colnames</span>(cnames)</span></code></pre></div>
-<!--
-ところで，`dplyr::rename()`や`dplyr::select()`を使って列名を変更する方法もあるが，もとの列名も指定する必要がある．
--->
-</div>
-<div id="コラムmagrittrの不思議な関数たち" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> コラム：magrittrの不思議な関数たち<a href="magrittr.html#コラムmagrittrの不思議な関数たち" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>magrittrは，そもそも変わったパッケージだが，不思議な名前の関数もある．</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="magrittr.html#cb36-1" aria-hidden="true" tabindex="-1"></a>add          <span class="co"># `+`</span></span>
-<span id="cb36-2"><a href="magrittr.html#cb36-2" aria-hidden="true" tabindex="-1"></a>subtract     <span class="co"># `-`</span></span>
-<span id="cb36-3"><a href="magrittr.html#cb36-3" aria-hidden="true" tabindex="-1"></a>multiply_by  <span class="co"># `*`</span></span>
-<span id="cb36-4"><a href="magrittr.html#cb36-4" aria-hidden="true" tabindex="-1"></a>divide_by    <span class="co"># `/`</span></span></code></pre></div>
-<p><code>?not</code>とすれば，似たような不思議な関数の一覧と説明が出てくる．
-特に四則演算をする関数の場合は，パイプと一緒に使うと若干だが読みやすい．
-<code>+</code>と同じ機能である<code>add</code>であれば，以下のようになる．</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="magrittr.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> </span>
-<span id="cb37-2"><a href="magrittr.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="magrittr.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> </span>
-<span id="cb39-2"><a href="magrittr.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add</span>(<span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
-<p>パイプで使わない場合は，普通の四則演算の方がわかりやすい．</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="magrittr.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="dv">100</span></span></code></pre></div>
-<pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="magrittr.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 101 102 103 104 105 106 107 108 109 110</code></pre>
-<p>論理演算で使う関数もパイプで使うと読みやすくなりそう．</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="magrittr.html#cb45-1" aria-hidden="true" tabindex="-1"></a>and          <span class="co"># `&amp;`</span></span>
-<span id="cb45-2"><a href="magrittr.html#cb45-2" aria-hidden="true" tabindex="-1"></a>or           <span class="co"># `|`</span></span>
-<span id="cb45-3"><a href="magrittr.html#cb45-3" aria-hidden="true" tabindex="-1"></a>equals       <span class="co"># `==`</span></span>
-<span id="cb45-4"><a href="magrittr.html#cb45-4" aria-hidden="true" tabindex="-1"></a>not          <span class="co"># `!`，`n&#39;est pas`(フランス語)も同じ</span></span></code></pre></div>
-<p><code>&amp;</code>や<code>|</code>で，条件が多くなってくると読みにくくなるので，改行するかパイプで繋いで1つ1つの条件を短くするとコードが読みやすくなる．</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="magrittr.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">times =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb46-2"><a href="magrittr.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">and</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">each =</span> <span class="dv">5</span>))</span></code></pre></div>
-<pre><code>##  [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="magrittr.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">times =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="magrittr.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">or</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">each =</span> <span class="dv">5</span>))</span></code></pre></div>
-<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE</code></pre>
 
+</div>
 </div>
 </div>
             </section>
@@ -662,8 +602,8 @@ Githubでパッケージを公開するならそれでも問題はないが，Ch
           </div>
         </div>
       </div>
-<a href="assoc.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dbi.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="qpdf.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

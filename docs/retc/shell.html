@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-06-28" />
+<meta name="date" content="2023-07-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -332,13 +332,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.3" data-path="dbi.html"><a href="dbi.html#準備-13"><i class="fa fa-check"></i><b>18.3</b> 準備</a></li>
 <li class="chapter" data-level="18.4" data-path="dbi.html"><a href="dbi.html#使い方-2"><i class="fa fa-check"></i><b>18.4</b> 使い方</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>19</b> xlsxでエクセル操作</a>
+<li class="chapter" data-level="19" data-path="openxlsx.html"><a href="openxlsx.html"><i class="fa fa-check"></i><b>19</b> openxlsxでエクセル操作</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="xlsx.html"><a href="xlsx.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
-<li class="chapter" data-level="19.2" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>19.2</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
+<li class="chapter" data-level="19.1" data-path="openxlsx.html"><a href="openxlsx.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
+<li class="chapter" data-level="19.2" data-path="openxlsx.html"><a href="openxlsx.html#列幅の変更オートフィルタの設定ウィンドウ枠の固定"><i class="fa fa-check"></i><b>19.2</b> 列幅の変更，オートフィルタの設定，ウィンドウ枠の固定</a></li>
+<li class="chapter" data-level="19.3" data-path="openxlsx.html"><a href="openxlsx.html#罫線の設定"><i class="fa fa-check"></i><b>19.3</b> 罫線の設定</a></li>
+<li class="chapter" data-level="19.4" data-path="openxlsx.html"><a href="openxlsx.html#ヘッダーとフッターの追加"><i class="fa fa-check"></i><b>19.4</b> ヘッダーとフッターの追加</a></li>
+<li class="chapter" data-level="19.5" data-path="openxlsx.html"><a href="openxlsx.html#作業の自動化"><i class="fa fa-check"></i><b>19.5</b> 作業の自動化</a>
 <ul>
-<li class="chapter" data-level="19.2.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>19.2.1</b> 使用方法</a></li>
-<li class="chapter" data-level="19.2.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>19.2.2</b> スクリプトの内容説明</a></li>
+<li class="chapter" data-level="19.5.1" data-path="openxlsx.html"><a href="openxlsx.html#スクリプトの内容"><i class="fa fa-check"></i><b>19.5.1</b> スクリプトの内容</a></li>
+<li class="chapter" data-level="19.5.2" data-path="openxlsx.html"><a href="openxlsx.html#使用方法"><i class="fa fa-check"></i><b>19.5.2</b> 使用方法</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>20</b> qpdfでPDF操作</a>
@@ -426,8 +429,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.1</span> 準備<a href="shell.html#準備-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>system()</code>や<code>shell()</code>などはRのbaseパッケージに含まれている．
 ここでは，組み合わせて使用するcurlパッケージをインストールしておく．</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="shell.html#cb153-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;curl&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="shell.html#cb154-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="shell.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;curl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="shell.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -438,7 +441,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="shell.html#cb156-1" tabindex="-1"></a><span class="fu">library</span>(curl)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="shell.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(curl)</span></code></pre></div>
 <pre><code>## Using libcurl 7.84.0 with Schannel
 ## 
 ## Attaching package: &#39;curl&#39;
@@ -458,7 +461,7 @@ RにはないライブラリがPythonにはあり，reticulateパッケージを
 <p>まずは，Pythonのインストーラをダウンロードする．
 Windowsの場合は，以下を実行するとデフォルトのブラウザでPythonのインストラのダウンロードページが開く．
 なお，ここで利用している<code>shell.exec()</code>はWindowsで使える関数で，拡張子に関連付けられたファイルを実行するものである．</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="shell.html#cb158-1" tabindex="-1"></a><span class="fu">shell.exec</span>(<span class="st">&quot;https://pythonlinks.python.jp/ja/index.html&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="shell.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shell.exec</span>(<span class="st">&quot;https://pythonlinks.python.jp/ja/index.html&quot;</span>)</span></code></pre></div>
 <p>MacやLinuxには，通常はデフォルトでPython3がインストールされている．
 必要に応じてバージョンアップして欲しい．
 また，Python2がインストールされていても，使わない場合はアンインストールしておくことをお勧めする．
@@ -475,9 +478,9 @@ system("chrome https://pythonlinks.python.jp/ja/index.html &") # Linux
 最新版が異なる場合は，適宜URLを変更してほしい．
 curl_downloadで一時ファイルとしてインストーラをダウンロードする．
 なお，<code>py_installer</code>にはダウンロードした一時ファイル名を保存している．</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="shell.html#cb159-1" tabindex="-1"></a>py_installer <span class="ot">&lt;-</span> </span>
-<span id="cb159-2"><a href="shell.html#cb159-2" tabindex="-1"></a>  <span class="st">&quot;https://www.python.org/ftp/python/3.11.1/python-3.11.1-amd64.exe&quot;</span> <span class="sc">%&gt;%</span></span>
-<span id="cb159-3"><a href="shell.html#cb159-3" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;exe&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="shell.html#cb159-1" aria-hidden="true" tabindex="-1"></a>py_installer <span class="ot">&lt;-</span> </span>
+<span id="cb159-2"><a href="shell.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://www.python.org/ftp/python/3.11.1/python-3.11.1-amd64.exe&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb159-3"><a href="shell.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  curl<span class="sc">::</span><span class="fu">curl_download</span>(fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;exe&quot;</span>))</span></code></pre></div>
 <!--
 ## TODO
 tempfileの削除が必要
@@ -493,10 +496,10 @@ tempfileの削除が必要
 <p>内容がわかっていて，自分流でインストールしたい場合はカスタマイズすると良い．
 カスタマイズする場合でも，インストールする項目で<code>pip</code>のチェックは入れたままにしておく．
 PillowとPyAutoGUIのインストールに使用するからだ．</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="shell.html#cb160-1" tabindex="-1"></a><span class="fu">shell.exec</span>(py_installer)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="shell.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shell.exec</span>(py_installer)</span></code></pre></div>
 <p>これでPythonがインストールできたはずだが，念のため確認しておく．
 インストールしたバージョンによって表示が若干異なるが，以下のコードを実行してバージョンが表示されれば，Pythonのインストールは成功である．</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="shell.html#cb161-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;python -V&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="shell.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;python -V&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Python 3.11.1&quot;</code></pre>
 <p>Pythonのインストールがうまくいかない場合は，以下を参考にして欲しい．</p>
 <p><a href="https://www.python.jp/install/windows/install.html" class="uri">https://www.python.jp/install/windows/install.html</a></p>
@@ -511,58 +514,58 @@ PillowとPyAutoGUIのインストールに使用するからだ．</p>
 <code>pip list</code>は，Pythonのライブラリ管理ソフトであるpipを使ってインストール済みライブラリ一覧を出力するコマンドである．
 初めてPythonをインストールしたのであれば，一覧に何も表示されないはずなので，PillowとPyAutoGUIをインストールする．
 もし，一覧の中に”Pillow”と”PyAutoGUI”という文字列があれば，インストールは不要である．</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="shell.html#cb163-1" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip list&quot;</span></span>
-<span id="cb163-2"><a href="shell.html#cb163-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb163-3"><a href="shell.html#cb163-3" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(res) <span class="sc">%&gt;%</span></span>
-<span id="cb163-4"><a href="shell.html#cb163-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;Pillow|PyAutoGUI&quot;</span>))</span>
-<span id="cb163-5"><a href="shell.html#cb163-5" tabindex="-1"></a><span class="do">## # A tibble: 0 × 1</span></span>
-<span id="cb163-6"><a href="shell.html#cb163-6" tabindex="-1"></a><span class="do">## ℹ 1 variable: value &lt;chr&gt;</span></span>
-<span id="cb163-7"><a href="shell.html#cb163-7" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="shell.html#cb164-1" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip install Pillow PyAutoGUI&quot;</span></span>
-<span id="cb164-2"><a href="shell.html#cb164-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb164-3"><a href="shell.html#cb164-3" tabindex="-1"></a><span class="fu">head</span>(res)</span>
-<span id="cb164-4"><a href="shell.html#cb164-4" tabindex="-1"></a><span class="do">## [1] &quot;Collecting Pillow&quot;</span></span>
-<span id="cb164-5"><a href="shell.html#cb164-5" tabindex="-1"></a><span class="do">## [2] &quot;  Using cached Pillow-9.5.0-cp311-cp311-win_amd64.whl (2.5 MB)&quot;</span></span>
-<span id="cb164-6"><a href="shell.html#cb164-6" tabindex="-1"></a><span class="do">## [3] &quot;Collecting PyAutoGUI&quot;</span></span>
-<span id="cb164-7"><a href="shell.html#cb164-7" tabindex="-1"></a><span class="do">## [4] &quot;  Using cached PyAutoGUI-0.9.53-py3-none-any.whl&quot;</span></span>
-<span id="cb164-8"><a href="shell.html#cb164-8" tabindex="-1"></a><span class="do">## [5] &quot;Requirement already satisfied: pymsgbox in c:\\users\\username\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (from PyAutoGUI) (1.0.9)&quot;</span></span>
-<span id="cb164-9"><a href="shell.html#cb164-9" tabindex="-1"></a><span class="do">## [6] &quot;Requirement already satisfied: PyTweening&gt;=1.0.1 in c:\\users\\username\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (from PyAutoGUI) (1.0.7)&quot;</span></span>
-<span id="cb164-10"><a href="shell.html#cb164-10" tabindex="-1"></a><span class="fu">tail</span>(res)</span>
-<span id="cb164-11"><a href="shell.html#cb164-11" tabindex="-1"></a><span class="do">## [1] &quot;Requirement already satisfied: pyperclip in c:\\users\\username\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (from mouseinfo-&gt;PyAutoGUI) (1.8.2)&quot;</span></span>
-<span id="cb164-12"><a href="shell.html#cb164-12" tabindex="-1"></a><span class="do">## [2] &quot;Installing collected packages: Pillow, PyAutoGUI&quot;</span></span>
-<span id="cb164-13"><a href="shell.html#cb164-13" tabindex="-1"></a><span class="do">## [3] &quot;Successfully installed Pillow-9.5.0 PyAutoGUI-0.9.53&quot;</span></span>
-<span id="cb164-14"><a href="shell.html#cb164-14" tabindex="-1"></a><span class="do">## [4] &quot;&quot;</span></span>
-<span id="cb164-15"><a href="shell.html#cb164-15" tabindex="-1"></a><span class="do">## [5] &quot;[notice] A new release of pip available: 22.3.1 -&gt; 23.1.2&quot;</span></span>
-<span id="cb164-16"><a href="shell.html#cb164-16" tabindex="-1"></a><span class="do">## [6] &quot;[notice] To update, run: python.exe -m pip install --upgrade pip&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="shell.html#cb163-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip list&quot;</span></span>
+<span id="cb163-2"><a href="shell.html#cb163-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb163-3"><a href="shell.html#cb163-3" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(res) <span class="sc">%&gt;%</span></span>
+<span id="cb163-4"><a href="shell.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;Pillow|PyAutoGUI&quot;</span>))</span>
+<span id="cb163-5"><a href="shell.html#cb163-5" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 0 × 1</span></span>
+<span id="cb163-6"><a href="shell.html#cb163-6" aria-hidden="true" tabindex="-1"></a><span class="do">## ℹ 1 variable: value &lt;chr&gt;</span></span>
+<span id="cb163-7"><a href="shell.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="shell.html#cb164-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="st">&quot;pip install Pillow PyAutoGUI&quot;</span></span>
+<span id="cb164-2"><a href="shell.html#cb164-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(cmd, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb164-3"><a href="shell.html#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res)</span>
+<span id="cb164-4"><a href="shell.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Collecting Pillow&quot;</span></span>
+<span id="cb164-5"><a href="shell.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;  Using cached Pillow-9.5.0-cp311-cp311-win_amd64.whl (2.5 MB)&quot;</span></span>
+<span id="cb164-6"><a href="shell.html#cb164-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;Collecting PyAutoGUI&quot;</span></span>
+<span id="cb164-7"><a href="shell.html#cb164-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;  Using cached PyAutoGUI-0.9.53-py3-none-any.whl&quot;</span></span>
+<span id="cb164-8"><a href="shell.html#cb164-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;Requirement already satisfied: pymsgbox in c:\\users\\username\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (from PyAutoGUI) (1.0.9)&quot;</span></span>
+<span id="cb164-9"><a href="shell.html#cb164-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;Requirement already satisfied: PyTweening&gt;=1.0.1 in c:\\users\\username\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (from PyAutoGUI) (1.0.7)&quot;</span></span>
+<span id="cb164-10"><a href="shell.html#cb164-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(res)</span>
+<span id="cb164-11"><a href="shell.html#cb164-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Requirement already satisfied: pyperclip in c:\\users\\username\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (from mouseinfo-&gt;PyAutoGUI) (1.8.2)&quot;</span></span>
+<span id="cb164-12"><a href="shell.html#cb164-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;Installing collected packages: Pillow, PyAutoGUI&quot;</span></span>
+<span id="cb164-13"><a href="shell.html#cb164-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;Successfully installed Pillow-9.5.0 PyAutoGUI-0.9.53&quot;</span></span>
+<span id="cb164-14"><a href="shell.html#cb164-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;&quot;</span></span>
+<span id="cb164-15"><a href="shell.html#cb164-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;[notice] A new release of pip available: 22.3.1 -&gt; 23.1.2&quot;</span></span>
+<span id="cb164-16"><a href="shell.html#cb164-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] &quot;[notice] To update, run: python.exe -m pip install --upgrade pip&quot;</span></span></code></pre></div>
 <p>最後の方に”Successfully installed Pillow-9.5.0 PyAutoGUI-0.9.53”のような表示があればインストールができているはずだ．
 念のためpipで確認する．
 以下では書き方をわざと変えているが，ライブラリのインストール前と実行内容は同じである．
 一覧の中に”Pillow”と”PyAutoGUI”という文字列があれば，インストールされていることが確認できる．</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="shell.html#cb165-1" tabindex="-1"></a><span class="st">&quot;pip list&quot;</span> <span class="sc">%&gt;%</span></span>
-<span id="cb165-2"><a href="shell.html#cb165-2" tabindex="-1"></a>  <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb165-3"><a href="shell.html#cb165-3" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb165-4"><a href="shell.html#cb165-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;Pillow|PyAutoGUI&quot;</span>))</span>
-<span id="cb165-5"><a href="shell.html#cb165-5" tabindex="-1"></a><span class="do">## # A tibble: 2 × 1</span></span>
-<span id="cb165-6"><a href="shell.html#cb165-6" tabindex="-1"></a><span class="do">##   value               </span></span>
-<span id="cb165-7"><a href="shell.html#cb165-7" tabindex="-1"></a><span class="do">##   &lt;chr&gt;               </span></span>
-<span id="cb165-8"><a href="shell.html#cb165-8" tabindex="-1"></a><span class="do">## 1 Pillow          9.5.0 </span></span>
-<span id="cb165-9"><a href="shell.html#cb165-9" tabindex="-1"></a><span class="do">## 2 PyAutoGUI       0.9.53</span></span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="shell.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;pip list&quot;</span> <span class="sc">%&gt;%</span></span>
+<span id="cb165-2"><a href="shell.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system</span>(<span class="at">intern =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb165-3"><a href="shell.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb165-4"><a href="shell.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(value, <span class="st">&quot;Pillow|PyAutoGUI&quot;</span>))</span>
+<span id="cb165-5"><a href="shell.html#cb165-5" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2 × 1</span></span>
+<span id="cb165-6"><a href="shell.html#cb165-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   value               </span></span>
+<span id="cb165-7"><a href="shell.html#cb165-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;               </span></span>
+<span id="cb165-8"><a href="shell.html#cb165-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Pillow          9.5.0 </span></span>
+<span id="cb165-9"><a href="shell.html#cb165-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 PyAutoGUI       0.9.53</span></span></code></pre></div>
 <p>ところで，2つ前のコードのところで，“[notice]”としてpipの最新版がある．
 これは，pipをバージョンアップしてはどうかという提案である．
 せっかくなので，バージョンアップしておこう．</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="shell.html#cb166-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(<span class="st">&quot;python.exe -m pip install --upgrade pip&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb166-2"><a href="shell.html#cb166-2" tabindex="-1"></a>res</span>
-<span id="cb166-3"><a href="shell.html#cb166-3" tabindex="-1"></a><span class="do">##  [1] &quot;Requirement already satisfied: pip in c:\\users\\username\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (22.3.1)&quot;</span></span>
-<span id="cb166-4"><a href="shell.html#cb166-4" tabindex="-1"></a><span class="do">##  [2] &quot;Collecting pip&quot;</span></span>
-<span id="cb166-5"><a href="shell.html#cb166-5" tabindex="-1"></a><span class="do">##  [3] &quot;  Using cached pip-23.1.2-py3-none-any.whl (2.1 MB)&quot;</span></span>
-<span id="cb166-6"><a href="shell.html#cb166-6" tabindex="-1"></a><span class="do">##  [4] &quot;Installing collected packages: pip&quot;</span></span>
-<span id="cb166-7"><a href="shell.html#cb166-7" tabindex="-1"></a><span class="do">##  [5] &quot;  Attempting uninstall: pip&quot;</span></span>
-<span id="cb166-8"><a href="shell.html#cb166-8" tabindex="-1"></a><span class="do">##  [6] &quot;    Found existing installation: pip 22.3.1&quot;</span></span>
-<span id="cb166-9"><a href="shell.html#cb166-9" tabindex="-1"></a><span class="do">##  [7] &quot;    Uninstalling pip-22.3.1:&quot;</span></span>
-<span id="cb166-10"><a href="shell.html#cb166-10" tabindex="-1"></a><span class="do">##  [8] &quot;      Successfully uninstalled pip-22.3.1&quot;</span></span>
-<span id="cb166-11"><a href="shell.html#cb166-11" tabindex="-1"></a><span class="do">##  [9] &quot;  </span><span class="al">WARNING</span><span class="do">: The scripts pip.exe, pip3.11.exe and pip3.exe are installed in &#39;C:\\Users\\username\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Scripts&#39; which is not on PATH.&quot;</span></span>
-<span id="cb166-12"><a href="shell.html#cb166-12" tabindex="-1"></a><span class="do">## [10] &quot;  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.&quot;</span></span>
-<span id="cb166-13"><a href="shell.html#cb166-13" tabindex="-1"></a><span class="do">## [11] &quot;Successfully installed pip-23.1.2&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="shell.html#cb166-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">system</span>(<span class="st">&quot;python.exe -m pip install --upgrade pip&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb166-2"><a href="shell.html#cb166-2" aria-hidden="true" tabindex="-1"></a>res</span>
+<span id="cb166-3"><a href="shell.html#cb166-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] &quot;Requirement already satisfied: pip in c:\\users\\username\\appdata\\local\\programs\\python\\python~1\\lib\\site-packages (22.3.1)&quot;</span></span>
+<span id="cb166-4"><a href="shell.html#cb166-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  [2] &quot;Collecting pip&quot;</span></span>
+<span id="cb166-5"><a href="shell.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] &quot;  Using cached pip-23.1.2-py3-none-any.whl (2.1 MB)&quot;</span></span>
+<span id="cb166-6"><a href="shell.html#cb166-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [4] &quot;Installing collected packages: pip&quot;</span></span>
+<span id="cb166-7"><a href="shell.html#cb166-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] &quot;  Attempting uninstall: pip&quot;</span></span>
+<span id="cb166-8"><a href="shell.html#cb166-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [6] &quot;    Found existing installation: pip 22.3.1&quot;</span></span>
+<span id="cb166-9"><a href="shell.html#cb166-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] &quot;    Uninstalling pip-22.3.1:&quot;</span></span>
+<span id="cb166-10"><a href="shell.html#cb166-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [8] &quot;      Successfully uninstalled pip-22.3.1&quot;</span></span>
+<span id="cb166-11"><a href="shell.html#cb166-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] &quot;  </span><span class="al">WARNING</span><span class="do">: The scripts pip.exe, pip3.11.exe and pip3.exe are installed in &#39;C:\\Users\\username\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Scripts&#39; which is not on PATH.&quot;</span></span>
+<span id="cb166-12"><a href="shell.html#cb166-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [10] &quot;  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.&quot;</span></span>
+<span id="cb166-13"><a href="shell.html#cb166-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] &quot;Successfully installed pip-23.1.2&quot;</span></span></code></pre></div>
 <p>最後に”Successfully installed pip-23.1.2”のような表記があれば，バージョンアップ成功である．
 これでPythonおよびライブラリPillowとPyAutoGUIのインストールさらにpipのバージョンアップが完了した．</p>
 </div>
@@ -618,7 +621,7 @@ new_path &lt;-
 <p>これで，[Win] + [R]で出てきた「ファイル名を指定して実行」に”rst”を入力すればRStudio，“r”を入力すればRが起動する．</p>
 <p>なお，<code>automater::make_shortcut</code>と<code>automater::add_path</code>の中身は以下のとおりである．
 独自で関数を作成する際の参考になれば幸いである．</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="shell.html#cb168-1" tabindex="-1"></a>automater<span class="sc">::</span>make_shortcut</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="shell.html#cb168-1" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span>make_shortcut</span></code></pre></div>
 <pre><code>## function (exe, shortcut = NULL, dir = NULL, arg = NULL, size = 1, 
 ##     wd = NULL) 
 ## {
@@ -661,9 +664,9 @@ new_path &lt;-
 ##     shortcut &lt;- stringr::str_remove_all_all(shortcut, &quot;\&quot;&quot;)
 ##     return(list(shortcut = shortcut, res = res))
 ## }
-## &lt;bytecode: 0x000001b584506818&gt;
+## &lt;bytecode: 0x00000252745cace8&gt;
 ## &lt;environment: namespace:automater&gt;</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="shell.html#cb170-1" tabindex="-1"></a>automater<span class="sc">::</span>add_path</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="shell.html#cb170-1" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span>add_path</span></code></pre></div>
 <pre><code>## function (new_path) 
 ## {
 ##     cmd &lt;- &quot;reg query \&quot;HKEY_CURRENT_USER\\Environment\&quot; /v \&quot;path\&quot;&quot;
@@ -673,7 +676,7 @@ new_path &lt;-
 ##         path)
 ##     shell(cmd, intern = TRUE)
 ## }
-## &lt;bytecode: 0x000001b584585a48&gt;
+## &lt;bytecode: 0x0000025274648388&gt;
 ## &lt;environment: namespace:automater&gt;</code></pre>
 <!--
   # Rから実行しなくても良いことではあるし，普通はシェルを使えば良い．

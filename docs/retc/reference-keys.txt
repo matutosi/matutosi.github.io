@@ -25,7 +25,7 @@ magrittrとtidyverse
 tでコードを分岐
 でのショートカット
 パイプ以外の関数
-おまけmagrittrの不思議な関数たち
+コラムmagrittrの不思議な関数たち
 tidyverse
 準備-1
 tidyverseとは
@@ -59,7 +59,7 @@ fsの関数
 ディレクトリ操作
 ファイル操作
 fsを使ったファイル操作例
-おまけguiでの作業フォルダの指定
+コラムguiでの作業ディレクトリの指定
 shell
 準備-5
 install_python
@@ -79,7 +79,7 @@ pythonの呼び出し
 rからpythonのhellow-world
 pythoとrとの変数のやり取り
 pythonのコードを実行
-rとpythoでの用語の違い
+コラムrとpythoでの用語の違い
 keyboardsimulator
 準備-8
 マウスの移動
@@ -132,11 +132,14 @@ dbi
 dbiでできること
 準備-13
 使い方-2
-xlsx
+openxlsx
 準備-14
-オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト
+列幅の変更オートフィルタの設定ウィンドウ枠の固定
+罫線の設定
+ヘッダーとフッターの追加
+作業の自動化
+スクリプトの内容
 使用方法
-スクリプトの内容説明
 qpdf
 準備-15
 qpdfでできること

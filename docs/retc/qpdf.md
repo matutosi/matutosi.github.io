@@ -77,53 +77,18 @@ pdf_subset(input, pages = 1, output = NULL, password = "")
 
 
 ```r
-system.file("rsc/split_qpdf.rsc", package = "automater") %>%
-  readLines() %>%
-  paste0(collapse = "\n") %>%
-  cat()
+fs::path_package("automater", "rsc", "split_qpdf.rsc")
 ```
 
 ```
-##   #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  # 
-##   # 
-##   # See https://github.com/matutosi/automater/blob/main/vignettes/split_qpdf.md
-##   # 
-##   #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  # 
-## 
-##   # Prepare
-## pkg <- "devtools"
-## if(! pkg %in% installed.packages()[,1]){
-##   install.packages(pkg, repo = "https://cran.ism.ac.jp/")
-## }
-## 
-## pkg <- "automater"
-## ver <- utils::packageDescription(pkg, fields = "Version")
-## if(utils::compareVersion(ver, "0.2.0") < 0){
-##   devtools::install_github("matutosi/automater", upgrade = "never", force = TRUE)
-## }
-## 
-## automater::validate_package("qpdf")
-## automater::validate_package("stringr")
-## 
-##   # Run
-## files <- list.files(pattern = "\\.pdf")
-## for(file in files){
-##   output <- qpdf::pdf_split(file)
-##   n_page <- qpdf::pdf_length(file)
-##   extra <- 0  # to avoid dupulicated file name, add extra degits
-##   numbered <- automater::file_numbered(file, n_page, extra = extra)
-##   while(automater::is_duplicated(files, numbered)){
-##     extra <- extra + 1
-##     numbered <- automater::file_numbered(file, n_page, extra = extra)
-##   }
-##   file.rename(output, numbered)
-## }
-## 
-## automater::message_to_continue()
+## D:/pf/R/R-4.3.1/library/automater/rsc/split_qpdf.rsc
 ```
 
 ```r
-  # system.file("rsc/split_qpdf.rsc", package = "automater") %>%
+  readLines() %>%
+  paste0(collapse = "\n") %>%
+  cat()
+  # fs::path_package("automater", "rsc", "split_qpdf.rsc")
   #   readtext::readtext(verbosity = 0) %>%
   #   `[[`("text") %>%
   #   cat()
@@ -169,11 +134,11 @@ pdf_combine(input, output = NULL, password = "")
 
 
 ```r
-system.file("rsc/combine_qpdf.rsc", package = "automater")
+fs::path_package("automater", "rsc", "combine_qpdf.rsc")
 ```
 
 ```
-## [1] "D:/pf/R/R-4.3.1/library/automater/rsc/combine_qpdf.rsc"
+## D:/pf/R/R-4.3.1/library/automater/rsc/combine_qpdf.rsc
 ```
 
 ```r
@@ -340,7 +305,7 @@ pdf_overlay_stamps_each
 ##     file.remove(out[pages_body])
 ##     return(outfile)
 ## }
-## <bytecode: 0x000001fd495a4f68>
+## <bytecode: 0x0000016321362c80>
 ## <environment: namespace:automater>
 ```
 
@@ -439,20 +404,20 @@ tibble::as_tibble(txt)
 ```
 
 ```
-## # A tibble: 29 x 1
+## # A tibble: 29 × 1
 ##    value                                                                        
 ##    <chr>                                                                        
-##  1 "                                              The jsonlite Package: A Pract~
-##  2 "JSON with R. We refer to Nolan and Temple Lang (2014) for a comprehensive i~
-##  3 "homogenous. And indeed, some implementations will now return a list instead~
-##  4 "The alternative to class-based method dispatch is to use type-based encodin~
-##  5 "2       Converting between JSON and R classes\n\nThis section lists example~
-##  6 "encoding. However, the problem with encoding missing values as strings is t~
-##  7 "limitations as text based formats such as CSV.\n\n\n2.1.3      Special case~
-##  8 "is assuming an array, the application will likely break. Any consumer or cl~
-##  9 "We expect this representation will be the most intuitive to interpret, also~
-## 10 "colnames(x) <- c(\"Treatment A\", \"Treatment B\")\nprint(x)\n\n        Tre~
-## # i 19 more rows
+##  1 "                                              The jsonlite Package: A Pract…
+##  2 "JSON with R. We refer to Nolan and Temple Lang (2014) for a comprehensive i…
+##  3 "homogenous. And indeed, some implementations will now return a list instead…
+##  4 "The alternative to class-based method dispatch is to use type-based encodin…
+##  5 "2       Converting between JSON and R classes\n\nThis section lists example…
+##  6 "encoding. However, the problem with encoding missing values as strings is t…
+##  7 "limitations as text based formats such as CSV.\n\n\n2.1.3      Special case…
+##  8 "is assuming an array, the application will likely break. Any consumer or cl…
+##  9 "We expect this representation will be the most intuitive to interpret, also…
+## 10 "colnames(x) <- c(\"Treatment A\", \"Treatment B\")\nprint(x)\n\n        Tre…
+## # ℹ 19 more rows
 ```
 
 文字列内の`\n`は改行を示しているが，そのままでは読みにくい．

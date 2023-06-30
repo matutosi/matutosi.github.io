@@ -53,7 +53,7 @@ pdf("~/test.pdf")
 dev.off()
 ```
 
-![](assoc_files/figure-latex/unnamed-chunk-2-1.pdf)<!-- --> 
+<img src="assoc_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 このコードをユーザ・ディレクトリ(~/)に保存する．
 ファイル名は何でも良いが，ここではplot.Rとする．

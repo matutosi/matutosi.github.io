@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-06-28" />
+<meta name="date" content="2023-07-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -332,13 +332,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.3" data-path="dbi.html"><a href="dbi.html#準備-13"><i class="fa fa-check"></i><b>18.3</b> 準備</a></li>
 <li class="chapter" data-level="18.4" data-path="dbi.html"><a href="dbi.html#使い方-2"><i class="fa fa-check"></i><b>18.4</b> 使い方</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="xlsx.html"><a href="xlsx.html"><i class="fa fa-check"></i><b>19</b> xlsxでエクセル操作</a>
+<li class="chapter" data-level="19" data-path="openxlsx.html"><a href="openxlsx.html"><i class="fa fa-check"></i><b>19</b> openxlsxでエクセル操作</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="xlsx.html"><a href="xlsx.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
-<li class="chapter" data-level="19.2" data-path="xlsx.html"><a href="xlsx.html#オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト"><i class="fa fa-check"></i><b>19.2</b> オートフィルタの設定とウィンドウ枠の固定の自動化スクリプト</a>
+<li class="chapter" data-level="19.1" data-path="openxlsx.html"><a href="openxlsx.html#準備-14"><i class="fa fa-check"></i><b>19.1</b> 準備</a></li>
+<li class="chapter" data-level="19.2" data-path="openxlsx.html"><a href="openxlsx.html#列幅の変更オートフィルタの設定ウィンドウ枠の固定"><i class="fa fa-check"></i><b>19.2</b> 列幅の変更，オートフィルタの設定，ウィンドウ枠の固定</a></li>
+<li class="chapter" data-level="19.3" data-path="openxlsx.html"><a href="openxlsx.html#罫線の設定"><i class="fa fa-check"></i><b>19.3</b> 罫線の設定</a></li>
+<li class="chapter" data-level="19.4" data-path="openxlsx.html"><a href="openxlsx.html#ヘッダーとフッターの追加"><i class="fa fa-check"></i><b>19.4</b> ヘッダーとフッターの追加</a></li>
+<li class="chapter" data-level="19.5" data-path="openxlsx.html"><a href="openxlsx.html#作業の自動化"><i class="fa fa-check"></i><b>19.5</b> 作業の自動化</a>
 <ul>
-<li class="chapter" data-level="19.2.1" data-path="xlsx.html"><a href="xlsx.html#使用方法"><i class="fa fa-check"></i><b>19.2.1</b> 使用方法</a></li>
-<li class="chapter" data-level="19.2.2" data-path="xlsx.html"><a href="xlsx.html#スクリプトの内容説明"><i class="fa fa-check"></i><b>19.2.2</b> スクリプトの内容説明</a></li>
+<li class="chapter" data-level="19.5.1" data-path="openxlsx.html"><a href="openxlsx.html#スクリプトの内容"><i class="fa fa-check"></i><b>19.5.1</b> スクリプトの内容</a></li>
+<li class="chapter" data-level="19.5.2" data-path="openxlsx.html"><a href="openxlsx.html#使用方法"><i class="fa fa-check"></i><b>19.5.2</b> 使用方法</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="qpdf.html"><a href="qpdf.html"><i class="fa fa-check"></i><b>20</b> qpdfでPDF操作</a>
@@ -416,10 +419,10 @@ stringiは文字列操作のパッケージで，文字コードの変換など�
 </div>
 <div id="準備-2" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> 準備<a href="stringr.html#準備-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="stringr.html#cb91-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="stringr.html#cb92-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb92-2"><a href="stringr.html#cb92-2" tabindex="-1"></a><span class="fu">library</span>(stringr)  <span class="co"># 本来は不要</span></span>
-<span id="cb92-3"><a href="stringr.html#cb92-3" tabindex="-1"></a><span class="fu">library</span>(fs)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="stringr.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="stringr.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb92-2"><a href="stringr.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)  <span class="co"># 本来は不要</span></span>
+<span id="cb92-3"><a href="stringr.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span></code></pre></div>
 <!--
 ## stringrとbase
 https://heavywatal.github.io/rstats/stringr.html
@@ -435,8 +438,8 @@ https://rstudio-pubs-static.s3.amazonaws.com/92478_6704b96865e449b4bad7acb71443c
 <p>stringrでは主な関数は<code>str_</code>で始まるようになっている．
 これらの一覧は次のとおりである．
 ちなみに，<code>str_subset()</code>で正規表現に合致した要素だけを返している．</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="stringr.html#cb93-1" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:stringr&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb93-2"><a href="stringr.html#cb93-2" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_subset</span>(<span class="st">&quot;^str_&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="stringr.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:stringr&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb93-2"><a href="stringr.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_subset</span>(<span class="st">&quot;^str_&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;str_c&quot;             &quot;str_conv&quot;          &quot;str_count&quot;        
 ##  [4] &quot;str_detect&quot;        &quot;str_dup&quot;           &quot;str_ends&quot;         
 ##  [7] &quot;str_equal&quot;         &quot;str_escape&quot;        &quot;str_extract&quot;      
@@ -456,51 +459,51 @@ https://rstudio-pubs-static.s3.amazonaws.com/92478_6704b96865e449b4bad7acb71443c
 ## [49] &quot;str_view_all&quot;      &quot;str_which&quot;         &quot;str_width&quot;        
 ## [52] &quot;str_wrap&quot;</code></pre>
 <p>また，合致した以外のものを返すには，<code>negate = TRUE</code>とする．</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="stringr.html#cb95-1" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:stringr&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb95-2"><a href="stringr.html#cb95-2" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_subset</span>(<span class="st">&quot;^str_&quot;</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="stringr.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:stringr&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb95-2"><a href="stringr.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_subset</span>(<span class="st">&quot;^str_&quot;</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;%&gt;%&quot;          &quot;boundary&quot;     &quot;coll&quot;         &quot;fixed&quot;        &quot;fruit&quot;       
 ##  [6] &quot;invert_match&quot; &quot;regex&quot;        &quot;sentences&quot;    &quot;word&quot;         &quot;words&quot;</code></pre>
 <p>このうちfruits，words，sentencesは，それぞれ果物の名前，一般的な単語，文のサンプルデータである．
 <code>fixed()</code>は正規表現を使わずに，文字列を正規表現ではなくそのままの文字列として使う関数である．
 これら以外のものについて知りたい場合は，ヘルプを参照して欲しい．</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="stringr.html#cb97-1" tabindex="-1"></a>  <span class="co"># stringr::str_detect()</span></span>
-<span id="cb97-2"><a href="stringr.html#cb97-2" tabindex="-1"></a>  <span class="co"># stringr::str_replace_all()</span></span>
-<span id="cb97-3"><a href="stringr.html#cb97-3" tabindex="-1"></a>  <span class="co"># stringr::str_c()</span></span>
-<span id="cb97-4"><a href="stringr.html#cb97-4" tabindex="-1"></a>  <span class="co"># stringr::str_detect()</span></span>
-<span id="cb97-5"><a href="stringr.html#cb97-5" tabindex="-1"></a>  <span class="co"># stringr::str_extract_all()</span></span>
-<span id="cb97-6"><a href="stringr.html#cb97-6" tabindex="-1"></a>  <span class="co"># stringr::str_length()</span></span>
-<span id="cb97-7"><a href="stringr.html#cb97-7" tabindex="-1"></a>  <span class="co"># stringr::str_split()</span></span>
-<span id="cb97-8"><a href="stringr.html#cb97-8" tabindex="-1"></a>  <span class="co"># stringr::str_subset()</span></span>
-<span id="cb97-9"><a href="stringr.html#cb97-9" tabindex="-1"></a>  <span class="co"># stringr::str_sub()</span></span>
-<span id="cb97-10"><a href="stringr.html#cb97-10" tabindex="-1"></a></span>
-<span id="cb97-11"><a href="stringr.html#cb97-11" tabindex="-1"></a>  <span class="co"># stringr::str_dup()</span></span>
-<span id="cb97-12"><a href="stringr.html#cb97-12" tabindex="-1"></a>  <span class="co"># stringr::str_extract()</span></span>
-<span id="cb97-13"><a href="stringr.html#cb97-13" tabindex="-1"></a>  <span class="co"># stringr::str_pad()</span></span>
-<span id="cb97-14"><a href="stringr.html#cb97-14" tabindex="-1"></a>  <span class="co"># stringr::str_trunc()</span></span>
-<span id="cb97-15"><a href="stringr.html#cb97-15" tabindex="-1"></a></span>
-<span id="cb97-16"><a href="stringr.html#cb97-16" tabindex="-1"></a>  <span class="co"># stringr::str_replace_all()</span></span>
-<span id="cb97-17"><a href="stringr.html#cb97-17" tabindex="-1"></a>  <span class="co"># stringr::str_to_lower()</span></span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="stringr.html#cb97-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_detect()</span></span>
+<span id="cb97-2"><a href="stringr.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_replace_all()</span></span>
+<span id="cb97-3"><a href="stringr.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_c()</span></span>
+<span id="cb97-4"><a href="stringr.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_detect()</span></span>
+<span id="cb97-5"><a href="stringr.html#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_extract_all()</span></span>
+<span id="cb97-6"><a href="stringr.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_length()</span></span>
+<span id="cb97-7"><a href="stringr.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_split()</span></span>
+<span id="cb97-8"><a href="stringr.html#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_subset()</span></span>
+<span id="cb97-9"><a href="stringr.html#cb97-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_sub()</span></span>
+<span id="cb97-10"><a href="stringr.html#cb97-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-11"><a href="stringr.html#cb97-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_dup()</span></span>
+<span id="cb97-12"><a href="stringr.html#cb97-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_extract()</span></span>
+<span id="cb97-13"><a href="stringr.html#cb97-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_pad()</span></span>
+<span id="cb97-14"><a href="stringr.html#cb97-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_trunc()</span></span>
+<span id="cb97-15"><a href="stringr.html#cb97-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-16"><a href="stringr.html#cb97-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_replace_all()</span></span>
+<span id="cb97-17"><a href="stringr.html#cb97-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::str_to_lower()</span></span></code></pre></div>
 </div>
 <div id="活用例" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> 活用例<a href="stringr.html#活用例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="stringr.html#cb98-1" tabindex="-1"></a>  <span class="co"># fs::dir_ls()</span></span>
-<span id="cb98-2"><a href="stringr.html#cb98-2" tabindex="-1"></a></span>
-<span id="cb98-3"><a href="stringr.html#cb98-3" tabindex="-1"></a>  <span class="co"># パッケージ名の一覧を検索するという活用例</span></span>
-<span id="cb98-4"><a href="stringr.html#cb98-4" tabindex="-1"></a>  <span class="co"># fs::dir_ls(regexp = &quot;Rmd&quot;)</span></span>
-<span id="cb98-5"><a href="stringr.html#cb98-5" tabindex="-1"></a>  <span class="co"># install.packages(&quot;&quot;)</span></span>
-<span id="cb98-6"><a href="stringr.html#cb98-6" tabindex="-1"></a>  <span class="co"># library()</span></span>
-<span id="cb98-7"><a href="stringr.html#cb98-7" tabindex="-1"></a>  <span class="co"># pkg::fun()</span></span>
-<span id="cb98-8"><a href="stringr.html#cb98-8" tabindex="-1"></a></span>
-<span id="cb98-9"><a href="stringr.html#cb98-9" tabindex="-1"></a></span>
-<span id="cb98-10"><a href="stringr.html#cb98-10" tabindex="-1"></a>  <span class="co"># stringr::fixed()</span></span>
-<span id="cb98-11"><a href="stringr.html#cb98-11" tabindex="-1"></a>  <span class="co"># stringr::regex()</span></span>
-<span id="cb98-12"><a href="stringr.html#cb98-12" tabindex="-1"></a></span>
-<span id="cb98-13"><a href="stringr.html#cb98-13" tabindex="-1"></a>  <span class="co"># fs.Rmd</span></span>
-<span id="cb98-14"><a href="stringr.html#cb98-14" tabindex="-1"></a>  <span class="co"># fs::path_dir(&quot;path&quot;)         # パスからディレクトリ名抽出   </span></span>
-<span id="cb98-15"><a href="stringr.html#cb98-15" tabindex="-1"></a>  <span class="co"># fs::path_file(&quot;path&quot;)        # パスからファイル名抽出   </span></span>
-<span id="cb98-16"><a href="stringr.html#cb98-16" tabindex="-1"></a>  <span class="co"># fs::path_ext(&quot;path&quot;)         # パスから拡張子抽出   </span></span>
-<span id="cb98-17"><a href="stringr.html#cb98-17" tabindex="-1"></a>  <span class="co"># fs::path_ext_remove(&quot;path&quot;)  # パスから拡張子を削除   </span></span>
-<span id="cb98-18"><a href="stringr.html#cb98-18" tabindex="-1"></a>  <span class="co"># path_ext_set(&quot;path&quot;, &quot;new_ext&quot;)   # 拡張子変更   </span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="stringr.html#cb98-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs::dir_ls()</span></span>
+<span id="cb98-2"><a href="stringr.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="stringr.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># パッケージ名の一覧を検索するという活用例</span></span>
+<span id="cb98-4"><a href="stringr.html#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs::dir_ls(regexp = &quot;Rmd&quot;)</span></span>
+<span id="cb98-5"><a href="stringr.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># install.packages(&quot;&quot;)</span></span>
+<span id="cb98-6"><a href="stringr.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library()</span></span>
+<span id="cb98-7"><a href="stringr.html#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pkg::fun()</span></span>
+<span id="cb98-8"><a href="stringr.html#cb98-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-9"><a href="stringr.html#cb98-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-10"><a href="stringr.html#cb98-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::fixed()</span></span>
+<span id="cb98-11"><a href="stringr.html#cb98-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stringr::regex()</span></span>
+<span id="cb98-12"><a href="stringr.html#cb98-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-13"><a href="stringr.html#cb98-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs.Rmd</span></span>
+<span id="cb98-14"><a href="stringr.html#cb98-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs::path_dir(&quot;path&quot;)         # パスからディレクトリ名抽出   </span></span>
+<span id="cb98-15"><a href="stringr.html#cb98-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs::path_file(&quot;path&quot;)        # パスからファイル名抽出   </span></span>
+<span id="cb98-16"><a href="stringr.html#cb98-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs::path_ext(&quot;path&quot;)         # パスから拡張子抽出   </span></span>
+<span id="cb98-17"><a href="stringr.html#cb98-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs::path_ext_remove(&quot;path&quot;)  # パスから拡張子を削除   </span></span>
+<span id="cb98-18"><a href="stringr.html#cb98-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># path_ext_set(&quot;path&quot;, &quot;new_ext&quot;)   # 拡張子変更   </span></span></code></pre></div>
 
 </div>
 </div>
