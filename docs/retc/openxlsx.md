@@ -44,7 +44,7 @@ openxlsx::write.xlsx(timetable, tmp)
 wb <- openxlsx::loadWorkbook(tmp)
 ```
 
-<img src="img/openxlsx_01.png" width="50%">
+<img src="img/openxlsx_01.png" width="70%">
 
 ## 列幅の変更，オートフィルタの設定，ウィンドウ枠の固定
 
@@ -71,7 +71,7 @@ for(sheet in sheets(wb)){
 openxlsx::saveWorkbook(wb, tmp, overwrite = TRUE)
 ```
 
-<img src="img/openxlsx_02.png" width="50%">
+<img src="img/openxlsx_02.png" width="70%">
 
 列幅の変更・オートフィルタの設定・ウィンドウ枠の固定のいずれもシートごとに作業しなければならない．
 これは手作業でもopenxlsxでも同じである．
@@ -168,7 +168,7 @@ print() %>%
 若干説明が長くなってしまったが，上記のコードを実行すれば，エクセルのワークブックに罫線を引くことができる．
 1回だけの作業ならコードを書くのは面倒だが，何度も同じ作業を繰り返す場合は，コードを書く価値があるだろう．
 
-<img src="img/openxlsx_03.png" width="50%">
+<img src="img/openxlsx_03.png" width="70%">
 
 
 
@@ -183,7 +183,7 @@ print() %>%
 さらに，`evenHeader`と`evenFooter`で偶数ページの，`firstHeader`と`firstFooter`で最初のページのヘッダーとフッターを指定することも可能である．
 
 
-<img src="img/openxlsx_04.png" width="50%">
+<img src="img/openxlsx_04.png" width="70%">
 
 
 ```
@@ -260,16 +260,16 @@ for(file in files){                      # ファイル数だけ繰り返し
 ![](img/set_autofilter_freezepanel01.png){ width=80% }    
 
 - 実行前のエクセルのファイル   
-![](img/set_autofilter_freezepanel02.png){ width=40% }    
+![](img/set_autofilter_freezepanel02.png){ width=60% }    
 
 - set_autofilter_freezepanel.rsc をダブルクリックして実行すると，コマンドのウィンドウでプログラムが実行される．   
-![](img/set_autofilter_freezepanel03.png){ width=40% }   
+![](img/set_autofilter_freezepanel03.png){ width=60% }   
 プログラムがオートフィルタを設定し，1行目と1列目でウィンドウ枠を固定する．
 複数ファイル・複数シートにも対応している．   
 なお，初回実行時は，openxlsxパケージのダウンロードのため，少し時間がかかるかもしれない．
 2回目以降はファイル数が多すぎなければ，一瞬で処理されるはず．   
 実行後のエクセルのファイル   
-![](img/set_autofilter_freezepanel04.png){ width=40% }   
+![](img/set_autofilter_freezepanel04.png){ width=60% }   
 
 
 

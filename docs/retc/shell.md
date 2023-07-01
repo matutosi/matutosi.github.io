@@ -337,7 +337,7 @@ automater::make_shortcut
 ##     shortcut <- stringr::str_remove_all_all(shortcut, "\"")
 ##     return(list(shortcut = shortcut, res = res))
 ## }
-## <bytecode: 0x00000252745cace8>
+## <bytecode: 0x0000015b2a733d68>
 ## <environment: namespace:automater>
 ```
 
@@ -355,7 +355,7 @@ automater::add_path
 ##         path)
 ##     shell(cmd, intern = TRUE)
 ## }
-## <bytecode: 0x0000025274648388>
+## <bytecode: 0x0000015b2a7b10c0>
 ## <environment: namespace:automater>
 ```
 
