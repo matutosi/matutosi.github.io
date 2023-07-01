@@ -305,7 +305,7 @@ pdf_overlay_stamps_each
 ##     file.remove(out[pages_body])
 ##     return(outfile)
 ## }
-## <bytecode: 0x000001ff6646a778>
+## <bytecode: 0x000001844000dbc8>
 ## <environment: namespace:automater>
 ```
 

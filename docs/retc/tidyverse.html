@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-07-01" />
+<meta name="date" content="2023-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,7 +200,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.7.1" data-path="tidyverse.html"><a href="tidyverse.html#stringrの主な関数"><i class="fa fa-check"></i><b>6.7.1</b> stringrの主な関数</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="tidyverse.html"><a href="tidyverse.html#purrr"><i class="fa fa-check"></i><b>6.8</b> purrrで繰り返し処理</a></li>
+<li class="chapter" data-level="6.8" data-path="tidyverse.html"><a href="tidyverse.html#purrr"><i class="fa fa-check"></i><b>6.8</b> purrrで繰り返し処理</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="tidyverse.html"><a href="tidyverse.html#zipファイルの解凍"><i class="fa fa-check"></i><b>6.8.1</b> zipファイルの解凍</a></li>
+<li class="chapter" data-level="6.8.2" data-path="tidyverse.html"><a href="tidyverse.html#科研費の審査委員の名簿取得"><i class="fa fa-check"></i><b>6.8.2</b> 科研費の審査委員の名簿取得</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>7</b> lubridateで日付・時刻を扱う</a>
 <ul>
@@ -447,21 +451,21 @@ int(整数)やchr(文字列)のように省略して表示されるので，若�
 <span id="cb52-5"><a href="tidyverse.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> ncol), <span class="at">ncol =</span> ncol, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">seq</span>(n), cnames)) <span class="sc">%&gt;%</span></span>
 <span id="cb52-6"><a href="tidyverse.html#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb52-7"><a href="tidyverse.html#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
-<pre><code>##            a          b          c          d            e            f
-## 1 -0.1014775 -0.8775252 -0.3535900 -0.7298688 -0.551767275 -0.527169712
-## 2 -0.5559631 -0.8014646 -0.3042905  0.6695496 -2.100841215 -1.690196455
-## 3  0.4051677  0.5071883  0.3044890  1.0783387 -0.002701847  0.008518571
-##            g         h          i          j
-## 1  0.3227904 0.5727134 -1.0752619  2.2604877
-## 2  0.9122415 0.2467592  0.5759728 -0.5117064
-## 3 -0.1983650 1.2535522  0.2011727  1.3637890</code></pre>
+<pre><code>##            a          b          c          d          e            f
+## 1 -0.3853960 -1.4610616 -0.1038860  0.1827136 -1.4896903 -0.009142597
+## 2  1.9170871  1.1881943  0.6748612 -0.4772407 -0.4350504  0.401602819
+## 3  0.6012353  0.9545794 -1.5519381 -0.8489206  0.5301404  0.550941217
+##            g           h          i          j
+## 1 -0.1195921  1.97763989  0.4660567  0.8879661
+## 2 -0.1799084 -0.01715103  0.7920960 -1.2138095
+## 3  0.6038072  1.59571775 -1.9329613 -0.6566617</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="tidyverse.html#cb54-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 10
-##        a      b      c      d        e        f      g     h      i      j
-##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1 -0.101 -0.878 -0.354 -0.730 -0.552   -0.527    0.323 0.573 -1.08   2.26 
-## 2 -0.556 -0.801 -0.304  0.670 -2.10    -1.69     0.912 0.247  0.576 -0.512
-## 3  0.405  0.507  0.304  1.08  -0.00270  0.00852 -0.198 1.25   0.201  1.36</code></pre>
+##        a      b      c      d      e        f      g       h      i      j
+##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 -0.385 -1.46  -0.104  0.183 -1.49  -0.00914 -0.120  1.98    0.466  0.888
+## 2  1.92   1.19   0.675 -0.477 -0.435  0.402   -0.180 -0.0172  0.792 -1.21 
+## 3  0.601  0.955 -1.55  -0.849  0.530  0.551    0.604  1.60   -1.93  -0.657</code></pre>
 <p>変なたとえかもしれないが，データフレームは「言われたことをそのままやりました」という何も考えずに与えられたことをするような感じで，tibbleは「見やすく修正しておきました」という非常に気の利いた対応をする感じである．</p>
 <p>さらに，tibbleでは行数が多いときは最初の10行だけ表示する．
 データフレームではすべてのデータを表示させるので，巨大なデータのときに，画面がやたらスクロールして困った経験があるかもしれない．
@@ -474,42 +478,42 @@ tibbleではそれがない．
 <span id="cb56-5"><a href="tidyverse.html#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> ncol), <span class="at">ncol =</span> ncol, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">seq</span>(n), cnames)) <span class="sc">%&gt;%</span></span>
 <span id="cb56-6"><a href="tidyverse.html#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb56-7"><a href="tidyverse.html#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
-<pre><code>##               a            b           c
-## 1  -0.229963406 -1.893432066  0.31466208
-## 2   0.568232576 -1.021361375  0.08724782
-## 3  -0.123670234 -0.003687124  0.06942938
-## 4  -0.166530284 -0.165115577 -0.31180610
-## 5   1.115509959 -0.198135008 -0.28966347
-## 6  -0.680196264  0.308790017 -0.39312698
-## 7  -0.794320926  1.720777920  1.68985140
-## 8  -0.848552819 -1.094981660  0.16790017
-## 9  -0.764566708 -0.324323618 -0.99212812
-## 10 -0.748690448 -0.268901540  1.30478898
-## 11 -0.831357437  0.003201620  0.47266467
-## 12  1.851702137  0.579608521  1.13002963
-## 13  0.931737942 -0.099309330  0.22489741
-## 14 -0.446020130 -2.348135346 -0.90184168
-## 15 -2.060502618  0.908109827 -1.21959972
-## 16  0.511274234  0.741891054  0.43528258
-## 17 -0.058021883 -0.946209654  1.02295369
-## 18  1.225426678 -1.941533681 -0.40296072
-## 19  0.135437249 -2.691449495  0.03534436
-## 20  0.003610188  0.248403699 -1.00029460
-## 21  0.070157703 -0.181146989  0.35480245</code></pre>
+<pre><code>##             a          b           c
+## 1   0.6585370 -1.2615381 -1.68023806
+## 2   0.6926522  1.3839729  1.15414650
+## 3  -0.7640109  0.1747344  1.93081042
+## 4  -0.1108429 -0.6660424 -0.98799687
+## 5  -0.4132021  1.0199856 -0.47922761
+## 6  -0.6303684  0.1549254 -1.59946604
+## 7  -1.5795048 -0.9980306 -0.66263048
+## 8   0.6059240 -0.1172597 -1.89675687
+## 9  -0.7541725 -2.5641788  0.28027768
+## 10  1.9957171 -1.1356569 -0.62228843
+## 11 -0.1247901 -0.7651921 -0.16698327
+## 12 -1.0047605  0.3427295 -0.02989219
+## 13 -1.4340747  0.1416838  0.50505246
+## 14 -0.7440166  1.4875750 -0.21475835
+## 15 -1.6363943 -0.3021803  0.84622446
+## 16  2.4758793 -0.2506468  1.13793295
+## 17 -0.1835179  0.2081397 -0.87401836
+## 18  0.3804365  0.2279804  0.48896356
+## 19  0.3333286 -1.3350141  0.15463087
+## 20 -0.2969013  0.5946048 -1.03055936
+## 21  0.1472074  0.5804576  0.19982455</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="tidyverse.html#cb58-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 21 × 3
-##         a        b       c
-##     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-##  1 -0.230 -1.89     0.315 
-##  2  0.568 -1.02     0.0872
-##  3 -0.124 -0.00369  0.0694
-##  4 -0.167 -0.165   -0.312 
-##  5  1.12  -0.198   -0.290 
-##  6 -0.680  0.309   -0.393 
-##  7 -0.794  1.72     1.69  
-##  8 -0.849 -1.09     0.168 
-##  9 -0.765 -0.324   -0.992 
-## 10 -0.749 -0.269    1.30  
+##         a      b      c
+##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1  0.659 -1.26  -1.68 
+##  2  0.693  1.38   1.15 
+##  3 -0.764  0.175  1.93 
+##  4 -0.111 -0.666 -0.988
+##  5 -0.413  1.02  -0.479
+##  6 -0.630  0.155 -1.60 
+##  7 -1.58  -0.998 -0.663
+##  8  0.606 -0.117 -1.90 
+##  9 -0.754 -2.56   0.280
+## 10  2.00  -1.14  -0.622
 ## # ℹ 11 more rows</code></pre>
 <p>表示したい行数を指定するには，引数<code>n</code>で指定する．
 以下のコードのうち，3つ目を実行すると全行が表示されるので以下では表示を省略している．</p>
@@ -546,31 +550,31 @@ tibbleではそれがない．
 <p>新たにtibbleを生成するには，データフレームの場合と同様である．</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="tidyverse.html#cb65-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb65-2"><a href="tidyverse.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">runif</span>(n), <span class="at">y =</span> <span class="fu">rnorm</span>(n))</span></code></pre></div>
-<pre><code>##             x           y
-## 1  0.37313778 -0.01287176
-## 2  0.06183973  0.23356258
-## 3  0.88601256  1.84058229
-## 4  0.48958264 -1.67964673
-## 5  0.70746244 -0.04540392
-## 6  0.40447934 -0.06059963
-## 7  0.36064337  0.33383341
-## 8  0.33675884 -0.37495610
-## 9  0.67944803 -0.12873387
-## 10 0.53070332  1.37390861</code></pre>
+<pre><code>##            x          y
+## 1  0.6904645 -1.0659192
+## 2  0.7283978 -0.8154415
+## 3  0.4150598  1.0754830
+## 4  0.8345064 -0.3818457
+## 5  0.1044653 -1.5262167
+## 6  0.3672700 -0.1073805
+## 7  0.1408155 -0.3932841
+## 8  0.2339901 -0.1306286
+## 9  0.5452662  0.2932166
+## 10 0.6488652  0.1344893</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="tidyverse.html#cb67-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">runif</span>(n), <span class="at">y =</span> <span class="fu">rnorm</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 2
-##        x        y
-##    &lt;dbl&gt;    &lt;dbl&gt;
-##  1 0.182  1.50   
-##  2 0.107 -1.56   
-##  3 0.923 -0.402  
-##  4 0.528  0.516  
-##  5 0.894  0.634  
-##  6 0.842  0.541  
-##  7 0.392  2.12   
-##  8 0.353  0.00903
-##  9 0.667  1.66   
-## 10 0.101 -1.35</code></pre>
+##        x       y
+##    &lt;dbl&gt;   &lt;dbl&gt;
+##  1 0.756 -0.0282
+##  2 0.690 -0.172 
+##  3 0.999  0.977 
+##  4 0.841  2.62  
+##  5 0.880  0.0821
+##  6 0.709 -0.182 
+##  7 0.791 -1.32  
+##  8 0.128  1.05  
+##  9 0.225 -0.201 
+## 10 0.363 -2.58</code></pre>
 </div>
 </div>
 <div id="tidyrでデータを整形する" class="section level2 hasAnchor" number="6.4">
@@ -1041,10 +1045,70 @@ https://rstudio-pubs-static.s3.amazonaws.com/92478_6704b96865e449b4bad7acb71443c
 <p>プログラミングで繰り返し処理では，forやwhileでのループが基本である．
 ただし，パイプで繋いで処理していくときに，途中でforループを使うとコードが途切れてしまう．
 また，実行速度としてはあまり早くない．
-このような欠点を補うには，パッケージpurrrの<code>map()</code>とその派生関数を使うとよい．</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="tidyverse.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">*</span> <span class="dv">10</span> <span class="sc">%&gt;%</span></span>
-<span id="cb129-2"><a href="tidyverse.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(runif) <span class="sc">%&gt;%</span></span></code></pre></div>
+このような欠点を補うには，purrrの<code>map()</code>とその派生関数を使うとよい．</p>
+<p><code>map()</code>は，第1引数にベクトルかリストを，第2引数に関数を指定する．
+関数の引数がある場合は，第2引数のうしろにに引数を追加する．
+<code>map()</code>はリストを返すが，doubleのベクトルを返したい場合は<code>map_dbl()</code>を使う．
+その他，文字列を返す<code>map_chr()</code>，論理値を返す<code>map_lgl()</code>，整数を返す<code>map_int()</code>などがある．</p>
+<p>以下では，100から10000個の乱数を生成し，標本誤差を求め，散布図を描画する．</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="tidyverse.html#cb129-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb129-2"><a href="tidyverse.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(rnorm) <span class="sc">%&gt;%</span></span>
+<span id="cb129-3"><a href="tidyverse.html#cb129-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="cf">function</span>(x){ <span class="fu">sd</span>(x) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)) }) <span class="sc">%&gt;%</span></span>
+<span id="cb129-4"><a href="tidyverse.html#cb129-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code></pre></div>
+<div id="zipファイルの解凍" class="section level3 hasAnchor" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> zipファイルの解凍<a href="tidyverse.html#zipファイルの解凍" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>zipファイルの一覧を取得して，全てのzipファイルを解凍するには以下のようにする．</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="tidyverse.html#cb130-1" aria-hidden="true" tabindex="-1"></a>unzips <span class="ot">&lt;-</span> </span>
+<span id="cb130-2"><a href="tidyverse.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regex =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.zip&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb130-3"><a href="tidyverse.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(unzip)</span></code></pre></div>
+<p>返り値として入力したものそのものが必要であれば，<code>walk()</code>を使う．</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="tidyverse.html#cb131-1" aria-hidden="true" tabindex="-1"></a>zips <span class="ot">&lt;-</span> </span>
+<span id="cb131-2"><a href="tidyverse.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="at">regex =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.zip&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb131-3"><a href="tidyverse.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">walk</span>(unzip)</span></code></pre></div>
+<p><code>map()</code>を拡張した関数として，ベクトルまたはリストの引数を2つとる<code>map2()</code>や，さらに多くの引数をしていしるために，データフレームを引数とする<code>pmap()</code>がある．</p>
+</div>
+<div id="科研費の審査委員の名簿取得" class="section level3 hasAnchor" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> 科研費の審査委員の名簿取得<a href="tidyverse.html#科研費の審査委員の名簿取得" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>科学研究費助成事業，いわゆる科研費の審査委員は何年後かに名簿が公開される．
+ただ，基盤Aなどの種目ごとで，さらに小委員会ごとというように，かなり細かい区分でPDFファイルが作成されている．
+特定の分野のみで1つか2つぐらいの審査委員を見るのなら手作業でも良いが，多くをダウンロードするなら自動化したい．</p>
+<p>個人的な経験だが，科研費でどの分野で応募するか(つまり審査委員による)，採否に大きく影響する．
+不採択で開示された審査結果でも「C」つまり採択されなかった中で下位50%という申請書があったが，自分ではかなり頑張って作ったつもりだった．
+そこで，年度のみ変更して内容はほぼそのままで分野を変えて申請した．
+すると，採択されたことがあった．
+さすがにちょっとびっくりしたが，実際そのようなことがあるため，審査の分野はよく考えたほうが良い．</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="tidyverse.html#cb132-1" aria-hidden="true" tabindex="-1"></a>domain <span class="ot">&lt;-</span> <span class="st">&quot;https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/&quot;</span></span>
+<span id="cb132-2"><a href="tidyverse.html#cb132-2" aria-hidden="true" tabindex="-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;wakate/w_&quot;</span>, <span class="st">&quot;kiban_b/b_&quot;</span>, <span class="st">&quot;kiban_c/c_&quot;</span>)</span>
+<span id="cb132-3"><a href="tidyverse.html#cb132-3" aria-hidden="true" tabindex="-1"></a>div <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;w_&quot;</span>, <span class="st">&quot;b_&quot;</span>, <span class="st">&quot;c_&quot;</span>)</span>
+<span id="cb132-4"><a href="tidyverse.html#cb132-4" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;01010&quot;</span>,<span class="st">&quot;01020&quot;</span>,<span class="st">&quot;01030&quot;</span>,<span class="st">&quot;01040&quot;</span>,<span class="st">&quot;01050&quot;</span>,<span class="st">&quot;01060&quot;</span>,<span class="st">&quot;01070&quot;</span>,<span class="st">&quot;01080&quot;</span>)</span>
+<span id="cb132-5"><a href="tidyverse.html#cb132-5" aria-hidden="true" tabindex="-1"></a>reviewers <span class="ot">&lt;-</span></span>
+<span id="cb132-6"><a href="tidyverse.html#cb132-6" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">expand_grid</span>(domain, dir, file) <span class="sc">%&gt;%</span></span>
+<span id="cb132-7"><a href="tidyverse.html#cb132-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">transmute</span>(<span class="at">url =</span> <span class="fu">paste0</span>(domain, dir, file, <span class="st">&quot;.pdf&quot;</span>), </span>
+<span id="cb132-8"><a href="tidyverse.html#cb132-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">destfile =</span> <span class="fu">paste0</span>(fs<span class="sc">::</span><span class="fu">path_temp</span>(), <span class="st">&quot;/&quot;</span>, div, file, <span class="st">&quot;.pdf&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb132-9"><a href="tidyverse.html#cb132-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb132-10"><a href="tidyverse.html#cb132-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pmap_chr</span>(curl<span class="sc">::</span>curl_download)</span></code></pre></div>
+<pre><code>## # A tibble: 24 × 2
+##    url                                                                  destfile
+##    &lt;chr&gt;                                                                &lt;chr&gt;   
+##  1 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/w… C:/User…
+##  2 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/w… C:/User…
+##  3 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/w… C:/User…
+##  4 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/w… C:/User…
+##  5 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/w… C:/User…
+##  6 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/w… C:/User…
+##  7 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/w… C:/User…
+##  8 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/w… C:/User…
+##  9 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/k… C:/User…
+## 10 https://www.jsps.go.jp/j-grantsinaid/01_seido/03_shinsa/meibo/r02/k… C:/User…
+## # ℹ 14 more rows</code></pre>
+<p>審査委員の名簿ファイル名の規則さえ分かれば，ダウンロードはRにお任せできる．
+分野は実はもっと多くあるがここでは8つだけに絞っている．</p>
+<p>ダウンロードしたファイル自体がたくさんあるので，まだまだ不便な状態ではある．
+データとして使えるようにするには，PDFからテキストを抽出したり，その中身をデータフレーム形式の一覧にしたりという作業が必要である．
+そのあたりのコードは，本書のqpdfのページや以下を参考にして欲しい．</p>
+<p><a href="https://gist.github.com/matutosi/82a61628920ab476b71c46b980b97d24" class="uri">https://gist.github.com/matutosi/82a61628920ab476b71c46b980b97d24</a></p>
 
+</div>
 </div>
 </div>
             </section>

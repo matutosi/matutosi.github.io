@@ -40,6 +40,8 @@ cranのパッケージを分類する
 stringr
 stringrの主な関数
 purrr
+zipファイルの解凍
+科研費の審査委員の名簿取得
 lubridate
 準備-2
 月後1年後の同一日

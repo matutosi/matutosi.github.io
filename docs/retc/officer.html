@@ -23,7 +23,7 @@
 <meta name="author" content="Toshikazu Masumura" />
 
 
-<meta name="date" content="2023-07-01" />
+<meta name="date" content="2023-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,7 +200,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.7.1" data-path="tidyverse.html"><a href="tidyverse.html#stringrの主な関数"><i class="fa fa-check"></i><b>6.7.1</b> stringrの主な関数</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="tidyverse.html"><a href="tidyverse.html#purrr"><i class="fa fa-check"></i><b>6.8</b> purrrで繰り返し処理</a></li>
+<li class="chapter" data-level="6.8" data-path="tidyverse.html"><a href="tidyverse.html#purrr"><i class="fa fa-check"></i><b>6.8</b> purrrで繰り返し処理</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="tidyverse.html"><a href="tidyverse.html#zipファイルの解凍"><i class="fa fa-check"></i><b>6.8.1</b> zipファイルの解凍</a></li>
+<li class="chapter" data-level="6.8.2" data-path="tidyverse.html"><a href="tidyverse.html#科研費の審査委員の名簿取得"><i class="fa fa-check"></i><b>6.8.2</b> 科研費の審査委員の名簿取得</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="lubridate.html"><a href="lubridate.html"><i class="fa fa-check"></i><b>7</b> lubridateで日付・時刻を扱う</a>
 <ul>
@@ -407,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">22.1</span> 準備<a href="officer.html#準備-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>例によってまずはパッケージをインストールする．
 日付のデータを扱うためのlubridateとさらにそのラッパーを使うので，automaterを読み込む．</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="officer.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;officer&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="officer.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;officer&quot;</span>)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -446,44 +450,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 -->
 <div id="置換のコードの例" class="section level3 hasAnchor" number="22.3.1">
 <h3><span class="header-section-number">22.3.1</span> 置換のコードの例<a href="officer.html#置換のコードの例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="officer.html#cb356-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># コードの動作確認</span></span>
-<span id="cb356-2"><a href="officer.html#cb356-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-3"><a href="officer.html#cb356-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://ardata-fr.github.io/officeverse/index.html</span></span>
-<span id="cb356-4"><a href="officer.html#cb356-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pkg &lt;- &quot;D:/matu/work/ToDo/automater/R&quot;</span></span>
-<span id="cb356-5"><a href="officer.html#cb356-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># devtools::load_all(pkg)</span></span>
-<span id="cb356-6"><a href="officer.html#cb356-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-7"><a href="officer.html#cb356-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs::path_package(&quot;&quot;)</span></span>
-<span id="cb356-8"><a href="officer.html#cb356-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># replacement &lt;- readr::read_tsv(&quot;replacement.txt&quot;, header = TRUE)</span></span>
-<span id="cb356-9"><a href="officer.html#cb356-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ls(&quot;package:tibble&quot;)</span></span>
-<span id="cb356-10"><a href="officer.html#cb356-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-11"><a href="officer.html#cb356-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb356-12"><a href="officer.html#cb356-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(officer)</span>
-<span id="cb356-13"><a href="officer.html#cb356-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb356-14"><a href="officer.html#cb356-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(automater)</span></span>
-<span id="cb356-15"><a href="officer.html#cb356-15" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> </span>
-<span id="cb356-16"><a href="officer.html#cb356-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_docx</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb356-17"><a href="officer.html#cb356-17" aria-hidden="true" tabindex="-1"></a>  officer<span class="sc">::</span><span class="fu">body_add_par</span>(<span class="st">&quot;置換前，変換前，へんかん，ヘンカン&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb356-18"><a href="officer.html#cb356-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(fs<span class="sc">::</span><span class="fu">path_temp</span>(<span class="st">&quot;a.docx&quot;</span>))</span>
-<span id="cb356-19"><a href="officer.html#cb356-19" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> </span>
-<span id="cb356-20"><a href="officer.html#cb356-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_docx</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb356-21"><a href="officer.html#cb356-21" aria-hidden="true" tabindex="-1"></a>  officer<span class="sc">::</span><span class="fu">body_add_par</span>(<span class="st">&quot;置換前，変換前，へんかん，ヘンカン&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb356-22"><a href="officer.html#cb356-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(fs<span class="sc">::</span><span class="fu">path_temp</span>(<span class="st">&quot;b.docx&quot;</span>))</span>
-<span id="cb356-23"><a href="officer.html#cb356-23" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">path_dir</span>(a) <span class="sc">%&gt;%</span></span>
-<span id="cb356-24"><a href="officer.html#cb356-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shell.exec</span>()</span>
-<span id="cb356-25"><a href="officer.html#cb356-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-26"><a href="officer.html#cb356-26" aria-hidden="true" tabindex="-1"></a>replacement <span class="ot">&lt;-</span> </span>
-<span id="cb356-27"><a href="officer.html#cb356-27" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb356-28"><a href="officer.html#cb356-28" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>file          , <span class="sc">~</span>old_value, <span class="sc">~</span>new_value,</span>
-<span id="cb356-29"><a href="officer.html#cb356-29" aria-hidden="true" tabindex="-1"></a>    a              , <span class="st">&quot;置換前&quot;</span>  , <span class="st">&quot;置換後&quot;</span>  ,</span>
-<span id="cb356-30"><a href="officer.html#cb356-30" aria-hidden="true" tabindex="-1"></a>    b              , <span class="st">&quot;変換前&quot;</span>  , <span class="st">&quot;変換後&quot;</span>  ,</span>
-<span id="cb356-31"><a href="officer.html#cb356-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(a,<span class="st">&quot;,&quot;</span>,b), <span class="st">&quot;へんかん&quot;</span>, <span class="st">&quot;変換&quot;</span>    )</span>
-<span id="cb356-32"><a href="officer.html#cb356-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-33"><a href="officer.html#cb356-33" aria-hidden="true" tabindex="-1"></a>replacement <span class="ot">&lt;-</span> </span>
-<span id="cb356-34"><a href="officer.html#cb356-34" aria-hidden="true" tabindex="-1"></a>  replacement <span class="sc">%&gt;%</span></span>
-<span id="cb356-35"><a href="officer.html#cb356-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_file</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb356-36"><a href="officer.html#cb356-36" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(file, <span class="st">&quot;replaced</span><span class="sc">\\</span><span class="st">_&quot;</span>))</span>
-<span id="cb356-37"><a href="officer.html#cb356-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-38"><a href="officer.html#cb356-38" aria-hidden="true" tabindex="-1"></a><span class="fu">replace_docs</span>(replacement)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="officer.html#cb360-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># コードの動作確認</span></span>
+<span id="cb360-2"><a href="officer.html#cb360-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-3"><a href="officer.html#cb360-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://ardata-fr.github.io/officeverse/index.html</span></span>
+<span id="cb360-4"><a href="officer.html#cb360-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pkg &lt;- &quot;D:/matu/work/ToDo/automater/R&quot;</span></span>
+<span id="cb360-5"><a href="officer.html#cb360-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># devtools::load_all(pkg)</span></span>
+<span id="cb360-6"><a href="officer.html#cb360-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-7"><a href="officer.html#cb360-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fs::path_package(&quot;&quot;)</span></span>
+<span id="cb360-8"><a href="officer.html#cb360-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># replacement &lt;- readr::read_tsv(&quot;replacement.txt&quot;, header = TRUE)</span></span>
+<span id="cb360-9"><a href="officer.html#cb360-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ls(&quot;package:tibble&quot;)</span></span>
+<span id="cb360-10"><a href="officer.html#cb360-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-11"><a href="officer.html#cb360-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb360-12"><a href="officer.html#cb360-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(officer)</span>
+<span id="cb360-13"><a href="officer.html#cb360-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb360-14"><a href="officer.html#cb360-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(automater)</span></span>
+<span id="cb360-15"><a href="officer.html#cb360-15" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> </span>
+<span id="cb360-16"><a href="officer.html#cb360-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_docx</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb360-17"><a href="officer.html#cb360-17" aria-hidden="true" tabindex="-1"></a>  officer<span class="sc">::</span><span class="fu">body_add_par</span>(<span class="st">&quot;置換前，変換前，へんかん，ヘンカン&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb360-18"><a href="officer.html#cb360-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(fs<span class="sc">::</span><span class="fu">path_temp</span>(<span class="st">&quot;a.docx&quot;</span>))</span>
+<span id="cb360-19"><a href="officer.html#cb360-19" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> </span>
+<span id="cb360-20"><a href="officer.html#cb360-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_docx</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb360-21"><a href="officer.html#cb360-21" aria-hidden="true" tabindex="-1"></a>  officer<span class="sc">::</span><span class="fu">body_add_par</span>(<span class="st">&quot;置換前，変換前，へんかん，ヘンカン&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb360-22"><a href="officer.html#cb360-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(fs<span class="sc">::</span><span class="fu">path_temp</span>(<span class="st">&quot;b.docx&quot;</span>))</span>
+<span id="cb360-23"><a href="officer.html#cb360-23" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">path_dir</span>(a) <span class="sc">%&gt;%</span></span>
+<span id="cb360-24"><a href="officer.html#cb360-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shell.exec</span>()</span>
+<span id="cb360-25"><a href="officer.html#cb360-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-26"><a href="officer.html#cb360-26" aria-hidden="true" tabindex="-1"></a>replacement <span class="ot">&lt;-</span> </span>
+<span id="cb360-27"><a href="officer.html#cb360-27" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb360-28"><a href="officer.html#cb360-28" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>file          , <span class="sc">~</span>old_value, <span class="sc">~</span>new_value,</span>
+<span id="cb360-29"><a href="officer.html#cb360-29" aria-hidden="true" tabindex="-1"></a>    a              , <span class="st">&quot;置換前&quot;</span>  , <span class="st">&quot;置換後&quot;</span>  ,</span>
+<span id="cb360-30"><a href="officer.html#cb360-30" aria-hidden="true" tabindex="-1"></a>    b              , <span class="st">&quot;変換前&quot;</span>  , <span class="st">&quot;変換後&quot;</span>  ,</span>
+<span id="cb360-31"><a href="officer.html#cb360-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(a,<span class="st">&quot;,&quot;</span>,b), <span class="st">&quot;へんかん&quot;</span>, <span class="st">&quot;変換&quot;</span>    )</span>
+<span id="cb360-32"><a href="officer.html#cb360-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-33"><a href="officer.html#cb360-33" aria-hidden="true" tabindex="-1"></a>replacement <span class="ot">&lt;-</span> </span>
+<span id="cb360-34"><a href="officer.html#cb360-34" aria-hidden="true" tabindex="-1"></a>  replacement <span class="sc">%&gt;%</span></span>
+<span id="cb360-35"><a href="officer.html#cb360-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_file</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb360-36"><a href="officer.html#cb360-36" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(file, <span class="st">&quot;replaced</span><span class="sc">\\</span><span class="st">_&quot;</span>))</span>
+<span id="cb360-37"><a href="officer.html#cb360-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-38"><a href="officer.html#cb360-38" aria-hidden="true" tabindex="-1"></a><span class="fu">replace_docs</span>(replacement)</span></code></pre></div>
 </div>
 </div>
 <div id="年月日の更新" class="section level2 hasAnchor" number="22.4">
@@ -516,46 +520,46 @@ lubridateで日付固定あるいは位置固定のときでの翌年の年月�
 日付っぽい表記のすべてを含もうとするとややこしいが，よく使う日付表記であれば網羅できるだろう．
 年表記が2桁の場合，半角や全角のスペースを途中に含んだり，「()」の半角・全角の違いなどの表現揺れもあり得る．
 表記揺れを修正するための置換や削除などは，stringr(あるいはbase)の関数で対応できる．</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="officer.html#cb357-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wordファイルを開く</span></span>
-<span id="cb357-2"><a href="officer.html#cb357-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 文字列の取得</span></span>
-<span id="cb357-3"><a href="officer.html#cb357-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 日付の一覧抽出</span></span>
-<span id="cb357-4"><a href="officer.html#cb357-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 日付の置換</span></span>
-<span id="cb357-5"><a href="officer.html#cb357-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wordの保存</span></span>
-<span id="cb357-6"><a href="officer.html#cb357-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-7"><a href="officer.html#cb357-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(automater)</span></span>
-<span id="cb357-8"><a href="officer.html#cb357-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(moranajp)</span></span>
-<span id="cb357-9"><a href="officer.html#cb357-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb357-10"><a href="officer.html#cb357-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(officer)</span>
-<span id="cb357-11"><a href="officer.html#cb357-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb357-12"><a href="officer.html#cb357-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-13"><a href="officer.html#cb357-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 準備</span></span>
-<span id="cb357-14"><a href="officer.html#cb357-14" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> </span>
-<span id="cb357-15"><a href="officer.html#cb357-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;23年1月1日(月)，2023年1月1日(月)，2023年10月10日(月)，</span></span>
-<span id="cb357-16"><a href="officer.html#cb357-16" aria-hidden="true" tabindex="-1"></a><span class="st">  2月2日(月)，12月22日(月)，2023/1/1(月)，2023/10/10(月)，</span></span>
-<span id="cb357-17"><a href="officer.html#cb357-17" aria-hidden="true" tabindex="-1"></a><span class="st">  2/2(月)，12/22(月)，23年1月1日，2023年1月1日，</span></span>
-<span id="cb357-18"><a href="officer.html#cb357-18" aria-hidden="true" tabindex="-1"></a><span class="st">  2023年10月10日，2月2日，12月22日，2023/1/1，2023/10/10，</span></span>
-<span id="cb357-19"><a href="officer.html#cb357-19" aria-hidden="true" tabindex="-1"></a><span class="st">  2/2，12/22&quot;</span></span>
-<span id="cb357-20"><a href="officer.html#cb357-20" aria-hidden="true" tabindex="-1"></a>date_x <span class="ot">&lt;-</span> <span class="fu">extract_date</span>(x)</span>
-<span id="cb357-21"><a href="officer.html#cb357-21" aria-hidden="true" tabindex="-1"></a>date_doc <span class="ot">&lt;-</span> <span class="fu">print</span>(fs<span class="sc">::</span><span class="fu">path_temp</span>(<span class="st">&quot;date.docx&quot;</span>))</span>
-<span id="cb357-22"><a href="officer.html#cb357-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-23"><a href="officer.html#cb357-23" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">read_docx</span>()</span>
-<span id="cb357-24"><a href="officer.html#cb357-24" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">body_add_par</span>(doc, <span class="st">&quot;日付置換の例&quot;</span>)</span>
-<span id="cb357-25"><a href="officer.html#cb357-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(d <span class="cf">in</span> date_x){</span>
-<span id="cb357-26"><a href="officer.html#cb357-26" aria-hidden="true" tabindex="-1"></a>  doc <span class="ot">&lt;-</span> <span class="fu">body_add_par</span>(doc, d)</span>
-<span id="cb357-27"><a href="officer.html#cb357-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   doc &lt;- body_add_fpar(doc, fpar(ftext(d, fp_text(color = &quot;red&quot;))))</span></span>
-<span id="cb357-28"><a href="officer.html#cb357-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb357-29"><a href="officer.html#cb357-29" aria-hidden="true" tabindex="-1"></a><span class="fu">write_docx</span>(doc, date_doc)</span>
-<span id="cb357-30"><a href="officer.html#cb357-30" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">path_dir</span>(date_doc) <span class="sc">%&gt;%</span></span>
-<span id="cb357-31"><a href="officer.html#cb357-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shell.exec</span>()</span>
-<span id="cb357-32"><a href="officer.html#cb357-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-33"><a href="officer.html#cb357-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 読み込み</span></span>
-<span id="cb357-34"><a href="officer.html#cb357-34" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">read_docx</span>(date_doc)</span>
-<span id="cb357-35"><a href="officer.html#cb357-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-36"><a href="officer.html#cb357-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-37"><a href="officer.html#cb357-37" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">format_ymd</span>(x)</span>
-<span id="cb357-38"><a href="officer.html#cb357-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-39"><a href="officer.html#cb357-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ls(&quot;package:officer&quot;)</span></span>
-<span id="cb357-40"><a href="officer.html#cb357-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ls(&quot;package:moranajp&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="officer.html#cb361-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wordファイルを開く</span></span>
+<span id="cb361-2"><a href="officer.html#cb361-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 文字列の取得</span></span>
+<span id="cb361-3"><a href="officer.html#cb361-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 日付の一覧抽出</span></span>
+<span id="cb361-4"><a href="officer.html#cb361-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 日付の置換</span></span>
+<span id="cb361-5"><a href="officer.html#cb361-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wordの保存</span></span>
+<span id="cb361-6"><a href="officer.html#cb361-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-7"><a href="officer.html#cb361-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(automater)</span></span>
+<span id="cb361-8"><a href="officer.html#cb361-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># library(moranajp)</span></span>
+<span id="cb361-9"><a href="officer.html#cb361-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb361-10"><a href="officer.html#cb361-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(officer)</span>
+<span id="cb361-11"><a href="officer.html#cb361-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb361-12"><a href="officer.html#cb361-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-13"><a href="officer.html#cb361-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 準備</span></span>
+<span id="cb361-14"><a href="officer.html#cb361-14" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> </span>
+<span id="cb361-15"><a href="officer.html#cb361-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;23年1月1日(月)，2023年1月1日(月)，2023年10月10日(月)，</span></span>
+<span id="cb361-16"><a href="officer.html#cb361-16" aria-hidden="true" tabindex="-1"></a><span class="st">  2月2日(月)，12月22日(月)，2023/1/1(月)，2023/10/10(月)，</span></span>
+<span id="cb361-17"><a href="officer.html#cb361-17" aria-hidden="true" tabindex="-1"></a><span class="st">  2/2(月)，12/22(月)，23年1月1日，2023年1月1日，</span></span>
+<span id="cb361-18"><a href="officer.html#cb361-18" aria-hidden="true" tabindex="-1"></a><span class="st">  2023年10月10日，2月2日，12月22日，2023/1/1，2023/10/10，</span></span>
+<span id="cb361-19"><a href="officer.html#cb361-19" aria-hidden="true" tabindex="-1"></a><span class="st">  2/2，12/22&quot;</span></span>
+<span id="cb361-20"><a href="officer.html#cb361-20" aria-hidden="true" tabindex="-1"></a>date_x <span class="ot">&lt;-</span> <span class="fu">extract_date</span>(x)</span>
+<span id="cb361-21"><a href="officer.html#cb361-21" aria-hidden="true" tabindex="-1"></a>date_doc <span class="ot">&lt;-</span> <span class="fu">print</span>(fs<span class="sc">::</span><span class="fu">path_temp</span>(<span class="st">&quot;date.docx&quot;</span>))</span>
+<span id="cb361-22"><a href="officer.html#cb361-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-23"><a href="officer.html#cb361-23" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">read_docx</span>()</span>
+<span id="cb361-24"><a href="officer.html#cb361-24" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">body_add_par</span>(doc, <span class="st">&quot;日付置換の例&quot;</span>)</span>
+<span id="cb361-25"><a href="officer.html#cb361-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(d <span class="cf">in</span> date_x){</span>
+<span id="cb361-26"><a href="officer.html#cb361-26" aria-hidden="true" tabindex="-1"></a>  doc <span class="ot">&lt;-</span> <span class="fu">body_add_par</span>(doc, d)</span>
+<span id="cb361-27"><a href="officer.html#cb361-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   doc &lt;- body_add_fpar(doc, fpar(ftext(d, fp_text(color = &quot;red&quot;))))</span></span>
+<span id="cb361-28"><a href="officer.html#cb361-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb361-29"><a href="officer.html#cb361-29" aria-hidden="true" tabindex="-1"></a><span class="fu">write_docx</span>(doc, date_doc)</span>
+<span id="cb361-30"><a href="officer.html#cb361-30" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">path_dir</span>(date_doc) <span class="sc">%&gt;%</span></span>
+<span id="cb361-31"><a href="officer.html#cb361-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shell.exec</span>()</span>
+<span id="cb361-32"><a href="officer.html#cb361-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-33"><a href="officer.html#cb361-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 読み込み</span></span>
+<span id="cb361-34"><a href="officer.html#cb361-34" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">read_docx</span>(date_doc)</span>
+<span id="cb361-35"><a href="officer.html#cb361-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-36"><a href="officer.html#cb361-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-37"><a href="officer.html#cb361-37" aria-hidden="true" tabindex="-1"></a>automater<span class="sc">::</span><span class="fu">format_ymd</span>(x)</span>
+<span id="cb361-38"><a href="officer.html#cb361-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-39"><a href="officer.html#cb361-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ls(&quot;package:officer&quot;)</span></span>
+<span id="cb361-40"><a href="officer.html#cb361-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ls(&quot;package:moranajp&quot;)</span></span></code></pre></div>
 
 </div>
 </div>
