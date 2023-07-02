@@ -14,7 +14,9 @@ Windowsならコマンドプロンプト(古い言い方なら，いわゆるdos
 なお，Windowsでは [Win] + [R]  - [ファイル名を指定して実] - [cmd] でコマンドプロンプトが，
 Macでは[Command] + [Space] - [Spotlight検索] - [terminal] でTerminalが起動する．
 
-<img src="img/fs_01.png" width="50%" alt="command prompt" title="command prompt">
+<img src="img/fs_01.png" width="30%" alt="win + r" title="win + r">   
+
+<img src="img/fs_02.png" width="50%" alt="command prompt" title="command prompt">   
 
 コマンドプロンプトやバッチファイル(あるいはシェルスクリプト)などでの操作に慣れていれば，それが便利である．
 ただ，dosコマンドの変数の扱いは，慣れていないと結構難しい(慣れていても?)．
@@ -49,7 +51,13 @@ library(fs)
 
 ## シェル，baseパッケージ, fsパッケージ
 
+
+
 a.pdf, b.pdf, ..., j.pdfを01.pdf, 02.pdf, ..., 10.pdfのように10個のファイル名を変更したいとする．
+
+<img src="img/fs_crop_11.png" width="50%" alt="files before rename" title="files before rename">   
+
+<img src="img/fs_crop_12.png" width="50%" alt="files after rename" title="files after rename">   
 
 ### シェルを使う
 
@@ -234,7 +242,7 @@ getwd()
 
 `tcltk::tkchooseDirectory()`を実行すると，ディレクトリを選択する画面が表示されるので，使いたいディレクトリを指定する．
 
-<img src="img/fs_01.png" width="50%" alt="select directory with gui" title="window of select directory with gui">
+<img src="img/fs_03.png" width="50%" alt="select directory with gui" title="window of select directory with gui">
 
 
 

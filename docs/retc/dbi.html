@@ -425,33 +425,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="準備-12" class="section level2 hasAnchor" number="17.3">
 <h2><span class="header-section-number">17.3</span> 準備<a href="dbi.html#準備-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="dbi.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="dbi.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb304-2"><a href="dbi.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb304-3"><a href="dbi.html#cb304-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="dbi.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="dbi.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb305-2"><a href="dbi.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb305-3"><a href="dbi.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span></code></pre></div>
 <p>本来はDBに接続するが，解説のための一時データを使用する．
 通常はDB接続のためのユーザIDとパスワードが必要だろう．</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="dbi.html#cb305-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
-<span id="cb305-2"><a href="dbi.html#cb305-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
-<span id="cb305-3"><a href="dbi.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
-<span id="cb305-4"><a href="dbi.html#cb305-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="dbi.html#cb306-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 一時的データの準備</span></span>
+<span id="cb306-2"><a href="dbi.html#cb306-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
+<span id="cb306-3"><a href="dbi.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;mpg&quot;</span>, mpg)</span>
+<span id="cb306-4"><a href="dbi.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div>
 <pre><code>## [1] &quot;mpg&quot;</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="dbi.html#cb307-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.Connect.html</span></span>
-<span id="cb307-2"><a href="dbi.html#cb307-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># con &lt;- </span></span>
-<span id="cb307-3"><a href="dbi.html#cb307-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   dbConnect(RSQLite::SQLite(), </span></span>
-<span id="cb307-4"><a href="dbi.html#cb307-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   username = &quot;matutosi@gmail.com&quot;,</span></span>
-<span id="cb307-5"><a href="dbi.html#cb307-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   password = &quot;yPXIHeGWXGmPabSiVx2LCopy&quot;,</span></span>
-<span id="cb307-6"><a href="dbi.html#cb307-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   host = &quot;database-1.cd3bluovykft.ap-southeast-2.rds.amazonaws.com&quot;, </span></span>
-<span id="cb307-7"><a href="dbi.html#cb307-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   port = 5432, # PostgreSQL</span></span>
-<span id="cb307-8"><a href="dbi.html#cb307-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   dbname = &quot;database-1&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="dbi.html#cb308-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.Connect.html</span></span>
+<span id="cb308-2"><a href="dbi.html#cb308-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># con &lt;- </span></span>
+<span id="cb308-3"><a href="dbi.html#cb308-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   dbConnect(RSQLite::SQLite(), </span></span>
+<span id="cb308-4"><a href="dbi.html#cb308-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   username = &quot;matutosi@gmail.com&quot;,</span></span>
+<span id="cb308-5"><a href="dbi.html#cb308-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   password = &quot;yPXIHeGWXGmPabSiVx2LCopy&quot;,</span></span>
+<span id="cb308-6"><a href="dbi.html#cb308-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   host = &quot;database-1.cd3bluovykft.ap-southeast-2.rds.amazonaws.com&quot;, </span></span>
+<span id="cb308-7"><a href="dbi.html#cb308-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   port = 5432, # PostgreSQL</span></span>
+<span id="cb308-8"><a href="dbi.html#cb308-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   dbname = &quot;database-1&quot;)</span></span></code></pre></div>
 </div>
 <div id="使い方-2" class="section level2 hasAnchor" number="17.4">
 <h2><span class="header-section-number">17.4</span> 使い方<a href="dbi.html#使い方-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="dbi.html#cb308-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
-<span id="cb308-2"><a href="dbi.html#cb308-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
-<span id="cb308-3"><a href="dbi.html#cb308-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb308-4"><a href="dbi.html#cb308-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb308-5"><a href="dbi.html#cb308-5" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="dbi.html#cb309-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SQLで選択・フィルタ</span></span>
+<span id="cb309-2"><a href="dbi.html#cb309-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT year, model, displ, cyl FROM mpg WHERE cyl = 4&quot;</span>)</span>
+<span id="cb309-3"><a href="dbi.html#cb309-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
+<span id="cb309-4"><a href="dbi.html#cb309-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
+<span id="cb309-5"><a href="dbi.html#cb309-5" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">as_tibble</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 81 × 4
 ##     year model      displ   cyl
 ##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;
@@ -466,16 +466,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  1999 malibu       2.4     4
 ## 10  2008 malibu       2.4     4
 ## # ℹ 71 more rows</code></pre>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="dbi.html#cb310-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
-<span id="cb310-2"><a href="dbi.html#cb310-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
-<span id="cb310-3"><a href="dbi.html#cb310-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
-<span id="cb310-4"><a href="dbi.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
-<span id="cb310-5"><a href="dbi.html#cb310-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb310-6"><a href="dbi.html#cb310-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb310-7"><a href="dbi.html#cb310-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb310-8"><a href="dbi.html#cb310-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb310-9"><a href="dbi.html#cb310-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb310-10"><a href="dbi.html#cb310-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="dbi.html#cb311-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># とりあえず全部取得してから，dplyrで選択・フィルタ</span></span>
+<span id="cb311-2"><a href="dbi.html#cb311-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">dbSendQuery</span>(con, <span class="st">&quot;SELECT * FROM mpg&quot;</span>)</span>
+<span id="cb311-3"><a href="dbi.html#cb311-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(res)</span>
+<span id="cb311-4"><a href="dbi.html#cb311-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbClearResult</span>(res)</span>
+<span id="cb311-5"><a href="dbi.html#cb311-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb311-6"><a href="dbi.html#cb311-6" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb311-7"><a href="dbi.html#cb311-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb311-8"><a href="dbi.html#cb311-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, model, displ, cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb311-9"><a href="dbi.html#cb311-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb311-10"><a href="dbi.html#cb311-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 234 × 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;

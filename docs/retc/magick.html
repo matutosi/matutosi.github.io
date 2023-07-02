@@ -415,13 +415,13 @@ ImageMagickは，コマンドラインで使えるので，関数<code>system()<
 <p>例によってまずはパッケージをインストールする．
 svg形式の画像を読み込む場合は，rsvgパッケージもインストールしておく．
 ウエブのスクリーンショットを使うので，webshotもインストールする．</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="magick.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magick&quot;</span>)</span>
-<span id="cb286-2"><a href="magick.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsvg&quot;</span>)</span>
-<span id="cb286-3"><a href="magick.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;webshot&quot;</span>)</span>
-<span id="cb286-4"><a href="magick.html#cb286-4" aria-hidden="true" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">install_phantomjs</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="magick.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb287-2"><a href="magick.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
-<span id="cb287-3"><a href="magick.html#cb287-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(webshot)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="magick.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magick&quot;</span>)</span>
+<span id="cb287-2"><a href="magick.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsvg&quot;</span>)</span>
+<span id="cb287-3"><a href="magick.html#cb287-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;webshot&quot;</span>)</span>
+<span id="cb287-4"><a href="magick.html#cb287-4" aria-hidden="true" tabindex="-1"></a>webshot<span class="sc">::</span><span class="fu">install_phantomjs</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="magick.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb288-2"><a href="magick.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb288-3"><a href="magick.html#cb288-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(webshot)</span></code></pre></div>
 </div>
 <div id="使い方-1" class="section level2 hasAnchor" number="16.2">
 <h2><span class="header-section-number">16.2</span> 使い方<a href="magick.html#使い方-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -433,43 +433,43 @@ svg形式の画像を読み込む場合は，rsvgパッケージもインスト�
 <p>png，jpeg，gif形式の画像には<code>image_read()</code>，svg形式には<code>image_read_svg()</code>，PDF形式には<code>image_read_pdf()</code>をそれぞれ用いる．
 読み込んだ画像オブジェクトの情報を表示するには，<code>image_info()</code>を使う．
 表示だけなら，オブジェクトをそのまま入力しても同じである．</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="magick.html#cb288-1" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
-<span id="cb288-2"><a href="magick.html#cb288-2" aria-hidden="true" tabindex="-1"></a>tiger <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read_svg</span>(<span class="st">&quot;http://jeroen.github.io/images/tiger.svg&quot;</span>)</span>
-<span id="cb288-3"><a href="magick.html#cb288-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(frink)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="magick.html#cb289-1" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
+<span id="cb289-2"><a href="magick.html#cb289-2" aria-hidden="true" tabindex="-1"></a>tiger <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read_svg</span>(<span class="st">&quot;http://jeroen.github.io/images/tiger.svg&quot;</span>)</span>
+<span id="cb289-3"><a href="magick.html#cb289-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(frink)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      220    445 sRGB       TRUE     73494 72x72</code></pre>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="magick.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(tiger)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="magick.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(tiger)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      900    900 sRGB       TRUE         0 72x72</code></pre>
 <p>画像そのものを表示するには，<code>image_browse()</code>を用いる．
 OSで関連付けられているソフトが立ち上がって，画像を閲覧できる．</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="magick.html#cb292-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_browse</span>(tiger)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="magick.html#cb293-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_browse</span>(tiger)</span></code></pre></div>
 <p><code>image_convert()</code>を用いると画像をpng，jpeg，gif，pdf形式に変換できる．
 画像形式は，<code>format</code>で指定する．
 また，<code>type = "grayscale"</code>とすると，白黒画像にできる．</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="magick.html#cb293-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_convert</span>(tiger, <span class="at">format =</span> <span class="st">&quot;pdf&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb293-2"><a href="magick.html#cb293-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_browse</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="magick.html#cb294-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_convert</span>(tiger, <span class="at">format =</span> <span class="st">&quot;pdf&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb294-2"><a href="magick.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_browse</span>()</span></code></pre></div>
 <p>画像を保存するには，関数<code>image_write()</code>を使う．
 この関数の引数にも<code>format</code>があり，ここで形式を変換することもできる．
 <code>image_write()</code>の<code>path</code>で拡張子を含むファイル名を指定しても，自動的にはその拡張子の形式としては保存されない．
 <code>format</code>を指定しなければもとの画像形式で保存されるため，形式を変換したい場合は<code>format</code>で形式を指定する．</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="magick.html#cb294-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(frink, <span class="at">path =</span> <span class="st">&quot;img/frink.pdf&quot;</span>, <span class="at">format =</span> <span class="st">&quot;pdf&quot;</span>) </span>
-<span id="cb294-2"><a href="magick.html#cb294-2" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(frink, <span class="at">path =</span> <span class="st">&quot;img/frink&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="magick.html#cb295-1" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(frink, <span class="at">path =</span> <span class="st">&quot;img/frink.pdf&quot;</span>, <span class="at">format =</span> <span class="st">&quot;pdf&quot;</span>) </span>
+<span id="cb295-2"><a href="magick.html#cb295-2" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(frink, <span class="at">path =</span> <span class="st">&quot;img/frink&quot;</span>)</span></code></pre></div>
 </div>
 <div id="切り出し" class="section level3 hasAnchor" number="16.2.2">
 <h3><span class="header-section-number">16.2.2</span> 切り出し<a href="magick.html#切り出し" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>画像を切り出しする前に，webshotを使って画像を取得する．</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="magick.html#cb295-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 画像の取得</span></span>
-<span id="cb295-2"><a href="magick.html#cb295-2" aria-hidden="true" tabindex="-1"></a>urls <span class="ot">&lt;-</span> </span>
-<span id="cb295-3"><a href="magick.html#cb295-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=spec&quot;</span>,</span>
-<span id="cb295-4"><a href="magick.html#cb295-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;http://jpnrdb.com/search.php?mode=key&amp;q=ニッコウキスゲ&quot;</span>,</span>
-<span id="cb295-5"><a href="magick.html#cb295-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;http://jpnrdb.com/search.php?mode=map&amp;q=06050095259&quot;</span>)</span>
-<span id="cb295-6"><a href="magick.html#cb295-6" aria-hidden="true" tabindex="-1"></a>pngs <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;rvest_&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">&quot;.png&quot;</span>)</span>
-<span id="cb295-7"><a href="magick.html#cb295-7" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map2</span>(urls, <span class="fu">paste0</span>(<span class="st">&quot;img/&quot;</span>, pngs), webshot<span class="sc">::</span>webshot)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="magick.html#cb296-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 画像の取得</span></span>
+<span id="cb296-2"><a href="magick.html#cb296-2" aria-hidden="true" tabindex="-1"></a>urls <span class="ot">&lt;-</span> </span>
+<span id="cb296-3"><a href="magick.html#cb296-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;http://jpnrdb.com/search.php?mode=spec&quot;</span>,</span>
+<span id="cb296-4"><a href="magick.html#cb296-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;http://jpnrdb.com/search.php?mode=key&amp;q=ニッコウキスゲ&quot;</span>,</span>
+<span id="cb296-5"><a href="magick.html#cb296-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;http://jpnrdb.com/search.php?mode=map&amp;q=06050095259&quot;</span>)</span>
+<span id="cb296-6"><a href="magick.html#cb296-6" aria-hidden="true" tabindex="-1"></a>pngs <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;rvest_&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">&quot;.png&quot;</span>)</span>
+<span id="cb296-7"><a href="magick.html#cb296-7" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map2</span>(urls, <span class="fu">paste0</span>(<span class="st">&quot;img/&quot;</span>, pngs), webshot<span class="sc">::</span>webshot)</span></code></pre></div>
 <pre><code>## [[1]]
 ## 
 ## [[2]]
@@ -480,15 +480,15 @@ OSで関連付けられているソフトが立ち上がって，画像を閲覧
 切り出しの左上と右下の位置は，画像編集ソフトなどで別途確認する．</p>
 <p>もし，切り出しの位置の細かな設定が面倒であれば，いくつかのパターンを作っておき，総当たり的に画像を切り出して，その中から求めるものを探す方法もある．
 その場合は，出力したファイルがどの設定によるものか分かるように，出力するファイル名に位置情報を付与しておくと良いだろう．</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="magick.html#cb297-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># automater::magick_crop()と同じ</span></span>
-<span id="cb297-2"><a href="magick.html#cb297-2" aria-hidden="true" tabindex="-1"></a>magick_crop <span class="ot">&lt;-</span> <span class="cf">function</span>(image, left_top, right_bottom){</span>
-<span id="cb297-3"><a href="magick.html#cb297-3" aria-hidden="true" tabindex="-1"></a>  left   <span class="ot">&lt;-</span> left_top[<span class="dv">1</span>]</span>
-<span id="cb297-4"><a href="magick.html#cb297-4" aria-hidden="true" tabindex="-1"></a>  top    <span class="ot">&lt;-</span> left_top[<span class="dv">2</span>]</span>
-<span id="cb297-5"><a href="magick.html#cb297-5" aria-hidden="true" tabindex="-1"></a>  right  <span class="ot">&lt;-</span> right_bottom[<span class="dv">1</span>]</span>
-<span id="cb297-6"><a href="magick.html#cb297-6" aria-hidden="true" tabindex="-1"></a>  bottom <span class="ot">&lt;-</span> right_bottom[<span class="dv">2</span>]</span>
-<span id="cb297-7"><a href="magick.html#cb297-7" aria-hidden="true" tabindex="-1"></a>  geometry <span class="ot">&lt;-</span> <span class="fu">paste0</span>(right <span class="sc">-</span> left, <span class="st">&quot;x&quot;</span>, bottom <span class="sc">-</span> top, <span class="st">&quot;+&quot;</span>, left, <span class="st">&quot;+&quot;</span>, top)</span>
-<span id="cb297-8"><a href="magick.html#cb297-8" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_crop</span>(image, geometry)</span>
-<span id="cb297-9"><a href="magick.html#cb297-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="magick.html#cb298-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># automater::magick_crop()と同じ</span></span>
+<span id="cb298-2"><a href="magick.html#cb298-2" aria-hidden="true" tabindex="-1"></a>magick_crop <span class="ot">&lt;-</span> <span class="cf">function</span>(image, left_top, right_bottom){</span>
+<span id="cb298-3"><a href="magick.html#cb298-3" aria-hidden="true" tabindex="-1"></a>  left   <span class="ot">&lt;-</span> left_top[<span class="dv">1</span>]</span>
+<span id="cb298-4"><a href="magick.html#cb298-4" aria-hidden="true" tabindex="-1"></a>  top    <span class="ot">&lt;-</span> left_top[<span class="dv">2</span>]</span>
+<span id="cb298-5"><a href="magick.html#cb298-5" aria-hidden="true" tabindex="-1"></a>  right  <span class="ot">&lt;-</span> right_bottom[<span class="dv">1</span>]</span>
+<span id="cb298-6"><a href="magick.html#cb298-6" aria-hidden="true" tabindex="-1"></a>  bottom <span class="ot">&lt;-</span> right_bottom[<span class="dv">2</span>]</span>
+<span id="cb298-7"><a href="magick.html#cb298-7" aria-hidden="true" tabindex="-1"></a>  geometry <span class="ot">&lt;-</span> <span class="fu">paste0</span>(right <span class="sc">-</span> left, <span class="st">&quot;x&quot;</span>, bottom <span class="sc">-</span> top, <span class="st">&quot;+&quot;</span>, left, <span class="st">&quot;+&quot;</span>, top)</span>
+<span id="cb298-8"><a href="magick.html#cb298-8" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_crop</span>(image, geometry)</span>
+<span id="cb298-9"><a href="magick.html#cb298-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>今回は切り出し位置として2つ使う．
 1つ目は，<code>rvest_1.png</code>と<code>rvest_2.png</code>で使うもので，2つ目は，<code>rvest_3.png</code>で使うものである．
 それぞれ正しい設定だけを使っても良いが，面倒なので2つの位置を使って，画像を3つとも変換してしまう．
@@ -496,17 +496,17 @@ OSで関連付けられているソフトが立ち上がって，画像を閲覧
 <p>ところで，magickパッケージの関数はベクトルに対応しているので，文字列のベクトルである<code>pngs</code>でもそのまま引数として使うことができる．
 ただし，2つのベクトルを引数に使うことはできないため，以下ではmap2を使っている．
 また，その直前で返り値をリストに変換するために<code>as.list()</code>を使っている．</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="magick.html#cb298-1" aria-hidden="true" tabindex="-1"></a>crop_1 <span class="ot">&lt;-</span> </span>
-<span id="cb298-2"><a href="magick.html#cb298-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="fu">paste0</span>(<span class="st">&quot;img/&quot;</span>, pngs)) <span class="sc">%&gt;%</span></span>
-<span id="cb298-3"><a href="magick.html#cb298-3" aria-hidden="true" tabindex="-1"></a>  automater<span class="sc">::</span><span class="fu">magick_crop</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">890</span>, <span class="dv">560</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb298-4"><a href="magick.html#cb298-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb298-5"><a href="magick.html#cb298-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2_chr</span>(., <span class="fu">paste0</span>(<span class="st">&quot;img/crop1_&quot;</span>, pngs), magick<span class="sc">::</span>image_write)</span>
-<span id="cb298-6"><a href="magick.html#cb298-6" aria-hidden="true" tabindex="-1"></a>crop_2 <span class="ot">&lt;-</span> </span>
-<span id="cb298-7"><a href="magick.html#cb298-7" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="fu">paste0</span>(<span class="st">&quot;img/&quot;</span>, pngs)) <span class="sc">%&gt;%</span></span>
-<span id="cb298-8"><a href="magick.html#cb298-8" aria-hidden="true" tabindex="-1"></a>  automater<span class="sc">::</span><span class="fu">magick_crop</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">890</span>, <span class="dv">980</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb298-9"><a href="magick.html#cb298-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb298-10"><a href="magick.html#cb298-10" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2_chr</span>(., <span class="fu">paste0</span>(<span class="st">&quot;img/crop2_&quot;</span>, pngs), magick<span class="sc">::</span>image_write)</span>
-<span id="cb298-11"><a href="magick.html#cb298-11" aria-hidden="true" tabindex="-1"></a>crops <span class="ot">&lt;-</span> <span class="fu">c</span>(crop_1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)], crop_2[<span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="magick.html#cb299-1" aria-hidden="true" tabindex="-1"></a>crop_1 <span class="ot">&lt;-</span> </span>
+<span id="cb299-2"><a href="magick.html#cb299-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="fu">paste0</span>(<span class="st">&quot;img/&quot;</span>, pngs)) <span class="sc">%&gt;%</span></span>
+<span id="cb299-3"><a href="magick.html#cb299-3" aria-hidden="true" tabindex="-1"></a>  automater<span class="sc">::</span><span class="fu">magick_crop</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">890</span>, <span class="dv">560</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb299-4"><a href="magick.html#cb299-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb299-5"><a href="magick.html#cb299-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2_chr</span>(., <span class="fu">paste0</span>(<span class="st">&quot;img/crop1_&quot;</span>, pngs), magick<span class="sc">::</span>image_write)</span>
+<span id="cb299-6"><a href="magick.html#cb299-6" aria-hidden="true" tabindex="-1"></a>crop_2 <span class="ot">&lt;-</span> </span>
+<span id="cb299-7"><a href="magick.html#cb299-7" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="fu">paste0</span>(<span class="st">&quot;img/&quot;</span>, pngs)) <span class="sc">%&gt;%</span></span>
+<span id="cb299-8"><a href="magick.html#cb299-8" aria-hidden="true" tabindex="-1"></a>  automater<span class="sc">::</span><span class="fu">magick_crop</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">890</span>, <span class="dv">980</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb299-9"><a href="magick.html#cb299-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb299-10"><a href="magick.html#cb299-10" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2_chr</span>(., <span class="fu">paste0</span>(<span class="st">&quot;img/crop2_&quot;</span>, pngs), magick<span class="sc">::</span>image_write)</span>
+<span id="cb299-11"><a href="magick.html#cb299-11" aria-hidden="true" tabindex="-1"></a>crops <span class="ot">&lt;-</span> <span class="fu">c</span>(crop_1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)], crop_2[<span class="dv">3</span>])</span></code></pre></div>
 <p>ここでは，<code>image_crop()</code>を使用したが，上下左右から変化がない部分を除去する<code>image_trim()</code>という関数がある．
 余白部分(色は白だけとは限らない)を単純に除去するだけでれば，<code>位置を指定する必要のない</code>image_trim()`の方が楽である．</p>
 </div>
@@ -515,36 +515,36 @@ OSで関連付けられているソフトが立ち上がって，画像を閲覧
 <p>画像サイズを変更するには，<code>image_scale()</code>を使う．
 <code>geometry = "200"</code>で幅200ピクセルに，<code>geometry = "x200"</code>で高さ200ピクセルに変更できる．
 なお，縦横比を保ったままである．</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="magick.html#cb299-1" aria-hidden="true" tabindex="-1"></a>resizes_crops <span class="ot">&lt;-</span> </span>
-<span id="cb299-2"><a href="magick.html#cb299-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(crops) <span class="sc">%&gt;%</span></span>
-<span id="cb299-3"><a href="magick.html#cb299-3" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_scale</span>(<span class="at">geometry =</span> <span class="st">&quot;600&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="magick.html#cb300-1" aria-hidden="true" tabindex="-1"></a>resizes_crops <span class="ot">&lt;-</span> </span>
+<span id="cb300-2"><a href="magick.html#cb300-2" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(crops) <span class="sc">%&gt;%</span></span>
+<span id="cb300-3"><a href="magick.html#cb300-3" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_scale</span>(<span class="at">geometry =</span> <span class="st">&quot;600&quot;</span>)</span></code></pre></div>
 </div>
 <div id="枠余白の追加註釈テキストの追加" class="section level3 hasAnchor" number="16.2.4">
 <h3><span class="header-section-number">16.2.4</span> 枠(余白)の追加・註釈(テキスト)の追加<a href="magick.html#枠余白の追加註釈テキストの追加" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>画像に枠(余白)と註釈(テキスト)をつけるには，それぞれ<code>image_border()</code>と<code>image_annotate()</code>を使う．
 <code>image_border()</code>で<code>geometry = "40"</code>は左右に，<code>geometry = "x40"</code>は上下に40ピクセルの枠を追加する．
 <code>image_annotate()</code>は位置<code>location</code>，角度<code>degrees</code>，文字サイズ<code>size</code>，フォント<code>font</code>なども指定可能である．</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="magick.html#cb300-1" aria-hidden="true" tabindex="-1"></a>boders_annotates <span class="ot">&lt;-</span> </span>
-<span id="cb300-2"><a href="magick.html#cb300-2" aria-hidden="true" tabindex="-1"></a>  resizes_crops <span class="sc">%&gt;%</span></span>
-<span id="cb300-3"><a href="magick.html#cb300-3" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_border</span>(<span class="st">&quot;white&quot;</span>, <span class="at">geometry =</span> <span class="st">&quot;x40&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb300-4"><a href="magick.html#cb300-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb300-5"><a href="magick.html#cb300-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2</span>(., urls, magick<span class="sc">::</span>image_annotate, <span class="at">size =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="magick.html#cb301-1" aria-hidden="true" tabindex="-1"></a>boders_annotates <span class="ot">&lt;-</span> </span>
+<span id="cb301-2"><a href="magick.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  resizes_crops <span class="sc">%&gt;%</span></span>
+<span id="cb301-3"><a href="magick.html#cb301-3" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_border</span>(<span class="st">&quot;white&quot;</span>, <span class="at">geometry =</span> <span class="st">&quot;x40&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb301-4"><a href="magick.html#cb301-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb301-5"><a href="magick.html#cb301-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map2</span>(., urls, magick<span class="sc">::</span>image_annotate, <span class="at">size =</span> <span class="dv">20</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="その他の関数" class="section level2 hasAnchor" number="16.3">
 <h2><span class="header-section-number">16.3</span> その他の関数<a href="magick.html#その他の関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>magickには，他にも有用な関数がたくさんある．</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="magick.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_append</span>(image, <span class="at">stack =</span> <span class="cn">FALSE</span>)   <span class="co"># 並べて表示，stack = TRUEで縦並べ</span></span>
-<span id="cb301-2"><a href="magick.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_background</span>(image, color)       <span class="co"># 背景の色付け</span></span>
-<span id="cb301-3"><a href="magick.html#cb301-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(image, degrees)         <span class="co"># 回転</span></span>
-<span id="cb301-4"><a href="magick.html#cb301-4" aria-hidden="true" tabindex="-1"></a><span class="fu">image_blur</span>(image, radius, sigma)     <span class="co"># ぼかし処理．radius，sigma：ぼかしの大きさ</span></span>
-<span id="cb301-5"><a href="magick.html#cb301-5" aria-hidden="true" tabindex="-1"></a><span class="fu">image_noise</span>(image, noisetype)        <span class="co"># ノイズの追加</span></span>
-<span id="cb301-6"><a href="magick.html#cb301-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image_charcoal</span>(image, radius, sigma) <span class="co"># 縁取り</span></span>
-<span id="cb301-7"><a href="magick.html#cb301-7" aria-hidden="true" tabindex="-1"></a><span class="fu">image_oilpaint</span>(image, radius)        <span class="co"># 油絵</span></span>
-<span id="cb301-8"><a href="magick.html#cb301-8" aria-hidden="true" tabindex="-1"></a><span class="fu">image_edge</span>(image, radius)            <span class="co"># エッジ</span></span>
-<span id="cb301-9"><a href="magick.html#cb301-9" aria-hidden="true" tabindex="-1"></a><span class="fu">image_negate</span>(image)                  <span class="co"># ネガ</span></span>
-<span id="cb301-10"><a href="magick.html#cb301-10" aria-hidden="true" tabindex="-1"></a><span class="fu">image_morph</span>(image, frames)           <span class="co"># 画像を指定したframes間隔</span></span>
-<span id="cb301-11"><a href="magick.html#cb301-11" aria-hidden="true" tabindex="-1"></a><span class="fu">image_animate</span>(image, fps, loop)      <span class="co"># image_morph()画像のアニメ化，fps：frames/秒，`loop = 1`で繰り返しなし</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="magick.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_append</span>(image, <span class="at">stack =</span> <span class="cn">FALSE</span>)   <span class="co"># 並べて表示，stack = TRUEで縦並べ</span></span>
+<span id="cb302-2"><a href="magick.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_background</span>(image, color)       <span class="co"># 背景の色付け</span></span>
+<span id="cb302-3"><a href="magick.html#cb302-3" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(image, degrees)         <span class="co"># 回転</span></span>
+<span id="cb302-4"><a href="magick.html#cb302-4" aria-hidden="true" tabindex="-1"></a><span class="fu">image_blur</span>(image, radius, sigma)     <span class="co"># ぼかし処理．radius，sigma：ぼかしの大きさ</span></span>
+<span id="cb302-5"><a href="magick.html#cb302-5" aria-hidden="true" tabindex="-1"></a><span class="fu">image_noise</span>(image, noisetype)        <span class="co"># ノイズの追加</span></span>
+<span id="cb302-6"><a href="magick.html#cb302-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image_charcoal</span>(image, radius, sigma) <span class="co"># 縁取り</span></span>
+<span id="cb302-7"><a href="magick.html#cb302-7" aria-hidden="true" tabindex="-1"></a><span class="fu">image_oilpaint</span>(image, radius)        <span class="co"># 油絵</span></span>
+<span id="cb302-8"><a href="magick.html#cb302-8" aria-hidden="true" tabindex="-1"></a><span class="fu">image_edge</span>(image, radius)            <span class="co"># エッジ</span></span>
+<span id="cb302-9"><a href="magick.html#cb302-9" aria-hidden="true" tabindex="-1"></a><span class="fu">image_negate</span>(image)                  <span class="co"># ネガ</span></span>
+<span id="cb302-10"><a href="magick.html#cb302-10" aria-hidden="true" tabindex="-1"></a><span class="fu">image_morph</span>(image, frames)           <span class="co"># 画像を指定したframes間隔</span></span>
+<span id="cb302-11"><a href="magick.html#cb302-11" aria-hidden="true" tabindex="-1"></a><span class="fu">image_animate</span>(image, fps, loop)      <span class="co"># image_morph()画像のアニメ化，fps：frames/秒，`loop = 1`で繰り返しなし</span></span></code></pre></div>
 </div>
 <div id="ウエブのスクリーンショットにurlを付加する関数" class="section level2 hasAnchor" number="16.4">
 <h2><span class="header-section-number">16.4</span> ウエブのスクリーンショットにURLを付加する関数<a href="magick.html#ウエブのスクリーンショットにurlを付加する関数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -569,24 +569,24 @@ OSで関連付けられているソフトが立ち上がって，画像を閲覧
 </li>
 <li>サイズの変更(オプション)</li>
 </ul>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="magick.html#cb302-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># automater::web_screenshot()と同じ</span></span>
-<span id="cb302-2"><a href="magick.html#cb302-2" aria-hidden="true" tabindex="-1"></a>web_screenshot <span class="ot">&lt;-</span> <span class="cf">function</span>(url, <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">border_size =</span> <span class="st">&quot;x40&quot;</span>, <span class="at">annotate_size =</span> <span class="dv">20</span>, <span class="at">format =</span> <span class="st">&quot;png&quot;</span>, <span class="at">resize =</span> <span class="cn">FALSE</span>){</span>
-<span id="cb302-3"><a href="magick.html#cb302-3" aria-hidden="true" tabindex="-1"></a>  png <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;png&quot;</span>)</span>
-<span id="cb302-4"><a href="magick.html#cb302-4" aria-hidden="true" tabindex="-1"></a>  webshot<span class="sc">::</span><span class="fu">webshot</span>(url, png)</span>
-<span id="cb302-5"><a href="magick.html#cb302-5" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(png)</span>
-<span id="cb302-6"><a href="magick.html#cb302-6" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">file_delete</span>(png)</span>
-<span id="cb302-7"><a href="magick.html#cb302-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(trim){ img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_trim</span>(img) }</span>
-<span id="cb302-8"><a href="magick.html#cb302-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add top margin (and removed bottom margin by image_crop)</span></span>
-<span id="cb302-9"><a href="magick.html#cb302-9" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_border</span>(img, <span class="st">&quot;white&quot;</span>, <span class="at">geometry =</span> border_size)</span>
-<span id="cb302-10"><a href="magick.html#cb302-10" aria-hidden="true" tabindex="-1"></a>  crop_size <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(border_size, <span class="at">pattern =</span> <span class="st">&quot;x&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[<span class="dv">2</span>]</span>
-<span id="cb302-11"><a href="magick.html#cb302-11" aria-hidden="true" tabindex="-1"></a>  h <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_info</span>(img)<span class="sc">$</span>height <span class="sc">-</span> <span class="fu">as.numeric</span>(crop_size)</span>
-<span id="cb302-12"><a href="magick.html#cb302-12" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_crop</span>(img, <span class="at">geometry =</span> <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, h))</span>
-<span id="cb302-13"><a href="magick.html#cb302-13" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_convert</span>(img, <span class="at">format =</span> format)</span>
-<span id="cb302-14"><a href="magick.html#cb302-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add annotation</span></span>
-<span id="cb302-15"><a href="magick.html#cb302-15" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_annotate</span>(img, url, <span class="at">size =</span> annotate_size)</span>
-<span id="cb302-16"><a href="magick.html#cb302-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(resize <span class="sc">!=</span> <span class="cn">FALSE</span>){ img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_scale</span>(<span class="at">geometry =</span> resize) }</span>
-<span id="cb302-17"><a href="magick.html#cb302-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(img)</span>
-<span id="cb302-18"><a href="magick.html#cb302-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="magick.html#cb303-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># automater::web_screenshot()と同じ</span></span>
+<span id="cb303-2"><a href="magick.html#cb303-2" aria-hidden="true" tabindex="-1"></a>web_screenshot <span class="ot">&lt;-</span> <span class="cf">function</span>(url, <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">border_size =</span> <span class="st">&quot;x40&quot;</span>, <span class="at">annotate_size =</span> <span class="dv">20</span>, <span class="at">format =</span> <span class="st">&quot;png&quot;</span>, <span class="at">resize =</span> <span class="cn">FALSE</span>){</span>
+<span id="cb303-3"><a href="magick.html#cb303-3" aria-hidden="true" tabindex="-1"></a>  png <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">file_temp</span>(<span class="at">ext =</span> <span class="st">&quot;png&quot;</span>)</span>
+<span id="cb303-4"><a href="magick.html#cb303-4" aria-hidden="true" tabindex="-1"></a>  webshot<span class="sc">::</span><span class="fu">webshot</span>(url, png)</span>
+<span id="cb303-5"><a href="magick.html#cb303-5" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(png)</span>
+<span id="cb303-6"><a href="magick.html#cb303-6" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">file_delete</span>(png)</span>
+<span id="cb303-7"><a href="magick.html#cb303-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(trim){ img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_trim</span>(img) }</span>
+<span id="cb303-8"><a href="magick.html#cb303-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add top margin (and removed bottom margin by image_crop)</span></span>
+<span id="cb303-9"><a href="magick.html#cb303-9" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_border</span>(img, <span class="st">&quot;white&quot;</span>, <span class="at">geometry =</span> border_size)</span>
+<span id="cb303-10"><a href="magick.html#cb303-10" aria-hidden="true" tabindex="-1"></a>  crop_size <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(border_size, <span class="at">pattern =</span> <span class="st">&quot;x&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[<span class="dv">2</span>]</span>
+<span id="cb303-11"><a href="magick.html#cb303-11" aria-hidden="true" tabindex="-1"></a>  h <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_info</span>(img)<span class="sc">$</span>height <span class="sc">-</span> <span class="fu">as.numeric</span>(crop_size)</span>
+<span id="cb303-12"><a href="magick.html#cb303-12" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_crop</span>(img, <span class="at">geometry =</span> <span class="fu">paste0</span>(<span class="st">&quot;x&quot;</span>, h))</span>
+<span id="cb303-13"><a href="magick.html#cb303-13" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_convert</span>(img, <span class="at">format =</span> format)</span>
+<span id="cb303-14"><a href="magick.html#cb303-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add annotation</span></span>
+<span id="cb303-15"><a href="magick.html#cb303-15" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_annotate</span>(img, url, <span class="at">size =</span> annotate_size)</span>
+<span id="cb303-16"><a href="magick.html#cb303-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(resize <span class="sc">!=</span> <span class="cn">FALSE</span>){ img <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_scale</span>(<span class="at">geometry =</span> resize) }</span>
+<span id="cb303-17"><a href="magick.html#cb303-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(img)</span>
+<span id="cb303-18"><a href="magick.html#cb303-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 
 </div>
 </div>

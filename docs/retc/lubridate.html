@@ -413,9 +413,9 @@ lubridateは，tidyverseに含まれているパッケージの1つで，日付�
 そのため，tidyverseを呼び出せばそれでOKである．
 日付の確認用としてカレンダーを最後に表示する．
 そのためのパッケージであるcalendRをインストールしておく．</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="lubridate.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;calendR&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="lubridate.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb135-2"><a href="lubridate.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(calendR)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="lubridate.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;calendR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="lubridate.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb136-2"><a href="lubridate.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(calendR)</span></code></pre></div>
 </div>
 <div id="月後1年後の同一日" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> 1月後・1年後の同一日<a href="lubridate.html#月後1年後の同一日" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -427,13 +427,13 @@ lubridateを活用すると簡単に計算できる．</p>
 <p>1年後の同一の日付を得るには<code>+ years(1)</code>とすれば良い．
 単純に365日加えるのとは結果が異なる．
 1月後の場合には<code>months(1)</code>を使う</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="lubridate.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="lubridate.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2023-07-02&quot; &quot;2024-07-02&quot; &quot;2025-07-02&quot; &quot;2026-07-02&quot; &quot;2027-07-02&quot;</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lubridate.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">365</span> <span class="sc">*</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="lubridate.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">365</span> <span class="sc">*</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2023-07-02&quot; &quot;2024-07-01&quot; &quot;2025-07-01&quot; &quot;2026-07-01&quot; &quot;2027-07-01&quot;</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="lubridate.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="lubridate.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2023-07-02&quot; &quot;2023-08-02&quot; &quot;2023-09-02&quot; &quot;2023-10-02&quot; &quot;2023-11-02&quot;</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="lubridate.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="lubridate.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2023-07-02&quot; &quot;2023-08-02&quot; &quot;2023-09-02&quot; &quot;2023-10-02&quot; &quot;2023-11-02&quot;</code></pre>
 <p>なお，<code>today()</code>はそのときの本日の日付を返す関数のため，上記の表示と読者が実行したときの表示は異なるはずである．
 また，引数<code>tzone</code>を指定するとタイムゾーンを指定でき，日本の場合は<code>today("Asia/Tokyo")</code>，グリニッジ標準時の場合は，<code>today("GMT")</code>とする．</p>
@@ -451,25 +451,25 @@ lubridateを活用すると簡単に計算できる．</p>
 - 20230410   
 - 2023/4/10   
 -->
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="lubridate.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;2023年4月10日&quot;</span>, <span class="st">&quot;2023-4-10&quot;</span>, <span class="st">&quot;2023_4_10&quot;</span>, <span class="st">&quot;20230410&quot;</span>, <span class="st">&quot;2023/4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb144-2"><a href="lubridate.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="lubridate.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;2023年4月10日&quot;</span>, <span class="st">&quot;2023-4-10&quot;</span>, <span class="st">&quot;2023_4_10&quot;</span>, <span class="st">&quot;20230410&quot;</span>, <span class="st">&quot;2023/4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb145-2"><a href="lubridate.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot;</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="lubridate.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;2023年4月10日(月)&quot;</span>, <span class="st">&quot;2023-4-10(月)&quot;</span>, <span class="st">&quot;2023_4_10(月)&quot;</span>, <span class="st">&quot;20230410(月)&quot;</span>, <span class="st">&quot;2023/4/10(月)&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb146-2"><a href="lubridate.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="lubridate.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;2023年4月10日(月)&quot;</span>, <span class="st">&quot;2023-4-10(月)&quot;</span>, <span class="st">&quot;2023_4_10(月)&quot;</span>, <span class="st">&quot;20230410(月)&quot;</span>, <span class="st">&quot;2023/4/10(月)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb147-2"><a href="lubridate.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot; &quot;2023-04-10&quot;</code></pre>
 <p>年が入っていない場合はうまくいかないので，年を追加する必要がある．</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="lubridate.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;4月10日&quot;</span>, <span class="st">&quot;4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb148-2"><a href="lubridate.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="lubridate.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;4月10日&quot;</span>, <span class="st">&quot;4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb149-2"><a href="lubridate.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
 <pre><code>## Warning: All formats failed to parse. No formats found.</code></pre>
 <pre><code>## [1] NA NA</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="lubridate.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;4月10日&quot;</span>, <span class="st">&quot;4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb151-2"><a href="lubridate.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;2023-&quot;</span>, .) <span class="sc">%&gt;%</span></span>
-<span id="cb151-3"><a href="lubridate.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="lubridate.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;4月10日&quot;</span>, <span class="st">&quot;4/10&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb152-2"><a href="lubridate.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;2023-&quot;</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb152-3"><a href="lubridate.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ymd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;2023-04-10&quot; &quot;2023-04-10&quot;</code></pre>
 <p>ここでは日付を中心に扱うが，時刻の計算もうまくやってくれる．</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="lubridate.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2023-5-1-12-23-34&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb153-2"><a href="lubridate.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb153-3"><a href="lubridate.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="fu">minutes</span>(<span class="dv">40</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="lubridate.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2023-5-1-12-23-34&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb154-2"><a href="lubridate.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb154-3"><a href="lubridate.html#cb154-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">+</span><span class="st">`</span>(<span class="fu">minutes</span>(<span class="dv">40</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;2023-05-01 12:23:34 UTC&quot;</code></pre>
 <pre><code>## [1] &quot;2023-05-01 13:03:34 UTC&quot;</code></pre>
 </div>
@@ -478,10 +478,10 @@ lubridateを活用すると簡単に計算できる．</p>
 <p>日付をもとに<code>wday()</code>を用いて曜日を求めることができる．
 ただし，デフォルトでは日曜日を<code>1</code>，月曜日を<code>2</code>のように日曜始まりの場合での曜日番号を示す．
 <code>label = TRUE</code>とすると，factorとしての曜日を返してくれる．</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="lubridate.html#cb156-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">today</span>()</span>
-<span id="cb156-2"><a href="lubridate.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(x) <span class="co"># week of the day</span></span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="lubridate.html#cb157-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">today</span>()</span>
+<span id="cb157-2"><a href="lubridate.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(x) <span class="co"># week of the day</span></span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="lubridate.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(x, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="lubridate.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(x, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 日
 ## Levels: 日 &lt; 月 &lt; 火 &lt; 水 &lt; 木 &lt; 金 &lt; 土</code></pre>
 </div>
@@ -489,26 +489,26 @@ lubridateを活用すると簡単に計算できる．</p>
 <h2><span class="header-section-number">7.5</span> 活用例<a href="lubridate.html#活用例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>日付固定(同じ月日)あるいは位置固定(m月の第nのw曜日)のときでの一年後の年月日を求めることを考える．
 日付固定の場合は，既に説明したように非常に簡単に求められる．</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="lubridate.html#cb160-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2023-05-01&quot;</span>)</span>
-<span id="cb160-2"><a href="lubridate.html#cb160-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="lubridate.html#cb161-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2023-05-01&quot;</span>)</span>
+<span id="cb161-2"><a href="lubridate.html#cb161-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2024-05-01&quot;</code></pre>
 <p>位置固定の場合は，関数を作成する必要がある．
 年月日から第何の何曜日か分からなければ，位置を固定できない．
 曜日は<code>wday()</code>で求められるため，第何の曜日かを求める関数が必要だ．</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="lubridate.html#cb162-1" aria-hidden="true" tabindex="-1"></a>mweek <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb162-2"><a href="lubridate.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">mday</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%/%</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb162-3"><a href="lubridate.html#cb162-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="lubridate.html#cb163-1" aria-hidden="true" tabindex="-1"></a>mweek <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb163-2"><a href="lubridate.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">mday</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%/%</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb163-3"><a href="lubridate.html#cb163-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><code>mday(x)</code>で月の中で何日目か計算し(つまり <code>day(x)</code>と同じ)，そこから1日引いた数字を7で割る．
 7で割ったときに第1曜日は1未満，第2曜日は1以上2未満であるため，7で割ったときの整数部分に1を足す．
 これで第何の曜日かがわかる．</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="lubridate.html#cb163-1" aria-hidden="true" tabindex="-1"></a>real    <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2020-10-1&quot;</span>), <span class="fu">as.POSIXct</span>(<span class="st">&quot;2020-10-31&quot;</span>), <span class="at">by=</span><span class="st">&quot;day&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">mweek</span>()</span>
-<span id="cb163-2"><a href="lubridate.html#cb163-2" aria-hidden="true" tabindex="-1"></a>expect <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each=</span><span class="dv">7</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>]</span>
-<span id="cb163-3"><a href="lubridate.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(real <span class="sc">!=</span> expect, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="lubridate.html#cb164-1" aria-hidden="true" tabindex="-1"></a>real    <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2020-10-1&quot;</span>), <span class="fu">as.POSIXct</span>(<span class="st">&quot;2020-10-31&quot;</span>), <span class="at">by=</span><span class="st">&quot;day&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">mweek</span>()</span>
+<span id="cb164-2"><a href="lubridate.html#cb164-2" aria-hidden="true" tabindex="-1"></a>expect <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each=</span><span class="dv">7</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>]</span>
+<span id="cb164-3"><a href="lubridate.html#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(real <span class="sc">!=</span> expect, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>念のため計算した<code>real</code>と求めるべき<code>expect</code>が同じか確認する．
 <code>real != expect</code>，つまり<code>real</code>と<code>expect</code>異なるときはTRUEになる．
 この合計が0であれば全部が同じなので，計算結果は正しいといえる．</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="lubridate.html#cb165-1" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(real, expect)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="lubridate.html#cb166-1" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(real, expect)</span></code></pre></div>
 <p>念のため，パッケージtestthatで確認する．
 testthat::expect_equal()の結果として，何も出力されなければテストを通過したことが分かる．</p>
 <p>次に，年月日から1年後の
@@ -525,23 +525,23 @@ TODO：
 <p>これで，一応出来上がった．
 ただし，第5の曜日の場合は，次の月にずれてしまっている可能性がある．
 そこで，月がずれていないか確認して，ずれている場合は「NA」を返す．</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="lubridate.html#cb166-1" aria-hidden="true" tabindex="-1"></a>same_pos_next_yr <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb166-2"><a href="lubridate.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  yr <span class="ot">&lt;-</span> <span class="fu">year</span>(x)</span>
-<span id="cb166-3"><a href="lubridate.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  mn <span class="ot">&lt;-</span> <span class="fu">month</span>(x)</span>
-<span id="cb166-4"><a href="lubridate.html#cb166-4" aria-hidden="true" tabindex="-1"></a>  base <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(yr <span class="sc">+</span> <span class="dv">1</span>, <span class="st">&quot;-&quot;</span>, mn, <span class="st">&quot;-&quot;</span>, <span class="dv">1</span>))</span>
-<span id="cb166-5"><a href="lubridate.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  diff <span class="ot">&lt;-</span> <span class="fu">wday</span>(x) <span class="sc">-</span> <span class="fu">wday</span>(base)</span>
-<span id="cb166-6"><a href="lubridate.html#cb166-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(diff)){</span>
-<span id="cb166-7"><a href="lubridate.html#cb166-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(diff[i] <span class="sc">&lt;</span> <span class="dv">0</span>){ diff[i] <span class="ot">&lt;-</span> diff[i] <span class="sc">+</span> <span class="dv">7</span> }</span>
-<span id="cb166-8"><a href="lubridate.html#cb166-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb166-9"><a href="lubridate.html#cb166-9" aria-hidden="true" tabindex="-1"></a>  same_pos <span class="ot">&lt;-</span> base <span class="sc">+</span> (<span class="fu">mweek</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">7</span> <span class="sc">+</span> diff</span>
-<span id="cb166-10"><a href="lubridate.html#cb166-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(same_pos)){</span>
-<span id="cb166-11"><a href="lubridate.html#cb166-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">month</span>(same_pos[i]) <span class="sc">!=</span> mn[i]){</span>
-<span id="cb166-12"><a href="lubridate.html#cb166-12" aria-hidden="true" tabindex="-1"></a>      same_pos[i] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb166-13"><a href="lubridate.html#cb166-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;No same date as &quot;</span>, x[i], <span class="st">&quot;!&quot;</span>)</span>
-<span id="cb166-14"><a href="lubridate.html#cb166-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb166-15"><a href="lubridate.html#cb166-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb166-16"><a href="lubridate.html#cb166-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(same_pos)</span>
-<span id="cb166-17"><a href="lubridate.html#cb166-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="lubridate.html#cb167-1" aria-hidden="true" tabindex="-1"></a>same_pos_next_yr <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb167-2"><a href="lubridate.html#cb167-2" aria-hidden="true" tabindex="-1"></a>  yr <span class="ot">&lt;-</span> <span class="fu">year</span>(x)</span>
+<span id="cb167-3"><a href="lubridate.html#cb167-3" aria-hidden="true" tabindex="-1"></a>  mn <span class="ot">&lt;-</span> <span class="fu">month</span>(x)</span>
+<span id="cb167-4"><a href="lubridate.html#cb167-4" aria-hidden="true" tabindex="-1"></a>  base <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(yr <span class="sc">+</span> <span class="dv">1</span>, <span class="st">&quot;-&quot;</span>, mn, <span class="st">&quot;-&quot;</span>, <span class="dv">1</span>))</span>
+<span id="cb167-5"><a href="lubridate.html#cb167-5" aria-hidden="true" tabindex="-1"></a>  diff <span class="ot">&lt;-</span> <span class="fu">wday</span>(x) <span class="sc">-</span> <span class="fu">wday</span>(base)</span>
+<span id="cb167-6"><a href="lubridate.html#cb167-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(diff)){</span>
+<span id="cb167-7"><a href="lubridate.html#cb167-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(diff[i] <span class="sc">&lt;</span> <span class="dv">0</span>){ diff[i] <span class="ot">&lt;-</span> diff[i] <span class="sc">+</span> <span class="dv">7</span> }</span>
+<span id="cb167-8"><a href="lubridate.html#cb167-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb167-9"><a href="lubridate.html#cb167-9" aria-hidden="true" tabindex="-1"></a>  same_pos <span class="ot">&lt;-</span> base <span class="sc">+</span> (<span class="fu">mweek</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">7</span> <span class="sc">+</span> diff</span>
+<span id="cb167-10"><a href="lubridate.html#cb167-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(same_pos)){</span>
+<span id="cb167-11"><a href="lubridate.html#cb167-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">month</span>(same_pos[i]) <span class="sc">!=</span> mn[i]){</span>
+<span id="cb167-12"><a href="lubridate.html#cb167-12" aria-hidden="true" tabindex="-1"></a>      same_pos[i] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb167-13"><a href="lubridate.html#cb167-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;No same date as &quot;</span>, x[i], <span class="st">&quot;!&quot;</span>)</span>
+<span id="cb167-14"><a href="lubridate.html#cb167-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb167-15"><a href="lubridate.html#cb167-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb167-16"><a href="lubridate.html#cb167-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(same_pos)</span>
+<span id="cb167-17"><a href="lubridate.html#cb167-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <!--
 
 ```r
@@ -556,11 +556,11 @@ x <- today()
 ```
 -->
 <p>実際の日付で確認してみる．</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="lubridate.html#cb167-1" aria-hidden="true" tabindex="-1"></a>days   <span class="ot">&lt;-</span> x <span class="sc">+</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">30</span>)</span>
-<span id="cb167-2"><a href="lubridate.html#cb167-2" aria-hidden="true" tabindex="-1"></a>days_n <span class="ot">&lt;-</span> <span class="fu">same_pos_next_yr</span>(days)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="lubridate.html#cb168-1" aria-hidden="true" tabindex="-1"></a>days   <span class="ot">&lt;-</span> x <span class="sc">+</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">30</span>)</span>
+<span id="cb168-2"><a href="lubridate.html#cb168-2" aria-hidden="true" tabindex="-1"></a>days_n <span class="ot">&lt;-</span> <span class="fu">same_pos_next_yr</span>(days)</span></code></pre></div>
 <pre><code>## Warning in same_pos_next_yr(days): No same date as 2023-05-29!</code></pre>
 <pre><code>## Warning in same_pos_next_yr(days): No same date as 2023-05-30!</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="lubridate.html#cb170-1" aria-hidden="true" tabindex="-1"></a>days</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="lubridate.html#cb171-1" aria-hidden="true" tabindex="-1"></a>days</span></code></pre></div>
 <pre><code>##  [1] &quot;2023-05-01&quot; &quot;2023-05-02&quot; &quot;2023-05-03&quot; &quot;2023-05-04&quot; &quot;2023-05-05&quot;
 ##  [6] &quot;2023-05-06&quot; &quot;2023-05-07&quot; &quot;2023-05-08&quot; &quot;2023-05-09&quot; &quot;2023-05-10&quot;
 ## [11] &quot;2023-05-11&quot; &quot;2023-05-12&quot; &quot;2023-05-13&quot; &quot;2023-05-14&quot; &quot;2023-05-15&quot;
@@ -568,7 +568,7 @@ x <- today()
 ## [21] &quot;2023-05-21&quot; &quot;2023-05-22&quot; &quot;2023-05-23&quot; &quot;2023-05-24&quot; &quot;2023-05-25&quot;
 ## [26] &quot;2023-05-26&quot; &quot;2023-05-27&quot; &quot;2023-05-28&quot; &quot;2023-05-29&quot; &quot;2023-05-30&quot;
 ## [31] &quot;2023-05-31&quot;</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="lubridate.html#cb172-1" aria-hidden="true" tabindex="-1"></a>days_n</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="lubridate.html#cb173-1" aria-hidden="true" tabindex="-1"></a>days_n</span></code></pre></div>
 <pre><code>##  [1] &quot;2024-05-06&quot; &quot;2024-05-07&quot; &quot;2024-05-01&quot; &quot;2024-05-02&quot; &quot;2024-05-03&quot;
 ##  [6] &quot;2024-05-04&quot; &quot;2024-05-05&quot; &quot;2024-05-13&quot; &quot;2024-05-14&quot; &quot;2024-05-08&quot;
 ## [11] &quot;2024-05-09&quot; &quot;2024-05-10&quot; &quot;2024-05-11&quot; &quot;2024-05-12&quot; &quot;2024-05-20&quot;
@@ -578,45 +578,45 @@ x <- today()
 ## [31] &quot;2024-05-29&quot;</code></pre>
 <p>計算できているはずだが，日付だけを見てもよくわからない．</p>
 <p>各日付が第何の曜日かを確認してみる．</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="lubridate.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mweek</span>(days)   <span class="co"># 第何の曜日か</span></span>
-<span id="cb174-2"><a href="lubridate.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 1 1 1 1 1 1 2 2 2 2 2 2 2 3 3 3 3 3 3 3 4 4 4 4 4 4 4 5 5 5</span></span>
-<span id="cb174-3"><a href="lubridate.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mweek</span>(days_n)</span>
-<span id="cb174-4"><a href="lubridate.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  1  1  1  1  1  1  1  2  2  2  2  2  2  2  3  3  3  3  3  3  3  4  4  4  4  4  4  4 NA NA  5</span></span>
-<span id="cb174-5"><a href="lubridate.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">mweek</span>(days) <span class="sc">!=</span> <span class="fu">mweek</span>(days_n), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb174-6"><a href="lubridate.html#cb174-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0</span></span>
-<span id="cb174-7"><a href="lubridate.html#cb174-7" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">mweek</span>(days), <span class="fu">mweek</span>(days_n))</span>
-<span id="cb174-8"><a href="lubridate.html#cb174-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: mweek(days) not equal to mweek(days_n).</span></span>
-<span id="cb174-9"><a href="lubridate.html#cb174-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 2/31 mismatches (average diff: NaN)</span></span>
-<span id="cb174-10"><a href="lubridate.html#cb174-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] 5 - NA == NA</span></span>
-<span id="cb174-11"><a href="lubridate.html#cb174-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [30] 5 - NA == NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="lubridate.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mweek</span>(days)   <span class="co"># 第何の曜日か</span></span>
+<span id="cb175-2"><a href="lubridate.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 1 1 1 1 1 1 2 2 2 2 2 2 2 3 3 3 3 3 3 3 4 4 4 4 4 4 4 5 5 5</span></span>
+<span id="cb175-3"><a href="lubridate.html#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mweek</span>(days_n)</span>
+<span id="cb175-4"><a href="lubridate.html#cb175-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  1  1  1  1  1  1  1  2  2  2  2  2  2  2  3  3  3  3  3  3  3  4  4  4  4  4  4  4 NA NA  5</span></span>
+<span id="cb175-5"><a href="lubridate.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">mweek</span>(days) <span class="sc">!=</span> <span class="fu">mweek</span>(days_n), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb175-6"><a href="lubridate.html#cb175-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0</span></span>
+<span id="cb175-7"><a href="lubridate.html#cb175-7" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">mweek</span>(days), <span class="fu">mweek</span>(days_n))</span>
+<span id="cb175-8"><a href="lubridate.html#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: mweek(days) not equal to mweek(days_n).</span></span>
+<span id="cb175-9"><a href="lubridate.html#cb175-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 2/31 mismatches (average diff: NaN)</span></span>
+<span id="cb175-10"><a href="lubridate.html#cb175-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] 5 - NA == NA</span></span>
+<span id="cb175-11"><a href="lubridate.html#cb175-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [30] 5 - NA == NA</span></span></code></pre></div>
 <p>少しだけNAのところがあるが，それ以外はうまくいっているようだ．
 testthatでのテストでも29日目と30日目がうまく行っていないことがわかる．</p>
 <p>さらに，曜日も確認してみる．</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="lubridate.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(days, <span class="at">label =</span> <span class="cn">TRUE</span>)   <span class="co"># 曜日</span></span>
-<span id="cb175-2"><a href="lubridate.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水</span></span>
-<span id="cb175-3"><a href="lubridate.html#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: 日 &lt; 月 &lt; 火 &lt; 水 &lt; 木 &lt; 金 &lt; 土</span></span>
-<span id="cb175-4"><a href="lubridate.html#cb175-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(days_n, <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb175-5"><a href="lubridate.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] 月   火   水   木   金   土   日   月   火   水   木   金   土   日   月   火   水   木   金   土  </span></span>
-<span id="cb175-6"><a href="lubridate.html#cb175-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] 日   月   火   水   木   金   土   日   &lt;NA&gt; &lt;NA&gt; 水  </span></span>
-<span id="cb175-7"><a href="lubridate.html#cb175-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: 日 &lt; 月 &lt; 火 &lt; 水 &lt; 木 &lt; 金 &lt; 土</span></span>
-<span id="cb175-8"><a href="lubridate.html#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">wday</span>(days) <span class="sc">!=</span> <span class="fu">wday</span>(days_n), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb175-9"><a href="lubridate.html#cb175-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0</span></span>
-<span id="cb175-10"><a href="lubridate.html#cb175-10" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">wday</span>(days), <span class="fu">wday</span>(days_n))</span>
-<span id="cb175-11"><a href="lubridate.html#cb175-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: wday(days) not equal to wday(days_n).</span></span>
-<span id="cb175-12"><a href="lubridate.html#cb175-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2/31 mismatches (average diff: NaN)</span></span>
-<span id="cb175-13"><a href="lubridate.html#cb175-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] 2 - NA == NA</span></span>
-<span id="cb175-14"><a href="lubridate.html#cb175-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [30] 3 - NA == NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="lubridate.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(days, <span class="at">label =</span> <span class="cn">TRUE</span>)   <span class="co"># 曜日</span></span>
+<span id="cb176-2"><a href="lubridate.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水 木 金 土 日 月 火 水</span></span>
+<span id="cb176-3"><a href="lubridate.html#cb176-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: 日 &lt; 月 &lt; 火 &lt; 水 &lt; 木 &lt; 金 &lt; 土</span></span>
+<span id="cb176-4"><a href="lubridate.html#cb176-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(days_n, <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb176-5"><a href="lubridate.html#cb176-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] 月   火   水   木   金   土   日   月   火   水   木   金   土   日   月   火   水   木   金   土  </span></span>
+<span id="cb176-6"><a href="lubridate.html#cb176-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] 日   月   火   水   木   金   土   日   &lt;NA&gt; &lt;NA&gt; 水  </span></span>
+<span id="cb176-7"><a href="lubridate.html#cb176-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: 日 &lt; 月 &lt; 火 &lt; 水 &lt; 木 &lt; 金 &lt; 土</span></span>
+<span id="cb176-8"><a href="lubridate.html#cb176-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">wday</span>(days) <span class="sc">!=</span> <span class="fu">wday</span>(days_n), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb176-9"><a href="lubridate.html#cb176-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0</span></span>
+<span id="cb176-10"><a href="lubridate.html#cb176-10" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">expect_equal</span>(<span class="fu">wday</span>(days), <span class="fu">wday</span>(days_n))</span>
+<span id="cb176-11"><a href="lubridate.html#cb176-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: wday(days) not equal to wday(days_n).</span></span>
+<span id="cb176-12"><a href="lubridate.html#cb176-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2/31 mismatches (average diff: NaN)</span></span>
+<span id="cb176-13"><a href="lubridate.html#cb176-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] 2 - NA == NA</span></span>
+<span id="cb176-14"><a href="lubridate.html#cb176-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [30] 3 - NA == NA</span></span></code></pre></div>
 <p>こちらも，最後の方でエラーが出ている．
 なお，このエラーは第5週でずれるためにでてくる部分である．
 ただし，28日しかない2月だけは4週にピッタリ収まるので，エラーが出ないはずだ．</p>
 <p>テストもだいたいあっていそうだが，分かりにくいため，カレンダーで表示してみる．</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="lubridate.html#cb176-1" aria-hidden="true" tabindex="-1"></a>weeknames <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;W&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;S&quot;</span>)</span>
-<span id="cb176-2"><a href="lubridate.html#cb176-2" aria-hidden="true" tabindex="-1"></a>title_1 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">year</span>(x)    , <span class="st">&quot;-&quot;</span> ,<span class="fu">month</span>(x))</span>
-<span id="cb176-3"><a href="lubridate.html#cb176-3" aria-hidden="true" tabindex="-1"></a>title_2 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">year</span>(x) <span class="sc">+</span> <span class="dv">1</span>, <span class="st">&quot;-&quot;</span> ,<span class="fu">month</span>(x))</span>
-<span id="cb176-4"><a href="lubridate.html#cb176-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb176-5"><a href="lubridate.html#cb176-5" aria-hidden="true" tabindex="-1"></a>calendR<span class="sc">::</span><span class="fu">calendR</span>(<span class="fu">year</span>(x)    , <span class="fu">month</span>(x), <span class="at">title =</span> title_1, <span class="at">start =</span> <span class="st">&quot;M&quot;</span>, <span class="at">weeknames =</span> weeknames)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="lubridate.html#cb177-1" aria-hidden="true" tabindex="-1"></a>weeknames <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;W&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;S&quot;</span>)</span>
+<span id="cb177-2"><a href="lubridate.html#cb177-2" aria-hidden="true" tabindex="-1"></a>title_1 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">year</span>(x)    , <span class="st">&quot;-&quot;</span> ,<span class="fu">month</span>(x))</span>
+<span id="cb177-3"><a href="lubridate.html#cb177-3" aria-hidden="true" tabindex="-1"></a>title_2 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">year</span>(x) <span class="sc">+</span> <span class="dv">1</span>, <span class="st">&quot;-&quot;</span> ,<span class="fu">month</span>(x))</span>
+<span id="cb177-4"><a href="lubridate.html#cb177-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb177-5"><a href="lubridate.html#cb177-5" aria-hidden="true" tabindex="-1"></a>calendR<span class="sc">::</span><span class="fu">calendR</span>(<span class="fu">year</span>(x)    , <span class="fu">month</span>(x), <span class="at">title =</span> title_1, <span class="at">start =</span> <span class="st">&quot;M&quot;</span>, <span class="at">weeknames =</span> weeknames)</span></code></pre></div>
 <p><img src="lubridate_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="lubridate.html#cb177-1" aria-hidden="true" tabindex="-1"></a>calendR<span class="sc">::</span><span class="fu">calendR</span>(<span class="fu">year</span>(x) <span class="sc">+</span> <span class="dv">1</span>, <span class="fu">month</span>(x), <span class="at">title =</span> title_2, <span class="at">start =</span> <span class="st">&quot;M&quot;</span>, <span class="at">weeknames =</span> weeknames)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="lubridate.html#cb178-1" aria-hidden="true" tabindex="-1"></a>calendR<span class="sc">::</span><span class="fu">calendR</span>(<span class="fu">year</span>(x) <span class="sc">+</span> <span class="dv">1</span>, <span class="fu">month</span>(x), <span class="at">title =</span> title_2, <span class="at">start =</span> <span class="st">&quot;M&quot;</span>, <span class="at">weeknames =</span> weeknames)</span></code></pre></div>
 <p><img src="lubridate_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
 
 </div>

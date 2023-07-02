@@ -50,7 +50,7 @@ image_info(frink)
 ```
 
 ```
-## # A tibble: 1 x 7
+## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
 ## 1 PNG      220    445 sRGB       TRUE     73494 72x72
@@ -61,7 +61,7 @@ image_info(tiger)
 ```
 
 ```
-## # A tibble: 1 x 7
+## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
 ## 1 PNG      900    900 sRGB       TRUE         0 72x72

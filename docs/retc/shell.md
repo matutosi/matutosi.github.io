@@ -39,16 +39,16 @@ library(tidyverse)
 ```
 
 ```
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.2     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.2     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.0
-## v purrr     1.0.1     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
 ```r
@@ -251,6 +251,8 @@ Windowsの「ファイル名を指定して実行」の代わりとして，Mac�
 例えば，RStudioのショートカットをパスの通った`C:\Windows\System32`(システムファイルがあるので，パスが通っているはず)に"rst"という名前で保存すると(管理者権限が必要)，[Win] + [R]に続けて"rst"と入力するとRStudioを起動できる．
 他のディレクトリにショートカットを保存する場合は，そのディレクトリにパスを通しておく．
 
+
+
 上記のショートカットの作成やパスを通す作業はそれぞれ1回だけなのでマウスでの手作業でも全く問題ない．
 でもせっかくなので，ここではRからショートカットを作成する．
 もともとパスの通っている`C:\Windows\System32`にショートカットを作っても良いのだが，管理者権限が必要なためRからの操作が難しい．
@@ -285,6 +287,7 @@ new_path <-
 
 これで，[Win] + [R]で出てきた「ファイル名を指定して実行」に"rst"を入力すればRStudio，"r"を入力すればRが起動する．
 
+![](img/shell_crop_01.png){ width=30% }
 
 なお，`automater::make_shortcut`と`automater::add_path`の中身は以下のとおりである．
 独自で関数を作成する際の参考になれば幸いである．
@@ -337,7 +340,7 @@ automater::make_shortcut
 ##     shortcut <- stringr::str_remove_all_all(shortcut, "\"")
 ##     return(list(shortcut = shortcut, res = res))
 ## }
-## <bytecode: 0x000001a100f77cf0>
+## <bytecode: 0x000002673e9d3be0>
 ## <environment: namespace:automater>
 ```
 
@@ -355,7 +358,7 @@ automater::add_path
 ##         path)
 ##     shell(cmd, intern = TRUE)
 ## }
-## <bytecode: 0x000001a10101e800>
+## <bytecode: 0x000002673ea46548>
 ## <environment: namespace:automater>
 ```
 
