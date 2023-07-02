@@ -457,7 +457,7 @@ automaterパッケージの<code>find_python()</code>を使用すると，楽に
 ##     }
 ##     return(python_path[choice])
 ## }
-## &lt;bytecode: 0x000001225e348ba8&gt;
+## &lt;bytecode: 0x000001f9dd5ecc40&gt;
 ## &lt;environment: namespace:automater&gt;</code></pre>
 <p>もちろん，以下のように自分でPythonのパスを指定しても良い．</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="keyboardsimulator.html#cb236-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">&quot;your_python_path&quot;</span>)</span></code></pre></div>
@@ -505,7 +505,7 @@ automaterパッケージの<code>find_python()</code>を使用すると，楽に
 ##     }
 ##     return(list(x = unlist(x), y = unlist(y)))
 ## }
-## &lt;bytecode: 0x0000012256791be8&gt;
+## &lt;bytecode: 0x000001f9d5a41c58&gt;
 ## &lt;environment: namespace:automater&gt;</code></pre>
 <p>sleep()を挟んで，n回分の位置を取得するだけの関数である．
 実行すると以下のような結果が得られる．
@@ -595,7 +595,7 @@ Pythonでライブラリが大文字を含んでいても，呼び出すとき�
 <span id="cb245-4"><a href="keyboardsimulator.html#cb245-4" aria-hidden="true" tabindex="-1"></a>png <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path_temp</span>(<span class="st">&quot;screenshot.png&quot;</span>)</span>
 <span id="cb245-5"><a href="keyboardsimulator.html#cb245-5" aria-hidden="true" tabindex="-1"></a>screenshot<span class="sc">$</span><span class="fu">save</span>(png)</span>
 <span id="cb245-6"><a href="keyboardsimulator.html#cb245-6" aria-hidden="true" tabindex="-1"></a>png</span></code></pre></div>
-<pre><code>## C:/Users/matu/AppData/Local/Temp/RtmpUh65YX/screenshot.png</code></pre>
+<pre><code>## C:/Users/matu/AppData/Local/Temp/RtmpshF8Cx/screenshot.png</code></pre>
 <p>コードを実行すると，一時ディレクトリにpng形式の画像が保存される．
 筆者の環境では次の画像が保存されていた．</p>
 <p><img src="img/keyboard_07.png" width="30%"></p>

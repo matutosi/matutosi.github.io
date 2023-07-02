@@ -55,9 +55,8 @@ library(fs)
 
 a.pdf, b.pdf, ..., j.pdfを01.pdf, 02.pdf, ..., 10.pdfのように10個のファイル名を変更したいとする．
 
-<img src="img/fs_crop_11.png" width="50%" alt="files before rename" title="files before rename">   
-
-<img src="img/fs_crop_12.png" width="50%" alt="files after rename" title="files after rename">   
+<img src="img/fs_crop_11.png" width="20%" alt="files before rename" title="files before rename">
+<img src="img/fs_crop_12.png" width="20%" alt="files after rename" title="files after rename">
 
 ### シェルを使う
 
