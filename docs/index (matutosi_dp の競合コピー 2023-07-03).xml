@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>matutosi</title>
+    <link>https://matutosi.github.io/</link>
+    <description>Recent content on matutosi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-jp</language>
+    <lastBuildDate>Thu, 29 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R Package Scholar</title>
+      <link>https://matutosi.github.io/post/20230629/</link>
+      <pubDate>Thu, 29 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230629/</guid>
+      <description>R Package Scholarというのがあるらしく，pivoteaがこれに登録されたとの電子メールが届いた． &amp;ldquo;pivotea is quite a useful package so we created some page tools for it!&amp;ldquo;だとさ． たぶん，いろんなところに送っているのだろうけど，褒められるのは嬉しい．
+ https://scholar.rpkg.net/authordetails.php?author=Toshikazu+Matsumura https://github.com/matutosi/pivotea/  </description>
+    </item>
+    
+    <item>
+      <title>hogwarts</title>
+      <link>https://matutosi.github.io/post/20230617/</link>
+      <pubDate>Sat, 17 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230617/</guid>
+      <description>pivotea (pivot easy)の時間割データとして良いものがないか探していたら，ホグワーツ魔法魔術学校の時間割を見つけた．
+ https://github.com/Arcfej/HogwartsTimetable/  </description>
+    </item>
+    
+    <item>
+      <title>pivotea</title>
+      <link>https://matutosi.github.io/post/20230616/</link>
+      <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230616/</guid>
+      <description>Rでピボットテーブルのようなものをつくるためのパッケージpivoteaを作成した． 主な関数は，pivot()のみ． 詳細は以下を参考にして欲しい．
+ https://cran.r-project.org/web/packages/pivotea/index.html https://github.com/matutosi/pivotea/  tidyなデータフレームをもとにして，列(row，縦)・行(col，横)・値(value，セルの中身)・分割(split)にそれぞれ配置したい列を文字列指定するだけで簡単にピボットテーブルのようなものが作れる． tidyr::pivot_wider(), tidyr::pivot_longer()でもピボットはできるが，同一セルに複数の値が入るときの処理が面倒くさい． 複数の値がある場合は，pivot()では縦に別の行として並べるところが，工夫点である． 同じコマに重複する科目があるときの時間割を作成するのに便利である(というか，それを目的に関数を作成した)． 以下のvignettesでは，このことが分かりにくいかもしれないと思ったので，時間割のデータを追加する予定．
+ vignettes: https://cran.r-project.org/web/packages/pivotea/vignettes/pivoteasy.html  </description>
+    </item>
+    
+    <item>
+      <title>GPT-3</title>
+      <link>https://matutosi.github.io/post/20230322/</link>
+      <pubDate>Wed, 22 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230322/</guid>
+      <description>OpenAIのGPT-3に登録して，ちょっと遊んでみた． 文章生成やチャットをしてくれる． 内容的にはびっくりするぐらいよくできているが，具体性が少なく，どこかから取ってきた文章みたいで，内容自体には面白みに欠ける．
+GitHubのcoplilotもちょっと試してみた． これは，プログラムをAIがサポートするもので，コメントを書くだけでコードを提案してくれてすごく便利だ． ただ，誰かが書いたコードをなぞっているという感じで，全く新しいプログラムを想像しているわけではない． そのため，自分は具体的なコードを知らないけど，たぶん誰かが既に考えてるだろうというものを書く(勉強する)のに向いているとは思う． 一方，個別の事案や全く新しいものを作り出すのはやっぱり自分の頭が必要だ．</description>
+    </item>
+    
+    <item>
+      <title>ドンピシャな検索結果</title>
+      <link>https://matutosi.github.io/post/20230131/</link>
+      <pubDate>Mon, 30 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230131/</guid>
+      <description>web茶まめという形態素解析ができるページがある． このページは非常に便利で，テキストを貼り付けるかファイルをアップロードすれば形態素解析の結果を得ることができる． ただし，APIが整備されておらず，このページを使うには手作業での作業が必要である． そこで，Rとrvestを使って作業を自動化することにした． 自動化のための関数が一応できた． 関数のコードはまだまだ改善の余地はあるだろうが，とりあえずは動く． 本来ならば関数の作成前に検索すべきだったが，完成作成後にweb茶まめをRで使うツールが既にあるかもしれないと思った． &amp;ldquo;chamame in r&amp;quot;で検索したところ，&amp;ldquo;Analyzed data of neko by chamame - R&amp;quot;となんともドンピシャな検索結果が出てきた． あまりにドンピシャ過ぎるのでちょっとびっくりしたが，恐る恐るリンクをクリックすると，自分のページだった． そりゃそうだな． ちなみに，このページの説明は手作業で取得したデータについてである．
+ web茶まめ https://chamame.ninjal.ac.jp/index.html https://github.com/matutosi/moranajp/blob/develop/R/moranajp.R https://github.com/matutosi/moranajp/blob/develop/man/web_chamame.Rd  </description>
+    </item>
+    
+    <item>
+      <title>バグ</title>
+      <link>https://matutosi.github.io/post/20230125/</link>
+      <pubDate>Wed, 25 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230125/</guid>
+      <description>バグは恐ろしいものである． 恐ろしい理由は2つある．
+1つ目は，バグだと知らずにプログラムを実行してしまう場合があるためである． その場合は，間違って得た結果を正しいものとして捉えてしまう． このような間違った結果をバグだと分かれば良いが，バグだと分からないと非常に恐ろしい．
+2つ目は，なかなかバグの原因を見つけられないためだ． 原因を見つけにくい理由は，プログラマ(自分)の思い込みがある． ここにはバグが無いだろうと考えているところにバグが潜んでいることが多々ある． Rのパッケージへの機能の追加中にバグがあることが分かった． バグの原因究明に1日以上を費やしてようやく原因が判明した． バグの発生箇所は，なんとなく予想していた． ただ，なかなか最終的な箇所の特定ができずにいた． こんな箇所にバグはないだろうと思い込んでいた場所でバグが発生していた． 修正するべき箇所が判明して，コードの修正はほんの数分で完了した． バグを見つけるまでに約1日半ぐらい，修正に数分． 本当にバグは恐ろしい．
+ただし，バグにも良い副作用はある． バグを探している中でコードの改善を見つけて修正したり，新しい関数の使い方を覚えたり，関数の使い方を覚え直したりなどもできた．</description>
+    </item>
+    
+    <item>
+      <title>テスト駆動開発</title>
+      <link>https://matutosi.github.io/post/20230103/</link>
+      <pubDate>Tue, 03 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230103/</guid>
+      <description>テスト駆動開発というのは知っていたが，正直なところ面倒くさい感じがして，ちゃんと使っていなかった． ちょっとしたことだが，作ってみたいプログラムがあって，テスト駆動形で試してみた． 入力と出力が頭の中で整理されているのであれば(そうあるべきだが)，テストを先に作っておいてプログラムを書くのはすごく楽だとわかった．</description>
+    </item>
+    
+    <item>
+      <title>BiSS</title>
+      <link>https://matutosi.github.io/post/20221123/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20221123/</guid>
+      <description>生物多様性調査支援システムを大幅に見直し中． https://matutosi.github.io/biodiv/biodiv2.html
+せっかくPCやタブレットを使うのだから，よく出てくる種名は手入力せずとも選ぶだけにできるようにした． その他，地点ごとの出現種の表示(組成表みたいなもの)なども表示するようにした．</description>
+    </item>
+    
+    <item>
+      <title>BiSS</title>
+      <link>https://matutosi.github.io/post/20221107/</link>
+      <pubDate>Mon, 07 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20221107/</guid>
+      <description>植生調査にも使える生物多様性調査支援システムを作成中であることを植生学会の大会で発表した． https://matutosi.github.io/biodiv/biodiv.html
+ただ，コードを見直すと，あまりにも汚い． 汚いというか，重複したものがたくさんあって，維持管理のときに困りそう． JavaScriptのプログラムを書くのが，ほぼ初めてのため，関数をどのぐらいのものにするかなど，あまり考えずに手当たり次第に作ったのが原因だ．
+全体の形ができたので，設計し直しつつ，コードも整えようと思う．</description>
+    </item>
+    
+    <item>
+      <title>clidatajp</title>
+      <link>https://matutosi.github.io/post/20220929/</link>
+      <pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220929/</guid>
+      <description>CRANからの返事があり，細かな修正点が3つあった．修正して，再投稿した．
+  DESCRIPTIONファイルのdescriptionフィールドには，ウエブサイトをhttp://...のように入れること．
+  Please provide a link to the used webservices to the description field of your DESCRIPTION file in the form http:... or https:... with angle brackets for auto-linking and no space after &amp;lsquo;http:&amp;rsquo; and &amp;lsquo;https:&amp;rsquo;.
+  関数の戻り値をちゃんと書き，戻り値がない場合は，「No return value, called for side effects」のようにすること．
+  Please add \value to .Rd files regarding exported methods and explain the functions results in the documentation. Please write about the structure of the output (class) and also what the output means.</description>
+    </item>
+    
+    <item>
+      <title>clidatajp</title>
+      <link>https://matutosi.github.io/post/20220926/</link>
+      <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220926/</guid>
+      <description>clidatajpというパッケージを作った． CRANからの返事はまだ無い． どこで処理が止まっているのかは，とんと見当がつかない．
+https://github.com/matutosi/clidatajp/blob/main/READMEjp.md
+ウソです．普通に時間がかかっているだけだと思います．</description>
+    </item>
+    
+    <item>
+      <title>RのNSE(Non-Standard Evaluation)</title>
+      <link>https://matutosi.github.io/post/20220914/</link>
+      <pubDate>Wed, 14 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220914/</guid>
+      <description>RのNSE(Non-Standard Evaluation)というのがあって，便利な面とそうでない面がある． 本来なら，列名を指定するのに，&amp;ldquo;displ&amp;quot;のように指定すべきところを，ダブルクオーテーションなしでdisplとできるので，普段は便利だ．
+library(tidyverse) mpg %&amp;gt;% dplyr::select(displ, year, cyl) ただし，パッケージ開発をするときにこの使い方をしていると，devtools::check()でWarningsとかNotesの対象になる． 新たな列名として使いたいときには，以下のようにする必要がある．変数に入れた文字列を使う時，既存の列の指定では.data[col_nameとして，新たな列のときは{{col_name}}({{&amp;ldquo;year_displ&amp;rdquo;}}はエラー)とする．
+col_1 &amp;lt;- &amp;#34;year&amp;#34; col_2 &amp;lt;- &amp;#34;displ&amp;#34; new_col &amp;lt;- &amp;#34;year_displ&amp;#34; # `:=`を通常の関数みたいに使用 mpg %&amp;gt;% dplyr::transmute(`:=`({{new_col}}, stringr::str_c(.data[[col_1]], &amp;#34;_&amp;#34;, .data[[col_2]]))) # 以下でも同じ mpg %&amp;gt;% dplyr::transmute({{new_col}} := stringr::str_c(.data[[col_1]], &amp;#34;_&amp;#34;, .data[[col_2]])) </description>
+    </item>
+    
+    <item>
+      <title>正規表現</title>
+      <link>https://matutosi.github.io/post/20220910/</link>
+      <pubDate>Sat, 10 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220910/</guid>
+      <description>「詳説 正規表現」を読み始めた． まだ1章しか読んでないが，結構勘違いしていたことや知らなかったことが多い．</description>
+    </item>
+    
+    <item>
+      <title>MacでSelenium</title>
+      <link>https://matutosi.github.io/post/20220905/</link>
+      <pubDate>Mon, 05 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220905/</guid>
+      <description>準備：色々とインストール
+# Homebrew /bin/bash -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;#34; # Chorome driver brew install chromedriver # java brew tap AdoptOpenJDK/openjdk brew install --cask adoptopenjdk12 # check java installation java -version # download selenium curl -OL https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar mv selenium-server-standalone-3.141.59.jar /Applications/ seleniumの実行と
+# run selenium java -jar /Applications/selenium-server-standalone-3.141.59.jar # ちょっとまっていると色々と表示される # check process id ps -A | grep &amp;#39;java&amp;#39; # 12708 ttys000 0:00.20 /usr/bin/java -jar /Applications/selenium-server-standalone-3.141.59.jar # 12802 ttys000 0:00.00 grep java # stop selenium # 数字は1行目の左端に表示されるprocess idを入力 kill 12708 </description>
+    </item>
+    
+    <item>
+      <title>RSelenium</title>
+      <link>https://matutosi.github.io/post/20220821/</link>
+      <pubDate>Sun, 21 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220821/</guid>
+      <description>RからSeleniumを操作しようとだいぶ前に色々とやっていたが，RSeleniumが動かず断念した． 一応，Pythonでやりたいことはしたが，それでもやはりRが慣れていて便利なので，再挑戦した． 色々と試した結果，Seleniumのバージョンが4.0以上の場合は，RSeleniumが動かないことがわかった． バージョン2や3だとうまく動いた．
+Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っていたので，Rへの移植はそれほど難しくなかった．</description>
+    </item>
+    
+    <item>
+      <title>datar</title>
+      <link>https://matutosi.github.io/post/20220801/</link>
+      <pubDate>Mon, 01 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220801/</guid>
+      <description>JavaScriptでのウェブページ操作で，ページ移動のたびにlocalStorageやsessionStorageから関数群を引き出すというトリッキーな使い方をしていた． これはこれで良いが，結局手作業が必要なのが不便だ．
+そこでSeleniumを導入して自動化を試みたものの，RSeleniumがどうもうまくいかない． Pythonならつながるので，Selenium自体やChromeDriverはちゃんと動いているようだ． 仕方ないので，Pythonで操作しはじめたが，Rのtidyverseの便利さには敵わない． と思っていたら，datarというPythonのライブラリを見つけた． できる限りtidyverseとほぼ同じようにやってしまおうというライブラリのようだ． 試しに使ってみたら，ほとんどRの書き方でできる． これは便利だ． datarに慣れるとPythonを使っているのか，Rを使っているのか分からなくなりそう． まあ，そもそも使えれば良いので，そんなことはどっちでも良い．</description>
+    </item>
+    
+    <item>
+      <title>sessionStorage</title>
+      <link>https://matutosi.github.io/post/20220727/</link>
+      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220727/</guid>
+      <description>正規のHTML内に書かれた操作ではなく，デベロッパーツールのConsoleにJavaScriptを打ち込んでウェブページを色々と操作しようとしている． ページが移動すると，関数がクリアされるのが難点だ． sessionStorageを使って，関数やその他のデータを保存しておけば，なんとかなりそうだ． ただし，すごくトリッキーな使い方で，本来の使い方ではなさそう．</description>
+    </item>
+    
+    <item>
+      <title>プログラミングと文章の構造化</title>
+      <link>https://matutosi.github.io/post/20220726/</link>
+      <pubDate>Tue, 26 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220726/</guid>
+      <description>プログラムを書いていると文章を構造的に書くのに役立つと思う． 関数が1つの段落だとすると，関数のトピックセンテンスは返り値である． 何を出力したいかが明確でないと，関数は書けない．
+ある関数から次の関数につなぐのは，引数や返り値である． これによってプログラムがつながっていく． 文章もキーワードなどによってつながっていく．</description>
+    </item>
+    
+    <item>
+      <title>手作業とスクリプト</title>
+      <link>https://matutosi.github.io/post/20220720/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220720/</guid>
+      <description>JavaScriptを勉強していると，普段使うwebツール上でマウスを駆使してクリックしているのがアホらしくなってきた． 一度だけの作業ならまだしも，同じような作業の繰り返しを定期的にしなければならないことがある． チェックボックスを探してそれをクリックするなどだ． 手作業で同じことをするのは面倒だし，間違いのもとである． JavaScriptで，使いそうなスクリプトを組んでみた． たぶん，それなりに使えそうな感じ．
+手を抜くための苦労はいとわない．</description>
+    </item>
+    
+    <item>
+      <title>関数・ドキュメントの整理</title>
+      <link>https://matutosi.github.io/post/20220712/</link>
+      <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220712/</guid>
+      <description>植生調査アプリの基本機能のスクリプトは完成にかなり近づいた． ただ，コードを書きなぐってきたので，コードが汚すぎる． JavaScriptのコーディングスタイルに合っていないのは仕方ないとして， たぶん，不要な関数があったり，関数の引数が統一されていなかったりするあたりは整理が必要だ． どれが不要な関数かどうかはよく確認しないといけない． 一応，関数の関係性を確認するコードをRで書いたので，それを使って不要な関数を洗い出そうとするが，うまくいくかどうか． 関数の説明をちゃんと書いていないのも問題だ． このあたりは，徐々に整理する予定．</description>
+    </item>
+    
+    <item>
+      <title>CSSでレスポンシブ・レイアウト</title>
+      <link>https://matutosi.github.io/post/20220711/</link>
+      <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220711/</guid>
+      <description>HTMLのtableはデータの整理には便利だが，項目が多くなると1行がどんどんと横に長くなってしまう． パソコンであれば良いが，スマホやタブレットではちょっと使いづらい． そこでレイアウトをレスポンシブ(画面サイズに合わせた表示)にする必要がある． そのあたりの変更を自動でしても良いが，植生調査アプリでは使用者がボタンを押して切り返す仕組みにした． ボタンを押すと，JavaScriptでスタイルを書き換えて，表示を途中で折り返すようにした． だいぶできてきた．
+ アプリ(CSS/JavaScript別ファイルバージョン) https://matutosi.github.io/biodiv/biodiv.html アプリ(1ファイルバージョン) https://matutosi.github.io/biodiv/biss.html 使用例 https://matutosi.github.io/biodiv/exam01.html  </description>
+    </item>
+    
+    <item>
+      <title>this</title>
+      <link>https://matutosi.github.io/post/20220703/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220703/</guid>
+      <description>JavaScriptでのthisはよくは分かっていないが，使い方によってはすごく便利． inputタグのところで，とりあえず&amp;quot;onclick&amp;quot; =&amp;ldquo;fun(this)&amp;ldquo;としておけばあとでなんとかなりそう． 取り出しは，&amp;ldquo;this&amp;quot;や&amp;quot;this.parentNode;&amp;quot;(さらに親Nodeが欲しければ，&amp;quot;.parentNode&amp;quot;を追加)でなんとかなりそう．</description>
+    </item>
+    
+    <item>
+      <title>植生調査アプリの仮公開</title>
+      <link>https://matutosi.github.io/post/20220628/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220628/</guid>
+      <description>引き続き，植生調査アプリは完成まではまだまだだが，なんとなく形はできていた．
+とりあえず現状は以下のURLのような感じ．
+https://matutosi.github.io/biodiv/biodiv.html</description>
+    </item>
+    
+    <item>
+      <title>ShinyとJavaScript</title>
+      <link>https://matutosi.github.io/post/20220627/</link>
+      <pubDate>Mon, 27 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220627/</guid>
+      <description>引き続き，植生調査アプリのコーディングをしている． JavaScriptのお作法は相変わらずよくわかっていないが，Shinyでのアプリ作成やRのパッケージ作成の経験が活用できている気がする． Shinyではmodule化することで，コードを簡潔に書くことができる．
+ https://github.com/matutosi/textmining https://github.com/matutosi/ecanvis https://github.com/matutosi/moranajp  Shinyの内部で具体的にどのようなことがされているのかまでは確認していないが，たぶんこんな感じだろうと想像しながらmodule化している． そのおかげで，汎用的に使えるものができそう．
+ただ，コードを書き散らしているので，説明の文書が中途半端な状態だ． また，関数の入出力を統一できていないし，未使用の関数も残っている． このあたりの整理は今後ぼちぼちとする予定．</description>
+    </item>
+    
+    <item>
+      <title>DeepL API</title>
+      <link>https://matutosi.github.io/post/20220623/</link>
+      <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220623/</guid>
+      <description>Google翻訳も良いが，DeepLの翻訳は結構自然で良い． APIが使えるのはしばらく前から知っていたが，手を出していなかった． ちょっと調べると簡単に使えそう．
+https://qiita.com/yaju/items/bf4613393cd4ee402d17
+上のページのものをちょっと改変してJavaScript版で作ってみた． APIは自分で取得して，それを入力する必要がある(16行目)．
+https://gist.github.com/matutosi/01bbc564ba3ae249f121965dc725b649</description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://matutosi.github.io/post/20220622/</link>
+      <pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220622/</guid>
+      <description>JavaScriptはブラウザさえあれば，実行できるのが良い． GoogleChromeであれば，F12でコンソールなどが出てきて，テストやデバッグができる． オブジェクトの中身もブラウザの中身と対比して見ながら，チェックできる． コンソールの補完機能も便利だ．</description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://matutosi.github.io/post/20220620/</link>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220620/</guid>
+      <description>昔は，JavaScriptを「Webページを飾り付けるだけのもの」のように考えていた． 自分自身もそんな感じで使っていたときがあった． でも，JavaScriptでコードを書いていると，結構色々なことができることがわかってきた．
+jQueryとかReactとかいろんなフレームワークもあるけど，とりあえずはvanilla JavaScript(フレームワークを使わない基本的なものだけ)でやっている．</description>
+    </item>
+    
+    <item>
+      <title>植生調査アプリ(大枠)</title>
+      <link>https://matutosi.github.io/post/20220617/</link>
+      <pubDate>Fri, 17 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220617/</guid>
+      <description>植生調査アプリをHTMLとJavaScriptで作っている． JavaScriptにも徐々になれてきて，大体の大枠ができた(ような気がする)． ネットの情報や書籍を参考にしたが，JavaScriptのお作法をちゃんとは理解できていない． そのため，JavaScriptらしくない我流のコードになっている(はず)． mapとかapplyを使えば，もっと単純に書けそうだと思う部分がある． でも使い方が分からないので，forループを回しまくった．
+それでも，他のコードを参考にしつつもだいたい理解して，ほとんどのコードを自分で書くことができた． コードを書いている途中で，たくさん関数を作ったが，結果的に使っていない関数も色々とある． とりあえずは整理して，必要なものだけに絞らなければ．</description>
+    </item>
+    
+    <item>
+      <title>植生調査アプリ</title>
+      <link>https://matutosi.github.io/post/20220611/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220611/</guid>
+      <description>しばらく前にSwiftでiOS用の植生調査アプリを作りかけていた． そこそこのところまではできてきたが，ちょっと行き詰まっていた．
+JavaScriptでいちから作り直しているが，こっちのほうが簡単にできそう． iOSだけでなくAndroidやWindowsでも使えるはず． HTML, JavaScript, cssだけで作っている． これらのファイルをローカル環境にダウンロードすれば簡単に使えるようになるはずだ． AppStoreとかGooglePlayに登録せずとも，GitHubからダウンロードできるようにすれば良いので管理も簡単だ． HTML, JavaScript, cssをちょっと勉強すれば，カスタマイズもできるだろう．</description>
+    </item>
+    
+    <item>
+      <title>JavaScriptの勉強</title>
+      <link>https://matutosi.github.io/post/20220609/</link>
+      <pubDate>Thu, 09 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220609/</guid>
+      <description>植生調査アプリを作成するのに，JavaScriptを勉強中． そういえば，学生のときにホームページを作ってJavaScriptを作っていた． 嬉しがって，ページを移動するたびに「本当に良いですか」のようなポップアップを出すスクリプトを書いていた． 知人から「鬱陶しいからやめて」と言われたのを思い出す．</description>
+    </item>
+    
+    <item>
+      <title>ひっそりと</title>
+      <link>https://matutosi.github.io/post/20220608/</link>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20220608/</guid>
+      <description>ひっそりとブログを再開，というか適当にメモを書く予定．
+とりあえず，HugoでthemeはMainraodで開始した． themeは変更の可能性あり．</description>
+    </item>
+    
+  </channel>
+</rss>
