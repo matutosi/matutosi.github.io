@@ -74,6 +74,50 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20230725/" rel="bookmark">
+			Windowsのユーザ名
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-07-25T00:00:00Z">July 25, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Windows11のパソコンを複数台使っている． 初期設定のときに合わせればよかったのだが，ユーザ名(表示名も，実際のユーザー名)が異なっている． アプリケーションごとに保存されるデータが，C:\Users\USERNAME\AppData\Local\ (USERNAME：ユーザアカウント名)にあってここを指定するときに微妙にコードが異なってくるのがめんどくさい． %USERNAME%とかで処理していれば良いが，直接書いていることもあるためだ．
+表示名(フルネーム)はわりと簡単に変更できるが，これを変更しても実際のユーザー名(ユーザーアカウント名)はそのまま残る． そのため，上記のユーザフォルダは変更されずにそのまま残っていた．
+ユーザフォルダの名前を変更しようとしても，できないようになっている(そりゃそうだ)． レジストリの以下を変えると，フォルダ名を変更できるようになる．
+コンピューター\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+ProfileImagePath
+参考：https://pc-karuma.net/change-windows-11-user-folder-name/
+ユーザやシステムの環境変数のPATHは，変更前のままなので変更する．
+よくわからないけど，PC上の設定も変更前のままだったら，以下を参考にしてユーザーネームを変更する．
+https://osechi-tech.net/windows11-username-change-method/
+多分だがこれぐらいやっておけば，だいたいできた感じだろう．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20230716/" rel="bookmark">
+			R Package Scholar
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-07-16T00:00:00Z">July 16, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Rでピボットテーブルのようなものをつくるためのパッケージpivoteaを更新した． ホグワーツのデータを追加し，ちょっとバグを修正．
+ https://cran.r-project.org/web/packages/pivotea/ https://github.com/matutosi/pivotea/  
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20230629/" rel="bookmark">
 			R Package Scholar
 			</a>
@@ -198,8 +242,8 @@ https://github.com/matutosi/clidatajp/blob/main/READMEjp.md
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		RのNSE(Non-Standard Evaluation)というのがあって，便利な面とそうでない面がある． 本来なら，列名を指定するのに，&ldquo;displ&quot;のように指定すべきところを，ダブルクオーテーションなしでdisplとできるので，普段は便利だ．
-library(tidyverse) mpg %&gt;% dplyr::select(displ, year, cyl) ただし，パッケージ開発をするときにこの使い方をしていると，devtools::check()でWarningsとかNotesの対象になる． 新たな列名として使いたいときには，以下のようにする必要がある．変数に入れた文字列を使う時，既存の列の指定では.data[col_nameとして，新たな列のときは{{col_name}}({{&ldquo;year_displ&rdquo;}}はエラー)とする．
-col_1 &lt;- &#34;year&#34; col_2 &lt;- &#34;displ&#34; new_col &lt;- &#34;year_displ&#34; # `:=`を通常の関数みたいに使用 mpg %&gt;% dplyr::transmute(`:=`({{new_col}}, stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]]))) # 以下でも同じ mpg %&gt;% dplyr::transmute({{new_col}} := stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]])) 
+library(tidyverse)mpg %&gt;%dplyr::select(displ, year, cyl) ただし，パッケージ開発をするときにこの使い方をしていると，devtools::check()でWarningsとかNotesの対象になる． 新たな列名として使いたいときには，以下のようにする必要がある．変数に入れた文字列を使う時，既存の列の指定では.data[col_nameとして，新たな列のときは{{col_name}}({{&ldquo;year_displ&rdquo;}}はエラー)とする．
+col_1 &lt;- &#34;year&#34;col_2 &lt;- &#34;displ&#34;new_col &lt;- &#34;year_displ&#34;# `:=`を通常の関数みたいに使用mpg %&gt;%dplyr::transmute(`:=`({{new_col}}, stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]])))# 以下でも同じmpg %&gt;%dplyr::transmute({{new_col}} := stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]])) 
 	</div>
 </article><article class="list__item post">
 	
@@ -217,48 +261,16 @@ col_1 &lt;- &#34;year&#34; col_2 &lt;- &#34;displ&#34; new_col &lt;- &#34;year_d
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		準備：色々とインストール
-# Homebrew /bin/bash -c &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&#34; # Chorome driver brew install chromedriver # java brew tap AdoptOpenJDK/openjdk brew install --cask adoptopenjdk12 # check java installation java -version # download selenium curl -OL https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar mv selenium-server-standalone-3.141.59.jar /Applications/ seleniumの実行と
-# run selenium java -jar /Applications/selenium-server-standalone-3.141.59.jar # ちょっとまっていると色々と表示される # check process id ps -A | grep &#39;java&#39; # 12708 ttys000 0:00.20 /usr/bin/java -jar /Applications/selenium-server-standalone-3.141.59.jar # 12802 ttys000 0:00.00 grep java # stop selenium # 数字は1行目の左端に表示されるprocess idを入力 kill 12708 
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220821/" rel="bookmark">
-			RSelenium
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-21T00:00:00Z">August 21, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		RからSeleniumを操作しようとだいぶ前に色々とやっていたが，RSeleniumが動かず断念した． 一応，Pythonでやりたいことはしたが，それでもやはりRが慣れていて便利なので，再挑戦した． 色々と試した結果，Seleniumのバージョンが4.0以上の場合は，RSeleniumが動かないことがわかった． バージョン2や3だとうまく動いた．
-Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っていたので，Rへの移植はそれほど難しくなかった．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220801/" rel="bookmark">
-			datar
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-01T00:00:00Z">August 01, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		JavaScriptでのウェブページ操作で，ページ移動のたびにlocalStorageやsessionStorageから関数群を引き出すというトリッキーな使い方をしていた． これはこれで良いが，結局手作業が必要なのが不便だ．
-そこでSeleniumを導入して自動化を試みたものの，RSeleniumがどうもうまくいかない． Pythonならつながるので，Selenium自体やChromeDriverはちゃんと動いているようだ． 仕方ないので，Pythonで操作しはじめたが，Rのtidyverseの便利さには敵わない． と思っていたら，datarというPythonのライブラリを見つけた． できる限りtidyverseとほぼ同じようにやってしまおうというライブラリのようだ． 試しに使ってみたら，ほとんどRの書き方でできる． これは便利だ． datarに慣れるとPythonを使っているのか，Rを使っているのか分からなくなりそう． まあ，そもそも使えれば良いので，そんなことはどっちでも良い．
+# Homebrew/bin/bash -c &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&#34;# Chorome driverbrew install chromedriver# javabrew tap AdoptOpenJDK/openjdkbrew install --cask adoptopenjdk12# check java installationjava -version# download seleniumcurl -OL https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jarmv selenium-server-standalone-3.141.59.jar /Applications/ seleniumの実行と
+# run seleniumjava -jar /Applications/selenium-server-standalone-3.141.59.jar# ちょっとまっていると色々と表示される# check process idps -A | grep &#39;java&#39;# 12708 ttys000 0:00.20 /usr/bin/java -jar /Applications/selenium-server-standalone-3.141.59.jar# 12802 ttys000 0:00.00 grep java# stop selenium# 数字は1行目の左端に表示されるprocess idを入力kill 12708 
 	</div>
 </article>
 </main>
 
+<div class="pagination">
+	<span class="pagination__item pagination__item--current">1/2</span>
+	<a class="pagination__item pagination__item--next btn" href="/tags/r/page/2/">»</a>
+</div>
 
 			</div>
 			
@@ -267,6 +279,8 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20230725/">Windowsのユーザ名</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20230716/">R Package Scholar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230629/">R Package Scholar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230617/">hogwarts</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230616/">pivotea</a></li>
@@ -275,8 +289,6 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 			<li class="widget__item"><a class="widget__link" href="/post/20230125/">バグ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230103/">テスト駆動開発</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20221123/">BiSS</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20221107/">BiSS</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20220929/">clidatajp</a></li>
 		</ul>
 	</div>
 </div>
