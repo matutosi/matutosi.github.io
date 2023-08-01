@@ -74,6 +74,23 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220727/" rel="bookmark">
+			sessionStorage
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-27T00:00:00Z">July 27, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		正規のHTML内に書かれた操作ではなく，デベロッパーツールのConsoleにJavaScriptを打ち込んでウェブページを色々と操作しようとしている． ページが移動すると，関数がクリアされるのが難点だ． sessionStorageを使って，関数やその他のデータを保存しておけば，なんとかなりそうだ． ただし，すごくトリッキーな使い方で，本来の使い方ではなさそう．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220726/" rel="bookmark">
 			プログラミングと文章の構造化
 			</a>
@@ -233,24 +250,6 @@ https://gist.github.com/matutosi/01bbc564ba3ae249f121965dc725b649
 	<div class="content list__excerpt post__content clearfix">
 		JavaScriptはブラウザさえあれば，実行できるのが良い． GoogleChromeであれば，F12でコンソールなどが出てきて，テストやデバッグができる． オブジェクトの中身もブラウザの中身と対比して見ながら，チェックできる． コンソールの補完機能も便利だ．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220620/" rel="bookmark">
-			JavaScript
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-20T00:00:00Z">June 20, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		昔は，JavaScriptを「Webページを飾り付けるだけのもの」のように考えていた． 自分自身もそんな感じで使っていたときがあった． でも，JavaScriptでコードを書いていると，結構色々なことができることがわかってきた．
-jQueryとかReactとかいろんなフレームワークもあるけど，とりあえずはvanilla JavaScript(フレームワークを使わない基本的なものだけ)でやっている．
-	</div>
 </article>
 </main>
 
@@ -268,6 +267,7 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/post/20230731/">Windowsのユーザ名のその後</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20230730/">干し草の中から針を探す</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230725/">Windowsのユーザ名</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230716/">pivotea 1.0.1</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230629/">R Package Scholar</a></li>
@@ -276,7 +276,6 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 			<li class="widget__item"><a class="widget__link" href="/post/20230322/">GPT-3</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230131/">ドンピシャな検索結果</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230125/">バグ</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230103/">テスト駆動開発</a></li>
 		</ul>
 	</div>
 </div>

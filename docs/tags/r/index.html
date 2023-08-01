@@ -85,7 +85,25 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		1つ前にWindows11のユーザ名変更について書いたが，別のPCでやったら色々と大変なことになった． その後なんとか修復したけど，普通にやりたい場合は，ネットで検索して出てくるものを参考にしたほうが良さそうだ．
+		少し前にWindows11のユーザ名変更について書いたが，別のPCでやったら色々と大変なことになった． その後なんとか修復したけど，普通にやりたい場合は，ネットで検索して出てくるものを参考にしたほうが良さそうだ．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20230730/" rel="bookmark">
+			干し草の中から針を探す
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-07-30T00:00:00Z">July 30, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		PythonのPyAutoGUIには，画像認識をしてボタンをクリックする機能があるのだが(正確にはpyscreezeの機能)，RのKeyboardsimulatorには，それがない． PyAutoGUIからコードを辿って見ていくと，Confidenceの設定(Confidenceの設定はOpenCV使用)をしない場合は，単純に画像を端から一致するか判定しているみたいだ． これだったら，自分の力とRで実装できそう． 速度が遅ければ，検索部分のループだけCpp(かC)で書こう．
+ところで，画像認識のコードに，needleImage と haystackImage という変数がでてくる． 一瞬何のことか分からなかったが，「干し草の中から針を探す」だ． すごく良い変数名だ． 自分のコードにもこのネーミングを使う予定だ．
 	</div>
 </article><article class="list__item post">
 	
@@ -243,25 +261,6 @@ https://osechi-tech.net/windows11-username-change-method/
 https://github.com/matutosi/clidatajp/blob/main/READMEjp.md
 ウソです．普通に時間がかかっているだけだと思います．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220914/" rel="bookmark">
-			RのNSE(Non-Standard Evaluation)
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-14T00:00:00Z">September 14, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		RのNSE(Non-Standard Evaluation)というのがあって，便利な面とそうでない面がある． 本来なら，列名を指定するのに，&ldquo;displ&quot;のように指定すべきところを，ダブルクオーテーションなしでdisplとできるので，普段は便利だ．
-library(tidyverse)mpg %&gt;%dplyr::select(displ, year, cyl) ただし，パッケージ開発をするときにこの使い方をしていると，devtools::check()でWarningsとかNotesの対象になる． 新たな列名として使いたいときには，以下のようにする必要がある．変数に入れた文字列を使う時，既存の列の指定では.data[col_nameとして，新たな列のときは{{col_name}}({{&ldquo;year_displ&rdquo;}}はエラー)とする．
-col_1 &lt;- &#34;year&#34;col_2 &lt;- &#34;displ&#34;new_col &lt;- &#34;year_displ&#34;# `:=`を通常の関数みたいに使用mpg %&gt;%dplyr::transmute(`:=`({{new_col}}, stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]])))# 以下でも同じmpg %&gt;%dplyr::transmute({{new_col}} := stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]])) 
-	</div>
 </article>
 </main>
 
@@ -278,6 +277,7 @@ col_1 &lt;- &#34;year&#34;col_2 &lt;- &#34;displ&#34;new_col &lt;- &#34;year_d
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/post/20230731/">Windowsのユーザ名のその後</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20230730/">干し草の中から針を探す</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230725/">Windowsのユーザ名</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230716/">pivotea 1.0.1</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230629/">R Package Scholar</a></li>
@@ -286,7 +286,6 @@ col_1 &lt;- &#34;year&#34;col_2 &lt;- &#34;displ&#34;new_col &lt;- &#34;year_d
 			<li class="widget__item"><a class="widget__link" href="/post/20230322/">GPT-3</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230131/">ドンピシャな検索結果</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230125/">バグ</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230103/">テスト駆動開発</a></li>
 		</ul>
 	</div>
 </div>
