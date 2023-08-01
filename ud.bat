@@ -6,3 +6,4 @@ git commit -m "update"
 git pull
 git push
 pause
+start https://matutosi.github.io/
