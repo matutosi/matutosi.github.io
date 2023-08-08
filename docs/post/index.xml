@@ -6,7 +6,32 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 31 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>画像位置の特定</title>
+      <link>https://matutosi.github.io/post/20230808/</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230808/</guid>
+      <description>画像認識してボタンをクリックするのを自動化するために，Rでコードを書いていたら，やはり使いものにならないぐらい遅かった． そこで，Rcppを使ってC++で書き直した． 最低でも10倍，うまくいけば50倍ぐらいになると思っていたが，3倍ぐらいの速度にしかならない． しかも，場合によっては3倍ぐらい遅いこともある． たぶん，C++の書き方が良くないのだと思うが，別の方法で実装することにした．
+同じような色だけの画像を認識するのは難しいが，通常
+1 needle_imageとhaystack_imageの各ピクセルで共通する色を抽出
+2 抽出した色のうちhaystack_imageで出現頻度の少ないものから1つ選んでneedle_imageでの位置を把握 3 needle_imageでの位置をもとに，haystack_imageの基準点(1,1)を抽出 4 出現頻度の少ないものから，順次2と3を繰り返し 5 haystack_imageの基準点が1つに絞れたら，それが探し出そうとしている画像の基準点と一致しているはず
+全ピクセルの一致を目指しているのではないので，厳密な一致はしない可能性はあるが，画像があれば必ず一致するはずだ． 厳密な一致を求めるときは，最後にチェックを入れれば良い．
+ということで，コードを書いたら結構速い速度になって，満足． 単一色の画像の中からその一部を特定するのは無理だが(このコードに限らず，そもそも無意味)，実用的な範囲では使えそうな感じだ．</description>
+    </item>
+    
+    <item>
+      <title>コマンドラインでスクリーンショット</title>
+      <link>https://matutosi.github.io/post/20230806/</link>
+      <pubDate>Sun, 06 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230806/</guid>
+      <description>Windowsで画面のスクリーンショットをとるにはPrtScを押せば良いが，コマンドラインから取りたいときには不便． コマンドラインからできないか探したら，C# でつくったものがあった． .net frameworkは必要だが，&amp;ldquo;selfcompiled C# program&amp;quot;とのことなので，batを実行すれば勝手にexeが生成される． これはすごい．
+ https://superuser.com/questions/75614/take-a-screen-shot-from-command-line-in-windows#answer-943947 https://github.com/npocmaka/batch.scripts/blob/master/hybrids/.net/c/screenCapture.bat  また，下のところにあるコードはマルチディスプレイにも対応している．
+ https://superuser.com/questions/75614/take-a-screen-shot-from-command-line-in-windows  </description>
+    </item>
+    
     <item>
       <title>Windowsのユーザ名のその後</title>
       <link>https://matutosi.github.io/post/20230731/</link>
@@ -22,7 +47,7 @@
       <pubDate>Sun, 30 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/post/20230730/</guid>
-      <description>PythonのPyAutoGUIには，画像認識をしてボタンをクリックする機能があるのだが(正確にはpyscreezeの機能)，RのKeyboardsimulatorには，それがない． PyAutoGUIからコードを辿って見ていくと，Confidenceの設定(Confidenceの設定はOpenCV使用)をしない場合は，単純に画像を端から一致するか判定しているみたいだ． これだったら，自分の力とRで実装できそう． 速度が遅ければ，検索部分のループだけCpp(かC)で書こう．
+      <description>PythonのPyAutoGUIには，画像認識をしてボタンをクリックする機能があるのだが(正確にはpyscreezeの機能)，RのKeyboardsimulatorには，それがない． PyAutoGUIからコードを辿って見ていくと，Confidenceの設定(Confidenceの設定はOpenCV使用)をしない場合は，単純に画像を端から一致するか判定しているみたいだ． これだったら，自分の力とRで実装できそう． 速度が遅ければ，検索部分のループだけ(ほぼCの)C++で書こう．
 ところで，画像認識のコードに，needleImage と haystackImage という変数がでてくる． 一瞬何のことか分からなかったが，「干し草の中から針を探す」だ． すごく良い変数名だ． 自分のコードにもこのネーミングを使う予定だ．</description>
     </item>
     

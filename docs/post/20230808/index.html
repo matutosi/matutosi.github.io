@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RのNSE(Non-Standard Evaluation) - matutosi</title>
+	<title>画像位置の特定 - matutosi</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,31 +69,30 @@
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">RのNSE(Non-Standard Evaluation)</h1>
+			<h1 class="post__title">画像位置の特定</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-14T00:00:00Z">September 14, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-08-08T00:00:00Z">August 08, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
 	</span>
 </div></div>
 		</header>
 		<div class="content post__content clearfix">
-			<p>RのNSE(Non-Standard Evaluation)というのがあって，便利な面とそうでない面がある．
-本来なら，列名を指定するのに，&ldquo;displ&quot;のように指定すべきところを，ダブルクオーテーションなしでdisplとできるので，普段は便利だ．</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">library(tidyverse)
-mpg %&gt;%
-  dplyr::select(displ, year, cyl)
-</code></pre><p>ただし，パッケージ開発をするときにこの使い方をしていると，devtools::check()でWarningsとかNotesの対象になる．
-新たな列名として使いたいときには，以下のようにする必要がある．変数に入れた文字列を使う時，既存の列の指定では.data[<a href=".data%5B%5B%22year%22%5D%E3%82%82%E5%8F%AF">col_name</a>として，新たな列のときは{{col_name}}({{&ldquo;year_displ&rdquo;}}はエラー)とする．</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">col_1 &lt;- &#34;year&#34;
-col_2 &lt;- &#34;displ&#34;
-new_col &lt;- &#34;year_displ&#34;
-  # `:=`を通常の関数みたいに使用
-mpg %&gt;%
-  dplyr::transmute(`:=`({{new_col}}, stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]])))
-  # 以下でも同じ
-mpg %&gt;%
-  dplyr::transmute({{new_col}} := stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]]))
-</code></pre>
+			<p>画像認識してボタンをクリックするのを自動化するために，Rでコードを書いていたら，やはり使いものにならないぐらい遅かった．
+そこで，Rcppを使ってC++で書き直した．
+最低でも10倍，うまくいけば50倍ぐらいになると思っていたが，3倍ぐらいの速度にしかならない．
+しかも，場合によっては3倍ぐらい遅いこともある．
+たぶん，C++の書き方が良くないのだと思うが，別の方法で実装することにした．</p>
+<p>同じような色だけの画像を認識するのは難しいが，通常</p>
+<p>1 needle_imageとhaystack_imageの各ピクセルで共通する色を抽出<br>
+2 抽出した色のうちhaystack_imageで出現頻度の少ないものから1つ選んでneedle_imageでの位置を把握 <br>
+3 needle_imageでの位置をもとに，haystack_imageの基準点(1,1)を抽出 <br>
+4 出現頻度の少ないものから，順次2と3を繰り返し <br>
+5 haystack_imageの基準点が1つに絞れたら，それが探し出そうとしている画像の基準点と一致しているはず</p>
+<p>全ピクセルの一致を目指しているのではないので，厳密な一致はしない可能性はあるが，画像があれば必ず一致するはずだ．
+厳密な一致を求めるときは，最後にチェックを入れれば良い．</p>
+<p>ということで，コードを書いたら結構速い速度になって，満足．
+単一色の画像の中からその一部を特定するのは無理だが(このコードに限らず，そもそも無意味)，実用的な範囲では使えそうな感じだ．</p>
+
 		</div>
 		<footer class="post__footer">
 			
