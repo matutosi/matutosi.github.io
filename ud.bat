@@ -1,6 +1,6 @@
 d:
 cd d:\matu\work\todo\blog
-D:\pf\hugo\bin\hugo.exe
+D:\pf\hugo\bin\hugo.exe --buildFuture
 git add .
 git commit -m "update"
 git pull
