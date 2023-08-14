@@ -74,6 +74,25 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220905/" rel="bookmark">
+			MacでSelenium
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-05T00:00:00Z">September 05, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		準備：色々とインストール
+# Homebrew/bin/bash -c &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&#34;# Chorome driverbrew install chromedriver# javabrew tap AdoptOpenJDK/openjdkbrew install --cask adoptopenjdk12# check java installationjava -version# download seleniumcurl -OL https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jarmv selenium-server-standalone-3.141.59.jar /Applications/ seleniumの実行と
+# run seleniumjava -jar /Applications/selenium-server-standalone-3.141.59.jar# ちょっとまっていると色々と表示される# check process idps -A | grep &#39;java&#39;# 12708 ttys000 0:00.20 /usr/bin/java -jar /Applications/selenium-server-standalone-3.141.59.jar# 12802 ttys000 0:00.00 grep java# stop selenium# 数字は1行目の左端に表示されるprocess idを入力kill 12708 
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220821/" rel="bookmark">
 			RSelenium
 			</a>
@@ -230,25 +249,6 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 とりあえず現状は以下のURLのような感じ．
 https://matutosi.github.io/biodiv/biodiv.html
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220627/" rel="bookmark">
-			ShinyとJavaScript
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-27T00:00:00Z">June 27, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		引き続き，植生調査アプリのコーディングをしている． JavaScriptのお作法は相変わらずよくわかっていないが，Shinyでのアプリ作成やRのパッケージ作成の経験が活用できている気がする． Shinyではmodule化することで，コードを簡潔に書くことができる．
- https://github.com/matutosi/textmining https://github.com/matutosi/ecanvis https://github.com/matutosi/moranajp  Shinyの内部で具体的にどのようなことがされているのかまでは確認していないが，たぶんこんな感じだろうと想像しながらmodule化している． そのおかげで，汎用的に使えるものができそう．
-ただ，コードを書き散らしているので，説明の文書が中途半端な状態だ． また，関数の入出力を統一できていないし，未使用の関数も残っている． このあたりの整理は今後ぼちぼちとする予定．
-	</div>
 </article>
 </main>
 
@@ -265,6 +265,7 @@ https://matutosi.github.io/biodiv/biodiv.html
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20230814/">screenshot</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230808/">画像位置の特定</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230806/">コマンドラインでスクリーンショット</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230731/">Windowsのユーザ名のその後</a></li>
@@ -274,7 +275,6 @@ https://matutosi.github.io/biodiv/biodiv.html
 			<li class="widget__item"><a class="widget__link" href="/post/20230629/">R Package Scholar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230617/">hogwarts</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230616/">pivotea</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230322/">GPT-3</a></li>
 		</ul>
 	</div>
 </div>

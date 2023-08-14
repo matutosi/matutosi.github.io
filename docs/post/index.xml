@@ -6,7 +6,18 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>screenshot</title>
+      <link>https://matutosi.github.io/post/20230814/</link>
+      <pubDate>Mon, 14 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20230814/</guid>
+      <description>画像認識してクリックするパッケージとして，PythonではPyAutoGUIがある． 知っている範囲では，同じようなものがRではなかった． Rでは，マウス・キーボード操作の自動化パッケージとしてkeyboardsimulatorがあるが，画像認識の機能がなかった． そこで，その機能を補完するものとして，screenshotというパッケージをつくってCRANに登録した． なお，このパッケージには，Rからスクリーンショットをとる関数と，画像を元にスクリーン上での位置を特定する関数などがある． keyboardsimulatorと組み合わせると，便利なはずだ．
+ちなみに，これまでCRANに登録したパッケージには以下のものがある．
+ moranajp: https://cran.r-project.org/web/packages/moranajp/ ecan: https://cran.r-project.org/web/packages/ecan/ clidatajp: https://cran.r-project.org/web/packages/clidatajp/ pivotea: https://cran.r-project.org/web/packages/pivotea/ screenshot: https://cran.r-project.org/web/packages/screenshot/  </description>
+    </item>
+    
     <item>
       <title>画像位置の特定</title>
       <link>https://matutosi.github.io/post/20230808/</link>
