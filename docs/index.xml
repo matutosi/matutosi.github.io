@@ -128,8 +128,7 @@ https://osechi-tech.net/windows11-username-change-method/
       
       <guid>https://matutosi.github.io/post/20240502/</guid>
       <description>textrarというRのパッケージを作った．
- textrar: https://cran.r-project.org/web/packages/textrar/  みんなの自動翻訳という翻訳サービスをRから利用するものだ． APIは整備されているのだが，使い方がちょっとややこしいので，そのあたりを簡単にできるようにした．
- moranajp: https://cran.r-project.org/web/packages/moranajp/ ecan: https://cran.r-project.org/web/packages/ecan/ clidatajp: https://cran.r-project.org/web/packages/clidatajp/ pivotea: https://cran.r-project.org/web/packages/pivotea/ screenshot: https://cran.r-project.org/web/packages/screenshot/  </description>
+ textrar: https://cran.r-project.org/web/packages/textrar/  みんなの自動翻訳という翻訳サービスをRから利用するものだ． APIは整備されているのだが，使い方がちょっとややこしいので，簡単に使えるようにした．</description>
     </item>
     
     <item>
