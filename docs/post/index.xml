@@ -6,7 +6,17 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 14 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>textrar</title>
+      <link>https://matutosi.github.io/post/20240502/</link>
+      <pubDate>Thu, 02 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20240502/</guid>
+      <description>textrarというRのパッケージを作った．
+ textrar: https://cran.r-project.org/web/packages/textrar/  みんなの自動翻訳という翻訳サービスをRから利用するものだ． APIは整備されているのだが，使い方がちょっとややこしいので，簡単に使えるようにした．</description>
+    </item>
+    
     <item>
       <title>screenshot</title>
       <link>https://matutosi.github.io/post/20230814/</link>
@@ -119,16 +129,6 @@ https://osechi-tech.net/windows11-username-change-method/
       <description>Rでピボットテーブルのようなものをつくるためのパッケージpivoteaを作成した． 主な関数は，pivot()のみ． 詳細は以下を参考にして欲しい．
  https://cran.r-project.org/web/packages/pivotea/index.html https://github.com/matutosi/pivotea/  tidyなデータフレームをもとにして，列(row，縦)・行(col，横)・値(value，セルの中身)・分割(split)にそれぞれ配置したい列を文字列指定するだけで簡単にピボットテーブルのようなものが作れる． tidyr::pivot_wider(), tidyr::pivot_longer()でもピボットはできるが，同一セルに複数の値が入るときの処理が面倒くさい． 複数の値がある場合は，pivot()では縦に別の行として並べるところが，工夫点である． 同じコマに重複する科目があるときの時間割を作成するのに便利である(というか，それを目的に関数を作成した)． 以下のvignettesでは，このことが分かりにくいかもしれないと思ったので，時間割のデータを追加する予定．
  vignettes: https://cran.r-project.org/web/packages/pivotea/vignettes/pivoteasy.html  </description>
-    </item>
-    
-    <item>
-      <title>textrar</title>
-      <link>https://matutosi.github.io/post/20240502/</link>
-      <pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://matutosi.github.io/post/20240502/</guid>
-      <description>textrarというRのパッケージを作った．
- textrar: https://cran.r-project.org/web/packages/textrar/  みんなの自動翻訳という翻訳サービスをRから利用するものだ． APIは整備されているのだが，使い方がちょっとややこしいので，簡単に使えるようにした．</description>
     </item>
     
     <item>
