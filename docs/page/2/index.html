@@ -73,6 +73,25 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20240502/" rel="bookmark">
+			textrar
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-05-02T00:00:00Z">May 02, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		textrarというRのパッケージを作った．
+ textrar: https://cran.r-project.org/web/packages/textrar/  みんなの自動翻訳という翻訳サービスをRから利用するものだ． APIは整備されているのだが，使い方がちょっとややこしいので，そのあたりを簡単にできるようにした．
+ moranajp: https://cran.r-project.org/web/packages/moranajp/ ecan: https://cran.r-project.org/web/packages/ecan/ clidatajp: https://cran.r-project.org/web/packages/clidatajp/ pivotea: https://cran.r-project.org/web/packages/pivotea/ screenshot: https://cran.r-project.org/web/packages/screenshot/  
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20230322/" rel="bookmark">
 			GPT-3
 			</a>
@@ -238,23 +257,6 @@ https://github.com/matutosi/clidatajp/blob/main/READMEjp.md
 library(tidyverse)mpg %&gt;%dplyr::select(displ, year, cyl) ただし，パッケージ開発をするときにこの使い方をしていると，devtools::check()でWarningsとかNotesの対象になる． 新たな列名として使いたいときには，以下のようにする必要がある．変数に入れた文字列を使う時，既存の列の指定では.data[col_nameとして，新たな列のときは{{col_name}}({{&ldquo;year_displ&rdquo;}}はエラー)とする．
 col_1 &lt;- &#34;year&#34;col_2 &lt;- &#34;displ&#34;new_col &lt;- &#34;year_displ&#34;# `:=`を通常の関数みたいに使用mpg %&gt;%dplyr::transmute(`:=`({{new_col}}, stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]])))# 以下でも同じmpg %&gt;%dplyr::transmute({{new_col}} := stringr::str_c(.data[[col_1]], &#34;_&#34;, .data[[col_2]])) 
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220910/" rel="bookmark">
-			正規表現
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-10T00:00:00Z">September 10, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		「詳説 正規表現」を読み始めた． まだ1章しか読んでないが，結構勘違いしていたことや知らなかったことが多い．
-	</div>
 </article>
 </main>
 
@@ -314,7 +316,7 @@ col_1 &lt;- &#34;year&#34;col_2 &lt;- &#34;displ&#34;new_col &lt;- &#34;year_d
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2023 matutosi.
+			&copy; 2024 matutosi.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
