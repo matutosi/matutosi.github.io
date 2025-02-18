@@ -73,6 +73,24 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20230716/" rel="bookmark">
+			pivotea 1.0.1
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-07-16T00:00:00Z">July 16, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Rでピボットテーブルのようなものをつくるためのパッケージpivoteaを更新した． ホグワーツのデータを追加し，ちょっとバグを修正．
+ https://cran.r-project.org/web/packages/pivotea/ https://github.com/matutosi/pivotea/  
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20230629/" rel="bookmark">
 			R Package Scholar
 			</a>
@@ -234,27 +252,6 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 ただ，コードを見直すと，あまりにも汚い． 汚いというか，重複したものがたくさんあって，維持管理のときに困りそう． JavaScriptのプログラムを書くのが，ほぼ初めてのため，関数をどのぐらいのものにするかなど，あまり考えずに手当たり次第に作ったのが原因だ．
 全体の形ができたので，設計し直しつつ，コードも整えようと思う．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220929/" rel="bookmark">
-			clidatajp
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-29T00:00:00Z">September 29, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		CRANからの返事があり，細かな修正点が3つあった．修正して，再投稿した．
-  DESCRIPTIONファイルのdescriptionフィールドには，ウエブサイトをhttp://...のように入れること．
-  Please provide a link to the used webservices to the description field of your DESCRIPTION file in the form http:... or https:... with angle brackets for auto-linking and no space after &lsquo;http:&rsquo; and &lsquo;https:&rsquo;.
-  関数の戻り値をちゃんと書き，戻り値がない場合は，「No return value, called for side effects」のようにすること．
-  Please add \value to .Rd files regarding exported methods and explain the functions results in the documentation. Please write about the structure of the output (class) and also what the output means.
-	</div>
 </article>
 </main>
 
@@ -270,6 +267,7 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250218/">easypdf</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250205/">easypdf</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20241006/">発表資料</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20240502/">textrar</a></li>
@@ -279,7 +277,6 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 			<li class="widget__item"><a class="widget__link" href="/post/20230731/">Windowsのユーザ名のその後</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230730/">干し草の中から針を探す</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230725/">Windowsのユーザ名</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230716/">pivotea 1.0.1</a></li>
 		</ul>
 	</div>
 </div>
@@ -289,6 +286,8 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 		<ul class="widget__list">
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/blog/">blog</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python/">python</a></li>
 		</ul>
 	</div>
 </div>

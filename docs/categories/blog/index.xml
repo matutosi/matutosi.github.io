@@ -6,7 +6,17 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 05 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>easypdf</title>
+      <link>https://matutosi.github.io/post/20250218/</link>
+      <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250218/</guid>
+      <description>easypdfでPDFの文字列を強調表示するものを作成した．
+https://github.com/matutosi/easypdf</description>
+    </item>
+    
     <item>
       <title>easypdf</title>
       <link>https://matutosi.github.io/post/20250205/</link>
