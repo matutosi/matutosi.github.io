@@ -73,6 +73,60 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20230103/" rel="bookmark">
+			テスト駆動開発
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-01-03T00:00:00Z">January 03, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		テスト駆動開発というのは知っていたが，正直なところ面倒くさい感じがして，ちゃんと使っていなかった． ちょっとしたことだが，作ってみたいプログラムがあって，テスト駆動形で試してみた． 入力と出力が頭の中で整理されているのであれば(そうあるべきだが)，テストを先に作っておいてプログラムを書くのはすごく楽だとわかった．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20221123/" rel="bookmark">
+			BiSS
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-11-22T00:00:00Z">November 22, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		生物多様性調査支援システムを大幅に見直し中． https://matutosi.github.io/biodiv/biodiv2.html
+せっかくPCやタブレットを使うのだから，よく出てくる種名は手入力せずとも選ぶだけにできるようにした． その他，地点ごとの出現種の表示(組成表みたいなもの)なども表示するようにした．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20221107/" rel="bookmark">
+			BiSS
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-11-07T00:00:00Z">November 07, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		植生調査にも使える生物多様性調査支援システムを作成中であることを植生学会の大会で発表した． https://matutosi.github.io/biodiv/biodiv.html
+ただ，コードを見直すと，あまりにも汚い． 汚いというか，重複したものがたくさんあって，維持管理のときに困りそう． JavaScriptのプログラムを書くのが，ほぼ初めてのため，関数をどのぐらいのものにするかなど，あまり考えずに手当たり次第に作ったのが原因だ．
+全体の形ができたので，設計し直しつつ，コードも整えようと思う．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220929/" rel="bookmark">
 			clidatajp
 			</a>
@@ -200,59 +254,6 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 		JavaScriptでのウェブページ操作で，ページ移動のたびにlocalStorageやsessionStorageから関数群を引き出すというトリッキーな使い方をしていた． これはこれで良いが，結局手作業が必要なのが不便だ．
 そこでSeleniumを導入して自動化を試みたものの，RSeleniumがどうもうまくいかない． Pythonならつながるので，Selenium自体やChromeDriverはちゃんと動いているようだ． 仕方ないので，Pythonで操作しはじめたが，Rのtidyverseの便利さには敵わない． と思っていたら，datarというPythonのライブラリを見つけた． できる限りtidyverseとほぼ同じようにやってしまおうというライブラリのようだ． 試しに使ってみたら，ほとんどRの書き方でできる． これは便利だ． datarに慣れるとPythonを使っているのか，Rを使っているのか分からなくなりそう． まあ，そもそも使えれば良いので，そんなことはどっちでも良い．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220727/" rel="bookmark">
-			sessionStorage
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-27T00:00:00Z">July 27, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		正規のHTML内に書かれた操作ではなく，デベロッパーツールのConsoleにJavaScriptを打ち込んでウェブページを色々と操作しようとしている． ページが移動すると，関数がクリアされるのが難点だ． sessionStorageを使って，関数やその他のデータを保存しておけば，なんとかなりそうだ． ただし，すごくトリッキーな使い方で，本来の使い方ではなさそう．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220726/" rel="bookmark">
-			プログラミングと文章の構造化
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-26T00:00:00Z">July 26, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		プログラムを書いていると文章を構造的に書くのに役立つと思う． 関数が1つの段落だとすると，関数のトピックセンテンスは返り値である． 何を出力したいかが明確でないと，関数は書けない．
-ある関数から次の関数につなぐのは，引数や返り値である． これによってプログラムがつながっていく． 文章もキーワードなどによってつながっていく．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220720/" rel="bookmark">
-			手作業とスクリプト
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-20T00:00:00Z">July 20, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		JavaScriptを勉強していると，普段使うwebツール上でマウスを駆使してクリックしているのがアホらしくなってきた． 一度だけの作業ならまだしも，同じような作業の繰り返しを定期的にしなければならないことがある． チェックボックスを探してそれをクリックするなどだ． 手作業で同じことをするのは面倒だし，間違いのもとである． JavaScriptで，使いそうなスクリプトを組んでみた． たぶん，それなりに使えそうな感じ．
-手を抜くための苦労はいとわない．
-	</div>
 </article>
 </main>
 
@@ -268,6 +269,9 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250308/">週間の縦型カレンダーを生成するアプリ</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20250224/">pivoteaとpivoteapy</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20250220/">pivoteaとpivoteapy</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250218/">easypdf</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250205/">easypdf</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20241006/">発表資料</a></li>
@@ -275,9 +279,6 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 			<li class="widget__item"><a class="widget__link" href="/post/20230814/">screenshot</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230808/">画像位置の特定</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230806/">コマンドラインでスクリーンショット</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230731/">Windowsのユーザ名のその後</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230730/">干し草の中から針を探す</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230725/">Windowsのユーザ名</a></li>
 		</ul>
 	</div>
 </div>
@@ -289,6 +290,10 @@ Pythonで書いたコードをRに書き換えた． Pythonではdatarを使っ�
 				<a class="widget__link" href="/categories/blog/">blog</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/python/">python</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/r/">r</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/streamlit/">streamlit</a></li>
 		</ul>
 	</div>
 </div>

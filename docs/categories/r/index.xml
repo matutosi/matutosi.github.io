@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>r on matutosi</title>
+    <link>https://matutosi.github.io/categories/r/</link>
+    <description>Recent content in r on matutosi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-jp</language>
+    <lastBuildDate>Mon, 24 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pivoteaとpivoteapy</title>
+      <link>https://matutosi.github.io/post/20250224/</link>
+      <pubDate>Mon, 24 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250224/</guid>
+      <description>pivoteaのPythonの関数自体はできてきた．
+せっかくなので，Pythonの環境がなくても実行できるように，TkEasyGUIとPyinstallerを使ってexeにする予定．</description>
+    </item>
+    
+    <item>
+      <title>pivoteaとpivoteapy</title>
+      <link>https://matutosi.github.io/post/20250220/</link>
+      <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250220/</guid>
+      <description>pivoteaというRのパッケージをPythonに変換している． Geminiに相談してコードを変換したが，やはりそのままでは駄目で，エラーがでる． でも，Pythonにも少し慣れてきたので，ちょっとずつデバグしていったら，それなりには動くものになってきた． うまくできたら，&amp;ldquo;pivoteapy&amp;quot;として公開できるかもしれない．
+Pythonののパッケージとしてまとめるだけでなく，さらにPythonからRに戻すと，言語の翻訳と同じでRのコードが簡潔になるような気がする．
+例：不自然な英語 &amp;ndash;(AIで翻訳)&amp;ndash;&amp;gt; 他の言語 &amp;ndash;(AIで翻訳)&amp;ndash;&amp;gt; 自然な言語
+Geminiにリファクタリングを頼むのとどちらがきれいなコードになるのか試してみよう．
+https://cran.r-project.org/web/packages/pivotea/index.html</description>
+    </item>
+    
+  </channel>
+</rss>

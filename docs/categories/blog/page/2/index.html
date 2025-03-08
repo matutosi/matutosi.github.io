@@ -74,6 +74,67 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20230731/" rel="bookmark">
+			Windowsのユーザ名のその後
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-07-31T00:00:00Z">July 31, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		少し前にWindows11のユーザ名変更について書いたが，別のPCでやったら色々と大変なことになった． その後なんとか修復したけど，普通にやりたい場合は，ネットで検索して出てくるものを参考にしたほうが良さそうだ．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20230730/" rel="bookmark">
+			干し草の中から針を探す
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-07-30T00:00:00Z">July 30, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		PythonのPyAutoGUIには，画像認識をしてボタンをクリックする機能があるのだが(正確にはpyscreezeの機能)，RのKeyboardsimulatorには，それがない． PyAutoGUIからコードを辿って見ていくと，Confidenceの設定(Confidenceの設定はOpenCV使用)をしない場合は，単純に画像を端から一致するか判定しているみたいだ． これだったら，自分の力とRで実装できそう． 速度が遅ければ，検索部分のループだけ(ほぼCの)C++で書こう．
+ところで，画像認識のコードに，needleImage と haystackImage という変数がでてくる． 一瞬何のことか分からなかったが，「干し草の中から針を探す」だ． すごく良い変数名だ． 自分のコードにもこのネーミングを使う予定だ．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20230725/" rel="bookmark">
+			Windowsのユーザ名
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-07-25T00:00:00Z">July 25, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Windows11のパソコンを複数台使っている． 初期設定のときに合わせればよかったのだが，ユーザ名(表示名も，実際のユーザー名)が異なっている． アプリケーションごとに保存されるデータが，C:\Users\USERNAME\AppData\Local\ (USERNAME：ユーザアカウント名)にあってここを指定するときに微妙にコードが異なってくるのがめんどくさい． %USERNAME%とかで処理していれば良いが，直接書いていることもあるためだ．
+表示名(フルネーム)はわりと簡単に変更できるが，これを変更しても実際のユーザー名(ユーザーアカウント名)はそのまま残る． そのため，上記のユーザフォルダは変更されずにそのまま残っていた．
+ユーザフォルダの名前を変更しようとしても，できないようになっている(そりゃそうだ)． レジストリの以下を変えると，フォルダ名を変更できるようになる．
+コンピューター\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+ProfileImagePath
+https://pc-karuma.net/change-windows-11-user-folder-name/
+ユーザやシステムの環境変数のPATHは，変更前のままなので変更する．
+よくわからないけど，PC上の設定も変更前のままだったら，以下を参考にしてユーザーネームを変更する．
+https://osechi-tech.net/windows11-username-change-method/
+多分だがこれぐらいやっておけば，だいたいできた感じだろう．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20230716/" rel="bookmark">
 			pivotea 1.0.1
 			</a>
@@ -199,60 +260,6 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 2つ目は，なかなかバグの原因を見つけられないためだ． 原因を見つけにくい理由は，プログラマ(自分)の思い込みがある． ここにはバグが無いだろうと考えているところにバグが潜んでいることが多々ある． Rのパッケージへの機能の追加中にバグがあることが分かった． バグの原因究明に1日以上を費やしてようやく原因が判明した． バグの発生箇所は，なんとなく予想していた． ただ，なかなか最終的な箇所の特定ができずにいた． こんな箇所にバグはないだろうと思い込んでいた場所でバグが発生していた． 修正するべき箇所が判明して，コードの修正はほんの数分で完了した． バグを見つけるまでに約1日半ぐらい，修正に数分． 本当にバグは恐ろしい．
 ただし，バグにも良い副作用はある． バグを探している中でコードの改善を見つけて修正したり，新しい関数の使い方を覚えたり，関数の使い方を覚え直したりなどもできた．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20230103/" rel="bookmark">
-			テスト駆動開発
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-01-03T00:00:00Z">January 03, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		テスト駆動開発というのは知っていたが，正直なところ面倒くさい感じがして，ちゃんと使っていなかった． ちょっとしたことだが，作ってみたいプログラムがあって，テスト駆動形で試してみた． 入力と出力が頭の中で整理されているのであれば(そうあるべきだが)，テストを先に作っておいてプログラムを書くのはすごく楽だとわかった．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20221123/" rel="bookmark">
-			BiSS
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-11-22T00:00:00Z">November 22, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		生物多様性調査支援システムを大幅に見直し中． https://matutosi.github.io/biodiv/biodiv2.html
-せっかくPCやタブレットを使うのだから，よく出てくる種名は手入力せずとも選ぶだけにできるようにした． その他，地点ごとの出現種の表示(組成表みたいなもの)なども表示するようにした．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20221107/" rel="bookmark">
-			BiSS
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-11-07T00:00:00Z">November 07, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		植生調査にも使える生物多様性調査支援システムを作成中であることを植生学会の大会で発表した． https://matutosi.github.io/biodiv/biodiv.html
-ただ，コードを見直すと，あまりにも汚い． 汚いというか，重複したものがたくさんあって，維持管理のときに困りそう． JavaScriptのプログラムを書くのが，ほぼ初めてのため，関数をどのぐらいのものにするかなど，あまり考えずに手当たり次第に作ったのが原因だ．
-全体の形ができたので，設計し直しつつ，コードも整えようと思う．
-	</div>
 </article>
 </main>
 
@@ -269,6 +276,9 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250308/">週間の縦型カレンダーを生成するアプリ</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20250224/">pivoteaとpivoteapy</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20250220/">pivoteaとpivoteapy</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250218/">easypdf</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250205/">easypdf</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20241006/">発表資料</a></li>
@@ -276,9 +286,6 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 			<li class="widget__item"><a class="widget__link" href="/post/20230814/">screenshot</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230808/">画像位置の特定</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230806/">コマンドラインでスクリーンショット</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230731/">Windowsのユーザ名のその後</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230730/">干し草の中から針を探す</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230725/">Windowsのユーザ名</a></li>
 		</ul>
 	</div>
 </div>
@@ -290,6 +297,10 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 				<a class="widget__link" href="/categories/blog/">blog</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/python/">python</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/r/">r</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/streamlit/">streamlit</a></li>
 		</ul>
 	</div>
 </div>

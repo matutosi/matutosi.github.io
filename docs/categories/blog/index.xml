@@ -6,7 +6,45 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>週間の縦型カレンダーを生成するアプリ</title>
+      <link>https://matutosi.github.io/post/20250308/</link>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250308/</guid>
+      <description>カレンダーは毎年週間の縦型のもので，自作のものを使っている． 市販品ではメモ欄が一番左にあるが，自分の好みである一番右にしている． また，定型の予定は事前にプログラムで書き込んでいた． 最近，Pythonを勉強しているので，TeX版をPythonに書き直した． だいたい求めるものができた．
+さらに，streamlitというwebアプリ作成のライブラリがあるので，web版にしてみた．
+https://vercal.streamlit.app/
+定型の予定は以下の形式のエクセルファイルを作れば，繰り返してくれる．
+   period_start period_end week_of_day event_start event_end event except     2025-04-10 2025-07-10 wed 10:30 12:00 数学 2025-05-07;2025-05-14   2025-04-10 2025-07-10 mon 12:30 12:30 開始のみの予定     コードと定型予定のファイルの詳細は，以下を参照してほしい．
+https://github.com/matutosi/vercal
+説明はまだ全然書いていないので，これから整理する予定．</description>
+    </item>
+    
+    <item>
+      <title>pivoteaとpivoteapy</title>
+      <link>https://matutosi.github.io/post/20250224/</link>
+      <pubDate>Mon, 24 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250224/</guid>
+      <description>pivoteaのPythonの関数自体はできてきた．
+せっかくなので，Pythonの環境がなくても実行できるように，TkEasyGUIとPyinstallerを使ってexeにする予定．</description>
+    </item>
+    
+    <item>
+      <title>pivoteaとpivoteapy</title>
+      <link>https://matutosi.github.io/post/20250220/</link>
+      <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250220/</guid>
+      <description>pivoteaというRのパッケージをPythonに変換している． Geminiに相談してコードを変換したが，やはりそのままでは駄目で，エラーがでる． でも，Pythonにも少し慣れてきたので，ちょっとずつデバグしていったら，それなりには動くものになってきた． うまくできたら，&amp;ldquo;pivoteapy&amp;quot;として公開できるかもしれない．
+Pythonののパッケージとしてまとめるだけでなく，さらにPythonからRに戻すと，言語の翻訳と同じでRのコードが簡潔になるような気がする．
+例：不自然な英語 &amp;ndash;(AIで翻訳)&amp;ndash;&amp;gt; 他の言語 &amp;ndash;(AIで翻訳)&amp;ndash;&amp;gt; 自然な言語
+Geminiにリファクタリングを頼むのとどちらがきれいなコードになるのか試してみよう．
+https://cran.r-project.org/web/packages/pivotea/index.html</description>
+    </item>
+    
     <item>
       <title>easypdf</title>
       <link>https://matutosi.github.io/post/20250218/</link>

@@ -6,11 +6,11 @@
     <description>Recent content in Categories on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>blog</title>
       <link>https://matutosi.github.io/categories/blog/</link>
-      <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/categories/blog/</guid>
       <description></description>
@@ -19,9 +19,27 @@
     <item>
       <title>python</title>
       <link>https://matutosi.github.io/categories/python/</link>
-      <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>streamlit</title>
+      <link>https://matutosi.github.io/categories/streamlit/</link>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/categories/streamlit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r</title>
+      <link>https://matutosi.github.io/categories/r/</link>
+      <pubDate>Mon, 24 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/categories/r/</guid>
       <description></description>
     </item>
     

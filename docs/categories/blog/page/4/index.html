@@ -74,6 +74,59 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220727/" rel="bookmark">
+			sessionStorage
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-27T00:00:00Z">July 27, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		正規のHTML内に書かれた操作ではなく，デベロッパーツールのConsoleにJavaScriptを打ち込んでウェブページを色々と操作しようとしている． ページが移動すると，関数がクリアされるのが難点だ． sessionStorageを使って，関数やその他のデータを保存しておけば，なんとかなりそうだ． ただし，すごくトリッキーな使い方で，本来の使い方ではなさそう．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20220726/" rel="bookmark">
+			プログラミングと文章の構造化
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-26T00:00:00Z">July 26, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		プログラムを書いていると文章を構造的に書くのに役立つと思う． 関数が1つの段落だとすると，関数のトピックセンテンスは返り値である． 何を出力したいかが明確でないと，関数は書けない．
+ある関数から次の関数につなぐのは，引数や返り値である． これによってプログラムがつながっていく． 文章もキーワードなどによってつながっていく．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20220720/" rel="bookmark">
+			手作業とスクリプト
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-20T00:00:00Z">July 20, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		JavaScriptを勉強していると，普段使うwebツール上でマウスを駆使してクリックしているのがアホらしくなってきた． 一度だけの作業ならまだしも，同じような作業の繰り返しを定期的にしなければならないことがある． チェックボックスを探してそれをクリックするなどだ． 手作業で同じことをするのは面倒だし，間違いのもとである． JavaScriptで，使いそうなスクリプトを組んでみた． たぶん，それなりに使えそうな感じ．
+手を抜くための苦労はいとわない．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220712/" rel="bookmark">
 			関数・ドキュメントの整理
 			</a>
@@ -197,60 +250,6 @@ https://gist.github.com/matutosi/01bbc564ba3ae249f121965dc725b649
 	<div class="content list__excerpt post__content clearfix">
 		JavaScriptはブラウザさえあれば，実行できるのが良い． GoogleChromeであれば，F12でコンソールなどが出てきて，テストやデバッグができる． オブジェクトの中身もブラウザの中身と対比して見ながら，チェックできる． コンソールの補完機能も便利だ．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220620/" rel="bookmark">
-			JavaScript
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-20T00:00:00Z">June 20, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		昔は，JavaScriptを「Webページを飾り付けるだけのもの」のように考えていた． 自分自身もそんな感じで使っていたときがあった． でも，JavaScriptでコードを書いていると，結構色々なことができることがわかってきた．
-jQueryとかReactとかいろんなフレームワークもあるけど，とりあえずはvanilla JavaScript(フレームワークを使わない基本的なものだけ)でやっている．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220617/" rel="bookmark">
-			植生調査アプリ(大枠)
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-17T00:00:00Z">June 17, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		植生調査アプリをHTMLとJavaScriptで作っている． JavaScriptにも徐々になれてきて，大体の大枠ができた(ような気がする)． ネットの情報や書籍を参考にしたが，JavaScriptのお作法をちゃんとは理解できていない． そのため，JavaScriptらしくない我流のコードになっている(はず)． mapとかapplyを使えば，もっと単純に書けそうだと思う部分がある． でも使い方が分からないので，forループを回しまくった．
-それでも，他のコードを参考にしつつもだいたい理解して，ほとんどのコードを自分で書くことができた． コードを書いている途中で，たくさん関数を作ったが，結果的に使っていない関数も色々とある． とりあえずは整理して，必要なものだけに絞らなければ．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220611/" rel="bookmark">
-			植生調査アプリ
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-11T00:00:00Z">June 11, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		しばらく前にSwiftでiOS用の植生調査アプリを作りかけていた． そこそこのところまではできてきたが，ちょっと行き詰まっていた．
-JavaScriptでいちから作り直しているが，こっちのほうが簡単にできそう． iOSだけでなくAndroidやWindowsでも使えるはず． HTML, JavaScript, cssだけで作っている． これらのファイルをローカル環境にダウンロードすれば簡単に使えるようになるはずだ． AppStoreとかGooglePlayに登録せずとも，GitHubからダウンロードできるようにすれば良いので管理も簡単だ． HTML, JavaScript, cssをちょっと勉強すれば，カスタマイズもできるだろう．
-	</div>
 </article>
 </main>
 
@@ -267,6 +266,9 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250308/">週間の縦型カレンダーを生成するアプリ</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20250224/">pivoteaとpivoteapy</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20250220/">pivoteaとpivoteapy</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250218/">easypdf</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250205/">easypdf</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20241006/">発表資料</a></li>
@@ -274,9 +276,6 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 			<li class="widget__item"><a class="widget__link" href="/post/20230814/">screenshot</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230808/">画像位置の特定</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230806/">コマンドラインでスクリーンショット</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230731/">Windowsのユーザ名のその後</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230730/">干し草の中から針を探す</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230725/">Windowsのユーザ名</a></li>
 		</ul>
 	</div>
 </div>
@@ -288,6 +287,10 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 				<a class="widget__link" href="/categories/blog/">blog</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/python/">python</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/r/">r</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/streamlit/">streamlit</a></li>
 		</ul>
 	</div>
 </div>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>streamlit on matutosi</title>
+    <link>https://matutosi.github.io/categories/streamlit/</link>
+    <description>Recent content in streamlit on matutosi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-jp</language>
+    <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/streamlit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>週間の縦型カレンダーを生成するアプリ</title>
+      <link>https://matutosi.github.io/post/20250308/</link>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250308/</guid>
+      <description>カレンダーは毎年週間の縦型のもので，自作のものを使っている． 市販品ではメモ欄が一番左にあるが，自分の好みである一番右にしている． また，定型の予定は事前にプログラムで書き込んでいた． 最近，Pythonを勉強しているので，TeX版をPythonに書き直した． だいたい求めるものができた．
+さらに，streamlitというwebアプリ作成のライブラリがあるので，web版にしてみた．
+https://vercal.streamlit.app/
+定型の予定は以下の形式のエクセルファイルを作れば，繰り返してくれる．
+   period_start period_end week_of_day event_start event_end event except     2025-04-10 2025-07-10 wed 10:30 12:00 数学 2025-05-07;2025-05-14   2025-04-10 2025-07-10 mon 12:30 12:30 開始のみの予定     コードと定型予定のファイルの詳細は，以下を参照してほしい．
+https://github.com/matutosi/vercal
+説明はまだ全然書いていないので，これから整理する予定．</description>
+    </item>
+    
+  </channel>
+</rss>
