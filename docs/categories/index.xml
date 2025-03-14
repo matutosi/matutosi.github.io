@@ -6,20 +6,29 @@
     <description>Recent content in Categories on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>blog</title>
       <link>https://matutosi.github.io/categories/blog/</link>
-      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Mar 2025 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/categories/blog/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>pivotea</title>
+      <link>https://matutosi.github.io/categories/pivotea/</link>
+      <pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/categories/pivotea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>python</title>
       <link>https://matutosi.github.io/categories/python/</link>
-      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/categories/python/</guid>
       <description></description>

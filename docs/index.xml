@@ -6,7 +6,31 @@
     <description>Recent content on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>整理の重要性</title>
+      <link>https://matutosi.github.io/post/20250314/</link>
+      <pubDate>Fri, 14 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250314/</guid>
+      <description>もろもろのコードや文章を作ったときには詳しい内容を覚えている． でも，ちゃんと整理しておかないと内容をすぐに忘れてしまう． 特に時間が立つと最初から内容を理解しないといけなくなる．
+分かってはいるが，後からでもわかるぐらいに整理しておくのが大事だ．
+研究でちょっとしばらく触っていなかったコードを整理するのに苦戦している．</description>
+    </item>
+    
+    <item>
+      <title>pivoteapy</title>
+      <link>https://matutosi.github.io/post/20250313/</link>
+      <pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250313/</guid>
+      <description>時間割などのような文字列のピボットテーブルをするために，pivoteaというパッケージをRで作った．
+https://github.com/matutosi/pivotea
+また，それをもとにしたwebアプリも作った．
+https://github.com/matutosi/convex
+最近はPythonを勉強しているので，練習を兼ねてpython版を作成している． しっかりしたライブラリにまとめるにはかなりの時間がかかるが，基本的な動作自体はだいたいできてきた．</description>
+    </item>
+    
     <item>
       <title>週間の縦型カレンダーを生成するアプリ</title>
       <link>https://matutosi.github.io/post/20250308/</link>

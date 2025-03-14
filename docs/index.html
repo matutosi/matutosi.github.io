@@ -73,6 +73,46 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20250314/" rel="bookmark">
+			整理の重要性
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-03-14T00:00:00Z">March 14, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		もろもろのコードや文章を作ったときには詳しい内容を覚えている． でも，ちゃんと整理しておかないと内容をすぐに忘れてしまう． 特に時間が立つと最初から内容を理解しないといけなくなる．
+分かってはいるが，後からでもわかるぐらいに整理しておくのが大事だ．
+研究でちょっとしばらく触っていなかったコードを整理するのに苦戦している．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20250313/" rel="bookmark">
+			pivoteapy
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-03-13T00:00:00Z">March 13, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/python/" rel="category">python</a>, <a class="meta__link" href="/categories/pivotea/" rel="category">pivotea</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		時間割などのような文字列のピボットテーブルをするために，pivoteaというパッケージをRで作った．
+https://github.com/matutosi/pivotea
+また，それをもとにしたwebアプリも作った．
+https://github.com/matutosi/convex
+最近はPythonを勉強しているので，練習を兼ねてpython版を作成している． しっかりしたライブラリにまとめるにはかなりの時間がかかるが，基本的な動作自体はだいたいできてきた．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20250308/" rel="bookmark">
 			週間の縦型カレンダーを生成するアプリ
 			</a>
@@ -223,47 +263,6 @@ https://www.dropbox.com/s/wz0c13ksncvjh3k/link.txt?dl=0
 ちなみに，これまでCRANに登録したパッケージには以下のものがある．
  moranajp: https://cran.r-project.org/web/packages/moranajp/ ecan: https://cran.r-project.org/web/packages/ecan/ clidatajp: https://cran.r-project.org/web/packages/clidatajp/ pivotea: https://cran.r-project.org/web/packages/pivotea/ screenshot: https://cran.r-project.org/web/packages/screenshot/  
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20230808/" rel="bookmark">
-			画像位置の特定
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-08-08T00:00:00Z">August 08, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		画像認識してボタンをクリックするのを自動化するために，Rでコードを書いていたら，やはり使いものにならないぐらい遅かった． そこで，Rcppを使ってC++で書き直した． 最低でも10倍，うまくいけば50倍ぐらいになると思っていたが，3倍ぐらいの速度にしかならない． しかも，場合によっては3倍ぐらい遅いこともある． たぶん，C++の書き方が良くないのだと思うが，別の方法で実装することにした．
-同じような色だけの画像を認識するのは難しいが，通常
-1 needle_imageとhaystack_imageの各ピクセルで共通する色を抽出
-2 抽出した色のうちhaystack_imageで出現頻度の少ないものから1つ選んでneedle_imageでの位置を把握 3 needle_imageでの位置をもとに，haystack_imageの基準点(1,1)を抽出 4 出現頻度の少ないものから，順次2と3を繰り返し 5 haystack_imageの基準点が1つに絞れたら，それが探し出そうとしている画像の基準点と一致しているはず
-全ピクセルの一致を目指しているのではないので，厳密な一致はしない可能性はあるが，画像があれば必ず一致するはずだ． 厳密な一致を求めるときは，最後にチェックを入れれば良い．
-ということで，コードを書いたら結構速い速度になって，満足． 単一色の画像の中からその一部を特定するのは無理だが(このコードに限らず，そもそも無意味)，実用的な範囲では使えそうな感じだ．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20230806/" rel="bookmark">
-			コマンドラインでスクリーンショット
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-08-06T00:00:00Z">August 06, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Windowsで画面のスクリーンショットをとるにはPrtScを押せば良いが，コマンドラインから取りたいときには不便． コマンドラインからできないか探したら，C# でつくったものがあった． .net frameworkは必要だが，&ldquo;selfcompiled C# program&quot;とのことなので，batを実行すれば勝手にexeが生成される． これはすごい．
- https://superuser.com/questions/75614/take-a-screen-shot-from-command-line-in-windows#answer-943947 https://github.com/npocmaka/batch.scripts/blob/master/hybrids/.net/c/screenCapture.bat  また，下のところにあるコードはマルチディスプレイにも対応している．
- https://superuser.com/questions/75614/take-a-screen-shot-from-command-line-in-windows  
-	</div>
 </article>
 </main>
 
@@ -278,6 +277,8 @@ https://www.dropbox.com/s/wz0c13ksncvjh3k/link.txt?dl=0
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250314/">整理の重要性</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20250313/">pivoteapy</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250308/">週間の縦型カレンダーを生成するアプリ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250224/">pivoteaとpivoteapy</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250220/">pivoteaとpivoteapy</a></li>
@@ -286,8 +287,6 @@ https://www.dropbox.com/s/wz0c13ksncvjh3k/link.txt?dl=0
 			<li class="widget__item"><a class="widget__link" href="/post/20241006/">発表資料</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20240502/">textrar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20230814/">screenshot</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230808/">画像位置の特定</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20230806/">コマンドラインでスクリーンショット</a></li>
 		</ul>
 	</div>
 </div>
@@ -297,6 +296,8 @@ https://www.dropbox.com/s/wz0c13ksncvjh3k/link.txt?dl=0
 		<ul class="widget__list">
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/blog/">blog</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/pivotea/">pivotea</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/python/">python</a></li>
 			<li class="widget__item">
