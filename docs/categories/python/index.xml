@@ -6,7 +6,17 @@
     <description>Recent content in python on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Thu, 13 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ドキュメントはAIに依頼しよう</title>
+      <link>https://matutosi.github.io/post/20250317/</link>
+      <pubDate>Mon, 17 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250317/</guid>
+      <description>pivoteaのPython版が一応ちゃんと動くようになった(ハズ)． 説明の文章はマダ． でも，このあたりはAIに依頼すれば結構良い感じでまとめてくるので，だいぶ楽だ． コードを書くのは割と楽しいけど，ドキュメントを書くのは結構しんどい．
+ https://github.com/matutosi/pivoteapy  </description>
+    </item>
+    
     <item>
       <title>pivoteapy</title>
       <link>https://matutosi.github.io/post/20250313/</link>
@@ -62,6 +72,16 @@ Geminiにリファクタリングを頼むのとどちらがきれいなコー�
       <guid>https://matutosi.github.io/post/20250218/</guid>
       <description>easypdfでPDFの文字列を強調表示するものを作成した．
  https://github.com/matutosi/easypdf  </description>
+    </item>
+    
+    <item>
+      <title>タイトル</title>
+      <link>https://matutosi.github.io/post/20259999/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20259999/</guid>
+      <description>文章
+ https://github.com/matutosi/  </description>
     </item>
     
   </channel>

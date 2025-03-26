@@ -6,7 +6,29 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Fri, 14 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>タイトル</title>
+      <link>https://matutosi.github.io/post/20250326/</link>
+      <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250326/</guid>
+      <description>PythonのパッケージStreamlitを使って，植生調査の組成表のCORを簡単にできるようなwebアプリを作ろうとしている． 組成表の物体検出にはDetectron2を使っていたが環境によってイントールが難しい． そこで物体検出にはYOLOを使うことにした． 比較的簡単に使えるし，Streamlitでも使えそう(ちょっと工夫は必要だったが)．
+ところで，Streamlitを使ったものはいろんなアプリがあって楽しい．
+ https://share.streamlit.io/explore?sort=most+viewed&amp;amp;category=favorites  他にも使えるものはあるのだろうが，背景を除外してくれるものは簡単に試せる．
+ https://bgremoval.streamlit.app/  </description>
+    </item>
+    
+    <item>
+      <title>ドキュメントはAIに依頼しよう</title>
+      <link>https://matutosi.github.io/post/20250317/</link>
+      <pubDate>Mon, 17 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250317/</guid>
+      <description>pivoteaのPython版が一応ちゃんと動くようになった(ハズ)． 説明の文章はマダ． でも，このあたりはAIに依頼すれば結構良い感じでまとめてくるので，だいぶ楽だ． コードを書くのは割と楽しいけど，ドキュメントを書くのは結構しんどい．
+ https://github.com/matutosi/pivoteapy  </description>
+    </item>
+    
     <item>
       <title>整理の重要性</title>
       <link>https://matutosi.github.io/post/20250314/</link>
@@ -114,6 +136,16 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
       <guid>https://matutosi.github.io/post/20230131/</guid>
       <description>web茶まめという形態素解析ができるページがある． このページは非常に便利で，テキストを貼り付けるかファイルをアップロードすれば形態素解析の結果を得ることができる． ただし，APIが整備されておらず，このページを使うには手作業での作業が必要である． そこで，Rとrvestを使って作業を自動化することにした． 自動化のための関数が一応できた． 関数のコードはまだまだ改善の余地はあるだろうが，とりあえずは動く． 本来ならば関数の作成前に検索すべきだったが，完成作成後にweb茶まめをRで使うツールが既にあるかもしれないと思った． &amp;ldquo;chamame in r&amp;quot;で検索したところ，&amp;ldquo;Analyzed data of neko by chamame - R&amp;quot;となんともドンピシャな検索結果が出てきた． あまりにドンピシャ過ぎるのでちょっとびっくりしたが，恐る恐るリンクをクリックすると，自分のページだった． そりゃそうだな． ちなみに，このページの説明は手作業で取得したデータについてである．
  web茶まめ https://chamame.ninjal.ac.jp/index.html https://github.com/matutosi/moranajp/blob/develop/R/moranajp.R https://github.com/matutosi/moranajp/blob/develop/man/web_chamame.Rd  </description>
+    </item>
+    
+    <item>
+      <title>タイトル</title>
+      <link>https://matutosi.github.io/post/20259999/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20259999/</guid>
+      <description>文章
+ https://github.com/matutosi/  </description>
     </item>
     
   </channel>
