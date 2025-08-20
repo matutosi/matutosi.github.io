@@ -73,6 +73,23 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220712/" rel="bookmark">
+			関数・ドキュメントの整理
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-12T00:00:00Z">July 12, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		植生調査アプリの基本機能のスクリプトは完成にかなり近づいた． ただ，コードを書きなぐってきたので，コードが汚すぎる． JavaScriptのコーディングスタイルに合っていないのは仕方ないとして， たぶん，不要な関数があったり，関数の引数が統一されていなかったりするあたりは整理が必要だ． どれが不要な関数かどうかはよく確認しないといけない． 一応，関数の関係性を確認するコードをRで書いたので，それを使って不要な関数を洗い出そうとするが，うまくいくかどうか． 関数の説明をちゃんと書いていないのも問題だ． このあたりは，徐々に整理する予定．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220711/" rel="bookmark">
 			CSSでレスポンシブ・レイアウト
 			</a>
@@ -233,23 +250,6 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 		しばらく前にSwiftでiOS用の植生調査アプリを作りかけていた． そこそこのところまではできてきたが，ちょっと行き詰まっていた．
 JavaScriptでいちから作り直しているが，こっちのほうが簡単にできそう． iOSだけでなくAndroidやWindowsでも使えるはず． HTML, JavaScript, cssだけで作っている． これらのファイルをローカル環境にダウンロードすれば簡単に使えるようになるはずだ． AppStoreとかGooglePlayに登録せずとも，GitHubからダウンロードできるようにすれば良いので管理も簡単だ． HTML, JavaScript, cssをちょっと勉強すれば，カスタマイズもできるだろう．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220609/" rel="bookmark">
-			JavaScriptの勉強
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-09T00:00:00Z">June 09, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		植生調査アプリを作成するのに，JavaScriptを勉強中． そういえば，学生のときにホームページを作ってJavaScriptを作っていた． 嬉しがって，ページを移動するたびに「本当に良いですか」のようなポップアップを出すスクリプトを書いていた． 知人から「鬱陶しいからやめて」と言われたのを思い出す．
-	</div>
 </article>
 </main>
 
@@ -265,6 +265,7 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250821/">だいぶ前に書いたRの記事</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250820/">書籍の紹介記事</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250716/">Rによる自動化・効率化レシピ集</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250326/">Streamlit</a></li>
@@ -274,7 +275,6 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
 			<li class="widget__item"><a class="widget__link" href="/post/20250308/">週間の縦型カレンダーを生成するアプリ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250224/">pivoteaとpivoteapy</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250220/">pivoteaとpivoteapy</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20250218/">easypdf</a></li>
 		</ul>
 	</div>
 </div>

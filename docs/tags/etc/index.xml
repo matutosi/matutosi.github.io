@@ -6,7 +6,19 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 20 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>だいぶ前に書いたRの記事</title>
+      <link>https://matutosi.github.io/post/20250821/</link>
+      <pubDate>Thu, 21 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250821/</guid>
+      <description>学会とかで「あのRの松村さんですか?」と言われたときは，研究よりもRの方を覚えられていて昔は残念な気がした． 今は全然気にしていないというか，そうだろうねという感じ．
+植生情報に書いていたRの記事を読んで参考にしたと，最近頂いたメールにあった． そこで，だいぶ前に書いたRの記事を researchmap からダウンロードできるようにした．
+ https://researchmap.jp/read0142280/misc  個別の記事
+ 植生研究でのRパッケージtidyverse使用のすすめ https://researchmap.jp/read0142280/misc/50896498 Rを使ったシミュレーション(後編) https://researchmap.jp/read0142280/misc/16859770 Rを使ったシミュレーション(前編) https://researchmap.jp/read0142280/misc/19714842 Rを使った植生資料の解析(入門編) https://researchmap.jp/read0142280/misc/9202619  </description>
+    </item>
+    
     <item>
       <title>書籍の紹介記事</title>
       <link>https://matutosi.github.io/post/20250820/</link>
