@@ -6,6 +6,7 @@ publishDir = "docs"
   # theme = "techdoc"
   # theme = "github-style"
   # theme = "learn"
+googleAnalytics = "G-LLZKW40YLH"
 
   # [outputs]
   #   home = [ "HTML"]
