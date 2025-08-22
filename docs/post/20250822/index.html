@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>clidatajp - matutosi</title>
+	<title>消える画像のスクリーンショット - matutosi</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,19 +69,35 @@
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">clidatajp</h1>
+			<h1 class="post__title">消える画像のスクリーンショット</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-26T00:00:00Z">September 26, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-08-22T00:00:00Z">August 22, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/r/" rel="category">r</a>
 	</span>
 </div></div>
 		</header>
 		<div class="content post__content clearfix">
-			<p>clidatajpというパッケージを作った．
-CRANからの返事はまだ無い．
-どこで処理が止まっているのかは，とんと見当がつかない．</p>
-<p><a href="https://github.com/matutosi/clidatajp/blob/main/READMEjp.md">https://github.com/matutosi/clidatajp/blob/main/READMEjp.md</a></p>
-<p>ウソです．普通に時間がかかっているだけだと思います．</p>
+			<p>Windowsで[PrtSc]キーを押したときに出てくる「四角形」とか「ウィンドウ」とかを選ぶウィンドウの画像を使いたいと思った．
+この画面を撮影しようとすると，消えてしまってうまくいかない．</p>
+<p>[20250822_screenshot_icon.png]</p>
+<p>そこで，screenshotパッケージで使っている screenshot.exe とcmdでのスリープを活用して撮影することにした．</p>
+<ul>
+<li><a href="https://matutosi.github.io/screenshot/">https://matutosi.github.io/screenshot/</a></li>
+</ul>
+<pre tabindex="0"><code>REM screenshot.bat
+REM   Windowsでスクリーンショット画像を撮影するときに出てくる画像のスクリーンショットを撮影する方法
+REM   普通なら，スクリーンショットを撮影するときに消えてしまうので，うまくいかない
+REM   cmd timeout でスリープさせている間に，スクリーンショットの画像を出して
+REM   screenshot パッケージの実行ファイル(screenshot.exe)でスクリーンショットをとる
+timeout 10 REM 10秒スリープ：時間が短いときは適宜増やす
+screenshot.exe screenshot_icon.png
+</code></pre><ul>
+<li>screenshot.exe のファイルのあるディレクトリに上のコードを screenshot.bat という名前で保存する</li>
+<li>screenshot.bat の起動する</li>
+<li>[PrtSc]を押してスクリーンショットを撮影したい画面にする</li>
+<li>しばし待機する</li>
+<li>screenshot_icon.png という画像が保存される</li>
+</ul>
 
 		</div>
 		<footer class="post__footer">
@@ -90,10 +106,7 @@ CRANからの返事はまだ無い．
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/r/" rel="tag">r</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/clidatajp/" rel="tag">clidatajp</a>
+			<a class="tags__link btn" href="/tags/etc/" rel="tag">etc</a>
 		</li>
 	</ul>
 </div>

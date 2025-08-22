@@ -6,7 +6,19 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>消える画像のスクリーンショット</title>
+      <link>https://matutosi.github.io/post/20250822/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250822/</guid>
+      <description>Windowsで[PrtSc]キーを押したときに出てくる「四角形」とか「ウィンドウ」とかを選ぶウィンドウの画像を使いたいと思った． この画面を撮影しようとすると，消えてしまってうまくいかない．
+[20250822_screenshot_icon.png]
+そこで，screenshotパッケージで使っている screenshot.exe とcmdでのスリープを活用して撮影することにした．
+ https://matutosi.github.io/screenshot/  REM screenshot.bat REM Windowsでスクリーンショット画像を撮影するときに出てくる画像のスクリーンショットを撮影する方法 REM 普通なら，スクリーンショットを撮影するときに消えてしまうので，うまくいかない REM cmd timeout でスリープさせている間に，スクリーンショットの画像を出して REM screenshot パッケージの実行ファイル(screenshot.exe)でスクリーンショットをとる timeout 10 REM 10秒スリープ：時間が短いときは適宜増やす screenshot.exe screenshot_icon.png  screenshot.exe のファイルのあるディレクトリに上のコードを screenshot.bat という名前で保存する screenshot.bat の起動する [PrtSc]を押してスクリーンショットを撮影したい画面にする しばし待機する screenshot_icon.png という画像が保存される  </description>
+    </item>
+    
     <item>
       <title>だいぶ前に書いたRの記事</title>
       <link>https://matutosi.github.io/post/20250821/</link>
@@ -16,7 +28,7 @@
       <description>学会とかで「あのRの松村さんですか?」と言われたときは，研究よりもRの方を覚えられていて昔は残念な気がした． 今は全然気にしていないというか，そうだろうねという感じ．
 植生情報に書いていたRの記事を読んで参考にしたと，最近頂いたメールにあった． そこで，だいぶ前に書いたRの記事を researchmap からダウンロードできるようにした．
  https://researchmap.jp/read0142280/misc  個別の記事
- 植生研究でのRパッケージtidyverse使用のすすめ https://researchmap.jp/read0142280/misc/50896498 Rを使ったシミュレーション(後編) https://researchmap.jp/read0142280/misc/16859770 Rを使ったシミュレーション(前編) https://researchmap.jp/read0142280/misc/19714842 Rを使った植生資料の解析(入門編) https://researchmap.jp/read0142280/misc/9202619  </description>
+ 植生研究でのRパッケージtidyverse使用のすすめ https://researchmap.jp/read0142280/misc/50896498/attachment_file.pdf Rを使ったシミュレーション(後編) https://researchmap.jp/read0142280/misc/16859770/attachment_file.pdf Rを使ったシミュレーション(前編) https://researchmap.jp/read0142280/misc/19714842/attachment_file.pdf Rを使った植生資料の解析(入門編) https://researchmap.jp/read0142280/misc/9202619/attachment_file.pdf  </description>
     </item>
     
     <item>

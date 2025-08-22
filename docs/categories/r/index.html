@@ -74,6 +74,26 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20250822/" rel="bookmark">
+			消える画像のスクリーンショット
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-08-22T00:00:00Z">August 22, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/r/" rel="category">r</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Windowsで[PrtSc]キーを押したときに出てくる「四角形」とか「ウィンドウ」とかを選ぶウィンドウの画像を使いたいと思った． この画面を撮影しようとすると，消えてしまってうまくいかない．
+[20250822_screenshot_icon.png]
+そこで，screenshotパッケージで使っている screenshot.exe とcmdでのスリープを活用して撮影することにした．
+ https://matutosi.github.io/screenshot/  REM screenshot.bat REM Windowsでスクリーンショット画像を撮影するときに出てくる画像のスクリーンショットを撮影する方法 REM 普通なら，スクリーンショットを撮影するときに消えてしまうので，うまくいかない REM cmd timeout でスリープさせている間に，スクリーンショットの画像を出して REM screenshot パッケージの実行ファイル(screenshot.exe)でスクリーンショットをとる timeout 10 REM 10秒スリープ：時間が短いときは適宜増やす screenshot.exe screenshot_icon.png  screenshot.exe のファイルのあるディレクトリに上のコードを screenshot.bat という名前で保存する screenshot.bat の起動する [PrtSc]を押してスクリーンショットを撮影したい画面にする しばし待機する screenshot_icon.png という画像が保存される  
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20250821/" rel="bookmark">
 			だいぶ前に書いたRの記事
 			</a>
@@ -88,7 +108,7 @@
 		学会とかで「あのRの松村さんですか?」と言われたときは，研究よりもRの方を覚えられていて昔は残念な気がした． 今は全然気にしていないというか，そうだろうねという感じ．
 植生情報に書いていたRの記事を読んで参考にしたと，最近頂いたメールにあった． そこで，だいぶ前に書いたRの記事を researchmap からダウンロードできるようにした．
  https://researchmap.jp/read0142280/misc  個別の記事
- 植生研究でのRパッケージtidyverse使用のすすめ https://researchmap.jp/read0142280/misc/50896498 Rを使ったシミュレーション(後編) https://researchmap.jp/read0142280/misc/16859770 Rを使ったシミュレーション(前編) https://researchmap.jp/read0142280/misc/19714842 Rを使った植生資料の解析(入門編) https://researchmap.jp/read0142280/misc/9202619  
+ 植生研究でのRパッケージtidyverse使用のすすめ https://researchmap.jp/read0142280/misc/50896498/attachment_file.pdf Rを使ったシミュレーション(後編) https://researchmap.jp/read0142280/misc/16859770/attachment_file.pdf Rを使ったシミュレーション(前編) https://researchmap.jp/read0142280/misc/19714842/attachment_file.pdf Rを使った植生資料の解析(入門編) https://researchmap.jp/read0142280/misc/9202619/attachment_file.pdf  
 	</div>
 </article><article class="list__item post">
 	
@@ -192,6 +212,7 @@ Geminiにリファクタリングを頼むのとどちらがきれいなコー�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250822/">消える画像のスクリーンショット</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250821/">だいぶ前に書いたRの記事</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250820/">書籍の紹介記事</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250716/">Rによる自動化・効率化レシピ集</a></li>
@@ -201,7 +222,6 @@ Geminiにリファクタリングを頼むのとどちらがきれいなコー�
 			<li class="widget__item"><a class="widget__link" href="/post/20250313/">pivoteapy</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250308/">週間の縦型カレンダーを生成するアプリ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250224/">pivoteaとpivoteapy</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20250220/">pivoteaとpivoteapy</a></li>
 		</ul>
 	</div>
 </div>
