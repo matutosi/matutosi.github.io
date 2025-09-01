@@ -84,6 +84,41 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20220801/" rel="bookmark">
+			datar
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-01T00:00:00Z">August 01, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		JavaScriptでのウェブページ操作で，ページ移動のたびにlocalStorageやsessionStorageから関数群を引き出すというトリッキーな使い方をしていた． これはこれで良いが，結局手作業が必要なのが不便だ．
+そこでSeleniumを導入して自動化を試みたものの，RSeleniumがどうもうまくいかない． Pythonならつながるので，Selenium自体やChromeDriverはちゃんと動いているようだ． 仕方ないので，Pythonで操作しはじめたが，Rのtidyverseの便利さには敵わない． と思っていたら，datarというPythonのライブラリを見つけた． できる限りtidyverseとほぼ同じようにやってしまおうというライブラリのようだ． 試しに使ってみたら，ほとんどRの書き方でできる． これは便利だ． datarに慣れるとPythonを使っているのか，Rを使っているのか分からなくなりそう． まあ，そもそも使えれば良いので，そんなことはどっちでも良い．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/20220727/" rel="bookmark">
+			sessionStorage
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-27T00:00:00Z">July 27, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		正規のHTML内に書かれた操作ではなく，デベロッパーツールのConsoleにJavaScriptを打ち込んでウェブページを色々と操作しようとしている． ページが移動すると，関数がクリアされるのが難点だ． sessionStorageを使って，関数やその他のデータを保存しておけば，なんとかなりそうだ． ただし，すごくトリッキーな使い方で，本来の使い方ではなさそう．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20220726/" rel="bookmark">
 			プログラミングと文章の構造化
 			</a>
@@ -226,41 +261,6 @@ https://qiita.com/yaju/items/bf4613393cd4ee402d17
 上のページのものをちょっと改変してJavaScript版で作ってみた． APIは自分で取得して，それを入力する必要がある(16行目)．
 https://gist.github.com/matutosi/01bbc564ba3ae249f121965dc725b649
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220622/" rel="bookmark">
-			JavaScript
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-22T00:00:00Z">June 22, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		JavaScriptはブラウザさえあれば，実行できるのが良い． GoogleChromeであれば，F12でコンソールなどが出てきて，テストやデバッグができる． オブジェクトの中身もブラウザの中身と対比して見ながら，チェックできる． コンソールの補完機能も便利だ．
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20220620/" rel="bookmark">
-			JavaScript
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-20T00:00:00Z">June 20, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		昔は，JavaScriptを「Webページを飾り付けるだけのもの」のように考えていた． 自分自身もそんな感じで使っていたときがあった． でも，JavaScriptでコードを書いていると，結構色々なことができることがわかってきた．
-jQueryとかReactとかいろんなフレームワークもあるけど，とりあえずはvanilla JavaScript(フレームワークを使わない基本的なものだけ)でやっている．
-	</div>
 </article>
 </main>
 
@@ -276,6 +276,8 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250901/">書籍の紹介記事</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20250825/">screenshotパッケージ0.9.2</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250823/">書籍と対面</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250822/">消える画像のスクリーンショット</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250821/">だいぶ前に書いたRの記事</a></li>
@@ -284,8 +286,6 @@ jQueryとかReactとかいろんなフレームワークもあるけど，とり
 			<li class="widget__item"><a class="widget__link" href="/post/20250326/">Streamlit</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250317/">ドキュメントはAIに依頼しよう</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250314/">整理の重要性</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20250313/">pivoteapy</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20250308/">週間の縦型カレンダーを生成するアプリ</a></li>
 		</ul>
 	</div>
 </div>
