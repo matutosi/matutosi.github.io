@@ -6,7 +6,17 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 01 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windowsでgrep</title>
+      <link>https://matutosi.github.io/post/20250902/</link>
+      <pubDate>Tue, 02 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250902/</guid>
+      <description>Windows11のコマンドプロンプトでgrepみたいなことをするには，findを使う． pip list | find &amp;quot;py&amp;quot;
+指がgrepになってしまうことがある． &amp;ldquo;c:/windows/system32&amp;quot;にある&amp;quot;find.exe&amp;quot;を&amp;quot;grep.exe&amp;quot;として別名で保存しておくと，grepで実行できる．</description>
+    </item>
+    
     <item>
       <title>書籍の紹介記事</title>
       <link>https://matutosi.github.io/post/20250901/</link>

@@ -84,6 +84,28 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20230808/" rel="bookmark">
+			画像位置の特定
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-08-08T00:00:00Z">August 08, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		画像認識してボタンをクリックするのを自動化するために，Rでコードを書いていたら，やはり使いものにならないぐらい遅かった． そこで，Rcppを使ってC++で書き直した． 最低でも10倍，うまくいけば50倍ぐらいになると思っていたが，3倍ぐらいの速度にしかならない． しかも，場合によっては3倍ぐらい遅いこともある． たぶん，C++の書き方が良くないのだと思うが，別の方法で実装することにした．
+同じような色だけの画像を認識するのは難しいが，通常
+1 needle_imageとhaystack_imageの各ピクセルで共通する色を抽出
+2 抽出した色のうちhaystack_imageで出現頻度の少ないものから1つ選んでneedle_imageでの位置を把握 3 needle_imageでの位置をもとに，haystack_imageの基準点(1,1)を抽出 4 出現頻度の少ないものから，順次2と3を繰り返し 5 haystack_imageの基準点が1つに絞れたら，それが探し出そうとしている画像の基準点と一致しているはず
+全ピクセルの一致を目指しているのではないので，厳密な一致はしない可能性はあるが，画像があれば必ず一致するはずだ． 厳密な一致を求めるときは，最後にチェックを入れれば良い．
+ということで，コードを書いたら結構速い速度になって，満足． 単一色の画像の中からその一部を特定するのは無理だが(このコードに限らず，そもそも無意味)，実用的な範囲では使えそうな感じだ．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20230806/" rel="bookmark">
 			コマンドラインでスクリーンショット
 			</a>
@@ -249,24 +271,6 @@ ProfileImagePath
 		OpenAIのGPT-3に登録して，ちょっと遊んでみた． 文章生成やチャットをしてくれる． 内容的にはびっくりするぐらいよくできているが，具体性が少なく，どこかから取ってきた文章みたいで，内容自体には面白みに欠ける．
 GitHubのcoplilotもちょっと試してみた． これは，プログラムをAIがサポートするもので，コメントを書くだけでコードを提案してくれてすごく便利だ． ただ，誰かが書いたコードをなぞっているという感じで，全く新しいプログラムを想像しているわけではない． そのため，自分は具体的なコードを知らないけど，たぶん誰かが既に考えてるだろうというものを書く(勉強する)のに向いているとは思う． 一方，個別の事案や全く新しいものを作り出すのはやっぱり自分の頭が必要だ．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20230131/" rel="bookmark">
-			ドンピシャな検索結果
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-01-30T00:00:00Z">January 30, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		web茶まめという形態素解析ができるページがある． このページは非常に便利で，テキストを貼り付けるかファイルをアップロードすれば形態素解析の結果を得ることができる． ただし，APIが整備されておらず，このページを使うには手作業での作業が必要である． そこで，Rとrvestを使って作業を自動化することにした． 自動化のための関数が一応できた． 関数のコードはまだまだ改善の余地はあるだろうが，とりあえずは動く． 本来ならば関数の作成前に検索すべきだったが，完成作成後にweb茶まめをRで使うツールが既にあるかもしれないと思った． &ldquo;chamame in r&quot;で検索したところ，&ldquo;Analyzed data of neko by chamame - R&quot;となんともドンピシャな検索結果が出てきた． あまりにドンピシャ過ぎるのでちょっとびっくりしたが，恐る恐るリンクをクリックすると，自分のページだった． そりゃそうだな． ちなみに，このページの説明は手作業で取得したデータについてである．
- web茶まめ https://chamame.ninjal.ac.jp/index.html https://github.com/matutosi/moranajp/blob/develop/R/moranajp.R https://github.com/matutosi/moranajp/blob/develop/man/web_chamame.Rd  
-	</div>
 </article>
 </main>
 
@@ -282,6 +286,7 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20250902/">Windowsでgrep</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250901/">書籍の紹介記事</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250825/">screenshotパッケージ0.9.2</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250823/">書籍と対面</a></li>
@@ -291,7 +296,6 @@ GitHubのcoplilotもちょっと試してみた． これは，プログラム�
 			<li class="widget__item"><a class="widget__link" href="/post/20250716/">Rによる自動化・効率化レシピ集</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250326/">Streamlit</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250317/">ドキュメントはAIに依頼しよう</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20250314/">整理の重要性</a></li>
 		</ul>
 	</div>
 </div>
