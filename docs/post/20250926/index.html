@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ドンピシャな検索結果 - matutosi</title>
+	<title>PDFから表を取り出す - matutosi</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,30 +80,25 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">ドンピシャな検索結果</h1>
+			<h1 class="post__title">PDFから表を取り出す</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-01-30T00:00:00Z">January 30, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-09-26T00:00:00Z">September 26, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/python/" rel="category">python</a>, <a class="meta__link" href="/categories/r/" rel="category">r</a>
 	</span>
 </div></div>
 		</header>
 		<div class="content post__content clearfix">
-			<p>web茶まめという形態素解析ができるページがある．
-このページは非常に便利で，テキストを貼り付けるかファイルをアップロードすれば形態素解析の結果を得ることができる．
-ただし，APIが整備されておらず，このページを使うには手作業での作業が必要である．
-そこで，Rとrvestを使って作業を自動化することにした．
-自動化のための関数が一応できた．
-関数のコードはまだまだ改善の余地はあるだろうが，とりあえずは動く．
-本来ならば関数の作成前に検索すべきだったが，完成作成後にweb茶まめをRで使うツールが既にあるかもしれないと思った．
-&ldquo;chamame in r&quot;で検索したところ，&ldquo;Analyzed data of neko by chamame - R&quot;となんともドンピシャな検索結果が出てきた．
-あまりにドンピシャ過ぎるのでちょっとびっくりしたが，恐る恐るリンクをクリックすると，自分のページだった．
-そりゃそうだな．
-ちなみに，このページの説明は手作業で取得したデータについてである．</p>
-<ul>
-<li>web茶まめ <a href="https://chamame.ninjal.ac.jp/index.html">https://chamame.ninjal.ac.jp/index.html</a></li>
-<li><a href="https://github.com/matutosi/moranajp/blob/develop/R/moranajp.R">https://github.com/matutosi/moranajp/blob/develop/R/moranajp.R</a></li>
-<li><a href="https://github.com/matutosi/moranajp/blob/develop/man/web_chamame.Rd">https://github.com/matutosi/moranajp/blob/develop/man/web_chamame.Rd</a></li>
-</ul>
+			<p>PDFからテキストを取り出すのは簡単にできる．
+でも，表形式になっているデータをそのまま表として取り出すのって結構難しい．
+HTMLのように明示的に「ここが表です」って書いていればわかりやすいが，PDFではそうではない．
+どこが表なのかを見極めて，そこから正しく行と列を認識しなければならないからだ．</p>
+<p><a href="https://github.com/tabulapdf/tabula">tabula</a>はPDFから表をうまく取り出せるようだ．
+ただし，Javaが必要．</p>
+<p>Rのパッケージである<a href="https://docs.ropensci.org/tabulapdf/">tabulapdf</a>はRからtabulaを使えるようにするものみたい．
+なのでrJavaも必要だ．</p>
+<p>Pythonでは<a href="https://pypi.org/project/pdfplumber/#extracting-tables">pdfplumber</a>が良さそう．
+これは
+<a href="https://trepo.tuni.fi/bitstream/handle/123456789/21520/Nurminen.pdf?sequence=3">Anssi Nurminen&rsquo;s さんの修士論文</a>とtablaを参考にしているが，独自にコードを書いているっぽい．</p>
 
 		</div>
 		<footer class="post__footer">
