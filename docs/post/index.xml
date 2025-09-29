@@ -6,7 +6,17 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>はじめてのPull request</title>
+      <link>https://matutosi.github.io/post/20250929/</link>
+      <pubDate>Mon, 29 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20250929/</guid>
+      <description>GitHubからメールが届いた． R自動化本のサポートページへの連絡(issues)かと思ったら違った． だいぶ前に作ったRの日本語の形態素解析のパッケージmoranajp関連だった． 「purrrがバージョンアップするので，コードを変更するように」って内容． 「ふーん」って思っていたが，よくよく見るとHadley Wickham氏からのものだ． これはびっくりした． purrrを使っているパッケージは多いだろうから，ある程度自動化して送っている気がするものの，それでも嬉しい． ただ，Pull requestをもらうのがはじめてなので，どう対応したら良いのかわからない． 忘れないうちにやっておこう．
+ https://github.com/matutosi/moranajp/pull/1  </description>
+    </item>
+    
     <item>
       <title>PDFから表を取り出す</title>
       <link>https://matutosi.github.io/post/20250926/</link>
@@ -640,6 +650,7 @@ JavaScriptでいちから作り直しているが，こっちのほうが簡単�
       
       <guid>https://matutosi.github.io/post/20259999/</guid>
       <description>文章
+文字列
  https://github.com/matutosi/  </description>
     </item>
     
