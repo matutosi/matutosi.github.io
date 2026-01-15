@@ -6,7 +6,17 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Thu, 15 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VScodeの不具合</title>
+      <link>https://matutosi.github.io/post/20260116/</link>
+      <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260116/</guid>
+      <description>VScodeが急に起動しなくなった． ショートカットがおかしくなっているのかと思ったが，大丈夫だった． ネットで調べると，アップデートのときに不具合が発生することがあるらしい． 以下を参考にして &amp;ldquo;_&amp;rdquo; のディレクトリのファイルを移動したら起動するようになった．
+ https://qiita.com/Taku_Taku_Taku/items/3c8f944a6cd4f12de7f0  </description>
+    </item>
+    
     <item>
       <title>正月</title>
       <link>https://matutosi.github.io/post/20260115/</link>

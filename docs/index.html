@@ -84,6 +84,24 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20260116/" rel="bookmark">
+			VScodeの不具合
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-01-16T00:00:00Z">January 16, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		VScodeが急に起動しなくなった． ショートカットがおかしくなっているのかと思ったが，大丈夫だった． ネットで調べると，アップデートのときに不具合が発生することがあるらしい． 以下を参考にして &ldquo;_&rdquo; のディレクトリのファイルを移動したら起動するようになった．
+ https://qiita.com/Taku_Taku_Taku/items/3c8f944a6cd4f12de7f0  
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20260115/" rel="bookmark">
 			正月
 			</a>
@@ -243,25 +261,6 @@ Pythonではpdfplumberが良さそう． これは Anssi Nurminen&rsquo;s さん
 		印刷できた書籍が出版社から送られてきた． ゲラでは何度も見てきたが，カバーがついたものと対面するのは，やっぱり嬉しい．
  森北出版 https://www.morikita.co.jp/books/mid/085831 note記事(はじめに) https://note.com/morikita/n/n91cc7dc150af note記事(インタビュー) https://note.com/morikita/n/nae210c70d90c Amazon https://www.amazon.co.jp/dp/4627858310/  
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20250822/" rel="bookmark">
-			消える画像のスクリーンショット
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-08-22T00:00:00Z">August 22, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/r/" rel="category">r</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Windowsで[PrtSc]キーを押したときに出てくる「四角形」とか「ウィンドウ」とかを選ぶウィンドウの画像を使いたいと思った． この画面を撮影しようとすると，消えてしまってうまくいかない．
-そこで，screenshotパッケージで使っている screenshot.exe とcmdでのスリープを活用して撮影することにした．
- https://matutosi.github.io/screenshot/  REM screenshot.bat REM Windowsでスクリーンショット画像を撮影するときに出てくる画像のスクリーンショットを撮影する方法 REM 普通なら，スクリーンショットを撮影するときに消えてしまうので，うまくいかない REM cmd timeout でスリープさせている間に，スクリーンショットの画像を出して REM screenshot パッケージの実行ファイル(screenshot.exe)でスクリーンショットをとる timeout 10 REM 10秒スリープ：時間が短いときは適宜増やす screenshot.exe screenshot_icon.png  screenshot.exe のファイルのあるディレクトリに上のコードを screenshot.bat という名前で保存する screenshot.bat の起動する [PrtSc]を押してスクリーンショットを撮影したい画面にする しばし待機する screenshot_icon.png という画像が保存される  
-	</div>
 </article>
 </main>
 
@@ -276,6 +275,7 @@ Pythonではpdfplumberが良さそう． これは Anssi Nurminen&rsquo;s さん
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20260116/">VScodeの不具合</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260115/">正月</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20251220/">年末年始</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250929/">はじめてのPull request</a></li>
@@ -285,7 +285,6 @@ Pythonではpdfplumberが良さそう． これは Anssi Nurminen&rsquo;s さん
 			<li class="widget__item"><a class="widget__link" href="/post/20250901/">書籍の紹介記事</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250825/">screenshotパッケージ0.9.2</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250823/">書籍と対面</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20250822/">消える画像のスクリーンショット</a></li>
 		</ul>
 	</div>
 </div>
