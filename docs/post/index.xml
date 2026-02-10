@@ -6,7 +6,16 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 09 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude code</title>
+      <link>https://matutosi.github.io/post/20260211/</link>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260211/</guid>
+      <description>Claude codeを使い始めた． 噂どおりすごい． 一発で不具合のないものができる訳では無いが，労力がかなり削減できる． ファイルごとでバラバラだったものが統一できるのも嬉しい．</description>
+    </item>
+    
     <item>
       <title>R自動化本の初評価</title>
       <link>https://matutosi.github.io/post/20260209/</link>
