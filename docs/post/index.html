@@ -85,6 +85,23 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20260214/" rel="bookmark">
+			テスト
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-14T00:00:00Z">February 14, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		コード例 
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20260211/" rel="bookmark">
 			Claude code
 			</a>
@@ -240,26 +257,6 @@ if (!doNotTrack) {
 		GitHubからメールが届いた． R自動化本のサポートページへの連絡(issues)かと思ったら違った． だいぶ前に作ったRの日本語の形態素解析のパッケージmoranajp関連だった． 「purrrがバージョンアップするので，コードを変更するように」って内容． 「ふーん」って思っていたが，よくよく見るとHadley Wickham氏からのものだ． これはびっくりした． purrrを使っているパッケージは多いだろうから，ある程度自動化して送っている気がするものの，それでも嬉しい． ただ，Pull requestをもらうのがはじめてなので，どう対応したら良いのかわからない． 忘れないうちにやっておこう．
  https://github.com/matutosi/moranajp/pull/1  
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20250926/" rel="bookmark">
-			PDFから表を取り出す
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-09-26T00:00:00Z">September 26, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/python/" rel="category">python</a>, <a class="meta__link" href="/categories/r/" rel="category">r</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		PDFからテキストを取り出すのは簡単にできる． でも，表形式になっているデータをそのまま表として取り出すのって結構難しい． HTMLのように明示的に「ここが表です」って書いていればわかりやすいが，PDFではそうではない． どこが表なのかを見極めて，そこから正しく行と列を認識しなければならないからだ．
-tabulaはPDFから表をうまく取り出せるようだ． ただし，Javaが必要．
-RのパッケージであるtabulapdfはRからtabulaを使えるようにするものみたい． なのでrJavaも必要だ．
-Pythonではpdfplumberが良さそう． これは Anssi Nurminen&rsquo;s さんの修士論文とtablaを参考にしているが，独自にコードを書いているっぽい．
-	</div>
 </article>
 </main>
 
@@ -275,6 +272,7 @@ Pythonではpdfplumberが良さそう． これは Anssi Nurminen&rsquo;s さん
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20260214/">テスト</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260211/">Claude code</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260209/">R自動化本の初評価</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260130/">R自動化本のその後</a></li>
@@ -284,7 +282,6 @@ Pythonではpdfplumberが良さそう． これは Anssi Nurminen&rsquo;s さん
 			<li class="widget__item"><a class="widget__link" href="/post/20260115/">正月</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20251220/">年末年始</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20250929/">はじめてのPull request</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20250926/">PDFから表を取り出す</a></li>
 		</ul>
 	</div>
 </div>
