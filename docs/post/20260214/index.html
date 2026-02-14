@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>テスト - matutosi</title>
+	<title>Nextcloud &#43; Tailscaleで個人のオンラインストレージ - matutosi</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +80,7 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">テスト</h1>
+			<h1 class="post__title">Nextcloud &#43; Tailscaleで個人のオンラインストレージ</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-14T00:00:00Z">February 14, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
@@ -88,8 +88,63 @@ if (!doNotTrack) {
 </div></div>
 		</header>
 		<div class="content post__content clearfix">
-			<pre tabindex="0"><code>コード例
-</code></pre>
+			<p>Nextcloud + Tailscale を組み合わせることで，DropBoxのようなオンラインストレージを自分でつくれるようだ．</p>
+<ul>
+<li>Nextcloud：オンラインストレージ</li>
+<li>Tailscale：VPN接続</li>
+</ul>
+<h1 id="ホスト側の設定linuxのとき">ホスト側の設定(Linuxのとき)</h1>
+<p>Nextcloudのインストール方法は色々あるようだが，snapでのインストールが簡単みたい．
+snapがインストールされていないときは，次を実行する．</p>
+<pre tabindex="0"><code>sudo apt update
+sudo install snapd
+</code></pre><p>Nextcloudをインストールする．</p>
+<pre tabindex="0"><code>sudo snap install nextcloud
+</code></pre><p>ちょっと時間がかかるので待機する．</p>
+<p>インストールが終わったら，Nextcloudが動いているか確認する．</p>
+<pre tabindex="0"><code>snap services
+</code></pre><p>ifconfigが入っていないときは，インストールしておく</p>
+<pre tabindex="0"><code>sudo apt install net-tools
+</code></pre><p>ifconfigでIPアドレスを調べる．
+wlan0などの次の行の「inet 192.168.xxx.xxx」を確認しておく．</p>
+<pre tabindex="0"><code>ifconfig
+</code></pre><p>Tailscaleのインストールして，起動する．</p>
+<pre tabindex="0"><code>curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up
+</code></pre><p>GitHubやGoogleなどのアカウントでサインインする．</p>
+<p>Tailscaleの設定する．</p>
+<ul>
+<li>Tailscaleの管理コンソールから、「DNS」設定でMagicDNSを有効にします。</li>
+<li>「HTTPS Certificates」から機能（HTTPS）を有効にし、Tailscaleのドメイン名（例: node-name.domain-alias.ts.net）を取得します。
+Nextcloudの信頼できるドメイン設定</li>
+</ul>
+<p>その他設定．</p>
+<p>&lt;machine_name&gt;と<!-- raw HTML omitted -->のところは，tailscaleのDNSのところに表示される内容．</p>
+<pre tabindex="0"><code>sudo tailscale serve --bg --https=443 80
+sudo nextcloud.occ config:system:set overwriteprotocol --value &#39;https&#39;
+sudo nextcloud.occ config:system:set trusted_domains 1 --value=&lt;machine_name&gt;.tail&lt;xxxxxxx&gt;.ts.net
+</code></pre><p>上の最後の行目は，/var/snap/nextcloud/current/nextcloud/config/config.php を編集するのと同じ．</p>
+<p>次のコマンドを表示して，接続のためのURLを確認する．</p>
+<pre tabindex="0"><code>tailscale serve status
+</code></pre><p>出力されたURLで接続できる．</p>
+<h1 id="クライアント側の設定">クライアント側の設定</h1>
+<p>Tailscaleは，以下からインストールする．</p>
+<ul>
+<li><a href="https://tailscale.com/download">https://tailscale.com/download</a></li>
+</ul>
+<p>ホスト側と同じアカウントでTailscaleにサインインする．</p>
+<p>Nextcloudへの接続は，ホスト側の設定の最後で出力されたURLで可能である．</p>
+<p>未実行だが，Nextcloudは，以下の「Nextcloud Files」からアプリをインストールできるようだ．</p>
+<ul>
+<li><a href="https://nextcloud.com/install/#desktop-files">https://nextcloud.com/install/#desktop-files</a></li>
+</ul>
+<h1 id="参考">参考</h1>
+<ul>
+<li><a href="https://qiita.com/hiro2do/items/f8eed40acab713f20693">https://qiita.com/hiro2do/items/f8eed40acab713f20693</a></li>
+<li><a href="https://zenn.dev/yugure/articles/d004bc61ca1530">https://zenn.dev/yugure/articles/d004bc61ca1530</a></li>
+<li><a href="https://www.youtube.com/watch?app=desktop&amp;v=jOYG10CvZZA&amp;pp=ugUHEgVlbi1VUw%3D%3D">https://www.youtube.com/watch?app=desktop&amp;v=jOYG10CvZZA&amp;pp=ugUHEgVlbi1VUw%3D%3D</a></li>
+</ul>
+
 		</div>
 		<footer class="post__footer">
 			
@@ -114,7 +169,7 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/20260214/">テスト</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20260214/">Nextcloud &#43; Tailscaleで個人のオンラインストレージ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260211/">Claude code</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260209/">R自動化本の初評価</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260130/">R自動化本のその後</a></li>

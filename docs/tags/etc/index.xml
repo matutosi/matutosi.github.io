@@ -8,12 +8,24 @@
     <language>jp-jp</language>
     <lastBuildDate>Sat, 14 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>テスト</title>
+      <title>Nextcloud &#43; Tailscaleで個人のオンラインストレージ</title>
       <link>https://matutosi.github.io/post/20260214/</link>
       <pubDate>Sat, 14 Feb 2026 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/post/20260214/</guid>
-      <description>コード例 </description>
+      <description>Nextcloud + Tailscale を組み合わせることで，DropBoxのようなオンラインストレージを自分でつくれるようだ．
+ Nextcloud：オンラインストレージ Tailscale：VPN接続  ホスト側の設定(Linuxのとき) Nextcloudのインストール方法は色々あるようだが，snapでのインストールが簡単みたい． snapがインストールされていないときは，次を実行する．
+sudo apt update sudo install snapd Nextcloudをインストールする．
+sudo snap install nextcloud ちょっと時間がかかるので待機する．
+インストールが終わったら，Nextcloudが動いているか確認する．
+snap services ifconfigが入っていないときは，インストールしておく
+sudo apt install net-tools ifconfigでIPアドレスを調べる． wlan0などの次の行の「inet 192.168.xxx.xxx」を確認しておく．
+ifconfig Tailscaleのインストールして，起動する．
+curl -fsSL https://tailscale.com/install.sh | sh sudo tailscale up GitHubやGoogleなどのアカウントでサインインする．
+Tailscaleの設定する．
+ Tailscaleの管理コンソールから、「DNS」設定でMagicDNSを有効にします。 「HTTPS Certificates」から機能（HTTPS）を有効にし、Tailscaleのドメイン名（例: node-name.domain-alias.ts.net）を取得します。 Nextcloudの信頼できるドメイン設定  その他設定．
+&amp;lt;machine_name&amp;gt;とのところは，tailscaleのDNSのところに表示される内容．
+sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set overwriteprotocol --value &amp;#39;https&amp;#39; sudo nextcloud.occ config:system:set trusted_domains 1 --value=&amp;lt;machine_name&amp;gt;.</description>
     </item>
     
     <item>

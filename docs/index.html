@@ -85,7 +85,7 @@ if (!doNotTrack) {
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/post/20260214/" rel="bookmark">
-			テスト
+			Nextcloud &#43; Tailscaleで個人のオンラインストレージ
 			</a>
 		</h2>
 		<div class="list__meta meta">
@@ -95,7 +95,19 @@ if (!doNotTrack) {
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		コード例 
+		Nextcloud + Tailscale を組み合わせることで，DropBoxのようなオンラインストレージを自分でつくれるようだ．
+ Nextcloud：オンラインストレージ Tailscale：VPN接続  ホスト側の設定(Linuxのとき) Nextcloudのインストール方法は色々あるようだが，snapでのインストールが簡単みたい． snapがインストールされていないときは，次を実行する．
+sudo apt update sudo install snapd Nextcloudをインストールする．
+sudo snap install nextcloud ちょっと時間がかかるので待機する．
+インストールが終わったら，Nextcloudが動いているか確認する．
+snap services ifconfigが入っていないときは，インストールしておく
+sudo apt install net-tools ifconfigでIPアドレスを調べる． wlan0などの次の行の「inet 192.168.xxx.xxx」を確認しておく．
+ifconfig Tailscaleのインストールして，起動する．
+curl -fsSL https://tailscale.com/install.sh | sh sudo tailscale up GitHubやGoogleなどのアカウントでサインインする．
+Tailscaleの設定する．
+ Tailscaleの管理コンソールから、「DNS」設定でMagicDNSを有効にします。 「HTTPS Certificates」から機能（HTTPS）を有効にし、Tailscaleのドメイン名（例: node-name.domain-alias.ts.net）を取得します。 Nextcloudの信頼できるドメイン設定  その他設定．
+&lt;machine_name&gt;とのところは，tailscaleのDNSのところに表示される内容．
+sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set overwriteprotocol --value &#39;https&#39; sudo nextcloud.occ config:system:set trusted_domains 1 --value=&lt;machine_name&gt;.
 	</div>
 </article><article class="list__item post">
 	
@@ -270,7 +282,7 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/20260214/">テスト</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20260214/">Nextcloud &#43; Tailscaleで個人のオンラインストレージ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260211/">Claude code</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260209/">R自動化本の初評価</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260130/">R自動化本のその後</a></li>
