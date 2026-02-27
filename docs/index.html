@@ -134,7 +134,7 @@ if (!doNotTrack) {
 		概要 Nextcloud + Tailscale を組み合わせることで，DropBoxのようなオンラインストレージを自分でつくれるようだ．
  Nextcloud：オンラインストレージ Tailscale：VPN接続  まだちゃんとは使っていないが，動くようにはなった． ちゃんと使うときは別のPCにインストールするので，そのためのメモ．
 ホスト側の設定(Linuxのとき) Nextcloudのインストール方法は色々あるようだが，snapでのインストールが簡単みたい． snapがインストールされていないときは，次を実行する．
-sudo apt update sudo install snapd Nextcloudをインストールする．
+sudo apt update sudo apt install snapd Nextcloudをインストールする．
 sudo snap install nextcloud ちょっと時間がかかるので待機する．
 インストールが終わったら，Nextcloudが動いているか確認する．
 snap services ifconfigが入っていないときは，インストールしておく
