@@ -6,7 +6,17 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Win11のセットアップでMSアカウントを回避</title>
+      <link>https://matutosi.github.io/post/20260302/</link>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260302/</guid>
+      <description>Win11のセットアップ時にMicrosoftアカウントが求められる． 回避するには，国または地域の選択からMicrosoftアカウント設定のときに，コマンドプロンプトで以下を実行する．
+start ms-cxh:localonly  https://www.youtube.com/watch?v=r0umX3bwAzo&amp;amp;t=57s  </description>
+    </item>
+    
     <item>
       <title>香川は海が北</title>
       <link>https://matutosi.github.io/post/20260301/</link>
