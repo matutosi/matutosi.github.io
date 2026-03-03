@@ -115,18 +115,18 @@ wlan0などの次の行の「inet 192.168.xxx.xxx」を確認しておく．</p>
 <pre tabindex="0"><code>curl -fsSL https://tailscale.com/install.sh | sh
 sudo tailscale up
 </code></pre><p>GitHubやGoogleなどのアカウントでサインインする．</p>
-<p>Tailscaleの設定する．</p>
+<p>Tailscaleの管理画面での設定する．</p>
 <ul>
-<li>Tailscaleの管理コンソールから、「DNS」設定でMagicDNSを有効にします。</li>
-<li>「HTTPS Certificates」から機能（HTTPS）を有効にし、Tailscaleのドメイン名（例: node-name.domain-alias.ts.net）を取得します。
-Nextcloudの信頼できるドメイン設定</li>
+<li>「DNS」タブでMagicDNSを有効にする</li>
+<li>「HTTPS Certificates」でHTTPSを有効にする</li>
 </ul>
-<p>その他設定．</p>
-<p>&lt;machine_name&gt;と<!-- raw HTML omitted -->のところは，tailscaleのDNSのところに表示される内容．</p>
+<p>Tailscaleのドメイン名（例: &lt;machine_name&gt;.tail<!-- raw HTML omitted -->.ts.net）の取得</p>
+<p>&lt;machine_name&gt;と<!-- raw HTML omitted -->は，tailscaleのMachinesとDNSに表示される内容と同じ．</p>
+<p>Nextcloudの信頼できるドメイン設定とその他設定．</p>
 <pre tabindex="0"><code>sudo tailscale serve --bg --https=443 80
 sudo nextcloud.occ config:system:set overwriteprotocol --value &#39;https&#39;
 sudo nextcloud.occ config:system:set trusted_domains 1 --value=&lt;machine_name&gt;.tail&lt;xxxxxxx&gt;.ts.net
-</code></pre><p>上の最後の行目は，/var/snap/nextcloud/current/nextcloud/config/config.php を編集するのと同じ．</p>
+</code></pre><p>上の最後の行目は，/var/snap/nextcloud/current/nextcloud/config/config.php を編集するのと同じはず．</p>
 <p>次のコマンドを表示して，接続のためのURLを確認する．</p>
 <pre tabindex="0"><code>tailscale serve status
 </code></pre><p>出力されたURLで接続できる．</p>
