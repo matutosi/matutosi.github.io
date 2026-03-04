@@ -6,7 +6,18 @@
     <description>Recent content on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AIでの画像生成：痒いところに手が届かない</title>
+      <link>https://matutosi.github.io/post/20260305/</link>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260305/</guid>
+      <description>AIで流れ図やイラストなどの画像を生成させている． 大まかには指示どおりに生成してくれる．
+1回で完璧なものはできないので，修正箇所を指示する． すぐに修正してくれることが多いが，指示の仕方が悪いのだどうが，うまく修正できない点がでてくる． 人間なら痒いところに手が届くが，AIはそうはいかない．
+なお，変更してほしくない箇所も勝手に修正してしまうことがあるが，「他はそのまま」とすれば問題ない．</description>
+    </item>
+    
     <item>
       <title>Win11のセットアップでMSアカウントを回避</title>
       <link>https://matutosi.github.io/post/20260302/</link>
