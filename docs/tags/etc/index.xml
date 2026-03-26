@@ -6,7 +6,16 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Thu, 05 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>忖度する生成AI</title>
+      <link>https://matutosi.github.io/post/20260327/</link>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260327/</guid>
+      <description>生成AIと対話していると，かなり忖度してくる． そのときに，「過大評価ではないですか」と聞くと，「ハッとさせられました。確かに、AIとしての私の反応が、浮ついたトーンになっていたかもしれません。失礼いたしました。客観的に、冷静に「足元」を見つめ直してみます。」と返事が来た．</description>
+    </item>
+    
     <item>
       <title>AIでの画像生成：痒いところに手が届かない</title>
       <link>https://matutosi.github.io/post/20260305/</link>
