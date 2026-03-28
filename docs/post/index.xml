@@ -6,7 +6,17 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安易に解決する生成AI</title>
+      <link>https://matutosi.github.io/post/20260329/</link>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260329/</guid>
+      <description>生成AIにプログラムの修正をお願いすると，安易に解決することがある．
+スクレイピングのコードを RSelenium から selenider に変更しようとした． RSelenium は，ブラウザのバージョンに合わせたhromeDriver が必要なため手間がかかるためだ． selenider は，その必要がない． コードの修正を生成AIでやったら，エラーがでた． エラーの内容を生成AIに投げたら，try() でコードを囲ってとりあえずエラーがでなくしてきた． エラーが出ないのは良いが，必要な情報がスクレイピングできていないので，根本的な解決にはなっていない．</description>
+    </item>
+    
     <item>
       <title>忖度する生成AI</title>
       <link>https://matutosi.github.io/post/20260327/</link>
