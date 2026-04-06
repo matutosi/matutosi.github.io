@@ -84,6 +84,25 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20260407/" rel="bookmark">
+			キーボードのカスタマイズ
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-04-07T00:00:00Z">April 07, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Windowsでキーボードをカスタマイズする方法の1つにレジストリを使う方法がある． Ctrl を小指で押そうとすると，つりそうになるので，Caps を Ctrl として使っている． その他色々と変更していて，変更内容は以下のとおり．
+Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &#34;Scancode Map&#34;=- &#34;Scancode Map&#34;=hex:\ 00,00,00,00,00,00,00,00,\ 09,00,00,00,\	9個変換(最終行のターミネーターを含む) 5b,e0,7b,00,\	Windows	&lt;- 無変換 7b,00,70,00,\	無変換	&lt;- カタカナ/ひらがな 1D,00,38,e0,\	L-Ctrl	&lt;- Alt(右) 1D,00,3A,00,\	L-Ctrl	&lt;- Caps 47,e0,49,e0,\	Home	&lt;- PgUp 4f,e0,51,e0,\	End	&lt;- PgDn 49,e0,47,e0,\	PgUp	&lt;- Home 51,e0,4f,e0,\	PgDn	&lt;- End 00,00,00,00 以下を実行すると，レジストリにキーボードの変更が
+ 次の内容をkeyboard.reg 等のファイル名で保存する ダブルクリックする 再起動する  Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &#34;Scancode Map&#34;=- &#34;Scancode Map&#34;=hex:\ 00,00,00,00,00,00,00,00,\ 09,00,00,00,\ 5b,e0,7b,00,\ 7b,00,70,00,\ 1D,00,38,e0,\ 1D,00,3A,00,\ 47,e0,49,e0,\ 4f,e0,51,e0,\ 49,e0,47,e0,\ 51,e0,4f,e0,\ 00,00,00,00 キーボードをもとに戻すには，以下の内容を実行する．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20260329/" rel="bookmark">
 			安易に解決する生成AI
 			</a>
@@ -254,24 +273,6 @@ sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set ov
 	<div class="content list__excerpt post__content clearfix">
 		Claude codeを使い始めた． 噂どおりすごい． 一発で不具合のないものができる訳では無いが，労力がかなり削減できる． ファイルごとでバラバラだったものが統一できるのも嬉しい．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20260209/" rel="bookmark">
-			R自動化本の初評価
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-09T00:00:00Z">February 09, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		「Rによる自動化・効率化レシピ集」にはじめて評価がついた．嬉しい．コメントがあれば，さらに嬉しい．
- https://www.amazon.co.jp/dp/4627858310/  
-	</div>
 </article>
 </main>
 
@@ -286,6 +287,7 @@ sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set ov
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20260407/">キーボードのカスタマイズ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260329/">安易に解決する生成AI</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260327/">忖度する生成AI</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260305/">AIでの画像生成：痒いところに手が届かない</a></li>
@@ -295,7 +297,6 @@ sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set ov
 			<li class="widget__item"><a class="widget__link" href="/post/20260220/">サラバンド</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260214/">Nextcloud &#43; Tailscaleで個人のオンラインストレージ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260211/">Claude code</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20260209/">R自動化本の初評価</a></li>
 		</ul>
 	</div>
 </div>
@@ -323,7 +324,6 @@ sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set ov
 		<a class="widget-taglist__link widget__link btn" href="/tags/clidatajp/" title="clidatajp">clidatajp</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/etc/" title="etc">etc</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/grep/" title="grep">grep</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="hugo">hugo</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="javascript">javascript</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/programing/" title="programing">programing</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="python">python</a>

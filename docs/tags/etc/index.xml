@@ -6,7 +6,18 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Sun, 29 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>キーボードのカスタマイズ</title>
+      <link>https://matutosi.github.io/post/20260407/</link>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260407/</guid>
+      <description>Windowsでキーボードをカスタマイズする方法の1つにレジストリを使う方法がある． Ctrl を小指で押そうとすると，つりそうになるので，Caps を Ctrl として使っている． その他色々と変更していて，変更内容は以下のとおり．
+Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &amp;#34;Scancode Map&amp;#34;=- &amp;#34;Scancode Map&amp;#34;=hex:\ 00,00,00,00,00,00,00,00,\ 09,00,00,00,\	9個変換(最終行のターミネーターを含む) 5b,e0,7b,00,\	Windows	&amp;lt;- 無変換 7b,00,70,00,\	無変換	&amp;lt;- カタカナ/ひらがな 1D,00,38,e0,\	L-Ctrl	&amp;lt;- Alt(右) 1D,00,3A,00,\	L-Ctrl	&amp;lt;- Caps 47,e0,49,e0,\	Home	&amp;lt;- PgUp 4f,e0,51,e0,\	End	&amp;lt;- PgDn 49,e0,47,e0,\	PgUp	&amp;lt;- Home 51,e0,4f,e0,\	PgDn	&amp;lt;- End 00,00,00,00 以下を実行すると，レジストリにキーボードの変更が
+ 次の内容をkeyboard.reg 等のファイル名で保存する ダブルクリックする 再起動する  Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &amp;#34;Scancode Map&amp;#34;=- &amp;#34;Scancode Map&amp;#34;=hex:\ 00,00,00,00,00,00,00,00,\ 09,00,00,00,\ 5b,e0,7b,00,\ 7b,00,70,00,\ 1D,00,38,e0,\ 1D,00,3A,00,\ 47,e0,49,e0,\ 4f,e0,51,e0,\ 49,e0,47,e0,\ 51,e0,4f,e0,\ 00,00,00,00 キーボードをもとに戻すには，以下の内容を実行する．</description>
+    </item>
+    
     <item>
       <title>安易に解決する生成AI</title>
       <link>https://matutosi.github.io/post/20260329/</link>

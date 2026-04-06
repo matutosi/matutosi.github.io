@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>プレミアム桔梗信玄餅クレープ - matutosi</title>
+	<title>キーボードのカスタマイズ - matutosi</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,20 +80,66 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">プレミアム桔梗信玄餅クレープ</h1>
+			<h1 class="post__title">キーボードのカスタマイズ</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-21T00:00:00Z">February 21, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-04-07T00:00:00Z">April 07, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
 	</span>
 </div></div>
 		</header>
 		<div class="content post__content clearfix">
-			<p>桔梗信玄餅のアイスをクレープで包んだお菓子で，色々と増量らしい．
-高速道路のSAで売っていて，すごく美味しかった．</p>
-<ul>
-<li><a href="https://www.kikyoushingenmochi.com/i/80298">https://www.kikyoushingenmochi.com/i/80298</a></li>
-</ul>
+			<p>Windowsでキーボードをカスタマイズする方法の1つにレジストリを使う方法がある．
+Ctrl を小指で押そうとすると，つりそうになるので，Caps を Ctrl として使っている．
+その他色々と変更していて，変更内容は以下のとおり．</p>
+<pre tabindex="0"><code>Windows Registry Editor Version 5.00
 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+&#34;Scancode Map&#34;=-
+&#34;Scancode Map&#34;=hex:\
+00,00,00,00,00,00,00,00,\
+09,00,00,00,\		9個変換(最終行のターミネーターを含む)
+5b,e0,7b,00,\		Windows			&lt;- 無変換
+7b,00,70,00,\		無変換			&lt;- カタカナ/ひらがな
+1D,00,38,e0,\		L-Ctrl			&lt;- Alt(右)
+1D,00,3A,00,\		L-Ctrl			&lt;- Caps
+47,e0,49,e0,\		Home			&lt;- PgUp
+4f,e0,51,e0,\		End				&lt;- PgDn
+49,e0,47,e0,\		PgUp			&lt;- Home
+51,e0,4f,e0,\		PgDn			&lt;- End
+00,00,00,00
+</code></pre><p>以下を実行すると，レジストリにキーボードの変更が</p>
+<ul>
+<li>次の内容をkeyboard.reg 等のファイル名で保存する</li>
+<li>ダブルクリックする</li>
+<li>再起動する</li>
+</ul>
+<pre tabindex="0"><code>Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+&#34;Scancode Map&#34;=-
+&#34;Scancode Map&#34;=hex:\
+00,00,00,00,00,00,00,00,\
+09,00,00,00,\
+5b,e0,7b,00,\
+7b,00,70,00,\
+1D,00,38,e0,\
+1D,00,3A,00,\
+47,e0,49,e0,\
+4f,e0,51,e0,\
+49,e0,47,e0,\
+51,e0,4f,e0,\
+00,00,00,00
+</code></pre><p>キーボードをもとに戻すには，以下の内容を実行する．</p>
+<ul>
+<li>次の内容をkeyboard.reg 等のファイル名で保存する</li>
+<li>ダブルクリックする</li>
+<li>再起動する</li>
+</ul>
+<pre tabindex="0"><code>Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+&#34;Scancode Map&#34;=-
+</code></pre>
 		</div>
 		<footer class="post__footer">
 			
