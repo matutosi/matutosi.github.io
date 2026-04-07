@@ -85,6 +85,25 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20260408/" rel="bookmark">
+			タイトル
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-04-08T00:00:00Z">April 08, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Macでは，日本語入力のONとOFFのキーが明確に区別されている． Windowsでは「半角/全角」がトグルする． 覚えるべきキーは1つで良いが，その時の状態によって動作が異なるのが鬱陶しい．
+状態にかかわらずキーの効果を一定にするには以下の方法が使える．
+ Google日本語入力のプロパティを開く [一般] - [キー設定] - [キー設定の選択] - [編集]を選択   入力モードのどの段階でも「Henkan」は「IMEを有効化」 入力モードのどの段階でも「Muhenkan」は「IMEを無効化」  その他にも色々と設定を変更できそう．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20260407/" rel="bookmark">
 			キーボードのカスタマイズ
 			</a>
@@ -257,23 +276,6 @@ Tailscaleの管理画面での設定する．
 Nextcloudの信頼できるドメイン設定とその他設定．
 sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set overwriteprotocol --value &#39;https&#39; sudo nextcloud.
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20260211/" rel="bookmark">
-			Claude code
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-11T00:00:00Z">February 11, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Claude codeを使い始めた． 噂どおりすごい． 一発で不具合のないものができる訳では無いが，労力がかなり削減できる． ファイルごとでバラバラだったものが統一できるのも嬉しい．
-	</div>
 </article>
 </main>
 
@@ -289,6 +291,7 @@ sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set ov
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20260408/">タイトル</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260407/">キーボードのカスタマイズ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260329/">安易に解決する生成AI</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260327/">忖度する生成AI</a></li>
@@ -298,7 +301,6 @@ sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set ov
 			<li class="widget__item"><a class="widget__link" href="/post/20260221/">プレミアム桔梗信玄餅クレープ</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260220/">サラバンド</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260214/">Nextcloud &#43; Tailscaleで個人のオンラインストレージ</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20260211/">Claude code</a></li>
 		</ul>
 	</div>
 </div>
@@ -326,6 +328,7 @@ sudo tailscale serve --bg --https=443 80 sudo nextcloud.occ config:system:set ov
 		<a class="widget-taglist__link widget__link btn" href="/tags/clidatajp/" title="clidatajp">clidatajp</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/etc/" title="etc">etc</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/grep/" title="grep">grep</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="hugo">hugo</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="javascript">javascript</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/programing/" title="programing">programing</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="python">python</a>

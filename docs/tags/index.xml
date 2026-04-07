@@ -6,11 +6,11 @@
     <description>Recent content in Tags on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>etc</title>
       <link>https://matutosi.github.io/tags/etc/</link>
-      <pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Apr 2026 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/tags/etc/</guid>
       <description></description>
@@ -94,6 +94,15 @@
       <pubDate>Mon, 27 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://matutosi.github.io/tags/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://matutosi.github.io/tags/hugo/</link>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     

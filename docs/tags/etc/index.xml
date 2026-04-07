@@ -6,7 +6,18 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>タイトル</title>
+      <link>https://matutosi.github.io/post/20260408/</link>
+      <pubDate>Wed, 08 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260408/</guid>
+      <description>Macでは，日本語入力のONとOFFのキーが明確に区別されている． Windowsでは「半角/全角」がトグルする． 覚えるべきキーは1つで良いが，その時の状態によって動作が異なるのが鬱陶しい．
+状態にかかわらずキーの効果を一定にするには以下の方法が使える．
+ Google日本語入力のプロパティを開く [一般] - [キー設定] - [キー設定の選択] - [編集]を選択   入力モードのどの段階でも「Henkan」は「IMEを有効化」 入力モードのどの段階でも「Muhenkan」は「IMEを無効化」  その他にも色々と設定を変更できそう．</description>
+    </item>
+    
     <item>
       <title>キーボードのカスタマイズ</title>
       <link>https://matutosi.github.io/post/20260407/</link>
