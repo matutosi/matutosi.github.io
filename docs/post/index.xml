@@ -6,7 +6,30 @@
     <description>Recent content in Posts on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 08 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bluetoothデバイスの電源状況の把握</title>
+      <link>https://matutosi.github.io/post/20260429/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260429/</guid>
+      <description>Bluetooth接続のキーボードが充電切れで使えなくなることがある． こまめに充電すれば良いことだが，いちいち充電状況は把握していない． PCを立ち上げたときにバッテリーが少なくなったことが分かればありがたい．
+そこで，Bluetoothデバイスの電源状況をコマンドで把握する方法を調べた．
+PowerShellなら，DEVICE_NAMEにデバイス名を入れて実行する．
+Get-PnpDevice | Where-Object {$_.FriendlyName -like &amp;#39;*DEVICE_NAME*&amp;#39;} | Get-PnpDeviceProperty -KeyName &amp;#39;DEVPKEY_Device_BatteryLevel&amp;#39; | Select-Object Data コマンドプロンプトからは，次のようにして，PowerShellを呼び出す．
+powershell -command &amp;#34;Get-PnpDevice | Where-Object {$_.FriendlyName -like &amp;#39;*Trac*&amp;#39;} | Get-PnpDeviceProperty -KeyName &amp;#39;DEVPKEY_Device_BatteryLevel&amp;#39; | Select-Object Data&amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>NDLOCR-Lite</title>
+      <link>https://matutosi.github.io/post/20260409/</link>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260409/</guid>
+      <description>NDLOCR-liteは結構文字認識の精度が高いらしい．
+ https://lab.ndl.go.jp/data_set/ndlocrlite-usage/ https://github.com/ndl-lab/ndlocr-lite  </description>
+    </item>
+    
     <item>
       <title>日本語入力の切り替え</title>
       <link>https://matutosi.github.io/post/20260408/</link>
