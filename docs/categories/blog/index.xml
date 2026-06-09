@@ -6,7 +6,17 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Sat, 02 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude CodeのCtrl &#43; Enterで送信</title>
+      <link>https://matutosi.github.io/post/20260610/</link>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260610/</guid>
+      <description>Claude Codeで操作していると，Enterで改行するつもりが，送信してしまうことがある． 設定で以下をチェックしておくと，Enterだけのときは改行，Ctrl + Enterで送信になる．
+&amp;ldquo;When enabled, use Ctrl/Cmd+Enter to send prompts instead of just Enter. This allows Enter to create new lines.&amp;rdquo;</description>
+    </item>
+    
     <item>
       <title>天才的な配列</title>
       <link>https://matutosi.github.io/post/20260502/</link>
