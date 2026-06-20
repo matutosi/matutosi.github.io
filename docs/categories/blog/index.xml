@@ -6,7 +6,18 @@
     <description>Recent content in blog on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Fri, 12 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ローカルGPUで画像生成</title>
+      <link>https://matutosi.github.io/post/20260620/</link>
+      <pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260620/</guid>
+      <description>以下のページを参考に，ローカルで画像生成してみた． それなりには生成してくれる．
+参照画像を渡して画像生成するのも可能なので，ClaudeCodeに頼んで修正した． ただ，ちょっと参照の仕方が雑だ． プロンプトの問題かプログラムの問題か不明だ．
+ 参考：ローカルLLMで画像生成（RTX4060使用）  </description>
+    </item>
+    
     <item>
       <title>Claude CodeのAgentとSkill</title>
       <link>https://matutosi.github.io/post/20260612/</link>
