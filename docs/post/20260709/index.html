@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>pivoteaとpivoteapy - matutosi</title>
+	<title>ggposter - matutosi</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,24 +80,39 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">pivoteaとpivoteapy</h1>
+			<h1 class="post__title">ggposter</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-02-20T00:00:00Z">February 20, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/python/" rel="category">python</a>, <a class="meta__link" href="/categories/r/" rel="category">r</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-07-09T00:00:00Z">July 09, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/r/" rel="category">r</a>
 	</span>
 </div></div>
 		</header>
 		<div class="content post__content clearfix">
-			<p>pivoteaというRのパッケージをPythonに変換している．
-Geminiに相談してコードを変換したが，やはりそのままでは駄目で，エラーがでる．
-でも，Pythonにも少し慣れてきたので，ちょっとずつデバグしていったら，それなりには動くものになってきた．
-うまくできたら，&ldquo;pivoteapy&quot;として公開できるかもしれない．</p>
-<p>Pythonののパッケージとしてまとめるだけでなく，さらにPythonからRに戻すと，言語の翻訳と同じでRのコードが簡潔になるような気がする．</p>
-<p>例：不自然な英語 &ndash;(AIで翻訳)&ndash;&gt; 他の言語 &ndash;(AIで翻訳)&ndash;&gt; 自然な言語</p>
-<p>Geminiにリファクタリングを頼むのとどちらがきれいなコードになるのか試してみよう．</p>
+			<p>{ggplot2}をベースにして学会発表ポスターをつくるパッケージを作った．
+というか，ClaudeCodeに作ってもらった．</p>
+<p>すごく前に自分でコードを書いていたが，途中で行き詰まっていた．
+いちから作り直すように依頼したが，前のコードの意図を理解してそれをもとに作ってくれた．
+細かな修正は必要だが，土日にちょこちょこ作業しただけで完成した．</p>
 <ul>
-<li><a href="https://cran.r-project.org/web/packages/pivotea/index.html">https://cran.r-project.org/web/packages/pivotea/index.html</a></li>
+<li>
+<p><a href="https://matutosi.github.io/ggposter/">https://matutosi.github.io/ggposter/</a></p>
+</li>
+<li>
+<p><a href="https://github.com/matutosi/ggposter/">https://github.com/matutosi/ggposter/</a></p>
+</li>
+<li>
+<p>似た発想のもの</p>
+<ul>
+<li><a href="https://github.com/bbucior/drposter">https://github.com/bbucior/drposter</a></li>
+<li><a href="https://github.com/bbucior/docposter">https://github.com/bbucior/docposter</a></li>
+<li><a href="https://github.com/pncnmnp/typst-poster">https://github.com/pncnmnp/typst-poster</a></li>
+<li><a href="https://odeleongt.github.io/postr/">https://odeleongt.github.io/postr/</a></li>
+<li><a href="https://wytham.rbind.io/post/making-a-poster-in-r/">https://wytham.rbind.io/post/making-a-poster-in-r/</a></li>
 </ul>
+</li>
+</ul>
+<p>他にも手を付けたけど，完成していない(使い物にならない)ものはたくさんある．
+時間があるときに少しずつ整理していこう．</p>
 
 		</div>
 		<footer class="post__footer">

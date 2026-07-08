@@ -85,6 +85,28 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20260709/" rel="bookmark">
+			ggposter
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-07-09T00:00:00Z">July 09, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>, <a class="meta__link" href="/categories/r/" rel="category">r</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		{ggplot2}をベースにして学会発表ポスターをつくるパッケージを作った． というか，ClaudeCodeに作ってもらった．
+すごく前に自分でコードを書いていたが，途中で行き詰まっていた． いちから作り直すように依頼したが，前のコードの意図を理解してそれをもとに作ってくれた． 細かな修正は必要だが，土日にちょこちょこ作業しただけで完成した．
+  https://matutosi.github.io/ggposter/
+  https://github.com/matutosi/ggposter/
+  似た発想のもの
+ https://github.com/bbucior/drposter https://github.com/bbucior/docposter https://github.com/pncnmnp/typst-poster https://odeleongt.github.io/postr/ https://wytham.rbind.io/post/making-a-poster-in-r/    他にも手を付けたけど，完成していない(使い物にならない)ものはたくさんある． 時間があるときに少しずつ整理していこう．
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20260708/" rel="bookmark">
 			ClaudeCodeで文章チェック
 			</a>
@@ -252,24 +274,6 @@ powershell -command &#34;Get-PnpDevice | Where-Object {$_.FriendlyName -like &#3
 Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &#34;Scancode Map&#34;=- &#34;Scancode Map&#34;=hex:\ 00,00,00,00,00,00,00,00,\ 09,00,00,00,\	9個変換(最終行のターミネーターを含む) 5b,e0,7b,00,\	Windows	&lt;- 無変換 7b,00,70,00,\	無変換	&lt;- カタカナ/ひらがな 1D,00,38,e0,\	L-Ctrl	&lt;- Alt(右) 1D,00,3A,00,\	L-Ctrl	&lt;- Caps 47,e0,49,e0,\	Home	&lt;- PgUp 4f,e0,51,e0,\	End	&lt;- PgDn 49,e0,47,e0,\	PgUp	&lt;- Home 51,e0,4f,e0,\	PgDn	&lt;- End 00,00,00,00 以下を実行すると，レジストリにキーボードの変更が
  次の内容をkeyboard.reg 等のファイル名で保存する ダブルクリックする 再起動する  Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout] &#34;Scancode Map&#34;=- &#34;Scancode Map&#34;=hex:\ 00,00,00,00,00,00,00,00,\ 09,00,00,00,\ 5b,e0,7b,00,\ 7b,00,70,00,\ 1D,00,38,e0,\ 1D,00,3A,00,\ 47,e0,49,e0,\ 4f,e0,51,e0,\ 49,e0,47,e0,\ 51,e0,4f,e0,\ 00,00,00,00 キーボードをもとに戻すには，以下の内容を実行する．
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20260329/" rel="bookmark">
-			安易に解決する生成AI
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-03-29T00:00:00Z">March 29, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		生成AIにプログラムの修正をお願いすると，安易に解決することがある．
-スクレイピングのコードを RSelenium から selenider に変更しようとした． RSelenium は，ブラウザのバージョンに合わせたhromeDriver が必要なため手間がかかるためだ． selenider は，その必要がない． コードの修正を生成AIでやったら，エラーがでた． エラーの内容を生成AIに投げたら，try() でコードを囲ってとりあえずエラーがでなくしてきた． エラーが出ないのは良いが，必要な情報がスクレイピングできていないので，根本的な解決にはなっていない．
-	</div>
 </article>
 </main>
 
@@ -285,6 +289,7 @@ Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSe
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20260709/">ggposter</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260708/">ClaudeCodeで文章チェック</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260620/">ローカルGPUで画像生成</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260612/">Claude CodeのAgentとSkill</a></li>
@@ -294,7 +299,6 @@ Windows Registry Editor Version 5.00 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSe
 			<li class="widget__item"><a class="widget__link" href="/post/20260409/">NDLOCR-Lite</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260408/">日本語入力の切り替え</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260407/">キーボードのカスタマイズ</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20260329/">安易に解決する生成AI</a></li>
 		</ul>
 	</div>
 </div>

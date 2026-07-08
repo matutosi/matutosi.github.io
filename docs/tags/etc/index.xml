@@ -6,7 +6,21 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ggposter</title>
+      <link>https://matutosi.github.io/post/20260709/</link>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260709/</guid>
+      <description>{ggplot2}をベースにして学会発表ポスターをつくるパッケージを作った． というか，ClaudeCodeに作ってもらった．
+すごく前に自分でコードを書いていたが，途中で行き詰まっていた． いちから作り直すように依頼したが，前のコードの意図を理解してそれをもとに作ってくれた． 細かな修正は必要だが，土日にちょこちょこ作業しただけで完成した．
+  https://matutosi.github.io/ggposter/
+  https://github.com/matutosi/ggposter/
+  似た発想のもの
+ https://github.com/bbucior/drposter https://github.com/bbucior/docposter https://github.com/pncnmnp/typst-poster https://odeleongt.github.io/postr/ https://wytham.rbind.io/post/making-a-poster-in-r/    他にも手を付けたけど，完成していない(使い物にならない)ものはたくさんある． 時間があるときに少しずつ整理していこう．</description>
+    </item>
+    
     <item>
       <title>ClaudeCodeで文章チェック</title>
       <link>https://matutosi.github.io/post/20260708/</link>
