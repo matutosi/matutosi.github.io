@@ -6,7 +6,18 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自分で考えるClaudeCode</title>
+      <link>https://matutosi.github.io/post/20260807/</link>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260807/</guid>
+      <description>組成表をデジタルデータに変換するコードを手作業で書いていた． そのコードと以下の情報などをClaudeCodeに教えて改良してもらうようにした．
+ コードの目的 組成表とは何か 組成表の構成  途中で，陥りやすい失敗などを伝えていたら，段々とClaudeCodeが自分で色々と考えてくれるようになった． こちらは勝手に「難しいな」と考えていて，生成AIに頼むのことすら考えていなかったことを，自分で問題を自分で見つけて解決方法まで提案してくれた． 具体的には組成表が，2段組になっていてページの下で改行している場合である． 問題点を見つけて解決してくれることは本当にびっくり．
+他にも色々と提案をしてくれて，絶対に自分だけでは解決できない問題が次々に解決する． ありがたや，ありがたや．</description>
+    </item>
+    
     <item>
       <title>ggposter</title>
       <link>https://matutosi.github.io/post/20260709/</link>
