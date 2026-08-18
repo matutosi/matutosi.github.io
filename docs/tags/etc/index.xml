@@ -6,7 +6,17 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Fri, 07 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>中途半端だった作業の再始動</title>
+      <link>https://matutosi.github.io/post/20260818/</link>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260818/</guid>
+      <description>だいぶ前に中途半端な状況で止まっていた作業がたくさんある． ディレクトリにはメモ書きとかはあるが，乱雑でどこから手を付けていいのかよく分からない(全て自分の責任)． 再始動しようと思っても，状況確認で時間がかかるという言い訳で，再開しないことが多い．
+ClaudeCodeにディレクトリの状況を確認してもらって，次にすることを優先順位を付けて一覧にしてもらう． ついでに，その後の状況も記録してもらうと，中途半端だったものがどんどん片付く．</description>
+    </item>
+    
     <item>
       <title>自分で考えるClaudeCode</title>
       <link>https://matutosi.github.io/post/20260807/</link>
