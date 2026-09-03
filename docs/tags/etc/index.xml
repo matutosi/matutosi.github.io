@@ -6,7 +6,18 @@
     <description>Recent content in etc on matutosi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-jp</language>
-    <lastBuildDate>Wed, 02 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://matutosi.github.io/tags/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>調子はどう?</title>
+      <link>https://matutosi.github.io/post/20260904/</link>
+      <pubDate>Fri, 04 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://matutosi.github.io/post/20260904/</guid>
+      <description>Claude Codeで時々「How is Claude doing?」って聞かれる． だいたいうまく言っているので，Goodと返す． ただ， Remote Control をしているときに，「How is Claude doing?」は，リモートのもとで動いている実機にしか表示されない． リモート端末で色々と命令を送っても，反応してくれないのだが，状況がわからない． 要は，止まってしまったとしか見えない．
+そこで，settings.json で設定しておいた． これで大丈夫なはず．
+ &amp;#34;env&amp;#34;: { &amp;#34;CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY&amp;#34;: &amp;#34;1&amp;#34; } </description>
+    </item>
+    
     <item>
       <title>10年以上前の仕事</title>
       <link>https://matutosi.github.io/post/20260902/</link>

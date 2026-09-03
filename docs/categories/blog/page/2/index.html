@@ -85,6 +85,27 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/20260429/" rel="bookmark">
+			Bluetoothデバイスの電源状況の把握
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-04-29T00:00:00Z">April 29, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Bluetooth接続のキーボードが充電切れで使えなくなることがある． こまめに充電すれば良いことだが，いちいち充電状況は把握していない． PCを立ち上げたときにバッテリーが少なくなったことが分かればありがたい．
+そこで，Bluetoothデバイスの電源状況をコマンドで把握する方法を調べた．
+PowerShellなら，DEVICE_NAMEにデバイス名を入れて実行する．
+Get-PnpDevice | Where-Object {$_.FriendlyName -like &#39;*DEVICE_NAME*&#39;} | Get-PnpDeviceProperty -KeyName &#39;DEVPKEY_Device_BatteryLevel&#39; | Select-Object Data コマンドプロンプトからは，次のようにして，PowerShellを呼び出す．
+powershell -command &#34;Get-PnpDevice | Where-Object {$_.FriendlyName -like &#39;*Trac*&#39;} | Get-PnpDeviceProperty -KeyName &#39;DEVPKEY_Device_BatteryLevel&#39; | Select-Object Data&#34; 
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/20260409/" rel="bookmark">
 			NDLOCR-Lite
 			</a>
@@ -244,31 +265,12 @@ start ms-cxh:localonly  https://www.youtube.com/watch?v=r0umX3bwAzo&amp;t=20s
 		桔梗信玄餅のアイスをクレープで包んだお菓子で，色々と増量らしい． 高速道路のSAで売っていて，すごく美味しかった．
  https://www.kikyoushingenmochi.com/i/80298  
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/20260220/" rel="bookmark">
-			サラバンド
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-20T00:00:00Z">February 20, 2026</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/blog/" rel="category">blog</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		長野のお土産として有名な雷鳥の里と似た味で，サラバンドというお菓子がある． もともとサラバンドがあって，それをお土産にしたのが雷鳥の里らしい．
- https://komiyamaseika.com/ https://amanoya.org/blog/archives/3872  追記：
- サラバンド：製造・販売とも小宮山製菓 雷鳥の里：販売は田中屋，製造は小宮山製菓  
-	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/categories/blog/">«</a>
-	<span class="pagination__item pagination__item--current">2/9</span>
+	<span class="pagination__item pagination__item--current">2/10</span>
 	<a class="pagination__item pagination__item--next btn" href="/categories/blog/page/3/">»</a>
 </div>
 
@@ -279,6 +281,7 @@ start ms-cxh:localonly  https://www.youtube.com/watch?v=r0umX3bwAzo&amp;t=20s
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20260904/">調子はどう?</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260902/">10年以上前の仕事</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260818/">中途半端だった作業の再始動</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260807/">自分で考えるClaudeCode</a></li>
@@ -288,7 +291,6 @@ start ms-cxh:localonly  https://www.youtube.com/watch?v=r0umX3bwAzo&amp;t=20s
 			<li class="widget__item"><a class="widget__link" href="/post/20260612/">Claude CodeのAgentとSkill</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260610/">Claude CodeのCtrl &#43; Enterで送信</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20260502/">天才的な配列</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20260429/">Bluetoothデバイスの電源状況の把握</a></li>
 		</ul>
 	</div>
 </div>
