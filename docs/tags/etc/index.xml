@@ -15,7 +15,9 @@
       <guid>https://matutosi.github.io/post/20260904/</guid>
       <description>Claude Codeで時々「How is Claude doing?」って聞かれる． だいたいうまく言っているので，Goodと返す． ただ， Remote Control をしているときに，「How is Claude doing?」は，リモートのもとで動いている実機にしか表示されない． リモート端末で色々と命令を送っても，反応してくれないのだが，状況がわからない． 要は，止まってしまったとしか見えない．
 そこで，settings.json で設定しておいた． これで大丈夫なはず．
- &amp;#34;env&amp;#34;: { &amp;#34;CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY&amp;#34;: &amp;#34;1&amp;#34; } </description>
+ &amp;#34;env&amp;#34;: { &amp;#34;CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY&amp;#34;: &amp;#34;1&amp;#34; } 追記：
+その後，worktree作成の同意を求めるため同様のことが起こったので，ついでに設定しておいた．
+ &amp;#34;permissions&amp;#34;: { &amp;#34;allow&amp;#34;: [ &amp;#34;Bash(git worktree:*)&amp;#34;, &amp;#34;Bash(git add:*)&amp;#34; ] } </description>
     </item>
     
     <item>
